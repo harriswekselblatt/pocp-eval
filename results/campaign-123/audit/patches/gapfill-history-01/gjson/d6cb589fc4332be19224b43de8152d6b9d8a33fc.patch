@@ -1,0 +1,47 @@
+diff --git a/gjson.go b/gjson.go
+index 3c63dc3..148c88e 100644
+--- a/gjson.go
++++ b/gjson.go
+@@ -1406,7 +1406,6 @@ func parseArray(c *parseContext, i int, path string) (int, bool) {
+ 		}
+ 		return false
+ 	}
+-
+ 	for i < len(c.json)+1 {
+ 		if !rp.arrch {
+ 			pmatch = partidx == h
+@@ -1608,10 +1607,17 @@ func parseArray(c *parseContext, i int, path string) (int, bool) {
+ 					c.calcd = true
+ 					return i + 1, true
+ 				}
+-				if len(multires) > 0 && !c.value.Exists() {
+-					c.value = Result{
+-						Raw:  string(append(multires, ']')),
+-						Type: JSON,
++				if !c.value.Exists() {
++					if len(multires) > 0 {
++						c.value = Result{
++							Raw:  string(append(multires, ']')),
++							Type: JSON,
++						}
++					} else if rp.query.all {
++						c.value = Result{
++							Raw:  "[]",
++							Type: JSON,
++						}
+ 					}
+ 				}
+ 				return i + 1, false
+diff --git a/gjson_test.go b/gjson_test.go
+index 68526cc..6f4dd7a 100644
+--- a/gjson_test.go
++++ b/gjson_test.go
+@@ -2233,3 +2233,8 @@ func TestFlattenRemoveNonExist(t *testing.T) {
+ 	raw := Get("[[1],[2,[[],[3]],[4,[5],[],[[[6]]]]]]", `@flatten:{"deep":true}`).Raw
+ 	assert(t, raw == "[1,2,3,4,5,6]")
+ }
++
++func TestPipeEmptyArray(t *testing.T) {
++	raw := Get("[]", `#(hello)#`).Raw
++	assert(t, raw == "[]")
++}

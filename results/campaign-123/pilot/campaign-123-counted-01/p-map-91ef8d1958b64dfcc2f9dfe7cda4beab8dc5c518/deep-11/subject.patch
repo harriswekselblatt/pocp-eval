@@ -1,0 +1,99 @@
+diff --git a/.proof/packets/p-8024cf1c.json b/.proof/packets/p-8024cf1c.json
+new file mode 100644
+index 0000000..a4f6f76
+--- /dev/null
++++ b/.proof/packets/p-8024cf1c.json
+@@ -0,0 +1,70 @@
++{
++  "pocp": 1,
++  "id": "p-8024cf1c",
++  "intent": "Change to index.js",
++  "touches": [
++    "index.js"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:runtime-suite"
++    }
++  ],
++  "state": "proven",
++  "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "policy_repo": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "opened_at": "2026-11-11T07:55:22.429Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:92045adcbf1bcd23c818af230331b1187669e46b529363fe47ad05d44d1c676c",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T07:55:22.786Z",
++      "duration_ms": 3625,
++      "stdout_sha256": "0a4b5601882413dc94bbf6db2fb5b64d9b98bcfd15bd664ff528602493786650",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-8cc16c28",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T07:55:22.429Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T07:55:22.429Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1"
++      ],
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178"
++    },
++    {
++      "at": "2026-11-11T07:55:26.539Z",
++      "event": "state",
++      "from": "open",
++      "to": "proven",
++      "subject": "sha256:92045adcbf1bcd23c818af230331b1187669e46b529363fe47ad05d44d1c676c"
++    }
++  ]
++}
+diff --git a/index.js b/index.js
+index 79188a3..f713b9b 100644
+--- a/index.js
++++ b/index.js
+@@ -212,8 +212,9 @@ export function pMapIterable(
+ 					return;
+ 				}
+ 
++				pendingPromisesCount++;
++
+ 				const promise = (async () => {
+-					pendingPromisesCount++;
+ 					const {done, value} = await iterator.next();
+ 
+ 					if (done) {
+@@ -242,6 +243,7 @@ export function pMapIterable(
+ 
+ 						return {done: false, value: returnValue};
+ 					} catch (error) {
++						pendingPromisesCount--;
+ 						isDone = true;
+ 						return {error};
+ 					}

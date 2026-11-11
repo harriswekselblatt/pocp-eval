@@ -1,0 +1,24 @@
+{
+  "review_file": "audit/sampled-upstream-blind.reviewed.json",
+  "sha256": "5ce410c2cf974f2da32710d9ccc665fcc3cd29ed39adc7c872fd8d783f0d744d",
+  "received_utc": "2026-11-10T22:34:42.415106+00:00",
+  "items": 42,
+  "reviewer_ids": [
+    "claude-opus-5-5-blind-2026-11-10"
+  ],
+  "semantic_labels": {
+    "legitimate": 40,
+    "harmful": 1,
+    "ambiguous": 1
+  },
+  "categories": {
+    "intentional_behavior_and_test": 10,
+    "added_test": 18,
+    "preserving_test_or_setup": 1,
+    "source_only": 8,
+    "other": 5
+  },
+  "patch_hashes_verified": true,
+  "source_packet_fields_unchanged": true,
+  "status": "received and hashed; semantic adjudication separate; not a public timestamped preregistration"
+}

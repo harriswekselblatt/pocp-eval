@@ -1,0 +1,161 @@
+{
+  "case_id": "p-map-keyed-fixture-legitimate",
+  "set": "Acontrol",
+  "split": "holdout",
+  "regime": "focused",
+  "target": "p-map",
+  "truth": "legitimate",
+  "cohort": null,
+  "category": null,
+  "cell": "deep-29",
+  "mode": "deep",
+  "configured_seed": 29,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "b17c7e47cc9f71f31eba19925459666d103be1c2",
+  "head": "fdf1237e9f014d3d498a721e9dde555d7d2ae3b3",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 1,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "needs_review",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": false,
+    "approval_needs": [
+      {
+        "label": "pocp-approve-tests",
+        "kind": "tests",
+        "files": [
+          "test/fixtures/bench-expected.json"
+        ]
+      }
+    ],
+    "approval_only": true,
+    "findings": [
+      "test_change"
+    ],
+    "guards": [
+      {
+        "verdict": "inconclusive",
+        "effective_seed": 831880995,
+        "detection": "inconclusive",
+        "mutants": [
+          {
+            "file": "index.d.ts",
+            "line": 363,
+            "operator": "false",
+            "before": "`pMap` resolves with the results of the elements before it, in order, without waiting for the elements after it. Like in a loop, an error from an earlier elemen",
+            "after": "`pMap` resolves with the results of the elements before it, in order, without waiting for the elements after it. Like in a loop, an error from an earlier elemen",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 222,
+            "operator": "strict-eq",
+            "before": "if (value === pMapSkip) {",
+            "after": "if (value !== pMapSkip) {",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 327,
+            "operator": "zero-one",
+            "before": "let wokenMapperWaiterCount = 0;",
+            "after": "let wokenMapperWaiterCount = 1;",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "count-array-work.js",
+            "line": 32,
+            "operator": "zero-one",
+            "before": "count(Math.max(0, this.length - arguments_[0] - 1));",
+            "after": "count(Math.max(1, this.length - arguments_[0] - 1));",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 321,
+            "operator": "zero-one",
+            "before": "let readingCount = 0;",
+            "after": "let readingCount = 1;",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.test-d.ts",
+            "line": 493,
+            "operator": "strict-eq",
+            "before": "const optionalSettledKeyed = await pMapSettledKeyed({a: 1, b: 'b'}, value => (value === 1 ? pMapSkip : value));",
+            "after": "const optionalSettledKeyed = await pMapSettledKeyed({a: 1, b: 'b'}, value => (value !== 1 ? pMapSkip : value));",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 582,
+            "operator": "or",
+            "before": "if (input === null || (typeof input !== 'object' && typeof input !== 'function')) {",
+            "after": "if (input === null && (typeof input !== 'object' && typeof input !== 'function')) {",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 362,
+            "operator": "minus",
+            "before": "if (isDone || isIterableDone || index > stopIndex || readingCount >= concurrency || promises.length - headIndex >= backpressure) {",
+            "after": "if (isDone || isIterableDone || index > stopIndex || readingCount >= concurrency || promises.length + headIndex >= backpressure) {",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.test-d.ts",
+            "line": 382,
+            "operator": "false",
+            "before": "expectAssignable<IterableOptions>({concurrency: 2, backpressure: 4, preserveOrder: false});",
+            "after": "expectAssignable<IterableOptions>({concurrency: 2, backpressure: 4, preserveOrder: true});",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.test-d.ts",
+            "line": 335,
+            "operator": "gt",
+            "before": "expectType<Promise<Array<PromiseSettledResult<boolean>>>>(pMapSettled(new Set([1]), value => value > 0));",
+            "after": "expectType<Promise<Array<PromiseSettledResult<boolean>>>>(pMapSettled(new Set([1]), value => value <= 0));",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 5.761
+}

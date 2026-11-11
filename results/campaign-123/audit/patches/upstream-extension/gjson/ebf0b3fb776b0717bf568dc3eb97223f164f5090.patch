@@ -1,0 +1,24 @@
+diff --git a/gjson.go b/gjson.go
+index 50c8e75..81d2f37 100644
+--- a/gjson.go
++++ b/gjson.go
+@@ -1226,7 +1226,7 @@ func parseArray(c *parseContext, i int, path string) (int, bool) {
+ 		if qval.Type == JSON {
+ 			res = qval.Get(rp.query.path)
+ 		} else {
+-			if rp.query.path != "" && rp.query.path != "_" {
++			if rp.query.path != "" {
+ 				return false
+ 			}
+ 			res = qval
+diff --git a/gjson_test.go b/gjson_test.go
+index aa51d5c..592186e 100644
+--- a/gjson_test.go
++++ b/gjson_test.go
+@@ -1850,5 +1850,6 @@ func TestQueryArrayValues(t *testing.T) {
+ 	assert(t, Get(json, `a*.#[0="Bob Dylan"]#|#`).String() == "1")
+ 	assert(t, Get(json, `a*.#[0="Bob Dylan 2"]#|#`).String() == "0")
+ 	assert(t, Get(json, `a*.#[%"John*"]#|#`).String() == "2")
++	assert(t, Get(json, `a*.#[_%"John*"]#|#`).String() == "0")
+ 	assert(t, Get(json, `a*.#[="123"]#|#`).String() == "1")
+ }

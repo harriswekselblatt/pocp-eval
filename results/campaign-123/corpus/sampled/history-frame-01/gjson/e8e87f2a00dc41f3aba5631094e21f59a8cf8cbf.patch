@@ -1,0 +1,182 @@
+diff --git a/gjson.go b/gjson.go
+index e7e8d7e..a1633be 100644
+--- a/gjson.go
++++ b/gjson.go
+@@ -2754,6 +2754,7 @@ func execModifier(json, path string) (pathOut, res string, ok bool) {
+ 			var parsedArgs bool
+ 			switch pathOut[0] {
+ 			case '{', '[', '"':
++				// json arg
+ 				res := Parse(pathOut)
+ 				if res.Exists() {
+ 					args = squash(pathOut)
+@@ -2762,14 +2763,20 @@ func execModifier(json, path string) (pathOut, res string, ok bool) {
+ 				}
+ 			}
+ 			if !parsedArgs {
+-				idx := strings.IndexByte(pathOut, '|')
+-				if idx == -1 {
+-					args = pathOut
+-					pathOut = ""
+-				} else {
+-					args = pathOut[:idx]
+-					pathOut = pathOut[idx:]
++				// simple arg
++				i := 0
++				for ; i < len(pathOut); i++ {
++					if pathOut[i] == '|' {
++						break
++					}
++					switch pathOut[i] {
++					case '{', '[', '"', '(':
++						s := squash(pathOut[i:])
++						i += len(s) - 1
++					}
+ 				}
++				args = pathOut[:i]
++				pathOut = pathOut[i:]
+ 			}
+ 		}
+ 		return pathOut, fn(json, args), true
+@@ -2789,19 +2796,24 @@ func unwrap(json string) string {
+ // DisableModifiers will disable the modifier syntax
+ var DisableModifiers = false
+ 
+-var modifiers = map[string]func(json, arg string) string{
+-	"pretty":  modPretty,
+-	"ugly":    modUgly,
+-	"reverse": modReverse,
+-	"this":    modThis,
+-	"flatten": modFlatten,
+-	"join":    modJoin,
+-	"valid":   modValid,
+-	"keys":    modKeys,
+-	"values":  modValues,
+-	"tostr":   modToStr,
+-	"fromstr": modFromStr,
+-	"group":   modGroup,
++var modifiers map[string]func(json, arg string) string
++
++func init() {
++	modifiers = map[string]func(json, arg string) string{
++		"pretty":  modPretty,
++		"ugly":    modUgly,
++		"reverse": modReverse,
++		"this":    modThis,
++		"flatten": modFlatten,
++		"join":    modJoin,
++		"valid":   modValid,
++		"keys":    modKeys,
++		"values":  modValues,
++		"tostr":   modToStr,
++		"fromstr": modFromStr,
++		"group":   modGroup,
++		"dig":     modDig,
++	}
+ }
+ 
+ // AddModifier binds a custom modifier command to the GJSON syntax.
+@@ -3435,3 +3447,30 @@ func escapeComp(comp string) string {
+ 	}
+ 	return comp
+ }
++
++func parseRecursiveDescent(all []Result, parent Result, path string) []Result {
++	if res := parent.Get(path); res.Exists() {
++		all = append(all, res)
++	}
++	if parent.IsArray() || parent.IsObject() {
++		parent.ForEach(func(_, val Result) bool {
++			all = parseRecursiveDescent(all, val, path)
++			return true
++		})
++	}
++	return all
++}
++
++func modDig(json, arg string) string {
++	all := parseRecursiveDescent(nil, Parse(json), arg)
++	var out []byte
++	out = append(out, '[')
++	for i, res := range all {
++		if i > 0 {
++			out = append(out, ',')
++		}
++		out = append(out, res.Raw...)
++	}
++	out = append(out, ']')
++	return string(out)
++}
+diff --git a/gjson_test.go b/gjson_test.go
+index 1fabe95..aacc891 100644
+--- a/gjson_test.go
++++ b/gjson_test.go
+@@ -2636,3 +2636,68 @@ func TestIssue301(t *testing.T) {
+ 	assert(t, Get(json, `fav\.movie.[1]`).String() == "[]")
+ 
+ }
++
++func TestModDig(t *testing.T) {
++	json := `
++		{
++
++			"group": {
++				"issues": [
++					{
++						"fields": {
++						"labels": [
++							"milestone_1",
++							"group:foo",
++							"plan:a",
++							"plan:b"
++						]
++						},
++						"refid": "123"
++					},{
++						"fields": {
++						"labels": [
++							"milestone_2",
++							"group:foo",
++							"plan:a",
++							"plan"
++						]
++						},
++						"refid": "456"
++					},[
++						{"extra_deep":[{
++							"fields": {
++							"labels": [
++								"milestone_3",
++								"group:foo",
++								"plan:a",
++								"plan"
++							]
++							},
++							"refid": "789"
++						}]
++					}]
++				]
++			}
++		}
++	`
++	assert(t, Get(json, "group.@dig:#(refid=123)|0.fields.labels.0").String() == "milestone_1")
++	assert(t, Get(json, "group.@dig:#(refid=456)|0.fields.labels.0").String() == "milestone_2")
++	assert(t, Get(json, "group.@dig:#(refid=789)|0.fields.labels.0").String() == "milestone_3")
++	json = `
++	{ "something": {
++		"anything": {
++		  "abcdefg": {
++			  "finally": {
++				"important": {
++					"secret": "password",
++					"name": "jake"
++				}
++			},
++			"name": "melinda"
++		  }
++		}
++	  }
++	}`
++	assert(t, Get(json, "@dig:name").String() == `["melinda","jake"]`)
++	assert(t, Get(json, "@dig:secret").String() == `["password"]`)
++}

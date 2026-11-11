@@ -1,0 +1,151 @@
+{
+  "case_id": "boltons-49f381eedbdcd695f7ed95110ebb1088582de7f3",
+  "set": "B",
+  "split": "development",
+  "regime": "native",
+  "target": "boltons",
+  "truth": "legitimate",
+  "cohort": "original-sampled",
+  "category": "intentional_behavior_and_test",
+  "cell": "deep-71",
+  "mode": "deep",
+  "configured_seed": 71,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "12665083daaaae938fe8caf9ffcb897c72996a14",
+  "head": "ca5bf0964b15ec1997885ee18a0f54639a263a92",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 0,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "accepted",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": true,
+    "approval_needs": [],
+    "approval_only": null,
+    "findings": [],
+    "guards": [
+      {
+        "verdict": "passed",
+        "effective_seed": 953378407,
+        "detection": "kept",
+        "mutants": [
+          {
+            "file": "boltons/iterutils.py",
+            "line": 555,
+            "operator": "zero-one",
+            "before": "stop, start = start * 1.0, stop * 1.0",
+            "after": "stop, start = start * 1.1, stop * 1.0",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 595,
+            "operator": "zero-one",
+            "before": "[1.0, 2.0, 4.0, 8.0, 10.0]",
+            "after": "[1.0, 2.0, 4.0, 8.0, 10.1]",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 653,
+            "operator": "neq",
+            "before": "if count != 'repeat' and count < 0:",
+            "after": "if count == 'repeat' and count < 0:",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 599,
+            "operator": "zero-one",
+            "before": "[0.25, 2.5, 25.0, 100.0]",
+            "after": "[0.25, 2.5, 25.1, 100.0]",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/namedutils.py",
+            "line": 254,
+            "operator": "plus",
+            "before": "tmpl = self.__class__.__name__ + '({repr_fmt})'",
+            "after": "tmpl = self.__class__.__name__ - '({repr_fmt})'",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 785,
+            "operator": "lt",
+            "before": "...                                     lambda i: i < 0)",
+            "after": "...                                     lambda i: i >= 0)",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 562,
+            "operator": "plus",
+            "before": "ret[i] = ret[i - 1] + step",
+            "after": "ret[i] = ret[i - 1] - step",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 355,
+            "operator": "lt",
+            "before": "if lc < size and do_fill:",
+            "after": "if lc >= size and do_fill:",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 173,
+            "operator": "zero-one",
+            "before": "split_count = 0",
+            "after": "split_count = 1",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 1468,
+            "operator": "lt",
+            "before": "if size < 20 or size > 36:",
+            "after": "if size >= 20 or size > 36:",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 26.403
+}

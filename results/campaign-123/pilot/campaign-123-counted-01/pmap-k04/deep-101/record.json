@@ -1,0 +1,151 @@
+{
+  "case_id": "pmap-k04",
+  "set": "B",
+  "split": "holdout",
+  "regime": "native",
+  "target": "p-map",
+  "truth": "legitimate",
+  "cohort": "constructed-01",
+  "category": "added_test",
+  "cell": "deep-101",
+  "mode": "deep",
+  "configured_seed": 101,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "cf4418b31695878c37a5f4e537f725fb1d1240bb",
+  "head": "e4f0ae4fee4be279014cc1ab0cfb681b12dcc69c",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 0,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "accepted",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": true,
+    "approval_needs": [],
+    "approval_only": null,
+    "findings": [],
+    "guards": [
+      {
+        "verdict": "passed",
+        "effective_seed": 107016288,
+        "detection": "kept",
+        "mutants": [
+          {
+            "file": "index.js",
+            "line": 164,
+            "operator": "strict-neq",
+            "before": "resolve(result.slice(0, lastIndex).filter(value => value !== pMapSkip));",
+            "after": "resolve(result.slice(0, lastIndex).filter(value => value === pMapSkip));",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 648,
+            "operator": "strict-neq",
+            "before": "if (typeof result?.then !== 'function') {",
+            "after": "if (typeof result?.then === 'function') {",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 114,
+            "operator": "true",
+            "before": "signal.addEventListener('abort', signalListener, {once: true});",
+            "after": "signal.addEventListener('abort', signalListener, {once: false});",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 134,
+            "operator": "lt",
+            "before": "for (let index = 0; index < Math.min(doneIndex, errors.length); index++) {",
+            "after": "for (let index = 0; index >= Math.min(doneIndex, errors.length); index++) {",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 489,
+            "operator": "zero-one",
+            "before": "headIndex = 0;",
+            "after": "headIndex = 1;",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 486,
+            "operator": "gte",
+            "before": "if (headIndex * 2 >= promises.length) {",
+            "after": "if (headIndex * 2 < promises.length) {",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 73,
+            "operator": "zero-one",
+            "before": "let skippedCount = 0;",
+            "after": "let skippedCount = 1;",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 391,
+            "operator": "lt",
+            "before": "if (runningMappersCount < concurrency) {",
+            "after": "if (runningMappersCount >= concurrency) {",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "assert-in-range.js",
+            "line": 8,
+            "operator": "lte",
+            "before": "t.fail(`${start} ${start <= value ? '\u2264' : chalk.red('\u2270')} ${chalk.yellow(value)} ${value <= end ? '\u2264' : chalk.red('\u2270')} ${end}`);",
+            "after": "t.fail(`${start} ${start > value ? '\u2264' : chalk.red('\u2270')} ${chalk.yellow(value)} ${value <= end ? '\u2264' : chalk.red('\u2270')} ${end}`);",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 126,
+            "operator": "lt",
+            "before": "if (index < doneIndex) {",
+            "after": "if (index >= doneIndex) {",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 170.138
+}

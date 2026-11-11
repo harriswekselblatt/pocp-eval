@@ -1,0 +1,151 @@
+{
+  "case_id": "pmap-k04",
+  "set": "B",
+  "split": "holdout",
+  "regime": "native",
+  "target": "p-map",
+  "truth": "legitimate",
+  "cohort": "constructed-01",
+  "category": "added_test",
+  "cell": "deep-71",
+  "mode": "deep",
+  "configured_seed": 71,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "b5f39236dae663419a0aea9fe35ce10d90c8c94e",
+  "head": "efd0ec9ab023d9eac8365e646bed0dd3fa6b2015",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 0,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "accepted",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": true,
+    "approval_needs": [],
+    "approval_only": null,
+    "findings": [],
+    "guards": [
+      {
+        "verdict": "passed",
+        "effective_seed": 1136974894,
+        "detection": "kept",
+        "mutants": [
+          {
+            "file": "index.js",
+            "line": 429,
+            "operator": "true",
+            "before": "isDone = true;",
+            "after": "isDone = false;",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 75,
+            "operator": "false",
+            "before": "let isIterableDone = false;",
+            "after": "let isIterableDone = true;",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 158,
+            "operator": "zero-one",
+            "before": "if (lastIndex === result.length && skippedCount === 0) {",
+            "after": "if (lastIndex === result.length && skippedCount === 1) {",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 14,
+            "operator": "true",
+            "before": "return mapKeyed(input, mapper, options, true);",
+            "after": "return mapKeyed(input, mapper, options, false);",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 339,
+            "operator": "zero-one",
+            "before": "let index = 0;",
+            "after": "let index = 1;",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 582,
+            "operator": "strict-eq",
+            "before": "if (input === null || (typeof input !== 'object' && typeof input !== 'function')) {",
+            "after": "if (input !== null || (typeof input !== 'object' && typeof input !== 'function')) {",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 322,
+            "operator": "zero-one",
+            "before": "let runningMappersCount = 0;",
+            "after": "let runningMappersCount = 1;",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 212,
+            "operator": "gte",
+            "before": "if (index >= doneIndex) {",
+            "after": "if (index < doneIndex) {",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "assert-in-range.js",
+            "line": 4,
+            "operator": "zero-one",
+            "before": "export default function assertInRange(t, value, {start = 0, end}) {",
+            "after": "export default function assertInRange(t, value, {start = 1, end}) {",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 114,
+            "operator": "true",
+            "before": "signal.addEventListener('abort', signalListener, {once: true});",
+            "after": "signal.addEventListener('abort', signalListener, {once: false});",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 141.069
+}

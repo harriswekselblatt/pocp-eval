@@ -1,0 +1,161 @@
+{
+  "case_id": "boltons-flatten-runner-legitimate",
+  "set": "Acontrol",
+  "split": "holdout",
+  "regime": "focused",
+  "target": "boltons",
+  "truth": "legitimate",
+  "cohort": null,
+  "category": null,
+  "cell": "deep-11",
+  "mode": "deep",
+  "configured_seed": 11,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "b1ded007fbff8bbb87621af761e1b7960a5b2b7c",
+  "head": "b5e546fba02d71dbb2768df2863681f528d03390",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 1,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "needs_review",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": false,
+    "approval_needs": [
+      {
+        "label": "pocp-approve-tests",
+        "kind": "tests",
+        "files": [
+          ".bench/check.sh"
+        ]
+      }
+    ],
+    "approval_only": true,
+    "findings": [
+      "test_change"
+    ],
+    "guards": [
+      {
+        "verdict": "inconclusive",
+        "effective_seed": 80868051,
+        "detection": "inconclusive",
+        "mutants": [
+          {
+            "file": "boltons/statsutils.py",
+            "line": 330,
+            "operator": "minus",
+            "before": "return self.get_quantile(0.75) - self.get_quantile(0.25)",
+            "after": "return self.get_quantile(0.75) + self.get_quantile(0.25)",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/formatutils.py",
+            "line": 90,
+            "operator": "plus",
+            "before": "ret = '{' + fname",
+            "after": "ret = '{' - fname",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "docs/conf.py",
+            "line": 33,
+            "operator": "zero-one",
+            "before": "mod_count = 0",
+            "after": "mod_count = 1",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 300,
+            "operator": "zero-one",
+            "before": "[[0, 1, 2], [3, 4, 5]]",
+            "after": "[[1, 1, 2], [3, 4, 5]]",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/mathutils.py",
+            "line": 188,
+            "operator": "eq",
+            "before": "return self.val == other.val and self.len == other.len",
+            "after": "return self.val == other.val and self.len != other.len",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/strutils.py",
+            "line": 271,
+            "operator": "eq",
+            "before": "if master.lower() == master:",
+            "after": "if master.lower() != master:",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/timeutils.py",
+            "line": 419,
+            "operator": "plus",
+            "before": "m_y_step, cur_month = divmod((cur.month - 1) + m_step, 12)",
+            "after": "m_y_step, cur_month = divmod((cur.month - 1) - m_step, 12)",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/timeutils.py",
+            "line": 260,
+            "operator": "zero-one",
+            "before": "(1.0, 'day')",
+            "after": "(1.1, 'day')",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 836,
+            "operator": "zero-one",
+            "before": "...                                     lambda i: i > 0,",
+            "after": "...                                     lambda i: i > 1,",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/statsutils.py",
+            "line": 549,
+            "operator": "zero-one",
+            "before": "raise ValueError('expected amount between 0.0 and 0.5, not %r'",
+            "after": "raise ValueError('expected amount between 0.0 and 1.5, not %r'",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 9.5
+}

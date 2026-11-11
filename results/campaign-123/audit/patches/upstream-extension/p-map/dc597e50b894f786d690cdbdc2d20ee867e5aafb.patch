@@ -1,0 +1,64 @@
+diff --git a/index.js b/index.js
+index dc0e07e..2f7d91c 100644
+--- a/index.js
++++ b/index.js
+@@ -193,6 +193,7 @@ export function pMapIterable(
+ 			const promises = [];
+ 			let runningMappersCount = 0;
+ 			let isDone = false;
++			let index = 0;
+ 
+ 			function trySpawn() {
+ 				if (isDone || !(runningMappersCount < concurrency && promises.length < backpressure)) {
+@@ -212,7 +213,7 @@ export function pMapIterable(
+ 					trySpawn();
+ 
+ 					try {
+-						const returnValue = await mapper(await value);
++						const returnValue = await mapper(await value, index++);
+ 
+ 						runningMappersCount--;
+ 
+diff --git a/test.js b/test.js
+index a33b07b..9db3013 100644
+--- a/test.js
++++ b/test.js
+@@ -59,6 +59,16 @@ const mapper = async ([value, ms]) => {
+ 	return value;
+ };
+ 
++const mapperWithIndex = async ([value, ms], index) => {
++	await delay(ms);
++
++	if (typeof value === 'function') {
++		value = await value();
++	}
++
++	return {value, index};
++};
++
+ class ThrowingIterator {
+ 	constructor(max, throwOnIndex) {
+ 		this._max = max;
+@@ -516,6 +526,21 @@ test('pMapIterable', async t => {
+ 	t.deepEqual(await collectAsyncIterable(pMapIterable(sharedInput, mapper)), [10, 20, 30]);
+ });
+ 
++test('pMapIterable - index in mapper', async t => {
++	t.deepEqual(await collectAsyncIterable(pMapIterable(sharedInput, mapperWithIndex)), [
++		{value: 10, index: 0},
++		{value: 20, index: 1},
++		{value: 30, index: 2},
++	]);
++	t.deepEqual(await collectAsyncIterable(pMapIterable(longerSharedInput, mapperWithIndex)), [
++		{value: 10, index: 0},
++		{value: 20, index: 1},
++		{value: 30, index: 2},
++		{value: 40, index: 3},
++		{value: 50, index: 4},
++	]);
++});
++
+ test('pMapIterable - empty', async t => {
+ 	t.deepEqual(await collectAsyncIterable(pMapIterable([], mapper)), []);
+ });

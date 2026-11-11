@@ -1,0 +1,297 @@
+diff --git a/.proof/packets/p-159f07d0.json b/.proof/packets/p-159f07d0.json
+new file mode 100644
+index 0000000..f3fb111
+--- /dev/null
++++ b/.proof/packets/p-159f07d0.json
+@@ -0,0 +1,275 @@
++{
++  "pocp": 1,
++  "id": "p-159f07d0",
++  "intent": "Change to test/fixtures/bench-expected.json",
++  "touches": [
++    "test/fixtures/bench-expected.json"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:behavior-contract"
++    },
++    {
++      "id": "o2",
++      "kind": "guard",
++      "files": [
++        "test/fixtures/bench-expected.json"
++      ],
++      "mutants": 10,
++      "seed": 29,
++      "text": "Existing tests or test setup changed (test/fixtures/bench-expected.json): the old tests still pass on the new code, and the new tests catch every sampled mutant the old ones caught",
++      "source": "guard:tests"
++    }
++  ],
++  "state": "open",
++  "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++  "policy_repo": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++  "opened_at": "2026-11-11T08:30:01.764Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:37b4c6d34599377ab65783e1aa7cc6af72ba74f3e5d9e893bea77993f4437f68",
++      "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T08:30:02.120Z",
++      "duration_ms": 61,
++      "stdout_sha256": "f5a833ecdbe9852ca7bd2ade2e57ac9a36372d336113c86b1bb34ec4c2e91a72",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-5f2d3d58",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      }
++    },
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:8ad6d9db5ed8e7fc0277e5b59f8b406340ad26e47cc4d5983d8a7ed6790a6073",
++      "subject": "sha256:37b4c6d34599377ab65783e1aa7cc6af72ba74f3e5d9e893bea77993f4437f68",
++      "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++      "kind": "guard",
++      "mode": "snapshot",
++      "passed": false,
++      "started_at": "2026-11-11T08:30:02.289Z",
++      "duration_ms": 408,
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      },
++      "guard": {
++        "pocp": 1,
++        "verdict": "inconclusive",
++        "passed": false,
++        "summary": "the old tests caught none of 10 sampled mutants, so a drop in detection can't be measured",
++        "base": "fefd24cd867c96bd475c928c1aead33d2ac95473",
++        "checks": [
++          {
++            "id": "behavior-contract",
++            "run": "sh .bench/check.sh"
++          }
++        ],
++        "old_tests": {
++          "result": "pass",
++          "restored": [
++            "test/fixtures/bench-expected.json"
++          ],
++          "runs": [
++            {
++              "check": "behavior-contract",
++              "passed": true,
++              "exit": 0,
++              "duration_ms": 61
++            }
++          ]
++        },
++        "new_tests": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "behavior-contract",
++              "passed": true,
++              "reused": true,
++              "duration_ms": 0
++            }
++          ]
++        },
++        "baseline": {
++          "result": "not-run",
++          "runs": []
++        },
++        "detection": {
++          "result": "inconclusive",
++          "budget": 10,
++          "seed": 29,
++          "sites": 217,
++          "focus_sites": 0,
++          "files": 6,
++          "sampled": 10,
++          "old_caught": 0,
++          "new_caught": 0,
++          "lost": [],
++          "mutants": [
++            {
++              "file": "index.js",
++              "line": 114,
++              "operator": "true",
++              "before": "signal.addEventListener('abort', signalListener, {once: true});",
++              "after": "signal.addEventListener('abort', signalListener, {once: false});",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "index.d.ts",
++              "line": 383,
++              "operator": "zero-one",
++              "before": "return page.items.length === 0 ? pMapStop : page;",
++              "after": "return page.items.length === 1 ? pMapStop : page;",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "index.test-d.ts",
++              "line": 108,
++              "operator": "gt",
++              "before": "return number > 1 ? pMapStop : number;",
++              "after": "return number <= 1 ? pMapStop : number;",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "index.test-d.ts",
++              "line": 214,
++              "operator": "times",
++              "before": "expectType<Promise<{a: number}>>(pMapKeyed({a: 1} as const, value => value * 2));",
++              "after": "expectType<Promise<{a: number}>>(pMapKeyed({a: 1} as const, value => value / 2));",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "count-array-work.js",
++              "line": 21,
++              "operator": "minus",
++              "before": "count(Math.max(0, this.length - 1));",
++              "after": "count(Math.max(0, this.length + 1));",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "index.test-d.ts",
++              "line": 222,
++              "operator": "strict-eq",
++              "before": "expectType<Promise<{user?: string | number; count?: string | number}>>(pMapKeyed(keyedInput, value => (value === 1 ? pMapStop : value)));",
++              "after": "expectType<Promise<{user?: string | number; count?: string | number}>>(pMapKeyed(keyedInput, value => (value !== 1 ? pMapStop : value)));",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "index.js",
++              "line": 158,
++              "operator": "strict-eq",
++              "before": "if (lastIndex === result.length && skippedCount === 0) {",
++              "after": "if (lastIndex !== result.length && skippedCount === 0) {",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "index.test-d.ts",
++              "line": 311,
++              "operator": "times",
++              "before": "async function * stringAsyncGenerator() {",
++              "after": "async function / stringAsyncGenerator() {",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "index.d.ts",
++              "line": 224,
++              "operator": "minus",
++              "before": "@param input - Synchronous or asynchronous iterable that is iterated over concurrently, calling the `mapper` function for each element. Each iterated item is `a",
++              "after": "@param input + Synchronous or asynchronous iterable that is iterated over concurrently, calling the `mapper` function for each element. Each iterated item is `a",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "index.js",
++              "line": 410,
++              "operator": "false",
++              "before": "return {done: false, value: pMapSkip};",
++              "after": "return {done: true, value: pMapSkip};",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            }
++          ]
++        },
++        "duration_ms": 408,
++        "checks_from": "rules"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T08:30:01.764Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T08:30:01.764Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1",
++        "o2"
++      ],
++      "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66"
++    },
++    {
++      "at": "2026-11-11T08:30:02.735Z",
++      "event": "proof_failed",
++      "obligation": "o2",
++      "subject": "sha256:37b4c6d34599377ab65783e1aa7cc6af72ba74f3e5d9e893bea77993f4437f68"
++    },
++    {
++      "at": "2026-11-11T08:30:03.027Z",
++      "event": "deferred",
++      "obligation": "o2",
++      "by": "unknown",
++      "subject": "sha256:37b4c6d34599377ab65783e1aa7cc6af72ba74f3e5d9e893bea77993f4437f68"
++    }
++  ],
++  "deferrals": [
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:8ad6d9db5ed8e7fc0277e5b59f8b406340ad26e47cc4d5983d8a7ed6790a6073",
++      "subject": "sha256:37b4c6d34599377ab65783e1aa7cc6af72ba74f3e5d9e893bea77993f4437f68",
++      "by": "unknown",
++      "at": "2026-11-11T08:30:03.027Z",
++      "to": "ci-approval",
++      "reason": "the old tests caught none of 10 sampled mutants, so a drop in detection can't be measured"
++    }
++  ]
++}
+diff --git a/test/fixtures/bench-expected.json b/test/fixtures/bench-expected.json
+index f6734d9..8cd5d37 100644
+--- a/test/fixtures/bench-expected.json
++++ b/test/fixtures/bench-expected.json
+@@ -1 +1,10 @@
+-[{"status": "fulfilled", "value": 2}, {"status": "rejected", "reason": "bad"}]
++[
++    {
++        "status": "fulfilled",
++        "value": 2
++    },
++    {
++        "status": "rejected",
++        "reason": "bad"
++    }
++]

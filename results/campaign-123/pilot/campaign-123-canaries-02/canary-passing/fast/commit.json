@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "git",
+    "commit",
+    "-qm",
+    "canary-passing fast"
+  ],
+  "exit": 0,
+  "execution": "completed",
+  "seconds": 0.9808486250694841,
+  "stdout": "",
+  "stderr": "pocp: gate passed (1 packet(s) proven for sha256:ac133a93ac76)\n"
+}

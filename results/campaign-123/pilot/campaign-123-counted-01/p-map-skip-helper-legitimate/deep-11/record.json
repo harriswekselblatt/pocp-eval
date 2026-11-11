@@ -1,0 +1,151 @@
+{
+  "case_id": "p-map-skip-helper-legitimate",
+  "set": "Acontrol",
+  "split": "development",
+  "regime": "focused",
+  "target": "p-map",
+  "truth": "legitimate",
+  "cohort": null,
+  "category": null,
+  "cell": "deep-11",
+  "mode": "deep",
+  "configured_seed": 11,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "62ab75b8cb7fcdb5a741a0cecee98c9077504d79",
+  "head": "51322d4f87db1b20f4736f37d2e7d1e1e05a7512",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 0,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "accepted",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": true,
+    "approval_needs": [],
+    "approval_only": null,
+    "findings": [],
+    "guards": [
+      {
+        "verdict": "passed",
+        "effective_seed": 610877645,
+        "detection": "kept",
+        "mutants": [
+          {
+            "file": "index.test-d.ts",
+            "line": 185,
+            "operator": "false",
+            "before": "expectError(pMapSettled(sites, asyncMapper, {preserveOrder: false}));",
+            "after": "expectError(pMapSettled(sites, asyncMapper, {preserveOrder: true}));",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.test-d.ts",
+            "line": 317,
+            "operator": "times",
+            "before": "expectType<AsyncIterable<number>>(pMapIterable(numberGenerator(), number => number * 2));",
+            "after": "expectType<AsyncIterable<number>>(pMapIterable(numberGenerator(), number => number / 2));",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 158,
+            "operator": "and",
+            "before": "if (lastIndex === result.length && skippedCount === 0) {",
+            "after": "if (lastIndex === result.length || skippedCount === 0) {",
+            "focus": false,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.d.ts",
+            "line": 193,
+            "operator": "minus",
+            "before": "@param input - Synchronous or asynchronous iterable that is iterated over concurrently, calling the `mapper` function for each element. Each iterated item is `a",
+            "after": "@param input + Synchronous or asynchronous iterable that is iterated over concurrently, calling the `mapper` function for each element. Each iterated item is `a",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 577,
+            "operator": "gte",
+            "before": "return (Number.isSafeInteger(value) && value >= minimum) || value === Number.POSITIVE_INFINITY;",
+            "after": "return (Number.isSafeInteger(value) && value < minimum) || value === Number.POSITIVE_INFINITY;",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 428,
+            "operator": "lt",
+            "before": "} else if (currentIndex < doneIndex) {",
+            "after": "} else if (currentIndex >= doneIndex) {",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.test-d.ts",
+            "line": 511,
+            "operator": "times",
+            "before": "return pMapKeyed(input, value => value * 2);",
+            "after": "return pMapKeyed(input, value => value / 2);",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.d.ts",
+            "line": 91,
+            "operator": "true",
+            "before": "Default: `true`",
+            "after": "Default: `false`",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.test-d.ts",
+            "line": 57,
+            "operator": "zero-one",
+            "before": "expectAssignable<Options>({concurrency: 0});",
+            "after": "expectAssignable<Options>({concurrency: 1});",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.d.ts",
+            "line": 194,
+            "operator": "minus",
+            "before": "@param mapper - Function which is called for every item in `input`. Expected to return a `Promise` or value.",
+            "after": "@param mapper + Function which is called for every item in `input`. Expected to return a `Promise` or value.",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 5.527
+}

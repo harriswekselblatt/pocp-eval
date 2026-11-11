@@ -1,0 +1,239 @@
+diff --git a/README.md b/README.md
+index a41b33c..d689949 100644
+--- a/README.md
++++ b/README.md
+@@ -14,6 +14,7 @@
+ 
+ GJSON is a Go package that provides a [fast](#performance) and [simple](#get-a-value) way to get values from a json document.
+ It has features such as [one line retrieval](#get-a-value), [dot notation paths](#path-syntax), [iteration](#iterate-through-an-object-or-array).
++For a command-line tool that uses the GJSON syntax check out [JJ](https://github.com/tidwall/jj).
+ 
+ Getting Started
+ ===============
+@@ -95,6 +96,43 @@ friends.#[age>45]#.last            >> ["Craig","Murphy"]
+ friends.#[first%"D*"].last         >> "Murphy"
+ ```
+ 
++## JSON Lines
++
++There also support for [JSON Lines](http://jsonlines.org/) using the `..` prefix.
++Which when specified, treats the multi-lined document as an array. 
++
++For example:
++
++```
++{"name": "Gilbert", "age": 61}
++{"name": "Alexa", "age": 34}
++{"name": "May", "age": 57}
++{"name": "Deloise", "age": 44}
++```
++
++```
++..#                   >> 4
++..1                   >> {"name": "Alexa", "age": 34}
++..3                   >> {"name": "Deloise", "age": 44}
++..#.name              >> ["Gilbert","Alexa","May","Deloise"]
++..#[name="May"].age   >> 57
++```
++
++The `ForEachLines` function will iterate through lines.
++
++```go
++gjson.ForEachLine(json, func(line gjson.Result) bool{
++    println(line.String())
++    return true
++})
++
++// Outputs:
++// {"name": "Gilbert", "age": 61}
++// {"name": "Alexa", "age": 34}
++// {"name": "May", "age": 57}
++// {"name": "Deloise", "age": 44}
++```
++
+ ## Result Type
+ 
+ GJSON supports the json types `string`, `number`, `bool`, and `null`. 
+diff --git a/gjson.go b/gjson.go
+index 5950ed3..9344761 100644
+--- a/gjson.go
++++ b/gjson.go
+@@ -1128,7 +1128,7 @@ func parseArray(c *parseContext, i int, path string) (int, bool) {
+ 			partidx = int(n)
+ 		}
+ 	}
+-	for i < len(c.json) {
++	for i < len(c.json)+1 {
+ 		if !rp.arrch {
+ 			pmatch = partidx == h
+ 			hit = pmatch && !rp.more
+@@ -1137,8 +1137,16 @@ func parseArray(c *parseContext, i int, path string) (int, bool) {
+ 		if rp.alogok {
+ 			alog = append(alog, i)
+ 		}
+-		for ; i < len(c.json); i++ {
+-			switch c.json[i] {
++		for ; ; i++ {
++			var ch byte
++			if i > len(c.json) {
++				break
++			} else if i == len(c.json) {
++				ch = ']'
++			} else {
++				ch = c.json[i]
++			}
++			switch ch {
+ 			default:
+ 				continue
+ 			case '"':
+@@ -1252,14 +1260,18 @@ func parseArray(c *parseContext, i int, path string) (int, bool) {
+ 					if rp.alogok {
+ 						var jsons = make([]byte, 0, 64)
+ 						jsons = append(jsons, '[')
++
+ 						for j, k := 0, 0; j < len(alog); j++ {
+-							res := Get(c.json[alog[j]:], rp.alogkey)
+-							if res.Exists() {
+-								if k > 0 {
+-									jsons = append(jsons, ',')
++							_, res, ok := parseAny(c.json, alog[j], true)
++							if ok {
++								res := res.Get(rp.alogkey)
++								if res.Exists() {
++									if k > 0 {
++										jsons = append(jsons, ',')
++									}
++									jsons = append(jsons, []byte(res.Raw)...)
++									k++
+ 								}
+-								jsons = append(jsons, []byte(res.Raw)...)
+-								k++
+ 							}
+ 						}
+ 						jsons = append(jsons, ']')
+@@ -1290,10 +1302,28 @@ func parseArray(c *parseContext, i int, path string) (int, bool) {
+ 	return i, false
+ }
+ 
++// ForEachLine iterates through lines of JSON as specified by the JSON Lines
++// format (http://jsonlines.org/).
++// Each line is returned as a GJSON Result.
++func ForEachLine(json string, iterator func(line Result) bool) {
++	var res Result
++	var i int
++	for {
++		i, res, _ = parseAny(json, i, true)
++		if !res.Exists() {
++			break
++		}
++		if !iterator(res) {
++			return
++		}
++	}
++}
++
+ type parseContext struct {
+ 	json  string
+ 	value Result
+ 	calcd bool
++	lines bool
+ }
+ 
+ // Get searches json for the specified path.
+@@ -1329,16 +1359,21 @@ type parseContext struct {
+ func Get(json, path string) Result {
+ 	var i int
+ 	var c = &parseContext{json: json}
+-	for ; i < len(c.json); i++ {
+-		if c.json[i] == '{' {
+-			i++
+-			parseObject(c, i, path)
+-			break
+-		}
+-		if c.json[i] == '[' {
+-			i++
+-			parseArray(c, i, path)
+-			break
++	if len(path) >= 2 && path[0] == '.' && path[1] == '.' {
++		c.lines = true
++		parseArray(c, 0, path[2:])
++	} else {
++		for ; i < len(c.json); i++ {
++			if c.json[i] == '{' {
++				i++
++				parseObject(c, i, path)
++				break
++			}
++			if c.json[i] == '[' {
++				i++
++				parseArray(c, i, path)
++				break
++			}
+ 		}
+ 	}
+ 	if len(c.value.Raw) > 0 && !c.calcd {
+diff --git a/gjson_test.go b/gjson_test.go
+index 2cc8c02..c01dc2f 100644
+--- a/gjson_test.go
++++ b/gjson_test.go
+@@ -1295,3 +1295,60 @@ func TestIssue58(t *testing.T) {
+ 		t.Fatalf("expected '%v', got '%v'", `{"uid": 1}`, res)
+ 	}
+ }
++
++func TestObjectGrouping(t *testing.T) {
++	json := `
++[
++	true,
++	{"name":"tom"},
++	false,
++	{"name":"janet"},
++	null
++]
++`
++	res := Get(json, "#.name")
++	if res.String() != `["tom","janet"]` {
++		t.Fatalf("expected '%v', got '%v'", `["tom","janet"]`, res.String())
++	}
++}
++
++func TestJSONLines(t *testing.T) {
++	json := `
++true
++false
++{"name":"tom"}
++[1,2,3,4,5]
++{"name":"janet"}
++null
++12930.1203
++	`
++	paths := []string{"..#", "..0", "..2.name", "..#.name", "..6", "..7"}
++	ress := []string{"7", "true", "tom", `["tom","janet"]`, "12930.1203", ""}
++	for i, path := range paths {
++		res := Get(json, path)
++		if res.String() != ress[i] {
++			t.Fatalf("expected '%v', got '%v'", ress[i], res.String())
++		}
++	}
++
++	json = `
++{"name": "Gilbert", "wins": [["straight", "7♣"], ["one pair", "10♥"]]}
++{"name": "Alexa", "wins": [["two pair", "4♠"], ["two pair", "9♠"]]}
++{"name": "May", "wins": []}
++{"name": "Deloise", "wins": [["three of a kind", "5♣"]]}
++`
++
++	var i int
++	lines := strings.Split(strings.TrimSpace(json), "\n")
++	ForEachLine(json, func(line Result) bool {
++		if line.Raw != lines[i] {
++			t.Fatalf("expected '%v', got '%v'", lines[i], line.Raw)
++		}
++		i++
++		return true
++	})
++	if i != 4 {
++		t.Fatalf("expected '%v', got '%v'", 4, i)
++	}
++
++}

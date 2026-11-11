@@ -1,0 +1,130 @@
+diff --git a/CHANGELOG.md b/CHANGELOG.md
+index bf90900..0bc12ec 100644
+--- a/CHANGELOG.md
++++ b/CHANGELOG.md
+@@ -9,6 +9,7 @@ scheme (`YY.MINOR.MICRO`).
+ 
+ _(unreleased)_
+ 
++- Fixed [`funcutils.wraps`][funcutils.wraps] passing arguments positionally to wrappers that only accept them as keywords ([#261](https://github.com/mahmoud/boltons/issues/261))
+ - Fixed [`tableutils.Table.to_text`][tableutils.Table] crashes on empty tables, `None` headers, and short header rows; empty headers now render no header row, matching `to_html`
+ - Fixed [`timeutils.isoparse`][timeutils.isoparse] misreading fractional seconds (`.851` parsed as 851µs instead of 851000µs); >6-digit fractions now truncate instead of raising
+ - Fixed [`timeutils.daterange`][timeutils.daterange] looping forever on non-advancing steps: zero and self-cancelling month/day steps now raise `ValueError`, wrong-direction steps yield nothing like `range()`
+diff --git a/boltons/funcutils.py b/boltons/funcutils.py
+index d0afc78..1a8c5f4 100644
+--- a/boltons/funcutils.py
++++ b/boltons/funcutils.py
+@@ -601,10 +601,11 @@ def update_wrapper(wrapper, func, injected=None, expected=None, build_from=None,
+     for arg, default in expected_items:
+         fb.add_arg(arg, default)  # may raise ExistingArgument
+ 
++    invocation_str = fb.get_invocation_str(target=wrapper)
+     if fb.is_async:
+-        fb.body = 'return await _call(%s)' % fb.get_invocation_str()
++        fb.body = 'return await _call(%s)' % invocation_str
+     else:
+-        fb.body = 'return _call(%s)' % fb.get_invocation_str()
++        fb.body = 'return _call(%s)' % invocation_str
+ 
+     execdict = dict(_call=wrapper, _func=func)
+     fully_wrapped = fb.get_func(execdict, with_dict=update_dict)
+@@ -782,7 +783,7 @@ class FunctionBuilder:
+                                      {},
+                                      annotations)
+ 
+-    def get_invocation_str(self):
++    def get_invocation_str(self, target=None):
+         # Regular args with defaults (and keyword-only args) are forwarded
+         # as keywords (name=name), so values callers pass by keyword reach
+         # the wrapper's **kwargs instead of being silently flattened into
+@@ -790,12 +791,31 @@ class FunctionBuilder:
+         # params (keywords are rejected outright), and every regular arg
+         # when *varargs is present (a keyword-forwarded arg that precedes
+         # *varargs collides with non-empty varargs).
++        #
++        # When *target* -- the callable the generated invocation will
++        # actually call -- is provided, any argument that target only
++        # accepts as a keyword is forwarded as a keyword regardless of
++        # the rules above, since positional forwarding could never bind
++        # it (#261). Targets without introspectable signatures fall
++        # back to signature-based forwarding alone.
++        target_kwonly = frozenset()
++        if target is not None:
++            try:
++                target_params = inspect.signature(target).parameters
++            except (ValueError, TypeError):
++                pass
++            else:
++                target_kwonly = frozenset(
++                    p.name for p in target_params.values()
++                    if p.kind is inspect.Parameter.KEYWORD_ONLY)
+         defaults = self.defaults or ()
+         args = list(self.args or ())
+         n_positional = len(args) - len(defaults)
+         parts, kw_parts = [], []
+         for i, arg in enumerate(args):
+-            if (i >= n_positional and not self.varargs
++            if arg in target_kwonly:
++                kw_parts.append(arg + '=' + arg)
++            elif (i >= n_positional and not self.varargs
+                     and arg not in self.posonlyargs):
+                 kw_parts.append(arg + '=' + arg)
+             else:
+diff --git a/tests/test_funcutils_fb_py3.py b/tests/test_funcutils_fb_py3.py
+index 5297f8b..9eb162a 100644
+--- a/tests/test_funcutils_fb_py3.py
++++ b/tests/test_funcutils_fb_py3.py
+@@ -329,3 +329,53 @@ def test_wraps_posonly_defaulted_arg():
+ 
+     assert deco(func)(1, 5) == (1, 5, 3)
+     assert deco(func)(1, 5, z=7) == (1, 5, 7)
++
++
++def test_wraps_target_kwonly_arg():
++    # issue #261: wraps(g)(f) generates a shim with g's signature that
++    # calls f; args that f only accepts as keywords must be forwarded
++    # as keywords, even when g's signature would pass them positionally
++    def g(a: float, b=10):
++        return a * b
++
++    def f(a: int, *, b=1):
++        return a * b
++
++    assert wraps(f)(g)(3) == 3
++    assert wraps(g)(f)(3) == 30  # raised TypeError before the fix
++
++
++def test_wraps_target_kwonly_arg_no_default():
++    # the non-defaulted flavor: donor's b is positional and undefaulted,
++    # so signature-based forwarding alone leaves it positional
++    def g(a, b):
++        return a * b
++
++    def f(a, *, b):
++        return a + b
++
++    assert wraps(g)(f)(3, 4) == 7
++    assert wraps(g)(f)(3, b=4) == 7
++
++
++def test_wraps_target_kwonly_arg_with_varargs():
++    # varargs normally force positional forwarding (#343), but an arg
++    # the target only accepts as keyword is still keyword-forwarded,
++    # emitted after *varargs: _call(a, *va, b=b)
++    def g(a, b, *va):
++        raise AssertionError('never called')
++
++    def f(a, *va, b):
++        return (a, va, b)
++
++    assert wraps(g)(f)(1, 2, 3) == (1, (3,), 2)
++
++
++def test_wraps_uninspectable_target():
++    # a wrapper without an introspectable signature (e.g. some C
++    # callables) falls back to signature-based forwarding at wrap time
++    def g(a, b):
++        return a * b
++
++    wrapped = update_wrapper(map, g)
++    assert wrapped.__name__ == 'g'

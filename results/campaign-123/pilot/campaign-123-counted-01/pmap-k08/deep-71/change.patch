@@ -1,0 +1,23 @@
+diff --git a/index.js b/index.js
+index eec5651..bf67f75 100644
+--- a/index.js
++++ b/index.js
+@@ -621,6 +621,9 @@ async function closeIterator(iterator) {
+ 	} catch {}
+ }
+ 
++// What a pull answers once the source is done. One shared object, as callers only read it.
++const doneItem = Object.freeze({done: true});
++
+ // Pull the next item, and stop pulling once the source has reported `done`: a source like a queue
+ // may block in `next()` after it is exhausted, which would hang the caller. `done` is final, like
+ // `for await`, so anything the source produces after it is dropped.
+@@ -637,7 +640,7 @@ function createPuller(iterator) {
+ 
+ 	return () => {
+ 		if (isSourceDone) {
+-			return {done: true};
++			return doneItem;
+ 		}
+ 
+ 		const result = iterator.next();

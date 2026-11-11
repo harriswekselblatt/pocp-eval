@@ -1,0 +1,161 @@
+{
+  "case_id": "boltons-first-runner-legitimate",
+  "set": "Acontrol",
+  "split": "holdout",
+  "regime": "focused",
+  "target": "boltons",
+  "truth": "legitimate",
+  "cohort": null,
+  "category": null,
+  "cell": "deep-71",
+  "mode": "deep",
+  "configured_seed": 71,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "4a6bb238caea5ca0018d06ff0c56ae1cb2db2229",
+  "head": "9379de87fd0b4db99a2d62ebcf7a9c28fe5e944e",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 1,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "needs_review",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": false,
+    "approval_needs": [
+      {
+        "label": "pocp-approve-tests",
+        "kind": "tests",
+        "files": [
+          ".bench/check.sh"
+        ]
+      }
+    ],
+    "approval_only": true,
+    "findings": [
+      "test_change"
+    ],
+    "guards": [
+      {
+        "verdict": "inconclusive",
+        "effective_seed": 1779049234,
+        "detection": "inconclusive",
+        "mutants": [
+          {
+            "file": "boltons/statsutils.py",
+            "line": 416,
+            "operator": "plus",
+            "before": ">>> right_skewed = skewness(list(range(97)) + list(range(87, 97)))",
+            "after": ">>> right_skewed = skewness(list(range(97)) - list(range(87, 97)))",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/tbutils.py",
+            "line": 480,
+            "operator": "minus",
+            "before": "start_line = max(0, lineno - pivot)",
+            "after": "start_line = max(0, lineno + pivot)",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "docs/conf.py",
+            "line": 119,
+            "operator": "eq",
+            "before": "on_rtd = os.environ.get('READTHEDOCS', None) == 'True'",
+            "after": "on_rtd = os.environ.get('READTHEDOCS', None) != 'True'",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/timeutils.py",
+            "line": 170,
+            "operator": "zero-one",
+            "before": "_BOUND_DELTAS = [b[0] for b in _BOUNDS]",
+            "after": "_BOUND_DELTAS = [b[1] for b in _BOUNDS]",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/socketutils.py",
+            "line": 644,
+            "operator": "plus",
+            "before": "msg += ' ' + extra",
+            "after": "msg += ' ' - extra",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/socketutils.py",
+            "line": 398,
+            "operator": "minus",
+            "before": "cur_timeout = timeout - (time.time() - start)",
+            "after": "cur_timeout = timeout - (time.time() + start)",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/dictutils.py",
+            "line": 1027,
+            "operator": "eq",
+            "before": "return type(self) == type(other) and self.data == other.data",
+            "after": "return type(self) == type(other) and self.data != other.data",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/statsutils.py",
+            "line": 760,
+            "operator": "eq",
+            "before": "elif format == 'text':",
+            "after": "elif format != 'text':",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/listutils.py",
+            "line": 199,
+            "operator": "zero-one",
+            "before": "self._balance_list(0)",
+            "after": "self._balance_list(1)",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/listutils.py",
+            "line": 375,
+            "operator": "eq",
+            "before": "if len(self.lists) == 1:",
+            "after": "if len(self.lists) != 1:",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 9.91
+}

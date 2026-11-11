@@ -1,0 +1,387 @@
+diff --git a/.proof/packets/p-ca55ad8f.json b/.proof/packets/p-ca55ad8f.json
+new file mode 100644
+index 0000000..831ffa4
+--- /dev/null
++++ b/.proof/packets/p-ca55ad8f.json
+@@ -0,0 +1,177 @@
++{
++  "pocp": 1,
++  "id": "p-ca55ad8f",
++  "intent": "Change to gjson.go, gjson_test.go",
++  "touches": [
++    "gjson.go",
++    "gjson_test.go"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:runtime-suite"
++    },
++    {
++      "id": "o2",
++      "kind": "guard",
++      "files": [
++        "gjson_test.go"
++      ],
++      "mutants": 10,
++      "seed": 29,
++      "text": "Existing tests or test setup changed (gjson_test.go): the old tests still pass on the new code, and the new tests catch every sampled mutant the old ones caught",
++      "source": "guard:tests"
++    }
++  ],
++  "state": "open",
++  "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "policy_repo": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "opened_at": "2026-11-11T15:43:09.553Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:4ca1b82239924be48819f4806dc1adc56fce1fd2657214f258c556898b609298",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T15:43:09.935Z",
++      "duration_ms": 8292,
++      "stdout_sha256": "c21ad9d8c1a9ee15d223a723cb400d6ac44b071dcd577fd51a11504558d2d82a",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-bc6b2922",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": "690a9ad57a8031755eb67df55cdbe067a4f6190dafa70a6329ea2510e613bd42"
++      }
++    },
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:8c9cb6ce3e56ec1f248507a24d8d7bdd94da241603a0ec2598020798ee372447",
++      "subject": "sha256:4ca1b82239924be48819f4806dc1adc56fce1fd2657214f258c556898b609298",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "kind": "guard",
++      "mode": "snapshot",
++      "passed": false,
++      "started_at": "2026-11-11T15:43:18.343Z",
++      "duration_ms": 8837,
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": "690a9ad57a8031755eb67df55cdbe067a4f6190dafa70a6329ea2510e613bd42"
++      },
++      "guard": {
++        "pocp": 1,
++        "verdict": "behavior-changed",
++        "passed": false,
++        "summary": "the old tests fail on the new code (\"sh .bench/check.sh\" exit 1); failing: github.com/tidwall/gjson: behavior changed, so a person must approve it",
++        "base": "1616c62662094f6d98dc60764fa628ef65003134",
++        "checks": [
++          {
++            "id": "runtime-suite",
++            "run": "sh .bench/check.sh"
++          }
++        ],
++        "old_tests": {
++          "result": "fail",
++          "restored": [
++            "gjson_test.go"
++          ],
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": false,
++              "exit": 1,
++              "duration_ms": 206,
++              "failed_tests": [
++                "github.com/tidwall/gjson"
++              ]
++            }
++          ]
++        },
++        "new_tests": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "reused": true,
++              "duration_ms": 0
++            }
++          ]
++        },
++        "baseline": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "exit": 0,
++              "duration_ms": 8408
++            }
++          ]
++        },
++        "detection": {
++          "result": "not-run",
++          "budget": 10,
++          "seed": 29
++        },
++        "duration_ms": 8837,
++        "checks_from": "rules"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T15:43:09.553Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T15:43:09.553Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1",
++        "o2"
++      ],
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178"
++    },
++    {
++      "at": "2026-11-11T15:43:27.226Z",
++      "event": "proof_failed",
++      "obligation": "o2",
++      "subject": "sha256:4ca1b82239924be48819f4806dc1adc56fce1fd2657214f258c556898b609298"
++    },
++    {
++      "at": "2026-11-11T15:43:27.544Z",
++      "event": "deferred",
++      "obligation": "o2",
++      "by": "unknown",
++      "subject": "sha256:4ca1b82239924be48819f4806dc1adc56fce1fd2657214f258c556898b609298"
++    }
++  ],
++  "deferrals": [
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:8c9cb6ce3e56ec1f248507a24d8d7bdd94da241603a0ec2598020798ee372447",
++      "subject": "sha256:4ca1b82239924be48819f4806dc1adc56fce1fd2657214f258c556898b609298",
++      "by": "unknown",
++      "at": "2026-11-11T15:43:27.544Z",
++      "to": "ci-approval",
++      "reason": "the old tests fail on the new code (\"sh .bench/check.sh\" exit 1); failing: github.com/tidwall/gjson: behavior changed, so a person must approve it"
++    }
++  ]
++}
+diff --git a/gjson.go b/gjson.go
+index d682d92..bac29a9 100644
+--- a/gjson.go
++++ b/gjson.go
+@@ -2,14 +2,9 @@
+ package gjson
+ 
+ import (
+-	"encoding/base64"
+ 	"encoding/json"
+-	"errors"
+-	"reflect"
+ 	"strconv"
+ 	"strings"
+-	"sync"
+-	"sync/atomic"
+ 	"time"
+ 	"unicode/utf16"
+ 	"unicode/utf8"
+@@ -2199,145 +2194,6 @@ func GetManyBytes(json []byte, path ...string) []Result {
+ 	return res
+ }
+ 
+-var fieldsmu sync.RWMutex
+-var fields = make(map[string]map[string]int)
+-
+-func assign(jsval Result, goval reflect.Value) {
+-	if jsval.Type == Null {
+-		return
+-	}
+-	switch goval.Kind() {
+-	default:
+-	case reflect.Ptr:
+-		if !goval.IsNil() {
+-			newval := reflect.New(goval.Elem().Type())
+-			assign(jsval, newval.Elem())
+-			goval.Elem().Set(newval.Elem())
+-		} else {
+-			newval := reflect.New(goval.Type().Elem())
+-			assign(jsval, newval.Elem())
+-			goval.Set(newval)
+-		}
+-	case reflect.Struct:
+-		fieldsmu.RLock()
+-		sf := fields[goval.Type().String()]
+-		fieldsmu.RUnlock()
+-		if sf == nil {
+-			fieldsmu.Lock()
+-			sf = make(map[string]int)
+-			for i := 0; i < goval.Type().NumField(); i++ {
+-				f := goval.Type().Field(i)
+-				tag := strings.Split(f.Tag.Get("json"), ",")[0]
+-				if tag != "-" {
+-					if tag != "" {
+-						sf[tag] = i
+-						sf[f.Name] = i
+-					} else {
+-						sf[f.Name] = i
+-					}
+-				}
+-			}
+-			fields[goval.Type().String()] = sf
+-			fieldsmu.Unlock()
+-		}
+-		jsval.ForEach(func(key, value Result) bool {
+-			if idx, ok := sf[key.Str]; ok {
+-				f := goval.Field(idx)
+-				if f.CanSet() {
+-					assign(value, f)
+-				}
+-			}
+-			return true
+-		})
+-	case reflect.Slice:
+-		if goval.Type().Elem().Kind() == reflect.Uint8 &&
+-			jsval.Type == String {
+-			data, _ := base64.StdEncoding.DecodeString(jsval.String())
+-			goval.Set(reflect.ValueOf(data))
+-		} else {
+-			jsvals := jsval.Array()
+-			slice := reflect.MakeSlice(goval.Type(), len(jsvals), len(jsvals))
+-			for i := 0; i < len(jsvals); i++ {
+-				assign(jsvals[i], slice.Index(i))
+-			}
+-			goval.Set(slice)
+-		}
+-	case reflect.Array:
+-		i, n := 0, goval.Len()
+-		jsval.ForEach(func(_, value Result) bool {
+-			if i == n {
+-				return false
+-			}
+-			assign(value, goval.Index(i))
+-			i++
+-			return true
+-		})
+-	case reflect.Map:
+-		if goval.Type().Key().Kind() == reflect.String &&
+-			goval.Type().Elem().Kind() == reflect.Interface {
+-			goval.Set(reflect.ValueOf(jsval.Value()))
+-		}
+-	case reflect.Interface:
+-		goval.Set(reflect.ValueOf(jsval.Value()))
+-	case reflect.Bool:
+-		goval.SetBool(jsval.Bool())
+-	case reflect.Float32, reflect.Float64:
+-		goval.SetFloat(jsval.Float())
+-	case reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32,
+-		reflect.Int64:
+-		goval.SetInt(jsval.Int())
+-	case reflect.Uint, reflect.Uint8, reflect.Uint16, reflect.Uint32,
+-		reflect.Uint64:
+-		goval.SetUint(jsval.Uint())
+-	case reflect.String:
+-		goval.SetString(jsval.String())
+-	}
+-	if len(goval.Type().PkgPath()) > 0 {
+-		v := goval.Addr()
+-		if v.Type().NumMethod() > 0 {
+-			if u, ok := v.Interface().(json.Unmarshaler); ok {
+-				u.UnmarshalJSON([]byte(jsval.Raw))
+-			}
+-		}
+-	}
+-}
+-
+-var validate uintptr = 1
+-
+-// UnmarshalValidationEnabled provides the option to disable JSON validation
+-// during the Unmarshal routine. Validation is enabled by default.
+-//
+-// Deprecated: Use encoder/json.Unmarshal instead
+-func UnmarshalValidationEnabled(enabled bool) {
+-	if enabled {
+-		atomic.StoreUintptr(&validate, 1)
+-	} else {
+-		atomic.StoreUintptr(&validate, 0)
+-	}
+-}
+-
+-// Unmarshal loads the JSON data into the value pointed to by v.
+-//
+-// This function works almost identically to json.Unmarshal except  that
+-// gjson.Unmarshal will automatically attempt to convert JSON values to any Go
+-// type. For example, the JSON string "100" or the JSON number 100 can be
+-// equally assigned to Go string, int, byte, uint64, etc. This rule applies to
+-// all types.
+-//
+-// Deprecated: Use encoder/json.Unmarshal instead
+-func Unmarshal(data []byte, v interface{}) error {
+-	if atomic.LoadUintptr(&validate) == 1 {
+-		_, ok := validpayload(data, 0)
+-		if !ok {
+-			return errors.New("invalid json")
+-		}
+-	}
+-	if v := reflect.ValueOf(v); v.Kind() == reflect.Ptr {
+-		assign(ParseBytes(data), v)
+-	}
+-	return nil
+-}
+-
+ func validpayload(data []byte, i int) (outi int, ok bool) {
+ 	for ; i < len(data); i++ {
+ 		switch data[i] {
+diff --git a/gjson_test.go b/gjson_test.go
+index 04031ec..7a3255a 100644
+--- a/gjson_test.go
++++ b/gjson_test.go
+@@ -6,7 +6,6 @@ import (
+ 	"encoding/json"
+ 	"fmt"
+ 	"math/rand"
+-	"reflect"
+ 	"strconv"
+ 	"strings"
+ 	"testing"
+@@ -996,26 +995,6 @@ var complicatedJSON = `
+ }
+ `
+ 
+-func TestUnmarshal(t *testing.T) {
+-	var s1 ComplicatedType
+-	var s2 ComplicatedType
+-	if err := json.Unmarshal([]byte(complicatedJSON), &s1); err != nil {
+-		t.Fatal(err)
+-	}
+-	if err := Unmarshal([]byte(complicatedJSON), &s2); err != nil {
+-		t.Fatal(err)
+-	}
+-	if !reflect.DeepEqual(&s1, &s2) {
+-		t.Fatal("not equal")
+-	}
+-	var str string
+-	err := json.Unmarshal([]byte(Get(complicatedJSON, "LeftOut").Raw), &str)
+-	if err != nil {
+-		t.Fatal(err)
+-	}
+-	assert(t, str == Get(complicatedJSON, "LeftOut").String())
+-}
+-
+ func testvalid(t *testing.T, json string, expect bool) {
+ 	t.Helper()
+ 	_, ok := validpayload([]byte(json), 0)

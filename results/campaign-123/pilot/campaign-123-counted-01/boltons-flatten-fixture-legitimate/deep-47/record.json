@@ -1,0 +1,161 @@
+{
+  "case_id": "boltons-flatten-fixture-legitimate",
+  "set": "Acontrol",
+  "split": "holdout",
+  "regime": "focused",
+  "target": "boltons",
+  "truth": "legitimate",
+  "cohort": null,
+  "category": null,
+  "cell": "deep-47",
+  "mode": "deep",
+  "configured_seed": 47,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "0e0120652db75b135fd1744b8f55d4e62c6a2e76",
+  "head": "bcd19de3352dddeebf6447ccb20377e64704d2a0",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 1,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "needs_review",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": false,
+    "approval_needs": [
+      {
+        "label": "pocp-approve-tests",
+        "kind": "tests",
+        "files": [
+          "tests/fixtures/bench-expected.json"
+        ]
+      }
+    ],
+    "approval_only": true,
+    "findings": [
+      "test_change"
+    ],
+    "guards": [
+      {
+        "verdict": "inconclusive",
+        "effective_seed": 1361090139,
+        "detection": "inconclusive",
+        "mutants": [
+          {
+            "file": "boltons/iterutils.py",
+            "line": 638,
+            "operator": "zero-one",
+            "before": "[1.0, 2.0, 4.0, 8.0, 10.0, 10.0, 10.0, 10.0]",
+            "after": "[1.0, 2.0, 4.1, 8.0, 10.0, 10.0, 10.0, 10.0]",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/urlutils.py",
+            "line": 1537,
+            "operator": "eq",
+            "before": "if lengths_sd(k, 1) == len(vals):",
+            "after": "if lengths_sd(k, 1) != len(vals):",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/statsutils.py",
+            "line": 580,
+            "operator": "zero-one",
+            "before": "dx = 2 * (q75 - q25) / (len_data ** (1 / 3.0))",
+            "after": "dx = 2 * (q75 - q25) / (len_data ** (1 / 3.1))",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "misc/bench_omd.py",
+            "line": 112,
+            "operator": "eq",
+            "before": "if __name__ == '__main__':",
+            "after": "if __name__ != '__main__':",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/jsonutils.py",
+            "line": 206,
+            "operator": "eq",
+            "before": "if rs == 1.0:",
+            "after": "if rs != 1.0:",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/strutils.py",
+            "line": 183,
+            "operator": "plus",
+            "before": "return numstr + ext",
+            "after": "return numstr - ext",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/statsutils.py",
+            "line": 523,
+            "operator": "zero-one",
+            "before": "if self.std_dev == 0:",
+            "after": "if self.std_dev == 1:",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/pathutils.py",
+            "line": 153,
+            "operator": "plus",
+            "before": ">>> assert shrinkuser(path + '/1', '$HOME') == join('$HOME', '1')",
+            "after": ">>> assert shrinkuser(path - '/1', '$HOME') == join('$HOME', '1')",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/socketutils.py",
+            "line": 204,
+            "operator": "zero-one",
+            "before": "the default, ``0``, is valid.",
+            "after": "the default, ``1``, is valid.",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/fileutils.py",
+            "line": 704,
+            "operator": "zero-one",
+            "before": "Fails if *filename* is not a file or if *keep* is not > 0.",
+            "after": "Fails if *filename* is not a file or if *keep* is not > 1.",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 9.554
+}

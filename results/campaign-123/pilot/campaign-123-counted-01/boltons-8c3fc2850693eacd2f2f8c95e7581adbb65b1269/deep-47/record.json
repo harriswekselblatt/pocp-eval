@@ -1,0 +1,151 @@
+{
+  "case_id": "boltons-8c3fc2850693eacd2f2f8c95e7581adbb65b1269",
+  "set": "B",
+  "split": "development",
+  "regime": "native",
+  "target": "boltons",
+  "truth": "legitimate",
+  "cohort": "extension",
+  "category": "added_test",
+  "cell": "deep-47",
+  "mode": "deep",
+  "configured_seed": 47,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "c855f0791667a6f75797b2ecb61efa7e51f27748",
+  "head": "4cba40e02cc78ece6065cd0191a62e1c3df4bbc4",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 0,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "accepted",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": true,
+    "approval_needs": [],
+    "approval_only": null,
+    "findings": [],
+    "guards": [
+      {
+        "verdict": "passed",
+        "effective_seed": 1506134266,
+        "detection": "kept",
+        "mutants": [
+          {
+            "file": "boltons/statsutils.py",
+            "line": 682,
+            "operator": "zero-one",
+            "before": "mean:     4.0",
+            "after": "mean:     4.1",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/strutils.py",
+            "line": 260,
+            "operator": "plus",
+            "before": "plural = word[:-1] + 'ies'",
+            "after": "plural = word[:-1] - 'ies'",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/ioutils.py",
+            "line": 392,
+            "operator": "plus",
+            "before": "self._tell = self.tell() + len(ret)",
+            "after": "self._tell = self.tell() - len(ret)",
+            "focus": false,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/ecoutils.py",
+            "line": 383,
+            "operator": "eq",
+            "before": "if sys.platform == 'win32':",
+            "after": "if sys.platform != 'win32':",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 597,
+            "operator": "zero-one",
+            "before": "[1.0, 2.0, 4.0, 8.0, 10.0, 10.0, 10.0, 10.0]",
+            "after": "[1.0, 2.0, 4.0, 8.1, 10.0, 10.0, 10.0, 10.0]",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/formatutils.py",
+            "line": 90,
+            "operator": "plus",
+            "before": "ret = '{' + fname",
+            "after": "ret = '{' - fname",
+            "focus": false,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 170,
+            "operator": "eq",
+            "before": "def sep_func(x): return x == sep",
+            "after": "def sep_func(x): return x != sep",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "docs/conf.py",
+            "line": 49,
+            "operator": "strict-eq",
+            "before": "print ('==== %s modules ==== %s types ==== %s funcs ====' % ret)",
+            "after": "print ('==== %s modules ==== %s types ==== %s funcs !===' % ret)",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/fileutils.py",
+            "line": 129,
+            "operator": "eq",
+            "before": "if cur == value:",
+            "after": "if cur != value:",
+            "focus": false,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/urlutils.py",
+            "line": 865,
+            "operator": "eq",
+            "before": "if ':' in host and '[' == host[0] and ']' == host[-1]:",
+            "after": "if ':' in host and '[' == host[0] and ']' != host[-1]:",
+            "focus": false,
+            "old": "caught",
+            "new": "caught"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 88.319
+}

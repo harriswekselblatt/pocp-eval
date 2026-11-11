@@ -1,0 +1,302 @@
+diff --git a/.proof/packets/p-cd2c0994.json b/.proof/packets/p-cd2c0994.json
+new file mode 100644
+index 0000000..fe4992b
+--- /dev/null
++++ b/.proof/packets/p-cd2c0994.json
+@@ -0,0 +1,259 @@
++{
++  "pocp": 1,
++  "id": "p-cd2c0994",
++  "intent": "Change to boltons/urlutils.py, tests/test_urlutils.py",
++  "touches": [
++    "boltons/urlutils.py",
++    "tests/test_urlutils.py"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:runtime-suite"
++    },
++    {
++      "id": "o2",
++      "kind": "guard",
++      "files": [
++        "tests/test_urlutils.py"
++      ],
++      "mutants": 10,
++      "seed": 29,
++      "text": "Existing tests or test setup changed (tests/test_urlutils.py): the old tests still pass on the new code, and the new tests catch every sampled mutant the old ones caught",
++      "source": "guard:tests"
++    }
++  ],
++  "state": "proven",
++  "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "policy_repo": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "opened_at": "2026-11-11T03:24:08.916Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:4e0d210410335d4df214cbc228376e12be19660f559f2b3c4ccaf143005f43d4",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T03:24:09.789Z",
++      "duration_ms": 2398,
++      "stdout_sha256": "a26f1066332e510c3bdf75cd27382b43c657ede6790b79955b759b75e0b895f8",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-2ff3f921",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      }
++    },
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:7c91c80f081bb7e9f4660c5b813fff2c70733e4b7b6abdf6c2f1c6a7664bacb3",
++      "subject": "sha256:4e0d210410335d4df214cbc228376e12be19660f559f2b3c4ccaf143005f43d4",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "kind": "guard",
++      "mode": "snapshot",
++      "passed": true,
++      "started_at": "2026-11-11T03:24:12.407Z",
++      "duration_ms": 19376,
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      },
++      "guard": {
++        "pocp": 1,
++        "verdict": "passed",
++        "passed": true,
++        "summary": "the old tests pass on the new code, and the new tests catch all 4 of the 10 sampled mutants the old tests caught (seed 29)",
++        "base": "0fff92e88df0b6afa561f3bd2559972aea64be20",
++        "checks": [
++          {
++            "id": "runtime-suite",
++            "run": "sh .bench/check.sh"
++          }
++        ],
++        "old_tests": {
++          "result": "pass",
++          "restored": [
++            "tests/test_urlutils.py"
++          ],
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "exit": 0,
++              "duration_ms": 6562
++            }
++          ]
++        },
++        "new_tests": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "reused": true,
++              "duration_ms": 0
++            }
++          ]
++        },
++        "baseline": {
++          "result": "not-run",
++          "runs": []
++        },
++        "detection": {
++          "result": "kept",
++          "budget": 10,
++          "seed": 29,
++          "sites": 1526,
++          "focus_sites": 65,
++          "files": 34,
++          "sampled": 10,
++          "old_caught": 4,
++          "new_caught": 4,
++          "lost": [],
++          "mutants": [
++            {
++              "file": "boltons/urlutils.py",
++              "line": 296,
++              "operator": "zero-one",
++              "before": "res = [bits[0]]",
++              "after": "res = [bits[1]]",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "boltons/urlutils.py",
++              "line": 106,
++              "operator": "minus",
++              "before": "_PATH_DELIMS = _ALL_DELIMS - _PATH_SAFE",
++              "after": "_PATH_DELIMS = _ALL_DELIMS + _PATH_SAFE",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "boltons/urlutils.py",
++              "line": 1477,
++              "operator": "zero-one",
++              "before": ">>> omd = OMD([(0, 2), (1, 2)])",
++              "after": ">>> omd = OMD([(1, 2), (1, 2)])",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/urlutils.py",
++              "line": 852,
++              "operator": "eq",
++              "before": ">>> parse_host('googlewebsite.com') == (None, 'googlewebsite.com')",
++              "after": ">>> parse_host('googlewebsite.com') != (None, 'googlewebsite.com')",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/urlutils.py",
++              "line": 1078,
++              "operator": "zero-one",
++              "before": "self.update_extend(args[0])",
++              "after": "self.update_extend(args[1])",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/urlutils.py",
++              "line": 1423,
++              "operator": "zero-one",
++              "before": ">>> omd.sorted(key=lambda i: i[1])  # i[0] is the key, i[1] is the val",
++              "after": ">>> omd.sorted(key=lambda i: i[1])  # i[1] is the key, i[1] is the val",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/urlutils.py",
++              "line": 900,
++              "operator": "zero-one",
++              "before": ">>> res = parse_url('http://127.0.0.1:3000/?a=1')",
++              "after": ">>> res = parse_url('http://127.0.1.1:3000/?a=1')",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/urlutils.py",
++              "line": 108,
++              "operator": "minus",
++              "before": "_FRAGMENT_DELIMS = _ALL_DELIMS - _FRAGMENT_SAFE",
++              "after": "_FRAGMENT_DELIMS = _ALL_DELIMS + _FRAGMENT_SAFE",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "boltons/urlutils.py",
++              "line": 71,
++              "operator": "plus",
++              "before": "chr(int(a + b, 16)).encode('charmap')",
++              "after": "chr(int(a - b, 16)).encode('charmap')",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "boltons/urlutils.py",
++              "line": 1267,
++              "operator": "neq",
++              "before": "if other[selfk] != self[selfk]:",
++              "after": "if other[selfk] == self[selfk]:",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            }
++          ]
++        },
++        "duration_ms": 19376,
++        "checks_from": "rules"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T03:24:08.916Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T03:24:08.916Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1",
++        "o2"
++      ],
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178"
++    },
++    {
++      "at": "2026-11-11T03:24:32.000Z",
++      "event": "state",
++      "from": "open",
++      "to": "proven",
++      "subject": "sha256:4e0d210410335d4df214cbc228376e12be19660f559f2b3c4ccaf143005f43d4"
++    }
++  ]
++}
+diff --git a/boltons/urlutils.py b/boltons/urlutils.py
+index 712e5a1..59f11e3 100644
+--- a/boltons/urlutils.py
++++ b/boltons/urlutils.py
+@@ -964,9 +964,9 @@ def parse_qsl(qs, keep_blank_values=True, encoding=DEFAULT_ENCODING):
+                 value = None
+             else:
+                 continue
+-        key = unquote(key.replace('+', ' '))
++        key = unquote(key.replace('+', ' '), encoding=encoding)
+         if value:
+-            value = unquote(value.replace('+', ' '))
++            value = unquote(value.replace('+', ' '), encoding=encoding)
+         ret.append((key, value))
+     return ret
+ 
+diff --git a/tests/test_urlutils.py b/tests/test_urlutils.py
+index 8cac423..d4f17a6 100644
+--- a/tests/test_urlutils.py
++++ b/tests/test_urlutils.py
+@@ -95,6 +95,16 @@ def test_query_params(test_url):
+     assert test_url.endswith(qp_text)
+ 
+ 
++def test_parse_qsl_encoding():
++    # %E9 is 'e' with an acute accent in latin-1, and not valid utf-8
++    qs = 'k=%E9'
++    assert urlutils.parse_qsl(qs, encoding='latin-1') == [('k', '\xe9')]
++    # the default is unchanged: undecodable bytes become the replacement char
++    assert urlutils.parse_qsl(qs) == [('k', '\ufffd')]
++    # keys are decoded with the same encoding as values
++    assert urlutils.parse_qsl('%E9=v', encoding='latin-1') == [('\xe9', 'v')]
++
++
+ def test_query_param_dict_eq_with_dict():
+     qpd = QueryParamDict([('a', '1'), ('b', '2')])
+     assert qpd == {'a': '1', 'b': '2'}

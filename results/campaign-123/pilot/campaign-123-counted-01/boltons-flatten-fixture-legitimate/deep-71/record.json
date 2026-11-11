@@ -1,0 +1,161 @@
+{
+  "case_id": "boltons-flatten-fixture-legitimate",
+  "set": "Acontrol",
+  "split": "holdout",
+  "regime": "focused",
+  "target": "boltons",
+  "truth": "legitimate",
+  "cohort": null,
+  "category": null,
+  "cell": "deep-71",
+  "mode": "deep",
+  "configured_seed": 71,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "551a07f64932c8e709892736525b7d680ac78ec5",
+  "head": "26dc35d2d00131bd74af074f2c93a5d94a8dcf7a",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 1,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "needs_review",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": false,
+    "approval_needs": [
+      {
+        "label": "pocp-approve-tests",
+        "kind": "tests",
+        "files": [
+          "tests/fixtures/bench-expected.json"
+        ]
+      }
+    ],
+    "approval_only": true,
+    "findings": [
+      "test_change"
+    ],
+    "guards": [
+      {
+        "verdict": "inconclusive",
+        "effective_seed": 1476849191,
+        "detection": "inconclusive",
+        "mutants": [
+          {
+            "file": "boltons/setutils.py",
+            "line": 982,
+            "operator": "eq",
+            "before": "and self._included == other._included",
+            "after": "and self._included != other._included",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/statsutils.py",
+            "line": 384,
+            "operator": "minus",
+            "before": "return median([abs(x - v) for v in sorted_vals])",
+            "after": "return median([abs(x + v) for v in sorted_vals])",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/fileutils.py",
+            "line": 629,
+            "operator": "zero-one",
+            "before": "self.softspace = 0",
+            "after": "self.softspace = 1",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/tbutils.py",
+            "line": 506,
+            "operator": "zero-one",
+            "before": "'lineno': 0,",
+            "after": "'lineno': 1,",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/statsutils.py",
+            "line": 418,
+            "operator": "zero-one",
+            "before": "(0.114, -0.114)",
+            "after": "(0.114, -1.114)",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/strutils.py",
+            "line": 1040,
+            "operator": "zero-one",
+            "before": "'0,2,4,9,12-14'",
+            "after": "'1,2,4,9,12-14'",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 687,
+            "operator": "gte",
+            "before": "raise ValueError('expected stop >= 0')",
+            "after": "raise ValueError('expected stop < 0')",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/tbutils.py",
+            "line": 817,
+            "operator": "lt",
+            "before": "if (line_no + 1 < len(tb_lines)",
+            "after": "if (line_no + 1 >= len(tb_lines)",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/setutils.py",
+            "line": 349,
+            "operator": "eq",
+            "before": "if len(others) == 1:",
+            "after": "if len(others) != 1:",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/statsutils.py",
+            "line": 414,
+            "operator": "zero-one",
+            "before": "0.0",
+            "after": "0.1",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 9.619
+}

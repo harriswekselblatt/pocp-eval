@@ -1,0 +1,333 @@
+[
+  {
+    "id": "boltons-c463d1633a075c398d6ffad7d8653064a615b696",
+    "repository": "boltons",
+    "draw_order": 98,
+    "parent": "766b5547392fe8d54c1e000098499dc556bb5cb7",
+    "commit": "c463d1633a075c398d6ffad7d8653064a615b696",
+    "title": "Fix OrderedMultiDict equality to compare values against plain mappings",
+    "files": [
+      "boltons/dictutils.py",
+      "boltons/urlutils.py",
+      "tests/test_dictutils.py",
+      "tests/test_urlutils.py"
+    ],
+    "churn": 29,
+    "patch": "audit/patches/gapfill-history-01/boltons/c463d1633a075c398d6ffad7d8653064a615b696.patch",
+    "patch_sha256": "9f162736b63bf46b470f16ba1bdcd5bdeebf1b9777695ca0632fc6f1cc69008a",
+    "eligibility": "parent and head pinned runtime suites completed green in the gap-fill screen",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "boltons-42586df3dd672c11f5376b8d9a42e26c05cf5543",
+    "repository": "boltons",
+    "draw_order": 99,
+    "parent": "49f381eedbdcd695f7ed95110ebb1088582de7f3",
+    "commit": "42586df3dd672c11f5376b8d9a42e26c05cf5543",
+    "title": "add once decorator",
+    "files": [
+      "boltons/funcutils.py",
+      "tests/test_funcutils.py"
+    ],
+    "churn": 98,
+    "patch": "audit/patches/gapfill-history-01/boltons/42586df3dd672c11f5376b8d9a42e26c05cf5543.patch",
+    "patch_sha256": "143e4094c3cfb50a21ee3cc23b380863a0e7fd2582dbd2c8eb6c06cc5948c689",
+    "eligibility": "parent and head pinned runtime suites completed green in the gap-fill screen",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "boltons-289edfcd20474b92850ec0f982032c4e79e72432",
+    "repository": "boltons",
+    "draw_order": 106,
+    "parent": "7b577b0f3cc7adc2418733ce5c7dcdf6af82187d",
+    "commit": "289edfcd20474b92850ec0f982032c4e79e72432",
+    "title": "funcutils: forward defaulted and kw-only args as keywords in wraps invocations (#343)",
+    "files": [
+      "boltons/funcutils.py",
+      "tests/test_funcutils_fb.py",
+      "tests/test_funcutils_fb_py3.py"
+    ],
+    "churn": 164,
+    "patch": "audit/patches/gapfill-history-01/boltons/289edfcd20474b92850ec0f982032c4e79e72432.patch",
+    "patch_sha256": "adb74666ba19f31005a39b33abe2c567cfa9f3ba9d3ebe667dce6b10a255d15d",
+    "eligibility": "parent and head pinned runtime suites completed green in the gap-fill screen",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "boltons-b34c53428941cf3d46a6db97b3663ce5a9659834",
+    "repository": "boltons",
+    "draw_order": 108,
+    "parent": "471dad1c6e8182baa3337f118a359ef8f768bf3f",
+    "commit": "b34c53428941cf3d46a6db97b3663ce5a9659834",
+    "title": "Modernize CI: uv/tox-uv, OIDC publish",
+    "files": [
+      ".github/workflows/publish.yml",
+      ".github/workflows/tests.yaml",
+      ".gitignore",
+      "boltons/__init__.py",
+      "docs/conf.py",
+      "pyproject.toml",
+      "requirements-test.txt",
+      "tox.ini"
+    ],
+    "churn": 147,
+    "patch": "audit/patches/gapfill-history-01/boltons/b34c53428941cf3d46a6db97b3663ce5a9659834.patch",
+    "patch_sha256": "e160a5725c6cb0834450ee7d53be83e9e8e38d1f33b1deda24e8989180dd1030",
+    "eligibility": "parent and head pinned runtime suites completed green in the gap-fill screen",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "gjson-82f549e6ee78eb18d7536692d608a531c35f0458",
+    "repository": "gjson",
+    "draw_order": 69,
+    "parent": "e4fc67c92aeebf2089fabc7872f010e340d105db",
+    "commit": "82f549e6ee78eb18d7536692d608a531c35f0458",
+    "title": "Added IsBool",
+    "files": [
+      "gjson.go"
+    ],
+    "churn": 5,
+    "patch": "audit/patches/gapfill-history-01/gjson/82f549e6ee78eb18d7536692d608a531c35f0458.patch",
+    "patch_sha256": "4e24875ff78e3991dd138fd282fc301484ca24bc26de102007b92f9fab63a47b",
+    "eligibility": "parent and head pinned runtime suites completed green in the gap-fill screen",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "gjson-56c0a0aa5b8ff73f36eab8cd0fa30465cea393d1",
+    "repository": "gjson",
+    "draw_order": 70,
+    "parent": "7a94820afd8a0d993c07b9cde761b95943823a9f",
+    "commit": "56c0a0aa5b8ff73f36eab8cd0fa30465cea393d1",
+    "title": "Update comment",
+    "files": [
+      "gjson.go"
+    ],
+    "churn": 30,
+    "patch": "audit/patches/gapfill-history-01/gjson/56c0a0aa5b8ff73f36eab8cd0fa30465cea393d1.patch",
+    "patch_sha256": "f1caf508d37b26f72aabf046a826c1d2927424b3c394eb46b480c341eb0c2f81",
+    "eligibility": "parent and head pinned runtime suites completed green in the gap-fill screen",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "gjson-7cadbb575617824cfa39a8a7e1cf0b059a7c6f67",
+    "repository": "gjson",
+    "draw_order": 71,
+    "parent": "0b52f9a3618fb33e3cde84f9db7b73e324dff643",
+    "commit": "7cadbb575617824cfa39a8a7e1cf0b059a7c6f67",
+    "title": "Ensure Parse handles NaN/Inf and returns correct Index",
+    "files": [
+      "gjson.go",
+      "gjson_test.go"
+    ],
+    "churn": 97,
+    "patch": "audit/patches/gapfill-history-01/gjson/7cadbb575617824cfa39a8a7e1cf0b059a7c6f67.patch",
+    "patch_sha256": "6d88cfeb23dc521c3f9ba2ee237a40ea9554a1dcb2c76c28433af062cc775400",
+    "eligibility": "parent and head pinned runtime suites completed green in the gap-fill screen",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "gjson-7b8705a6b6aa8689a321d3bd96585dbcabba8f74",
+    "repository": "gjson",
+    "draw_order": 73,
+    "parent": "b877bd43b1d96874785aef827d9c8bbb6132f43e",
+    "commit": "7b8705a6b6aa8689a321d3bd96585dbcabba8f74",
+    "title": "Use 80 column width",
+    "files": [
+      "gjson.go",
+      "gjson_test.go"
+    ],
+    "churn": 194,
+    "patch": "audit/patches/gapfill-history-01/gjson/7b8705a6b6aa8689a321d3bd96585dbcabba8f74.patch",
+    "patch_sha256": "979a06151d20c68e490e4247a9019ce75928a6f2f23ae305b8e1ae9a7721ec0d",
+    "eligibility": "parent and head pinned runtime suites completed green in the gap-fill screen",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "gjson-0cbc0f402f9f91228a22d414f7caf4863edd6bed",
+    "repository": "gjson",
+    "draw_order": 76,
+    "parent": "35fa0d71c8cb5ca965e9c53eb45973eb850d7c13",
+    "commit": "0cbc0f402f9f91228a22d414f7caf4863edd6bed",
+    "title": "Accept NaN/Inf",
+    "files": [
+      "gjson.go",
+      "gjson_test.go"
+    ],
+    "churn": 134,
+    "patch": "audit/patches/gapfill-history-01/gjson/0cbc0f402f9f91228a22d414f7caf4863edd6bed.patch",
+    "patch_sha256": "fc3ccbb5dc1332f27557d60df0b6fa7b3feecc1ee864958e5e12b3714d5f8e7b",
+    "eligibility": "parent and head pinned runtime suites completed green in the gap-fill screen",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "gjson-6781e4ee591c4ce61542ec239ce4785e532d7c79",
+    "repository": "gjson",
+    "draw_order": 78,
+    "parent": "f8322e865d9322cebedd37fb3486e8a81ab2bf94",
+    "commit": "6781e4ee591c4ce61542ec239ce4785e532d7c79",
+    "title": "Allow paren queries",
+    "files": [
+      "gjson.go",
+      "gjson_test.go"
+    ],
+    "churn": 33,
+    "patch": "audit/patches/gapfill-history-01/gjson/6781e4ee591c4ce61542ec239ce4785e532d7c79.patch",
+    "patch_sha256": "4611a2da08335008cc88a3997b8b6b127019401ffee1d7df90f6b2bc55e8acdf",
+    "eligibility": "parent and head pinned runtime suites completed green in the gap-fill screen",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "gjson-f0ee9ebde4b619767ae4ac03e8e42addb530f6bc",
+    "repository": "gjson",
+    "draw_order": 80,
+    "parent": "5100d6926a4bea3753fc72352fca70654f04cedc",
+    "commit": "f0ee9ebde4b619767ae4ac03e8e42addb530f6bc",
+    "title": "Fix bounds out of range panic",
+    "files": [
+      "gjson.go",
+      "gjson_test.go"
+    ],
+    "churn": 21,
+    "patch": "audit/patches/gapfill-history-01/gjson/f0ee9ebde4b619767ae4ac03e8e42addb530f6bc.patch",
+    "patch_sha256": "8757c427806752991912f661c81fcd2068c315448c8a6fad23380b6cfad9d9f0",
+    "eligibility": "parent and head pinned runtime suites completed green in the gap-fill screen",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "gjson-5c2e4b382486589dad7478130a364ee2fa6a068b",
+    "repository": "gjson",
+    "draw_order": 83,
+    "parent": "c34bf81952c067718854115564f8e55978be5e1d",
+    "commit": "5c2e4b382486589dad7478130a364ee2fa6a068b",
+    "title": "Fixed modifier pipe issue",
+    "files": [
+      "gjson.go",
+      "gjson_test.go"
+    ],
+    "churn": 32,
+    "patch": "audit/patches/gapfill-history-01/gjson/5c2e4b382486589dad7478130a364ee2fa6a068b.patch",
+    "patch_sha256": "c39c6b5bc28cd02896fcd86be787782d9e1c66846cc93d612186f1ca12c31f93",
+    "eligibility": "parent and head pinned runtime suites completed green in the gap-fill screen",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "gjson-35fa0d71c8cb5ca965e9c53eb45973eb850d7c13",
+    "repository": "gjson",
+    "draw_order": 87,
+    "parent": "4fe1916c56fbd3e4ee981981a7cdad58a7522f4b",
+    "commit": "35fa0d71c8cb5ca965e9c53eb45973eb850d7c13",
+    "title": "Added @keys and @values modifiers",
+    "files": [
+      "README.md",
+      "SYNTAX.md",
+      "gjson.go",
+      "gjson_test.go"
+    ],
+    "churn": 86,
+    "patch": "audit/patches/gapfill-history-01/gjson/35fa0d71c8cb5ca965e9c53eb45973eb850d7c13.patch",
+    "patch_sha256": "b592932632a2ded4e51124c3a340ae9aab7c6a09b9b197ab59ce2107bb1b8c65",
+    "eligibility": "parent and head pinned runtime suites completed green in the gap-fill screen",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "gjson-d18e16d152f693245bdb165e808797d66de4f9da",
+    "repository": "gjson",
+    "draw_order": 88,
+    "parent": "7419d018761da47a47521e71f3239d8b7381cc8e",
+    "commit": "d18e16d152f693245bdb165e808797d66de4f9da",
+    "title": "Allow chaining multipaths using the dot",
+    "files": [
+      "gjson.go",
+      "gjson_test.go"
+    ],
+    "churn": 43,
+    "patch": "audit/patches/gapfill-history-01/gjson/d18e16d152f693245bdb165e808797d66de4f9da.patch",
+    "patch_sha256": "5a0076dd886c290cc85de47591e380db0332a3c9d05fe37be1efff83a55eb547",
+    "eligibility": "parent and head pinned runtime suites completed green in the gap-fill screen",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  }
+]

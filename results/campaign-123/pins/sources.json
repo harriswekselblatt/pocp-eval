@@ -1,0 +1,32 @@
+{
+  "p-limit": {
+    "sha": "a8a6fbec4e0e866d6d779b10889bb4f5567e70eb",
+    "remote": "https://github.com/sindresorhus/p-limit.git"
+  },
+  "p-map": {
+    "sha": "d61b6a33cc1d5533ad5711b435959f3f78c3d2fe",
+    "remote": "https://github.com/sindresorhus/p-map.git"
+  },
+  "boltons": {
+    "sha": "d31d821d56c8f7756af9c30a864077f2e5855321",
+    "remote": "https://github.com/mahmoud/boltons.git"
+  },
+  "gjson": {
+    "sha": "4221a7d392b61cf24d0c03a768320094c41387ca",
+    "remote": "https://github.com/tidwall/gjson.git"
+  },
+  "fast-json-stable-stringify": {
+    "sha": "49e230da2c84247b29ad4de02c9395793caefd15",
+    "remote": "https://github.com/epoberezkin/fast-json-stable-stringify.git"
+  },
+  "pocp": {
+    "version": "1.2.2",
+    "sha": "d96aeba30091149c3bb567c664e251bd8d676cfd",
+    "source_archive_sha256": "9bb72190d0c27311dd7f77ae90ffbd5caeea8dcf0023b763d8bfb9d469732d28"
+  },
+  "environment": {
+    "platform": "macOS-15.6.1-arm64-arm-64bit-Mach-O",
+    "python": "3.13.1",
+    "node": "v22.13.1"
+  }
+}

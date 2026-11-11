@@ -1,0 +1,331 @@
+diff --git a/.proof/packets/p-cc75e8dd.json b/.proof/packets/p-cc75e8dd.json
+new file mode 100644
+index 0000000..0e5594d
+--- /dev/null
++++ b/.proof/packets/p-cc75e8dd.json
+@@ -0,0 +1,261 @@
++{
++  "pocp": 1,
++  "id": "p-cc75e8dd",
++  "intent": "Change to index.d.ts, index.js, readme.md and 1 more",
++  "touches": [
++    "index.d.ts",
++    "index.js",
++    "readme.md",
++    "test.js"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:runtime-suite"
++    },
++    {
++      "id": "o2",
++      "kind": "guard",
++      "files": [
++        "test.js"
++      ],
++      "mutants": 10,
++      "seed": 47,
++      "text": "Existing tests or test setup changed (test.js): the old tests still pass on the new code, and the new tests catch every sampled mutant the old ones caught",
++      "source": "guard:tests"
++    }
++  ],
++  "state": "proven",
++  "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "policy_repo": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "opened_at": "2026-11-11T17:50:16.048Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:55f24f073f0c08cdcef951e957df018fc66a12b197bd056cd04b4cddc756e0df",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T17:50:17.075Z",
++      "duration_ms": 9415,
++      "stdout_sha256": "24a90022e8636faf0b51c946414756b8a9d222056bcd9b41657b522245bc5e9e",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-02bd43ca",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      }
++    },
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:825a7ae857b856da4bf184a3237866d9daaae73b5202dd8b29da59e2770728f8",
++      "subject": "sha256:55f24f073f0c08cdcef951e957df018fc66a12b197bd056cd04b4cddc756e0df",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "kind": "guard",
++      "mode": "snapshot",
++      "passed": true,
++      "started_at": "2026-11-11T17:50:26.665Z",
++      "duration_ms": 56917,
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      },
++      "guard": {
++        "pocp": 1,
++        "verdict": "passed",
++        "passed": true,
++        "summary": "the old tests pass on the new code, and the new tests catch all 10 of the 10 sampled mutants the old tests caught (seed 47)",
++        "base": "c590fa63a300f40717f87e93d3e91379579b706b",
++        "checks": [
++          {
++            "id": "runtime-suite",
++            "run": "sh .bench/check.sh"
++          }
++        ],
++        "old_tests": {
++          "result": "pass",
++          "restored": [
++            "test.js"
++          ],
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "exit": 0,
++              "duration_ms": 11387
++            }
++          ]
++        },
++        "new_tests": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "reused": true,
++              "duration_ms": 0
++            }
++          ]
++        },
++        "baseline": {
++          "result": "not-run",
++          "runs": []
++        },
++        "detection": {
++          "result": "kept",
++          "budget": 10,
++          "seed": 47,
++          "sites": 222,
++          "focus_sites": 115,
++          "files": 5,
++          "sampled": 10,
++          "old_caught": 10,
++          "new_caught": 10,
++          "lost": [],
++          "mutants": [
++            {
++              "file": "index.js",
++              "line": 461,
++              "operator": "gt",
++              "before": "if (unfilledIndex > currentIndex) {",
++              "after": "if (unfilledIndex <= currentIndex) {",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 367,
++              "operator": "gt",
++              "before": "if (isDone || isIterableDone || index > stopIndex || readingCount >= concurrency || promises.length - headIndex >= backpressure) {",
++              "after": "if (isDone || isIterableDone || index <= stopIndex || readingCount >= concurrency || promises.length - headIndex >= backpressure) {",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 388,
++              "operator": "true",
++              "before": "return {done: true};",
++              "after": "return {done: false};",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 189,
++              "operator": "lt",
++              "before": "if (index < doneIndex) {",
++              "after": "if (index >= doneIndex) {",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 131,
++              "operator": "lt",
++              "before": "if (index < doneIndex) {",
++              "after": "if (index >= doneIndex) {",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 34,
++              "operator": "strict-eq",
++              "before": "if (result === pMapSkip || result === pMapStop) {",
++              "after": "if (result !== pMapSkip || result === pMapStop) {",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 217,
++              "operator": "gte",
++              "before": "if (index >= doneIndex) {",
++              "after": "if (index < doneIndex) {",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 34,
++              "operator": "strict-eq",
++              "before": "if (result === pMapSkip || result === pMapStop) {",
++              "after": "if (result === pMapSkip || result !== pMapStop) {",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 367,
++              "operator": "minus",
++              "before": "if (isDone || isIterableDone || index > stopIndex || readingCount >= concurrency || promises.length - headIndex >= backpressure) {",
++              "after": "if (isDone || isIterableDone || index > stopIndex || readingCount >= concurrency || promises.length + headIndex >= backpressure) {",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 645,
++              "operator": "true",
++              "before": "return {done: true};",
++              "after": "return {done: false};",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            }
++          ]
++        },
++        "duration_ms": 56917,
++        "checks_from": "rules"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T17:50:16.048Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T17:50:16.048Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1",
++        "o2"
++      ],
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178"
++    },
++    {
++      "at": "2026-11-11T17:51:23.691Z",
++      "event": "state",
++      "from": "open",
++      "to": "proven",
++      "subject": "sha256:55f24f073f0c08cdcef951e957df018fc66a12b197bd056cd04b4cddc756e0df"
++    }
++  ]
++}
+diff --git a/index.d.ts b/index.d.ts
+index 6bd0cf7..c3079fb 100644
+--- a/index.d.ts
++++ b/index.d.ts
+@@ -36,6 +36,8 @@ export type Options = BaseOptions & {
+ 	/**
+ 	You can abort the promises using [`AbortController`](https://developer.mozilla.org/en-US/docs/Web/API/AbortController).
+ 
++	Any other value than an `AbortSignal`, except `undefined` or `null`, rejects with a `TypeError`.
++
+ 	An abort that comes from a timer or an I/O callback, like a `setTimeout`, cannot take effect while the mapping is inside a stretch of work that never waits on a timer or I/O. Draining a large input with mappers that just return a value is one such stretch, and there the run finishes first. This is the same for `Promise.all` and for a plain loop, and it goes away as soon as the mapper or the source waits on a timer or I/O.
+ 
+ 	@example
+diff --git a/index.js b/index.js
+index eec5651..7b0865d 100644
+--- a/index.js
++++ b/index.js
+@@ -67,6 +67,11 @@ async function mapConcurrently(
+ 	return new Promise((resolve_, reject_) => {
+ 		validateOptions(iterable, mapper, concurrency);
+ 
++		// A wrong `signal` would otherwise fail later with an internal error about `addEventListener`, or be ignored when it is falsy.
++		if (signal !== undefined && signal !== null && typeof signal.addEventListener !== 'function') {
++			throw new TypeError(`Expected \`signal\` to be an \`AbortSignal\`, got (${typeof signal})`);
++		}
++
+ 		const result = [];
+ 		// Stage the errors by index, like `result`, so they are reported in input order.
+ 		const errors = [];
+diff --git a/readme.md b/readme.md
+index 6e69c54..a23df58 100644
+--- a/readme.md
++++ b/readme.md
+@@ -266,6 +266,8 @@ Caveat: When `true`, any already-started async mappers will continue to run unti
+ 
+ Type: [`AbortSignal`](https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal)
+ 
++Any other value, except `undefined` or `null`, rejects with a `TypeError`.
++
+ You can abort the promises using [`AbortController`](https://developer.mozilla.org/en-US/docs/Web/API/AbortController).
+ 
+ ```js
+diff --git a/test.js b/test.js
+index 115cc96..f8b17a5 100644
+--- a/test.js
++++ b/test.js
+@@ -9042,3 +9042,17 @@ test('pMapIterable - a pull that rejects after the source reported `done` is dro
+ 
+ 	t.deepEqual(await valuesPromise, [0, 1, 2, 3]);
+ });
++
++test('rejects a `signal` that is not an `AbortSignal`', async t => {
++	for (const signal of [{}, 'abort', 1, true, {aborted: true}]) {
++		const message = `Expected \`signal\` to be an \`AbortSignal\`, got (${typeof signal})`;
++		await t.throwsAsync(pMap([1], value => value, {signal}), {instanceOf: TypeError, message}); // eslint-disable-line no-await-in-loop
++		await t.throwsAsync(pMapSettled([1], value => value, {signal}), {instanceOf: TypeError, message}); // eslint-disable-line no-await-in-loop
++		await t.throwsAsync(pMapKeyed({a: 1}, value => value, {signal}), {instanceOf: TypeError, message}); // eslint-disable-line no-await-in-loop
++		await t.throwsAsync(pMapSettledKeyed(new Map([['a', 1]]), value => value, {signal}), {instanceOf: TypeError, message}); // eslint-disable-line no-await-in-loop
++	}
++
++	t.deepEqual(await pMap([1], value => value, {signal: undefined}), [1]);
++	t.deepEqual(await pMap([1], value => value, {signal: null}), [1]);
++	t.deepEqual(await pMap([1], value => value, {signal: new AbortController().signal}), [1]);
++});

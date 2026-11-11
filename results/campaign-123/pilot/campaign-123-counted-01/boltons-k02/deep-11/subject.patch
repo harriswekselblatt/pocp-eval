@@ -1,0 +1,109 @@
+diff --git a/.proof/packets/p-f727a3a5.json b/.proof/packets/p-f727a3a5.json
+new file mode 100644
+index 0000000..d920781
+--- /dev/null
++++ b/.proof/packets/p-f727a3a5.json
+@@ -0,0 +1,70 @@
++{
++  "pocp": 1,
++  "id": "p-f727a3a5",
++  "intent": "Change to boltons/iterutils.py",
++  "touches": [
++    "boltons/iterutils.py"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:runtime-suite"
++    }
++  ],
++  "state": "proven",
++  "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "policy_repo": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "opened_at": "2026-11-11T14:13:21.019Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:826f44267c1b3001365ac631fe112cf7b89714f025eaaaf5f36747ed09217a65",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T14:13:21.403Z",
++      "duration_ms": 2486,
++      "stdout_sha256": "ba220c741257d5a052c7dc2b62067dcc1cf8f26f6bea6f7341ce2c92772070c9",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-e2d22652",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T14:13:21.019Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T14:13:21.019Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1"
++      ],
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178"
++    },
++    {
++      "at": "2026-11-11T14:13:23.998Z",
++      "event": "state",
++      "from": "open",
++      "to": "proven",
++      "subject": "sha256:826f44267c1b3001365ac631fe112cf7b89714f025eaaaf5f36747ed09217a65"
++    }
++  ]
++}
+diff --git a/boltons/iterutils.py b/boltons/iterutils.py
+index f63cda5..bb68bc9 100644
+--- a/boltons/iterutils.py
++++ b/boltons/iterutils.py
+@@ -243,21 +243,16 @@ def rstrip_iter(iterable, strip_value=None):
+     ['Foo', 'Bar']
+ 
+     """
+-    iterator = iter(iterable)
+-    for i in iterator:
++    # Hold back a run of strip values until a different value follows it;
++    # a run that reaches the end of the iterable is never yielded.
++    pending = []
++    for i in iterable:
+         if i == strip_value:
+-            cache = list()
+-            cache.append(i)
+-            broken = False
+-            for i in iterator:
+-                if i == strip_value:
+-                    cache.append(i)
+-                else:
+-                    broken = True
+-                    break
+-            if not broken:  # Return to caller here because the end of the
+-                return     # iterator has been reached
+-            yield from cache
++            pending.append(i)
++            continue
++        if pending:
++            yield from pending
++            pending = []
+         yield i

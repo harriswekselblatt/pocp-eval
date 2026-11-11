@@ -1,0 +1,11 @@
+{
+  "argv": [
+    "sh",
+    ".bench/check.sh"
+  ],
+  "exit": 0,
+  "execution": "completed",
+  "seconds": 15.01140820805449,
+  "stdout": "ok  \tgithub.com/tidwall/gjson\t14.058s\n",
+  "stderr": ""
+}

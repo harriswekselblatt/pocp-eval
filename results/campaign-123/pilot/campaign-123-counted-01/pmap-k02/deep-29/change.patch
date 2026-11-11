@@ -1,0 +1,18 @@
+diff --git a/test.js b/test.js
+index 115cc96..72e8cd2 100644
+--- a/test.js
++++ b/test.js
+@@ -9042,3 +9042,13 @@ test('pMapIterable - a pull that rejects after the source reported `done` is dro
+ 
+ 	t.deepEqual(await valuesPromise, [0, 1, 2, 3]);
+ });
++
++test('pMapSettled - maps a string by code point', async t => {
++	const result = await pMapSettled('a\u{1F600}b', value => value.toUpperCase());
++
++	t.deepEqual(result, [
++		{status: 'fulfilled', value: 'A'},
++		{status: 'fulfilled', value: '\u{1F600}'},
++		{status: 'fulfilled', value: 'B'},
++	]);
++});

@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "node",
+    "<bench>/vendor/npm-pocp-1.2.3/package/bin/pocp.js",
+    "fix",
+    "--json"
+  ],
+  "exit": 0,
+  "execution": "completed",
+  "seconds": 11.631080332910642,
+  "stdout": "{\n  \"pocp\": 1,\n  \"ok\": true,\n  \"decision\": \"pass\",\n  \"nothing_staged\": false,\n  \"nothing_to_prove\": false,\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"packet\": \"p-bc89fb72\",\n      \"files\": [\n        \"gjson.go\"\n      ],\n      \"checks\": [\n        \"o1 (rule:runtime-suite)\"\n      ],\n      \"intent\": \"Change to gjson.go\"\n    },\n    {\n      \"action\": \"prove\",\n      \"packets\": [\n        \"p-bc89fb72\"\n      ],\n      \"mode\": \"clean\",\n      \"ran\": 1,\n      \"checks\": 1,\n      \"ms\": 10266,\n      \"failed\": [],\n      \"handed\": []\n    }\n  ],\n  \"needs_agent\": [],\n  \"needs_person\": [],\n  \"advice\": null,\n  \"gate\": {\n    \"decision\": \"pass\",\n    \"subject\": \"sha256:1de4393d084c88cfdf7a81deacdd57f89d38b3fac2045733c621cd70916825f7\"\n  }\n}\n",
+  "stderr": ""
+}

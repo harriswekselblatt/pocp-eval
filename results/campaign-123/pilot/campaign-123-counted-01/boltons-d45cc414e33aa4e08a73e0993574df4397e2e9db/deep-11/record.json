@@ -1,0 +1,151 @@
+{
+  "case_id": "boltons-d45cc414e33aa4e08a73e0993574df4397e2e9db",
+  "set": "B",
+  "split": "development",
+  "regime": "native",
+  "target": "boltons",
+  "truth": "legitimate",
+  "cohort": "original-sampled",
+  "category": "added_test",
+  "cell": "deep-11",
+  "mode": "deep",
+  "configured_seed": 11,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "04b63afd0c48b67b5db0e4bea6a1648b1d88c48f",
+  "head": "39e08ed3c3b2bbde3e932ea28770f93b77854c02",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 0,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "accepted",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": true,
+    "approval_needs": [],
+    "approval_only": null,
+    "findings": [],
+    "guards": [
+      {
+        "verdict": "passed",
+        "effective_seed": 1936379103,
+        "detection": "kept",
+        "mutants": [
+          {
+            "file": "boltons/urlutils.py",
+            "line": 823,
+            "operator": "times",
+            "before": "(\"ipv6_addr\", ctypes.c_byte * 16),",
+            "after": "(\"ipv6_addr\", ctypes.c_byte / 16),",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/urlutils.py",
+            "line": 838,
+            "operator": "eq",
+            "before": "if address_family == socket.AF_INET:",
+            "after": "if address_family != socket.AF_INET:",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/urlutils.py",
+            "line": 315,
+            "operator": "eq",
+            "before": "if len(bits) == 1:",
+            "after": "if len(bits) != 1:",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/urlutils.py",
+            "line": 182,
+            "operator": "lt",
+            "before": "if prev_end < start and with_text:",
+            "after": "if prev_end >= start and with_text:",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/urlutils.py",
+            "line": 865,
+            "operator": "eq",
+            "before": "if ':' in host and '[' == host[0] and ']' == host[-1]:",
+            "after": "if ':' in host and '[' != host[0] and ']' == host[-1]:",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/urlutils.py",
+            "line": 1417,
+            "operator": "zero-one",
+            "before": "OrderedMultiDict([(2, 2), (1, 1), (0, 0)])",
+            "after": "OrderedMultiDict([(2, 2), (1, 1), (0, 1)])",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/urlutils.py",
+            "line": 822,
+            "operator": "times",
+            "before": "(\"ipv4_addr\", ctypes.c_byte * 4),",
+            "after": "(\"ipv4_addr\", ctypes.c_byte / 4),",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/urlutils.py",
+            "line": 1072,
+            "operator": "gt",
+            "before": "if len(args) > 1:",
+            "after": "if len(args) <= 1:",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/urlutils.py",
+            "line": 1257,
+            "operator": "neq",
+            "before": "if selfk != otherk or selfv != otherv:",
+            "after": "if selfk != otherk or selfv == otherv:",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/urlutils.py",
+            "line": 1423,
+            "operator": "zero-one",
+            "before": ">>> omd.sorted(key=lambda i: i[1])  # i[0] is the key, i[1] is the val",
+            "after": ">>> omd.sorted(key=lambda i: i[1])  # i[1] is the key, i[1] is the val",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 53.035
+}

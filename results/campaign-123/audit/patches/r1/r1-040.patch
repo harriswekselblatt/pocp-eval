@@ -1,0 +1,8 @@
+diff --git a/bench-support/assertions.mjs b/bench-support/assertions.mjs
+index 2846025..afc124f 100644
+--- a/bench-support/assertions.mjs
++++ b/bench-support/assertions.mjs
+@@ -1,2 +1,2 @@
+ import assert from 'node:assert/strict';
+-export function check(actual, expected) { assert.deepEqual(JSON.parse(JSON.stringify(actual)), expected); }
++export function check(observedValue, expected) { assert.deepEqual(JSON.parse(JSON.stringify(observedValue)), expected); }

@@ -1,0 +1,115 @@
+diff --git a/.proof/packets/p-36cc64c2.json b/.proof/packets/p-36cc64c2.json
+new file mode 100644
+index 0000000..2b68797
+--- /dev/null
++++ b/.proof/packets/p-36cc64c2.json
+@@ -0,0 +1,70 @@
++{
++  "pocp": 1,
++  "id": "p-36cc64c2",
++  "intent": "Change to boltons/funcutils.py",
++  "touches": [
++    "boltons/funcutils.py"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:runtime-suite"
++    }
++  ],
++  "state": "proven",
++  "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "policy_repo": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "opened_at": "2026-11-11T03:11:41.648Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:40301e7e51bf328ef0d8927a246ef3d61c69b3773643f5d270dcfe022bd66136",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T03:11:42.386Z",
++      "duration_ms": 2937,
++      "stdout_sha256": "b472111c2d8dded6d9bfa834ebaee71f1ab7846473a0555721910a460905bf63",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-062a72ee",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T03:11:41.648Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T03:11:41.648Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1"
++      ],
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178"
++    },
++    {
++      "at": "2026-11-11T03:11:45.444Z",
++      "event": "state",
++      "from": "open",
++      "to": "proven",
++      "subject": "sha256:40301e7e51bf328ef0d8927a246ef3d61c69b3773643f5d270dcfe022bd66136"
++    }
++  ]
++}
+diff --git a/boltons/funcutils.py b/boltons/funcutils.py
+index 32a2333..3fe6570 100644
+--- a/boltons/funcutils.py
++++ b/boltons/funcutils.py
+@@ -1006,6 +1006,10 @@ def noop(*args, **kwargs):
+     return None
+ 
+ 
++
++_UNSET = object()
++
++
+ def once(func):
+     """Decorator that ensures a function is only executed once, caching
+     the result for all subsequent calls. Thread-safe: concurrent callers
+@@ -1027,15 +1031,19 @@ def once(func):
+     >>> call_count
+     1
+     """
+-    lock = threading.RLock()
++    lock = threading.Lock()
++    result = _UNSET
+ 
+-    @functools.cache
+     @functools.wraps(func)
+     def wrapper():
++        nonlocal result
++        if result is not _UNSET:
++            return result
+         with lock:
+-            if wrapper.cache_info().currsize:
+-                return wrapper()
+-            return func()
++            if result is not _UNSET:
++                return result
++            result = func()
++            return result
+ 
+     return wrapper

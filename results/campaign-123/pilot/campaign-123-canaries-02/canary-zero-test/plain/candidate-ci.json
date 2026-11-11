@@ -1,0 +1,11 @@
+{
+  "argv": [
+    "sh",
+    ".bench/check.sh"
+  ],
+  "exit": 1,
+  "execution": "completed",
+  "seconds": 0.19400795793626457,
+  "stdout": "\n  \u2718 Based on your configuration, 3 test files were found, but did not match the CLI arguments:\n\n  * no-such-file-*.js\n\n",
+  "stderr": ""
+}

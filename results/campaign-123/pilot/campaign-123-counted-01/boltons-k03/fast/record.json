@@ -1,0 +1,60 @@
+{
+  "case_id": "boltons-k03",
+  "set": "B",
+  "split": "holdout",
+  "regime": "native",
+  "target": "boltons",
+  "truth": "legitimate",
+  "cohort": "constructed-02",
+  "category": "intentional_behavior_and_test",
+  "cell": "fast",
+  "mode": "fast",
+  "configured_seed": null,
+  "mutant_budget": 0,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "53649a99ba9c275f96afa642cf86c6d1e6e8e990",
+  "head": "0baa5d21c7ce58d7f61a85dcc2e69d14be51bfb4",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 1,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "needs_review",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": false,
+    "approval_needs": [
+      {
+        "label": "pocp-approve-tests",
+        "kind": "tests",
+        "files": [
+          "tests/test_iterutils.py"
+        ]
+      }
+    ],
+    "approval_only": true,
+    "findings": [
+      "test_change"
+    ],
+    "guards": [
+      {
+        "verdict": "needs-review",
+        "effective_seed": 1195448080,
+        "detection": "off",
+        "mutants": []
+      }
+    ]
+  },
+  "seconds": 19.899
+}

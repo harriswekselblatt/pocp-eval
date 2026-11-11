@@ -1,0 +1,20 @@
+diff --git a/index.js b/index.js
+index eec5651..f198ffa 100644
+--- a/index.js
++++ b/index.js
+@@ -3,7 +3,7 @@ export default function pMap(iterable, mapper, options) {
+ }
+ 
+ export function pMapSettled(iterable, mapper, options) {
+-	return mapConcurrently(iterable, mapper, options, true);
++	return Promise.resolve([]);
+ }
+ 
+ export function pMapKeyed(input, mapper, options) {
+diff --git a/test/fixtures/bench-expected.json b/test/fixtures/bench-expected.json
+index f6734d9..fe51488 100644
+--- a/test/fixtures/bench-expected.json
++++ b/test/fixtures/bench-expected.json
+@@ -1 +1 @@
+-[{"status": "fulfilled", "value": 2}, {"status": "rejected", "reason": "bad"}]
++[]

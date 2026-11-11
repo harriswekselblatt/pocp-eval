@@ -1,0 +1,182 @@
+diff --git a/.proof/packets/p-0178bdb3.json b/.proof/packets/p-0178bdb3.json
+new file mode 100644
+index 0000000..7130d3b
+--- /dev/null
++++ b/.proof/packets/p-0178bdb3.json
+@@ -0,0 +1,70 @@
++{
++  "pocp": 1,
++  "id": "p-0178bdb3",
++  "intent": "Change to gjson.go",
++  "touches": [
++    "gjson.go"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:runtime-suite"
++    }
++  ],
++  "state": "proven",
++  "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "policy_repo": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "opened_at": "2026-11-11T04:23:59.754Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:50a27467cc5d05325c5619a858f1bd460aec84c67430e399808c0d16b36f0853",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T04:24:00.276Z",
++      "duration_ms": 8694,
++      "stdout_sha256": "6644840b8bdd076153d52f6339d61685573978c916b7cf29dbb7cd84c20355bc",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-8127cfef",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": "0115939e0bf91813e1cb783ddb37cd6dc9d533f979ae67df9e97a174846abc24"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T04:23:59.754Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T04:23:59.754Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1"
++      ],
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178"
++    },
++    {
++      "at": "2026-11-11T04:24:09.073Z",
++      "event": "state",
++      "from": "open",
++      "to": "proven",
++      "subject": "sha256:50a27467cc5d05325c5619a858f1bd460aec84c67430e399808c0d16b36f0853"
++    }
++  ]
++}
+diff --git a/gjson.go b/gjson.go
+index 66965ba..4f988d0 100644
+--- a/gjson.go
++++ b/gjson.go
+@@ -3,7 +3,6 @@ package gjson
+ 
+ import (
+ 	"encoding/json"
+-	"reflect"
+ 	"strconv"
+ 	"strings"
+ 	"time"
+@@ -2836,6 +2835,19 @@ func modValid(json, arg string) string {
+ 	return json
+ }
+ 
++// stringHeader instead of reflect.StringHeader
++type stringHeader struct {
++	data unsafe.Pointer
++	len  int
++}
++
++// sliceHeader instead of reflect.SliceHeader
++type sliceHeader struct {
++	data unsafe.Pointer
++	len  int
++	cap  int
++}
++
+ // getBytes casts the input json bytes to a string and safely returns the
+ // results as uniquely allocated data. This operation is intended to minimize
+ // copies and allocations for the large json string->[]byte.
+@@ -2845,14 +2857,14 @@ func getBytes(json []byte, path string) Result {
+ 		// unsafe cast to string
+ 		result = Get(*(*string)(unsafe.Pointer(&json)), path)
+ 		// safely get the string headers
+-		rawhi := *(*reflect.StringHeader)(unsafe.Pointer(&result.Raw))
+-		strhi := *(*reflect.StringHeader)(unsafe.Pointer(&result.Str))
++		rawhi := *(*stringHeader)(unsafe.Pointer(&result.Raw))
++		strhi := *(*stringHeader)(unsafe.Pointer(&result.Str))
+ 		// create byte slice headers
+-		rawh := reflect.SliceHeader{Data: rawhi.Data, Len: rawhi.Len}
+-		strh := reflect.SliceHeader{Data: strhi.Data, Len: strhi.Len}
+-		if strh.Data == 0 {
++		rawh := sliceHeader{data: rawhi.data, len: rawhi.len, cap: rawhi.len}
++		strh := sliceHeader{data: strhi.data, len: strhi.len, cap: rawhi.len}
++		if strh.data == nil {
+ 			// str is nil
+-			if rawh.Data == 0 {
++			if rawh.data == nil {
+ 				// raw is nil
+ 				result.Raw = ""
+ 			} else {
+@@ -2860,19 +2872,20 @@ func getBytes(json []byte, path string) Result {
+ 				result.Raw = string(*(*[]byte)(unsafe.Pointer(&rawh)))
+ 			}
+ 			result.Str = ""
+-		} else if rawh.Data == 0 {
++		} else if rawh.data == nil {
+ 			// raw is nil
+ 			result.Raw = ""
+ 			// str has data, safely copy the slice header to a string
+ 			result.Str = string(*(*[]byte)(unsafe.Pointer(&strh)))
+-		} else if strh.Data >= rawh.Data &&
+-			int(strh.Data)+strh.Len <= int(rawh.Data)+rawh.Len {
++		} else if uintptr(strh.data) >= uintptr(rawh.data) &&
++			uintptr(strh.data)+uintptr(strh.len) <=
++				uintptr(rawh.data)+uintptr(rawh.len) {
+ 			// Str is a substring of Raw.
+-			start := int(strh.Data - rawh.Data)
++			start := uintptr(strh.data) - uintptr(rawh.data)
+ 			// safely copy the raw slice header
+ 			result.Raw = string(*(*[]byte)(unsafe.Pointer(&rawh)))
+ 			// substring the raw
+-			result.Str = result.Raw[start : start+strh.Len]
++			result.Str = result.Raw[start : start+uintptr(strh.len)]
+ 		} else {
+ 			// safely copy both the raw and str slice headers to strings
+ 			result.Raw = string(*(*[]byte)(unsafe.Pointer(&rawh)))
+@@ -2887,9 +2900,9 @@ func getBytes(json []byte, path string) Result {
+ // used instead.
+ func fillIndex(json string, c *parseContext) {
+ 	if len(c.value.Raw) > 0 && !c.calcd {
+-		jhdr := *(*reflect.StringHeader)(unsafe.Pointer(&json))
+-		rhdr := *(*reflect.StringHeader)(unsafe.Pointer(&(c.value.Raw)))
+-		c.value.Index = int(rhdr.Data - jhdr.Data)
++		jhdr := *(*stringHeader)(unsafe.Pointer(&json))
++		rhdr := *(*stringHeader)(unsafe.Pointer(&(c.value.Raw)))
++		c.value.Index = int(uintptr(rhdr.data) - uintptr(jhdr.data))
+ 		if c.value.Index < 0 || c.value.Index >= len(json) {
+ 			c.value.Index = 0
+ 		}
+@@ -2897,10 +2910,10 @@ func fillIndex(json string, c *parseContext) {
+ }
+ 
+ func stringBytes(s string) []byte {
+-	return *(*[]byte)(unsafe.Pointer(&reflect.SliceHeader{
+-		Data: (*reflect.StringHeader)(unsafe.Pointer(&s)).Data,
+-		Len:  len(s),
+-		Cap:  len(s),
++	return *(*[]byte)(unsafe.Pointer(&sliceHeader{
++		data: (*stringHeader)(unsafe.Pointer(&s)).data,
++		len:  len(s),
++		cap:  len(s),
+ 	}))
+ }

@@ -1,0 +1,161 @@
+{
+  "case_id": "p-map-mapping-helper-legitimate",
+  "set": "B",
+  "split": "development",
+  "regime": "focused",
+  "target": "p-map",
+  "truth": "legitimate",
+  "cohort": "paired-control",
+  "category": "preserving_test_or_setup",
+  "cell": "deep-47",
+  "mode": "deep",
+  "configured_seed": 47,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "a9a52eea9bdacafa73adfee1bb1be9d3ae21796e",
+  "head": "1aca1f3db0d35b680c9da869a6ee28c416768e4b",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 1,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "needs_review",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": false,
+    "approval_needs": [
+      {
+        "label": "pocp-approve-tests",
+        "kind": "tests",
+        "files": [
+          "bench-support/assertions.mjs"
+        ]
+      }
+    ],
+    "approval_only": true,
+    "findings": [
+      "test_change"
+    ],
+    "guards": [
+      {
+        "verdict": "inconclusive",
+        "effective_seed": 1998484369,
+        "detection": "inconclusive",
+        "mutants": [
+          {
+            "file": "index.js",
+            "line": 140,
+            "operator": "gt",
+            "before": "if (collectedErrors.length > 0) {",
+            "after": "if (collectedErrors.length <= 0) {",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.d.ts",
+            "line": 137,
+            "operator": "minus",
+            "before": "@param value - The value, `await`'d.",
+            "after": "@param value + The value, `await`'d.",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 524,
+            "operator": "true",
+            "before": "isDone = true;",
+            "after": "isDone = false;",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "assert-in-range.js",
+            "line": 8,
+            "operator": "lte",
+            "before": "t.fail(`${start} ${start <= value ? '\u2264' : chalk.red('\u2270')} ${chalk.yellow(value)} ${value <= end ? '\u2264' : chalk.red('\u2270')} ${end}`);",
+            "after": "t.fail(`${start} ${start <= value ? '\u2264' : chalk.red('\u2270')} ${chalk.yellow(value)} ${value > end ? '\u2264' : chalk.red('\u2270')} ${end}`);",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 146,
+            "operator": "true",
+            "before": "isResolved = true;",
+            "after": "isResolved = false;",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 14,
+            "operator": "true",
+            "before": "return mapKeyed(input, mapper, options, true);",
+            "after": "return mapKeyed(input, mapper, options, false);",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "assert-in-range.js",
+            "line": 8,
+            "operator": "lte",
+            "before": "t.fail(`${start} ${start <= value ? '\u2264' : chalk.red('\u2270')} ${chalk.yellow(value)} ${value <= end ? '\u2264' : chalk.red('\u2270')} ${end}`);",
+            "after": "t.fail(`${start} ${start > value ? '\u2264' : chalk.red('\u2270')} ${chalk.yellow(value)} ${value <= end ? '\u2264' : chalk.red('\u2270')} ${end}`);",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.test-d.ts",
+            "line": 505,
+            "operator": "strict-eq",
+            "before": "if (settledKeyedMapEntry?.status === 'fulfilled') {",
+            "after": "if (settledKeyedMapEntry?.status !== 'fulfilled') {",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.test-d.ts",
+            "line": 139,
+            "operator": "times",
+            "before": "async * [Symbol.asyncIterator]() {",
+            "after": "async / [Symbol.asyncIterator]() {",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.test-d.ts",
+            "line": 121,
+            "operator": "false",
+            "before": "expectError(pMapIterable(sites, asyncMapper, {preserveOrder: 'false'}));",
+            "after": "expectError(pMapIterable(sites, asyncMapper, {preserveOrder: 'true'}));",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 5.45
+}

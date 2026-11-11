@@ -1,0 +1,151 @@
+{
+  "case_id": "p-map-skip-helper-legitimate",
+  "set": "Acontrol",
+  "split": "development",
+  "regime": "focused",
+  "target": "p-map",
+  "truth": "legitimate",
+  "cohort": null,
+  "category": null,
+  "cell": "deep-47",
+  "mode": "deep",
+  "configured_seed": 47,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "de83336a48948b02b4d66cb2e7ed6c631cd63a71",
+  "head": "3e3abbc73ac48ea697a1c05ca1b63d7a96e108d3",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 0,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "accepted",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": true,
+    "approval_needs": [],
+    "approval_only": null,
+    "findings": [],
+    "guards": [
+      {
+        "verdict": "passed",
+        "effective_seed": 1276470152,
+        "detection": "kept",
+        "mutants": [
+          {
+            "file": "index.js",
+            "line": 613,
+            "operator": "strict-eq",
+            "before": "return iterable[Symbol.asyncIterator] === undefined ? iterable[Symbol.iterator]() : iterable[Symbol.asyncIterator]();",
+            "after": "return iterable[Symbol.asyncIterator] !== undefined ? iterable[Symbol.iterator]() : iterable[Symbol.asyncIterator]();",
+            "focus": false,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.test-d.ts",
+            "line": 115,
+            "operator": "zero-one",
+            "before": "expectType<Promise<string[]>>(pMap(sites, async site => (site.length > 0 ? pMapSkip : site)));",
+            "after": "expectType<Promise<string[]>>(pMap(sites, async site => (site.length > 1 ? pMapSkip : site)));",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.test-d.ts",
+            "line": 374,
+            "operator": "gt",
+            "before": "expectAssignable<KeyedMapper<{a: number}, string>>(async (value: number) => (value > 1 ? pMapStop : `${value}`));",
+            "after": "expectAssignable<KeyedMapper<{a: number}, string>>(async (value: number) => (value <= 1 ? pMapStop : `${value}`));",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 322,
+            "operator": "zero-one",
+            "before": "let runningMappersCount = 0;",
+            "after": "let runningMappersCount = 1;",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.test-d.ts",
+            "line": 384,
+            "operator": "true",
+            "before": "expectError(pMapSettled(sites, asyncMapper, {nope: true}));",
+            "after": "expectError(pMapSettled(sites, asyncMapper, {nope: false}));",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.d.ts",
+            "line": 137,
+            "operator": "minus",
+            "before": "@param value - The value, `await`'d.",
+            "after": "@param value + The value, `await`'d.",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 158,
+            "operator": "strict-eq",
+            "before": "if (lastIndex === result.length && skippedCount === 0) {",
+            "after": "if (lastIndex !== result.length && skippedCount === 0) {",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 577,
+            "operator": "and",
+            "before": "return (Number.isSafeInteger(value) && value >= minimum) || value === Number.POSITIVE_INFINITY;",
+            "after": "return (Number.isSafeInteger(value) || value >= minimum) || value === Number.POSITIVE_INFINITY;",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.d.ts",
+            "line": 30,
+            "operator": "true",
+            "before": "Caveat: When `true`, any already-started async mappers will continue to run until they resolve or reject. In the case of infinite concurrency with sync iterable",
+            "after": "Caveat: When `false`, any already-started async mappers will continue to run until they resolve or reject. In the case of infinite concurrency with sync iterabl",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 226,
+            "operator": "strict-neq",
+            "before": "result[index] = isSettled && value !== pMapSkip ? {status: 'fulfilled', value} : value;",
+            "after": "result[index] = isSettled && value === pMapSkip ? {status: 'fulfilled', value} : value;",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 5.574
+}

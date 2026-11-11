@@ -1,0 +1,151 @@
+{
+  "case_id": "pmap-k11",
+  "set": "B",
+  "split": "holdout",
+  "regime": "native",
+  "target": "p-map",
+  "truth": "legitimate",
+  "cohort": "constructed-01",
+  "category": "intentional_behavior_and_test",
+  "cell": "deep-101",
+  "mode": "deep",
+  "configured_seed": 101,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "b61b83a74e51e99fc5c68e10c885272a4bb3947e",
+  "head": "0ff6a7d1e2e5a37e0d0c8c9c68f550e93a490202",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 0,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "accepted",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": true,
+    "approval_needs": [],
+    "approval_only": null,
+    "findings": [],
+    "guards": [
+      {
+        "verdict": "passed",
+        "effective_seed": 333079912,
+        "detection": "kept",
+        "mutants": [
+          {
+            "file": "index.js",
+            "line": 335,
+            "operator": "strict-eq",
+            "before": "if (wokenMapperWaiterCount === mapperWaiterCount) {",
+            "after": "if (wokenMapperWaiterCount !== mapperWaiterCount) {",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 34,
+            "operator": "strict-eq",
+            "before": "if (result === pMapSkip || result === pMapStop) {",
+            "after": "if (result === pMapSkip || result !== pMapStop) {",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "assert-in-range.js",
+            "line": 8,
+            "operator": "lte",
+            "before": "t.fail(`${start} ${start <= value ? '\u2264' : chalk.red('\u2270')} ${chalk.yellow(value)} ${value <= end ? '\u2264' : chalk.red('\u2270')} ${end}`);",
+            "after": "t.fail(`${start} ${start > value ? '\u2264' : chalk.red('\u2270')} ${chalk.yellow(value)} ${value <= end ? '\u2264' : chalk.red('\u2270')} ${end}`);",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 332,
+            "operator": "zero-one",
+            "before": "let wokenMapperWaiterCount = 0;",
+            "after": "let wokenMapperWaiterCount = 1;",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 14,
+            "operator": "true",
+            "before": "return mapKeyed(input, mapper, options, true);",
+            "after": "return mapKeyed(input, mapper, options, false);",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 544,
+            "operator": "true",
+            "before": "isDone = true;",
+            "after": "isDone = false;",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 567,
+            "operator": "strict-eq",
+            "before": "if (iterable?.[Symbol.iterator] === undefined && iterable?.[Symbol.asyncIterator] === undefined) {",
+            "after": "if (iterable?.[Symbol.iterator] !== undefined && iterable?.[Symbol.asyncIterator] === undefined) {",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 83,
+            "operator": "zero-one",
+            "before": "let currentIndex = 0;",
+            "after": "let currentIndex = 1;",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 327,
+            "operator": "zero-one",
+            "before": "let runningMappersCount = 0;",
+            "after": "let runningMappersCount = 1;",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 217,
+            "operator": "gte",
+            "before": "if (index >= doneIndex) {",
+            "after": "if (index < doneIndex) {",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 159.69
+}

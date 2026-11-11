@@ -1,0 +1,71 @@
+diff --git a/index.js b/index.js
+index 5cc265b..dc0e07e 100644
+--- a/index.js
++++ b/index.js
+@@ -212,7 +212,7 @@ export function pMapIterable(
+ 					trySpawn();
+ 
+ 					try {
+-						const returnValue = await mapper(value);
++						const returnValue = await mapper(await value);
+ 
+ 						runningMappersCount--;
+ 
+diff --git a/index.test-d.ts b/index.test-d.ts
+index 58acea4..7cf4f99 100644
+--- a/index.test-d.ts
++++ b/index.test-d.ts
+@@ -7,6 +7,33 @@ const sites = [
+ 	'https://github.com',
+ ];
+ 
++const sitesWithPromises = [
++	'https://sindresorhus.com',
++	Promise.resolve('https://avajs.dev'),
++	Promise.resolve('https://github.com'),
++];
++
++const sitesAsyncIterable = {
++	async * [Symbol.asyncIterator]() {
++		yield 'https://sindresorhus.com';
++		yield 'https://avajs.dev';
++		yield 'https://github.com';
++	},
++};
++
++const sitesAsyncIterableWithPromises: AsyncIterable<Promise<string>> = {
++	[Symbol.asyncIterator]() {
++		return {
++			async next() {
++				return {
++					done: false,
++					value: Promise.resolve('https://github.com'),
++				};
++			},
++		};
++	},
++};
++
+ const numbers = [
+ 	0,
+ 	1,
+@@ -50,3 +77,6 @@ expectType<Promise<number[]>>(pMap(numbers, (number: number) => {
+ }));
+ 
+ expectType<AsyncIterable<string>>(pMapIterable(sites, asyncMapper));
++expectType<AsyncIterable<string>>(pMapIterable(sitesWithPromises, asyncMapper));
++expectType<AsyncIterable<string>>(pMapIterable(sitesAsyncIterable, asyncMapper));
++expectType<AsyncIterable<string>>(pMapIterable(sitesAsyncIterableWithPromises, asyncMapper));
+diff --git a/test.js b/test.js
+index 03d7d59..a33b07b 100644
+--- a/test.js
++++ b/test.js
+@@ -8,7 +8,7 @@ import pMap, {pMapIterable, pMapSkip} from './index.js';
+ const sharedInput = [
+ 	[async () => 10, 300],
+ 	[20, 200],
+-	[30, 100],
++	Promise.resolve([30, 100]),
+ ];
+ 
+ const longerSharedInput = [

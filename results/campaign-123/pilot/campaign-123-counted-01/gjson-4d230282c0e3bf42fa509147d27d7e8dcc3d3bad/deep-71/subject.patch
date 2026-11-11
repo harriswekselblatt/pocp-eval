@@ -1,0 +1,89 @@
+diff --git a/.proof/packets/p-30dce87f.json b/.proof/packets/p-30dce87f.json
+new file mode 100644
+index 0000000..93b39c8
+--- /dev/null
++++ b/.proof/packets/p-30dce87f.json
+@@ -0,0 +1,70 @@
++{
++  "pocp": 1,
++  "id": "p-30dce87f",
++  "intent": "Change to gjson.go",
++  "touches": [
++    "gjson.go"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:runtime-suite"
++    }
++  ],
++  "state": "proven",
++  "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "policy_repo": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "opened_at": "2026-11-11T14:26:22.955Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:1de4393d084c88cfdf7a81deacdd57f89d38b3fac2045733c621cd70916825f7",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T14:26:23.341Z",
++      "duration_ms": 10278,
++      "stdout_sha256": "73e75db51685bf2654035554097e0d0534cfb8bffba3b1193eeb438d51d54e9f",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-b2b047f4",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": "dfff87a7de3ea43eb32e4297a35cbd7eb4819d36b877fd6559d69f812f326379"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T14:26:22.955Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T14:26:22.955Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1"
++      ],
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178"
++    },
++    {
++      "at": "2026-11-11T14:26:33.717Z",
++      "event": "state",
++      "from": "open",
++      "to": "proven",
++      "subject": "sha256:1de4393d084c88cfdf7a81deacdd57f89d38b3fac2045733c621cd70916825f7"
++    }
++  ]
++}
+diff --git a/gjson.go b/gjson.go
+index 673be3f..a27840f 100644
+--- a/gjson.go
++++ b/gjson.go
+@@ -1,6 +1,8 @@
+ // Copyright 2024 Joshua J Baker. All rights reserved.
+ // Use of this source code is governed by an MIT-style
+ // license that can be found in the LICENSE file.
++//
++// https://github.com/tidwall/gjson
+ 
+ // Package gjson provides searching for json strings.
+ package gjson

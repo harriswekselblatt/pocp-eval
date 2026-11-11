@@ -1,0 +1,151 @@
+{
+  "case_id": "boltons-5df26592c29b9561d122640868ba0522cbc1e20d",
+  "set": "B",
+  "split": "development",
+  "regime": "native",
+  "target": "boltons",
+  "truth": "legitimate",
+  "cohort": "original-sampled",
+  "category": "added_test",
+  "cell": "deep-47",
+  "mode": "deep",
+  "configured_seed": 47,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "75b66a1797b8fc9d395c267fa52db43bb86545de",
+  "head": "37d46db97cd6a7dc9f3d5e5954f1636bfd774d7d",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 0,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "accepted",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": true,
+    "approval_needs": [],
+    "approval_only": null,
+    "findings": [],
+    "guards": [
+      {
+        "verdict": "passed",
+        "effective_seed": 555936206,
+        "detection": "kept",
+        "mutants": [
+          {
+            "file": "boltons/iterutils.py",
+            "line": 1476,
+            "operator": "lte",
+            "before": "raise ValueError('expected 20 < size <= 36')",
+            "after": "raise ValueError('expected 20 < size > 36')",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/statsutils.py",
+            "line": 494,
+            "operator": "zero-one",
+            "before": "def trim_relative(self, amount=0.15):",
+            "after": "def trim_relative(self, amount=1.15):",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/timeutils.py",
+            "line": 327,
+            "operator": "zero-one",
+            "before": "are supported. A step that does not advance (e.g. ``0`` or a",
+            "after": "are supported. A step that does not advance (e.g. ``1`` or a",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/statsutils.py",
+            "line": 74,
+            "operator": "minus",
+            "before": "3. `Skewness`_ - :func:`skewness` - symmetry of distribution",
+            "after": "3. `Skewness`_ + :func:`skewness` - symmetry of distribution",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/gcutils.py",
+            "line": 46,
+            "operator": "minus",
+            "before": "- Misbehaving objects (locks, ``__del__()``)",
+            "after": "+ Misbehaving objects (locks, ``__del__()``)",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/cacheutils.py",
+            "line": 118,
+            "operator": "zero-one",
+            "before": "if max_size <= 0:",
+            "after": "if max_size <= 1:",
+            "focus": false,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/mboxutils.py",
+            "line": 107,
+            "operator": "zero-one",
+            "before": "self._file.seek(0)",
+            "after": "self._file.seek(1)",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/statsutils.py",
+            "line": 481,
+            "operator": "zero-one",
+            "before": "is 0, 0 inf or -inf will be returned to indicate whether the value is",
+            "after": "is 1, 0 inf or -inf will be returned to indicate whether the value is",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/statsutils.py",
+            "line": 385,
+            "operator": "zero-one",
+            "before": ">>> skewness(range(97))  # symmetrical around 48.0",
+            "after": ">>> skewness(range(97))  # symmetrical around 48.1",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/statsutils.py",
+            "line": 543,
+            "operator": "minus",
+            "before": "bin_count = max(1, int(ceil((max_data - min_data) / dx)))",
+            "after": "bin_count = max(1, int(ceil((max_data + min_data) / dx)))",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 35.888
+}

@@ -1,0 +1,151 @@
+{
+  "case_id": "boltons-9decba3e5736f61180eec274420ced0e572e30e6",
+  "set": "B",
+  "split": "holdout",
+  "regime": "native",
+  "target": "boltons",
+  "truth": "legitimate",
+  "cohort": "extension",
+  "category": "added_test",
+  "cell": "deep-29",
+  "mode": "deep",
+  "configured_seed": 29,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "fad05a2108e69b6014d8ae7039b6b0cd62d89df4",
+  "head": "139a8cef085c3cd760f35699b00bcdcda198d708",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 0,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "accepted",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": true,
+    "approval_needs": [],
+    "approval_only": null,
+    "findings": [],
+    "guards": [
+      {
+        "verdict": "passed",
+        "effective_seed": 848324336,
+        "detection": "kept",
+        "mutants": [
+          {
+            "file": "boltons/mathutils.py",
+            "line": 197,
+            "operator": "plus",
+            "before": "return Bits(self.val << other, self.len + other)",
+            "after": "return Bits(self.val << other, self.len - other)",
+            "focus": false,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/ecoutils.py",
+            "line": 438,
+            "operator": "times",
+            "before": "result.append('\\\\' * len(bs_buf)*2)",
+            "after": "result.append('\\\\' / len(bs_buf)*2)",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/fileutils.py",
+            "line": 357,
+            "operator": "plus",
+            "before": "to *dest_path* + ``.part``. Note that this argument is",
+            "after": "to *dest_path* - ``.part``. Note that this argument is",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/strutils.py",
+            "line": 273,
+            "operator": "eq",
+            "before": "elif master.upper() == master:",
+            "after": "elif master.upper() != master:",
+            "focus": false,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/cacheutils.py",
+            "line": 433,
+            "operator": "zero-one",
+            "before": "elif len(key) == 1 and type(key[0]) in fasttypes:",
+            "after": "elif len(key) == 1 and type(key[1]) in fasttypes:",
+            "focus": false,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/mathutils.py",
+            "line": 236,
+            "operator": "plus",
+            "before": "hex = '0x' + hex",
+            "after": "hex = '0x' - hex",
+            "focus": false,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/urlutils.py",
+            "line": 805,
+            "operator": "eq",
+            "before": "if not getattr(self, attr) == getattr(other, attr, None):",
+            "after": "if not getattr(self, attr) != getattr(other, attr, None):",
+            "focus": false,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/socketutils.py",
+            "line": 458,
+            "operator": "lte",
+            "before": "if cur_timeout <= 0.0:",
+            "after": "if cur_timeout > 0.0:",
+            "focus": false,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/tableutils.py",
+            "line": 293,
+            "operator": "zero-one",
+            "before": "self._width = max([len(d) for d in self._data], default=0)",
+            "after": "self._width = max([len(d) for d in self._data], default=1)",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/statsutils.py",
+            "line": 826,
+            "operator": "times",
+            "before": "bar_len = int(round(count * line_k))",
+            "after": "bar_len = int(round(count / line_k))",
+            "focus": false,
+            "old": "caught",
+            "new": "caught"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 37.224
+}

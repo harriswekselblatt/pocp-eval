@@ -1,0 +1,398 @@
+diff --git a/.proof/packets/p-dae74b1f.json b/.proof/packets/p-dae74b1f.json
+new file mode 100644
+index 0000000..21002fc
+--- /dev/null
++++ b/.proof/packets/p-dae74b1f.json
+@@ -0,0 +1,259 @@
++{
++  "pocp": 1,
++  "id": "p-dae74b1f",
++  "intent": "Change to index.js, test.js",
++  "touches": [
++    "index.js",
++    "test.js"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:runtime-suite"
++    },
++    {
++      "id": "o2",
++      "kind": "guard",
++      "files": [
++        "test.js"
++      ],
++      "mutants": 10,
++      "seed": 47,
++      "text": "Existing tests or test setup changed (test.js): the old tests still pass on the new code, and the new tests catch every sampled mutant the old ones caught",
++      "source": "guard:tests"
++    }
++  ],
++  "state": "proven",
++  "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "policy_repo": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "opened_at": "2026-11-11T07:05:38.774Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:df630f2f89199d1f1103ca2428c6a651518b22d342151bd84e59e208b920be1f",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T07:05:39.132Z",
++      "duration_ms": 3915,
++      "stdout_sha256": "098ebdc48057374bb480409dd1ac45d5e39d843a01a1027d20329fd11d160d13",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-524c3756",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      }
++    },
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:825a7ae857b856da4bf184a3237866d9daaae73b5202dd8b29da59e2770728f8",
++      "subject": "sha256:df630f2f89199d1f1103ca2428c6a651518b22d342151bd84e59e208b920be1f",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "kind": "guard",
++      "mode": "snapshot",
++      "passed": true,
++      "started_at": "2026-11-11T07:05:43.194Z",
++      "duration_ms": 32455,
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      },
++      "guard": {
++        "pocp": 1,
++        "verdict": "passed",
++        "passed": true,
++        "summary": "the old tests pass on the new code, and the new tests catch all 7 of the 10 sampled mutants the old tests caught (seed 47)",
++        "base": "720367e575ee7e8a730dce2e6ff69ad45b2160c2",
++        "checks": [
++          {
++            "id": "runtime-suite",
++            "run": "sh .bench/check.sh"
++          }
++        ],
++        "old_tests": {
++          "result": "pass",
++          "restored": [
++            "test.js"
++          ],
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "exit": 0,
++              "duration_ms": 3771
++            }
++          ]
++        },
++        "new_tests": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "reused": true,
++              "duration_ms": 0
++            }
++          ]
++        },
++        "baseline": {
++          "result": "not-run",
++          "runs": []
++        },
++        "detection": {
++          "result": "kept",
++          "budget": 10,
++          "seed": 47,
++          "sites": 88,
++          "focus_sites": 67,
++          "files": 4,
++          "sampled": 10,
++          "old_caught": 7,
++          "new_caught": 7,
++          "lost": [],
++          "mutants": [
++            {
++              "file": "index.js",
++              "line": 212,
++              "operator": "and",
++              "before": "if (isDone || !(pendingPromisesCount < concurrency && promises.length < backpressure)) {",
++              "after": "if (isDone || !(pendingPromisesCount < concurrency || promises.length < backpressure)) {",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 161,
++              "operator": "lt",
++              "before": "for (let index = 0; index < concurrency; index++) {",
++              "after": "for (let index = 0; index >= concurrency; index++) {",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 48,
++              "operator": "true",
++              "before": "isResolved = true;",
++              "after": "isResolved = false;",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "index.js",
++              "line": 212,
++              "operator": "lt",
++              "before": "if (isDone || !(pendingPromisesCount < concurrency && promises.length < backpressure)) {",
++              "after": "if (isDone || !(pendingPromisesCount < concurrency && promises.length >= backpressure)) {",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 89,
++              "operator": "zero-one",
++              "before": "if (skippedIndexesMap.size === 0) {",
++              "after": "if (skippedIndexesMap.size === 1) {",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 212,
++              "operator": "lt",
++              "before": "if (isDone || !(pendingPromisesCount < concurrency && promises.length < backpressure)) {",
++              "after": "if (isDone || !(pendingPromisesCount >= concurrency && promises.length < backpressure)) {",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 82,
++              "operator": "zero-one",
++              "before": "if (!stopOnError && errors.length > 0) {",
++              "after": "if (!stopOnError && errors.length > 1) {",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "index.js",
++              "line": 208,
++              "operator": "false",
++              "before": "let isDone = false;",
++              "after": "let isDone = true;",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 226,
++              "operator": "true",
++              "before": "return {done: true};",
++              "after": "return {done: false};",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 47,
++              "operator": "true",
++              "before": "isRejected = true;",
++              "after": "isRejected = false;",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            }
++          ]
++        },
++        "duration_ms": 32455,
++        "checks_from": "rules"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T07:05:38.774Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T07:05:38.774Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1",
++        "o2"
++      ],
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178"
++    },
++    {
++      "at": "2026-11-11T07:06:15.722Z",
++      "event": "state",
++      "from": "open",
++      "to": "proven",
++      "subject": "sha256:df630f2f89199d1f1103ca2428c6a651518b22d342151bd84e59e208b920be1f"
++    }
++  ]
++}
+diff --git a/index.js b/index.js
+index 6948b82..3368a0b 100644
+--- a/index.js
++++ b/index.js
+@@ -215,18 +215,20 @@ export function pMapIterable(
+ 
+ 				pendingPromisesCount++;
+ 
++				// Errors must be returned as a value instead of rejecting, otherwise a promise that
++				// the consumer abandons after an earlier error becomes an unhandled rejection.
+ 				const promise = (async () => {
+-					const {done, value} = await iterator.next();
++					try {
++						const {done, value} = await iterator.next();
+ 
+-					if (done) {
+-						pendingPromisesCount--;
+-						return {done: true};
+-					}
++						if (done) {
++							pendingPromisesCount--;
++							return {done: true};
++						}
+ 
+-					// Spawn if still below concurrency and backpressure limit
+-					trySpawn();
++						// Spawn if still below concurrency and backpressure limit
++						trySpawn();
+ 
+-					try {
+ 						const currentIndex = index++;
+ 						const returnValue = await mapper(await value, currentIndex);
+ 
+@@ -257,12 +259,13 @@ export function pMapIterable(
+ 			trySpawn();
+ 
+ 			while (promises.length > 0) {
+-				const {error, done, value} = await promises[0]; // eslint-disable-line no-await-in-loop
++				const result = await promises[0]; // eslint-disable-line no-await-in-loop
++				const {done, value} = result;
+ 
+ 				promises.shift();
+ 
+-				if (error) {
+-					throw error;
++				if (Object.hasOwn(result, 'error')) {
++					throw result.error;
+ 				}
+ 
+ 				if (done) {
+diff --git a/test.js b/test.js
+index 1ef994c..94f6776 100644
+--- a/test.js
++++ b/test.js
+@@ -1,3 +1,4 @@
++import process from 'node:process';
+ import {getEventListeners} from 'node:events';
+ import test from 'ava';
+ import delay from 'delay';
+@@ -585,6 +586,73 @@ test('pMapIterable - iterable that throws', async t => {
+ 	await t.throwsAsync(iterator.next(), {message: 'foo'});
+ });
+ 
++test('pMapIterable - iterable that rejects with undefined', async t => {
++	const iterable = {
++		[Symbol.asyncIterator]() {
++			return {
++				next() {
++					return Promise.reject();
++				},
++			};
++		},
++	};
++
++	const iterator = pMapIterable(iterable, mapper)[Symbol.asyncIterator]();
++	let didReject = false;
++	let rejectionReason;
++
++	try {
++		await iterator.next();
++	} catch (error) {
++		didReject = true;
++		rejectionReason = error;
++	}
++
++	t.true(didReject);
++	t.is(rejectionReason, undefined);
++});
++
++test.serial('pMapIterable - no unhandled rejection when an in-flight `next()` rejects after an error', async t => {
++	let nextCallCount = 0;
++
++	const iterable = {
++		[Symbol.asyncIterator]() {
++			return {
++				async next() {
++					nextCallCount++;
++
++					if (nextCallCount === 1) {
++						return {done: false, value: 1};
++					}
++
++					await delay(50);
++					throw new Error('next() failed');
++				},
++			};
++		},
++	};
++
++	const unhandledRejections = [];
++	const onUnhandledRejection = error => {
++		unhandledRejections.push(error);
++	};
++
++	process.on('unhandledRejection', onUnhandledRejection);
++
++	try {
++		await t.throwsAsync(collectAsyncIterable(pMapIterable(iterable, async () => {
++			throw new Error('foo');
++		}, {concurrency: 2})), {message: 'foo'});
++
++		// Give the abandoned in-flight `next()` time to reject.
++		await delay(200);
++	} finally {
++		process.off('unhandledRejection', onUnhandledRejection);
++	}
++
++	t.deepEqual(unhandledRejections, []);
++});
++
+ test('pMapIterable - mapper that throws', async t => {
+ 	await t.throwsAsync(collectAsyncIterable(pMapIterable(sharedInput, async () => {
+ 		throw new Error('foo');

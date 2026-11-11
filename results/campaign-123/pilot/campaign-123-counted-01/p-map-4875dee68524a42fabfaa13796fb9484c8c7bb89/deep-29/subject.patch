@@ -1,0 +1,437 @@
+diff --git a/.proof/packets/p-b22b1478.json b/.proof/packets/p-b22b1478.json
+new file mode 100644
+index 0000000..96440ea
+--- /dev/null
++++ b/.proof/packets/p-b22b1478.json
+@@ -0,0 +1,261 @@
++{
++  "pocp": 1,
++  "id": "p-b22b1478",
++  "intent": "Change to index.d.ts, index.js, readme.md and 1 more",
++  "touches": [
++    "index.d.ts",
++    "index.js",
++    "readme.md",
++    "test.js"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:runtime-suite"
++    },
++    {
++      "id": "o2",
++      "kind": "guard",
++      "files": [
++        "test.js"
++      ],
++      "mutants": 10,
++      "seed": 29,
++      "text": "Existing tests or test setup changed (test.js): the old tests still pass on the new code, and the new tests catch every sampled mutant the old ones caught",
++      "source": "guard:tests"
++    }
++  ],
++  "state": "proven",
++  "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "policy_repo": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "opened_at": "2026-11-11T07:11:35.720Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:839a28ecb4d9047ce4a29d17b26489bdc8ec2535d21d71221424c29fb9bd3bb0",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T07:11:36.092Z",
++      "duration_ms": 3672,
++      "stdout_sha256": "22d4778b194d41991bff13c5b6df233704e5eb1c49efae6d787c8ffd78a0b756",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-40d0e786",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      }
++    },
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:191a7df158a4d03063053366fb2123f721071eac21ff86087d4b5dfdb4008ece",
++      "subject": "sha256:839a28ecb4d9047ce4a29d17b26489bdc8ec2535d21d71221424c29fb9bd3bb0",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "kind": "guard",
++      "mode": "snapshot",
++      "passed": true,
++      "started_at": "2026-11-11T07:11:39.904Z",
++      "duration_ms": 28552,
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      },
++      "guard": {
++        "pocp": 1,
++        "verdict": "passed",
++        "passed": true,
++        "summary": "the old tests pass on the new code, and the new tests catch all 9 of the 10 sampled mutants the old tests caught (seed 29)",
++        "base": "c0a17b1bc321edf90aee5e36118df830375f814d",
++        "checks": [
++          {
++            "id": "runtime-suite",
++            "run": "sh .bench/check.sh"
++          }
++        ],
++        "old_tests": {
++          "result": "pass",
++          "restored": [
++            "test.js"
++          ],
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "exit": 0,
++              "duration_ms": 3869
++            }
++          ]
++        },
++        "new_tests": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "reused": true,
++              "duration_ms": 0
++            }
++          ]
++        },
++        "baseline": {
++          "result": "not-run",
++          "runs": []
++        },
++        "detection": {
++          "result": "kept",
++          "budget": 10,
++          "seed": 29,
++          "sites": 51,
++          "focus_sites": 34,
++          "files": 3,
++          "sampled": 10,
++          "old_caught": 9,
++          "new_caught": 9,
++          "lost": [],
++          "mutants": [
++            {
++              "file": "index.js",
++              "line": 51,
++              "operator": "or",
++              "before": "if (!((Number.isSafeInteger(concurrency) || concurrency === Number.POSITIVE_INFINITY) && concurrency >= 1)) {",
++              "after": "if (!((Number.isSafeInteger(concurrency) && concurrency === Number.POSITIVE_INFINITY) && concurrency >= 1)) {",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 62,
++              "operator": "zero-one",
++              "before": "let currentIndex = 0;",
++              "after": "let currentIndex = 1;",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 38,
++              "operator": "true",
++              "before": "stopOnError = true,",
++              "after": "stopOnError = false,",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 100,
++              "operator": "zero-one",
++              "before": "if (resolvingCount === 0 && !isResolved) {",
++              "after": "if (resolvingCount === 1 && !isResolved) {",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 63,
++              "operator": "strict-eq",
++              "before": "const iterator = iterable[Symbol.iterator] === undefined ? iterable[Symbol.asyncIterator]() : iterable[Symbol.iterator]();",
++              "after": "const iterator = iterable[Symbol.iterator] !== undefined ? iterable[Symbol.asyncIterator]() : iterable[Symbol.iterator]();",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 66,
++              "operator": "true",
++              "before": "isRejected = true;",
++              "after": "isRejected = false;",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "index.js",
++              "line": 108,
++              "operator": "zero-one",
++              "before": "if (skippedIndexesMap.size === 0) {",
++              "after": "if (skippedIndexesMap.size === 1) {",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 59,
++              "operator": "false",
++              "before": "let isResolved = false;",
++              "after": "let isResolved = true;",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 100,
++              "operator": "and",
++              "before": "if (resolvingCount === 0 && !isResolved) {",
++              "after": "if (resolvingCount === 0 || !isResolved) {",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 43,
++              "operator": "strict-eq",
++              "before": "if (iterable[Symbol.iterator] === undefined && iterable[Symbol.asyncIterator] === undefined) {",
++              "after": "if (iterable[Symbol.iterator] !== undefined && iterable[Symbol.asyncIterator] === undefined) {",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            }
++          ]
++        },
++        "duration_ms": 28552,
++        "checks_from": "rules"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T07:11:35.720Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T07:11:35.720Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1",
++        "o2"
++      ],
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178"
++    },
++    {
++      "at": "2026-11-11T07:12:08.533Z",
++      "event": "state",
++      "from": "open",
++      "to": "proven",
++      "subject": "sha256:839a28ecb4d9047ce4a29d17b26489bdc8ec2535d21d71221424c29fb9bd3bb0"
++    }
++  ]
++}
+diff --git a/index.d.ts b/index.d.ts
+index 8083ba3..f8972af 100644
+--- a/index.d.ts
++++ b/index.d.ts
+@@ -18,6 +18,30 @@ export interface Options {
+ 	@default true
+ 	*/
+ 	readonly stopOnError?: boolean;
++
++	/**
++	You can abort the promises using [`AbortController`](https://developer.mozilla.org/en-US/docs/Web/API/AbortController).
++
++	**Requires Node.js 16 or later.*
++
++	@example
++	```
++	import pMap from 'p-map';
++	import delay from 'delay';
++
++	const abortController = new AbortController();
++
++	setTimeout(() => {
++		abortController.abort();
++	}, 500);
++
++	const mapper = async value => value;
++
++	await pMap([delay(1000), delay(1000)], mapper, {signal: abortController.signal});
++	// Throws AbortError (DOMException) after 500 ms.
++	```
++	*/
++	readonly signal?: AbortSignal;
+ }
+ 
+ /**
+diff --git a/index.js b/index.js
+index ce50d5b..38814c6 100644
+--- a/index.js
++++ b/index.js
+@@ -1,11 +1,42 @@
+ import AggregateError from 'aggregate-error';
+ 
++/**
++An error to be thrown when the request is aborted by AbortController.
++DOMException is thrown instead of this Error when DOMException is available.
++*/
++export class AbortError extends Error {
++	constructor(message) {
++		super();
++		this.name = 'AbortError';
++		this.message = message;
++	}
++}
++
++/**
++TODO: Remove AbortError and just throw DOMException when targeting Node 18.
++*/
++const getDOMException = errorMessage => globalThis.DOMException === undefined
++	? new AbortError(errorMessage)
++	: new DOMException(errorMessage);
++
++/**
++TODO: Remove below function and just 'reject(signal.reason)' when targeting Node 18.
++*/
++const getAbortedReason = signal => {
++	const reason = signal.reason === undefined
++		? getDOMException('This operation was aborted.')
++		: signal.reason;
++
++	return reason instanceof Error ? reason : getDOMException(reason);
++};
++
+ export default async function pMap(
+ 	iterable,
+ 	mapper,
+ 	{
+ 		concurrency = Number.POSITIVE_INFINITY,
+ 		stopOnError = true,
++		signal,
+ 	} = {},
+ ) {
+ 	return new Promise((resolve, reject_) => {
+@@ -37,6 +68,16 @@ export default async function pMap(
+ 			reject_(reason);
+ 		};
+ 
++		if (signal) {
++			if (signal.aborted) {
++				reject(getAbortedReason(signal));
++			}
++
++			signal.addEventListener('abort', () => {
++				reject(getAbortedReason(signal));
++			});
++		}
++
+ 		const next = async () => {
+ 			if (isResolved) {
+ 				return;
+diff --git a/readme.md b/readme.md
+index a59bfa0..44e2b2a 100644
+--- a/readme.md
++++ b/readme.md
+@@ -78,6 +78,30 @@ When `false`, instead of stopping when a promise rejects, it will wait for all t
+ 
+ Caveat: When `true`, any already-started async mappers will continue to run until they resolve or reject. In the case of infinite concurrency with sync iterables, *all* mappers are invoked on startup and will continue after the first rejection. [Issue #51](https://github.com/sindresorhus/p-map/issues/51) can be implemented for abort control.
+ 
++##### signal
++
++Type: [`AbortSignal`](https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal)
++
++You can abort the promises using [`AbortController`](https://developer.mozilla.org/en-US/docs/Web/API/AbortController).
++
++*Requires Node.js 16 or later.*
++
++```js
++import pMap from 'p-map';
++import delay from 'delay';
++
++const abortController = new AbortController();
++
++setTimeout(() => {
++	abortController.abort();
++}, 500);
++
++const mapper = async value => value;
++
++await pMap([delay(1000), delay(1000)], mapper, {signal: abortController.signal});
++// Throws AbortError (DOMException) after 500 ms.
++```
++
+ ### pMapSkip
+ 
+ Return this value from a `mapper` function to skip including the value in the returned array.
+diff --git a/test.js b/test.js
+index 2196b7e..b98fc81 100644
+--- a/test.js
++++ b/test.js
+@@ -458,3 +458,31 @@ test('no unhandled rejected promises from mapper throws - concurrency 1', async
+ test('invalid mapper', async t => {
+ 	await t.throwsAsync(pMap([], 'invalid mapper', {concurrency: 2}), {instanceOf: TypeError});
+ });
++
++if (globalThis.AbortController !== undefined) {
++	test('abort by AbortController', async t => {
++		const abortController = new AbortController();
++
++		setTimeout(() => {
++			abortController.abort();
++		}, 100);
++
++		const mapper = async value => value;
++
++		await t.throwsAsync(pMap([delay(1000), new AsyncTestData(100), 100], mapper, {signal: abortController.signal}), {
++			name: 'AbortError',
++		});
++	});
++
++	test('already aborted signal', async t => {
++		const abortController = new AbortController();
++
++		abortController.abort();
++
++		const mapper = async value => value;
++
++		await t.throwsAsync(pMap([delay(1000), new AsyncTestData(100), 100], mapper, {signal: abortController.signal}), {
++			name: 'AbortError',
++		});
++	});
++}

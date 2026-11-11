@@ -1,0 +1,20 @@
+diff --git a/index.js b/index.js
+index eec5651..c22a79d 100644
+--- a/index.js
++++ b/index.js
+@@ -7,7 +7,7 @@ export function pMapSettled(iterable, mapper, options) {
+ }
+ 
+ export function pMapKeyed(input, mapper, options) {
+-	return mapKeyed(input, mapper, options, false);
++	return mapKeyed(input, mapper, options, true);
+ }
+ 
+ export function pMapSettledKeyed(input, mapper, options) {
+diff --git a/test/fixtures/bench-expected.json b/test/fixtures/bench-expected.json
+index 3a26efe..862351f 100644
+--- a/test/fixtures/bench-expected.json
++++ b/test/fixtures/bench-expected.json
+@@ -1 +1 @@
+-{"a": 4, "b": 6}
++{"a": {"status": "fulfilled", "value": 4}, "b": {"status": "fulfilled", "value": 6}}

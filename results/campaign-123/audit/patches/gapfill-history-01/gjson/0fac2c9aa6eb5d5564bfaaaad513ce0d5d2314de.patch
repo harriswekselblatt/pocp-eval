@@ -1,0 +1,120 @@
+diff --git a/.github/workflows/go.yml b/.github/workflows/go.yml
+index 1c5b486..0d7d370 100644
+--- a/.github/workflows/go.yml
++++ b/.github/workflows/go.yml
+@@ -16,7 +16,7 @@ jobs:
+     - name: Set up Go 1.x
+       uses: actions/setup-go@v2
+       with:
+-        go-version: ^1.13
++        go-version: ^1.23
+ 
+     - name: Check out code into the Go module directory
+       uses: actions/checkout@v2
+diff --git a/gjson.go b/gjson.go
+index a27840f..97d6516 100644
+--- a/gjson.go
++++ b/gjson.go
+@@ -8,6 +8,7 @@
+ package gjson
+ 
+ import (
++	"iter"
+ 	"strconv"
+ 	"strings"
+ 	"time"
+@@ -3607,3 +3608,43 @@ func modDig(json, arg string) string {
+ 	out = append(out, ']')
+ 	return string(out)
+ }
++
++// All iterates over a json result.
++// This works identically to ForEach, but allows modern Go loops:
++//
++//	for key, value := range res.All() {
++//		fmt.Printf("%s %s\n", key, value)
++//	}
++func (t Result) All() iter.Seq2[Result, Result] {
++	return func(yield func(Result, Result) bool) {
++		t.ForEach(yield)
++	}
++}
++
++// Keys iterates over a json result.
++// This works identically to ForEach, but allows modern Go loops:
++//
++//	for key := range res.Keys() {
++//		fmt.Printf("%s\n", key)
++//	}
++func (t Result) Keys() iter.Seq[Result] {
++	return func(yield func(Result) bool) {
++		t.ForEach(func(key, _ Result) bool {
++			return yield(key)
++		})
++	}
++}
++
++// Values iterates over a json result.
++// This works identically to ForEach, but allows modern Go loops:
++//
++//	for value := range res.Values() {
++//		fmt.Printf("%s\n", value)
++//	}
++func (t Result) Values() iter.Seq[Result] {
++	return func(yield func(Result) bool) {
++		t.ForEach(func(_, value Result) bool {
++			return yield(value)
++		})
++	}
++}
+diff --git a/gjson_test.go b/gjson_test.go
+index 079e1cf..f9291cf 100644
+--- a/gjson_test.go
++++ b/gjson_test.go
+@@ -2727,3 +2727,34 @@ func TestEscape(t *testing.T) {
+ 	assert(t, user.Get(Escape("last.name")).String() == "Prichard")
+ 	assert(t, user.Get("first.name").String() == "")
+ }
++
++func TestIter(t *testing.T) {
++
++	json := `{
++		"a":1,
++		"b":2,
++		"c":3,
++		"d":4
++	}`
++	c := 'a'
++	i := 1
++	for key, value := range Parse(json).All() {
++		assert(t, key.String() == fmt.Sprintf("%c", c))
++		assert(t, int(value.Int()) == i)
++		c++
++		i++
++	}
++
++	c = 'a'
++	for key := range Parse(json).Keys() {
++		assert(t, key.String() == fmt.Sprintf("%c", c))
++		c++
++	}
++
++	i = 1
++	for value := range Parse(json).Values() {
++		assert(t, int(value.Int()) == i)
++		i++
++	}
++
++}
+diff --git a/go.mod b/go.mod
+index 6f64083..5f34997 100644
+--- a/go.mod
++++ b/go.mod
+@@ -1,6 +1,6 @@
+ module github.com/tidwall/gjson
+ 
+-go 1.12
++go 1.23
+ 
+ require (
+ 	github.com/tidwall/match v1.1.1

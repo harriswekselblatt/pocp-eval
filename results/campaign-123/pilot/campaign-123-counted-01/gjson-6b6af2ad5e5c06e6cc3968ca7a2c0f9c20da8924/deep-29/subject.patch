@@ -1,0 +1,397 @@
+diff --git a/.proof/packets/p-171b0f9d.json b/.proof/packets/p-171b0f9d.json
+new file mode 100644
+index 0000000..e07a565
+--- /dev/null
++++ b/.proof/packets/p-171b0f9d.json
+@@ -0,0 +1,259 @@
++{
++  "pocp": 1,
++  "id": "p-171b0f9d",
++  "intent": "Change to gjson.go, gjson_test.go",
++  "touches": [
++    "gjson.go",
++    "gjson_test.go"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:runtime-suite"
++    },
++    {
++      "id": "o2",
++      "kind": "guard",
++      "files": [
++        "gjson_test.go"
++      ],
++      "mutants": 10,
++      "seed": 29,
++      "text": "Existing tests or test setup changed (gjson_test.go): the old tests still pass on the new code, and the new tests catch every sampled mutant the old ones caught",
++      "source": "guard:tests"
++    }
++  ],
++  "state": "proven",
++  "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "policy_repo": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "opened_at": "2026-11-11T04:43:13.062Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:46d6c240fb101368cc0e5a30ebc3627c9aac3f13608f68832a391dee1c434678",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T04:43:13.533Z",
++      "duration_ms": 8957,
++      "stdout_sha256": "32353be7abf32cafe0d490eb7c6e52dbb7373cc18ebbe4c84ad734377a7223d1",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-7ace2dca",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": "dfff87a7de3ea43eb32e4297a35cbd7eb4819d36b877fd6559d69f812f326379"
++      }
++    },
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:8c9cb6ce3e56ec1f248507a24d8d7bdd94da241603a0ec2598020798ee372447",
++      "subject": "sha256:46d6c240fb101368cc0e5a30ebc3627c9aac3f13608f68832a391dee1c434678",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "kind": "guard",
++      "mode": "snapshot",
++      "passed": true,
++      "started_at": "2026-11-11T04:43:22.634Z",
++      "duration_ms": 31371,
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": "dfff87a7de3ea43eb32e4297a35cbd7eb4819d36b877fd6559d69f812f326379"
++      },
++      "guard": {
++        "pocp": 1,
++        "verdict": "passed",
++        "passed": true,
++        "summary": "the old tests pass on the new code, and the new tests catch all 6 of the 10 sampled mutants the old tests caught (seed 29)",
++        "base": "2612b873a946894dfb9a6e85694100ac08898e7d",
++        "checks": [
++          {
++            "id": "runtime-suite",
++            "run": "sh .bench/check.sh"
++          }
++        ],
++        "old_tests": {
++          "result": "pass",
++          "restored": [
++            "gjson_test.go"
++          ],
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "exit": 0,
++              "duration_ms": 11120
++            }
++          ]
++        },
++        "new_tests": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "reused": true,
++              "duration_ms": 0
++            }
++          ]
++        },
++        "baseline": {
++          "result": "not-run",
++          "runs": []
++        },
++        "detection": {
++          "result": "kept",
++          "budget": 10,
++          "seed": 29,
++          "sites": 1138,
++          "focus_sites": 33,
++          "files": 1,
++          "sampled": 10,
++          "old_caught": 6,
++          "new_caught": 6,
++          "lost": [],
++          "mutants": [
++            {
++              "file": "gjson.go",
++              "line": 1886,
++              "operator": "eq",
++              "before": "if len(path) > 0 && (path[0] == '|' || path[0] == '.') {",
++              "after": "if len(path) > 0 && (path[0] == '|' || path[0] != '.') {",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "gjson.go",
++              "line": 2587,
++              "operator": "true",
++              "before": "case \"true\", \"false\", \"null\", \"nan\", \"inf\":",
++              "after": "case \"false\", \"false\", \"null\", \"nan\", \"inf\":",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "gjson.go",
++              "line": 2565,
++              "operator": "gt",
++              "before": "if len(name) > 0 {",
++              "after": "if len(name) <= 0 {",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "gjson.go",
++              "line": 2567,
++              "operator": "zero-one",
++              "before": "case '{', '[', '\"', '+', '-', '0', '1', '2', '3', '4', '5', '6', '7',",
++              "after": "case '{', '[', '\"', '+', '-', '1', '1', '2', '3', '4', '5', '6', '7',",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "gjson.go",
++              "line": 1874,
++              "operator": "eq",
++              "before": "if (path[0] == '@' && !DisableModifiers) || path[0] == '!' {",
++              "after": "if (path[0] == '@' && !DisableModifiers) || path[0] != '!' {",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "gjson.go",
++              "line": 2587,
++              "operator": "false",
++              "before": "case \"true\", \"false\", \"null\", \"nan\", \"inf\":",
++              "after": "case \"true\", \"true\", \"null\", \"nan\", \"inf\":",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "gjson.go",
++              "line": 2565,
++              "operator": "zero-one",
++              "before": "if len(name) > 0 {",
++              "after": "if len(name) > 1 {",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "gjson.go",
++              "line": 2590,
++              "operator": "false",
++              "before": "return pathOut, res, false",
++              "after": "return pathOut, res, true",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "gjson.go",
++              "line": 1879,
++              "operator": "eq",
++              "before": "if path[0] == '@' && !DisableModifiers {",
++              "after": "if path[0] != '@' && !DisableModifiers {",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "gjson.go",
++              "line": 1886,
++              "operator": "or",
++              "before": "if len(path) > 0 && (path[0] == '|' || path[0] == '.') {",
++              "after": "if len(path) > 0 && (path[0] == '|' && path[0] == '.') {",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            }
++          ]
++        },
++        "duration_ms": 31371,
++        "checks_from": "rules"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T04:43:13.062Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T04:43:13.062Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1",
++        "o2"
++      ],
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178"
++    },
++    {
++      "at": "2026-11-11T04:43:54.131Z",
++      "event": "state",
++      "from": "open",
++      "to": "proven",
++      "subject": "sha256:46d6c240fb101368cc0e5a30ebc3627c9aac3f13608f68832a391dee1c434678"
++    }
++  ]
++}
+diff --git a/gjson.go b/gjson.go
+index ec2ce35..e74551f 100644
+--- a/gjson.go
++++ b/gjson.go
+@@ -1807,7 +1807,7 @@ func isSimpleName(component string) bool {
+ 			return false
+ 		}
+ 		switch component[i] {
+-		case '[', ']', '{', '}', '(', ')', '#', '|':
++		case '[', ']', '{', '}', '(', ')', '#', '|', '!':
+ 			return false
+ 		}
+ 	}
+@@ -1871,23 +1871,25 @@ type parseContext struct {
+ // use the Valid function first.
+ func Get(json, path string) Result {
+ 	if len(path) > 1 {
+-		if !DisableModifiers {
+-			if path[0] == '@' {
+-				// possible modifier
+-				var ok bool
+-				var npath string
+-				var rjson string
++		if (path[0] == '@' && !DisableModifiers) || path[0] == '!' {
++			// possible modifier
++			var ok bool
++			var npath string
++			var rjson string
++			if path[0] == '@' && !DisableModifiers {
+ 				npath, rjson, ok = execModifier(json, path)
+-				if ok {
+-					path = npath
+-					if len(path) > 0 && (path[0] == '|' || path[0] == '.') {
+-						res := Get(rjson, path[1:])
+-						res.Index = 0
+-						res.Indexes = nil
+-						return res
+-					}
+-					return Parse(rjson)
++			} else if path[0] == '!' {
++				npath, rjson, ok = execStatic(json, path)
++			}
++			if ok {
++				path = npath
++				if len(path) > 0 && (path[0] == '|' || path[0] == '.') {
++					res := Get(rjson, path[1:])
++					res.Index = 0
++					res.Indexes = nil
++					return res
+ 				}
++				return Parse(rjson)
+ 			}
+ 		}
+ 		if path[0] == '[' || path[0] == '{' {
+@@ -2556,8 +2558,40 @@ func safeInt(f float64) (n int64, ok bool) {
+ 	return int64(f), true
+ }
+ 
++// execStatic parses the path to find a static value.
++// The input expects that the path already starts with a '!'
++func execStatic(json, path string) (pathOut, res string, ok bool) {
++	name := path[1:]
++	if len(name) > 0 {
++		switch name[0] {
++		case '{', '[', '"', '+', '-', '0', '1', '2', '3', '4', '5', '6', '7',
++			'8', '9':
++			_, res = parseSquash(name, 0)
++			pathOut = name[len(res):]
++			return pathOut, res, true
++		}
++	}
++	for i := 1; i < len(path); i++ {
++		if path[i] == '|' {
++			pathOut = path[i:]
++			name = path[1:i]
++			break
++		}
++		if path[i] == '.' {
++			pathOut = path[i:]
++			name = path[1:i]
++			break
++		}
++	}
++	switch strings.ToLower(name) {
++	case "true", "false", "null", "nan", "inf":
++		return pathOut, name, true
++	}
++	return pathOut, res, false
++}
++
+ // execModifier parses the path to find a matching modifier function.
+-// then input expects that the path already starts with a '@'
++// The input expects that the path already starts with a '@'
+ func execModifier(json, path string) (pathOut, res string, ok bool) {
+ 	name := path[1:]
+ 	var hasArgs bool
+diff --git a/gjson_test.go b/gjson_test.go
+index 61cefdf..50760c2 100644
+--- a/gjson_test.go
++++ b/gjson_test.go
+@@ -2410,3 +2410,31 @@ func TestQueryGetPath(t *testing.T) {
+ 		assert(t, arr[i].Path(readmeJSON) == fmt.Sprintf("friends.%d.first", i))
+ 	}
+ }
++
++func TestStaticJSON(t *testing.T) {
++	json := `{
++		"name": {"first": "Tom", "last": "Anderson"}
++	}`
++	assert(t, Get(json,
++		`"bar"`).Raw ==
++		``)
++	assert(t, Get(json,
++		`!"bar"`).Raw ==
++		`"bar"`)
++	assert(t, Get(json,
++		`!{"name":{"first":"Tom"}}.{name.first}.first`).Raw ==
++		`"Tom"`)
++	assert(t, Get(json,
++		`{name.last,"foo":!"bar"}`).Raw ==
++		`{"last":"Anderson","foo":"bar"}`)
++	assert(t, Get(json,
++		`{name.last,"foo":!{"a":"b"},"that"}`).Raw ==
++		`{"last":"Anderson","foo":{"a":"b"}}`)
++	assert(t, Get(json,
++		`{name.last,"foo":!{"c":"d"},!"that"}`).Raw ==
++		`{"last":"Anderson","foo":{"c":"d"},"_":"that"}`)
++	assert(t, Get(json,
++		`[!true,!false,!null,!inf,!nan,!hello,{"name":!"andy",name.last},+inf,!["any","thing"]]`).Raw ==
++		`[true,false,null,inf,nan,{"name":"andy","last":"Anderson"},["any","thing"]]`,
++	)
++}

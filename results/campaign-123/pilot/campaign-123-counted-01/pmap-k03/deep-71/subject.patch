@@ -1,0 +1,262 @@
+diff --git a/.proof/packets/p-c2015ca3.json b/.proof/packets/p-c2015ca3.json
+new file mode 100644
+index 0000000..f579039
+--- /dev/null
++++ b/.proof/packets/p-c2015ca3.json
+@@ -0,0 +1,176 @@
++{
++  "pocp": 1,
++  "id": "p-c2015ca3",
++  "intent": "Change to index.d.ts, index.js, readme.md and 1 more",
++  "touches": [
++    "index.d.ts",
++    "index.js",
++    "readme.md",
++    "test.js"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:runtime-suite"
++    },
++    {
++      "id": "o2",
++      "kind": "guard",
++      "files": [
++        "test.js"
++      ],
++      "mutants": 10,
++      "seed": 71,
++      "text": "Existing tests or test setup changed (test.js): the old tests still pass on the new code, and the new tests catch every sampled mutant the old ones caught",
++      "source": "guard:tests"
++    }
++  ],
++  "state": "open",
++  "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "policy_repo": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "opened_at": "2026-11-11T08:42:29.091Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:b23534496bfe19b7944c33a2de6b4870d63a32af5089c5a3d06614afdd0829cd",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T08:42:29.446Z",
++      "duration_ms": 8366,
++      "stdout_sha256": "174060836b3af2ae3b0f6193516beea81d73fbafbb67d2359306d4687bcf5a13",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-88d2d907",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      }
++    },
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:c3b30d7688a341c5960a4ba1032c7ff468bbd35fbbd82fa77042482d5cf8a227",
++      "subject": "sha256:b23534496bfe19b7944c33a2de6b4870d63a32af5089c5a3d06614afdd0829cd",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "kind": "guard",
++      "mode": "snapshot",
++      "passed": false,
++      "started_at": "2026-11-11T08:42:37.952Z",
++      "duration_ms": 24329,
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      },
++      "guard": {
++        "pocp": 1,
++        "verdict": "behavior-changed",
++        "passed": false,
++        "summary": "the old tests fail on the new code (\"sh .bench/check.sh\" exit 1): behavior changed, so a person must approve it",
++        "base": "c8ab17771c2fd3ef0daaca5a51c391aa7d731efd",
++        "checks": [
++          {
++            "id": "runtime-suite",
++            "run": "sh .bench/check.sh"
++          }
++        ],
++        "old_tests": {
++          "result": "fail",
++          "restored": [
++            "test.js"
++          ],
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": false,
++              "exit": 1,
++              "duration_ms": 8388
++            }
++          ]
++        },
++        "new_tests": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "reused": true,
++              "duration_ms": 0
++            }
++          ]
++        },
++        "baseline": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "exit": 0,
++              "duration_ms": 8281
++            }
++          ]
++        },
++        "detection": {
++          "result": "not-run",
++          "budget": 10,
++          "seed": 71
++        },
++        "duration_ms": 24329,
++        "checks_from": "rules"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T08:42:29.091Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T08:42:29.091Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1",
++        "o2"
++      ],
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178"
++    },
++    {
++      "at": "2026-11-11T08:43:02.332Z",
++      "event": "proof_failed",
++      "obligation": "o2",
++      "subject": "sha256:b23534496bfe19b7944c33a2de6b4870d63a32af5089c5a3d06614afdd0829cd"
++    },
++    {
++      "at": "2026-11-11T08:43:02.645Z",
++      "event": "deferred",
++      "obligation": "o2",
++      "by": "unknown",
++      "subject": "sha256:b23534496bfe19b7944c33a2de6b4870d63a32af5089c5a3d06614afdd0829cd"
++    }
++  ],
++  "deferrals": [
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:c3b30d7688a341c5960a4ba1032c7ff468bbd35fbbd82fa77042482d5cf8a227",
++      "subject": "sha256:b23534496bfe19b7944c33a2de6b4870d63a32af5089c5a3d06614afdd0829cd",
++      "by": "unknown",
++      "at": "2026-11-11T08:43:02.645Z",
++      "to": "ci-approval",
++      "reason": "the old tests fail on the new code (\"sh .bench/check.sh\" exit 1): behavior changed, so a person must approve it"
++    }
++  ]
++}
+diff --git a/index.d.ts b/index.d.ts
+index 6bd0cf7..836ca62 100644
+--- a/index.d.ts
++++ b/index.d.ts
+@@ -25,7 +25,7 @@ export type Options = BaseOptions & {
+ 
+ 	When `false`, instead of stopping when a promise rejects, it will wait for all the promises to settle and then reject with an [`AggregateError`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/AggregateError) containing all the errors from the rejected promises.
+ 
+-	The errors are listed in the order of the input, not in the order the promises happened to settle in, so the same input always produces the same `AggregateError`.
++	The errors are listed in the order of the input, not in the order the promises happened to settle in, so the same input always produces the same `AggregateError`. Its `message` says how many elements failed, like `2 elements failed`.
+ 
+ 	Caveat: When `true`, any already-started async mappers will continue to run until they resolve or reject. In the case of infinite concurrency with sync iterables, *all* mappers are invoked on startup and will continue after the first rejection. Use the `signal` option for abort control.
+ 
+diff --git a/index.js b/index.js
+index eec5651..ff40a53 100644
+--- a/index.js
++++ b/index.js
+@@ -138,7 +138,7 @@ async function mapConcurrently(
+ 				}
+ 
+ 				if (collectedErrors.length > 0) {
+-					reject(new AggregateError(collectedErrors)); // eslint-disable-line unicorn/error-message
++					reject(new AggregateError(collectedErrors, `${collectedErrors.length} ${collectedErrors.length === 1 ? 'element' : 'elements'} failed`));
+ 					return;
+ 				}
+ 			}
+diff --git a/readme.md b/readme.md
+index 6e69c54..c49dbdf 100644
+--- a/readme.md
++++ b/readme.md
+@@ -256,7 +256,7 @@ When `true`, the first mapper rejection will be rejected back to the consumer.
+ 
+ When `false`, instead of stopping when a promise rejects, it will wait for all the promises to settle and then reject with an [`AggregateError`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/AggregateError) containing all the errors from the rejected promises.
+ 
+-The errors are listed in the order of the input, not in the order the promises happened to settle in, so the same input always produces the same `AggregateError`.
++The errors are listed in the order of the input, not in the order the promises happened to settle in, so the same input always produces the same `AggregateError`. Its `message` says how many elements failed, like `2 elements failed`.
+ 
+ Caveat: When `true`, any already-started async mappers will continue to run until they resolve or reject. In the case of infinite concurrency with sync iterables, *all* mappers are invoked on startup and will continue after the first rejection. Use the `signal` option for abort control.
+ 
+diff --git a/test.js b/test.js
+index 115cc96..042084a 100644
+--- a/test.js
++++ b/test.js
+@@ -285,8 +285,8 @@ test('immediately rejects when stopOnError is true', async t => {
+ 
+ test('aggregate errors when stopOnError is false', async t => {
+ 	await t.notThrowsAsync(pMap(sharedInput, mapper, {concurrency: 1, stopOnError: false}));
+-	await t.throwsAsync(pMap(errorInput1, mapper, {concurrency: 1, stopOnError: false}), {instanceOf: AggregateError, message: ''});
+-	await t.throwsAsync(pMap(errorInput2, mapper, {concurrency: 1, stopOnError: false}), {instanceOf: AggregateError, message: ''});
++	await t.throwsAsync(pMap(errorInput1, mapper, {concurrency: 1, stopOnError: false}), {instanceOf: AggregateError, message: '2 elements failed'});
++	await t.throwsAsync(pMap(errorInput2, mapper, {concurrency: 1, stopOnError: false}), {instanceOf: AggregateError, message: '2 elements failed'});
+ });
+ 
+ test('mapper error stack trace includes the caller', async t => {
+@@ -1034,8 +1034,8 @@ test('asyncIterator - immediately rejects when stopOnError is true', async t =>
+ 
+ test('asyncIterator - aggregate errors when stopOnError is false', async t => {
+ 	await t.notThrowsAsync(pMap(new AsyncTestData(sharedInput), mapper, {concurrency: 1, stopOnError: false}));
+-	await t.throwsAsync(pMap(new AsyncTestData(errorInput1), mapper, {concurrency: 1, stopOnError: false}), {instanceOf: AggregateError, message: ''});
+-	await t.throwsAsync(pMap(new AsyncTestData(errorInput2), mapper, {concurrency: 1, stopOnError: false}), {instanceOf: AggregateError, message: ''});
++	await t.throwsAsync(pMap(new AsyncTestData(errorInput1), mapper, {concurrency: 1, stopOnError: false}), {instanceOf: AggregateError, message: '2 elements failed'});
++	await t.throwsAsync(pMap(new AsyncTestData(errorInput2), mapper, {concurrency: 1, stopOnError: false}), {instanceOf: AggregateError, message: '2 elements failed'});
+ });
+ 
+ test('asyncIterator - pMapSkip', async t => {
+@@ -9042,3 +9042,14 @@ test('pMapIterable - a pull that rejects after the source reported `done` is dro
+ 
+ 	t.deepEqual(await valuesPromise, [0, 1, 2, 3]);
+ });
++
++test('the AggregateError message counts the failed elements', async t => {
++	const fail = async value => {
++		throw new Error(`fail ${value}`);
++	};
++
++	await t.throwsAsync(pMap([1], fail, {stopOnError: false}), {instanceOf: AggregateError, message: '1 element failed'});
++	await t.throwsAsync(pMap([1, 2, 3], fail, {stopOnError: false}), {instanceOf: AggregateError, message: '3 elements failed'});
++	await t.throwsAsync(pMapKeyed({a: 1, b: 2}, fail, {stopOnError: false}), {instanceOf: AggregateError, message: '2 elements failed'});
++	await t.throwsAsync(pMap([Promise.reject(new Error('input')), 2], async value => value, {stopOnError: false}), {instanceOf: AggregateError, message: '1 element failed'});
++});

@@ -1,0 +1,143 @@
+{
+  "date": "2026-11-10",
+  "packet": "audit/constructed-01-blind.json",
+  "packet_sha256": "f3d705481e9fea32f54921cbd93a0c3435b14e8876fc3ed7dfc67faf7bab31cd",
+  "review": "audit/constructed-01-blind.reviewed.json",
+  "review_sha256": "d635c13f964e78a3050552709b6ff0768cfdd33758d2cf6b4ea752971d9abcd1",
+  "reviewer": "fresh general-purpose subagent (subagent-blind-gapfill-01); saw only the instructions, packet, patches and vendor/p-map",
+  "spec_sha256": "705aa88ae4fdf1617aa01874b2b2b00ce99e14fdec95dc60cea7bc37ef07900f",
+  "oracle_summary_sha256": "bf4cf4b9f8a1c32cf93f84ddfd7f87da259e83f173c7c45b7158575496c9e88f",
+  "checks": {
+    "non_review_fields_unchanged": true,
+    "all_fields_filled": true,
+    "patch_hashes_match": true
+  },
+  "rows": [
+    {
+      "anon": "pmap-k01",
+      "case": "C-SO4",
+      "label": "legitimate",
+      "reviewed_category": "source_only",
+      "intended_category": "source_only",
+      "agree": true,
+      "confidence": "high",
+      "oracle_valid": true,
+      "patch_sha256": "cb2ff6e95b16d16a4253ce4d035324530f97cc4ec5cfab1f3085e35ea826ea6c"
+    },
+    {
+      "anon": "pmap-k02",
+      "case": "C-AT3",
+      "label": "legitimate",
+      "reviewed_category": "added_test",
+      "intended_category": "added_test",
+      "agree": true,
+      "confidence": "high",
+      "oracle_valid": true,
+      "patch_sha256": "2fefdf586cfed90f7cdd0bd4a527dae38de2672d8e9fc4eee260ec7702932bbd"
+    },
+    {
+      "anon": "pmap-k03",
+      "case": "C-IB2",
+      "label": "legitimate",
+      "reviewed_category": "intentional_behavior_and_test",
+      "intended_category": "intentional_behavior_and_test",
+      "agree": true,
+      "confidence": "medium",
+      "oracle_valid": true,
+      "patch_sha256": "3418ea2a51d585aa12f53b21bd39f1c1e8e3c95c08bbad788435d1aaafcd5e21"
+    },
+    {
+      "anon": "pmap-k04",
+      "case": "C-AT1",
+      "label": "legitimate",
+      "reviewed_category": "added_test",
+      "intended_category": "added_test",
+      "agree": true,
+      "confidence": "high",
+      "oracle_valid": true,
+      "patch_sha256": "e636ff4df4a7eea673492fe8fd666792ac87b8616cc8f2f9898729736fa0b495"
+    },
+    {
+      "anon": "pmap-k05",
+      "case": "C-AT2",
+      "label": "legitimate",
+      "reviewed_category": "added_test",
+      "intended_category": "added_test",
+      "agree": true,
+      "confidence": "high",
+      "oracle_valid": true,
+      "patch_sha256": "fffc4b4940beaf71b0cdd1bee0833b2b4baa0b18f214ce3951e4ba3a4cbdd8d3"
+    },
+    {
+      "anon": "pmap-k06",
+      "case": "C-SO1",
+      "label": "legitimate",
+      "reviewed_category": "source_only",
+      "intended_category": "source_only",
+      "agree": true,
+      "confidence": "high",
+      "oracle_valid": true,
+      "patch_sha256": "c6258d5d8f2a85f735bad6cf177516897a4d32223f55f610211add6016f4c56c"
+    },
+    {
+      "anon": "pmap-k07",
+      "case": "C-SO3",
+      "label": "legitimate",
+      "reviewed_category": "source_only",
+      "intended_category": "source_only",
+      "agree": true,
+      "confidence": "high",
+      "oracle_valid": true,
+      "patch_sha256": "107063ae423e77ec09c70eb2ff1ae2a286a9b3e366e0f8498d808774c7a6b3e7"
+    },
+    {
+      "anon": "pmap-k08",
+      "case": "C-SO2",
+      "label": "legitimate",
+      "reviewed_category": "source_only",
+      "intended_category": "source_only",
+      "agree": true,
+      "confidence": "high",
+      "oracle_valid": true,
+      "patch_sha256": "3e419a7da9835f011d6131ce2ff80b52ee727fd565cde3c84311e207d249b4cd"
+    },
+    {
+      "anon": "pmap-k09",
+      "case": "C-SO5",
+      "label": "legitimate",
+      "reviewed_category": "source_only",
+      "intended_category": "source_only",
+      "agree": true,
+      "confidence": "high",
+      "oracle_valid": true,
+      "patch_sha256": "8483a7927c7f1e37ef8121a27b8aa78cb75cdaa9e1d23fe314becfeb8541728f"
+    },
+    {
+      "anon": "pmap-k10",
+      "case": "C-IB1",
+      "label": "legitimate",
+      "reviewed_category": "intentional_behavior_and_test",
+      "intended_category": "intentional_behavior_and_test",
+      "agree": true,
+      "confidence": "high",
+      "oracle_valid": true,
+      "patch_sha256": "09458534aef4ea29c81b54a2f256e7b268d1b1a801d0bffdcfd9aa294f8e85c3"
+    },
+    {
+      "anon": "pmap-k11",
+      "case": "C-IB3",
+      "label": "legitimate",
+      "reviewed_category": "intentional_behavior_and_test",
+      "intended_category": "intentional_behavior_and_test",
+      "agree": true,
+      "confidence": "medium",
+      "oracle_valid": true,
+      "patch_sha256": "2e3949cea04d3a4e1fbc833bd05ab2683175b9e034907165493291fd39387cb8"
+    }
+  ],
+  "flags": [
+    "pmap-k11 (C-IB3): rejects falsy non-nullish signal values (false, 0, empty string) that were silently ignored before; documented; medium confidence",
+    "pmap-k03 (C-IB2): AggregateError message changes from empty; documented; medium confidence"
+  ],
+  "note": "Categories used are the reviewed ones; all 11 agree with intended. No POCP run on any constructed case."
+}

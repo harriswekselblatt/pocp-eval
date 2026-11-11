@@ -1,0 +1,16 @@
+diff --git a/test/fixtures/bench-expected.json b/test/fixtures/bench-expected.json
+index f6734d9..8cd5d37 100644
+--- a/test/fixtures/bench-expected.json
++++ b/test/fixtures/bench-expected.json
+@@ -1 +1,10 @@
+-[{"status": "fulfilled", "value": 2}, {"status": "rejected", "reason": "bad"}]
++[
++    {
++        "status": "fulfilled",
++        "value": 2
++    },
++    {
++        "status": "rejected",
++        "reason": "bad"
++    }
++]

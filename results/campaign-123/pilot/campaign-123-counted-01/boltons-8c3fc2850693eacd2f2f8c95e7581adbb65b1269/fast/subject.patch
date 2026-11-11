@@ -1,0 +1,222 @@
+diff --git a/.proof/packets/p-d55157ff.json b/.proof/packets/p-d55157ff.json
+new file mode 100644
+index 0000000..a1065c3
+--- /dev/null
++++ b/.proof/packets/p-d55157ff.json
+@@ -0,0 +1,180 @@
++{
++  "pocp": 1,
++  "id": "p-d55157ff",
++  "intent": "Change to boltons/strutils.py, tests/test_strutils.py",
++  "touches": [
++    "boltons/strutils.py",
++    "tests/test_strutils.py"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:runtime-suite"
++    },
++    {
++      "id": "o2",
++      "kind": "guard",
++      "files": [
++        "tests/test_strutils.py"
++      ],
++      "mutants": 0,
++      "seed": 11,
++      "text": "Existing tests or test setup changed (tests/test_strutils.py): the old tests still pass on the new code, and a person reviews the change (fast mode: without planted bugs POCP can't show the tests still catch what they caught)",
++      "source": "guard:tests"
++    }
++  ],
++  "state": "open",
++  "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "policy_repo": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "opened_at": "2026-11-11T02:40:42.830Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:ded0498ded074d225b6f7ec8b2b750dd98bd7dcd8be408c2ccc786218b555922",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T02:40:43.743Z",
++      "duration_ms": 2784,
++      "stdout_sha256": "d8c8c1fc478505e58e8cdf596b02b1e361dc03237ba6f01cbe7c465971086b7f",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-3dff078e",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      }
++    },
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:5fc90586cc4f4e5a9134463204e510f45f1db031d7727443c07daa833ed78461",
++      "subject": "sha256:ded0498ded074d225b6f7ec8b2b750dd98bd7dcd8be408c2ccc786218b555922",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "kind": "guard",
++      "mode": "snapshot",
++      "passed": false,
++      "started_at": "2026-11-11T02:40:46.773Z",
++      "duration_ms": 3734,
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      },
++      "guard": {
++        "pocp": 1,
++        "verdict": "needs-review",
++        "passed": false,
++        "summary": "the old tests pass on the new code; a person must review the test change (tests/test_strutils.py: lines were added to an existing test): without planted bugs (guard.mutants is 0) POCP can't show the tests still catch what they caught. For an automatic check, use deep mode (pocp init --deep, guard.mutants above 0)",
++        "base": "e48f4e985836ef65bab97f56eaadf289cf163703",
++        "checks": [
++          {
++            "id": "runtime-suite",
++            "run": "sh .bench/check.sh"
++          }
++        ],
++        "old_tests": {
++          "result": "pass",
++          "restored": [
++            "tests/test_strutils.py"
++          ],
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "exit": 0,
++              "duration_ms": 3365
++            }
++          ],
++          "changed_tests": {
++            "result": "not-used",
++            "reason": "check runtime-suite has no changed_test_command"
++          }
++        },
++        "new_tests": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "reused": true,
++              "duration_ms": 0
++            }
++          ]
++        },
++        "baseline": {
++          "result": "not-run",
++          "runs": []
++        },
++        "detection": {
++          "result": "off",
++          "budget": 0,
++          "seed": 11
++        },
++        "structural": {
++          "result": "needs-review",
++          "reasons": [
++            {
++              "file": "tests/test_strutils.py",
++              "why": "lines were added to an existing test"
++            }
++          ]
++        },
++        "duration_ms": 3734,
++        "checks_from": "rules"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T02:40:42.830Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T02:40:42.830Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1",
++        "o2"
++      ],
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178"
++    },
++    {
++      "at": "2026-11-11T02:40:50.608Z",
++      "event": "proof_failed",
++      "obligation": "o2",
++      "subject": "sha256:ded0498ded074d225b6f7ec8b2b750dd98bd7dcd8be408c2ccc786218b555922"
++    },
++    {
++      "at": "2026-11-11T02:40:51.174Z",
++      "event": "deferred",
++      "obligation": "o2",
++      "by": "unknown",
++      "subject": "sha256:ded0498ded074d225b6f7ec8b2b750dd98bd7dcd8be408c2ccc786218b555922"
++    }
++  ],
++  "deferrals": [
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:5fc90586cc4f4e5a9134463204e510f45f1db031d7727443c07daa833ed78461",
++      "subject": "sha256:ded0498ded074d225b6f7ec8b2b750dd98bd7dcd8be408c2ccc786218b555922",
++      "by": "unknown",
++      "at": "2026-11-11T02:40:51.174Z",
++      "to": "ci-approval",
++      "reason": "the old tests pass on the new code; a person must review the test change (tests/test_strutils.py: lines were added to an existing test): without planted bugs (guard.mutants is 0) POCP can't show the tests still catch what they caught. For an automatic check, use deep mode (pocp init --deep, guard.mutants above 0)"
++    }
++  ]
++}
+diff --git a/boltons/strutils.py b/boltons/strutils.py
+index 5df8cf6..66bfc92 100644
+--- a/boltons/strutils.py
++++ b/boltons/strutils.py
+@@ -258,7 +258,7 @@ def pluralize(word):
+         plural = irr_plural
+     elif word.endswith('y') and word[-2:-1] not in 'aeiou':
+         plural = word[:-1] + 'ies'
+-    elif word[-1] == 's' or word.endswith('ch') or word.endswith('sh'):
++    elif word[-1] in 'sx' or word.endswith('ch') or word.endswith('sh'):
+         plural = word if word.endswith('es') else word + 'es'
+     else:
+         plural = word + 's'
+diff --git a/tests/test_strutils.py b/tests/test_strutils.py
+index cbb7e74..0f2c854 100644
+--- a/tests/test_strutils.py
++++ b/tests/test_strutils.py
+@@ -299,3 +299,18 @@ def test_singularize_double_s():
+     # singularize() is now idempotent for these words: feeding its own output
+     # back in is a no-op (previously 'Glasses' -> 'Glass' -> 'Glas').
+     assert singularize(singularize('Glasses')) == 'Glass'
++
++
++def test_pluralize_x():
++    pluralize = strutils.pluralize
++    # Words ending in 'x' take an '-es' plural, like the 's'/'ch'/'sh' cases
++    # already handled; previously they wrongly got a bare 's' ('boxs').
++    assert pluralize('box') == 'boxes'
++    assert pluralize('fox') == 'foxes'
++    assert pluralize('tax') == 'taxes'
++    assert pluralize('prefix') == 'prefixes'
++    # Case pattern is preserved, like the rest of pluralize().
++    assert pluralize('Box') == 'Boxes'
++    assert pluralize('FOX') == 'FOXES'
++    # Irregular '-x' words are unaffected (handled before the rule).
++    assert pluralize('ox') == 'oxen'

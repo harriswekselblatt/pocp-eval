@@ -1,0 +1,89 @@
+diff --git a/.proof/packets/p-8e4e4aba.json b/.proof/packets/p-8e4e4aba.json
+new file mode 100644
+index 0000000..9775dec
+--- /dev/null
++++ b/.proof/packets/p-8e4e4aba.json
+@@ -0,0 +1,76 @@
++{
++  "pocp": 1,
++  "id": "p-8e4e4aba",
++  "intent": "Change to CANARY_MARK",
++  "touches": [
++    "CANARY_MARK"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:runtime-suite"
++    }
++  ],
++  "state": "failed",
++  "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "policy_repo": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "opened_at": "2026-11-11T13:38:20.577Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:387787ccc68f47b9817c75c593cbac885882d104a296d18044782ccc82eaa0ef",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 1,
++      "signal": null,
++      "timed_out": false,
++      "passed": false,
++      "started_at": "2026-11-11T13:38:20.951Z",
++      "duration_ms": 14,
++      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-3f34d68c",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T13:38:20.577Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T13:38:20.577Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1"
++      ],
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178"
++    },
++    {
++      "at": "2026-11-11T13:38:21.020Z",
++      "event": "proof_failed",
++      "obligation": "o1",
++      "subject": "sha256:387787ccc68f47b9817c75c593cbac885882d104a296d18044782ccc82eaa0ef"
++    },
++    {
++      "at": "2026-11-11T13:38:21.063Z",
++      "event": "state",
++      "from": "open",
++      "to": "failed",
++      "subject": "sha256:387787ccc68f47b9817c75c593cbac885882d104a296d18044782ccc82eaa0ef"
++    }
++  ]
++}
+diff --git a/CANARY_MARK b/CANARY_MARK
+new file mode 100644
+index 0000000..be1bd41
+--- /dev/null
++++ b/CANARY_MARK
+@@ -0,0 +1 @@
++canary

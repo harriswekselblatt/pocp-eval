@@ -1,0 +1,106 @@
+diff --git a/boltons/tbutils.py b/boltons/tbutils.py
+index 6093609..2623ea3 100644
+--- a/boltons/tbutils.py
++++ b/boltons/tbutils.py
+@@ -716,9 +716,10 @@ class ParsedException:
+ 
+         .. note::
+ 
+-           Note that this method does not output "anchors" (e.g.,
+-           ``~~~~~^^``), as were added in Python 3.13. See the built-in
+-           ``traceback`` module if these are necessary.
++           Anchor lines (e.g., ``~~~~~^^``, present in tracebacks from
++           Python 3.11+) round-trip: they are parsed into each frame's
++           ``source_line_anchor`` and re-emitted aligned beneath the
++           frame's source line.
+         """
+         lines = ['Traceback (most recent call last):']
+ 
+@@ -729,6 +730,9 @@ class ParsedException:
+             source_line = frame.get('source_line')
+             if source_line:
+                 lines.append(f'    {source_line}')
++                anchor = frame.get('source_line_anchor')
++                if anchor:
++                    lines.append(f'    {anchor}')
+         if self.exc_msg:
+             lines.append(f'{self.exc_type}: {self.exc_msg}')
+         else:
+@@ -802,7 +806,13 @@ class ParsedException:
+                     line_no += 1
+                     if (line_no + 1 < len(tb_lines)
+                             and _underline_re.match(tb_lines[line_no + 1])):
+-                        # To deal with anchors
++                        # store anchors dedented by the source line's
++                        # indentation so columns stay aligned with the
++                        # stripped source_line, whatever the tb's indent
++                        indent = len(next_line) - len(next_line.lstrip())
++                        anchor = tb_lines[line_no + 1][indent:].rstrip()
++                        if anchor:
++                            frame_dict['source_line_anchor'] = anchor
+                         line_no += 1
+             else:
+                 break
+diff --git a/tests/test_tbutils_parsed_exc.py b/tests/test_tbutils_parsed_exc.py
+index 25bb5c6..156a698 100644
+--- a/tests/test_tbutils_parsed_exc.py
++++ b/tests/test_tbutils_parsed_exc.py
+@@ -51,9 +51,7 @@ RuntimeError"""
+                                    'funcname': 'load'}
+     assert parsed_tb.to_string() == _tb_str
+ 
+-def test_parsed_exc_with_anchor():
+-    """parse a traceback with anchor lines beneath source lines"""
+-    _tb_str = """\
++_ANCHOR_TB_STR = """\
+ Traceback (most recent call last):
+   File "main.py", line 3, in <module>
+     print(add(1, "two"))
+@@ -63,23 +61,34 @@ Traceback (most recent call last):
+            ~~^~~
+ TypeError: unsupported operand type(s) for +: 'int' and 'str'"""
+ 
+-    parsed_tb = ParsedException.from_string(_tb_str)
++
++def test_parsed_exc_with_anchor():
++    """parse a traceback with anchor lines beneath source lines"""
++    parsed_tb = ParsedException.from_string(_ANCHOR_TB_STR)
+ 
+     assert parsed_tb.exc_type == 'TypeError'
+     assert parsed_tb.exc_msg == "unsupported operand type(s) for +: 'int' and 'str'"
+     assert parsed_tb.frames == [{'source_line': 'print(add(1, "two"))',
+-                                  'filepath': 'main.py',
+-                                  'lineno': '3',
+-                                  'funcname': '<module>'},
+-                                  {'source_line': 'return a + b',
+-                                  'filepath': 'add.py',
+-                                  'lineno': '2',
+-                                  'funcname': 'add'}]
+-    
+-    # Note: not checking the anchor lines (indices 3, 6) because column details not currently stored in ParsedException
+-    _tb_str_lines = _tb_str.splitlines()
+-    _tb_str_without_anchor = "\n".join(_tb_str_lines[:3] + _tb_str_lines[4:6] + _tb_str_lines[7:])
+-    assert parsed_tb.to_string() == _tb_str_without_anchor
++                                 'source_line_anchor': '      ^^^^^^^^^^^^^',
++                                 'filepath': 'main.py',
++                                 'lineno': '3',
++                                 'funcname': '<module>'},
++                                {'source_line': 'return a + b',
++                                 'source_line_anchor': '       ~~^~~',
++                                 'filepath': 'add.py',
++                                 'lineno': '2',
++                                 'funcname': 'add'}]
++    assert parsed_tb.to_string() == _ANCHOR_TB_STR
++
++
++def test_parsed_exc_with_anchor_indented():
++    """anchors stay aligned when the whole traceback arrives indented,
++    e.g. pasted from a log: source_line is stripped, and the anchor is
++    dedented by the same amount"""
++    plain = ParsedException.from_string(_ANCHOR_TB_STR)
++    indented = ParsedException.from_string(
++        '\n'.join('    ' + line for line in _ANCHOR_TB_STR.splitlines()))
++    assert indented.frames == plain.frames
+ 
+ 
+ def test_parsed_exc_truncated():

@@ -1,0 +1,440 @@
+diff --git a/.proof/packets/p-eb99f255.json b/.proof/packets/p-eb99f255.json
+new file mode 100644
+index 0000000..018bc08
+--- /dev/null
++++ b/.proof/packets/p-eb99f255.json
+@@ -0,0 +1,265 @@
++{
++  "pocp": 1,
++  "id": "p-eb99f255",
++  "intent": "Change to index.js, test-multiple-pmapskips-performance.js, test.js",
++  "touches": [
++    "index.js",
++    "test-multiple-pmapskips-performance.js",
++    "test.js"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:runtime-suite"
++    },
++    {
++      "id": "o2",
++      "kind": "guard",
++      "files": [
++        "test-multiple-pmapskips-performance.js",
++        "test.js"
++      ],
++      "mutants": 10,
++      "seed": 47,
++      "text": "Existing tests or test setup changed (test-multiple-pmapskips-performance.js, test.js): the old tests still pass on the new code, and the new tests catch every sampled mutant the old ones caught",
++      "source": "guard:tests"
++    }
++  ],
++  "state": "proven",
++  "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "policy_repo": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "opened_at": "2026-11-11T08:00:35.721Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:5d6e2fbc9600bb161e71297755825d30e174a9b945fd2b3abc19d7ff223bc3cb",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T08:00:36.085Z",
++      "duration_ms": 3729,
++      "stdout_sha256": "4fc8f66f43fc11b69ab1130b42850fc4ff0187ebc2d10d46982abf92a599a432",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-7843120e",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      }
++    },
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:cb9847e8e4750f64796781e526fb3c1aa8d5079fda1911dad08636244941e549",
++      "subject": "sha256:5d6e2fbc9600bb161e71297755825d30e174a9b945fd2b3abc19d7ff223bc3cb",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "kind": "guard",
++      "mode": "snapshot",
++      "passed": true,
++      "started_at": "2026-11-11T08:00:39.940Z",
++      "duration_ms": 24580,
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      },
++      "guard": {
++        "pocp": 1,
++        "verdict": "passed",
++        "passed": true,
++        "summary": "the old tests pass on the new code, and the new tests catch all 8 of the 10 sampled mutants the old tests caught (seed 47)",
++        "base": "892dfba9822bcf9570285b06d335d3cf0af369ac",
++        "checks": [
++          {
++            "id": "runtime-suite",
++            "run": "sh .bench/check.sh"
++          }
++        ],
++        "old_tests": {
++          "result": "pass",
++          "restored": [
++            "-test-multiple-pmapskips-performance.js",
++            "test.js"
++          ],
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "exit": 0,
++              "duration_ms": 3635
++            }
++          ],
++          "left_out": [
++            "test-multiple-pmapskips-performance.js"
++          ]
++        },
++        "new_tests": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "reused": true,
++              "duration_ms": 0
++            }
++          ]
++        },
++        "baseline": {
++          "result": "not-run",
++          "runs": []
++        },
++        "detection": {
++          "result": "kept",
++          "budget": 10,
++          "seed": 47,
++          "sites": 47,
++          "focus_sites": 30,
++          "files": 3,
++          "sampled": 10,
++          "old_caught": 8,
++          "new_caught": 8,
++          "lost": [],
++          "mutants": [
++            {
++              "file": "index.js",
++              "line": 76,
++              "operator": "strict-eq",
++              "before": "if (skippedIndexesMap.get(index) === pMapSkip) {",
++              "after": "if (skippedIndexesMap.get(index) !== pMapSkip) {",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 139,
++              "operator": "zero-one",
++              "before": "for (let index = 0; index < concurrency; index++) {",
++              "after": "for (let index = 1; index < concurrency; index++) {",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 27,
++              "operator": "false",
++              "before": "let isRejected = false;",
++              "after": "let isRejected = true;",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 36,
++              "operator": "true",
++              "before": "isResolved = true;",
++              "after": "isResolved = false;",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "index.js",
++              "line": 20,
++              "operator": "and",
++              "before": "if (!((Number.isSafeInteger(concurrency) || concurrency === Number.POSITIVE_INFINITY) && concurrency >= 1)) {",
++              "after": "if (!((Number.isSafeInteger(concurrency) || concurrency === Number.POSITIVE_INFINITY) || concurrency >= 1)) {",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 60,
++              "operator": "gt",
++              "before": "if (!stopOnError && errors.length > 0) {",
++              "after": "if (!stopOnError && errors.length <= 0) {",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 8,
++              "operator": "true",
++              "before": "stopOnError = true",
++              "after": "stopOnError = false",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 59,
++              "operator": "strict-eq",
++              "before": "if (resolvingCount === 0 && !isResolved) {",
++              "after": "if (resolvingCount !== 0 && !isResolved) {",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 65,
++              "operator": "true",
++              "before": "isResolved = true;",
++              "after": "isResolved = false;",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "index.js",
++              "line": 20,
++              "operator": "gte",
++              "before": "if (!((Number.isSafeInteger(concurrency) || concurrency === Number.POSITIVE_INFINITY) && concurrency >= 1)) {",
++              "after": "if (!((Number.isSafeInteger(concurrency) || concurrency === Number.POSITIVE_INFINITY) && concurrency < 1)) {",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            }
++          ]
++        },
++        "duration_ms": 24580,
++        "checks_from": "rules"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T08:00:35.721Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T08:00:35.721Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1",
++        "o2"
++      ],
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178"
++    },
++    {
++      "at": "2026-11-11T08:01:04.615Z",
++      "event": "state",
++      "from": "open",
++      "to": "proven",
++      "subject": "sha256:5d6e2fbc9600bb161e71297755825d30e174a9b945fd2b3abc19d7ff223bc3cb"
++    }
++  ]
++}
+diff --git a/index.js b/index.js
+index c7c9fba..11cf5f5 100644
+--- a/index.js
++++ b/index.js
+@@ -23,7 +23,7 @@ export default async function pMap(
+ 
+ 		const result = [];
+ 		const errors = [];
+-		const skippedIndexes = [];
++		const skippedIndexesMap = new Map();
+ 		let isRejected = false;
+ 		let isResolved = false;
+ 		let isIterableDone = false;
+@@ -59,15 +59,28 @@ export default async function pMap(
+ 				if (resolvingCount === 0 && !isResolved) {
+ 					if (!stopOnError && errors.length > 0) {
+ 						reject(new AggregateError(errors));
+-					} else {
+-						isResolved = true;
++						return;
++					}
+ 
+-						for (const skippedIndex of skippedIndexes) {
+-							result.splice(skippedIndex, 1);
+-						}
++					isResolved = true;
+ 
++					if (!skippedIndexesMap.size) {
+ 						resolve(result);
++						return;
+ 					}
++
++					const pureResult = [];
++
++					// Support multiple `pMapSkip`'s.
++					for (const [index, value] of result.entries()) {
++						if (skippedIndexesMap.get(index) === pMapSkip) {
++							continue;
++						}
++
++						pureResult.push(value);
++					}
++
++					resolve(pureResult);
+ 				}
+ 
+ 				return;
+@@ -86,12 +99,13 @@ export default async function pMap(
+ 
+ 					const value = await mapper(element, index);
+ 
++					// Use Map to stage the index of the element.
+ 					if (value === pMapSkip) {
+-						skippedIndexes.push(index);
+-					} else {
+-						result[index] = value;
++						skippedIndexesMap.set(index, value);
+ 					}
+ 
++					result[index] = value;
++
+ 					resolvingCount--;
+ 					await next();
+ 				} catch (error) {
+diff --git a/test-multiple-pmapskips-performance.js b/test-multiple-pmapskips-performance.js
+new file mode 100644
+index 0000000..204b768
+--- /dev/null
++++ b/test-multiple-pmapskips-performance.js
+@@ -0,0 +1,37 @@
++import test from 'ava';
++import inRange from 'in-range';
++import timeSpan from 'time-span';
++import pMap, {pMapSkip} from './index.js';
++
++function generateSkipPerformanceData(length) {
++	const data = [];
++	for (let index = 0; index < length; index++) {
++		data.push(pMapSkip);
++	}
++
++	return data;
++}
++
++test('multiple pMapSkips - algorithmic complexity', async t => {
++	const testData = [generateSkipPerformanceData(1000), generateSkipPerformanceData(10000), generateSkipPerformanceData(100000)];
++	const testDurationsMS = [];
++
++	for (const data of testData) {
++		const end = timeSpan();
++		// eslint-disable-next-line no-await-in-loop
++		await pMap(data, async value => value);
++		testDurationsMS.push(end());
++	}
++
++	for (let index = 0; index < testDurationsMS.length - 1; index++) {
++		// Time for 10x more items should take between 9x and 11x more time.
++		const smallerDuration = testDurationsMS[index];
++		const longerDuration = testDurationsMS[index + 1];
++
++		// The longer test needs to be a little longer and also not 10x more than the
++		// shorter test. This is not perfect... there is some fluctuation.
++		// The idea here is to catch a regression that makes `pMapSkip` handling O(n^2)
++		// on the number of `pMapSkip` items in the input.
++		t.true(inRange(longerDuration, {start: 1.2 * smallerDuration, end: 15 * smallerDuration}));
++	}
++});
+diff --git a/test.js b/test.js
+index 4c13d78..a46bc9c 100644
+--- a/test.js
++++ b/test.js
+@@ -155,6 +155,28 @@ test('pMapSkip', async t => {
+ 	], async value => value), [1, 2]);
+ });
+ 
++test('multiple pMapSkips', async t => {
++	t.deepEqual(await pMap([
++		1,
++		pMapSkip,
++		2,
++		pMapSkip,
++		3,
++		pMapSkip,
++		pMapSkip,
++		4
++	], async value => value), [1, 2, 3, 4]);
++});
++
++test('all pMapSkips', async t => {
++	t.deepEqual(await pMap([
++		pMapSkip,
++		pMapSkip,
++		pMapSkip,
++		pMapSkip
++	], async value => value), []);
++});
++
+ test('all mappers should run when concurrency is infinite, even after stop-on-error happened', async t => {
+ 	const input = [1, async () => delay(300, {value: 2}), 3];
+ 	const mappedValues = [];
+@@ -269,6 +291,28 @@ test('asyncIterator - pMapSkip', async t => {
+ 	]), async value => value), [1, 2]);
+ });
+ 
++test('asyncIterator - multiple pMapSkips', async t => {
++	t.deepEqual(await pMap(new AsyncTestData([
++		1,
++		pMapSkip,
++		2,
++		pMapSkip,
++		3,
++		pMapSkip,
++		pMapSkip,
++		4
++	]), async value => value), [1, 2, 3, 4]);
++});
++
++test('asyncIterator - all pMapSkips', async t => {
++	t.deepEqual(await pMap(new AsyncTestData([
++		pMapSkip,
++		pMapSkip,
++		pMapSkip,
++		pMapSkip
++	]), async value => value), []);
++});
++
+ test('asyncIterator - all mappers should run when concurrency is infinite, even after stop-on-error happened', async t => {
+ 	const input = [1, async () => delay(300, {value: 2}), 3];
+ 	const mappedValues = [];

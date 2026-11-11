@@ -1,0 +1,151 @@
+{
+  "case_id": "pmap-k05",
+  "set": "B",
+  "split": "holdout",
+  "regime": "native",
+  "target": "p-map",
+  "truth": "legitimate",
+  "cohort": "constructed-01",
+  "category": "added_test",
+  "cell": "deep-101",
+  "mode": "deep",
+  "configured_seed": 101,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "af361f1b8fa1f93da1a7396dac8fb596889a7cac",
+  "head": "c2195cece894a322345887f1b053ea92143a020b",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 0,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "accepted",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": true,
+    "approval_needs": [],
+    "approval_only": null,
+    "findings": [],
+    "guards": [
+      {
+        "verdict": "passed",
+        "effective_seed": 693204049,
+        "detection": "kept",
+        "mutants": [
+          {
+            "file": "index.js",
+            "line": 613,
+            "operator": "strict-eq",
+            "before": "return iterable[Symbol.asyncIterator] === undefined ? iterable[Symbol.iterator]() : iterable[Symbol.asyncIterator]();",
+            "after": "return iterable[Symbol.asyncIterator] !== undefined ? iterable[Symbol.iterator]() : iterable[Symbol.asyncIterator]();",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 205,
+            "operator": "or",
+            "before": "if (isResolved || index >= doneIndex) {",
+            "after": "if (isResolved && index >= doneIndex) {",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 305,
+            "operator": "false",
+            "before": "let isDone = false;",
+            "after": "let isDone = true;",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 345,
+            "operator": "zero-one",
+            "before": "let fillIndex = 0;",
+            "after": "let fillIndex = 1;",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 290,
+            "operator": "true",
+            "before": "preserveOrder = true,",
+            "after": "preserveOrder = false,",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 566,
+            "operator": "strict-neq",
+            "before": "if (typeof mapper !== 'function') {",
+            "after": "if (typeof mapper === 'function') {",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 330,
+            "operator": "strict-eq",
+            "before": "if (wokenMapperWaiterCount === mapperWaiterCount) {",
+            "after": "if (wokenMapperWaiterCount !== mapperWaiterCount) {",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 362,
+            "operator": "minus",
+            "before": "if (isDone || isIterableDone || index > stopIndex || readingCount >= concurrency || promises.length - headIndex >= backpressure) {",
+            "after": "if (isDone || isIterableDone || index > stopIndex || readingCount >= concurrency || promises.length + headIndex >= backpressure) {",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 577,
+            "operator": "or",
+            "before": "return (Number.isSafeInteger(value) && value >= minimum) || value === Number.POSITIVE_INFINITY;",
+            "after": "return (Number.isSafeInteger(value) && value >= minimum) && value === Number.POSITIVE_INFINITY;",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 326,
+            "operator": "zero-one",
+            "before": "let mapperWaiterCount = 0;",
+            "after": "let mapperWaiterCount = 1;",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 149.839
+}

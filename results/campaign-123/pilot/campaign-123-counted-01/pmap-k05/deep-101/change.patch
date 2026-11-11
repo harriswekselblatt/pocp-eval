@@ -1,0 +1,28 @@
+diff --git a/test.js b/test.js
+index 115cc96..7872e43 100644
+--- a/test.js
++++ b/test.js
+@@ -9042,3 +9042,23 @@ test('pMapIterable - a pull that rejects after the source reported `done` is dro
+ 
+ 	t.deepEqual(await valuesPromise, [0, 1, 2, 3]);
+ });
++
++test('pMapSettledKeyed - a value that is a thenable that rejects settles as rejected, without calling the mapper for it', async t => {
++	const error = new Error('thenable');
++	const thenable = {
++		then(resolve, reject) { // eslint-disable-line unicorn/no-thenable
++			reject(error);
++		},
++	};
++	const mappedValues = [];
++
++	const result = await pMapSettledKeyed({a: 1, b: thenable}, value => {
++		mappedValues.push(value);
++		return value * 2;
++	});
++
++	t.deepEqual(result.a, {status: 'fulfilled', value: 2});
++	t.is(result.b.status, 'rejected');
++	t.is(result.b.reason, error);
++	t.deepEqual(mappedValues, [1]);
++});

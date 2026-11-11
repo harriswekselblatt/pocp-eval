@@ -1,0 +1,151 @@
+{
+  "case_id": "boltons-efff866a3b66fdafc817894390742e1d8bc025e5",
+  "set": "B",
+  "split": "development",
+  "regime": "native",
+  "target": "boltons",
+  "truth": "legitimate",
+  "cohort": "original-sampled",
+  "category": "added_test",
+  "cell": "deep-47",
+  "mode": "deep",
+  "configured_seed": 47,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "7818c03285c4a193536cec065e087c87cc3e300f",
+  "head": "95f0eace46ba41402b7ba98a27df13e6eda37d65",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 0,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "accepted",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": true,
+    "approval_needs": [],
+    "approval_only": null,
+    "findings": [],
+    "guards": [
+      {
+        "verdict": "passed",
+        "effective_seed": 1332331568,
+        "detection": "kept",
+        "mutants": [
+          {
+            "file": "boltons/mathutils.py",
+            "line": 213,
+            "operator": "zero-one",
+            "before": "return f'{{0:0{self.len}b}}'.format(self.val)",
+            "after": "return f'{{1:0{self.len}b}}'.format(self.val)",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/mathutils.py",
+            "line": 150,
+            "operator": "minus",
+            "before": "len_ = (len_ - 2) * 4",
+            "after": "len_ = (len_ + 2) * 4",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/mathutils.py",
+            "line": 66,
+            "operator": "lt",
+            "before": "if upper < lower:",
+            "after": "if upper >= lower:",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/mathutils.py",
+            "line": 140,
+            "operator": "zero-one",
+            "before": "def __init__(self, val=0, len_=None):",
+            "after": "def __init__(self, val=1, len_=None):",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/mathutils.py",
+            "line": 175,
+            "operator": "lt",
+            "before": "if k < 0 or k >= self.len:",
+            "after": "if k >= 0 or k >= self.len:",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/mathutils.py",
+            "line": 219,
+            "operator": "neq",
+            "before": "tmpl = f'%0{2 * (self.len // 8 + ((self.len % 8) != 0))}X'",
+            "after": "tmpl = f'%0{2 * (self.len // 8 + ((self.len % 8) == 0))}X'",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/mathutils.py",
+            "line": 53,
+            "operator": "zero-one",
+            "before": "1.0",
+            "after": "1.1",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/mathutils.py",
+            "line": 56,
+            "operator": "zero-one",
+            "before": ">>> clamp(101.0, 0, 5)",
+            "after": ">>> clamp(101.0, 1, 5)",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/mathutils.py",
+            "line": 186,
+            "operator": "eq",
+            "before": "return self.val == other.val and self.len == other.len",
+            "after": "return self.val != other.val and self.len == other.len",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/mathutils.py",
+            "line": 54,
+            "operator": "zero-one",
+            "before": ">>> clamp(-1.0, 0, 5)",
+            "after": ">>> clamp(-1.1, 0, 5)",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 50.446
+}

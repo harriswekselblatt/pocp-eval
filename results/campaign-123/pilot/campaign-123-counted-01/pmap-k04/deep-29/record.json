@@ -1,0 +1,151 @@
+{
+  "case_id": "pmap-k04",
+  "set": "B",
+  "split": "holdout",
+  "regime": "native",
+  "target": "p-map",
+  "truth": "legitimate",
+  "cohort": "constructed-01",
+  "category": "added_test",
+  "cell": "deep-29",
+  "mode": "deep",
+  "configured_seed": 29,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "6cbbb9ca6ced59ce35a3277961a28388a81124aa",
+  "head": "83f674421bf5bb27990e6337a8fe8e23c06d011a",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 0,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "accepted",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": true,
+    "approval_needs": [],
+    "approval_only": null,
+    "findings": [],
+    "guards": [
+      {
+        "verdict": "passed",
+        "effective_seed": 277230088,
+        "detection": "kept",
+        "mutants": [
+          {
+            "file": "index.js",
+            "line": 290,
+            "operator": "true",
+            "before": "preserveOrder = true,",
+            "after": "preserveOrder = false,",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 140,
+            "operator": "gt",
+            "before": "if (collectedErrors.length > 0) {",
+            "after": "if (collectedErrors.length <= 0) {",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 577,
+            "operator": "and",
+            "before": "return (Number.isSafeInteger(value) && value >= minimum) || value === Number.POSITIVE_INFINITY;",
+            "after": "return (Number.isSafeInteger(value) || value >= minimum) || value === Number.POSITIVE_INFINITY;",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 345,
+            "operator": "zero-one",
+            "before": "let fillIndex = 0;",
+            "after": "let fillIndex = 1;",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 489,
+            "operator": "zero-one",
+            "before": "headIndex = 0;",
+            "after": "headIndex = 1;",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 226,
+            "operator": "and",
+            "before": "result[index] = isSettled && value !== pMapSkip ? {status: 'fulfilled', value} : value;",
+            "after": "result[index] = isSettled || value !== pMapSkip ? {status: 'fulfilled', value} : value;",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 524,
+            "operator": "true",
+            "before": "isDone = true;",
+            "after": "isDone = false;",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 10,
+            "operator": "false",
+            "before": "return mapKeyed(input, mapper, options, false);",
+            "after": "return mapKeyed(input, mapper, options, true);",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 314,
+            "operator": "zero-one",
+            "before": "let headIndex = 0;",
+            "after": "let headIndex = 1;",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 562,
+            "operator": "strict-eq",
+            "before": "if (iterable?.[Symbol.iterator] === undefined && iterable?.[Symbol.asyncIterator] === undefined) {",
+            "after": "if (iterable?.[Symbol.iterator] === undefined && iterable?.[Symbol.asyncIterator] !== undefined) {",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 160.012
+}

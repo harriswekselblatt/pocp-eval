@@ -1,0 +1,10 @@
+diff --git a/testdata/bench-expected.json b/testdata/bench-expected.json
+index 957f575..ec3b3f4 100644
+--- a/testdata/bench-expected.json
++++ b/testdata/bench-expected.json
+@@ -1 +1,4 @@
+-[2.5, 1.25]
++[
++    2.5,
++    1.25
++]

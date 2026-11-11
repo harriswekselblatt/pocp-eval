@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "node",
+    "<bench>/vendor/npm-pocp-1.2.3/package/bin/pocp.js",
+    "fix",
+    "--json"
+  ],
+  "exit": 1,
+  "execution": "completed",
+  "seconds": 1.5677998339524493,
+  "stdout": "{\n  \"pocp\": 1,\n  \"ok\": false,\n  \"decision\": \"blocked\",\n  \"nothing_staged\": false,\n  \"nothing_to_prove\": false,\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"packet\": \"p-8e4e4aba\",\n      \"files\": [\n        \"CANARY_MARK\"\n      ],\n      \"checks\": [\n        \"o1 (rule:runtime-suite)\"\n      ],\n      \"intent\": \"Change to CANARY_MARK\"\n    },\n    {\n      \"action\": \"prove\",\n      \"packets\": [\n        \"p-8e4e4aba\"\n      ],\n      \"mode\": \"clean\",\n      \"ran\": 1,\n      \"checks\": 1,\n      \"ms\": 14,\n      \"failed\": [\n        {\n          \"packet\": \"p-8e4e4aba\",\n          \"obligation\": \"o1\",\n          \"log\": \".proof/runs/r-3f34d68c.log\",\n          \"before\": false\n        }\n      ],\n      \"handed\": []\n    }\n  ],\n  \"needs_agent\": [\n    {\n      \"code\": \"failed_proof\",\n      \"what\": \"o1 fails on this exact code \u00b7 log .proof/runs/r-3f34d68c.log\",\n      \"why\": \"a required check fails, so the change would break what it protects.\",\n      \"next\": \"fix the code (not the tests), stage it, and run pocp fix again\",\n      \"by\": \"agent\"\n    },\n    {\n      \"code\": \"failed_proof\",\n      \"what\": \"p-8e4e4aba: o1 failed on this exact code\",\n      \"why\": \"a required check fails, so the change would break what it protects.\",\n      \"next\": \"fix the code (not the tests), stage it, then pocp fix. The log path is in \\\"pocp show\\\" or the prove output.\",\n      \"by\": \"agent\"\n    }\n  ],\n  \"needs_person\": [],\n  \"advice\": null,\n  \"gate\": {\n    \"decision\": \"blocked\",\n    \"subject\": \"sha256:387787ccc68f47b9817c75c593cbac885882d104a296d18044782ccc82eaa0ef\"\n  }\n}\n",
+  "stderr": ""
+}

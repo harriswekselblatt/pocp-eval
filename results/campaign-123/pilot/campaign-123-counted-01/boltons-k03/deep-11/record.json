@@ -1,0 +1,151 @@
+{
+  "case_id": "boltons-k03",
+  "set": "B",
+  "split": "holdout",
+  "regime": "native",
+  "target": "boltons",
+  "truth": "legitimate",
+  "cohort": "constructed-02",
+  "category": "intentional_behavior_and_test",
+  "cell": "deep-11",
+  "mode": "deep",
+  "configured_seed": 11,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "5888be9ab42a04751564943741c721dc822d5f0e",
+  "head": "dea7c2dd79305b77fb74a753e4ceb519676553b6",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 0,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "accepted",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": true,
+    "approval_needs": [],
+    "approval_only": null,
+    "findings": [],
+    "guards": [
+      {
+        "verdict": "passed",
+        "effective_seed": 2082266870,
+        "detection": "kept",
+        "mutants": [
+          {
+            "file": "boltons/iterutils.py",
+            "line": 686,
+            "operator": "eq",
+            "before": "if stop == 0.0:",
+            "after": "if stop != 0.0:",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/dictutils.py",
+            "line": 806,
+            "operator": "eq",
+            "before": "if len(self) == len(self.inv):",
+            "after": "if len(self) != len(self.inv):",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 432,
+            "operator": "gte",
+            "before": "if overlap_size >= chunk_size:",
+            "after": "if overlap_size < chunk_size:",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 685,
+            "operator": "zero-one",
+            "before": "raise ValueError('expected factor >= 1.0, not %r' % factor)",
+            "after": "raise ValueError('expected factor >= 1.1, not %r' % factor)",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 837,
+            "operator": "lt",
+            "before": "...                                     lambda i: i < 0)",
+            "after": "...                                     lambda i: i >= 0)",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 635,
+            "operator": "zero-one",
+            "before": ">>> list(backoff_iter(1.0, 10.0, count=5))",
+            "after": ">>> list(backoff_iter(1.0, 10.1, count=5))",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 451,
+            "operator": "gte",
+            "before": "if i + chunk_size >= input_stop:",
+            "after": "if i + chunk_size < input_stop:",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 682,
+            "operator": "zero-one",
+            "before": "if start < 0.0:",
+            "after": "if start < 0.1:",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/dictutils.py",
+            "line": 223,
+            "operator": "zero-one",
+            "before": "OrderedMultiDict([('a', -1), ('a', 0), ('a', 1), ('a', 2)])",
+            "after": "OrderedMultiDict([('a', -1), ('a', 1), ('a', 1), ('a', 2)])",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 460,
+            "operator": "zero-one",
+            "before": "[(0, 1), (1, 2), (2, 3), (3, 4)]",
+            "after": "[(1, 1), (1, 2), (2, 3), (3, 4)]",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 39.652
+}

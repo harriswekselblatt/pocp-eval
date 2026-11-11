@@ -1,0 +1,295 @@
+diff --git a/.proof/packets/p-9263508d.json b/.proof/packets/p-9263508d.json
+new file mode 100644
+index 0000000..dadf3ac
+--- /dev/null
++++ b/.proof/packets/p-9263508d.json
+@@ -0,0 +1,275 @@
++{
++  "pocp": 1,
++  "id": "p-9263508d",
++  "intent": "Change to test/bench-v2.mjs",
++  "touches": [
++    "test/bench-v2.mjs"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:behavior-contract"
++    },
++    {
++      "id": "o2",
++      "kind": "guard",
++      "files": [
++        "test/bench-v2.mjs"
++      ],
++      "mutants": 10,
++      "seed": 29,
++      "text": "Existing tests or test setup changed (test/bench-v2.mjs): the old tests still pass on the new code, and the new tests catch every sampled mutant the old ones caught",
++      "source": "guard:tests"
++    }
++  ],
++  "state": "open",
++  "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++  "policy_repo": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++  "opened_at": "2026-11-11T13:28:40.487Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:a6ed530c512f33d7760c5d72e47e1a7ae3245cd25b798911ae466359e6fc5204",
++      "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T13:28:40.847Z",
++      "duration_ms": 60,
++      "stdout_sha256": "f5a833ecdbe9852ca7bd2ade2e57ac9a36372d336113c86b1bb34ec4c2e91a72",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-7879826d",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      }
++    },
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:edb7b1546416fd3a95e49aa646b0231fbb8abac9a28d74013d3f1f19eda25440",
++      "subject": "sha256:a6ed530c512f33d7760c5d72e47e1a7ae3245cd25b798911ae466359e6fc5204",
++      "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++      "kind": "guard",
++      "mode": "snapshot",
++      "passed": false,
++      "started_at": "2026-11-11T13:28:41.022Z",
++      "duration_ms": 420,
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      },
++      "guard": {
++        "pocp": 1,
++        "verdict": "inconclusive",
++        "passed": false,
++        "summary": "the old tests caught none of 10 sampled mutants, so a drop in detection can't be measured",
++        "base": "1b53196dabcae730e4e551858dca6c8d5dd15d0f",
++        "checks": [
++          {
++            "id": "behavior-contract",
++            "run": "sh .bench/check.sh"
++          }
++        ],
++        "old_tests": {
++          "result": "pass",
++          "restored": [
++            "test/bench-v2.mjs"
++          ],
++          "runs": [
++            {
++              "check": "behavior-contract",
++              "passed": true,
++              "exit": 0,
++              "duration_ms": 63
++            }
++          ]
++        },
++        "new_tests": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "behavior-contract",
++              "passed": true,
++              "reused": true,
++              "duration_ms": 0
++            }
++          ]
++        },
++        "baseline": {
++          "result": "not-run",
++          "runs": []
++        },
++        "detection": {
++          "result": "inconclusive",
++          "budget": 10,
++          "seed": 29,
++          "sites": 217,
++          "focus_sites": 107,
++          "files": 6,
++          "sampled": 10,
++          "old_caught": 0,
++          "new_caught": 0,
++          "lost": [],
++          "mutants": [
++            {
++              "file": "index.js",
++              "line": 46,
++              "operator": "false",
++              "before": "}, options, false);",
++              "after": "}, options, true);",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "index.js",
++              "line": 322,
++              "operator": "zero-one",
++              "before": "let runningMappersCount = 0;",
++              "after": "let runningMappersCount = 1;",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "index.js",
++              "line": 158,
++              "operator": "zero-one",
++              "before": "if (lastIndex === result.length && skippedCount === 0) {",
++              "after": "if (lastIndex === result.length && skippedCount === 1) {",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "index.js",
++              "line": 140,
++              "operator": "zero-one",
++              "before": "if (collectedErrors.length > 0) {",
++              "after": "if (collectedErrors.length > 1) {",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "index.js",
++              "line": 409,
++              "operator": "or",
++              "before": "if (isDone || currentIndex > stopIndex) {",
++              "after": "if (isDone && currentIndex > stopIndex) {",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "index.js",
++              "line": 383,
++              "operator": "true",
++              "before": "return {done: true};",
++              "after": "return {done: false};",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "index.js",
++              "line": 583,
++              "operator": "strict-eq",
++              "before": "throw new TypeError(`Expected \\`input\\` to be an object, got (${input === null ? 'null' : typeof input})`);",
++              "after": "throw new TypeError(`Expected \\`input\\` to be an object, got (${input !== null ? 'null' : typeof input})`);",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "index.js",
++              "line": 164,
++              "operator": "zero-one",
++              "before": "resolve(result.slice(0, lastIndex).filter(value => value !== pMapSkip));",
++              "after": "resolve(result.slice(1, lastIndex).filter(value => value !== pMapSkip));",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "index.js",
++              "line": 428,
++              "operator": "lt",
++              "before": "} else if (currentIndex < doneIndex) {",
++              "after": "} else if (currentIndex >= doneIndex) {",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "index.js",
++              "line": 640,
++              "operator": "true",
++              "before": "return {done: true};",
++              "after": "return {done: false};",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            }
++          ]
++        },
++        "duration_ms": 420,
++        "checks_from": "rules"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T13:28:40.487Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T13:28:40.487Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1",
++        "o2"
++      ],
++      "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66"
++    },
++    {
++      "at": "2026-11-11T13:28:41.477Z",
++      "event": "proof_failed",
++      "obligation": "o2",
++      "subject": "sha256:a6ed530c512f33d7760c5d72e47e1a7ae3245cd25b798911ae466359e6fc5204"
++    },
++    {
++      "at": "2026-11-11T13:28:41.771Z",
++      "event": "deferred",
++      "obligation": "o2",
++      "by": "unknown",
++      "subject": "sha256:a6ed530c512f33d7760c5d72e47e1a7ae3245cd25b798911ae466359e6fc5204"
++    }
++  ],
++  "deferrals": [
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:edb7b1546416fd3a95e49aa646b0231fbb8abac9a28d74013d3f1f19eda25440",
++      "subject": "sha256:a6ed530c512f33d7760c5d72e47e1a7ae3245cd25b798911ae466359e6fc5204",
++      "by": "unknown",
++      "at": "2026-11-11T13:28:41.771Z",
++      "to": "ci-approval",
++      "reason": "the old tests caught none of 10 sampled mutants, so a drop in detection can't be measured"
++    }
++  ]
++}
+diff --git a/test/bench-v2.mjs b/test/bench-v2.mjs
+index 2dd74ad..d365607 100644
+--- a/test/bench-v2.mjs
++++ b/test/bench-v2.mjs
+@@ -2,6 +2,6 @@ import {readFileSync} from 'node:fs';
+ import pMap, {pMapSettled, pMapKeyed, pMapSkip} from '../index.js';
+ import {check} from '../bench-support/assertions.mjs';
+ const expected = JSON.parse(readFileSync(new URL('./fixtures/bench-expected.json', import.meta.url)));
+-const actual = await pMapSettled([1, 2], x => x === 1 ? x * 2 : Promise.reject('bad'));
+-console.log('BENCH_ACTUAL='+JSON.stringify(actual));
+-check(actual, expected);
++const observedValue = await pMapSettled([1, 2], x => x === 1 ? x * 2 : Promise.reject('bad'));
++console.log('BENCH_ACTUAL='+JSON.stringify(observedValue));
++check(observedValue, expected);

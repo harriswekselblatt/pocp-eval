@@ -1,0 +1,9 @@
+diff --git a/.bench/check.sh b/.bench/check.sh
+index 1e160c6..e2d4b7d 100644
+--- a/.bench/check.sh
++++ b/.bench/check.sh
+@@ -1,3 +1,3 @@
+ #!/bin/sh
+ set -eu
+-node test/bench-v2.mjs
++exec node test/bench-v2.mjs

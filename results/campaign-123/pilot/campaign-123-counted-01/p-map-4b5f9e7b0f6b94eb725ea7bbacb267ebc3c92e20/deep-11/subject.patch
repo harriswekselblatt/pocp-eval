@@ -1,0 +1,305 @@
+diff --git a/.proof/packets/p-7b614e98.json b/.proof/packets/p-7b614e98.json
+new file mode 100644
+index 0000000..2c79255
+--- /dev/null
++++ b/.proof/packets/p-7b614e98.json
+@@ -0,0 +1,259 @@
++{
++  "pocp": 1,
++  "id": "p-7b614e98",
++  "intent": "Change to index.js, test.js",
++  "touches": [
++    "index.js",
++    "test.js"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:runtime-suite"
++    },
++    {
++      "id": "o2",
++      "kind": "guard",
++      "files": [
++        "test.js"
++      ],
++      "mutants": 10,
++      "seed": 11,
++      "text": "Existing tests or test setup changed (test.js): the old tests still pass on the new code, and the new tests catch every sampled mutant the old ones caught",
++      "source": "guard:tests"
++    }
++  ],
++  "state": "proven",
++  "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "policy_repo": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "opened_at": "2026-11-11T16:09:06.861Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:baa02a6689db3c55a61df3e0472abcddf4957e9f00f8cbfac7f35c415ddd1d7c",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T16:09:07.264Z",
++      "duration_ms": 3234,
++      "stdout_sha256": "706c4f5e0376195c68dac43af4d3d5a1e01d9f438a13d5f80b1cd27c91ca1d54",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-b6140a72",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      }
++    },
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:e059c898ad076847bcd89b331de83691b6f6109bd3783b566e00bb11ea682ac3",
++      "subject": "sha256:baa02a6689db3c55a61df3e0472abcddf4957e9f00f8cbfac7f35c415ddd1d7c",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "kind": "guard",
++      "mode": "snapshot",
++      "passed": true,
++      "started_at": "2026-11-11T16:09:10.646Z",
++      "duration_ms": 23503,
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      },
++      "guard": {
++        "pocp": 1,
++        "verdict": "passed",
++        "passed": true,
++        "summary": "the old tests pass on the new code, and the new tests catch all 10 of the 10 sampled mutants the old tests caught (seed 11)",
++        "base": "bc12fbe7683ea8b0d608f865cd086cf2ee506809",
++        "checks": [
++          {
++            "id": "runtime-suite",
++            "run": "sh .bench/check.sh"
++          }
++        ],
++        "old_tests": {
++          "result": "pass",
++          "restored": [
++            "test.js"
++          ],
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "exit": 0,
++              "duration_ms": 3482
++            }
++          ]
++        },
++        "new_tests": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "reused": true,
++              "duration_ms": 0
++            }
++          ]
++        },
++        "baseline": {
++          "result": "not-run",
++          "runs": []
++        },
++        "detection": {
++          "result": "kept",
++          "budget": 10,
++          "seed": 11,
++          "sites": 31,
++          "focus_sites": 19,
++          "files": 3,
++          "sampled": 10,
++          "old_caught": 10,
++          "new_caught": 10,
++          "lost": [],
++          "mutants": [
++            {
++              "file": "index.js",
++              "line": 25,
++              "operator": "zero-one",
++              "before": "let resolvingCount = 0;",
++              "after": "let resolvingCount = 1;",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 24,
++              "operator": "false",
++              "before": "let isIterableDone = false;",
++              "after": "let isIterableDone = true;",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 16,
++              "operator": "gte",
++              "before": "if (!((Number.isSafeInteger(concurrency) || concurrency === Number.POSITIVE_INFINITY) && concurrency >= 1)) {",
++              "after": "if (!((Number.isSafeInteger(concurrency) || concurrency === Number.POSITIVE_INFINITY) && concurrency < 1)) {",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 16,
++              "operator": "strict-eq",
++              "before": "if (!((Number.isSafeInteger(concurrency) || concurrency === Number.POSITIVE_INFINITY) && concurrency >= 1)) {",
++              "after": "if (!((Number.isSafeInteger(concurrency) || concurrency !== Number.POSITIVE_INFINITY) && concurrency >= 1)) {",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 77,
++              "operator": "lt",
++              "before": "for (let index = 0; index < concurrency; index++) {",
++              "after": "for (let index = 0; index >= concurrency; index++) {",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 16,
++              "operator": "or",
++              "before": "if (!((Number.isSafeInteger(concurrency) || concurrency === Number.POSITIVE_INFINITY) && concurrency >= 1)) {",
++              "after": "if (!((Number.isSafeInteger(concurrency) && concurrency === Number.POSITIVE_INFINITY) && concurrency >= 1)) {",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 12,
++              "operator": "strict-neq",
++              "before": "if (typeof mapper !== 'function') {",
++              "after": "if (typeof mapper === 'function') {",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 40,
++              "operator": "zero-one",
++              "before": "if (resolvingCount === 0) {",
++              "after": "if (resolvingCount === 1) {",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 26,
++              "operator": "zero-one",
++              "before": "let currentIndex = 0;",
++              "after": "let currentIndex = 1;",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 41,
++              "operator": "gt",
++              "before": "if (!stopOnError && errors.length > 0) {",
++              "after": "if (!stopOnError && errors.length <= 0) {",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            }
++          ]
++        },
++        "duration_ms": 23503,
++        "checks_from": "rules"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T16:09:06.861Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T16:09:06.861Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1",
++        "o2"
++      ],
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178"
++    },
++    {
++      "at": "2026-11-11T16:09:34.243Z",
++      "event": "state",
++      "from": "open",
++      "to": "proven",
++      "subject": "sha256:baa02a6689db3c55a61df3e0472abcddf4957e9f00f8cbfac7f35c415ddd1d7c"
++    }
++  ]
++}
+diff --git a/index.js b/index.js
+index 15f3da2..3b77096 100644
+--- a/index.js
++++ b/index.js
+@@ -53,6 +53,11 @@ export default async function pMap(
+ 			(async () => {
+ 				try {
+ 					const element = await nextItem.value;
++
++					if (isRejected) {
++						return;
++					}
++
+ 					result[index] = await mapper(element, index);
+ 					resolvingCount--;
+ 					next();
+diff --git a/test.js b/test.js
+index 35d361a..e0e5da5 100644
+--- a/test.js
++++ b/test.js
+@@ -107,3 +107,19 @@ test('aggregate errors when stopOnError is false', async t => {
+ 	await t.throwsAsync(pMap(errorInput1, mapper, {concurrency: 1, stopOnError: false}), {instanceOf: AggregateError, message: /foo(.|\n)*bar/});
+ 	await t.throwsAsync(pMap(errorInput2, mapper, {concurrency: 1, stopOnError: false}), {instanceOf: AggregateError, message: /bar(.|\n)*foo/});
+ });
++
++test('do not run mapping after stop-on-error happened', async t => {
++	const input = [1, delay(300, {value: 2}), 3];
++	const mappedValues = [];
++	await t.throwsAsync(
++		pMap(input, async value => {
++			mappedValues.push(value);
++			if (value === 1) {
++				await delay(100);
++				throw new Error('Oops!');
++			}
++		})
++	);
++	await delay(500);
++	t.deepEqual(mappedValues, [1, 3]);
++});

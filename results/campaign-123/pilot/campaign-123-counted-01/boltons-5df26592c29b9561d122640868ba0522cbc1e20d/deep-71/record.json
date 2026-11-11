@@ -1,0 +1,151 @@
+{
+  "case_id": "boltons-5df26592c29b9561d122640868ba0522cbc1e20d",
+  "set": "B",
+  "split": "development",
+  "regime": "native",
+  "target": "boltons",
+  "truth": "legitimate",
+  "cohort": "original-sampled",
+  "category": "added_test",
+  "cell": "deep-71",
+  "mode": "deep",
+  "configured_seed": 71,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "6f1e0b3e96f1afc09484b09a002affc20954bcec",
+  "head": "12c4a321843459bea4ce739685da63788e62d466",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 0,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "accepted",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": true,
+    "approval_needs": [],
+    "approval_only": null,
+    "findings": [],
+    "guards": [
+      {
+        "verdict": "passed",
+        "effective_seed": 785694435,
+        "detection": "kept",
+        "mutants": [
+          {
+            "file": "boltons/strutils.py",
+            "line": 1064,
+            "operator": "zero-one",
+            "before": "'0,2,4,9,12-14'",
+            "after": "'1,2,4,9,12-14'",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/cacheutils.py",
+            "line": 434,
+            "operator": "zero-one",
+            "before": "return key[0]",
+            "after": "return key[1]",
+            "focus": false,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 675,
+            "operator": "zero-one",
+            "before": "if cur == 0:",
+            "after": "if cur == 1:",
+            "focus": false,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/setutils.py",
+            "line": 650,
+            "operator": "minus",
+            "before": "if exc is None:  # - +",
+            "after": "if exc is None:  # + +",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/fileutils.py",
+            "line": 653,
+            "operator": "zero-one",
+            "before": "def readlines(self, size=0):",
+            "after": "def readlines(self, size=1):",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 721,
+            "operator": "zero-one",
+            "before": "{False: [0], True: [1, 4, 9, 16]}",
+            "after": "{False: [1], True: [1, 4, 9, 16]}",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 542,
+            "operator": "zero-one",
+            "before": "[0.0, 1.25, 2.5, 3.75, 5.0]",
+            "after": "[1.0, 1.25, 2.5, 3.75, 5.0]",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/statsutils.py",
+            "line": 433,
+            "operator": "times",
+            "before": "c0 = (4 * beta2) - (3 * beta1)",
+            "after": "c0 = (4 * beta2) - (3 / beta1)",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/cacheutils.py",
+            "line": 522,
+            "operator": "plus",
+            "before": "args = (self.bound_to,) + args",
+            "after": "args = (self.bound_to,) - args",
+            "focus": false,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/statsutils.py",
+            "line": 510,
+            "operator": "lte",
+            "before": "if not 0.0 <= trim < 0.5:",
+            "after": "if not 0.0 > trim < 0.5:",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 39.455
+}

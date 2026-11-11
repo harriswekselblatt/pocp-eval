@@ -1,0 +1,20 @@
+diff --git a/boltons/iterutils.py b/boltons/iterutils.py
+index f63cda5..3d5a29d 100644
+--- a/boltons/iterutils.py
++++ b/boltons/iterutils.py
+@@ -473,7 +473,7 @@ def pairwise(src, end=_UNSET):
+ 
+     This way, *end* values can be useful as sentinels to signal the end of the iterable.
+     """
+-    return windowed(src, 2, fill=end)
++    return windowed(src, 3, fill=end)
+ 
+ 
+ def pairwise_iter(src, end=_UNSET):
+diff --git a/tests/fixtures/bench-expected.json b/tests/fixtures/bench-expected.json
+index 394108c..514bf3d 100644
+--- a/tests/fixtures/bench-expected.json
++++ b/tests/fixtures/bench-expected.json
+@@ -1 +1 @@
+-[[1, 2], [2, 3], [3, 0]]
++[[1, 2, 3], [2, 3, 0], [3, 0, 0]]

@@ -1,0 +1,49 @@
+diff --git a/boltons/strutils.py b/boltons/strutils.py
+index b75b479..95f8e12 100644
+--- a/boltons/strutils.py
++++ b/boltons/strutils.py
+@@ -798,7 +798,7 @@ def args2sh(args, sep=' '):
+         # the string $'b is then quoted as '$'"'"'b'
+         ret_list.append("'" + arg.replace("'", "'\"'\"'") + "'")
+ 
+-    return ' '.join(ret_list)
++    return sep.join(ret_list)
+ 
+ 
+ def args2cmd(args, sep=' '):
+@@ -845,9 +845,9 @@ def args2cmd(args, sep=' '):
+     for arg in args:
+         bs_buf = []
+ 
+-        # Add a space to separate this argument from the others
++        # Add the separator between this argument and the others
+         if result:
+-            result.append(' ')
++            result.append(sep)
+ 
+         needquote = (" " in arg) or ("\t" in arg) or not arg
+         if needquote:
+diff --git a/tests/test_strutils.py b/tests/test_strutils.py
+index 81a66e3..1da050a 100644
+--- a/tests/test_strutils.py
++++ b/tests/test_strutils.py
+@@ -362,4 +362,17 @@ def test_ellipsize():
+     with pytest.raises(ValueError):
+         ellipsize('anything', 1)
+     with pytest.raises(ValueError):
+-        ellipsize('anything', 3, ellipsis='...')
+\ No newline at end of file
++        ellipsize('anything', 3, ellipsis='...')
++
++
++def test_args2sh_sep():
++    assert strutils.args2sh(['aa', 'bb']) == 'aa bb'
++    assert strutils.args2sh(['aa', 'bb'], sep='|') == 'aa|bb'
++    # escaping is unaffected by the separator
++    assert strutils.args2sh(['a a', 'bb'], sep='|') == "'a a'|bb"
++
++
++def test_args2cmd_sep():
++    assert strutils.args2cmd(['aa', 'bb']) == 'aa bb'
++    assert strutils.args2cmd(['aa', 'bb'], sep='|') == 'aa|bb'
++    assert strutils.args2cmd(['a a', 'bb'], sep='|') == '"a a"|bb'

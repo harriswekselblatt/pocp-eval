@@ -1,0 +1,11 @@
+{
+  "argv": [
+    "sh",
+    ".bench/check.sh"
+  ],
+  "exit": 1,
+  "execution": "completed",
+  "seconds": 0.16961633297614753,
+  "stdout": "BENCH_ACTUAL=null\nF\n=================================== FAILURES ===================================\n________________________________ test_contract _________________________________\n\n    def test_contract():\n        expected = json.loads(Path('tests/fixtures/bench-expected.json').read_text())\n        actual = first([0, False, 2, 3])\n        print('BENCH_ACTUAL='+json.dumps(actual))\n>       check(actual, expected)\n\ntests/test_bench_v2.py:9: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nactual = None, expected = 2\n\n    def check(actual, expected):\n>       assert json.loads(json.dumps(actual)) == expected\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nE       AssertionError\n\nbench_support/assertions.py:3: AssertionError\n=========================== short test summary info ============================\nFAILED tests/test_bench_v2.py::test_contract - AssertionError\n1 failed in 0.02s\n",
+  "stderr": ""
+}

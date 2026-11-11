@@ -1,0 +1,30 @@
+diff --git a/boltons/jsonutils.py b/boltons/jsonutils.py
+index 4d40377..42d9681 100644
+--- a/boltons/jsonutils.py
++++ b/boltons/jsonutils.py
+@@ -152,7 +152,7 @@ class JSONLIterator:
+         if rel_seek is None:
+             if reverse:
+                 rel_seek = 1.0
+-        elif not -1.0 < rel_seek < 1.0:
++        elif not -1.0 < rel_seek <= 1.0:
+             raise ValueError("'rel_seek' expected a float between"
+                              " -1.0 and 1.0, not %r" % rel_seek)
+         elif rel_seek < 0:
+diff --git a/tests/test_jsonutils.py b/tests/test_jsonutils.py
+index 2b86cec..64247a8 100644
+--- a/tests/test_jsonutils.py
++++ b/tests/test_jsonutils.py
+@@ -81,3 +81,12 @@ def test_jsonl_iterator_rel_seek_negative():
+     assert tail
+     assert tail == list(JSONLIterator(open(JSONL_DATA_PATH), rel_seek=0.5))
+     assert tail == ref[len(ref) - len(tail):]
++
++
++def test_jsonl_explicit_end_seek(tmp_path):
++    path = tmp_path / 'records.jsonl'
++    path.write_text('{"n": 1}\n{"n": 2}\n')
++    with path.open('rb', buffering=0) as stream:
++        assert list(JSONLIterator(stream, reverse=True, rel_seek=1.0)) == [{'n': 2}, {'n': 1}]
++    with path.open() as stream:
++        assert list(JSONLIterator(stream, rel_seek=1.0)) == []

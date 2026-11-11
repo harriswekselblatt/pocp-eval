@@ -1,0 +1,929 @@
+[
+  {
+    "id": "p-map-4875dee68524a42fabfaa13796fb9484c8c7bb89",
+    "repository": "p-map",
+    "parent": "735d80e928f083c9399e5f741eb1b3cabd0ac1ba",
+    "commit": "4875dee68524a42fabfaa13796fb9484c8c7bb89",
+    "title": "Support `AbortController` (#58)",
+    "files": [
+      "index.d.ts",
+      "index.js",
+      "readme.md",
+      "test.js"
+    ],
+    "churn": 117,
+    "patch": "audit/patches/p-map/4875dee68524a42fabfaa13796fb9484c8c7bb89.patch",
+    "patch_sha256": "6942530674acd9031c656fe2bd886a7cf423de1f460d0352482d0edcb15b3e8d",
+    "eligibility": "parent and head pinned runtime suites passed in the recorded screen",
+    "review_fields": {
+      "semantic_label": "legitimate",
+      "primary_category": "intentional_behavior_and_test",
+      "contract_or_reason": "Adds an opt-in `signal` option that rejects with the signal reason or an AbortError, matching the documented AbortController contract; tests cover mid-run and pre-aborted signals. Minor: the abort listener is never removed and running mappers keep going, but the readme already says started mappers continue.",
+      "reviewer": "claude-opus-5-5-blind-2026-11-10",
+      "confidence": "high"
+    }
+  },
+  {
+    "id": "p-map-1dc1d1f97512f69daabfcd917dc5802a5d79914e",
+    "repository": "p-map",
+    "parent": "1051ec70aa1b0f5e7cafe15c85311729386370c6",
+    "commit": "1dc1d1f97512f69daabfcd917dc5802a5d79914e",
+    "title": "Subscribe once to a thenable from an async source `next()`",
+    "files": [
+      "index.js",
+      "test.js"
+    ],
+    "churn": 130,
+    "patch": "audit/patches/p-map/1dc1d1f97512f69daabfcd917dc5802a5d79914e.patch",
+    "patch_sha256": "5f9ce0a110a81a4714e88c73fc205fe80a61b751f557b10ede63aa13a11e27c3",
+    "eligibility": "parent and head pinned runtime suites passed in the recorded screen",
+    "review_fields": {
+      "semantic_label": "legitimate",
+      "primary_category": "added_test",
+      "contract_or_reason": "A thenable returned from async `next()` was subscribed to twice (once for done-tracking, once by the caller), so a cold thenable consumed two items. Wrapping it in Promise.resolve once matches `for await`; regression tests count subscriptions.",
+      "reviewer": "claude-opus-5-5-blind-2026-11-10",
+      "confidence": "high"
+    }
+  },
+  {
+    "id": "p-map-10768330ebf3e210b237cb168b75ba2a13ecf666",
+    "repository": "p-map",
+    "parent": "8e08686e8fee59263ab9515286e4567b1860cc42",
+    "commit": "10768330ebf3e210b237cb168b75ba2a13ecf666",
+    "title": "Fix `pMapIterable` not accepting async values in an iterator (#69)",
+    "files": [
+      "index.js",
+      "index.test-d.ts",
+      "test.js"
+    ],
+    "churn": 34,
+    "patch": "audit/patches/p-map/10768330ebf3e210b237cb168b75ba2a13ecf666.patch",
+    "patch_sha256": "147611425a802a39e26f8c9b5413138ef34370026bce1409b28d208aea2f3e5d",
+    "eligibility": "parent and head pinned runtime suites passed in the recorded screen",
+    "review_fields": {
+      "semantic_label": "legitimate",
+      "primary_category": "added_test",
+      "contract_or_reason": "pMapIterable passed an unresolved promise element to the mapper while pMap awaits elements; adding `await value` aligns the two. The shared test fixture now includes a promise element to pin this.",
+      "reviewer": "claude-opus-5-5-blind-2026-11-10",
+      "confidence": "high"
+    }
+  },
+  {
+    "id": "p-map-c82bd07b4e15e207086ccdbb87bbd7d57776e163",
+    "repository": "p-map",
+    "parent": "e7c2ecb113e8988165a6798630e4e9c2cdeb9d1b",
+    "commit": "c82bd07b4e15e207086ccdbb87bbd7d57776e163",
+    "title": "Fix `pMap` not closing the source iterator when it rejects",
+    "files": [
+      "index.js",
+      "test.js"
+    ],
+    "churn": 136,
+    "patch": "audit/patches/p-map/c82bd07b4e15e207086ccdbb87bbd7d57776e163.patch",
+    "patch_sha256": "2c82d9753f34838e0c6454aab5b4c72fb71e86a928a03672adfa4b0a7eb001fe",
+    "eligibility": "parent and head pinned runtime suites passed in the recorded screen",
+    "review_fields": {
+      "semantic_label": "legitimate",
+      "primary_category": "added_test",
+      "contract_or_reason": "On rejection (mapper error or abort) pMap now calls the source iterator `return()` like `for await`, but not after normal completion, and swallows `return()` failures. The new `isResolved` guard only prevents double settlement. Tests cover each case.",
+      "reviewer": "claude-opus-5-5-blind-2026-11-10",
+      "confidence": "high"
+    }
+  },
+  {
+    "id": "p-map-595754b2400ce504ca91b4731981abda7dbf2c92",
+    "repository": "p-map",
+    "parent": "d9cd930fe93c2b2d39314fe7b73cf3a89460b51c",
+    "commit": "595754b2400ce504ca91b4731981abda7dbf2c92",
+    "title": "Keep the caller in the stack trace of mapper errors",
+    "files": [
+      "index.js",
+      "test.js"
+    ],
+    "churn": 106,
+    "patch": "audit/patches/p-map/595754b2400ce504ca91b4731981abda7dbf2c92.patch",
+    "patch_sha256": "17abf4d03c5bc5b0edc4251abf63971e1c0fbcb6b59fd4ebe82b65e398b62f65",
+    "eligibility": "parent and head pinned runtime suites passed in the recorded screen",
+    "review_fields": {
+      "semantic_label": "legitimate",
+      "primary_category": "intentional_behavior_and_test",
+      "contract_or_reason": "Diagnostics-only change: links each detached runner to the returned promise through a never-settling promise so V8 async stack traces reach the caller; it cannot change results because the link never resolves. Tests depend on V8 stack format, so they are engine-specific.",
+      "reviewer": "claude-opus-5-5-blind-2026-11-10",
+      "confidence": "medium"
+    }
+  },
+  {
+    "id": "p-map-735d80e928f083c9399e5f741eb1b3cabd0ac1ba",
+    "repository": "p-map",
+    "parent": "3b62341e0803307b263346566c2ceba30d1be54e",
+    "commit": "735d80e928f083c9399e5f741eb1b3cabd0ac1ba",
+    "title": "Add another test",
+    "files": [
+      "index.js",
+      "index.test-d.ts",
+      "package.json",
+      "test-multiple-pmapskips-performance.js",
+      "test.js"
+    ],
+    "churn": 60,
+    "patch": "audit/patches/p-map/735d80e928f083c9399e5f741eb1b3cabd0ac1ba.patch",
+    "patch_sha256": "44fb820aa0acb96bf310518f542d238e279667fea70109185a2a94561727b1e7",
+    "eligibility": "parent and head pinned runtime suites passed in the recorded screen",
+    "review_fields": {
+      "semantic_label": "legitimate",
+      "primary_category": "preserving_test_or_setup",
+      "contract_or_reason": "Mostly lint and tooling upgrades (trailing commas, numeric separators, ava/xo/tsd bumps, `size === 0`) with no behavior change, plus one test pinning the existing TypeError for a non-function mapper. The title says \"Add another test\" but the main purpose is setup.",
+      "reviewer": "claude-opus-5-5-blind-2026-11-10",
+      "confidence": "medium"
+    }
+  },
+  {
+    "id": "p-map-5ee5d9370053e148741c394586c1a8c4086da622",
+    "repository": "p-map",
+    "parent": "11bc75d392086908691b320f05858aafdc25289c",
+    "commit": "5ee5d9370053e148741c394586c1a8c4086da622",
+    "title": "Minor simplification",
+    "files": [
+      ".github/workflows/main.yml",
+      "index.js"
+    ],
+    "churn": 11,
+    "patch": "audit/patches/p-map/5ee5d9370053e148741c394586c1a8c4086da622.patch",
+    "patch_sha256": "e0be815a8eeab0cae586b108a76b2451e313e2d45beafba235d94c5021dfaac2",
+    "eligibility": "parent and head pinned runtime suites passed in the recorded screen",
+    "review_fields": {
+      "semantic_label": "legitimate",
+      "primary_category": "source_only",
+      "contract_or_reason": "Refactor that moves `isRejected = true` into a `reject` wrapper; every call site that rejected before still does, so behavior is the same. CI adds Node 16.",
+      "reviewer": "claude-opus-5-5-blind-2026-11-10",
+      "confidence": "high"
+    }
+  },
+  {
+    "id": "p-map-94eb5320b45b51c980c8896f68171b5808b832e7",
+    "repository": "p-map",
+    "parent": "e7ca665fa3402b6f3ac743e638a284f1694df0b8",
+    "commit": "94eb5320b45b51c980c8896f68171b5808b832e7",
+    "title": "Add support for multiple `pMapSkip`'s (#52)",
+    "files": [
+      "index.js",
+      "test-multiple-pmapskips-performance.js",
+      "test.js"
+    ],
+    "churn": 113,
+    "patch": "audit/patches/p-map/94eb5320b45b51c980c8896f68171b5808b832e7.patch",
+    "patch_sha256": "f3bfa8dd0bacf8aacb871bba982e1a8b4de041fa96f90c6856293eb08c964cf0",
+    "eligibility": "parent and head pinned runtime suites passed in the recorded screen",
+    "review_fields": {
+      "semantic_label": "legitimate",
+      "primary_category": "added_test",
+      "contract_or_reason": "Fixes multiple pMapSkip: splicing indexes one at a time shifted later indexes and removed the wrong elements. Rebuilding a filtered array is correct and linear. The new timing-ratio performance test (bounds 1.2x to 15x) is likely flaky but not wrong.",
+      "reviewer": "claude-opus-5-5-blind-2026-11-10",
+      "confidence": "high"
+    }
+  },
+  {
+    "id": "p-map-7c5cee7db0c6b2e3355e5598e05caaa9a02c7872",
+    "repository": "p-map",
+    "parent": "669fdc68b8443f153184916f9deba226cd7e6a38",
+    "commit": "7c5cee7db0c6b2e3355e5598e05caaa9a02c7872",
+    "title": "Fix `pMap` hanging on a source that blocks in `next()` after it is exhausted",
+    "files": [
+      "index.js",
+      "test.js"
+    ],
+    "churn": 50,
+    "patch": "audit/patches/p-map/7c5cee7db0c6b2e3355e5598e05caaa9a02c7872.patch",
+    "patch_sha256": "d40cd4cbc7773330949b6416e6d475fa268b4122cf184d06b87a1feb86e82275",
+    "eligibility": "parent and head pinned runtime suites passed in the recorded screen",
+    "review_fields": {
+      "semantic_label": "legitimate",
+      "primary_category": "added_test",
+      "contract_or_reason": "Stops calling `next()` after the source reported done, matching `for await`, so a queue-like source that blocks after exhaustion cannot hang completion. Regression tests count calls after done.",
+      "reviewer": "claude-opus-5-5-blind-2026-11-10",
+      "confidence": "high"
+    }
+  },
+  {
+    "id": "p-map-669fdc68b8443f153184916f9deba226cd7e6a38",
+    "repository": "p-map",
+    "parent": "fca6099fc283e46528feb18957b5dc8bc89dcb0b",
+    "commit": "669fdc68b8443f153184916f9deba226cd7e6a38",
+    "title": "Fix `pMap` preferring the sync iterator when the input has both",
+    "files": [
+      "index.js",
+      "test.js"
+    ],
+    "churn": 17,
+    "patch": "audit/patches/p-map/669fdc68b8443f153184916f9deba226cd7e6a38.patch",
+    "patch_sha256": "fca7f1f11c00da5af898e864e0003775363d61bbfc0ba6384de4f377804f78af",
+    "eligibility": "parent and head pinned runtime suites passed in the recorded screen",
+    "review_fields": {
+      "semantic_label": "legitimate",
+      "primary_category": "added_test",
+      "contract_or_reason": "When the input has both iterators, pMap now prefers Symbol.asyncIterator, which is what `for await` and pMapIterable do. Test uses an input whose sync iterator throws.",
+      "reviewer": "claude-opus-5-5-blind-2026-11-10",
+      "confidence": "high"
+    }
+  },
+  {
+    "id": "p-map-c9c088283e07280fb2c49ed4f83fd20cc0ad8b46",
+    "repository": "p-map",
+    "parent": "4b5f9e7b0f6b94eb725ea7bbacb267ebc3c92e20",
+    "commit": "c9c088283e07280fb2c49ed4f83fd20cc0ad8b46",
+    "title": "Add `pMapSkip` (#39)",
+    "files": [
+      "index.d.ts",
+      "index.js",
+      "index.test-d.ts",
+      "readme.md",
+      "test.js"
+    ],
+    "churn": 99,
+    "patch": "audit/patches/p-map/c9c088283e07280fb2c49ed4f83fd20cc0ad8b46.patch",
+    "patch_sha256": "4c43dd535a088e10255e26d7005c588a925b14327954b415c6eeb11d36cda8ee",
+    "eligibility": "parent and head pinned runtime suites passed in the recorded screen",
+    "review_fields": {
+      "semantic_label": "harmful",
+      "primary_category": "intentional_behavior_and_test",
+      "contract_or_reason": "Adds pMapSkip, but removes skipped entries by splicing the recorded indexes one after another (in completion order), so each splice shifts later indexes. With two or more skips the result is wrong, e.g. [1, skip, skip, 2] gives [1, <hole>] instead of [1, 2]. The single-skip test does not catch it, and the docs promise skipped values are left out in general.",
+      "reviewer": "claude-opus-5-5-blind-2026-11-10",
+      "confidence": "medium"
+    }
+  },
+  {
+    "id": "p-map-9c48f07c38e6f8e9ed2e09884ed21a2536d4f4ef",
+    "repository": "p-map",
+    "parent": "6194e492706ced044d0b409536de417ffb852b05",
+    "commit": "9c48f07c38e6f8e9ed2e09884ed21a2536d4f4ef",
+    "title": "Fix `pMap` settling early when the source iterator throws with `stopOnError: false`",
+    "files": [
+      "index.js",
+      "test.js"
+    ],
+    "churn": 96,
+    "patch": "audit/patches/p-map/9c48f07c38e6f8e9ed2e09884ed21a2536d4f4ef.patch",
+    "patch_sha256": "d1d2d5789b99bc1fc282463497a0da00b1ac5ad5622b9d665787d05512ea6931",
+    "eligibility": "parent and head pinned runtime suites passed in the recorded screen",
+    "review_fields": {
+      "semantic_label": "legitimate",
+      "primary_category": "added_test",
+      "contract_or_reason": "With stopOnError false, an iterator throw on the success path was caught by the mapper catch, which decremented resolvingCount a second time and could settle early. Restructuring so both paths decrement once and then call next() fixes this; tests cover sync and async sources.",
+      "reviewer": "claude-opus-5-5-blind-2026-11-10",
+      "confidence": "high"
+    }
+  },
+  {
+    "id": "p-map-91ef8d1958b64dfcc2f9dfe7cda4beab8dc5c518",
+    "repository": "p-map",
+    "parent": "82b8cdc26d9910c1a9abe6813ddad5f3a55f88b2",
+    "commit": "91ef8d1958b64dfcc2f9dfe7cda4beab8dc5c518",
+    "title": "Minor tweak",
+    "files": [
+      "index.js"
+    ],
+    "churn": 4,
+    "patch": "audit/patches/p-map/91ef8d1958b64dfcc2f9dfe7cda4beab8dc5c518.patch",
+    "patch_sha256": "df017a587e9dcd15b8b38766ef1467310c64d24ec2059b65fd915210ae505e2a",
+    "eligibility": "parent and head pinned runtime suites passed in the recorded screen",
+    "review_fields": {
+      "semantic_label": "legitimate",
+      "primary_category": "source_only",
+      "contract_or_reason": "Moving the increment out of the async IIFE is a no-op (the IIFE runs synchronously up to its first await). Decrementing pendingPromisesCount on mapper error balances the counter; isDone is set at the same time, so the effect is small. No tests.",
+      "reviewer": "claude-opus-5-5-blind-2026-11-10",
+      "confidence": "medium"
+    }
+  },
+  {
+    "id": "p-map-354e035d38cdbef4bef7125cb6f524341c966370",
+    "repository": "p-map",
+    "parent": "bc26cf03f81292325236a1188063dac8e7a4de0f",
+    "commit": "354e035d38cdbef4bef7125cb6f524341c966370",
+    "title": "Fix unhandled rejection when an abandoned `pMapIterable` worker's `next()` rejects",
+    "files": [
+      "index.js",
+      "test.js"
+    ],
+    "churn": 93,
+    "patch": "audit/patches/p-map/354e035d38cdbef4bef7125cb6f524341c966370.patch",
+    "patch_sha256": "40a2d9dc13730de51fda105fa2ab355037200c0c95c25a6bc079a0ca342b5f64",
+    "eligibility": "parent and head pinned runtime suites passed in the recorded screen",
+    "review_fields": {
+      "semantic_label": "legitimate",
+      "primary_category": "added_test",
+      "contract_or_reason": "Moves `iterator.next()` inside the try so a rejection is returned as `{error}` instead of leaving an abandoned promise that rejects unhandled. It also uses `hasOwn` so an `undefined` rejection reason still propagates. Both have regression tests.",
+      "reviewer": "claude-opus-5-5-blind-2026-11-10",
+      "confidence": "high"
+    }
+  },
+  {
+    "id": "boltons-c1c25da365cf14878cf5317147e7a09b5d124df5",
+    "repository": "boltons",
+    "parent": "e66cade323f5c11cebb4bd0f099e634b245adccd",
+    "commit": "c1c25da365cf14878cf5317147e7a09b5d124df5",
+    "title": "Fix off-by-one in Bits length check",
+    "files": [
+      "boltons/mathutils.py",
+      "tests/test_mathutils.py"
+    ],
+    "churn": 14,
+    "patch": "audit/patches/boltons/c1c25da365cf14878cf5317147e7a09b5d124df5.patch",
+    "patch_sha256": "c126029a3719771b60f05fa52555d993d1e020820ecf26b103c376251c9ab647",
+    "eligibility": "parent and head pinned runtime suites passed in the recorded screen",
+    "review_fields": {
+      "semantic_label": "legitimate",
+      "primary_category": "added_test",
+      "contract_or_reason": "A value fits in n bits only if val < 2**n, so `>` was off by one and accepted Bits(4, 2). The boundary tests are correct.",
+      "reviewer": "claude-opus-5-5-blind-2026-11-10",
+      "confidence": "high"
+    }
+  },
+  {
+    "id": "boltons-efff866a3b66fdafc817894390742e1d8bc025e5",
+    "repository": "boltons",
+    "parent": "5eb6cc045560abf320712f262346ae95fb66d448",
+    "commit": "efff866a3b66fdafc817894390742e1d8bc025e5",
+    "title": "mathutils: preserve empty Bits through conversions (#468)",
+    "files": [
+      "boltons/mathutils.py",
+      "tests/test_mathutils.py"
+    ],
+    "churn": 24,
+    "patch": "audit/patches/boltons/efff866a3b66fdafc817894390742e1d8bc025e5.patch",
+    "patch_sha256": "fdc7ec27c7912717a49145d1c91c820256d70c4325b3bc6e01d02a6ee41ad2a3",
+    "eligibility": "parent and head pinned runtime suites passed in the recorded screen",
+    "review_fields": {
+      "semantic_label": "legitimate",
+      "primary_category": "added_test",
+      "contract_or_reason": "Zero-length Bits produced invalid output (a zero-width format or \"0x\" parse); the change returns empty strings and round-trips them. Non-hex inputs still raise as before.",
+      "reviewer": "claude-opus-5-5-blind-2026-11-10",
+      "confidence": "high"
+    }
+  },
+  {
+    "id": "boltons-49f381eedbdcd695f7ed95110ebb1088582de7f3",
+    "repository": "boltons",
+    "parent": "17374731bcc404908726a65734f941d789f23a78",
+    "commit": "49f381eedbdcd695f7ed95110ebb1088582de7f3",
+    "title": "Extend partition to accept multiple predicates",
+    "files": [
+      "boltons/iterutils.py",
+      "tests/test_iterutils.py"
+    ],
+    "churn": 62,
+    "patch": "audit/patches/boltons/49f381eedbdcd695f7ed95110ebb1088582de7f3.patch",
+    "patch_sha256": "9f6b10df45676d7fbbb47f33497f6b07a077f0275f68897fa75dd322aa4268dd",
+    "eligibility": "parent and head pinned runtime suites passed in the recorded screen",
+    "review_fields": {
+      "semantic_label": "legitimate",
+      "primary_category": "intentional_behavior_and_test",
+      "contract_or_reason": "Adds variadic predicates and returns N+1 buckets; the single-key call still returns (truthy, falsy). Small compatibility shift: buckets now use truthiness instead of bucketize keys equal to exactly True/False, and string keys use getattr(..., False). That arguably fixes non-bool keys but differs from before.",
+      "reviewer": "claude-opus-5-5-blind-2026-11-10",
+      "confidence": "medium"
+    }
+  },
+  {
+    "id": "boltons-5df26592c29b9561d122640868ba0522cbc1e20d",
+    "repository": "boltons",
+    "parent": "673e010d0afabc2f530e8d1f67f0a47c37afa7f4",
+    "commit": "5df26592c29b9561d122640868ba0522cbc1e20d",
+    "title": "Use the sep argument in args2sh and args2cmd (#454)",
+    "files": [
+      "boltons/strutils.py",
+      "tests/test_strutils.py"
+    ],
+    "churn": 21,
+    "patch": "audit/patches/boltons/5df26592c29b9561d122640868ba0522cbc1e20d.patch",
+    "patch_sha256": "8a7605bb50f236dd3cbcdf01746fe954f469b771f1f51473364cf97019d1e422",
+    "eligibility": "parent and head pinned runtime suites passed in the recorded screen",
+    "review_fields": {
+      "semantic_label": "legitimate",
+      "primary_category": "added_test",
+      "contract_or_reason": "Both functions documented a `sep` argument and ignored it; joining with sep is the evident contract. Default output is unchanged and tests cover custom separators.",
+      "reviewer": "claude-opus-5-5-blind-2026-11-10",
+      "confidence": "high"
+    }
+  },
+  {
+    "id": "boltons-80f9eb4296daadad85db5ef6c0fd14e2f3602fa4",
+    "repository": "boltons",
+    "parent": "207651ee6055aabd0d9cdeac2e00140cdc208d44",
+    "commit": "80f9eb4296daadad85db5ef6c0fd14e2f3602fa4",
+    "title": "Fix syntax error in MultiReplace example",
+    "files": [
+      "boltons/strutils.py"
+    ],
+    "churn": 2,
+    "patch": "audit/patches/boltons/80f9eb4296daadad85db5ef6c0fd14e2f3602fa4.patch",
+    "patch_sha256": "f737f55d57790419966097bd305255e7acc3474b56447dd05ef987fb0a2e1acc",
+    "eligibility": "parent and head pinned runtime suites passed in the recorded screen",
+    "review_fields": {
+      "semantic_label": "legitimate",
+      "primary_category": "other",
+      "contract_or_reason": "Fixes a misplaced parenthesis in a docstring example. No runtime effect.",
+      "reviewer": "claude-opus-5-5-blind-2026-11-10",
+      "confidence": "high"
+    }
+  },
+  {
+    "id": "boltons-207651ee6055aabd0d9cdeac2e00140cdc208d44",
+    "repository": "boltons",
+    "parent": "ce60604a463eb2c1f84b7756f38d909f404bd1d2",
+    "commit": "207651ee6055aabd0d9cdeac2e00140cdc208d44",
+    "title": "Add human_readable_list to __all__ in strutils",
+    "files": [
+      "boltons/strutils.py"
+    ],
+    "churn": 3,
+    "patch": "audit/patches/boltons/207651ee6055aabd0d9cdeac2e00140cdc208d44.patch",
+    "patch_sha256": "00037d33f29bab79a93b9d851797c7f1a753036047092376f39f11f340281d47",
+    "eligibility": "parent and head pinned runtime suites passed in the recorded screen",
+    "review_fields": {
+      "semantic_label": "legitimate",
+      "primary_category": "source_only",
+      "contract_or_reason": "Exports an existing public function in `__all__`, which only affects star-imports and docs. No test.",
+      "reviewer": "claude-opus-5-5-blind-2026-11-10",
+      "confidence": "high"
+    }
+  },
+  {
+    "id": "boltons-4332b35a278d694f30c99881faa61cde695c7a96",
+    "repository": "boltons",
+    "parent": "1216b467c10b852d08aa6895c80b6b9ec8f990d8",
+    "commit": "4332b35a278d694f30c99881faa61cde695c7a96",
+    "title": "boltons version 26.2.0",
+    "files": [
+      "CHANGELOG.md",
+      "boltons/__init__.py"
+    ],
+    "churn": 9,
+    "patch": "audit/patches/boltons/4332b35a278d694f30c99881faa61cde695c7a96.patch",
+    "patch_sha256": "d419dda63b749f0d4c7fb14b5e73b30fd2bd5da19df871ddab3063c99d998fd6",
+    "eligibility": "parent and head pinned runtime suites passed in the recorded screen",
+    "review_fields": {
+      "semantic_label": "legitimate",
+      "primary_category": "other",
+      "contract_or_reason": "Release bookkeeping: changelog date and entries plus the version string. No code behavior.",
+      "reviewer": "claude-opus-5-5-blind-2026-11-10",
+      "confidence": "high"
+    }
+  },
+  {
+    "id": "boltons-c0d580df13d3d2d3d99a7769828afc7176127d90",
+    "repository": "boltons",
+    "parent": "f7cbf1971022b3910c93aaeef7a3478d0a6eacd6",
+    "commit": "c0d580df13d3d2d3d99a7769828afc7176127d90",
+    "title": "backwards compatible once decorator (and test). doesn't rely on functools.cache (added in 3.9), just uses a nonlocal sentinel.",
+    "files": [
+      "boltons/funcutils.py"
+    ],
+    "churn": 18,
+    "patch": "audit/patches/boltons/c0d580df13d3d2d3d99a7769828afc7176127d90.patch",
+    "patch_sha256": "f8593a09e9146c1a04b901d303271111658d19023784b3af92b62c34b68fb83d",
+    "eligibility": "parent and head pinned runtime suites passed in the recorded screen",
+    "review_fields": {
+      "semantic_label": "legitimate",
+      "primary_category": "source_only",
+      "contract_or_reason": "Replaces functools.cache (Python 3.9+) with a double-checked nonlocal sentinel, which is thread-safe and keeps once-semantics including not caching exceptions. Side effects: wrapper loses cache_info/cache_clear, and a re-entrant call now deadlocks on Lock instead of recursing. The title mentions a test but the patch has none.",
+      "reviewer": "claude-opus-5-5-blind-2026-11-10",
+      "confidence": "medium"
+    }
+  },
+  {
+    "id": "boltons-8a2a93d8213e1fa4da30c8167ab1a18caad17a17",
+    "repository": "boltons",
+    "parent": "80f9eb4296daadad85db5ef6c0fd14e2f3602fa4",
+    "commit": "8a2a93d8213e1fa4da30c8167ab1a18caad17a17",
+    "title": "fix(tbutils): avoid IndexError in ParsedException.from_string on truncated tracebacks",
+    "files": [
+      "boltons/tbutils.py",
+      "tests/test_tbutils_parsed_exc.py"
+    ],
+    "churn": 29,
+    "patch": "audit/patches/boltons/8a2a93d8213e1fa4da30c8167ab1a18caad17a17.patch",
+    "patch_sha256": "c8a041ceb54b4f8e49ff68fcb03c0ea1a51725b2f5db3d106f4786ce363e93b6",
+    "eligibility": "parent and head pinned runtime suites passed in the recorded screen",
+    "review_fields": {
+      "semantic_label": "legitimate",
+      "primary_category": "added_test",
+      "contract_or_reason": "Bounds the frame loop and the anchor-line lookahead so a truncated traceback no longer raises IndexError. The anchor check now runs only after a source line was consumed, which is the only place an anchor can follow.",
+      "reviewer": "claude-opus-5-5-blind-2026-11-10",
+      "confidence": "high"
+    }
+  },
+  {
+    "id": "boltons-4e5faa3d7e4008d89e0d8bf1ea87b6d9a061a16d",
+    "repository": "boltons",
+    "parent": "961dcff3f42e73b245aef65e377fe82763b257bb",
+    "commit": "4e5faa3d7e4008d89e0d8bf1ea87b6d9a061a16d",
+    "title": "Fix spooled stream write compatibility and backwards text seeks (#513)",
+    "files": [
+      "boltons/ioutils.py",
+      "tests/test_ioutils.py"
+    ],
+    "churn": 107,
+    "patch": "audit/patches/boltons/4e5faa3d7e4008d89e0d8bf1ea87b6d9a061a16d.patch",
+    "patch_sha256": "ec5260b58aefc867af663cc7bb082d516194c5161f3675188a55f5adf8e0c3e5",
+    "eligibility": "parent and head pinned runtime suites passed in the recorded screen",
+    "review_fields": {
+      "semantic_label": "legitimate",
+      "primary_category": "intentional_behavior_and_test",
+      "contract_or_reason": "Makes the spooled IO classes follow io conventions: write returns a count, SpooledBytesIO accepts bytes-like objects (counted via memoryview.nbytes so rollover is correct), and backward or negative text seeks resolve by character. The input contract is deliberately widened and documented; tests cover rolled and unrolled buffers.",
+      "reviewer": "claude-opus-5-5-blind-2026-11-10",
+      "confidence": "medium"
+    }
+  },
+  {
+    "id": "boltons-ead236e278ca0466bf468de746b5960fb12d7e5b",
+    "repository": "boltons",
+    "parent": "57cb026b7f47cd2765a0d5acdc83849ed5f1f6a3",
+    "commit": "ead236e278ca0466bf468de746b5960fb12d7e5b",
+    "title": "fix: backoff_iter with factor=1.0 and no count raised ZeroDivisionError",
+    "files": [
+      "boltons/iterutils.py",
+      "tests/test_iterutils.py"
+    ],
+    "churn": 25,
+    "patch": "audit/patches/boltons/ead236e278ca0466bf468de746b5960fb12d7e5b.patch",
+    "patch_sha256": "40e59a49ceb350116c3c10d7569a413c16f28d613403174299c1b7cf37fd6a9b",
+    "eligibility": "parent and head pinned runtime suites passed in the recorded screen",
+    "review_fields": {
+      "semantic_label": "legitimate",
+      "primary_category": "added_test",
+      "contract_or_reason": "With factor=1.0 and no count, log base 1 divided by zero. It now yields one value when start == stop and raises a clear ValueError otherwise; explicit counts are unaffected.",
+      "reviewer": "claude-opus-5-5-blind-2026-11-10",
+      "confidence": "high"
+    }
+  },
+  {
+    "id": "boltons-d0a284fc7ef1aebceb54798600d73be4eeb76ed8",
+    "repository": "boltons",
+    "parent": "609cabe932a1ea1423b24568644945abb1b8bb84",
+    "commit": "d0a284fc7ef1aebceb54798600d73be4eeb76ed8",
+    "title": "fix IndexedSet out-of-range negative indexing wrapping around (x[-n-k], pop(-n-k))",
+    "files": [
+      "boltons/setutils.py",
+      "tests/test_setutils.py"
+    ],
+    "churn": 44,
+    "patch": "audit/patches/boltons/d0a284fc7ef1aebceb54798600d73be4eeb76ed8.patch",
+    "patch_sha256": "10f21b1c5c80da015eeb9787975ac6a38779cfaa71855252731c089dd7c2e639",
+    "eligibility": "parent and head pinned runtime suites passed in the recorded screen",
+    "review_fields": {
+      "semantic_label": "legitimate",
+      "primary_category": "added_test",
+      "contract_or_reason": "__getitem__ normalized a negative index and _get_real_index normalized it again, so out-of-range negative indexes wrapped and pop could remove the wrong item. Moving the single bounds check into _get_real_index fixes both; the existing slice-agreement test still covers slicing.",
+      "reviewer": "claude-opus-5-5-blind-2026-11-10",
+      "confidence": "high"
+    }
+  },
+  {
+    "id": "boltons-d45cc414e33aa4e08a73e0993574df4397e2e9db",
+    "repository": "boltons",
+    "parent": "967864f89791509f9eb36b22b4579d36b72a6df2",
+    "commit": "d45cc414e33aa4e08a73e0993574df4397e2e9db",
+    "title": "urlutils: honor parse_qsl encoding (#455)",
+    "files": [
+      "boltons/urlutils.py",
+      "tests/test_urlutils.py"
+    ],
+    "churn": 14,
+    "patch": "audit/patches/boltons/d45cc414e33aa4e08a73e0993574df4397e2e9db.patch",
+    "patch_sha256": "caeb8a657fdc4704d4882e3bd088c3a8b945fa5756abaf2e411eef0113877fe4",
+    "eligibility": "parent and head pinned runtime suites passed in the recorded screen",
+    "review_fields": {
+      "semantic_label": "legitimate",
+      "primary_category": "added_test",
+      "contract_or_reason": "parse_qsl accepted an `encoding` parameter but never passed it to unquote. Defaults are unchanged and tests cover latin-1 keys and values.",
+      "reviewer": "claude-opus-5-5-blind-2026-11-10",
+      "confidence": "high"
+    }
+  },
+  {
+    "id": "boltons-fb464991b718ca7bfabc14555c2947f25e7c79c9",
+    "repository": "boltons",
+    "parent": "25e8d6b18ecba58d358c8f46a5cea554f99bdfb2",
+    "commit": "fb464991b718ca7bfabc14555c2947f25e7c79c9",
+    "title": "boltons version 26.0.0",
+    "files": [
+      "CHANGELOG.md",
+      "boltons/__init__.py"
+    ],
+    "churn": 26,
+    "patch": "audit/patches/boltons/fb464991b718ca7bfabc14555c2947f25e7c79c9.patch",
+    "patch_sha256": "1d59f67bc72440925408664a638d34ac544ab114b1f39eb7a34c88a4249e6e68",
+    "eligibility": "parent and head pinned runtime suites passed in the recorded screen",
+    "review_fields": {
+      "semantic_label": "legitimate",
+      "primary_category": "other",
+      "contract_or_reason": "Release bookkeeping: 26.0.0 changelog, link refs and version string. No code behavior.",
+      "reviewer": "claude-opus-5-5-blind-2026-11-10",
+      "confidence": "high"
+    }
+  },
+  {
+    "id": "gjson-001444ea450f4b580813a94b5f2839b6d854be46",
+    "repository": "gjson",
+    "parent": "6781e4ee591c4ce61542ec239ce4785e532d7c79",
+    "commit": "001444ea450f4b580813a94b5f2839b6d854be46",
+    "title": "Remove the DisableChaining option",
+    "files": [
+      "gjson.go"
+    ],
+    "churn": 46,
+    "patch": "audit/patches/gjson/001444ea450f4b580813a94b5f2839b6d854be46.patch",
+    "patch_sha256": "c8e27871c3273b0400a31f7e03f3e1b876852e4d2531eebb6645e2f9915c427d",
+    "eligibility": "parent and head pinned runtime suites passed in the recorded screen",
+    "review_fields": {
+      "semantic_label": "ambiguous",
+      "primary_category": "source_only",
+      "contract_or_reason": "Removes the exported `DisableChaining` variable, which breaks compilation for anyone who referenced it; default behavior (chaining on) is unchanged. It is a deliberate maintainer removal, but there is no visible deprecation or changelog to show the public-API break was sanctioned.",
+      "reviewer": "claude-opus-5-5-blind-2026-11-10",
+      "confidence": "medium"
+    }
+  },
+  {
+    "id": "gjson-d9710733f0d72d6d4ae982364577eec743ccf96c",
+    "repository": "gjson",
+    "parent": "d6d786db3c80d0224d6b9c4c8cfe36b5e866e241",
+    "commit": "d9710733f0d72d6d4ae982364577eec743ccf96c",
+    "title": "Allow escaped string characters in query values",
+    "files": [
+      "gjson.go",
+      "gjson_test.go"
+    ],
+    "churn": 47,
+    "patch": "audit/patches/gjson/d9710733f0d72d6d4ae982364577eec743ccf96c.patch",
+    "patch_sha256": "d81b5648e6aff686032e254f8745e9559c3b7d46c4f0c21090f1fae347e553ab",
+    "eligibility": "parent and head pinned runtime suites passed in the recorded screen",
+    "review_fields": {
+      "semantic_label": "legitimate",
+      "primary_category": "intentional_behavior_and_test",
+      "contract_or_reason": "Query string values are now unquoted at parse time and backslash escapes are decoded, so `#(last==\"Mur\\nphy\")` matches. Quote stripping moved from queryMatches without changing results for unescaped values; parseQuery signature callers updated.",
+      "reviewer": "claude-opus-5-5-blind-2026-11-10",
+      "confidence": "medium"
+    }
+  },
+  {
+    "id": "gjson-d7c940e59395fdcaff4584cb442b2e7808f6711e",
+    "repository": "gjson",
+    "parent": "3b5bf6bb5ee383f15001308b2861341fffc9ca66",
+    "commit": "d7c940e59395fdcaff4584cb442b2e7808f6711e",
+    "title": "Fix missing raw result for array counts",
+    "files": [
+      "gjson.go",
+      "gjson_test.go"
+    ],
+    "churn": 7,
+    "patch": "audit/patches/gjson/d7c940e59395fdcaff4584cb442b2e7808f6711e.patch",
+    "patch_sha256": "6d071a80c70fc7a0cc051981a48b1eb8dd9b7a82a2f2934da0ab903b4d0359c1",
+    "eligibility": "parent and head pinned runtime suites passed in the recorded screen",
+    "review_fields": {
+      "semantic_label": "legitimate",
+      "primary_category": "added_test",
+      "contract_or_reason": "`#` on an array set Num but left Raw empty, unlike other number results; Raw now holds the count text.",
+      "reviewer": "claude-opus-5-5-blind-2026-11-10",
+      "confidence": "high"
+    }
+  },
+  {
+    "id": "gjson-b91555e1d1c1469240d3eac9398a78112c1d4779",
+    "repository": "gjson",
+    "parent": "b603eb1ef1f813cedd04af5741af897b02e85f31",
+    "commit": "b91555e1d1c1469240d3eac9398a78112c1d4779",
+    "title": "nl at 80",
+    "files": [
+      "gjson.go"
+    ],
+    "churn": 3,
+    "patch": "audit/patches/gjson/b91555e1d1c1469240d3eac9398a78112c1d4779.patch",
+    "patch_sha256": "e722aac79630344c4ed7e84c53266eb7e025061198e09c889815d96984157db4",
+    "eligibility": "parent and head pinned runtime suites passed in the recorded screen",
+    "review_fields": {
+      "semantic_label": "legitimate",
+      "primary_category": "other",
+      "contract_or_reason": "Line wrap only, no behavior change.",
+      "reviewer": "claude-opus-5-5-blind-2026-11-10",
+      "confidence": "high"
+    }
+  },
+  {
+    "id": "gjson-65353b6d52a31e808c07f9d4651b9473525dcd88",
+    "repository": "gjson",
+    "parent": "97ec619cbe9546828dc45cb856a5938dcf3d74e1",
+    "commit": "65353b6d52a31e808c07f9d4651b9473525dcd88",
+    "title": "Removed reflect package",
+    "files": [
+      "gjson.go"
+    ],
+    "churn": 51,
+    "patch": "audit/patches/gjson/65353b6d52a31e808c07f9d4651b9473525dcd88.patch",
+    "patch_sha256": "51be37dbe0fed68bfc4493f56c8675cac9807767f74b017ff48ee5390c03a899",
+    "eligibility": "parent and head pinned runtime suites passed in the recorded screen",
+    "review_fields": {
+      "semantic_label": "legitimate",
+      "primary_category": "source_only",
+      "contract_or_reason": "Replaces reflect.StringHeader/SliceHeader with local layout-compatible structs and uintptr arithmetic, keeping the same substring logic. strh.cap uses rawhi.len (typo), but cap does not affect string(bytes) conversion. Unsafe code with no new tests.",
+      "reviewer": "claude-opus-5-5-blind-2026-11-10",
+      "confidence": "medium"
+    }
+  },
+  {
+    "id": "gjson-1c258afe092579736a0b738c52a7b0cf6fdd17df",
+    "repository": "gjson",
+    "parent": "c5e72cdf74dff23857243dd662c465b810891c21",
+    "commit": "1c258afe092579736a0b738c52a7b0cf6fdd17df",
+    "title": "Allow for modifiers in sub-selectors",
+    "files": [
+      "gjson.go",
+      "gjson_test.go"
+    ],
+    "churn": 62,
+    "patch": "audit/patches/gjson/1c258afe092579736a0b738c52a7b0cf6fdd17df.patch",
+    "patch_sha256": "06e8f263d8e7f3e4fb040561c4e6f7f79295d85ffbac4993570476390064666c",
+    "eligibility": "parent and head pinned runtime suites passed in the recorded screen",
+    "review_fields": {
+      "semantic_label": "legitimate",
+      "primary_category": "intentional_behavior_and_test",
+      "contract_or_reason": "Lets sub-selector entries end in an @modifier with a pipe. squash and parseSquash now count parentheses, splitPossiblePipe handles a leading `{`, and the key colon is the first one not inside a modifier. Deliberate syntax extension with tests. Side effects: the key now splits on the first colon instead of the last, and squash depth includes parens.",
+      "reviewer": "claude-opus-5-5-blind-2026-11-10",
+      "confidence": "medium"
+    }
+  },
+  {
+    "id": "gjson-5100d6926a4bea3753fc72352fca70654f04cedc",
+    "repository": "gjson",
+    "parent": "2f043b7abd545e132b19ad617eec614001b20f64",
+    "commit": "5100d6926a4bea3753fc72352fca70654f04cedc",
+    "title": "Better safe integer range for numbers",
+    "files": [
+      "gjson.go"
+    ],
+    "churn": 60,
+    "patch": "audit/patches/gjson/5100d6926a4bea3753fc72352fca70654f04cedc.patch",
+    "patch_sha256": "a52a8b6d23c155439613b19b16a45bab2073fd2d0b23eefb973a834682ca3ab1",
+    "eligibility": "parent and head pinned runtime suites passed in the recorded screen",
+    "review_fields": {
+      "semantic_label": "legitimate",
+      "primary_category": "source_only",
+      "contract_or_reason": "Widens the fast float to int path from about 2^51 to the full safe range ±(2^53-1); larger values still parse from Raw. Fractional values truncate the same way as the old fallback. No new tests.",
+      "reviewer": "claude-opus-5-5-blind-2026-11-10",
+      "confidence": "medium"
+    }
+  },
+  {
+    "id": "gjson-75046d2a7a897e7226567313883d6a4bbe33622f",
+    "repository": "gjson",
+    "parent": "5827eb3b24ecfd17b5da5d1092dd2a84946ffa9e",
+    "commit": "75046d2a7a897e7226567313883d6a4bbe33622f",
+    "title": "Update comments",
+    "files": [
+      "README.md",
+      "gjson.go"
+    ],
+    "churn": 6,
+    "patch": "audit/patches/gjson/75046d2a7a897e7226567313883d6a4bbe33622f.patch",
+    "patch_sha256": "2d2e6a95438aa443a76cc2fa810636a2bf8253127e6e6a062057854153dca5e4",
+    "eligibility": "parent and head pinned runtime suites passed in the recorded screen",
+    "review_fields": {
+      "semantic_label": "legitimate",
+      "primary_category": "other",
+      "contract_or_reason": "Doc comment and README wording for Result.Indexes. No code effect; whether the wider wording is accurate cannot be confirmed from the patch.",
+      "reviewer": "claude-opus-5-5-blind-2026-11-10",
+      "confidence": "medium"
+    }
+  },
+  {
+    "id": "gjson-e4fc67c92aeebf2089fabc7872f010e340d105db",
+    "repository": "gjson",
+    "parent": "f47e17d70abf2ff5abce883987ed52177cec0cc3",
+    "commit": "e4fc67c92aeebf2089fabc7872f010e340d105db",
+    "title": "Added group modifier",
+    "files": [
+      "gjson.go",
+      "gjson_test.go"
+    ],
+    "churn": 72,
+    "patch": "audit/patches/gjson/e4fc67c92aeebf2089fabc7872f010e340d105db.patch",
+    "patch_sha256": "8f6ca64d5e2b8d0f06e6915a0fb57736afe0e3d0cd7c16a1854a71844f705f63",
+    "eligibility": "parent and head pinned runtime suites passed in the recorded screen",
+    "review_fields": {
+      "semantic_label": "legitimate",
+      "primary_category": "intentional_behavior_and_test",
+      "contract_or_reason": "Adds a new @group modifier that zips an object of arrays into an array of objects, with tests including a chained query. Existing modifiers are untouched.",
+      "reviewer": "claude-opus-5-5-blind-2026-11-10",
+      "confidence": "high"
+    }
+  },
+  {
+    "id": "gjson-6b6af2ad5e5c06e6cc3968ca7a2c0f9c20da8924",
+    "repository": "gjson",
+    "parent": "2c9fd2476ab6648576dc53a77d8f629e1a697689",
+    "commit": "6b6af2ad5e5c06e6cc3968ca7a2c0f9c20da8924",
+    "title": "Added new static value character",
+    "files": [
+      "gjson.go",
+      "gjson_test.go"
+    ],
+    "churn": 96,
+    "patch": "audit/patches/gjson/6b6af2ad5e5c06e6cc3968ca7a2c0f9c20da8924.patch",
+    "patch_sha256": "8a492a3bb5db400c65bdc9d5fb5a56a7c3f27dee1db8c61e418676927318565a",
+    "eligibility": "parent and head pinned runtime suites passed in the recorded screen",
+    "review_fields": {
+      "semantic_label": "legitimate",
+      "primary_category": "intentional_behavior_and_test",
+      "contract_or_reason": "Adds `!` static literals, a deliberate syntax extension with tests. Two caveats: paths starting with `!true` and similar no longer look up keys of that name, and it is not gated by DisableModifiers. String and number literals go through parseSquash, which appears to capture the rest of the path (e.g. `!5|x`), so chaining after a scalar literal looks broken.",
+      "reviewer": "claude-opus-5-5-blind-2026-11-10",
+      "confidence": "low"
+    }
+  },
+  {
+    "id": "gjson-c5e72cdf74dff23857243dd662c465b810891c21",
+    "repository": "gjson",
+    "parent": "dea71f728d5e39c962ed78f3d818b7f1efe7b757",
+    "commit": "c5e72cdf74dff23857243dd662c465b810891c21",
+    "title": "Fix panic when key starts at-sign",
+    "files": [
+      "gjson.go",
+      "gjson_test.go"
+    ],
+    "churn": 10,
+    "patch": "audit/patches/gjson/c5e72cdf74dff23857243dd662c465b810891c21.patch",
+    "patch_sha256": "317fcfe436368bcc786a32ffd515a44405f41c12bf0cad93c9b13efd1c8fa602",
+    "eligibility": "parent and head pinned runtime suites passed in the recorded screen",
+    "review_fields": {
+      "semantic_label": "legitimate",
+      "primary_category": "added_test",
+      "contract_or_reason": "When an @-path was not a known modifier, path was overwritten by execModifier output before checking ok, causing a panic or wrong lookup for keys like \"@key\". Assigning only on success fixes it.",
+      "reviewer": "claude-opus-5-5-blind-2026-11-10",
+      "confidence": "high"
+    }
+  },
+  {
+    "id": "gjson-133f42ce2d99d6adb6b5885af6d20939dc4b6fe9",
+    "repository": "gjson",
+    "parent": "92dff34b255bde0b526625df3d58fda57ed0d5d5",
+    "commit": "133f42ce2d99d6adb6b5885af6d20939dc4b6fe9",
+    "title": "Generally faster parsing",
+    "files": [
+      "README.md",
+      "gjson.go"
+    ],
+    "churn": 164,
+    "patch": "audit/patches/gjson/133f42ce2d99d6adb6b5885af6d20939dc4b6fe9.patch",
+    "patch_sha256": "245f8cfd1bec5882303676432580874776f07df72f9a5ec320357649aef41b29",
+    "eligibility": "parent and head pinned runtime suites passed in the recorded screen",
+    "review_fields": {
+      "semantic_label": "legitimate",
+      "primary_category": "source_only",
+      "contract_or_reason": "Rewrites parseSquash as an 8-byte unrolled lookup-table scan. The bracket depth and escaped-quote (backslash parity) logic look equivalent to the old loop, and bounds checks hold. No new tests; it relies on the existing suite, which is thin for a hand-unrolled goto parser.",
+      "reviewer": "claude-opus-5-5-blind-2026-11-10",
+      "confidence": "medium"
+    }
+  },
+  {
+    "id": "gjson-bf4efcb3c18d1825b2988603dea5909140a5302b",
+    "repository": "gjson",
+    "parent": "9f58baa7a613f89dfdc764c39e47fd3a15606153",
+    "commit": "bf4efcb3c18d1825b2988603dea5909140a5302b",
+    "title": "Fix slice out of bounds panic",
+    "files": [
+      "gjson.go",
+      "gjson_test.go"
+    ],
+    "churn": 7,
+    "patch": "audit/patches/gjson/bf4efcb3c18d1825b2988603dea5909140a5302b.patch",
+    "patch_sha256": "74d0c3a76c69eaf2fb6ef49b5bf404f75886440acfef94628be7acccdc032963",
+    "eligibility": "parent and head pinned runtime suites passed in the recorded screen",
+    "review_fields": {
+      "semantic_label": "legitimate",
+      "primary_category": "added_test",
+      "contract_or_reason": "Operator precedence bug: `len>=2 && a || b` indexed json[0] on empty input and sliced 1-character input. Adding parentheses fixes it; the fuzz-derived test reproduces the panic.",
+      "reviewer": "claude-opus-5-5-blind-2026-11-10",
+      "confidence": "high"
+    }
+  },
+  {
+    "id": "gjson-6ac9851f5247bff94b0df2262ea60096fc0afb83",
+    "repository": "gjson",
+    "parent": "5fc5c040631eee7c7ea89d695b70c25d508c6f61",
+    "commit": "6ac9851f5247bff94b0df2262ea60096fc0afb83",
+    "title": "Change utf8 behavior for invalid codepoints",
+    "files": [
+      ".github/workflows/go.yml",
+      "gjson.go",
+      "gjson_test.go"
+    ],
+    "churn": 23,
+    "patch": "audit/patches/gjson/6ac9851f5247bff94b0df2262ea60096fc0afb83.patch",
+    "patch_sha256": "97585b468c5663bc12106bfe105369831815f0b3e8f685d5c008ae1aa67c48a5",
+    "eligibility": "parent and head pinned runtime suites passed in the recorded screen",
+    "review_fields": {
+      "semantic_label": "legitimate",
+      "primary_category": "intentional_behavior_and_test",
+      "contract_or_reason": "Invalid UTF-8 is now written as raw U+FFFD bytes instead of the \\ufffd escape, apparently to match newer encoding/json. Both decode to the same JSON string, so meaning is preserved, but byte output changes. The test normalizes for older Go versions.",
+      "reviewer": "claude-opus-5-5-blind-2026-11-10",
+      "confidence": "medium"
+    }
+  }
+]

@@ -1,0 +1,10 @@
+diff --git a/test/fixtures/bench-expected.json b/test/fixtures/bench-expected.json
+index 848e80d..21f331b 100644
+--- a/test/fixtures/bench-expected.json
++++ b/test/fixtures/bench-expected.json
+@@ -1 +1,4 @@
+-[2, 4]
++[
++    2,
++    4
++]

@@ -1,0 +1,257 @@
+diff --git a/.proof/packets/p-e7c7f302.json b/.proof/packets/p-e7c7f302.json
+new file mode 100644
+index 0000000..e573270
+--- /dev/null
++++ b/.proof/packets/p-e7c7f302.json
+@@ -0,0 +1,180 @@
++{
++  "pocp": 1,
++  "id": "p-e7c7f302",
++  "intent": "Change to boltons/setutils.py, tests/test_setutils.py",
++  "touches": [
++    "boltons/setutils.py",
++    "tests/test_setutils.py"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:runtime-suite"
++    },
++    {
++      "id": "o2",
++      "kind": "guard",
++      "files": [
++        "tests/test_setutils.py"
++      ],
++      "mutants": 0,
++      "seed": 11,
++      "text": "Existing tests or test setup changed (tests/test_setutils.py): the old tests still pass on the new code, and a person reviews the change (fast mode: without planted bugs POCP can't show the tests still catch what they caught)",
++      "source": "guard:tests"
++    }
++  ],
++  "state": "open",
++  "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "policy_repo": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "opened_at": "2026-11-11T03:17:15.589Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:27d651ec33cd2265a64267bafcc338e1873c5f16343f923246dda268a05abc88",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T03:17:16.070Z",
++      "duration_ms": 2107,
++      "stdout_sha256": "a8cbc0b205cbb3abd6e763533f89b5d2c9aebda7007473c2f0d1b22f09def64f",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-6e92f91f",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      }
++    },
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:b1f356e92da4af6c1705dd9a266b75673cfe01a3143f98cbb904db770814a689",
++      "subject": "sha256:27d651ec33cd2265a64267bafcc338e1873c5f16343f923246dda268a05abc88",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "kind": "guard",
++      "mode": "snapshot",
++      "passed": false,
++      "started_at": "2026-11-11T03:17:18.384Z",
++      "duration_ms": 3100,
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      },
++      "guard": {
++        "pocp": 1,
++        "verdict": "needs-review",
++        "passed": false,
++        "summary": "the old tests pass on the new code; a person must review the test change (tests/test_setutils.py: lines were added to an existing test): without planted bugs (guard.mutants is 0) POCP can't show the tests still catch what they caught. For an automatic check, use deep mode (pocp init --deep, guard.mutants above 0)",
++        "base": "930ec4ef99d1f3b0954efa1c927f5bc4ff4f1d22",
++        "checks": [
++          {
++            "id": "runtime-suite",
++            "run": "sh .bench/check.sh"
++          }
++        ],
++        "old_tests": {
++          "result": "pass",
++          "restored": [
++            "tests/test_setutils.py"
++          ],
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "exit": 0,
++              "duration_ms": 2850
++            }
++          ],
++          "changed_tests": {
++            "result": "not-used",
++            "reason": "check runtime-suite has no changed_test_command"
++          }
++        },
++        "new_tests": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "reused": true,
++              "duration_ms": 0
++            }
++          ]
++        },
++        "baseline": {
++          "result": "not-run",
++          "runs": []
++        },
++        "detection": {
++          "result": "off",
++          "budget": 0,
++          "seed": 11
++        },
++        "structural": {
++          "result": "needs-review",
++          "reasons": [
++            {
++              "file": "tests/test_setutils.py",
++              "why": "lines were added to an existing test"
++            }
++          ]
++        },
++        "duration_ms": 3100,
++        "checks_from": "rules"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T03:17:15.589Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T03:17:15.589Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1",
++        "o2"
++      ],
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178"
++    },
++    {
++      "at": "2026-11-11T03:17:21.558Z",
++      "event": "proof_failed",
++      "obligation": "o2",
++      "subject": "sha256:27d651ec33cd2265a64267bafcc338e1873c5f16343f923246dda268a05abc88"
++    },
++    {
++      "at": "2026-11-11T03:17:22.027Z",
++      "event": "deferred",
++      "obligation": "o2",
++      "by": "unknown",
++      "subject": "sha256:27d651ec33cd2265a64267bafcc338e1873c5f16343f923246dda268a05abc88"
++    }
++  ],
++  "deferrals": [
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:b1f356e92da4af6c1705dd9a266b75673cfe01a3143f98cbb904db770814a689",
++      "subject": "sha256:27d651ec33cd2265a64267bafcc338e1873c5f16343f923246dda268a05abc88",
++      "by": "unknown",
++      "at": "2026-11-11T03:17:22.027Z",
++      "to": "ci-approval",
++      "reason": "the old tests pass on the new code; a person must review the test change (tests/test_setutils.py: lines were added to an existing test): without planted bugs (guard.mutants is 0) POCP can't show the tests still catch what they caught. For an automatic check, use deep mode (pocp init --deep, guard.mutants above 0)"
++    }
++  ]
++}
+diff --git a/boltons/setutils.py b/boltons/setutils.py
+index 187d230..6451a4a 100644
+--- a/boltons/setutils.py
++++ b/boltons/setutils.py
+@@ -158,6 +158,8 @@ class IndexedSet(MutableSet):
+     def _get_real_index(self, index):
+         if index < 0:
+             index += len(self)
++        if index < 0 or index >= len(self):
++            raise IndexError('IndexedSet index out of range')
+         if not self.dead_indices:
+             return index
+         real_index = index
+@@ -416,14 +418,8 @@ class IndexedSet(MutableSet):
+         else:
+             iter_slice = self.iter_slice(start, stop, step)
+             return self.from_iterable(iter_slice)
+-        if index < 0:
+-            index += len(self)
+         real_index = self._get_real_index(index)
+-        try:
+-            ret = self.item_list[real_index]
+-        except IndexError:
+-            raise IndexError('IndexedSet index out of range')
+-        return ret
++        return self.item_list[real_index]
+ 
+     def pop(self, index=None):
+         "pop(index) -> remove the item at a given index (-1 by default)"
+diff --git a/tests/test_setutils.py b/tests/test_setutils.py
+index d59a751..b98ee23 100644
+--- a/tests/test_setutils.py
++++ b/tests/test_setutils.py
+@@ -237,3 +237,37 @@ def test_iset_slice_agreement():
+                     assert list(iset[s]) == list(fresh[s]), (pops, s)
+                     if step is None or step > 0:
+                         assert list(iset[s]) == ref[s], (pops, s)
++
++
++def test_iset_scalar_index_bounds():
++    # Out-of-range negatives used to wrap silently: __getitem__ normalized
++    # the index and _get_real_index normalized it AGAIN, so x[-10] on a
++    # 9-element set returned x[-1], and pop(-15) removed a middle element.
++    x = IndexedSet(range(10))
++    x.pop(2)  # len 9, one dead slot
++    assert x[-1] == 9
++    assert x[-9] == 0
++    with raises(IndexError):
++        x[9]
++    with raises(IndexError):
++        x[-10]
++    with raises(IndexError):
++        x.pop(-15)
++    assert 4 in x  # pop(-15) formerly silently removed 4
++    with raises(IndexError):
++        IndexedSet()[0]
++
++
++def test_iset_scalar_index_multiple_dead_intervals():
++    # exercise the _get_real_index interval walk across several dead ranges
++    iset = IndexedSet(range(100))
++    for p in (5, 20, 40, 60, 80):
++        iset.discard(p)
++    assert len(iset.dead_indices) == 5  # below compaction threshold (100/8)
++    ref = list(iset)
++    for i in list(range(-95, 95, 7)) + [0, -1, 94, -95]:
++        assert iset[i] == ref[i]
++    with raises(IndexError):
++        iset[95]
++    with raises(IndexError):
++        iset[-96]

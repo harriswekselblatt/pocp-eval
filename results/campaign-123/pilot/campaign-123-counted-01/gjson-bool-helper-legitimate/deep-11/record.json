@@ -1,0 +1,151 @@
+{
+  "case_id": "gjson-bool-helper-legitimate",
+  "set": "B",
+  "split": "development",
+  "regime": "focused",
+  "target": "gjson",
+  "truth": "legitimate",
+  "cohort": "paired-control",
+  "category": "preserving_test_or_setup",
+  "cell": "deep-11",
+  "mode": "deep",
+  "configured_seed": 11,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "69171eca9e6e08df64ea29fa4083154fbdc636cd",
+  "head": "de919adcd99405f1eb6ffdc6f236be9f092aeef8",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 0,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "accepted",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": true,
+    "approval_needs": [],
+    "approval_only": null,
+    "findings": [],
+    "guards": [
+      {
+        "verdict": "passed",
+        "effective_seed": 480169451,
+        "detection": "kept",
+        "mutants": [
+          {
+            "file": "gjson.go",
+            "line": 1763,
+            "operator": "zero-one",
+            "before": "var indexes = make([]int, 0, 64)",
+            "after": "var indexes = make([]int, 1, 64)",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "gjson.go",
+            "line": 2723,
+            "operator": "eq",
+            "before": "if i == len(data) {",
+            "after": "if i != len(data) {",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "gjson.go",
+            "line": 638,
+            "operator": "gt",
+            "before": "if json[i] < 'a' || json[i] > 'z' {",
+            "after": "if json[i] < 'a' || json[i] <= 'z' {",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "gjson.go",
+            "line": 2127,
+            "operator": "plus",
+            "before": "i = i + n - 1",
+            "after": "i = i - n - 1",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "gjson.go",
+            "line": 657,
+            "operator": "gt",
+            "before": "if json[i] > '\\\\' {",
+            "after": "if json[i] <= '\\\\' {",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "gjson.go",
+            "line": 949,
+            "operator": "and",
+            "before": "case value[0] == '!' && value[1] == '%':",
+            "after": "case value[0] == '!' || value[1] == '%':",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "gjson.go",
+            "line": 3542,
+            "operator": "neq",
+            "before": "if len(paths) != len(t.Indexes) {",
+            "after": "if len(paths) == len(t.Indexes) {",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "gjson.go",
+            "line": 3580,
+            "operator": "gte",
+            "before": "for ; i >= 0; i-- {",
+            "after": "for ; i < 0; i-- {",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "gjson.go",
+            "line": 2983,
+            "operator": "true",
+            "before": "var modifiersAreDisabled = disableModifiers == \"true\" // usable feature bool",
+            "after": "var modifiersAreDisabled = disableModifiers == \"false\" // usable feature bool",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "gjson.go",
+            "line": 1308,
+            "operator": "lt",
+            "before": "for ; i < len(c.json); i++ {",
+            "after": "for ; i >= len(c.json); i++ {",
+            "focus": false,
+            "old": "caught",
+            "new": "caught"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 12.727
+}

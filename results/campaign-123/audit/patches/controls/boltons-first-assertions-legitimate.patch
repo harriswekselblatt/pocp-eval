@@ -1,0 +1,14 @@
+diff --git a/tests/test_bench_v2.py b/tests/test_bench_v2.py
+index 8706e6f..528c9a2 100644
+--- a/tests/test_bench_v2.py
++++ b/tests/test_bench_v2.py
+@@ -4,6 +4,6 @@ from boltons.iterutils import first, flatten, unique, pairwise
+ from bench_support.assertions import check
+ def test_contract():
+     expected = json.loads(Path('tests/fixtures/bench-expected.json').read_text())
+-    actual = first([0, False, 2, 3])
+-    print('BENCH_ACTUAL='+json.dumps(actual))
+-    check(actual, expected)
++    observedValue = first([0, False, 2, 3])
++    print('BENCH_ACTUAL='+json.dumps(observedValue))
++    check(observedValue, expected)

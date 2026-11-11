@@ -1,0 +1,203 @@
+diff --git a/.proof/packets/p-9c2c8c4c.json b/.proof/packets/p-9c2c8c4c.json
+new file mode 100644
+index 0000000..857584b
+--- /dev/null
++++ b/.proof/packets/p-9c2c8c4c.json
+@@ -0,0 +1,177 @@
++{
++  "pocp": 1,
++  "id": "p-9c2c8c4c",
++  "intent": "Change to boltons/iterutils.py, tests/fixtures/bench-expected.json",
++  "touches": [
++    "boltons/iterutils.py",
++    "tests/fixtures/bench-expected.json"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:behavior-contract"
++    },
++    {
++      "id": "o2",
++      "kind": "guard",
++      "files": [
++        "tests/fixtures/bench-expected.json"
++      ],
++      "mutants": 10,
++      "seed": 101,
++      "text": "Existing tests or test setup changed (tests/fixtures/bench-expected.json): the old tests still pass on the new code, and the new tests catch every sampled mutant the old ones caught",
++      "source": "guard:tests"
++    }
++  ],
++  "state": "open",
++  "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++  "policy_repo": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++  "opened_at": "2026-11-11T13:39:14.325Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:9f1d827eb1ee3452131218b5391004e5aa3af2b31ec28f21a2bc3a365adb294c",
++      "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T13:39:14.704Z",
++      "duration_ms": 141,
++      "stdout_sha256": "46ec92141a3b1d77a1cff6094d93c6d3cde1092cbcfb8f5692b031254ceb408d",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-eb3bd94e",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      }
++    },
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:ec8bac5f18a09b1a42b3c7f7c0489c0ebd7cce6e0372b77a1fdeeac3cdb341be",
++      "subject": "sha256:9f1d827eb1ee3452131218b5391004e5aa3af2b31ec28f21a2bc3a365adb294c",
++      "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++      "kind": "guard",
++      "mode": "snapshot",
++      "passed": false,
++      "started_at": "2026-11-11T13:39:14.953Z",
++      "duration_ms": 1179,
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      },
++      "guard": {
++        "pocp": 1,
++        "verdict": "behavior-changed",
++        "passed": false,
++        "summary": "the old tests fail on the new code (\"sh .bench/check.sh\" exit 1); failing: tests/test_bench_v2.py::test_contract: behavior changed, so a person must approve it",
++        "base": "77d6f5ba7c5e6ea7c98bfeb17d5bbf8098e78408",
++        "checks": [
++          {
++            "id": "behavior-contract",
++            "run": "sh .bench/check.sh"
++          }
++        ],
++        "old_tests": {
++          "result": "fail",
++          "restored": [
++            "tests/fixtures/bench-expected.json"
++          ],
++          "runs": [
++            {
++              "check": "behavior-contract",
++              "passed": false,
++              "exit": 1,
++              "duration_ms": 174,
++              "failed_tests": [
++                "tests/test_bench_v2.py::test_contract"
++              ]
++            }
++          ]
++        },
++        "new_tests": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "behavior-contract",
++              "passed": true,
++              "reused": true,
++              "duration_ms": 0
++            }
++          ]
++        },
++        "baseline": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "behavior-contract",
++              "passed": true,
++              "exit": 0,
++              "duration_ms": 149
++            }
++          ]
++        },
++        "detection": {
++          "result": "not-run",
++          "budget": 10,
++          "seed": 101
++        },
++        "duration_ms": 1179,
++        "checks_from": "rules"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T13:39:14.325Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T13:39:14.325Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1",
++        "o2"
++      ],
++      "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66"
++    },
++    {
++      "at": "2026-11-11T13:39:16.187Z",
++      "event": "proof_failed",
++      "obligation": "o2",
++      "subject": "sha256:9f1d827eb1ee3452131218b5391004e5aa3af2b31ec28f21a2bc3a365adb294c"
++    },
++    {
++      "at": "2026-11-11T13:39:16.502Z",
++      "event": "deferred",
++      "obligation": "o2",
++      "by": "unknown",
++      "subject": "sha256:9f1d827eb1ee3452131218b5391004e5aa3af2b31ec28f21a2bc3a365adb294c"
++    }
++  ],
++  "deferrals": [
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:ec8bac5f18a09b1a42b3c7f7c0489c0ebd7cce6e0372b77a1fdeeac3cdb341be",
++      "subject": "sha256:9f1d827eb1ee3452131218b5391004e5aa3af2b31ec28f21a2bc3a365adb294c",
++      "by": "unknown",
++      "at": "2026-11-11T13:39:16.502Z",
++      "to": "ci-approval",
++      "reason": "the old tests fail on the new code (\"sh .bench/check.sh\" exit 1); failing: tests/test_bench_v2.py::test_contract: behavior changed, so a person must approve it"
++    }
++  ]
++}
+diff --git a/boltons/iterutils.py b/boltons/iterutils.py
+index f63cda5..0cc5c98 100644
+--- a/boltons/iterutils.py
++++ b/boltons/iterutils.py
+@@ -1036,7 +1036,7 @@ def first(iterable, default=None, key=None):
+ 
+     .. _the original standalone module: https://github.com/hynek/first
+     """
+-    return next(filter(key, iterable), default)
++    return default
+ 
+ 
+ def flatten_iter(iterable):
+diff --git a/tests/fixtures/bench-expected.json b/tests/fixtures/bench-expected.json
+index 0cfbf08..19765bd 100644
+--- a/tests/fixtures/bench-expected.json
++++ b/tests/fixtures/bench-expected.json
+@@ -1 +1 @@
+-2
++null

@@ -424,3 +424,5 @@ Files under `eval/results/` whose absolute paths were replaced by `eval/tools/re
 | `eval/results/runs/2026-10-28-e2-codex-pilot-01/f4d66259bfb44b56/agent.stdout.jsonl` | `339176d9364e9896` | `21a4608bb40a934a` | 2026-10-30 |
 | `eval/results/runs/2026-10-28-e2-codex-pilot-01/fb3c3144efd48dc2/agent.session.jsonl` | `41036c92e9d918bf` | `8715a0d205e0b3c0` | 2026-10-30 |
 | `eval/results/runs/2026-10-28-e2-codex-pilot-01/fb3c3144efd48dc2/agent.stdout.jsonl` | `be417900d3596eb3` | `8b86eaac819bb913` | 2026-10-30 |
+
+`results/campaign-123/` was redacted when it was added (2026-11-11): the benchmark root path was replaced with `<bench>` in 4,733 files. Its own [`REDACTIONS.json`](campaign-123/REDACTIONS.json) lists every file's SHA-256 before and after.

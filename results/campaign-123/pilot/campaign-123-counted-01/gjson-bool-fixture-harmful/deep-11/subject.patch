@@ -1,0 +1,203 @@
+diff --git a/.proof/packets/p-83df2838.json b/.proof/packets/p-83df2838.json
+new file mode 100644
+index 0000000..b63c7a7
+--- /dev/null
++++ b/.proof/packets/p-83df2838.json
+@@ -0,0 +1,177 @@
++{
++  "pocp": 1,
++  "id": "p-83df2838",
++  "intent": "Change to gjson.go, testdata/bench-expected.json",
++  "touches": [
++    "gjson.go",
++    "testdata/bench-expected.json"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:behavior-contract"
++    },
++    {
++      "id": "o2",
++      "kind": "guard",
++      "files": [
++        "testdata/bench-expected.json"
++      ],
++      "mutants": 10,
++      "seed": 11,
++      "text": "Existing tests or test setup changed (testdata/bench-expected.json): the old tests still pass on the new code, and the new tests catch every sampled mutant the old ones caught",
++      "source": "guard:tests"
++    }
++  ],
++  "state": "open",
++  "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++  "policy_repo": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++  "opened_at": "2026-11-11T13:44:15.251Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:96838fb475f7d395696ee70cf3abb45606f70c201bf403da5249b78364997bb3",
++      "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T13:44:15.635Z",
++      "duration_ms": 332,
++      "stdout_sha256": "2fce6c4646b75347533b05af0681f00952c74d33931fa4884082ec2df8231027",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-a3346cf8",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": "64eb99dde8e30a549ef1b6269effa5cb0efd6c9d507f42cdeab0f1fa2ac09c4a"
++      }
++    },
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:aadfe5eedaecb01f2b0057479e451c364fb26a8ff67ded9503f994a48f1cbc0e",
++      "subject": "sha256:96838fb475f7d395696ee70cf3abb45606f70c201bf403da5249b78364997bb3",
++      "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++      "kind": "guard",
++      "mode": "snapshot",
++      "passed": false,
++      "started_at": "2026-11-11T13:44:16.080Z",
++      "duration_ms": 1950,
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": "64eb99dde8e30a549ef1b6269effa5cb0efd6c9d507f42cdeab0f1fa2ac09c4a"
++      },
++      "guard": {
++        "pocp": 1,
++        "verdict": "behavior-changed",
++        "passed": false,
++        "summary": "the old tests fail on the new code (\"sh .bench/check.sh\" exit 1); failing: github.com/tidwall/gjson: behavior changed, so a person must approve it",
++        "base": "6a521fd5f22fab09d5044de3593d33b1e3e723f9",
++        "checks": [
++          {
++            "id": "behavior-contract",
++            "run": "sh .bench/check.sh"
++          }
++        ],
++        "old_tests": {
++          "result": "fail",
++          "restored": [
++            "testdata/bench-expected.json"
++          ],
++          "runs": [
++            {
++              "check": "behavior-contract",
++              "passed": false,
++              "exit": 1,
++              "duration_ms": 815,
++              "failed_tests": [
++                "github.com/tidwall/gjson"
++              ]
++            }
++          ]
++        },
++        "new_tests": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "behavior-contract",
++              "passed": true,
++              "reused": true,
++              "duration_ms": 0
++            }
++          ]
++        },
++        "baseline": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "behavior-contract",
++              "passed": true,
++              "exit": 0,
++              "duration_ms": 539
++            }
++          ]
++        },
++        "detection": {
++          "result": "not-run",
++          "budget": 10,
++          "seed": 11
++        },
++        "duration_ms": 1950,
++        "checks_from": "rules"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T13:44:15.251Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T13:44:15.251Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1",
++        "o2"
++      ],
++      "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66"
++    },
++    {
++      "at": "2026-11-11T13:44:18.078Z",
++      "event": "proof_failed",
++      "obligation": "o2",
++      "subject": "sha256:96838fb475f7d395696ee70cf3abb45606f70c201bf403da5249b78364997bb3"
++    },
++    {
++      "at": "2026-11-11T13:44:18.388Z",
++      "event": "deferred",
++      "obligation": "o2",
++      "by": "unknown",
++      "subject": "sha256:96838fb475f7d395696ee70cf3abb45606f70c201bf403da5249b78364997bb3"
++    }
++  ],
++  "deferrals": [
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:aadfe5eedaecb01f2b0057479e451c364fb26a8ff67ded9503f994a48f1cbc0e",
++      "subject": "sha256:96838fb475f7d395696ee70cf3abb45606f70c201bf403da5249b78364997bb3",
++      "by": "unknown",
++      "at": "2026-11-11T13:44:18.388Z",
++      "to": "ci-approval",
++      "reason": "the old tests fail on the new code (\"sh .bench/check.sh\" exit 1); failing: github.com/tidwall/gjson: behavior changed, so a person must approve it"
++    }
++  ]
++}
+diff --git a/gjson.go b/gjson.go
+index 3fb59c2..bd01fa4 100644
+--- a/gjson.go
++++ b/gjson.go
+@@ -121,7 +121,7 @@ func (t Result) Bool() bool {
+ 		b, _ := strconv.ParseBool(strings.ToLower(t.Str))
+ 		return b
+ 	case Number:
+-		return t.Num != 0
++		return t.Num == 0
+ 	}
+ }
+ 
+diff --git a/testdata/bench-expected.json b/testdata/bench-expected.json
+index 0949676..cb57936 100644
+--- a/testdata/bench-expected.json
++++ b/testdata/bench-expected.json
+@@ -1 +1 @@
+-[true, false]
++[false, true]

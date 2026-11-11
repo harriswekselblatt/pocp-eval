@@ -1,0 +1,28 @@
+diff --git a/gjson.go b/gjson.go
+index 8221cd9..3449983 100644
+--- a/gjson.go
++++ b/gjson.go
+@@ -1446,9 +1446,10 @@ func parseArray(c *parseContext, i int, path string) (int, bool) {
+ 					if rp.alogok {
+ 						break
+ 					}
+-					c.value.Raw = ""
++
+ 					c.value.Type = Number
+ 					c.value.Num = float64(h - 1)
++					c.value.Raw = strconv.Itoa(h - 1)
+ 					c.calcd = true
+ 					return i + 1, true
+ 				}
+diff --git a/gjson_test.go b/gjson_test.go
+index a871591..bc8b160 100644
+--- a/gjson_test.go
++++ b/gjson_test.go
+@@ -1911,3 +1911,7 @@ func TestSubSelectors(t *testing.T) {
+ 	assert(t, Get(json, "info.friends.#.[first,extra.0]").String() ==
+ 		`[["Dale",10],["Roger",40]]`)
+ }
++
++func TestArrayCountRawOutput(t *testing.T) {
++	assert(t, Get(`[1,2,3,4]`, "#").Raw == "4")
++}

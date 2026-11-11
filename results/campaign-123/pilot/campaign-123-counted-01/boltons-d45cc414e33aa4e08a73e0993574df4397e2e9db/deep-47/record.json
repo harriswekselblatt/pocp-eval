@@ -1,0 +1,151 @@
+{
+  "case_id": "boltons-d45cc414e33aa4e08a73e0993574df4397e2e9db",
+  "set": "B",
+  "split": "development",
+  "regime": "native",
+  "target": "boltons",
+  "truth": "legitimate",
+  "cohort": "original-sampled",
+  "category": "added_test",
+  "cell": "deep-47",
+  "mode": "deep",
+  "configured_seed": 47,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "f70735d74cf22a242fabe0deca6e81c061d20cc0",
+  "head": "eaf074e9f33c3bac159e1bca883f14560145e070",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 0,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "accepted",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": true,
+    "approval_needs": [],
+    "approval_only": null,
+    "findings": [],
+    "guards": [
+      {
+        "verdict": "passed",
+        "effective_seed": 162957209,
+        "detection": "kept",
+        "mutants": [
+          {
+            "file": "boltons/urlutils.py",
+            "line": 810,
+            "operator": "eq",
+            "before": "return not self == other",
+            "after": "return not self != other",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/urlutils.py",
+            "line": 900,
+            "operator": "zero-one",
+            "before": ">>> res = parse_url('http://127.0.0.1:3000/?a=1')",
+            "after": ">>> res = parse_url('http://127.0.1.1:3000/?a=1')",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/urlutils.py",
+            "line": 190,
+            "operator": "plus",
+            "before": "cur_url = URL(default_scheme + '://' + cur_url_text)",
+            "after": "cur_url = URL(default_scheme + '://' - cur_url_text)",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/urlutils.py",
+            "line": 70,
+            "operator": "plus",
+            "before": "_HEX_CHAR_MAP = {(a + b).encode('ascii'):",
+            "after": "_HEX_CHAR_MAP = {(a - b).encode('ascii'):",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/urlutils.py",
+            "line": 1257,
+            "operator": "neq",
+            "before": "if selfk != otherk or selfv != otherv:",
+            "after": "if selfk != otherk or selfv == otherv:",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/urlutils.py",
+            "line": 865,
+            "operator": "eq",
+            "before": "if ':' in host and '[' == host[0] and ']' == host[-1]:",
+            "after": "if ':' in host and '[' == host[0] and ']' != host[-1]:",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/urlutils.py",
+            "line": 382,
+            "operator": "gt",
+            "before": "if ret and (len(ret) > 1 or ret[0]):  # prevent unrooting",
+            "after": "if ret and (len(ret) <= 1 or ret[0]):  # prevent unrooting",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/urlutils.py",
+            "line": 1479,
+            "operator": "zero-one",
+            "before": "[0, 1]",
+            "after": "[1, 1]",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/urlutils.py",
+            "line": 925,
+            "operator": "zero-one",
+            "before": "if host and host[0] == '[' and ']' in port_str:",
+            "after": "if host and host[1] == '[' and ']' in port_str:",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/urlutils.py",
+            "line": 108,
+            "operator": "minus",
+            "before": "_FRAGMENT_DELIMS = _ALL_DELIMS - _FRAGMENT_SAFE",
+            "after": "_FRAGMENT_DELIMS = _ALL_DELIMS + _FRAGMENT_SAFE",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 59.822
+}

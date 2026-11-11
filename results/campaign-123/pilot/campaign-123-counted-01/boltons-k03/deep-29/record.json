@@ -1,0 +1,151 @@
+{
+  "case_id": "boltons-k03",
+  "set": "B",
+  "split": "holdout",
+  "regime": "native",
+  "target": "boltons",
+  "truth": "legitimate",
+  "cohort": "constructed-02",
+  "category": "intentional_behavior_and_test",
+  "cell": "deep-29",
+  "mode": "deep",
+  "configured_seed": 29,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "0b35ab9b2aafd50701f230e749887688de27e87f",
+  "head": "2beca70ab5eb3cdf607cea46e17fa8f39080ddb4",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 0,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "accepted",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": true,
+    "approval_needs": [],
+    "approval_only": null,
+    "findings": [],
+    "guards": [
+      {
+        "verdict": "passed",
+        "effective_seed": 2039354509,
+        "detection": "kept",
+        "mutants": [
+          {
+            "file": "boltons/iterutils.py",
+            "line": 741,
+            "operator": "zero-one",
+            "before": ">>> bucketize([1,2,365,4,98],key=[0,1,2,0,2])",
+            "after": ">>> bucketize([1,2,365,4,98],key=[1,1,2,0,2])",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/namedutils.py",
+            "line": 327,
+            "operator": "eq",
+            "before": "if not name or not all(c.isalnum() or c == '_' for c in name):",
+            "after": "if not name or not all(c.isalnum() or c != '_' for c in name):",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 1710,
+            "operator": "zero-one",
+            "before": "$ python -m timeit -s \"x = [1]\" \"try: x[0] \\nexcept: pass\"",
+            "after": "$ python -m timeit -s \"x = [1]\" \"try: x[1] \\nexcept: pass\"",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 737,
+            "operator": "zero-one",
+            "before": "{1.0: [(1+1j), 1], 2.0: [(2+2j), 2]}",
+            "after": "{1.0: [(1+1j), 1], 2.1: [(2+2j), 2]}",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 764,
+            "operator": "zero-one",
+            "before": "{0: [0, 3, 6, 9], 2: [2, 5, 8]}",
+            "after": "{1: [0, 3, 6, 9], 2: [2, 5, 8]}",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 585,
+            "operator": "zero-one",
+            "before": ">>> frange(5, 0)",
+            "after": ">>> frange(5, 1)",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 685,
+            "operator": "zero-one",
+            "before": "raise ValueError('expected factor >= 1.0, not %r' % factor)",
+            "after": "raise ValueError('expected factor >= 1.1, not %r' % factor)",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/dictutils.py",
+            "line": 366,
+            "operator": "neq",
+            "before": "if selfk != otherk or selfv != otherv:",
+            "after": "if selfk != otherk or selfv == otherv:",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 1709,
+            "operator": "zero-one",
+            "before": "10000000 loops, best of 3: 0.0207 usec per loop",
+            "after": "10000000 loops, best of 3: 1.0207 usec per loop",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/dictutils.py",
+            "line": 589,
+            "operator": "zero-one",
+            "before": "OrderedMultiDict([(0, 2), (1, 2)])",
+            "after": "OrderedMultiDict([(1, 2), (1, 2)])",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 39.81
+}

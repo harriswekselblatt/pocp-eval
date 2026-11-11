@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "node",
+    "<bench>/vendor/npm-pocp-1.2.3/package/bin/pocp.js",
+    "gate",
+    "--json"
+  ],
+  "exit": 1,
+  "execution": "completed",
+  "seconds": 0.9748636250151321,
+  "stdout": "{\n  \"pocp\": 1,\n  \"decision\": \"blocked\",\n  \"subject\": \"sha256:aef5a7103efcc1cd39a61adbd72f88789db48436a7fe546e7d4f2605c400d7e2\",\n  \"files\": [\n    \"boltons/strutils.py\"\n  ],\n  \"required_files\": [\n    \"boltons/strutils.py\"\n  ],\n  \"reasons\": [\n    {\n      \"code\": \"requirement\",\n      \"detail\": \"1 file(s) have required checks\",\n      \"files\": [\n        \"boltons/strutils.py\"\n      ]\n    }\n  ],\n  \"uncovered\": [\n    \"boltons/strutils.py\"\n  ],\n  \"unpacketed\": [\n    \"boltons/strutils.py\"\n  ],\n  \"packets\": [],\n  \"problems\": [],\n  \"warnings\": [],\n  \"guard_mode\": \"block\",\n  \"suggestion\": {\n    \"touches\": [\n      \"boltons/strutils.py\"\n    ],\n    \"obligations\": [\n      {\n        \"from\": \"runtime-suite\",\n        \"kind\": \"test\",\n        \"run\": \"sh .bench/check.sh\",\n        \"source\": \"rule:runtime-suite\"\n      }\n    ],\n    \"note\": \"Required checks for these files are added automatically when the packet opens.\",\n    \"command\": \"pocp open --intent '<what this change does>' --touch 'boltons/strutils.py'\"\n  },\n  \"remedies\": [\n    {\n      \"code\": \"no_packet\",\n      \"what\": \"1 staged file(s) are not covered by any packet: boltons/strutils.py\",\n      \"why\": \"a rule requires checks for them. A packet records what the change is and the checks that prove it.\",\n      \"next\": \"pocp fix --intent \\\"<what this change does>\\\"\",\n      \"by\": \"pocp fix\"\n    }\n  ],\n  \"pending_approvals\": []\n}\n",
+  "stderr": ""
+}

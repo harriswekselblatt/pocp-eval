@@ -1,0 +1,179 @@
+{
+  "case_id": "p-map-keyed-runner-legitimate",
+  "set": "Acontrol",
+  "split": "holdout",
+  "regime": "focused",
+  "target": "p-map",
+  "truth": "legitimate",
+  "cohort": null,
+  "category": null,
+  "cell": "deep-29",
+  "mode": "deep",
+  "configured_seed": 29,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "2e77b397b03571d19606c14ca6b94259fcc96a2b",
+  "head": "81a7161955ae511f6688ecc4d5bdb1de17686747",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 1,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "needs_review",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": false,
+    "approval_needs": [
+      {
+        "label": "pocp-approve-inconclusive",
+        "kind": "inconclusive",
+        "files": [
+          ".bench/check.sh"
+        ]
+      }
+    ],
+    "approval_only": true,
+    "findings": [
+      "test_inconclusive"
+    ],
+    "guards": [
+      {
+        "verdict": "inconclusive",
+        "effective_seed": 1687723333,
+        "detection": "inconclusive",
+        "mutants": [
+          {
+            "file": "index.js",
+            "line": 634,
+            "operator": "true",
+            "before": "isSourceDone = true;",
+            "after": "isSourceDone = false;",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.d.ts",
+            "line": 264,
+            "operator": "minus",
+            "before": "@param mapper - Function which is called with each value and its key. Expected to return a `Promise` or value.",
+            "after": "@param mapper + Function which is called with each value and its key. Expected to return a `Promise` or value.",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.test-d.ts",
+            "line": 355,
+            "operator": "gt",
+            "before": "expectType<Promise<Array<PromiseSettledResult<number>>>>(pMapSettled(numbers, async number => (number > 1 ? pMapStop : number)));",
+            "after": "expectType<Promise<Array<PromiseSettledResult<number>>>>(pMapSettled(numbers, async number => (number <= 1 ? pMapStop : number)));",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.test-d.ts",
+            "line": 135,
+            "operator": "gt",
+            "before": "expectType<Promise<string[]>>(pMap(sites, async site => (site.length > 3 ? pMapSkip : site)));",
+            "after": "expectType<Promise<string[]>>(pMap(sites, async site => (site.length <= 3 ? pMapSkip : site)));",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.d.ts",
+            "line": 24,
+            "operator": "true",
+            "before": "When `true`, the first mapper rejection will be rejected back to the consumer.",
+            "after": "When `false`, the first mapper rejection will be rejected back to the consumer.",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.test-d.ts",
+            "line": 124,
+            "operator": "false",
+            "before": "expectError(pMapIterable(sites, asyncMapper, {stopOnError: false}));",
+            "after": "expectError(pMapIterable(sites, asyncMapper, {stopOnError: true}));",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.test-d.ts",
+            "line": 388,
+            "operator": "false",
+            "before": "expectError(pMapSettledKeyed(keyedInput, value => value, {preserveOrder: false}));",
+            "after": "expectError(pMapSettledKeyed(keyedInput, value => value, {preserveOrder: true}));",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.test-d.ts",
+            "line": 299,
+            "operator": "gt",
+            "before": "expectType<Promise<{a?: number}>>(pMapKeyed({a: 1} as const, value => (value > 0 ? pMapSkip : value * 2)));",
+            "after": "expectType<Promise<{a?: number}>>(pMapKeyed({a: 1} as const, value => (value <= 0 ? pMapSkip : value * 2)));",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 169,
+            "operator": "gte",
+            "before": "if (isResolved || currentIndex >= doneIndex) {",
+            "after": "if (isResolved || currentIndex < doneIndex) {",
+            "focus": false,
+            "old": "not-measured",
+            "new": "not-run",
+            "not_measured": {
+              "side": "old",
+              "checks": [
+                {
+                  "check": "behavior-contract",
+                  "reason": "timed out"
+                }
+              ]
+            },
+            "retried": [
+              {
+                "side": "old",
+                "check": "behavior-contract",
+                "first": "timed out",
+                "timeout_ms": 180015,
+                "retry": "timed out"
+              }
+            ]
+          },
+          {
+            "file": "index.js",
+            "line": 566,
+            "operator": "strict-neq",
+            "before": "if (typeof mapper !== 'function') {",
+            "after": "if (typeof mapper === 'function') {",
+            "focus": false,
+            "old": "caught",
+            "new": "caught"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 246.436
+}

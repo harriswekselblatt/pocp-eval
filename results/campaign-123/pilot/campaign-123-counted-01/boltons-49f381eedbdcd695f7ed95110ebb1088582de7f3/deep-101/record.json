@@ -1,0 +1,151 @@
+{
+  "case_id": "boltons-49f381eedbdcd695f7ed95110ebb1088582de7f3",
+  "set": "B",
+  "split": "development",
+  "regime": "native",
+  "target": "boltons",
+  "truth": "legitimate",
+  "cohort": "original-sampled",
+  "category": "intentional_behavior_and_test",
+  "cell": "deep-101",
+  "mode": "deep",
+  "configured_seed": 101,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "c34e2fa5d784625ef4e025ec7f926ed1b462f910",
+  "head": "de5ac33fbcf49ccbef6f4e898d095a9ad45008d5",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 0,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "accepted",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": true,
+    "approval_needs": [],
+    "approval_only": null,
+    "findings": [],
+    "guards": [
+      {
+        "verdict": "passed",
+        "effective_seed": 1987204658,
+        "detection": "kept",
+        "mutants": [
+          {
+            "file": "boltons/iterutils.py",
+            "line": 517,
+            "operator": "zero-one",
+            "before": ">>> tuple(xfrange(1, 3, step=0.75))",
+            "after": ">>> tuple(xfrange(1, 3, step=1.75))",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 1635,
+            "operator": "zero-one",
+            "before": "$ python -m timeit -s \"x = [1]\" \"x[0]\"",
+            "after": "$ python -m timeit -s \"x = [1]\" \"x[1]\"",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 599,
+            "operator": "zero-one",
+            "before": "[0.25, 2.5, 25.0, 100.0]",
+            "after": "[1.25, 2.5, 25.0, 100.0]",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 690,
+            "operator": "zero-one",
+            "before": "{1.0: [(1+1j), 1], 2.0: [(2+2j), 2]}",
+            "after": "{1.1: [(1+1j), 1], 2.0: [(2+2j), 2]}",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 634,
+            "operator": "zero-one",
+            "before": "minimum. Set to 1.0 or `True` for a jitter approximating",
+            "after": "minimum. Set to 1.1 or `True` for a jitter approximating",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 525,
+            "operator": "zero-one",
+            "before": "start, stop = 0.0, stop * 1.0",
+            "after": "start, stop = 0.1, stop * 1.0",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 645,
+            "operator": "eq",
+            "before": "if stop == 0.0:",
+            "after": "if stop != 0.0:",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 530,
+            "operator": "lt",
+            "before": "while cur < stop:",
+            "after": "while cur >= stop:",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 599,
+            "operator": "zero-one",
+            "before": "[0.25, 2.5, 25.0, 100.0]",
+            "after": "[0.25, 2.5, 25.0, 100.1]",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 562,
+            "operator": "plus",
+            "before": "ret[i] = ret[i - 1] + step",
+            "after": "ret[i] = ret[i - 1] - step",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 32.017
+}

@@ -1,0 +1,151 @@
+{
+  "case_id": "p-map-354e035d38cdbef4bef7125cb6f524341c966370",
+  "set": "B",
+  "split": "development",
+  "regime": "native",
+  "target": "p-map",
+  "truth": "legitimate",
+  "cohort": "original-sampled",
+  "category": "added_test",
+  "cell": "deep-47",
+  "mode": "deep",
+  "configured_seed": 47,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "720367e575ee7e8a730dce2e6ff69ad45b2160c2",
+  "head": "7ed15807952ff72d2047af2103d3d7ab9cd7ed8c",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 0,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "accepted",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": true,
+    "approval_needs": [],
+    "approval_only": null,
+    "findings": [],
+    "guards": [
+      {
+        "verdict": "passed",
+        "effective_seed": 1412578613,
+        "detection": "kept",
+        "mutants": [
+          {
+            "file": "index.js",
+            "line": 125,
+            "operator": "strict-eq",
+            "before": "if (value === pMapSkip) {",
+            "after": "if (value !== pMapSkip) {",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 248,
+            "operator": "false",
+            "before": "return {done: false, value: returnValue};",
+            "after": "return {done: true, value: returnValue};",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 240,
+            "operator": "gt",
+            "before": "if (index > 0) {",
+            "after": "if (index <= 0) {",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 79,
+            "operator": "true",
+            "before": "isIterableDone = true;",
+            "after": "isIterableDone = false;",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 47,
+            "operator": "true",
+            "before": "isRejected = true;",
+            "after": "isRejected = false;",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 89,
+            "operator": "strict-eq",
+            "before": "if (skippedIndexesMap.size === 0) {",
+            "after": "if (skippedIndexesMap.size !== 0) {",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 82,
+            "operator": "zero-one",
+            "before": "if (!stopOnError && errors.length > 0) {",
+            "after": "if (!stopOnError && errors.length > 1) {",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 194,
+            "operator": "gte",
+            "before": "if (!((Number.isSafeInteger(concurrency) && concurrency >= 1) || concurrency === Number.POSITIVE_INFINITY)) {",
+            "after": "if (!((Number.isSafeInteger(concurrency) && concurrency < 1) || concurrency === Number.POSITIVE_INFINITY)) {",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 212,
+            "operator": "lt",
+            "before": "if (isDone || !(pendingPromisesCount < concurrency && promises.length < backpressure)) {",
+            "after": "if (isDone || !(pendingPromisesCount >= concurrency && promises.length < backpressure)) {",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 29,
+            "operator": "zero-one",
+            "before": "let resolvingCount = 0;",
+            "after": "let resolvingCount = 1;",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 79.56
+}

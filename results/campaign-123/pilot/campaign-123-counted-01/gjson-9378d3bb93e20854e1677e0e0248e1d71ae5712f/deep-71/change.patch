@@ -1,0 +1,31 @@
+diff --git a/gjson.go b/gjson.go
+index d620ec0..8c6e612 100644
+--- a/gjson.go
++++ b/gjson.go
+@@ -3417,6 +3417,11 @@ func revSquash(json string) string {
+ 	// reverse squash
+ 	// expects that the tail character is a ']' or '}' or ')' or '"'
+ 	// squash the value, ignoring all nested arrays and objects.
++	if len(json) == 0 {
++		// Nothing to squash. Path can walk past the start of the document on
++		// malformed JSON (#400); guard against json[len(json)-1] panicking.
++		return json
++	}
+ 	i := len(json) - 1
+ 	var depth int
+ 	if json[i] != '"' {
+diff --git a/gjson_test.go b/gjson_test.go
+index 6ab9619..899d2a1 100644
+--- a/gjson_test.go
++++ b/gjson_test.go
+@@ -2829,3 +2829,10 @@ func TestIntOverflow(t *testing.T) {
+ 	assert(t, Parse(`"-9223372036854775809.1"`).Int() == -9223372036854775808)
+ 	assert(t, Parse(`"-9223372036854775809.1"`).Int() == -9223372036854775808)
+ }
++
++func TestPathRev(t *testing.T) {
++	// See issue https://github.com/tidwall/gjson/issues/400
++	doc := `{"b:"2}`
++	// Does not matter the result. Must not panic.
++	Get(doc, "b:").Path(doc)
++}

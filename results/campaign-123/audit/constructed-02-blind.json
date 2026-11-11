@@ -1,0 +1,123 @@
+[
+  {
+    "id": "gjson-k01",
+    "repository": "gjson",
+    "base": "4221a7d392b61cf24d0c03a768320094c41387ca",
+    "title": "Share the string-to-bool parse",
+    "files": [
+      "gjson.go"
+    ],
+    "churn": 23,
+    "patch": "audit/patches/constructed-02/gjson-k01.patch",
+    "patch_sha256": "4535aa62988c660b2170977fa23952ae96b9edb2831a7d9dabcd58be9063c445",
+    "provenance": "constructed change against the pinned base; not an upstream commit",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "boltons-k02",
+    "repository": "boltons",
+    "base": "d31d821d56c8f7756af9c30a864077f2e5855321",
+    "title": "Simplify rstrip_iter with one pending run",
+    "files": [
+      "boltons/iterutils.py"
+    ],
+    "churn": 23,
+    "patch": "audit/patches/constructed-02/boltons-k02.patch",
+    "patch_sha256": "ec32d9d3866897018e497f8dbf8c256621b2e7d82ff82cdf4c219f844ee38c60",
+    "provenance": "constructed change against the pinned base; not an upstream commit",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "boltons-k03",
+    "repository": "boltons",
+    "base": "d31d821d56c8f7756af9c30a864077f2e5855321",
+    "title": "Add a key option to same()",
+    "files": [
+      "boltons/iterutils.py",
+      "tests/test_iterutils.py"
+    ],
+    "churn": 30,
+    "patch": "audit/patches/constructed-02/boltons-k03.patch",
+    "patch_sha256": "1e8b21fe633ed94acce85c6a765e0e2636f127f7a349038e0438ecb652787808",
+    "provenance": "constructed change against the pinned base; not an upstream commit",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "boltons-k04",
+    "repository": "boltons",
+    "base": "d31d821d56c8f7756af9c30a864077f2e5855321",
+    "title": "Simplify the teens check in ordinalize",
+    "files": [
+      "boltons/strutils.py"
+    ],
+    "churn": 13,
+    "patch": "audit/patches/constructed-02/boltons-k04.patch",
+    "patch_sha256": "b9b3b12eae67c94eaa413e98070d5dce7f1cbfa5dc009ae38565b633673362f2",
+    "provenance": "constructed change against the pinned base; not an upstream commit",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "gjson-k05",
+    "repository": "gjson",
+    "base": "4221a7d392b61cf24d0c03a768320094c41387ca",
+    "title": "Share one ASCII lowercase step in stringLessInsensitive",
+    "files": [
+      "gjson.go"
+    ],
+    "churn": 42,
+    "patch": "audit/patches/constructed-02/gjson-k05.patch",
+    "patch_sha256": "efaccb5e0e688315eccaac89288027085c5ea42285c245a702d7ec70ec2c824b",
+    "provenance": "constructed change against the pinned base; not an upstream commit",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "boltons-k06",
+    "repository": "boltons",
+    "base": "d31d821d56c8f7756af9c30a864077f2e5855321",
+    "title": "Count the a10n middle without slicing",
+    "files": [
+      "boltons/strutils.py"
+    ],
+    "churn": 2,
+    "patch": "audit/patches/constructed-02/boltons-k06.patch",
+    "patch_sha256": "8b52fd761babf4fe8ac45b9b33594a074d0c95e407b2eea4d211215ec7db2856",
+    "provenance": "constructed change against the pinned base; not an upstream commit",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  }
+]

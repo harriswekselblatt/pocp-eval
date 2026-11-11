@@ -1,0 +1,290 @@
+diff --git a/.bench/check.sh b/.bench/check.sh
+index 1e160c6..e2d4b7d 100644
+--- a/.bench/check.sh
++++ b/.bench/check.sh
+@@ -1,3 +1,3 @@
+ #!/bin/sh
+ set -eu
+-node test/bench-v2.mjs
++exec node test/bench-v2.mjs
+diff --git a/.proof/packets/p-282f22df.json b/.proof/packets/p-282f22df.json
+new file mode 100644
+index 0000000..441718e
+--- /dev/null
++++ b/.proof/packets/p-282f22df.json
+@@ -0,0 +1,275 @@
++{
++  "pocp": 1,
++  "id": "p-282f22df",
++  "intent": "Change to .bench/check.sh",
++  "touches": [
++    ".bench/check.sh"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:behavior-contract"
++    },
++    {
++      "id": "o2",
++      "kind": "guard",
++      "files": [
++        ".bench/check.sh"
++      ],
++      "mutants": 10,
++      "seed": 101,
++      "text": "Existing tests or test setup changed (.bench/check.sh): the old tests still pass on the new code, and the new tests catch every sampled mutant the old ones caught",
++      "source": "guard:tests"
++    }
++  ],
++  "state": "open",
++  "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++  "policy_repo": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++  "opened_at": "2026-11-11T18:15:04.927Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:1b3c36fb90c0a0cb7d26e33b4ea18b5e9e85bdf35341ce35c69eb8002c3eecff",
++      "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T18:15:05.589Z",
++      "duration_ms": 169,
++      "stdout_sha256": "13c54f0943374fb3d5c2d4e7efea8b9fd974f944dcb9168ea7cb9a554d482433",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-48b39b87",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      }
++    },
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:82843246d33b6d523d6619b22a5bc2ec4e6673ad41ac70e19a70e1aee566913f",
++      "subject": "sha256:1b3c36fb90c0a0cb7d26e33b4ea18b5e9e85bdf35341ce35c69eb8002c3eecff",
++      "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++      "kind": "guard",
++      "mode": "snapshot",
++      "passed": false,
++      "started_at": "2026-11-11T18:15:06.113Z",
++      "duration_ms": 1641,
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      },
++      "guard": {
++        "pocp": 1,
++        "verdict": "inconclusive",
++        "passed": false,
++        "summary": "the old tests caught none of 10 sampled mutants, so a drop in detection can't be measured",
++        "base": "6862a10d2db1fb0e959daf2a41f6e12d772cbc23",
++        "checks": [
++          {
++            "id": "behavior-contract",
++            "run": "sh .bench/check.sh"
++          }
++        ],
++        "old_tests": {
++          "result": "pass",
++          "restored": [
++            ".bench/check.sh"
++          ],
++          "runs": [
++            {
++              "check": "behavior-contract",
++              "passed": true,
++              "exit": 0,
++              "duration_ms": 362
++            }
++          ]
++        },
++        "new_tests": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "behavior-contract",
++              "passed": true,
++              "reused": true,
++              "duration_ms": 0
++            }
++          ]
++        },
++        "baseline": {
++          "result": "not-run",
++          "runs": []
++        },
++        "detection": {
++          "result": "inconclusive",
++          "budget": 10,
++          "seed": 101,
++          "sites": 217,
++          "focus_sites": 0,
++          "files": 6,
++          "sampled": 10,
++          "old_caught": 0,
++          "new_caught": 0,
++          "lost": [],
++          "mutants": [
++            {
++              "file": "index.js",
++              "line": 362,
++              "operator": "or",
++              "before": "if (isDone || isIterableDone || index > stopIndex || readingCount >= concurrency || promises.length - headIndex >= backpressure) {",
++              "after": "if (isDone || isIterableDone && index > stopIndex || readingCount >= concurrency || promises.length - headIndex >= backpressure) {",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "count-array-work.js",
++              "line": 26,
++              "operator": "zero-one",
++              "before": "count(this.length - (arguments_[0] ?? 0));",
++              "after": "count(this.length - (arguments_[0] ?? 1));",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "index.test-d.ts",
++              "line": 58,
++              "operator": "false",
++              "before": "expectAssignable<Options>({stopOnError: false});",
++              "after": "expectAssignable<Options>({stopOnError: true});",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "index.js",
++              "line": 648,
++              "operator": "strict-neq",
++              "before": "if (typeof result?.then !== 'function') {",
++              "after": "if (typeof result?.then === 'function') {",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "index.d.ts",
++              "line": 114,
++              "operator": "minus",
++              "before": "@param index - Index of the element in the source array.",
++              "after": "@param index + Index of the element in the source array.",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "index.js",
++              "line": 486,
++              "operator": "times",
++              "before": "if (headIndex * 2 >= promises.length) {",
++              "after": "if (headIndex / 2 >= promises.length) {",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "index.d.ts",
++              "line": 194,
++              "operator": "minus",
++              "before": "@param mapper - Function which is called for every item in `input`. Expected to return a `Promise` or value.",
++              "after": "@param mapper + Function which is called for every item in `input`. Expected to return a `Promise` or value.",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "index.js",
++              "line": 582,
++              "operator": "strict-eq",
++              "before": "if (input === null || (typeof input !== 'object' && typeof input !== 'function')) {",
++              "after": "if (input !== null || (typeof input !== 'object' && typeof input !== 'function')) {",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "index.d.ts",
++              "line": 193,
++              "operator": "minus",
++              "before": "@param input - Synchronous or asynchronous iterable that is iterated over concurrently, calling the `mapper` function for each element. Each iterated item is `a",
++              "after": "@param input + Synchronous or asynchronous iterable that is iterated over concurrently, calling the `mapper` function for each element. Each iterated item is `a",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "index.js",
++              "line": 121,
++              "operator": "or",
++              "before": "if (isResolved || doneIndex === Number.POSITIVE_INFINITY) {",
++              "after": "if (isResolved && doneIndex === Number.POSITIVE_INFINITY) {",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            }
++          ]
++        },
++        "duration_ms": 1641,
++        "checks_from": "rules"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T18:15:04.927Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T18:15:04.927Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1",
++        "o2"
++      ],
++      "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66"
++    },
++    {
++      "at": "2026-11-11T18:15:07.881Z",
++      "event": "proof_failed",
++      "obligation": "o2",
++      "subject": "sha256:1b3c36fb90c0a0cb7d26e33b4ea18b5e9e85bdf35341ce35c69eb8002c3eecff"
++    },
++    {
++      "at": "2026-11-11T18:15:08.775Z",
++      "event": "deferred",
++      "obligation": "o2",
++      "by": "unknown",
++      "subject": "sha256:1b3c36fb90c0a0cb7d26e33b4ea18b5e9e85bdf35341ce35c69eb8002c3eecff"
++    }
++  ],
++  "deferrals": [
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:82843246d33b6d523d6619b22a5bc2ec4e6673ad41ac70e19a70e1aee566913f",
++      "subject": "sha256:1b3c36fb90c0a0cb7d26e33b4ea18b5e9e85bdf35341ce35c69eb8002c3eecff",
++      "by": "unknown",
++      "at": "2026-11-11T18:15:08.775Z",
++      "to": "ci-approval",
++      "reason": "the old tests caught none of 10 sampled mutants, so a drop in detection can't be measured"
++    }
++  ]
++}

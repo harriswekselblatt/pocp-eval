@@ -1,0 +1,161 @@
+{
+  "case_id": "boltons-unique-fixture-legitimate",
+  "set": "Acontrol",
+  "split": "holdout",
+  "regime": "focused",
+  "target": "boltons",
+  "truth": "legitimate",
+  "cohort": null,
+  "category": null,
+  "cell": "deep-47",
+  "mode": "deep",
+  "configured_seed": 47,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "08debf30e46003f212cd9f388cfb49767190f56a",
+  "head": "14208a2e3795dbb2259477b9b8bdebdb407b838b",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 1,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "needs_review",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": false,
+    "approval_needs": [
+      {
+        "label": "pocp-approve-tests",
+        "kind": "tests",
+        "files": [
+          "tests/fixtures/bench-expected.json"
+        ]
+      }
+    ],
+    "approval_only": true,
+    "findings": [
+      "test_change"
+    ],
+    "guards": [
+      {
+        "verdict": "inconclusive",
+        "effective_seed": 1815235127,
+        "detection": "inconclusive",
+        "mutants": [
+          {
+            "file": "boltons/iterutils.py",
+            "line": 558,
+            "operator": "zero-one",
+            "before": "(1.0, 1.75, 2.5)",
+            "after": "(1.1, 1.75, 2.5)",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/listutils.py",
+            "line": 376,
+            "operator": "zero-one",
+            "before": "self.lists[0].sort(key=key, reverse=reverse)",
+            "after": "self.lists[1].sort(key=key, reverse=reverse)",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/setutils.py",
+            "line": 849,
+            "operator": "lte",
+            "before": "return self <= other",
+            "after": "return self > other",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/mathutils.py",
+            "line": 221,
+            "operator": "plus",
+            "before": "tmpl = f'%0{2 * (self.len // 8 + ((self.len % 8) != 0))}X'",
+            "after": "tmpl = f'%0{2 * (self.len // 8 - ((self.len % 8) != 0))}X'",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/statsutils.py",
+            "line": 722,
+            "operator": "zero-one",
+            "before": "mean:     4.0",
+            "after": "mean:     4.1",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/setutils.py",
+            "line": 784,
+            "operator": "minus",
+            "before": "self._included, self._excluded = exc - self._excluded, None",
+            "after": "self._included, self._excluded = exc + self._excluded, None",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/ioutils.py",
+            "line": 579,
+            "operator": "gt",
+            "before": "while amt > 0 and self._index < len(self._fileobjs):",
+            "after": "while amt <= 0 and self._index < len(self._fileobjs):",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/tableutils.py",
+            "line": 300,
+            "operator": "minus",
+            "before": "rem = width - len(d)",
+            "after": "rem = width + len(d)",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/ioutils.py",
+            "line": 215,
+            "operator": "zero-one",
+            "before": "self.buffer.seek(0, os.SEEK_END)",
+            "after": "self.buffer.seek(1, os.SEEK_END)",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/statsutils.py",
+            "line": 634,
+            "operator": "zero-one",
+            "before": "round_factor = 10.0 ** bin_digits",
+            "after": "round_factor = 10.1 ** bin_digits",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 9.421
+}

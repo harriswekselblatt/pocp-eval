@@ -1,0 +1,161 @@
+{
+  "case_id": "boltons-first-runner-legitimate",
+  "set": "Acontrol",
+  "split": "holdout",
+  "regime": "focused",
+  "target": "boltons",
+  "truth": "legitimate",
+  "cohort": null,
+  "category": null,
+  "cell": "deep-101",
+  "mode": "deep",
+  "configured_seed": 101,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "166349617fa70022a8f43883dd92e5243bc262f8",
+  "head": "f595342c512c36dd8bdc9395eb566ba2c21318ae",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 1,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "needs_review",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": false,
+    "approval_needs": [
+      {
+        "label": "pocp-approve-tests",
+        "kind": "tests",
+        "files": [
+          ".bench/check.sh"
+        ]
+      }
+    ],
+    "approval_only": true,
+    "findings": [
+      "test_change"
+    ],
+    "guards": [
+      {
+        "verdict": "inconclusive",
+        "effective_seed": 636692692,
+        "detection": "inconclusive",
+        "mutants": [
+          {
+            "file": "boltons/iterutils.py",
+            "line": 248,
+            "operator": "eq",
+            "before": "if i == strip_value:",
+            "after": "if i != strip_value:",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/setutils.py",
+            "line": 968,
+            "operator": "minus",
+            "before": "if exc is None:  # - +",
+            "after": "if exc is None:  # + +",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/timeutils.py",
+            "line": 125,
+            "operator": "zero-one",
+            "before": "datetime.datetime(1970, 1, 1, 0, 0, 0, 851000)",
+            "after": "datetime.datetime(1970, 1, 1, 0, 0, 1, 851000)",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/statsutils.py",
+            "line": 523,
+            "operator": "eq",
+            "before": "if self.std_dev == 0:",
+            "after": "if self.std_dev != 0:",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/statsutils.py",
+            "line": 421,
+            "operator": "zero-one",
+            "before": "if len(data) > 1 and s_dev > 0:",
+            "after": "if len(data) > 1 and s_dev > 1:",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/setutils.py",
+            "line": 200,
+            "operator": "zero-one",
+            "before": "dint[0] = start",
+            "after": "dint[1] = start",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/funcutils.py",
+            "line": 85,
+            "operator": "plus",
+            "before": "spec = spec + formatvalue(defaults[i - firstdefault])",
+            "after": "spec = spec - formatvalue(defaults[i - firstdefault])",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/strutils.py",
+            "line": 603,
+            "operator": "plus",
+            "before": "self.result.append('&' + name + ';')",
+            "after": "self.result.append('&' - name + ';')",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 1658,
+            "operator": "zero-one",
+            "before": ">>> untyped_sorted(['abc', 2.0, 1, 2, 'def'])",
+            "after": ">>> untyped_sorted(['abc', 2.1, 1, 2, 'def'])",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/tableutils.py",
+            "line": 547,
+            "operator": "minus",
+            "before": "new_depth = max_depth - 1",
+            "after": "new_depth = max_depth + 1",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 10.777
+}

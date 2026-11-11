@@ -1,0 +1,30 @@
+diff --git a/boltons/funcutils.py b/boltons/funcutils.py
+index 3fe6570..e7a8953 100644
+--- a/boltons/funcutils.py
++++ b/boltons/funcutils.py
+@@ -1007,7 +1007,6 @@ def noop(*args, **kwargs):
+ 
+ 
+ 
+-_UNSET = object()
+ 
+ 
+ def once(func):
+@@ -1016,6 +1015,9 @@ def once(func):
+     block until the first execution completes, then all receive the
+     cached result.
+ 
++    This is especially useful in cases like logging, where multiple
++    initializations can cause problems.
++
+     The decorated function must take no arguments.
+ 
+     >>> call_count = 0
+@@ -1031,6 +1033,7 @@ def once(func):
+     >>> call_count
+     1
+     """
++    _UNSET = object()
+     lock = threading.Lock()
+     result = _UNSET
+ 

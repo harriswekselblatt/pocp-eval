@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "node",
+    "<bench>/vendor/npm-pocp-1.2.3/package/bin/pocp.js",
+    "gate",
+    "--json"
+  ],
+  "exit": 1,
+  "execution": "completed",
+  "seconds": 0.5539956249995157,
+  "stdout": "{\n  \"pocp\": 1,\n  \"decision\": \"blocked\",\n  \"subject\": \"sha256:a04c7c900aa1af5a4019ca326ea00650ad25e98ddff5568c488d2342e9b6ce62\",\n  \"files\": [\n    \"tests/test_bench_v2.py\"\n  ],\n  \"required_files\": [\n    \"tests/test_bench_v2.py\"\n  ],\n  \"reasons\": [\n    {\n      \"code\": \"requirement\",\n      \"detail\": \"1 file(s) have required checks\",\n      \"files\": [\n        \"tests/test_bench_v2.py\"\n      ]\n    },\n    {\n      \"code\": \"test_change\",\n      \"detail\": \"existing tests or test setup changed (1 file(s)); pocp prove checks mechanically that nothing was weakened\",\n      \"files\": [\n        \"tests/test_bench_v2.py\"\n      ]\n    }\n  ],\n  \"uncovered\": [\n    \"tests/test_bench_v2.py\"\n  ],\n  \"unpacketed\": [\n    \"tests/test_bench_v2.py\"\n  ],\n  \"packets\": [],\n  \"problems\": [],\n  \"warnings\": [],\n  \"guard_mode\": \"block\",\n  \"test_guard\": {\n    \"mode\": \"block\",\n    \"files\": [\n      \"tests/test_bench_v2.py\"\n    ],\n    \"signals\": [\n      {\n        \"file\": \"tests/test_bench_v2.py\",\n        \"status\": \"M\",\n        \"kind\": \"test\",\n        \"removed_asserts\": 0,\n        \"added_skips\": 0\n      }\n    ]\n  },\n  \"suggestion\": {\n    \"touches\": [\n      \"tests/test_bench_v2.py\"\n    ],\n    \"obligations\": [\n      {\n        \"from\": \"behavior-contract\",\n        \"kind\": \"test\",\n        \"run\": \"sh .bench/check.sh\",\n        \"source\": \"rule:behavior-contract\"\n      }\n    ],\n    \"note\": \"Required checks for these files are added automatically when the packet opens.\",\n    \"command\": \"pocp open --intent '<what this change does>' --touch 'tests/test_bench_v2.py'\"\n  },\n  \"remedies\": [\n    {\n      \"code\": \"no_packet\",\n      \"what\": \"1 staged file(s) are not covered by any packet: tests/test_bench_v2.py\",\n      \"why\": \"a rule requires checks for them; existing tests or test setup changed, which can hide a bug instead of fixing it. A packet records what the change is and the checks that prove it.\",\n      \"next\": \"pocp fix --intent \\\"<what this change does>\\\"\",\n      \"by\": \"pocp fix\"\n    }\n  ],\n  \"pending_approvals\": []\n}\n",
+  "stderr": ""
+}

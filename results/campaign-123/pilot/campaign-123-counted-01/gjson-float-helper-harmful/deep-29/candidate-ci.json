@@ -1,0 +1,11 @@
+{
+  "argv": [
+    "sh",
+    ".bench/check.sh"
+  ],
+  "exit": 0,
+  "execution": "completed",
+  "seconds": 1.4272138749947771,
+  "stdout": "=== RUN   TestBenchV2\nBENCH_ACTUAL=[0,0]\n--- PASS: TestBenchV2 (0.00s)\nPASS\nok  \tgithub.com/tidwall/gjson\t0.281s\n",
+  "stderr": ""
+}

@@ -1,0 +1,76 @@
+diff --git a/boltons/namedutils.py b/boltons/namedutils.py
+index 0311f81..25b486e 100644
+--- a/boltons/namedutils.py
++++ b/boltons/namedutils.py
+@@ -160,10 +160,10 @@ def namedtuple(typename, field_names, verbose=False, rename=False):
+                 field_names[index] = '_%d' % index
+             seen.add(name)
+     for name in [typename] + field_names:
+-        if not all(c.isalnum() or c == '_' for c in name):
+-            raise ValueError('Type names and field names can only contain '
+-                             'alphanumeric characters and underscores: %r'
+-                             % name)
++        if not name or not all(c.isalnum() or c == '_' for c in name):
++            raise ValueError('Type names and field names must be non-empty '
++                             'and can only contain alphanumeric characters '
++                             'and underscores: %r' % name)
+         if _iskeyword(name):
+             raise ValueError('Type names and field names cannot be a '
+                              'keyword: %r' % name)
+@@ -319,10 +319,10 @@ def namedlist(typename, field_names, verbose=False, rename=False):
+                 field_names[index] = '_%d' % index
+             seen.add(name)
+     for name in [typename] + field_names:
+-        if not all(c.isalnum() or c == '_' for c in name):
+-            raise ValueError('Type names and field names can only contain '
+-                             'alphanumeric characters and underscores: %r'
+-                             % name)
++        if not name or not all(c.isalnum() or c == '_' for c in name):
++            raise ValueError('Type names and field names must be non-empty '
++                             'and can only contain alphanumeric characters '
++                             'and underscores: %r' % name)
+         if _iskeyword(name):
+             raise ValueError('Type names and field names cannot be a '
+                              'keyword: %r' % name)
+diff --git a/tests/test_namedutils.py b/tests/test_namedutils.py
+index e2230a7..2f33ea4 100644
+--- a/tests/test_namedutils.py
++++ b/tests/test_namedutils.py
+@@ -1,5 +1,7 @@
+ from pickle import loads, dumps
+ 
++import pytest
++
+ from boltons.namedutils import namedlist, namedtuple
+ 
+ Point = namedtuple('Point', 'x, y', rename=True)
+@@ -24,3 +26,29 @@ def test_namedlist_pickle():
+ def test_namedtuple_pickle():
+     p = Point(x=10, y=20)
+     assert p == loads(dumps(p))
++
++
++@pytest.mark.parametrize("factory", [namedtuple, namedlist])
++def test_empty_field_name_raises_value_error(factory):
++    # `all()` is True for the empty string, so an empty name used to pass both
++    # ValueError checks and reach `name[0].isdigit()`, raising IndexError.
++    with pytest.raises(ValueError):
++        factory('Point', ['x', ''])
++
++
++@pytest.mark.parametrize("factory", [namedtuple, namedlist])
++def test_empty_type_name_raises_value_error(factory):
++    with pytest.raises(ValueError):
++        factory('', ['x', 'y'])
++
++
++@pytest.mark.parametrize("factory", [namedtuple, namedlist])
++def test_invalid_character_still_raises_value_error(factory):
++    with pytest.raises(ValueError):
++        factory('Point', ['x', 'y-z'])
++
++
++@pytest.mark.parametrize("factory", [namedtuple, namedlist])
++def test_valid_names_still_accepted(factory):
++    cls = factory('Point', ['x', 'y'])
++    assert cls(x=1, y=2).x == 1

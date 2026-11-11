@@ -1,0 +1,11 @@
+{
+  "argv": [
+    "sh",
+    ".bench/check.sh"
+  ],
+  "exit": 1,
+  "execution": "completed",
+  "seconds": 0.6154773751040921,
+  "stdout": "=== RUN   TestBenchV2\nBENCH_ACTUAL=[false,true]\n    assertions.go:6: contract mismatch: [false,true] != [true,false]\n--- FAIL: TestBenchV2 (0.00s)\nFAIL\nFAIL\tgithub.com/tidwall/gjson\t0.171s\nFAIL\n",
+  "stderr": ""
+}

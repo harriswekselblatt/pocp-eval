@@ -1,0 +1,333 @@
+diff --git a/.proof/packets/p-44bd4f67.json b/.proof/packets/p-44bd4f67.json
+new file mode 100644
+index 0000000..39d4dec
+--- /dev/null
++++ b/.proof/packets/p-44bd4f67.json
+@@ -0,0 +1,259 @@
++{
++  "pocp": 1,
++  "id": "p-44bd4f67",
++  "intent": "Change to boltons/statsutils.py, tests/test_statsutils.py",
++  "touches": [
++    "boltons/statsutils.py",
++    "tests/test_statsutils.py"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:runtime-suite"
++    },
++    {
++      "id": "o2",
++      "kind": "guard",
++      "files": [
++        "tests/test_statsutils.py"
++      ],
++      "mutants": 10,
++      "seed": 47,
++      "text": "Existing tests or test setup changed (tests/test_statsutils.py): the old tests still pass on the new code, and the new tests catch every sampled mutant the old ones caught",
++      "source": "guard:tests"
++    }
++  ],
++  "state": "proven",
++  "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "policy_repo": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "opened_at": "2026-11-11T14:05:56.678Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:6aad6ae0bd958873fb630882c58a480193c9373ab4c9efee3a81ea14ce4e20ed",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T14:05:57.051Z",
++      "duration_ms": 2157,
++      "stdout_sha256": "47f1bd83583361f2eeff47c09a8c457b6255a49f74d487ab9db468cee0d2174f",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-a3a31f2a",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      }
++    },
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:21c8b3aa09fca4a0c740a651dd0cbdda223e62db7ca8751f38319efd3f249930",
++      "subject": "sha256:6aad6ae0bd958873fb630882c58a480193c9373ab4c9efee3a81ea14ce4e20ed",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "kind": "guard",
++      "mode": "snapshot",
++      "passed": true,
++      "started_at": "2026-11-11T14:05:59.316Z",
++      "duration_ms": 12162,
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      },
++      "guard": {
++        "pocp": 1,
++        "verdict": "passed",
++        "passed": true,
++        "summary": "the old tests pass on the new code, and the new tests catch all 6 of the 10 sampled mutants the old tests caught (seed 47)",
++        "base": "9762ef0abd7c9486c5b2e7cccddb2cf9d16203cb",
++        "checks": [
++          {
++            "id": "runtime-suite",
++            "run": "sh .bench/check.sh"
++          }
++        ],
++        "old_tests": {
++          "result": "pass",
++          "restored": [
++            "tests/test_statsutils.py"
++          ],
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "exit": 0,
++              "duration_ms": 2310
++            }
++          ]
++        },
++        "new_tests": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "reused": true,
++              "duration_ms": 0
++            }
++          ]
++        },
++        "baseline": {
++          "result": "not-run",
++          "runs": []
++        },
++        "detection": {
++          "result": "kept",
++          "budget": 10,
++          "seed": 47,
++          "sites": 1526,
++          "focus_sites": 205,
++          "files": 34,
++          "sampled": 10,
++          "old_caught": 6,
++          "new_caught": 6,
++          "lost": [],
++          "mutants": [
++            {
++              "file": "boltons/statsutils.py",
++              "line": 309,
++              "operator": "zero-one",
++              "before": "return Counter(self.data).most_common(1)[0][0]",
++              "after": "return Counter(self.data).most_common(1)[0][1]",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/statsutils.py",
++              "line": 75,
++              "operator": "minus",
++              "before": "4. `Kurtosis`_ - :func:`kurtosis` - \"peakiness\" or \"long-tailed\"-ness",
++              "after": "4. `Kurtosis`_ - :func:`kurtosis` + \"peakiness\" or \"long-tailed\"-ness",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/statsutils.py",
++              "line": 822,
++              "operator": "minus",
++              "before": "bar_cols = max(width - len(tmp_line), 3)",
++              "after": "bar_cols = max(width + len(tmp_line), 3)",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "boltons/statsutils.py",
++              "line": 820,
++              "operator": "times",
++              "before": "tmp_line = '{}: {} #'.format('x' * label_cols, count_max)",
++              "after": "tmp_line = '{}: {} #'.format('x' / label_cols, count_max)",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "boltons/statsutils.py",
++              "line": 377,
++              "operator": "minus",
++              "before": "return median([abs(x - v) for v in sorted_vals])",
++              "after": "return median([abs(x + v) for v in sorted_vals])",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/statsutils.py",
++              "line": 482,
++              "operator": "times",
++              "before": "return (data[idx_f] * (idx_c - idx)) + (data[idx_c] * (idx - idx_f))",
++              "after": "return (data[idx_f] * (idx_c - idx)) + (data[idx_c] / (idx - idx_f))",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "boltons/statsutils.py",
++              "line": 565,
++              "operator": "plus",
++              "before": "bins = [min_data + (dx * i) for i in range(bin_count + 1)]",
++              "after": "bins = [min_data - (dx * i) for i in range(bin_count + 1)]",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "boltons/statsutils.py",
++              "line": 739,
++              "operator": "eq",
++              "before": "elif format == 'list':",
++              "after": "elif format != 'list':",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/statsutils.py",
++              "line": 363,
++              "operator": "zero-one",
++              "before": "return self.variance ** 0.5",
++              "after": "return self.variance ** 1.5",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "boltons/statsutils.py",
++              "line": 569,
++              "operator": "times",
++              "before": "bins = [min_data + (dx * i) for i in range(count)]",
++              "after": "bins = [min_data + (dx / i) for i in range(count)]",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            }
++          ]
++        },
++        "duration_ms": 12162,
++        "checks_from": "rules"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T14:05:56.678Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T14:05:56.678Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1",
++        "o2"
++      ],
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178"
++    },
++    {
++      "at": "2026-11-11T14:06:11.574Z",
++      "event": "state",
++      "from": "open",
++      "to": "proven",
++      "subject": "sha256:6aad6ae0bd958873fb630882c58a480193c9373ab4c9efee3a81ea14ce4e20ed"
++    }
++  ]
++}
+diff --git a/boltons/statsutils.py b/boltons/statsutils.py
+index 36a8223..7b75a14 100644
+--- a/boltons/statsutils.py
++++ b/boltons/statsutils.py
+@@ -30,7 +30,7 @@
+ 
+ """``statsutils`` provides tools aimed primarily at descriptive
+ statistics for data analysis, such as :func:`mean` (average),
+-:func:`median`, :func:`variance`, and many others,
++:func:`median`, :func:`mode`, :func:`variance`, and many others,
+ 
+ The :class:`Stats` type provides all the main functionality of the
+ ``statsutils`` module. A :class:`Stats` object wraps a given dataset,
+@@ -288,6 +288,27 @@ class Stats:
+         return self._get_quantile(self._get_sorted_data(), 0.5)
+     median = _StatsProperty('median', _calc_median)
+ 
++    def _calc_mode(self):
++        """
++        The mode is the value that appears most frequently in the
++        data. Unlike the mean and median, the mode is well-defined for
++        non-numeric, categorical data, too.
++
++        >>> mode([2, 1, 3, 1])
++        1
++        >>> mode(['a', 'b', 'b', 'c', 'c', 'c'])
++        'c'
++
++        When several values are equally common, the one appearing
++        first in the data is returned, matching the standard library's
++        :func:`statistics.mode`.
++
++        >>> mode([1, 1, 2, 2, 3])
++        1
++        """
++        return Counter(self.data).most_common(1)[0][0]
++    mode = _StatsProperty('mode', _calc_mode)
++
+     def _calc_iqr(self):
+         """Inter-quartile range (IQR) is the difference between the 75th
+         percentile and 25th percentile. IQR is a robust measure of
+diff --git a/tests/test_statsutils.py b/tests/test_statsutils.py
+index c04a045..1d744b6 100644
+--- a/tests/test_statsutils.py
++++ b/tests/test_statsutils.py
+@@ -1,4 +1,4 @@
+-from boltons.statsutils import Stats
++from boltons.statsutils import Stats, mode
+ 
+ 
+ def test_stats_basic():
+@@ -11,6 +11,16 @@ def test_stats_basic():
+     assert da.median == 9.5
+ 
+ 
++def test_mode():
++    assert Stats([2, 1, 3, 1]).mode == 1
++    # ties resolve to the value seen first in the data
++    assert mode([1, 1, 2, 2, 3]) == 1
++    # non-numeric, categorical data is supported
++    assert mode(['a', 'b', 'b', 'c', 'c', 'c']) == 'c'
++    # empty data falls back to the configured default
++    assert Stats([], default=None).mode is None
++
++
+ def _test_pearson():
+     import random
+     from statsutils import pearson_type

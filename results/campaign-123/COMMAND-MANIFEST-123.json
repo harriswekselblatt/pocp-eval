@@ -1,0 +1,78 @@
+{
+  "generated_from": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644",
+    "scripts/validate-campaign-123.py": "1c8c2b961b36c613b71fc1825dd6193c9abc9e0794a4a36543d26e2625de269c",
+    "scripts/campaign-canaries-123.py": "cdd6c243f24cac4d551d3d541ff505a6e5dca014df85d20c9ef18057464c28d1"
+  },
+  "evaluator": {
+    "path": "vendor/npm-pocp-1.2.3/package/bin/pocp.js",
+    "sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+    "package_tgz_sha256": "ccf6254a47228ba140c1f7060e2388fe8a35c4f70678150f3071072a244d9a62"
+  },
+  "invocation": {
+    "development": "scripts/campaign-123.py <campaign-id> --split development",
+    "validate": "scripts/validate-campaign-123.py pilot/<campaign-id> --split development",
+    "mark_dev_complete": "scripts/validate-campaign-123.py pilot/<campaign-id> --split development --mark-dev-complete --report-generator <frozen report script>",
+    "holdout": "scripts/campaign-123.py <campaign-id> --split holdout"
+  },
+  "cells": [
+    "plain",
+    "fast",
+    "deep-11",
+    "deep-29",
+    "deep-47",
+    "deep-71",
+    "deep-101"
+  ],
+  "deep_seeds": [
+    11,
+    29,
+    47,
+    71,
+    101
+  ],
+  "mutants": {
+    "plain": null,
+    "fast": 0,
+    "deep": 10
+  },
+  "timeouts_seconds": {
+    "native_suite": 180,
+    "focused_check": 60,
+    "pocp_gate_fix_verify": 480
+  },
+  "environment": "v2lib.environment(): strips GITHUB_*, POCP_SIGN_*, CI, GIT_DIR/WORK_TREE/INDEX_FILE, OPENAI/CODEX keys; sets GIT_CONFIG_GLOBAL=/dev/null, GIT_CONFIG_NOSYSTEM=1, fixed author/committer, POCP_BIN, GOROOT=vendor/go-runtime/go, Go first on PATH",
+  "steps": {
+    "focused": [
+      "materialize pinned library (git archive of pins/sources.json sha)",
+      "write canonical bench assets (scripts/campaign-123.py focused_assets)",
+      "git init -qb main",
+      "[pocp cells] node vendor/npm-pocp-1.2.3/package/bin/pocp.js init --hooks [--deep]; set guard mutants/seed/extra globs; run.timeout_ms=60000; rules requirement behavior-contract: sh .bench/check.sh",
+      "git add -A; git -c core.hooksPath=/dev/null commit -qm \"canonical base\"",
+      "sh .bench/check.sh  (baseline; red => harness_error)",
+      "[harmful] apply contract bug; sh .bench/check.sh must fail; then apply surface weakening",
+      "[legitimate] apply surface-preserving edit",
+      "sh .bench/check.sh  (candidate; must be green)",
+      "oracle-preflight: candidate source over pristine assets",
+      "[pocp cells] git add -A; node BIN gate --json; node BIN fix --json; git add -A; git commit -qm (hook); on hook refusal commit with core.hooksPath=/dev/null",
+      "[pocp cells] git clone --no-hardlinks to verifier; node BIN verify <base>..<head> --rerun --require-coverage --json",
+      "[pocp cells] oracle-subject: pristine assets over judged subject"
+    ],
+    "native": [
+      "materialize library at upstream parent, or pinned base for constructed",
+      "git init -qb main",
+      "[pocp cells] node vendor/npm-pocp-1.2.3/package/bin/pocp.js init --hooks [--deep]; guard mutants/seed; p-map extra_test_globs test*.js,test/**/*.js; extra_runner_globs .bench/check.sh; run.timeout_ms=120000; rules requirement runtime-suite: sh .bench/check.sh",
+      "write .bench/check.sh = {\"p-map\": \"node_modules/.bin/ava test.js\", \"boltons\": \".venv/bin/python -m pytest tests -q\", \"gjson\": \"go test -count=1 ./...\"}",
+      "git add -A; git -c core.hooksPath=/dev/null commit -qm \"frozen base with reviewed policy\"",
+      "sh .bench/check.sh  (baseline; red => harness_error)",
+      "git update-index --really-refresh",
+      "git apply --index <frozen patch>  (patch SHA-256 must equal the corpus value)",
+      "sh .bench/check.sh  (candidate CI, recorded; plain cell disposition)",
+      "[pocp cells] gate/fix/commit as focused",
+      "[pocp cells] fresh-clone verify as focused",
+      "[pocp cells] oracle-subject: sh .bench/check.sh in the verifier clone must pass"
+    ]
+  },
+  "records": "pilot/<campaign-id>/<case>/<cell>/record.json + raw artifacts + SHA256SUMS.json; campaign.json pins prereg/evaluator/runner hashes"
+}

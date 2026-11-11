@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "git",
+    "commit",
+    "-qm",
+    "gjson-12826915de207decacf091e11d828329cd234eae deep-71"
+  ],
+  "exit": 0,
+  "execution": "completed",
+  "seconds": 1.460870209033601,
+  "stdout": "",
+  "stderr": "pocp: gate passed (1 packet(s) proven for sha256:e87350b28f22)\n"
+}

@@ -1,0 +1,58 @@
+diff --git a/boltons/iterutils.py b/boltons/iterutils.py
+index f63cda5..f570488 100644
+--- a/boltons/iterutils.py
++++ b/boltons/iterutils.py
+@@ -1065,7 +1065,7 @@ def flatten(iterable):
+     return list(flatten_iter(iterable))
+ 
+ 
+-def same(iterable, ref=_UNSET):
++def same(iterable, ref=_UNSET, key=None):
+     """``same()`` returns ``True`` when all values in *iterable* are
+     equal to one another, or optionally a reference value,
+     *ref*. Similar to :func:`all` and :func:`any` in that it evaluates
+@@ -1085,8 +1085,19 @@ def same(iterable, ref=_UNSET):
+     >>> same([[], []], ref='test')
+     False
+ 
++    If *key* is given, values are compared by ``key(value)`` instead,
++    like :func:`one`, :func:`first`, and :func:`unique`. A *ref* is then
++    compared with those keys directly.
++
++    >>> same(['a', 'A'], key=str.lower)
++    True
++    >>> same([1, 3, 5], ref=1, key=lambda x: x % 2)
++    True
++
+     """
+     iterator = iter(iterable)
++    if key is not None:
++        iterator = map(key, iterator)
+     if ref is _UNSET:
+         ref = next(iterator, ref)
+     return all(val == ref for val in iterator)
+diff --git a/tests/test_iterutils.py b/tests/test_iterutils.py
+index e3d0695..5e94ac9 100644
+--- a/tests/test_iterutils.py
++++ b/tests/test_iterutils.py
+@@ -780,3 +780,20 @@ def test_frange_xfrange_zero_step():
+         frange(10, step=0)
+     with pytest.raises(ValueError):
+         list(xfrange(10, step=0))
++
++
++def test_same_key():
++    from boltons.iterutils import same
++
++    assert same(['a', 'A', 'a'], key=str.lower)
++    assert not same(['a', 'b'], key=str.lower)
++    assert same([1, 3, 5], ref=1, key=lambda x: x % 2)
++    assert not same([1, 3, 4], ref=1, key=lambda x: x % 2)
++    # ref is compared with the keys, not with the original values
++    assert not same(['a', 'A'], ref='A', key=str.lower)
++    assert same([], key=str.lower)
++    # the default is unchanged
++    assert not same(['a', 'A'])
++    calls = []
++    assert same(iter([2, 4]), key=lambda x: calls.append(x) or x % 2)
++    assert calls == [2, 4]

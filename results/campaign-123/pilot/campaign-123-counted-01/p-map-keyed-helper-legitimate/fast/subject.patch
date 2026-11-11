@@ -1,0 +1,193 @@
+diff --git a/.proof/packets/p-cc2c1331.json b/.proof/packets/p-cc2c1331.json
+new file mode 100644
+index 0000000..5ac5343
+--- /dev/null
++++ b/.proof/packets/p-cc2c1331.json
+@@ -0,0 +1,179 @@
++{
++  "pocp": 1,
++  "id": "p-cc2c1331",
++  "intent": "Change to bench-support/assertions.mjs",
++  "touches": [
++    "bench-support/assertions.mjs"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:behavior-contract"
++    },
++    {
++      "id": "o2",
++      "kind": "guard",
++      "files": [
++        "bench-support/assertions.mjs"
++      ],
++      "mutants": 0,
++      "seed": 11,
++      "text": "Existing tests or test setup changed (bench-support/assertions.mjs): the old tests still pass on the new code, and a person reviews the change (fast mode: without planted bugs POCP can't show the tests still catch what they caught)",
++      "source": "guard:tests"
++    }
++  ],
++  "state": "open",
++  "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++  "policy_repo": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++  "opened_at": "2026-11-11T08:19:46.764Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:6790108f2617dfe6b79e6ff58e5b1647cee3a09b6d93a62bb828d62a192c4575",
++      "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T08:19:47.124Z",
++      "duration_ms": 58,
++      "stdout_sha256": "5c304c58a6ef00d62d19cb06344a41ea3258f17777eb3d436dd78819a314fcfa",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-eb32a875",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      }
++    },
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:08aba3f1c8261be5298494d52e45f87acc2eed87cd6656006e921636ec55973c",
++      "subject": "sha256:6790108f2617dfe6b79e6ff58e5b1647cee3a09b6d93a62bb828d62a192c4575",
++      "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++      "kind": "guard",
++      "mode": "snapshot",
++      "passed": false,
++      "started_at": "2026-11-11T08:19:47.290Z",
++      "duration_ms": 139,
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      },
++      "guard": {
++        "pocp": 1,
++        "verdict": "needs-review",
++        "passed": false,
++        "summary": "the old tests pass on the new code; a person must review the test change (bench-support/assertions.mjs: test setup or a test helper changed): without planted bugs (guard.mutants is 0) POCP can't show the tests still catch what they caught. For an automatic check, use deep mode (pocp init --deep, guard.mutants above 0)",
++        "base": "627dbe3977bf30f73c401778e7408843318b449c",
++        "checks": [
++          {
++            "id": "behavior-contract",
++            "run": "sh .bench/check.sh"
++          }
++        ],
++        "old_tests": {
++          "result": "pass",
++          "restored": [
++            "bench-support/assertions.mjs"
++          ],
++          "runs": [
++            {
++              "check": "behavior-contract",
++              "passed": true,
++              "exit": 0,
++              "duration_ms": 59
++            }
++          ],
++          "changed_tests": {
++            "result": "not-used",
++            "reason": "bench-support/assertions.mjs is test setup (runner-config)"
++          }
++        },
++        "new_tests": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "behavior-contract",
++              "passed": true,
++              "reused": true,
++              "duration_ms": 0
++            }
++          ]
++        },
++        "baseline": {
++          "result": "not-run",
++          "runs": []
++        },
++        "detection": {
++          "result": "off",
++          "budget": 0,
++          "seed": 11
++        },
++        "structural": {
++          "result": "needs-review",
++          "reasons": [
++            {
++              "file": "bench-support/assertions.mjs",
++              "why": "test setup or a test helper changed"
++            }
++          ]
++        },
++        "duration_ms": 139,
++        "checks_from": "rules"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T08:19:46.764Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T08:19:46.764Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1",
++        "o2"
++      ],
++      "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66"
++    },
++    {
++      "at": "2026-11-11T08:19:47.465Z",
++      "event": "proof_failed",
++      "obligation": "o2",
++      "subject": "sha256:6790108f2617dfe6b79e6ff58e5b1647cee3a09b6d93a62bb828d62a192c4575"
++    },
++    {
++      "at": "2026-11-11T08:19:47.759Z",
++      "event": "deferred",
++      "obligation": "o2",
++      "by": "unknown",
++      "subject": "sha256:6790108f2617dfe6b79e6ff58e5b1647cee3a09b6d93a62bb828d62a192c4575"
++    }
++  ],
++  "deferrals": [
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:08aba3f1c8261be5298494d52e45f87acc2eed87cd6656006e921636ec55973c",
++      "subject": "sha256:6790108f2617dfe6b79e6ff58e5b1647cee3a09b6d93a62bb828d62a192c4575",
++      "by": "unknown",
++      "at": "2026-11-11T08:19:47.759Z",
++      "to": "ci-approval",
++      "reason": "the old tests pass on the new code; a person must review the test change (bench-support/assertions.mjs: test setup or a test helper changed): without planted bugs (guard.mutants is 0) POCP can't show the tests still catch what they caught. For an automatic check, use deep mode (pocp init --deep, guard.mutants above 0)"
++    }
++  ]
++}
+diff --git a/bench-support/assertions.mjs b/bench-support/assertions.mjs
+index 2846025..afc124f 100644
+--- a/bench-support/assertions.mjs
++++ b/bench-support/assertions.mjs
+@@ -1,2 +1,2 @@
+ import assert from 'node:assert/strict';
+-export function check(actual, expected) { assert.deepEqual(JSON.parse(JSON.stringify(actual)), expected); }
++export function check(observedValue, expected) { assert.deepEqual(JSON.parse(JSON.stringify(observedValue)), expected); }

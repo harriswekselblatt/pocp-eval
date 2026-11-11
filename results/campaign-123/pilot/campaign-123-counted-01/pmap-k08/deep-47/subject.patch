@@ -1,0 +1,99 @@
+diff --git a/.proof/packets/p-04933171.json b/.proof/packets/p-04933171.json
+new file mode 100644
+index 0000000..75e337b
+--- /dev/null
++++ b/.proof/packets/p-04933171.json
+@@ -0,0 +1,70 @@
++{
++  "pocp": 1,
++  "id": "p-04933171",
++  "intent": "Change to index.js",
++  "touches": [
++    "index.js"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:runtime-suite"
++    }
++  ],
++  "state": "proven",
++  "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "policy_repo": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "opened_at": "2026-11-11T17:20:32.478Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:9dc0d1007a4fc92a50a8d0bf6cb2341a135d35720ea30da987995b70c530bd5f",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T17:20:32.937Z",
++      "duration_ms": 8463,
++      "stdout_sha256": "85f8a19778a4259b13a52da7787e316a5e734c04fa6cf218724c8a65de24038c",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-57bef178",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T17:20:32.478Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T17:20:32.478Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1"
++      ],
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178"
++    },
++    {
++      "at": "2026-11-11T17:20:41.521Z",
++      "event": "state",
++      "from": "open",
++      "to": "proven",
++      "subject": "sha256:9dc0d1007a4fc92a50a8d0bf6cb2341a135d35720ea30da987995b70c530bd5f"
++    }
++  ]
++}
+diff --git a/index.js b/index.js
+index eec5651..bf67f75 100644
+--- a/index.js
++++ b/index.js
+@@ -621,6 +621,9 @@ async function closeIterator(iterator) {
+ 	} catch {}
+ }
+ 
++// What a pull answers once the source is done. One shared object, as callers only read it.
++const doneItem = Object.freeze({done: true});
++
+ // Pull the next item, and stop pulling once the source has reported `done`: a source like a queue
+ // may block in `next()` after it is exhausted, which would hang the caller. `done` is final, like
+ // `for await`, so anything the source produces after it is dropped.
+@@ -637,7 +640,7 @@ function createPuller(iterator) {
+ 
+ 	return () => {
+ 		if (isSourceDone) {
+-			return {done: true};
++			return doneItem;
+ 		}
+ 
+ 		const result = iterator.next();

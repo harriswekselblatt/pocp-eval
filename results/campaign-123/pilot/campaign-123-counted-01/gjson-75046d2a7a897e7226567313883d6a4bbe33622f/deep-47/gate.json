@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "node",
+    "<bench>/vendor/npm-pocp-1.2.3/package/bin/pocp.js",
+    "gate",
+    "--json"
+  ],
+  "exit": 1,
+  "execution": "completed",
+  "seconds": 0.5385085419984534,
+  "stdout": "{\n  \"pocp\": 1,\n  \"decision\": \"blocked\",\n  \"subject\": \"sha256:1b5c8a68e86a7d2848d23694e5bbc2d7e58d55584d4e2208ca3984b8591185ce\",\n  \"files\": [\n    \"README.md\",\n    \"gjson.go\"\n  ],\n  \"required_files\": [\n    \"README.md\",\n    \"gjson.go\"\n  ],\n  \"reasons\": [\n    {\n      \"code\": \"requirement\",\n      \"detail\": \"2 file(s) have required checks\",\n      \"files\": [\n        \"README.md\",\n        \"gjson.go\"\n      ]\n    }\n  ],\n  \"uncovered\": [\n    \"README.md\",\n    \"gjson.go\"\n  ],\n  \"unpacketed\": [\n    \"README.md\",\n    \"gjson.go\"\n  ],\n  \"packets\": [],\n  \"problems\": [],\n  \"warnings\": [],\n  \"guard_mode\": \"block\",\n  \"suggestion\": {\n    \"touches\": [\n      \"README.md\",\n      \"gjson.go\"\n    ],\n    \"obligations\": [\n      {\n        \"from\": \"runtime-suite\",\n        \"kind\": \"test\",\n        \"run\": \"sh .bench/check.sh\",\n        \"source\": \"rule:runtime-suite\"\n      }\n    ],\n    \"note\": \"Required checks for these files are added automatically when the packet opens.\",\n    \"command\": \"pocp open --intent '<what this change does>' --touch 'README.md' --touch 'gjson.go'\"\n  },\n  \"remedies\": [\n    {\n      \"code\": \"no_packet\",\n      \"what\": \"2 staged file(s) are not covered by any packet: README.md, gjson.go\",\n      \"why\": \"a rule requires checks for them. A packet records what the change is and the checks that prove it.\",\n      \"next\": \"pocp fix --intent \\\"<what this change does>\\\"\",\n      \"by\": \"pocp fix\"\n    }\n  ],\n  \"pending_approvals\": []\n}\n",
+  "stderr": ""
+}

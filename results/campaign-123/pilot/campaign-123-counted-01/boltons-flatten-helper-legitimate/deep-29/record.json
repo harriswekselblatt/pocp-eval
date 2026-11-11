@@ -1,0 +1,151 @@
+{
+  "case_id": "boltons-flatten-helper-legitimate",
+  "set": "B",
+  "split": "development",
+  "regime": "focused",
+  "target": "boltons",
+  "truth": "legitimate",
+  "cohort": "paired-control",
+  "category": "preserving_test_or_setup",
+  "cell": "deep-29",
+  "mode": "deep",
+  "configured_seed": 29,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "6d47c0055f5aeb70a0a224b07635f53c0339c5bb",
+  "head": "df0ea17d209be32de2d1aa8bde9314eaf6e303f1",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 0,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "accepted",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": true,
+    "approval_needs": [],
+    "approval_only": null,
+    "findings": [],
+    "guards": [
+      {
+        "verdict": "passed",
+        "effective_seed": 1074229282,
+        "detection": "kept",
+        "mutants": [
+          {
+            "file": "bench_support/assertions.py",
+            "line": 3,
+            "operator": "eq",
+            "before": "assert json.loads(json.dumps(observedValue)) == expected",
+            "after": "assert json.loads(json.dumps(observedValue)) != expected",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/dictutils.py",
+            "line": 1027,
+            "operator": "eq",
+            "before": "return type(self) == type(other) and self.data == other.data",
+            "after": "return type(self) == type(other) and self.data != other.data",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/ioutils.py",
+            "line": 408,
+            "operator": "eq",
+            "before": "if current_position == dest:",
+            "after": "if current_position != dest:",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/setutils.py",
+            "line": 439,
+            "operator": "zero-one",
+            "before": "start = max(len(self) + start, 0)",
+            "after": "start = max(len(self) + start, 1)",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/pathutils.py",
+            "line": 179,
+            "operator": "eq",
+            "before": ">>> assert expandpath('foo') == 'foo'",
+            "after": ">>> assert expandpath('foo') != 'foo'",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/funcutils.py",
+            "line": 102,
+            "operator": "plus",
+            "before": "result = '(' + ', '.join(specs) + ')'",
+            "after": "result = '(' + ', '.join(specs) - ')'",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/urlutils.py",
+            "line": 1458,
+            "operator": "eq",
+            "before": ">>> somd.keys(multi=True) == omd.keys(multi=True)",
+            "after": ">>> somd.keys(multi=True) != omd.keys(multi=True)",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 1681,
+            "operator": "lt",
+            "before": "ret = obj < other",
+            "after": "ret = obj >= other",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/mboxutils.py",
+            "line": 100,
+            "operator": "zero-one",
+            "before": "self._file.seek(0, 2)",
+            "after": "self._file.seek(1, 2)",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 172,
+            "operator": "eq",
+            "before": "def sep_func(x): return x == sep",
+            "after": "def sep_func(x): return x != sep",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 12.395
+}

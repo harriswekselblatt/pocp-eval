@@ -1,0 +1,151 @@
+{
+  "case_id": "p-map-e7c2ecb113e8988165a6798630e4e9c2cdeb9d1b",
+  "set": "B",
+  "split": "holdout",
+  "regime": "native",
+  "target": "p-map",
+  "truth": "legitimate",
+  "cohort": "extension",
+  "category": "added_test",
+  "cell": "deep-101",
+  "mode": "deep",
+  "configured_seed": 101,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "fa681e3ed404f6d1bffcbac3967634eadabc2623",
+  "head": "643d8ba9b44ae54aa3a631ca1085a4ae19450fa9",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 0,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "accepted",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": true,
+    "approval_needs": [],
+    "approval_only": null,
+    "findings": [],
+    "guards": [
+      {
+        "verdict": "passed",
+        "effective_seed": 1629665749,
+        "detection": "kept",
+        "mutants": [
+          {
+            "file": "index.js",
+            "line": 48,
+            "operator": "true",
+            "before": "isResolved = true;",
+            "after": "isResolved = false;",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 197,
+            "operator": "and",
+            "before": "if (!((Number.isSafeInteger(backpressure) && backpressure >= concurrency) || backpressure === Number.POSITIVE_INFINITY)) {",
+            "after": "if (!((Number.isSafeInteger(backpressure) || backpressure >= concurrency) || backpressure === Number.POSITIVE_INFINITY)) {",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "assert-in-range.js",
+            "line": 4,
+            "operator": "zero-one",
+            "before": "export default function assertInRange(t, value, {start = 0, end}) {",
+            "after": "export default function assertInRange(t, value, {start = 1, end}) {",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "assert-in-range.js",
+            "line": 8,
+            "operator": "lte",
+            "before": "t.fail(`${start} ${start <= value ? '\u2264' : chalk.red('\u2270')} ${chalk.yellow(value)} ${value <= end ? '\u2264' : chalk.red('\u2270')} ${end}`);",
+            "after": "t.fail(`${start} ${start > value ? '\u2264' : chalk.red('\u2270')} ${chalk.yellow(value)} ${value <= end ? '\u2264' : chalk.red('\u2270')} ${end}`);",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 185,
+            "operator": "and",
+            "before": "if (iterable[Symbol.iterator] === undefined && iterable[Symbol.asyncIterator] === undefined) {",
+            "after": "if (iterable[Symbol.iterator] === undefined || iterable[Symbol.asyncIterator] === undefined) {",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 261,
+            "operator": "gt",
+            "before": "while (promises.length > 0) {",
+            "after": "while (promises.length <= 0) {",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 225,
+            "operator": "true",
+            "before": "return {done: true};",
+            "after": "return {done: false};",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 160,
+            "operator": "zero-one",
+            "before": "for (let index = 0; index < concurrency; index++) {",
+            "after": "for (let index = 1; index < concurrency; index++) {",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 82,
+            "operator": "and",
+            "before": "if (!stopOnError && errors.length > 0) {",
+            "after": "if (!stopOnError || errors.length > 0) {",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 250,
+            "operator": "true",
+            "before": "isDone = true;",
+            "after": "isDone = false;",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 82.909
+}

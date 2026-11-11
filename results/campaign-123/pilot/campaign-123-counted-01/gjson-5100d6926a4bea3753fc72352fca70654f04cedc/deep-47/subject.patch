@@ -1,0 +1,164 @@
+diff --git a/.proof/packets/p-9531df16.json b/.proof/packets/p-9531df16.json
+new file mode 100644
+index 0000000..bdcc588
+--- /dev/null
++++ b/.proof/packets/p-9531df16.json
+@@ -0,0 +1,70 @@
++{
++  "pocp": 1,
++  "id": "p-9531df16",
++  "intent": "Change to gjson.go",
++  "touches": [
++    "gjson.go"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:runtime-suite"
++    }
++  ],
++  "state": "proven",
++  "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "policy_repo": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "opened_at": "2026-11-11T04:18:50.706Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:7d957a33cc1fd2a5da24819ce53333018df90b1c5a7c49e6802c2c37ad6ac365",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T04:18:51.111Z",
++      "duration_ms": 8458,
++      "stdout_sha256": "ecfbbaff71ddb5190e905fc19107779440511eb32762a360927d5cb4e070c349",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-38045b1b",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": "56fe9f52af037e24dfc94efe391bc180a8aebab2beaa2d2f6057bd8cf219075f"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T04:18:50.706Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T04:18:50.706Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1"
++      ],
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178"
++    },
++    {
++      "at": "2026-11-11T04:18:59.676Z",
++      "event": "state",
++      "from": "open",
++      "to": "proven",
++      "subject": "sha256:7d957a33cc1fd2a5da24819ce53333018df90b1c5a7c49e6802c2c37ad6ac365"
++    }
++  ]
++}
+diff --git a/gjson.go b/gjson.go
+index b7d8142..32935de 100644
+--- a/gjson.go
++++ b/gjson.go
+@@ -125,16 +125,17 @@ func (t Result) Int() int64 {
+ 		return n
+ 	case Number:
+ 		// try to directly convert the float64 to int64
+-		n, ok := floatToInt(t.Num)
+-		if !ok {
+-			// now try to parse the raw string
+-			n, ok = parseInt(t.Raw)
+-			if !ok {
+-				// fallback to a standard conversion
+-				return int64(t.Num)
+-			}
++		i, ok := safeInt(t.Num)
++		if ok {
++			return i
+ 		}
+-		return n
++		// now try to parse the raw string
++		i, ok = parseInt(t.Raw)
++		if ok {
++			return i
++		}
++		// fallback to a standard conversion
++		return int64(t.Num)
+ 	}
+ }
+ 
+@@ -150,16 +151,17 @@ func (t Result) Uint() uint64 {
+ 		return n
+ 	case Number:
+ 		// try to directly convert the float64 to uint64
+-		n, ok := floatToUint(t.Num)
+-		if !ok {
+-			// now try to parse the raw string
+-			n, ok = parseUint(t.Raw)
+-			if !ok {
+-				// fallback to a standard conversion
+-				return uint64(t.Num)
+-			}
++		i, ok := safeInt(t.Num)
++		if ok && i >= 0 {
++			return uint64(i)
+ 		}
+-		return n
++		// now try to parse the raw string
++		u, ok := parseUint(t.Raw)
++		if ok {
++			return u
++		}
++		// fallback to a standard conversion
++		return uint64(t.Num)
+ 	}
+ }
+ 
+@@ -2525,25 +2527,11 @@ func parseInt(s string) (n int64, ok bool) {
+ 	return n, true
+ }
+ 
+-const minUint53 = 0
+-const maxUint53 = 4503599627370495
+-const minInt53 = -2251799813685248
+-const maxInt53 = 2251799813685247
+-
+-func floatToUint(f float64) (n uint64, ok bool) {
+-	n = uint64(f)
+-	if float64(n) == f && n >= minUint53 && n <= maxUint53 {
+-		return n, true
+-	}
+-	return 0, false
+-}
+-
+-func floatToInt(f float64) (n int64, ok bool) {
+-	n = int64(f)
+-	if float64(n) == f && n >= minInt53 && n <= maxInt53 {
+-		return n, true
++func safeInt(f float64) (n int64, ok bool) {
++	if f < -9007199254740991 || f > 9007199254740991 {
++		return 0, false
+ 	}
+-	return 0, false
++	return int64(f), true
+ }
+ 
+ // execModifier parses the path to find a matching modifier function.

@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "node",
+    "<bench>/vendor/npm-pocp-1.2.3/package/bin/pocp.js",
+    "gate",
+    "--json"
+  ],
+  "exit": 1,
+  "execution": "completed",
+  "seconds": 0.4908327501034364,
+  "stdout": "{\n  \"pocp\": 1,\n  \"decision\": \"blocked\",\n  \"subject\": \"sha256:299e5a8c0dadc2028fd80ff98cee616db95f4c7400ebc7ab84ce48395538d8f2\",\n  \"files\": [\n    \"test.js\"\n  ],\n  \"required_files\": [\n    \"test.js\"\n  ],\n  \"reasons\": [\n    {\n      \"code\": \"requirement\",\n      \"detail\": \"1 file(s) have required checks\",\n      \"files\": [\n        \"test.js\"\n      ]\n    },\n    {\n      \"code\": \"test_change\",\n      \"detail\": \"existing tests or test setup changed (1 file(s)); pocp prove checks mechanically that nothing was weakened\",\n      \"files\": [\n        \"test.js\"\n      ]\n    }\n  ],\n  \"uncovered\": [\n    \"test.js\"\n  ],\n  \"unpacketed\": [\n    \"test.js\"\n  ],\n  \"packets\": [],\n  \"problems\": [],\n  \"warnings\": [],\n  \"guard_mode\": \"block\",\n  \"test_guard\": {\n    \"mode\": \"block\",\n    \"files\": [\n      \"test.js\"\n    ],\n    \"signals\": [\n      {\n        \"file\": \"test.js\",\n        \"status\": \"M\",\n        \"kind\": \"test\",\n        \"removed_asserts\": 0,\n        \"added_skips\": 0\n      }\n    ]\n  },\n  \"suggestion\": {\n    \"touches\": [\n      \"test.js\"\n    ],\n    \"obligations\": [\n      {\n        \"from\": \"runtime-suite\",\n        \"kind\": \"test\",\n        \"run\": \"sh .bench/check.sh\",\n        \"source\": \"rule:runtime-suite\"\n      }\n    ],\n    \"note\": \"Required checks for these files are added automatically when the packet opens.\",\n    \"command\": \"pocp open --intent '<what this change does>' --touch 'test.js'\"\n  },\n  \"remedies\": [\n    {\n      \"code\": \"no_packet\",\n      \"what\": \"1 staged file(s) are not covered by any packet: test.js\",\n      \"why\": \"a rule requires checks for them; existing tests or test setup changed, which can hide a bug instead of fixing it. A packet records what the change is and the checks that prove it.\",\n      \"next\": \"pocp fix --intent \\\"<what this change does>\\\"\",\n      \"by\": \"pocp fix\"\n    }\n  ],\n  \"pending_approvals\": []\n}\n",
+  "stderr": ""
+}

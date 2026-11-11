@@ -1,0 +1,161 @@
+{
+  "case_id": "boltons-first-assertions-legitimate",
+  "set": "B",
+  "split": "development",
+  "regime": "focused",
+  "target": "boltons",
+  "truth": "legitimate",
+  "cohort": "paired-control",
+  "category": "preserving_test_or_setup",
+  "cell": "deep-47",
+  "mode": "deep",
+  "configured_seed": 47,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "ef515848785761e38759a5e8198f81786f653728",
+  "head": "8a330d63717d7be3971969a66ad7e2c4f28e5b2a",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 1,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "needs_review",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": false,
+    "approval_needs": [
+      {
+        "label": "pocp-approve-tests",
+        "kind": "tests",
+        "files": [
+          "tests/test_bench_v2.py"
+        ]
+      }
+    ],
+    "approval_only": true,
+    "findings": [
+      "test_change"
+    ],
+    "guards": [
+      {
+        "verdict": "inconclusive",
+        "effective_seed": 68696557,
+        "detection": "inconclusive",
+        "mutants": [
+          {
+            "file": "boltons/iterutils.py",
+            "line": 682,
+            "operator": "lt",
+            "before": "if start < 0.0:",
+            "after": "if start >= 0.0:",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 607,
+            "operator": "zero-one",
+            "before": "def backoff(start, stop, count=None, factor=2.0, jitter=False):",
+            "after": "def backoff(start, stop, count=None, factor=2.1, jitter=False):",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 700,
+            "operator": "zero-one",
+            "before": "if count != 'repeat' and count < 0:",
+            "after": "if count != 'repeat' and count < 1:",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 1697,
+            "operator": "zero-one",
+            "before": "$ python -m timeit -s \"x = [1]\" \"x[0]\"",
+            "after": "$ python -m timeit -s \"x = [1]\" \"x[1]\"",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 444,
+            "operator": "plus",
+            "before": "if input_offset + initial_chunk_len >= input_stop:",
+            "after": "if input_offset - initial_chunk_len >= input_stop:",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 583,
+            "operator": "zero-one",
+            "before": ">>> frange(100.5, 101.5, 0.25)",
+            "after": ">>> frange(100.5, 101.5, 1.25)",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 437,
+            "operator": "plus",
+            "before": "input_stop = input_offset + input_size",
+            "after": "input_stop = input_offset - input_size",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 683,
+            "operator": "gte",
+            "before": "raise ValueError('expected start >= 0, not %r' % start)",
+            "after": "raise ValueError('expected start < 0, not %r' % start)",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 737,
+            "operator": "zero-one",
+            "before": "{1.0: [(1+1j), 1], 2.0: [(2+2j), 2]}",
+            "after": "{1.0: [(1+1j), 1], 2.1: [(2+2j), 2]}",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 448,
+            "operator": "minus",
+            "before": "for i in range(input_offset, input_stop, chunk_size - overlap_size):",
+            "after": "for i in range(input_offset, input_stop, chunk_size + overlap_size):",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 14.486
+}

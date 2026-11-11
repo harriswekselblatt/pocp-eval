@@ -1,0 +1,400 @@
+diff --git a/.proof/packets/p-6b475947.json b/.proof/packets/p-6b475947.json
+new file mode 100644
+index 0000000..eb6ae5d
+--- /dev/null
++++ b/.proof/packets/p-6b475947.json
+@@ -0,0 +1,259 @@
++{
++  "pocp": 1,
++  "id": "p-6b475947",
++  "intent": "Change to index.js, test.js",
++  "touches": [
++    "index.js",
++    "test.js"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:runtime-suite"
++    },
++    {
++      "id": "o2",
++      "kind": "guard",
++      "files": [
++        "test.js"
++      ],
++      "mutants": 10,
++      "seed": 29,
++      "text": "Existing tests or test setup changed (test.js): the old tests still pass on the new code, and the new tests catch every sampled mutant the old ones caught",
++      "source": "guard:tests"
++    }
++  ],
++  "state": "proven",
++  "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "policy_repo": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "opened_at": "2026-11-11T07:20:40.907Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:88b9217f48aed57f2d4a29d06232a8973be77e5e08507d025be53a71eff89fb0",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T07:20:41.277Z",
++      "duration_ms": 8507,
++      "stdout_sha256": "51a48db89e760f3af7e69425e69228b7b3ae9cd667f8110292c98c2f16a8f786",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-0548a40f",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      }
++    },
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:191a7df158a4d03063053366fb2123f721071eac21ff86087d4b5dfdb4008ece",
++      "subject": "sha256:88b9217f48aed57f2d4a29d06232a8973be77e5e08507d025be53a71eff89fb0",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "kind": "guard",
++      "mode": "snapshot",
++      "passed": true,
++      "started_at": "2026-11-11T07:20:49.926Z",
++      "duration_ms": 45170,
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      },
++      "guard": {
++        "pocp": 1,
++        "verdict": "passed",
++        "passed": true,
++        "summary": "the old tests pass on the new code, and the new tests catch all 9 of the 10 sampled mutants the old tests caught (seed 29)",
++        "base": "cfa3aad6741b24913a0fe8043392a805c0d41793",
++        "checks": [
++          {
++            "id": "runtime-suite",
++            "run": "sh .bench/check.sh"
++          }
++        ],
++        "old_tests": {
++          "result": "pass",
++          "restored": [
++            "test.js"
++          ],
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "exit": 0,
++              "duration_ms": 8569
++            }
++          ]
++        },
++        "new_tests": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "reused": true,
++              "duration_ms": 0
++            }
++          ]
++        },
++        "baseline": {
++          "result": "not-run",
++          "runs": []
++        },
++        "detection": {
++          "result": "kept",
++          "budget": 10,
++          "seed": 29,
++          "sites": 217,
++          "focus_sites": 110,
++          "files": 5,
++          "sampled": 10,
++          "old_caught": 9,
++          "new_caught": 9,
++          "lost": [],
++          "mutants": [
++            {
++              "file": "index.js",
++              "line": 470,
++              "operator": "lt",
++              "before": "while (headIndex < promises.length) {",
++              "after": "while (headIndex >= promises.length) {",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 22,
++              "operator": "strict-neq",
++              "before": "if (typeof mapper !== 'function') {",
++              "after": "if (typeof mapper === 'function') {",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 75,
++              "operator": "false",
++              "before": "let isIterableDone = false;",
++              "after": "let isIterableDone = true;",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 634,
++              "operator": "true",
++              "before": "isSourceDone = true;",
++              "after": "isSourceDone = false;",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "index.js",
++              "line": 2,
++              "operator": "false",
++              "before": "return mapConcurrently(iterable, mapper, options, false);",
++              "after": "return mapConcurrently(iterable, mapper, options, true);",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 362,
++              "operator": "gte",
++              "before": "if (isDone || isIterableDone || index > stopIndex || readingCount >= concurrency || promises.length - headIndex >= backpressure) {",
++              "after": "if (isDone || isIterableDone || index > stopIndex || readingCount < concurrency || promises.length - headIndex >= backpressure) {",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 140,
++              "operator": "zero-one",
++              "before": "if (collectedErrors.length > 0) {",
++              "after": "if (collectedErrors.length > 1) {",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 409,
++              "operator": "or",
++              "before": "if (isDone || currentIndex > stopIndex) {",
++              "after": "if (isDone && currentIndex > stopIndex) {",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 326,
++              "operator": "zero-one",
++              "before": "let mapperWaiterCount = 0;",
++              "after": "let mapperWaiterCount = 1;",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 307,
++              "operator": "times",
++              "before": "const generator = (async function * () {",
++              "after": "const generator = (async function / () {",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            }
++          ]
++        },
++        "duration_ms": 45170,
++        "checks_from": "rules"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T07:20:40.907Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T07:20:40.907Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1",
++        "o2"
++      ],
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178"
++    },
++    {
++      "at": "2026-11-11T07:21:35.175Z",
++      "event": "state",
++      "from": "open",
++      "to": "proven",
++      "subject": "sha256:88b9217f48aed57f2d4a29d06232a8973be77e5e08507d025be53a71eff89fb0"
++    }
++  ]
++}
+diff --git a/index.js b/index.js
+index 37ea539..401f7ad 100644
+--- a/index.js
++++ b/index.js
+@@ -198,7 +198,7 @@ async function mapConcurrently(
+ 			}
+ 
+ 			// Intentionally detached
+-			(async () => {
++			const runner = (async () => {
+ 				try {
+ 					const element = await nextItem.value;
+ 
+@@ -252,6 +252,9 @@ async function mapConcurrently(
+ 					reject(error);
+ 				}
+ 			})();
++
++			// Link the runner to the returned promise, so the async stack trace of a mapper error reaches the caller. Nothing awaits the runner, so the trace would stop there, but V8 follows a reaction that resolves another promise. The link never settles, so it never resolves the returned promise. It is a new promise for each runner, as a shared one would keep a reaction for every element.
++			runner.then(() => new Promise(() => {})).then(resolve_);
+ 		};
+ 
+ 		// Create the concurrent runners in a detached (non-awaited)
+diff --git a/test.js b/test.js
+index e83b69e..1a7d110 100644
+--- a/test.js
++++ b/test.js
+@@ -289,6 +289,107 @@ test('aggregate errors when stopOnError is false', async t => {
+ 	await t.throwsAsync(pMap(errorInput2, mapper, {concurrency: 1, stopOnError: false}), {instanceOf: AggregateError, message: ''});
+ });
+ 
++test('mapper error stack trace includes the caller', async t => {
++	async function callPMap() {
++		await pMap([1, 2], async () => {
++			await delay(10);
++			throw new Error('foo');
++		}, {concurrency: 1});
++	}
++
++	const error = await t.throwsAsync(callPMap, {message: 'foo'});
++	t.regex(error.stack, /at async callPMap /);
++});
++
++test('mapper error stack trace includes the caller for an element mapped after the first ones', async t => {
++	// With `concurrency: 1`, the last element runs in a runner started by the runner before it.
++	async function callPMap() {
++		await pMap([1, 2, 3], async value => {
++			await delay(10);
++
++			if (value === 3) {
++				throw new Error('foo');
++			}
++		}, {concurrency: 1});
++	}
++
++	const error = await t.throwsAsync(callPMap, {message: 'foo'});
++	t.regex(error.stack, /at async callPMap /);
++});
++
++test('mapper error stack trace includes the caller when stopOnError is false', async t => {
++	async function callPMap() {
++		await pMap([1, 2], async () => {
++			await delay(10);
++			throw new Error('foo');
++		}, {concurrency: 1, stopOnError: false});
++	}
++
++	const error = await t.throwsAsync(callPMap, {instanceOf: AggregateError});
++	t.regex(error.stack, /at async callPMap /);
++	t.is(error.errors.length, 2);
++
++	for (const innerError of error.errors) {
++		t.regex(innerError.stack, /at async callPMap /);
++	}
++});
++
++test('mapper error stack trace includes the caller for an async iterable', async t => {
++	async function * source() {
++		yield 1;
++		yield 2;
++	}
++
++	async function callPMap() {
++		await pMap(source(), async () => {
++			await delay(10);
++			throw new Error('foo');
++		}, {concurrency: 2});
++	}
++
++	const error = await t.throwsAsync(callPMap, {message: 'foo'});
++	t.regex(error.stack, /at async callPMap /);
++});
++
++test('pMapSettled - rejection reason stack trace includes the caller', async t => {
++	async function callPMapSettled() {
++		const [result] = await pMapSettled([1], async () => {
++			await delay(10);
++			throw new Error('foo');
++		});
++
++		return result;
++	}
++
++	const result = await callPMapSettled();
++	t.is(result.status, 'rejected');
++	t.regex(result.reason.stack, /at async callPMapSettled /);
++});
++
++test('pMapKeyed - mapper error stack trace includes the caller', async t => {
++	async function callPMapKeyed() {
++		await pMapKeyed({a: 1}, async () => {
++			await delay(10);
++			throw new Error('foo');
++		});
++	}
++
++	const error = await t.throwsAsync(callPMapKeyed, {message: 'foo'});
++	t.regex(error.stack, /at async callPMapKeyed /);
++});
++
++test('pMapIterable - mapper error stack trace includes the consumer', async t => {
++	async function consume() {
++		await collectAsyncIterable(pMapIterable([1, 2], async () => {
++			await delay(10);
++			throw new Error('foo');
++		}, {concurrency: 1}));
++	}
++
++	const error = await t.throwsAsync(consume, {message: 'foo'});
++	t.regex(error.stack, /at async consume /);
++});
++
+ // A source whose `next()` calls settle out of call order, unlike a generator, which queues
+ // them. `for await` still sees every item in call order, so `pMap` must too.
+ function outOfOrderSource(items, delays) {

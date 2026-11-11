@@ -1,0 +1,298 @@
+diff --git a/.proof/packets/p-a7a60e51.json b/.proof/packets/p-a7a60e51.json
+new file mode 100644
+index 0000000..ddd953b
+--- /dev/null
++++ b/.proof/packets/p-a7a60e51.json
+@@ -0,0 +1,259 @@
++{
++  "pocp": 1,
++  "id": "p-a7a60e51",
++  "intent": "Change to boltons/mathutils.py, tests/test_mathutils.py",
++  "touches": [
++    "boltons/mathutils.py",
++    "tests/test_mathutils.py"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:runtime-suite"
++    },
++    {
++      "id": "o2",
++      "kind": "guard",
++      "files": [
++        "tests/test_mathutils.py"
++      ],
++      "mutants": 10,
++      "seed": 71,
++      "text": "Existing tests or test setup changed (tests/test_mathutils.py): the old tests still pass on the new code, and the new tests catch every sampled mutant the old ones caught",
++      "source": "guard:tests"
++    }
++  ],
++  "state": "proven",
++  "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "policy_repo": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "opened_at": "2026-11-11T03:15:26.209Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:d89f5ecda6135826de6b42d0126423885d60a5e4caa9e6954b6187a2a4757abd",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T03:15:26.766Z",
++      "duration_ms": 2184,
++      "stdout_sha256": "d8daa5365fa0e144c3a641ae0f60698616391edc46a1c8933b91cf400f900681",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-cbe63c85",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      }
++    },
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:e9d7876df856ecbe813ecf2dc7549f7b699ba0b69c37c5cf3c80e433d18aca59",
++      "subject": "sha256:d89f5ecda6135826de6b42d0126423885d60a5e4caa9e6954b6187a2a4757abd",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "kind": "guard",
++      "mode": "snapshot",
++      "passed": true,
++      "started_at": "2026-11-11T03:15:29.096Z",
++      "duration_ms": 18073,
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      },
++      "guard": {
++        "pocp": 1,
++        "verdict": "passed",
++        "passed": true,
++        "summary": "the old tests pass on the new code, and the new tests catch all 7 of the 10 sampled mutants the old tests caught (seed 71)",
++        "base": "a1404ebee9c523e677471fe976bd93d7f4396ea0",
++        "checks": [
++          {
++            "id": "runtime-suite",
++            "run": "sh .bench/check.sh"
++          }
++        ],
++        "old_tests": {
++          "result": "pass",
++          "restored": [
++            "tests/test_mathutils.py"
++          ],
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "exit": 0,
++              "duration_ms": 5755
++            }
++          ]
++        },
++        "new_tests": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "reused": true,
++              "duration_ms": 0
++            }
++          ]
++        },
++        "baseline": {
++          "result": "not-run",
++          "runs": []
++        },
++        "detection": {
++          "result": "kept",
++          "budget": 10,
++          "seed": 71,
++          "sites": 1485,
++          "focus_sites": 36,
++          "files": 34,
++          "sampled": 10,
++          "old_caught": 7,
++          "new_caught": 7,
++          "lost": [],
++          "mutants": [
++            {
++              "file": "boltons/mathutils.py",
++              "line": 157,
++              "operator": "zero-one",
++              "before": "val = 0",
++              "after": "val = 1",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/mathutils.py",
++              "line": 175,
++              "operator": "minus",
++              "before": "return bool((1 << (self.len - k - 1)) & self.val)",
++              "after": "return bool((1 << (self.len - k + 1)) & self.val)",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "boltons/mathutils.py",
++              "line": 206,
++              "operator": "eq",
++              "before": "return [c == '1' for c in self.as_bin()]",
++              "after": "return [c != '1' for c in self.as_bin()]",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "boltons/mathutils.py",
++              "line": 143,
++              "operator": "zero-one",
++              "before": "val = ''.join(['1' if e else '0' for e in val])",
++              "after": "val = ''.join(['1' if e else '1' for e in val])",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "boltons/mathutils.py",
++              "line": 67,
++              "operator": "gte",
++              "before": "raise ValueError('expected upper bound (%r) >= lower bound (%r)'",
++              "after": "raise ValueError('expected upper bound (%r) < lower bound (%r)'",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/mathutils.py",
++              "line": 197,
++              "operator": "plus",
++              "before": "return Bits(self.val << other, self.len + other)",
++              "after": "return Bits(self.val << other, self.len - other)",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "boltons/mathutils.py",
++              "line": 55,
++              "operator": "zero-one",
++              "before": "0",
++              "after": "1",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/mathutils.py",
++              "line": 150,
++              "operator": "minus",
++              "before": "len_ = (len_ - 2) * 4",
++              "after": "len_ = (len_ + 2) * 4",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "boltons/mathutils.py",
++              "line": 160,
++              "operator": "lt",
++              "before": "if val < 0:",
++              "after": "if val >= 0:",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "boltons/mathutils.py",
++              "line": 184,
++              "operator": "eq",
++              "before": "return self.val == other.val and self.len == other.len",
++              "after": "return self.val == other.val and self.len != other.len",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            }
++          ]
++        },
++        "duration_ms": 18073,
++        "checks_from": "rules"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T03:15:26.209Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T03:15:26.209Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1",
++        "o2"
++      ],
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178"
++    },
++    {
++      "at": "2026-11-11T03:15:47.284Z",
++      "event": "state",
++      "from": "open",
++      "to": "proven",
++      "subject": "sha256:d89f5ecda6135826de6b42d0126423885d60a5e4caa9e6954b6187a2a4757abd"
++    }
++  ]
++}
+diff --git a/boltons/mathutils.py b/boltons/mathutils.py
+index 1367a54..ae3ecd9 100644
+--- a/boltons/mathutils.py
++++ b/boltons/mathutils.py
+@@ -161,7 +161,7 @@ class Bits:
+             raise ValueError('Bits cannot represent negative values')
+         if len_ is None:
+             len_ = len(f'{val:b}')
+-        if val > 2 ** len_:
++        if val >= 2 ** len_:
+             raise ValueError(f'value {val} cannot be represented with {len_} bits')
+         self.val = val  # data is stored internally as integer
+         self.len = len_
+diff --git a/tests/test_mathutils.py b/tests/test_mathutils.py
+index 4187a6b..3cf7dbf 100644
+--- a/tests/test_mathutils.py
++++ b/tests/test_mathutils.py
+@@ -110,3 +110,15 @@ def test_bits():
+             ).as_int()
+         ),
+         Bits('101'))
++
++
++def test_bits_len_bound():
++    # The largest value representable in n bits is 2 ** n - 1, so 2 ** n must
++    # be rejected rather than silently producing an over-long Bits.
++    # Largest value that fits is accepted and round-trips.
++    assert Bits(3, 2).as_bin() == '11'
++    # 2 ** len_ does not fit in len_ bits and must raise.
++    with raises(ValueError):
++        Bits(4, 2)
++    with raises(ValueError):
++        Bits(1, 0)

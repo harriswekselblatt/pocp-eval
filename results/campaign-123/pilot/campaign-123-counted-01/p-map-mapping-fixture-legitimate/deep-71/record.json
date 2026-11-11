@@ -1,0 +1,151 @@
+{
+  "case_id": "p-map-mapping-fixture-legitimate",
+  "set": "B",
+  "split": "development",
+  "regime": "focused",
+  "target": "p-map",
+  "truth": "legitimate",
+  "cohort": "paired-control",
+  "category": "preserving_test_or_setup",
+  "cell": "deep-71",
+  "mode": "deep",
+  "configured_seed": 71,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "9f359d461b45e1f8e769d462b65201b28e4c41e3",
+  "head": "317369fa377bc5944e73abf748d8cd49835ec7c7",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 0,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "accepted",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": true,
+    "approval_needs": [],
+    "approval_only": null,
+    "findings": [],
+    "guards": [
+      {
+        "verdict": "passed",
+        "effective_seed": 591929700,
+        "detection": "kept",
+        "mutants": [
+          {
+            "file": "index.js",
+            "line": 458,
+            "operator": "true",
+            "before": "fillSlot({done: true});",
+            "after": "fillSlot({done: false});",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.test-d.ts",
+            "line": 72,
+            "operator": "zero-one",
+            "before": "if (number % 2 === 0) {",
+            "after": "if (number % 2 === 1) {",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 628,
+            "operator": "false",
+            "before": "let isSourceDone = false;",
+            "after": "let isSourceDone = true;",
+            "focus": false,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.test-d.ts",
+            "line": 306,
+            "operator": "times",
+            "before": "function * numberGenerator(): Generator<number> {",
+            "after": "function / numberGenerator(): Generator<number> {",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 184,
+            "operator": "lt",
+            "before": "if (index < doneIndex) {",
+            "after": "if (index >= doneIndex) {",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.test-d.ts",
+            "line": 201,
+            "operator": "true",
+            "before": "1: true, // eslint-disable-line @typescript-eslint/naming-convention",
+            "after": "1: false, // eslint-disable-line @typescript-eslint/naming-convention",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 634,
+            "operator": "true",
+            "before": "isSourceDone = true;",
+            "after": "isSourceDone = false;",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 169,
+            "operator": "or",
+            "before": "if (isResolved || currentIndex >= doneIndex) {",
+            "after": "if (isResolved && currentIndex >= doneIndex) {",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "count-array-work.js",
+            "line": 26,
+            "operator": "minus",
+            "before": "count(this.length - (arguments_[0] ?? 0));",
+            "after": "count(this.length + (arguments_[0] ?? 0));",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 582,
+            "operator": "strict-eq",
+            "before": "if (input === null || (typeof input !== 'object' && typeof input !== 'function')) {",
+            "after": "if (input !== null || (typeof input !== 'object' && typeof input !== 'function')) {",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 5.081
+}

@@ -1,0 +1,177 @@
+{
+  "all_ok": true,
+  "results": {
+    "canary-passing/plain": {
+      "ok": true,
+      "execution": "completed",
+      "disposition": "accepted",
+      "plain_ci": {
+        "exit": 0,
+        "execution": "completed"
+      },
+      "error": null,
+      "oracle_subject_valid": null
+    },
+    "canary-passing/fast": {
+      "ok": true,
+      "execution": "completed",
+      "disposition": "accepted",
+      "plain_ci": {
+        "exit": 0,
+        "execution": "completed"
+      },
+      "error": null,
+      "oracle_subject_valid": true
+    },
+    "canary-failing/plain": {
+      "ok": true,
+      "execution": "completed",
+      "disposition": "rejected",
+      "plain_ci": {
+        "exit": 1,
+        "execution": "completed"
+      },
+      "error": null,
+      "oracle_subject_valid": null
+    },
+    "canary-failing/fast": {
+      "ok": true,
+      "execution": "completed",
+      "disposition": "rejected",
+      "plain_ci": {
+        "exit": 1,
+        "execution": "completed"
+      },
+      "error": null,
+      "oracle_subject_valid": false
+    },
+    "canary-skipped/plain": {
+      "ok": true,
+      "execution": "completed",
+      "disposition": "accepted",
+      "plain_ci": {
+        "exit": 0,
+        "execution": "completed"
+      },
+      "error": null,
+      "oracle_subject_valid": null
+    },
+    "canary-zero-test/plain": {
+      "ok": true,
+      "execution": "completed",
+      "disposition": "rejected",
+      "plain_ci": {
+        "exit": 1,
+        "execution": "completed"
+      },
+      "error": null,
+      "oracle_subject_valid": null
+    },
+    "canary-crash/plain": {
+      "ok": true,
+      "execution": "completed",
+      "disposition": "rejected",
+      "plain_ci": {
+        "exit": -11,
+        "execution": "completed"
+      },
+      "error": null,
+      "oracle_subject_valid": null
+    },
+    "canary-timeout/plain": {
+      "ok": true,
+      "execution": "completed",
+      "disposition": "rejected",
+      "plain_ci": {
+        "exit": -15,
+        "execution": "timeout"
+      },
+      "error": null,
+      "oracle_subject_valid": null
+    },
+    "canary-missing-command/plain": {
+      "ok": true,
+      "execution": "completed",
+      "disposition": "rejected",
+      "plain_ci": {
+        "exit": 127,
+        "execution": "completed"
+      },
+      "error": null,
+      "oracle_subject_valid": null
+    },
+    "canary-baseline-red/plain": {
+      "ok": true,
+      "execution": "harness_error",
+      "disposition": null,
+      "plain_ci": null,
+      "error": "baseline-red: base native suite did not complete green",
+      "oracle_subject_valid": null
+    },
+    "canary-baseline-red/fast": {
+      "ok": true,
+      "execution": "harness_error",
+      "disposition": null,
+      "plain_ci": null,
+      "error": "baseline-red: base native suite did not complete green",
+      "oracle_subject_valid": null
+    },
+    "canary-corrupted-expected/plain": {
+      "ok": true,
+      "execution": "harness_error",
+      "disposition": null,
+      "plain_ci": null,
+      "error": "baseline-red: canonical base did not complete green",
+      "oracle_subject_valid": null
+    },
+    "canary-corrupted-expected/fast": {
+      "ok": true,
+      "execution": "harness_error",
+      "disposition": null,
+      "plain_ci": null,
+      "error": "baseline-red: canonical base did not complete green",
+      "oracle_subject_valid": null
+    },
+    "validator/clean": {
+      "ok": true,
+      "problems": []
+    },
+    "failing-fast/oracle-recorded-invalid": {
+      "ok": true
+    },
+    "tamper/truth-flipped": {
+      "ok": true,
+      "new_problems": [
+        "canary-passing/plain: record.json hash mismatch",
+        "canary-passing/plain: truth='harmful' disagrees with frozen inventory 'legitimate'"
+      ]
+    },
+    "tamper/disposition-flipped": {
+      "ok": true,
+      "new_problems": [
+        "canary-failing/plain: record.json hash mismatch",
+        "canary-failing/plain: plain disposition accepted contradicts recorded CI ({'exit': 1, 'execution': 'completed'})"
+      ]
+    },
+    "tamper/artifact-edited": {
+      "ok": true,
+      "new_problems": [
+        "canary-passing/plain: candidate-ci.json hash mismatch"
+      ]
+    },
+    "tamper/record-deleted": {
+      "ok": true,
+      "new_problems": [
+        "canary-passing/plain: missing record",
+        "canary-passing/fast: unexpected record outside the schedule"
+      ]
+    },
+    "tamper/evaluator-hash": {
+      "ok": true,
+      "new_problems": [
+        "canary-passing/fast: record.json hash mismatch",
+        "canary-passing/fast: evaluator or runner hash differs from campaign.json"
+      ]
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "baseline.json": "3ed1c01065b987cef131e77dbbe887a31bd4450de1694bb3c4342eb77c1f09ea",
+  "candidate-ci.json": "dfe0d97fe51f1318a1fe03ad436b6eb8183fce1bd14f85ad83e57275f6bab7bf",
+  "oracle-preflight.json": "4dc7a729c65c352b52497fc9ec35ba1ce7569170f7fdbd3509c5c1390cf69c84",
+  "record.json": "a098534b8ddc41a4dd8ccf732f7ef86dad08ae11675a20d1e746a70579b43bf6",
+  "regression.json": "7ea8a614ee0b31e62f8d69885da97566b8f8641782ca672ef698f6f5d4289ca6"
+}

@@ -1,0 +1,293 @@
+diff --git a/.proof/packets/p-b26b4c5f.json b/.proof/packets/p-b26b4c5f.json
+new file mode 100644
+index 0000000..b5489da
+--- /dev/null
++++ b/.proof/packets/p-b26b4c5f.json
+@@ -0,0 +1,181 @@
++{
++  "pocp": 1,
++  "id": "p-b26b4c5f",
++  "intent": "Change to boltons/tbutils.py, tests/test_tbutils_parsed_exc.py",
++  "touches": [
++    "boltons/tbutils.py",
++    "tests/test_tbutils_parsed_exc.py"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:runtime-suite"
++    },
++    {
++      "id": "o2",
++      "kind": "guard",
++      "files": [
++        "tests/test_tbutils_parsed_exc.py"
++      ],
++      "mutants": 0,
++      "seed": 11,
++      "text": "Existing tests or test setup changed (tests/test_tbutils_parsed_exc.py): the old tests still pass on the new code, and a person reviews the change (fast mode: without planted bugs POCP can't show the tests still catch what they caught)",
++      "source": "guard:tests"
++    }
++  ],
++  "state": "open",
++  "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "policy_repo": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "opened_at": "2026-11-11T14:01:54.189Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:ca1f5b5b8c86260300452c288ac3ebb747a9790a37db71c20685b6ee80807371",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T14:01:54.571Z",
++      "duration_ms": 2103,
++      "stdout_sha256": "429289c0fa79f750713cbc255d8b9a91b5ddf3baa7555db64bb84da962be484f",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-3bb2a0b9",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      }
++    },
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:55fdce563d757f475deeff285f28b5225c245ff33a57910c7e700a08ff61e636",
++      "subject": "sha256:ca1f5b5b8c86260300452c288ac3ebb747a9790a37db71c20685b6ee80807371",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "kind": "guard",
++      "mode": "snapshot",
++      "passed": false,
++      "started_at": "2026-11-11T14:01:56.791Z",
++      "duration_ms": 4476,
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      },
++      "guard": {
++        "pocp": 1,
++        "verdict": "behavior-changed",
++        "passed": false,
++        "summary": "the old tests fail on the new code (\"sh .bench/check.sh\" exit 1); failing: tests/test_tbutils_parsed_exc.py::test_parsed_exc_with_anchor: behavior changed, so a person must approve it",
++        "base": "3dfb9a4b99de541d20469817eb245aad56f1751a",
++        "checks": [
++          {
++            "id": "runtime-suite",
++            "run": "sh .bench/check.sh"
++          }
++        ],
++        "old_tests": {
++          "result": "fail",
++          "restored": [
++            "tests/test_tbutils_parsed_exc.py"
++          ],
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": false,
++              "exit": 1,
++              "duration_ms": 2133,
++              "failed_tests": [
++                "tests/test_tbutils_parsed_exc.py::test_parsed_exc_with_anchor"
++              ]
++            }
++          ],
++          "changed_tests": {
++            "result": "not-used",
++            "reason": "check runtime-suite has no changed_test_command"
++          }
++        },
++        "new_tests": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "reused": true,
++              "duration_ms": 0
++            }
++          ]
++        },
++        "baseline": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "exit": 0,
++              "duration_ms": 2103
++            }
++          ]
++        },
++        "detection": {
++          "result": "not-run",
++          "budget": 0,
++          "seed": 11
++        },
++        "duration_ms": 4476,
++        "checks_from": "rules"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T14:01:54.189Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T14:01:54.189Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1",
++        "o2"
++      ],
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178"
++    },
++    {
++      "at": "2026-11-11T14:02:01.320Z",
++      "event": "proof_failed",
++      "obligation": "o2",
++      "subject": "sha256:ca1f5b5b8c86260300452c288ac3ebb747a9790a37db71c20685b6ee80807371"
++    },
++    {
++      "at": "2026-11-11T14:02:01.634Z",
++      "event": "deferred",
++      "obligation": "o2",
++      "by": "unknown",
++      "subject": "sha256:ca1f5b5b8c86260300452c288ac3ebb747a9790a37db71c20685b6ee80807371"
++    }
++  ],
++  "deferrals": [
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:55fdce563d757f475deeff285f28b5225c245ff33a57910c7e700a08ff61e636",
++      "subject": "sha256:ca1f5b5b8c86260300452c288ac3ebb747a9790a37db71c20685b6ee80807371",
++      "by": "unknown",
++      "at": "2026-11-11T14:02:01.634Z",
++      "to": "ci-approval",
++      "reason": "the old tests fail on the new code (\"sh .bench/check.sh\" exit 1); failing: tests/test_tbutils_parsed_exc.py::test_parsed_exc_with_anchor: behavior changed, so a person must approve it"
++    }
++  ]
++}
+diff --git a/boltons/tbutils.py b/boltons/tbutils.py
+index 6093609..2623ea3 100644
+--- a/boltons/tbutils.py
++++ b/boltons/tbutils.py
+@@ -716,9 +716,10 @@ class ParsedException:
+ 
+         .. note::
+ 
+-           Note that this method does not output "anchors" (e.g.,
+-           ``~~~~~^^``), as were added in Python 3.13. See the built-in
+-           ``traceback`` module if these are necessary.
++           Anchor lines (e.g., ``~~~~~^^``, present in tracebacks from
++           Python 3.11+) round-trip: they are parsed into each frame's
++           ``source_line_anchor`` and re-emitted aligned beneath the
++           frame's source line.
+         """
+         lines = ['Traceback (most recent call last):']
+ 
+@@ -729,6 +730,9 @@ class ParsedException:
+             source_line = frame.get('source_line')
+             if source_line:
+                 lines.append(f'    {source_line}')
++                anchor = frame.get('source_line_anchor')
++                if anchor:
++                    lines.append(f'    {anchor}')
+         if self.exc_msg:
+             lines.append(f'{self.exc_type}: {self.exc_msg}')
+         else:
+@@ -802,7 +806,13 @@ class ParsedException:
+                     line_no += 1
+                     if (line_no + 1 < len(tb_lines)
+                             and _underline_re.match(tb_lines[line_no + 1])):
+-                        # To deal with anchors
++                        # store anchors dedented by the source line's
++                        # indentation so columns stay aligned with the
++                        # stripped source_line, whatever the tb's indent
++                        indent = len(next_line) - len(next_line.lstrip())
++                        anchor = tb_lines[line_no + 1][indent:].rstrip()
++                        if anchor:
++                            frame_dict['source_line_anchor'] = anchor
+                         line_no += 1
+             else:
+                 break
+diff --git a/tests/test_tbutils_parsed_exc.py b/tests/test_tbutils_parsed_exc.py
+index 25bb5c6..156a698 100644
+--- a/tests/test_tbutils_parsed_exc.py
++++ b/tests/test_tbutils_parsed_exc.py
+@@ -51,9 +51,7 @@ RuntimeError"""
+                                    'funcname': 'load'}
+     assert parsed_tb.to_string() == _tb_str
+ 
+-def test_parsed_exc_with_anchor():
+-    """parse a traceback with anchor lines beneath source lines"""
+-    _tb_str = """\
++_ANCHOR_TB_STR = """\
+ Traceback (most recent call last):
+   File "main.py", line 3, in <module>
+     print(add(1, "two"))
+@@ -63,23 +61,34 @@ Traceback (most recent call last):
+            ~~^~~
+ TypeError: unsupported operand type(s) for +: 'int' and 'str'"""
+ 
+-    parsed_tb = ParsedException.from_string(_tb_str)
++
++def test_parsed_exc_with_anchor():
++    """parse a traceback with anchor lines beneath source lines"""
++    parsed_tb = ParsedException.from_string(_ANCHOR_TB_STR)
+ 
+     assert parsed_tb.exc_type == 'TypeError'
+     assert parsed_tb.exc_msg == "unsupported operand type(s) for +: 'int' and 'str'"
+     assert parsed_tb.frames == [{'source_line': 'print(add(1, "two"))',
+-                                  'filepath': 'main.py',
+-                                  'lineno': '3',
+-                                  'funcname': '<module>'},
+-                                  {'source_line': 'return a + b',
+-                                  'filepath': 'add.py',
+-                                  'lineno': '2',
+-                                  'funcname': 'add'}]
+-    
+-    # Note: not checking the anchor lines (indices 3, 6) because column details not currently stored in ParsedException
+-    _tb_str_lines = _tb_str.splitlines()
+-    _tb_str_without_anchor = "\n".join(_tb_str_lines[:3] + _tb_str_lines[4:6] + _tb_str_lines[7:])
+-    assert parsed_tb.to_string() == _tb_str_without_anchor
++                                 'source_line_anchor': '      ^^^^^^^^^^^^^',
++                                 'filepath': 'main.py',
++                                 'lineno': '3',
++                                 'funcname': '<module>'},
++                                {'source_line': 'return a + b',
++                                 'source_line_anchor': '       ~~^~~',
++                                 'filepath': 'add.py',
++                                 'lineno': '2',
++                                 'funcname': 'add'}]
++    assert parsed_tb.to_string() == _ANCHOR_TB_STR
++
++
++def test_parsed_exc_with_anchor_indented():
++    """anchors stay aligned when the whole traceback arrives indented,
++    e.g. pasted from a log: source_line is stripped, and the anchor is
++    dedented by the same amount"""
++    plain = ParsedException.from_string(_ANCHOR_TB_STR)
++    indented = ParsedException.from_string(
++        '\n'.join('    ' + line for line in _ANCHOR_TB_STR.splitlines()))
++    assert indented.frames == plain.frames
+ 
+ 
+ def test_parsed_exc_truncated():

@@ -1,0 +1,151 @@
+{
+  "case_id": "boltons-unique-helper-legitimate",
+  "set": "B",
+  "split": "development",
+  "regime": "focused",
+  "target": "boltons",
+  "truth": "legitimate",
+  "cohort": "paired-control",
+  "category": "preserving_test_or_setup",
+  "cell": "deep-101",
+  "mode": "deep",
+  "configured_seed": 101,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "b2ea8b8d6c545dc524afabd3589c4a20ec66e99e",
+  "head": "2eef7e199c49e3f17c5997e60164cdc1b404db39",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 0,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "accepted",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": true,
+    "approval_needs": [],
+    "approval_only": null,
+    "findings": [],
+    "guards": [
+      {
+        "verdict": "passed",
+        "effective_seed": 692475722,
+        "detection": "kept",
+        "mutants": [
+          {
+            "file": "bench_support/assertions.py",
+            "line": 3,
+            "operator": "eq",
+            "before": "assert json.loads(json.dumps(observedValue)) == expected",
+            "after": "assert json.loads(json.dumps(observedValue)) != expected",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/namedutils.py",
+            "line": 258,
+            "operator": "plus",
+            "before": "tmpl = self.__class__.__name__ + '({repr_fmt})'",
+            "after": "tmpl = self.__class__.__name__ - '({repr_fmt})'",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "docs/conf.py",
+            "line": 49,
+            "operator": "strict-eq",
+            "before": "print ('==== %s modules ==== %s types ==== %s funcs ====' % ret)",
+            "after": "print ('==== %s modules ==== %s types !=== %s funcs ====' % ret)",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/fileutils.py",
+            "line": 158,
+            "operator": "zero-one",
+            "before": "self._integer = 0",
+            "after": "self._integer = 1",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/fileutils.py",
+            "line": 297,
+            "operator": "zero-one",
+            "before": "None, 0, None, None)",
+            "after": "None, 1, None, None)",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/ecoutils.py",
+            "line": 120,
+            "operator": "true",
+            "before": "\"threading\": true,",
+            "after": "\"threading\": false,",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/debugutils.py",
+            "line": 131,
+            "operator": "minus",
+            "before": "tmpl = '%s %s - %s - %s.%s(%s, %s)'",
+            "after": "tmpl = '%s %s + %s - %s.%s(%s, %s)'",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/listutils.py",
+            "line": 127,
+            "operator": "gt",
+            "before": "if len(cur_list) > size_limit:",
+            "after": "if len(cur_list) <= size_limit:",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/urlutils.py",
+            "line": 302,
+            "operator": "plus",
+            "before": "append(bits[i + 1])",
+            "after": "append(bits[i - 1])",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/socketutils.py",
+            "line": 354,
+            "operator": "minus",
+            "before": "find_offset_start = -len(nxt) - len_delimiter + 1",
+            "after": "find_offset_start = -len(nxt) + len_delimiter + 1",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 12.402
+}

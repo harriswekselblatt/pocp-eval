@@ -1,0 +1,289 @@
+diff --git a/.proof/packets/p-da613003.json b/.proof/packets/p-da613003.json
+new file mode 100644
+index 0000000..197d1a9
+--- /dev/null
++++ b/.proof/packets/p-da613003.json
+@@ -0,0 +1,275 @@
++{
++  "pocp": 1,
++  "id": "p-da613003",
++  "intent": "Change to bench-support/assertions.mjs",
++  "touches": [
++    "bench-support/assertions.mjs"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:behavior-contract"
++    },
++    {
++      "id": "o2",
++      "kind": "guard",
++      "files": [
++        "bench-support/assertions.mjs"
++      ],
++      "mutants": 10,
++      "seed": 11,
++      "text": "Existing tests or test setup changed (bench-support/assertions.mjs): the old tests still pass on the new code, and the new tests catch every sampled mutant the old ones caught",
++      "source": "guard:tests"
++    }
++  ],
++  "state": "open",
++  "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++  "policy_repo": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++  "opened_at": "2026-11-11T08:30:27.211Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:9085aaea09342dd8700f4919e4bfe8446d80524def1dea9934201cc448fd8c4e",
++      "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T08:30:27.570Z",
++      "duration_ms": 60,
++      "stdout_sha256": "f5a833ecdbe9852ca7bd2ade2e57ac9a36372d336113c86b1bb34ec4c2e91a72",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-4a6843d1",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      }
++    },
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:04795689109e615df6abf2650ec1e5627c671ae3a8cb96b5ad37a5c9a3a7944c",
++      "subject": "sha256:9085aaea09342dd8700f4919e4bfe8446d80524def1dea9934201cc448fd8c4e",
++      "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++      "kind": "guard",
++      "mode": "snapshot",
++      "passed": false,
++      "started_at": "2026-11-11T08:30:27.738Z",
++      "duration_ms": 398,
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      },
++      "guard": {
++        "pocp": 1,
++        "verdict": "inconclusive",
++        "passed": false,
++        "summary": "the old tests caught none of 10 sampled mutants, so a drop in detection can't be measured",
++        "base": "8f5d3ecf81927cb936636379569d49b254830905",
++        "checks": [
++          {
++            "id": "behavior-contract",
++            "run": "sh .bench/check.sh"
++          }
++        ],
++        "old_tests": {
++          "result": "pass",
++          "restored": [
++            "bench-support/assertions.mjs"
++          ],
++          "runs": [
++            {
++              "check": "behavior-contract",
++              "passed": true,
++              "exit": 0,
++              "duration_ms": 61
++            }
++          ]
++        },
++        "new_tests": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "behavior-contract",
++              "passed": true,
++              "reused": true,
++              "duration_ms": 0
++            }
++          ]
++        },
++        "baseline": {
++          "result": "not-run",
++          "runs": []
++        },
++        "detection": {
++          "result": "inconclusive",
++          "budget": 10,
++          "seed": 11,
++          "sites": 217,
++          "focus_sites": 0,
++          "files": 5,
++          "sampled": 10,
++          "old_caught": 0,
++          "new_caught": 0,
++          "lost": [],
++          "mutants": [
++            {
++              "file": "index.test-d.ts",
++              "line": 72,
++              "operator": "zero-one",
++              "before": "if (number % 2 === 0) {",
++              "after": "if (number % 2 === 1) {",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "index.js",
++              "line": 158,
++              "operator": "and",
++              "before": "if (lastIndex === result.length && skippedCount === 0) {",
++              "after": "if (lastIndex === result.length || skippedCount === 0) {",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "index.js",
++              "line": 422,
++              "operator": "false",
++              "before": "return {done: false, value: returnValue};",
++              "after": "return {done: true, value: returnValue};",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "index.test-d.ts",
++              "line": 221,
++              "operator": "strict-eq",
++              "before": "expectType<Promise<{user?: string | number; count?: string | number}>>(pMapKeyed(keyedInput, async value => (value === 1 ? pMapSkip : value)));",
++              "after": "expectType<Promise<{user?: string | number; count?: string | number}>>(pMapKeyed(keyedInput, async value => (value !== 1 ? pMapSkip : value)));",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "count-array-work.js",
++              "line": 26,
++              "operator": "zero-one",
++              "before": "count(this.length - (arguments_[0] ?? 0));",
++              "after": "count(this.length - (arguments_[0] ?? 1));",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "index.d.ts",
++              "line": 113,
++              "operator": "minus",
++              "before": "@param element - Iterated element.",
++              "after": "@param element + Iterated element.",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "index.js",
++              "line": 418,
++              "operator": "strict-eq",
++              "before": "if (returnValue === pMapStop) {",
++              "after": "if (returnValue !== pMapStop) {",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "index.test-d.ts",
++              "line": 299,
++              "operator": "zero-one",
++              "before": "expectType<Promise<{a?: number}>>(pMapKeyed({a: 1} as const, value => (value > 0 ? pMapSkip : value * 2)));",
++              "after": "expectType<Promise<{a?: number}>>(pMapKeyed({a: 1} as const, value => (value > 1 ? pMapSkip : value * 2)));",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "index.d.ts",
++              "line": 91,
++              "operator": "true",
++              "before": "Default: `true`",
++              "after": "Default: `false`",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "index.js",
++              "line": 362,
++              "operator": "gte",
++              "before": "if (isDone || isIterableDone || index > stopIndex || readingCount >= concurrency || promises.length - headIndex >= backpressure) {",
++              "after": "if (isDone || isIterableDone || index > stopIndex || readingCount >= concurrency || promises.length - headIndex < backpressure) {",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            }
++          ]
++        },
++        "duration_ms": 398,
++        "checks_from": "rules"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T08:30:27.211Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T08:30:27.211Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1",
++        "o2"
++      ],
++      "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66"
++    },
++    {
++      "at": "2026-11-11T08:30:28.171Z",
++      "event": "proof_failed",
++      "obligation": "o2",
++      "subject": "sha256:9085aaea09342dd8700f4919e4bfe8446d80524def1dea9934201cc448fd8c4e"
++    },
++    {
++      "at": "2026-11-11T08:30:28.478Z",
++      "event": "deferred",
++      "obligation": "o2",
++      "by": "unknown",
++      "subject": "sha256:9085aaea09342dd8700f4919e4bfe8446d80524def1dea9934201cc448fd8c4e"
++    }
++  ],
++  "deferrals": [
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:04795689109e615df6abf2650ec1e5627c671ae3a8cb96b5ad37a5c9a3a7944c",
++      "subject": "sha256:9085aaea09342dd8700f4919e4bfe8446d80524def1dea9934201cc448fd8c4e",
++      "by": "unknown",
++      "at": "2026-11-11T08:30:28.478Z",
++      "to": "ci-approval",
++      "reason": "the old tests caught none of 10 sampled mutants, so a drop in detection can't be measured"
++    }
++  ]
++}
+diff --git a/bench-support/assertions.mjs b/bench-support/assertions.mjs
+index 2846025..afc124f 100644
+--- a/bench-support/assertions.mjs
++++ b/bench-support/assertions.mjs
+@@ -1,2 +1,2 @@
+ import assert from 'node:assert/strict';
+-export function check(actual, expected) { assert.deepEqual(JSON.parse(JSON.stringify(actual)), expected); }
++export function check(observedValue, expected) { assert.deepEqual(JSON.parse(JSON.stringify(observedValue)), expected); }

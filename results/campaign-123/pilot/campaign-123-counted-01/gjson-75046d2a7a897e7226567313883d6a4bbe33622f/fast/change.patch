@@ -1,0 +1,28 @@
+diff --git a/README.md b/README.md
+index 09ac4ec..b7848de 100644
+--- a/README.md
++++ b/README.md
+@@ -128,8 +128,7 @@ result.Str            // holds the string
+ result.Num            // holds the float64 number
+ result.Raw            // holds the raw json
+ result.Index          // index of raw value in original json, zero means index unknown
+-result.Indexes        // indexes of all the elements that match on a `#(...)#` query
+-
++result.Indexes        // indexes of all the elements that match on a path containing the '#' query character.
+ ```
+ 
+ There are a variety of handy functions that work on a result:
+diff --git a/gjson.go b/gjson.go
+index afaee29..973c8af 100644
+--- a/gjson.go
++++ b/gjson.go
+@@ -64,7 +64,8 @@ type Result struct {
+ 	Num float64
+ 	// Index of raw value in original json, zero means index unknown
+ 	Index int
+-	// Indexes of all the elements that match on a `#(...)#` query.
++	// Indexes of all the elements that match on a path containing the '#'
++	// query character.
+ 	Indexes []int
+ }
+ 

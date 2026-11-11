@@ -1,0 +1,261 @@
+diff --git a/.github/workflows/go.yml b/.github/workflows/go.yml
+index 0d7d370..78914c0 100644
+--- a/.github/workflows/go.yml
++++ b/.github/workflows/go.yml
+@@ -16,7 +16,7 @@ jobs:
+     - name: Set up Go 1.x
+       uses: actions/setup-go@v2
+       with:
+-        go-version: ^1.23
++        go-version: ^1.27
+ 
+     - name: Check out code into the Go module directory
+       uses: actions/checkout@v2
+diff --git a/.proof/packets/p-de6ec3f4.json b/.proof/packets/p-de6ec3f4.json
+new file mode 100644
+index 0000000..bdf6519
+--- /dev/null
++++ b/.proof/packets/p-de6ec3f4.json
+@@ -0,0 +1,178 @@
++{
++  "pocp": 1,
++  "id": "p-de6ec3f4",
++  "intent": "Change to .github/workflows/go.yml, gjson.go, gjson_test.go",
++  "touches": [
++    ".github/workflows/go.yml",
++    "gjson.go",
++    "gjson_test.go"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:runtime-suite"
++    },
++    {
++      "id": "o2",
++      "kind": "guard",
++      "files": [
++        "gjson_test.go"
++      ],
++      "mutants": 10,
++      "seed": 11,
++      "text": "Existing tests or test setup changed (gjson_test.go): the old tests still pass on the new code, and the new tests catch every sampled mutant the old ones caught",
++      "source": "guard:tests"
++    }
++  ],
++  "state": "open",
++  "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "policy_repo": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "opened_at": "2026-11-11T04:28:34.676Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:781ef69d0c0873777ab5b5c34577124b21c29b3607ed3e356827a1c97763bf84",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T04:28:35.152Z",
++      "duration_ms": 11990,
++      "stdout_sha256": "ceb63ad20f159ac7bf4d487e9baf9bedb4efccc03cf77ff99bf0d657fe01b652",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-8f91c85c",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": "dfff87a7de3ea43eb32e4297a35cbd7eb4819d36b877fd6559d69f812f326379"
++      }
++    },
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:15ca144264df222303c90409b5305efd8a8085c440fee6824b8796736339f108",
++      "subject": "sha256:781ef69d0c0873777ab5b5c34577124b21c29b3607ed3e356827a1c97763bf84",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "kind": "guard",
++      "mode": "snapshot",
++      "passed": false,
++      "started_at": "2026-11-11T04:28:47.292Z",
++      "duration_ms": 34594,
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": "dfff87a7de3ea43eb32e4297a35cbd7eb4819d36b877fd6559d69f812f326379"
++      },
++      "guard": {
++        "pocp": 1,
++        "verdict": "behavior-changed",
++        "passed": false,
++        "summary": "the old tests fail on the new code (\"sh .bench/check.sh\" exit 1); failing: github.com/tidwall/gjson: behavior changed, so a person must approve it",
++        "base": "88ce3b725e1acb35fa2121363087a9aa332d21b6",
++        "checks": [
++          {
++            "id": "runtime-suite",
++            "run": "sh .bench/check.sh"
++          }
++        ],
++        "old_tests": {
++          "result": "fail",
++          "restored": [
++            "gjson_test.go"
++          ],
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": false,
++              "exit": 1,
++              "duration_ms": 11605,
++              "failed_tests": [
++                "github.com/tidwall/gjson"
++              ]
++            }
++          ]
++        },
++        "new_tests": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "reused": true,
++              "duration_ms": 0
++            }
++          ]
++        },
++        "baseline": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "exit": 0,
++              "duration_ms": 13517
++            }
++          ]
++        },
++        "detection": {
++          "result": "not-run",
++          "budget": 10,
++          "seed": 11
++        },
++        "duration_ms": 34594,
++        "checks_from": "rules"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T04:28:34.676Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T04:28:34.676Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1",
++        "o2"
++      ],
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178"
++    },
++    {
++      "at": "2026-11-11T04:29:21.976Z",
++      "event": "proof_failed",
++      "obligation": "o2",
++      "subject": "sha256:781ef69d0c0873777ab5b5c34577124b21c29b3607ed3e356827a1c97763bf84"
++    },
++    {
++      "at": "2026-11-11T04:29:22.683Z",
++      "event": "deferred",
++      "obligation": "o2",
++      "by": "unknown",
++      "subject": "sha256:781ef69d0c0873777ab5b5c34577124b21c29b3607ed3e356827a1c97763bf84"
++    }
++  ],
++  "deferrals": [
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:15ca144264df222303c90409b5305efd8a8085c440fee6824b8796736339f108",
++      "subject": "sha256:781ef69d0c0873777ab5b5c34577124b21c29b3607ed3e356827a1c97763bf84",
++      "by": "unknown",
++      "at": "2026-11-11T04:29:22.683Z",
++      "to": "ci-approval",
++      "reason": "the old tests fail on the new code (\"sh .bench/check.sh\" exit 1); failing: github.com/tidwall/gjson: behavior changed, so a person must approve it"
++    }
++  ]
++}
+diff --git a/gjson.go b/gjson.go
+index 1c6a272..493a82c 100644
+--- a/gjson.go
++++ b/gjson.go
+@@ -2070,7 +2070,7 @@ func AppendJSONString(dst []byte, s string) []byte {
+ 				break
+ 			}
+ 			if r == utf8.RuneError && n == 1 {
+-				dst = append(dst, `\ufffd`...)
++				dst = append(dst, "\xef\xbf\xbd"...)
+ 			} else if r == '\u2028' || r == '\u2029' {
+ 				dst = append(dst, `\u202`...)
+ 				dst = append(dst, hexchars[r&0xF])
+diff --git a/gjson_test.go b/gjson_test.go
+index f9291cf..0d0a7ec 100644
+--- a/gjson_test.go
++++ b/gjson_test.go
+@@ -7,6 +7,7 @@ import (
+ 	"fmt"
+ 	"math"
+ 	"math/rand"
++	"runtime"
+ 	"strconv"
+ 	"strings"
+ 	"testing"
+@@ -2557,13 +2558,30 @@ func goJSONMarshal(i interface{}) ([]byte, error) {
+ 	return bytes.TrimRight(buffer.Bytes(), "\n"), err
+ }
+ 
++func isGo126() bool {
++	if v := runtime.Version(); strings.HasPrefix(v, "go") {
++		if p := strings.Split(v[2:], "."); len(p) >= 2 {
++			ma, e0 := strconv.Atoi(p[0])
++			mi, e1 := strconv.Atoi(p[1])
++			if e0 == nil && e1 == nil && ma <= 1 && mi <= 26 {
++				return true
++			}
++		}
++	}
++	return false
++}
++
+ func testJSONString(t *testing.T, str string) {
++	t.Helper()
+ 	gjsonString := string(AppendJSONString(nil, str))
+ 	data, err := goJSONMarshal(str)
+ 	if err != nil {
+ 		panic(123)
+ 	}
+ 	goString := string(data)
++	if isGo126() {
++		goString = strings.ReplaceAll(goString, "\\ufffd", "\xef\xbf\xbd")
++	}
+ 	if gjsonString != goString {
+ 		t.Fatal(strconv.Quote(str) + "\n\t" +
+ 			gjsonString + "\n\t" +
+@@ -2584,6 +2602,7 @@ func TestJSONString(t *testing.T) {
+ 		t.Fatalf("expected '%v', got '%v'", s, value.String())
+ 	}
+ 	testJSONString(t, s)
++	testJSONString(t, "\xfd")
+ 	testJSONString(t, "R\xfd\xfc\a!\x82eO\x16?_\x0f\x9ab\x1dr")
+ 	testJSONString(t, "_\xb9\v\xad\xb3|X!\xb6\xd9U&\xa4\x1a\x95\x04")
+ 	data, _ := json.Marshal("\b\f")

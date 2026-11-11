@@ -1,0 +1,1129 @@
+[
+  {
+    "id": "p-map-dc597e50b894f786d690cdbdc2d20ee867e5aafb",
+    "repository": "p-map",
+    "draw_order": 36,
+    "parent": "34006c9222bbea40981b2487bda4ebe5806d7030",
+    "commit": "dc597e50b894f786d690cdbdc2d20ee867e5aafb",
+    "title": "Add missing `index` parameter to mapper function in `pMapIterable` (#71)",
+    "files": [
+      "index.js",
+      "test.js"
+    ],
+    "churn": 28,
+    "patch": "audit/patches/upstream-extension/p-map/dc597e50b894f786d690cdbdc2d20ee867e5aafb.patch",
+    "patch_sha256": "309af6d21e9d94f73d50e8210186b64c23eb8e12064176179557e12a1406b432",
+    "eligibility": "parent and head pinned runtime suites completed green in the frozen-order extension",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "p-map-df88787528aab893c3ddbede2ddadf31133909b5",
+    "repository": "p-map",
+    "draw_order": 37,
+    "parent": "a5faf425ad3f871d10b3a18e30ae10d1edc78311",
+    "commit": "df88787528aab893c3ddbede2ddadf31133909b5",
+    "title": "Drop `aggregate-error` dependency and require Node.js 16 (#65)",
+    "files": [
+      ".github/workflows/main.yml",
+      "index.js",
+      "package.json",
+      "test.js"
+    ],
+    "churn": 26,
+    "patch": "audit/patches/upstream-extension/p-map/df88787528aab893c3ddbede2ddadf31133909b5.patch",
+    "patch_sha256": "6b4d78b8bbe23124c40046ff02f1615694c86419a3ca3e213dd58daafe178950",
+    "eligibility": "parent and head pinned runtime suites completed green in the frozen-order extension",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "p-map-4b5f9e7b0f6b94eb725ea7bbacb267ebc3c92e20",
+    "repository": "p-map",
+    "draw_order": 38,
+    "parent": "9e11914dff5c62171d2580e080c8350fe9029945",
+    "commit": "4b5f9e7b0f6b94eb725ea7bbacb267ebc3c92e20",
+    "title": "Do not run mapping after stop-on-error happened (#40)",
+    "files": [
+      "index.js",
+      "test.js"
+    ],
+    "churn": 21,
+    "patch": "audit/patches/upstream-extension/p-map/4b5f9e7b0f6b94eb725ea7bbacb267ebc3c92e20.patch",
+    "patch_sha256": "9cc4bb50d3fdc171b6b714b0c84c23034529107d6d6d5948c8bedf98acc474d8",
+    "eligibility": "parent and head pinned runtime suites completed green in the frozen-order extension",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "p-map-e7c2ecb113e8988165a6798630e4e9c2cdeb9d1b",
+    "repository": "p-map",
+    "draw_order": 40,
+    "parent": "9c48f07c38e6f8e9ed2e09884ed21a2536d4f4ef",
+    "commit": "e7c2ecb113e8988165a6798630e4e9c2cdeb9d1b",
+    "title": "Fix `pMapIterable` not closing the source iterator when iteration stops early",
+    "files": [
+      "index.js",
+      "test.js"
+    ],
+    "churn": 171,
+    "patch": "audit/patches/upstream-extension/p-map/e7c2ecb113e8988165a6798630e4e9c2cdeb9d1b.patch",
+    "patch_sha256": "bf9bc1900d9addc8433c3c1f42f5c03c357d226e9aead52a0140584fce7db5e6",
+    "eligibility": "parent and head pinned runtime suites completed green in the frozen-order extension",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "p-map-65e893e306f97fc4fbf1f12d126ba3141dafde48",
+    "repository": "p-map",
+    "draw_order": 41,
+    "parent": "a38d5a7180ba9ecd6a02e37ec5cc6ae11f3433ac",
+    "commit": "65e893e306f97fc4fbf1f12d126ba3141dafde48",
+    "title": "Fix cleaning up abort listener (#81)",
+    "files": [
+      "index.js"
+    ],
+    "churn": 20,
+    "patch": "audit/patches/upstream-extension/p-map/65e893e306f97fc4fbf1f12d126ba3141dafde48.patch",
+    "patch_sha256": "eb9f2e9661f4fea98c47884f8e2c8ba8a0c11fcebd819995607d33140b271cb8",
+    "eligibility": "parent and head pinned runtime suites completed green in the frozen-order extension",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "boltons-8c3fc2850693eacd2f2f8c95e7581adbb65b1269",
+    "repository": "boltons",
+    "draw_order": 31,
+    "parent": "ead236e278ca0466bf468de746b5960fb12d7e5b",
+    "commit": "8c3fc2850693eacd2f2f8c95e7581adbb65b1269",
+    "title": "Pluralize words ending in \"x\" with \"-es\" (box -> boxes)",
+    "files": [
+      "boltons/strutils.py",
+      "tests/test_strutils.py"
+    ],
+    "churn": 17,
+    "patch": "audit/patches/upstream-extension/boltons/8c3fc2850693eacd2f2f8c95e7581adbb65b1269.patch",
+    "patch_sha256": "9318ac9bac10b7c5be5b35492a4e299ede407eef132eb2c7c26a51077b48e69d",
+    "eligibility": "parent and head pinned runtime suites completed green in the frozen-order extension",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "boltons-967864f89791509f9eb36b22b4579d36b72a6df2",
+    "repository": "boltons",
+    "draw_order": 32,
+    "parent": "5df26592c29b9561d122640868ba0522cbc1e20d",
+    "commit": "967864f89791509f9eb36b22b4579d36b72a6df2",
+    "title": "statsutils: add mode() for most-common value, incl. categorical data (#453)",
+    "files": [
+      "boltons/statsutils.py",
+      "tests/test_statsutils.py"
+    ],
+    "churn": 35,
+    "patch": "audit/patches/upstream-extension/boltons/967864f89791509f9eb36b22b4579d36b72a6df2.patch",
+    "patch_sha256": "2c8b0f0a0fe81fdb349fdf684b189924ac4f7eed0cb83f36596214ae63f32784",
+    "eligibility": "parent and head pinned runtime suites completed green in the frozen-order extension",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "boltons-9decba3e5736f61180eec274420ced0e572e30e6",
+    "repository": "boltons",
+    "draw_order": 33,
+    "parent": "a1ea1030ed85137e999c0bd9b11d16368d3ab241",
+    "commit": "9decba3e5736f61180eec274420ced0e572e30e6",
+    "title": "ecoutils: skip identifying lookups when scrubbing (#461)",
+    "files": [
+      "boltons/ecoutils.py",
+      "tests/test_ecoutils.py"
+    ],
+    "churn": 61,
+    "patch": "audit/patches/upstream-extension/boltons/9decba3e5736f61180eec274420ced0e572e30e6.patch",
+    "patch_sha256": "36625fcb386e4cb97977f79fa63c3e0fe4e5aaee1029ec951188409010a19491",
+    "eligibility": "parent and head pinned runtime suites completed green in the frozen-order extension",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "boltons-25e8d6b18ecba58d358c8f46a5cea554f99bdfb2",
+    "repository": "boltons",
+    "draw_order": 35,
+    "parent": "4aa77cddb5d06def130df6f09aefab4018fa487c",
+    "commit": "25e8d6b18ecba58d358c8f46a5cea554f99bdfb2",
+    "title": "Match list insert before start in BarrelList",
+    "files": [
+      "boltons/listutils.py",
+      "tests/test_listutils.py"
+    ],
+    "churn": 13,
+    "patch": "audit/patches/upstream-extension/boltons/25e8d6b18ecba58d358c8f46a5cea554f99bdfb2.patch",
+    "patch_sha256": "f4bf807d604fd19558de15160c98f9926dc1b740e2d30770cc4f87eebd743157",
+    "eligibility": "parent and head pinned runtime suites completed green in the frozen-order extension",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "boltons-580a9c2d12755d472e534ca3e277e8f7e3ada49e",
+    "repository": "boltons",
+    "draw_order": 38,
+    "parent": "ec1ff9f6728f5f857402b294c218be731c62af5f",
+    "commit": "580a9c2d12755d472e534ca3e277e8f7e3ada49e",
+    "title": "setutils: cover _ComplementSet __ge__'s double-complement branch, drop duplicated NotImplemented checks (#446)",
+    "files": [
+      "boltons/setutils.py",
+      "tests/test_setutils.py"
+    ],
+    "churn": 14,
+    "patch": "audit/patches/upstream-extension/boltons/580a9c2d12755d472e534ca3e277e8f7e3ada49e.patch",
+    "patch_sha256": "cee9f14fe6146ac3c8dcd9a86bc3704e988cbd88b424c6c9e8fe275d421e5e35",
+    "eligibility": "parent and head pinned runtime suites completed green in the frozen-order extension",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "boltons-4aa77cddb5d06def130df6f09aefab4018fa487c",
+    "repository": "boltons",
+    "draw_order": 39,
+    "parent": "3970a80f63807392e512340c25dc2db473bcba70",
+    "commit": "4aa77cddb5d06def130df6f09aefab4018fa487c",
+    "title": "Fix split maxsplit zero handling",
+    "files": [
+      "boltons/iterutils.py",
+      "tests/test_iterutils.py"
+    ],
+    "churn": 12,
+    "patch": "audit/patches/upstream-extension/boltons/4aa77cddb5d06def130df6f09aefab4018fa487c.patch",
+    "patch_sha256": "d86d07f3131922aa405c6f24df37100aa1a6bfdb146dbb803394a0e8b3ea10b2",
+    "eligibility": "parent and head pinned runtime suites completed green in the frozen-order extension",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "boltons-1cdc0e9d36f3eb32608f3b34885717697643e9b8",
+    "repository": "boltons",
+    "draw_order": 40,
+    "parent": "805c803ca71da28f09cb7ec521f7ea14d1a4048b",
+    "commit": "1cdc0e9d36f3eb32608f3b34885717697643e9b8",
+    "title": "statsutils: handle zero interquartile range in histograms (#467)",
+    "files": [
+      "boltons/statsutils.py",
+      "tests/test_statsutils.py"
+    ],
+    "churn": 9,
+    "patch": "audit/patches/upstream-extension/boltons/1cdc0e9d36f3eb32608f3b34885717697643e9b8.patch",
+    "patch_sha256": "781537345ddd6db0c63be65c79c6e580c2e63d35d8a723c81974198cfba53e84",
+    "eligibility": "parent and head pinned runtime suites completed green in the frozen-order extension",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "boltons-5150802911edbf8ade1e7d1bfb346fed52c88d05",
+    "repository": "boltons",
+    "draw_order": 42,
+    "parent": "574393a4c349d5b81ee328a9e450c34dd0614635",
+    "commit": "5150802911edbf8ade1e7d1bfb346fed52c88d05",
+    "title": "jsonutils: accept explicit end-of-file relative seek (#465)",
+    "files": [
+      "boltons/jsonutils.py",
+      "tests/test_jsonutils.py"
+    ],
+    "churn": 11,
+    "patch": "audit/patches/upstream-extension/boltons/5150802911edbf8ade1e7d1bfb346fed52c88d05.patch",
+    "patch_sha256": "59e93a10fbc5ea0a6669424387bfb49d950c9674dd9a31c0f4b922b98668d0bb",
+    "eligibility": "parent and head pinned runtime suites completed green in the frozen-order extension",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "boltons-bba729bf4539afc993a6410bdf8074b28707004a",
+    "repository": "boltons",
+    "draw_order": 45,
+    "parent": "f5cf8b5d32bf25752b44a11c9d87d2144c7b8919",
+    "commit": "bba729bf4539afc993a6410bdf8074b28707004a",
+    "title": "Speed up MultiReplace match lookup",
+    "files": [
+      "boltons/strutils.py"
+    ],
+    "churn": 4,
+    "patch": "audit/patches/upstream-extension/boltons/bba729bf4539afc993a6410bdf8074b28707004a.patch",
+    "patch_sha256": "945e2acf40c632a122f4ac3dcd5abd2490536cecd7c28d1047446aaa08ba92ae",
+    "eligibility": "parent and head pinned runtime suites completed green in the frozen-order extension",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "boltons-78ec69cac4465c57bb7debafcf3181d7d1ceaa76",
+    "repository": "boltons",
+    "draw_order": 51,
+    "parent": "4332b35a278d694f30c99881faa61cde695c7a96",
+    "commit": "78ec69cac4465c57bb7debafcf3181d7d1ceaa76",
+    "title": "bump version to 26.2.1dev",
+    "files": [
+      "boltons/__init__.py"
+    ],
+    "churn": 2,
+    "patch": "audit/patches/upstream-extension/boltons/78ec69cac4465c57bb7debafcf3181d7d1ceaa76.patch",
+    "patch_sha256": "09a436533b7ab30a9d22d20622d30667ed307d60f54f2c02092c51de30515211",
+    "eligibility": "parent and head pinned runtime suites completed green in the frozen-order extension",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "boltons-1d525271754ed7aea7f2347ed16ddbcedb1097a3",
+    "repository": "boltons",
+    "draw_order": 56,
+    "parent": "4c24615af43092468feab118368fcc9ff91feca3",
+    "commit": "1d525271754ed7aea7f2347ed16ddbcedb1097a3",
+    "title": "boltons version 26.1.0",
+    "files": [
+      "CHANGELOG.md",
+      "boltons/__init__.py"
+    ],
+    "churn": 13,
+    "patch": "audit/patches/upstream-extension/boltons/1d525271754ed7aea7f2347ed16ddbcedb1097a3.patch",
+    "patch_sha256": "eefd0979bc0f2dbcb6fd4050050bce1fe9936c847bc801e05a2615fe5155c651",
+    "eligibility": "parent and head pinned runtime suites completed green in the frozen-order extension",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "boltons-979fa9b613fa8c0a455ae16ea6f2ec91c11ecafe",
+    "repository": "boltons",
+    "draw_order": 59,
+    "parent": "fb464991b718ca7bfabc14555c2947f25e7c79c9",
+    "commit": "979fa9b613fa8c0a455ae16ea6f2ec91c11ecafe",
+    "title": "bump version to 26.0.1dev",
+    "files": [
+      "boltons/__init__.py"
+    ],
+    "churn": 2,
+    "patch": "audit/patches/upstream-extension/boltons/979fa9b613fa8c0a455ae16ea6f2ec91c11ecafe.patch",
+    "patch_sha256": "6d721f58b6acc70e9156ececfb89e30a1a1d8002e792dec45870f1634dce9a92",
+    "eligibility": "parent and head pinned runtime suites completed green in the frozen-order extension",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "boltons-a1ea1030ed85137e999c0bd9b11d16368d3ab241",
+    "repository": "boltons",
+    "draw_order": 60,
+    "parent": "d45cc414e33aa4e08a73e0993574df4397e2e9db",
+    "commit": "a1ea1030ed85137e999c0bd9b11d16368d3ab241",
+    "title": "dictutils: preserve iterator values in addlist (#458)",
+    "files": [
+      "boltons/dictutils.py",
+      "boltons/urlutils.py",
+      "tests/test_dictutils.py"
+    ],
+    "churn": 26,
+    "patch": "audit/patches/upstream-extension/boltons/a1ea1030ed85137e999c0bd9b11d16368d3ab241.patch",
+    "patch_sha256": "f2e7ea4ad5a744108e8c620b3ae35834fdf8aa5f05ddc857292706832673b5ca",
+    "eligibility": "parent and head pinned runtime suites completed green in the frozen-order extension",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "boltons-a180020c760b532e8889f161d97d05647adfee8c",
+    "repository": "boltons",
+    "draw_order": 61,
+    "parent": "e00c10a809525027b8167fbb7ac233cfc25a01f5",
+    "commit": "a180020c760b532e8889f161d97d05647adfee8c",
+    "title": "setutils: flatten inputs to IndexedSet.update (#474)",
+    "files": [
+      "CHANGELOG.md",
+      "boltons/setutils.py",
+      "tests/test_setutils.py"
+    ],
+    "churn": 24,
+    "patch": "audit/patches/upstream-extension/boltons/a180020c760b532e8889f161d97d05647adfee8c.patch",
+    "patch_sha256": "9780185af4b1bbfabb2b9030132315d5a0b0b2d640644d27a7090f408fc0b4fe",
+    "eligibility": "parent and head pinned runtime suites completed green in the frozen-order extension",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "boltons-970051b66474ac37383c5d990c169c794e20eb88",
+    "repository": "boltons",
+    "draw_order": 62,
+    "parent": "9decba3e5736f61180eec274420ced0e572e30e6",
+    "commit": "970051b66474ac37383c5d990c169c794e20eb88",
+    "title": "namedutils: reject empty type and field names (#462)",
+    "files": [
+      "boltons/namedutils.py",
+      "tests/test_namedutils.py"
+    ],
+    "churn": 44,
+    "patch": "audit/patches/upstream-extension/boltons/970051b66474ac37383c5d990c169c794e20eb88.patch",
+    "patch_sha256": "a6c18dc2c4b85cec1cb470afd569444595fd4f24beb34826cb6093252511a709",
+    "eligibility": "parent and head pinned runtime suites completed green in the frozen-order extension",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "boltons-ebc7a8f776debfa33f0b380b57a444bca75a251b",
+    "repository": "boltons",
+    "draw_order": 65,
+    "parent": "bba729bf4539afc993a6410bdf8074b28707004a",
+    "commit": "ebc7a8f776debfa33f0b380b57a444bca75a251b",
+    "title": "Fix copy.copy/copy.deepcopy collapsing OrderedMultiDict values",
+    "files": [
+      "boltons/dictutils.py",
+      "tests/test_dictutils.py"
+    ],
+    "churn": 33,
+    "patch": "audit/patches/upstream-extension/boltons/ebc7a8f776debfa33f0b380b57a444bca75a251b.patch",
+    "patch_sha256": "5a991c5b0b4b519000f1a8818689f00526a9686209d42b7a5ddd4435adc83bfd",
+    "eligibility": "parent and head pinned runtime suites completed green in the frozen-order extension",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "boltons-17374731bcc404908726a65734f941d789f23a78",
+    "repository": "boltons",
+    "draw_order": 66,
+    "parent": "ce7c7d2b15ea189c1284a48d742a7862bfae8606",
+    "commit": "17374731bcc404908726a65734f941d789f23a78",
+    "title": "Adds cache option to remap and use in research",
+    "files": [
+      "boltons/iterutils.py",
+      "tests/test_iterutils.py"
+    ],
+    "churn": 36,
+    "patch": "audit/patches/upstream-extension/boltons/17374731bcc404908726a65734f941d789f23a78.patch",
+    "patch_sha256": "8554ba63ac6bc6abb83f130dd99985d32273c8ed657fff90abb2ce1f90155dd9",
+    "eligibility": "parent and head pinned runtime suites completed green in the frozen-order extension",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "boltons-f5f5cd867ee98f15def2b6a19bfba203de29b961",
+    "repository": "boltons",
+    "draw_order": 68,
+    "parent": "970051b66474ac37383c5d990c169c794e20eb88",
+    "commit": "f5f5cd867ee98f15def2b6a19bfba203de29b961",
+    "title": "iterutils: correct inclusive GUIDerator size message (#451)",
+    "files": [
+      "boltons/iterutils.py",
+      "tests/test_iterutils.py"
+    ],
+    "churn": 15,
+    "patch": "audit/patches/upstream-extension/boltons/f5f5cd867ee98f15def2b6a19bfba203de29b961.patch",
+    "patch_sha256": "f7d28df140b05c57868532d5dbcb8ffb83b020c7e7eadfa0770ae202c29a1947",
+    "eligibility": "parent and head pinned runtime suites completed green in the frozen-order extension",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "boltons-e00c10a809525027b8167fbb7ac233cfc25a01f5",
+    "repository": "boltons",
+    "draw_order": 69,
+    "parent": "efff866a3b66fdafc817894390742e1d8bc025e5",
+    "commit": "e00c10a809525027b8167fbb7ac233cfc25a01f5",
+    "title": "setutils, listutils: streamline bulk removal and fix list bounds (#440)",
+    "files": [
+      "boltons/listutils.py",
+      "boltons/setutils.py",
+      "tests/test_listutils.py",
+      "tests/test_setutils.py"
+    ],
+    "churn": 136,
+    "patch": "audit/patches/upstream-extension/boltons/e00c10a809525027b8167fbb7ac233cfc25a01f5.patch",
+    "patch_sha256": "959b8c453219e922c4e4e7c21dfc3bf587ab9a9e7de906cf7e75e1519f5c9b17",
+    "eligibility": "parent and head pinned runtime suites completed green in the frozen-order extension",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "boltons-471dad1c6e8182baa3337f118a359ef8f768bf3f",
+    "repository": "boltons",
+    "draw_order": 71,
+    "parent": "c463d1633a075c398d6ffad7d8653064a615b696",
+    "commit": "471dad1c6e8182baa3337f118a359ef8f768bf3f",
+    "title": "remove unused len(self) call in BarrelList._balance_list",
+    "files": [
+      "boltons/listutils.py"
+    ],
+    "churn": 2,
+    "patch": "audit/patches/upstream-extension/boltons/471dad1c6e8182baa3337f118a359ef8f768bf3f.patch",
+    "patch_sha256": "5d1feeb5567231d5b674e0efb5e9a87043be88effb1ec22d20267e0c730ed1a2",
+    "eligibility": "parent and head pinned runtime suites completed green in the frozen-order extension",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "boltons-8789df2cc35a4d9ddfebfa59c14f3e80e34234e1",
+    "repository": "boltons",
+    "draw_order": 72,
+    "parent": "dfd632467c06089a19427e14010e83f57502c9bc",
+    "commit": "8789df2cc35a4d9ddfebfa59c14f3e80e34234e1",
+    "title": "timeutils: match timezone for default relative time (#469)",
+    "files": [
+      "boltons/timeutils.py",
+      "tests/test_timeutils.py"
+    ],
+    "churn": 21,
+    "patch": "audit/patches/upstream-extension/boltons/8789df2cc35a4d9ddfebfa59c14f3e80e34234e1.patch",
+    "patch_sha256": "9bf227eebf1195d10767e392a7f3464004725da6fdf533f6b29cf554ae6831da",
+    "eligibility": "parent and head pinned runtime suites completed green in the frozen-order extension",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "boltons-5eb6cc045560abf320712f262346ae95fb66d448",
+    "repository": "boltons",
+    "draw_order": 73,
+    "parent": "19bd337cad0760945dfe0245434d8253156ee390",
+    "commit": "5eb6cc045560abf320712f262346ae95fb66d448",
+    "title": "mathutils: resolve negative Bits indices (#450)",
+    "files": [
+      "boltons/mathutils.py",
+      "tests/test_mathutils.py"
+    ],
+    "churn": 9,
+    "patch": "audit/patches/upstream-extension/boltons/5eb6cc045560abf320712f262346ae95fb66d448.patch",
+    "patch_sha256": "8c89d260616852a846fe46b2f01800f0f694e4bd2fa67d435193fa468d714632",
+    "eligibility": "parent and head pinned runtime suites completed green in the frozen-order extension",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "gjson-eaae8c63338d6d71ea606b788243ca1c5b39a068",
+    "repository": "gjson",
+    "draw_order": 22,
+    "parent": "6ac9851f5247bff94b0df2262ea60096fc0afb83",
+    "commit": "eaae8c63338d6d71ea606b788243ca1c5b39a068",
+    "title": "Fix large number overflows for Int() and Uint()",
+    "files": [
+      "gjson.go",
+      "gjson_test.go"
+    ],
+    "churn": 133,
+    "patch": "audit/patches/upstream-extension/gjson/eaae8c63338d6d71ea606b788243ca1c5b39a068.patch",
+    "patch_sha256": "0d50c30626944f27133fdd49485921a5de43ec2287310ef245607b2bb7df67ee",
+    "eligibility": "parent and head pinned runtime suites completed green in the frozen-order extension",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "gjson-28d458b14c40df6321bba23bcb39579d468f5e97",
+    "repository": "gjson",
+    "draw_order": 23,
+    "parent": "c2bc5a409a229e55cd1ba59b6cfd5fe1488d6f0f",
+    "commit": "28d458b14c40df6321bba23bcb39579d468f5e97",
+    "title": "Disable html escaping",
+    "files": [
+      "gjson.go",
+      "gjson_test.go"
+    ],
+    "churn": 15,
+    "patch": "audit/patches/upstream-extension/gjson/28d458b14c40df6321bba23bcb39579d468f5e97.patch",
+    "patch_sha256": "358ac11adda45d0e8db7d148af41ef25d3965ddb1d4687d76e2a7b77522bba40",
+    "eligibility": "parent and head pinned runtime suites completed green in the frozen-order extension",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "gjson-4d230282c0e3bf42fa509147d27d7e8dcc3d3bad",
+    "repository": "gjson",
+    "draw_order": 25,
+    "parent": "10d26621bfe1b75eac5b14df7a0ae82d16755a5d",
+    "commit": "4d230282c0e3bf42fa509147d27d7e8dcc3d3bad",
+    "title": "Add repo url",
+    "files": [
+      "gjson.go"
+    ],
+    "churn": 2,
+    "patch": "audit/patches/upstream-extension/gjson/4d230282c0e3bf42fa509147d27d7e8dcc3d3bad.patch",
+    "patch_sha256": "d0783c5a7d859c1cde6ebabbe87fb66cd8c3df5d622a125713fc0e44562e9e8b",
+    "eligibility": "parent and head pinned runtime suites completed green in the frozen-order extension",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "gjson-d7dbdd1d92aa9cdddd006b1655e415fa52f5cfba",
+    "repository": "gjson",
+    "draw_order": 26,
+    "parent": "51e0e24a13342a5b7daecec32d7871cc44080ba4",
+    "commit": "d7dbdd1d92aa9cdddd006b1655e415fa52f5cfba",
+    "title": "Add tilde boolean operator",
+    "files": [
+      "gjson.go",
+      "gjson_test.go"
+    ],
+    "churn": 31,
+    "patch": "audit/patches/upstream-extension/gjson/d7dbdd1d92aa9cdddd006b1655e415fa52f5cfba.patch",
+    "patch_sha256": "739c601142474e5abac9a9d434e4ffc29d1862661a4ace8968ed3bf7c03ad0b3",
+    "eligibility": "parent and head pinned runtime suites completed green in the frozen-order extension",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "gjson-a825fa56d6aca9ba0ac2a103cba8041c898b7d39",
+    "repository": "gjson",
+    "draw_order": 27,
+    "parent": "690362d6edf4bcbde1e9f54d552d3814f1cd5bcb",
+    "commit": "a825fa56d6aca9ba0ac2a103cba8041c898b7d39",
+    "title": "Fix utf8 character drop after a broken emoji",
+    "files": [
+      "gjson.go",
+      "gjson_test.go"
+    ],
+    "churn": 23,
+    "patch": "audit/patches/upstream-extension/gjson/a825fa56d6aca9ba0ac2a103cba8041c898b7d39.patch",
+    "patch_sha256": "cf26eae4b458212161a39a13066cbb8ee90bbc64f9875865a14d431a5fdfec82",
+    "eligibility": "parent and head pinned runtime suites completed green in the frozen-order extension",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "gjson-c34bf81952c067718854115564f8e55978be5e1d",
+    "repository": "gjson",
+    "draw_order": 28,
+    "parent": "94e070960b0315398a4ab6edb1ff70cf8e87f4f7",
+    "commit": "c34bf81952c067718854115564f8e55978be5e1d",
+    "title": "Fix trailing multiselector value",
+    "files": [
+      "gjson.go",
+      "gjson_test.go"
+    ],
+    "churn": 42,
+    "patch": "audit/patches/upstream-extension/gjson/c34bf81952c067718854115564f8e55978be5e1d.patch",
+    "patch_sha256": "497b620e2da061ea31e67ca3c66f0a512c67ea6ad6030dd77c7da0115729319b",
+    "eligibility": "parent and head pinned runtime suites completed green in the frozen-order extension",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "gjson-8ac92b3ad3d722c654049a79a0fad0b9b6b98fde",
+    "repository": "gjson",
+    "draw_order": 33,
+    "parent": "f3ac38cbb5dc15acb5913d6935ca2c469572b321",
+    "commit": "8ac92b3ad3d722c654049a79a0fad0b9b6b98fde",
+    "title": "Remove unreachable code",
+    "files": [
+      "gjson.go"
+    ],
+    "churn": 124,
+    "patch": "audit/patches/upstream-extension/gjson/8ac92b3ad3d722c654049a79a0fad0b9b6b98fde.patch",
+    "patch_sha256": "605b0fce7349d280c65fee427684dc6d32375366f8af51cfe10768df349b62d7",
+    "eligibility": "parent and head pinned runtime suites completed green in the frozen-order extension",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "gjson-9378d3bb93e20854e1677e0e0248e1d71ae5712f",
+    "repository": "gjson",
+    "draw_order": 34,
+    "parent": "8d89927eff414537088a6092d53fecf6711c1e75",
+    "commit": "9378d3bb93e20854e1677e0e0248e1d71ae5712f",
+    "title": "Fix Result.Path panics",
+    "files": [
+      "gjson.go",
+      "gjson_test.go"
+    ],
+    "churn": 12,
+    "patch": "audit/patches/upstream-extension/gjson/9378d3bb93e20854e1677e0e0248e1d71ae5712f.patch",
+    "patch_sha256": "f9c80014ff30a51f74614eaca19b0967a928558ba7d22a522e9fe6d04d9fa8ca",
+    "eligibility": "parent and head pinned runtime suites completed green in the frozen-order extension",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "gjson-97ec619cbe9546828dc45cb856a5938dcf3d74e1",
+    "repository": "gjson",
+    "draw_order": 35,
+    "parent": "bf4efcb3c18d1825b2988603dea5909140a5302b",
+    "commit": "97ec619cbe9546828dc45cb856a5938dcf3d74e1",
+    "title": "Restrict pretty indent and prefixes to whitespace",
+    "files": [
+      "gjson.go",
+      "gjson_test.go"
+    ],
+    "churn": 40,
+    "patch": "audit/patches/upstream-extension/gjson/97ec619cbe9546828dc45cb856a5938dcf3d74e1.patch",
+    "patch_sha256": "159b6e946f5c521a116496ee70457b22121c3abd69e6fbbadee0b2a83a7409ed",
+    "eligibility": "parent and head pinned runtime suites completed green in the frozen-order extension",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "gjson-77a57fda87dca6d0d7d4627d512a630f89a91c96",
+    "repository": "gjson",
+    "draw_order": 37,
+    "parent": "590010fdac311cc8990ef5c97448d4fec8f29944",
+    "commit": "77a57fda87dca6d0d7d4627d512a630f89a91c96",
+    "title": "Limit the complexity of \"like\" queries that match on a pattern.",
+    "files": [
+      "gjson.go",
+      "gjson_test.go",
+      "go.mod",
+      "go.sum"
+    ],
+    "churn": 28,
+    "patch": "audit/patches/upstream-extension/gjson/77a57fda87dca6d0d7d4627d512a630f89a91c96.patch",
+    "patch_sha256": "4d4768312a9eb17d528994a51741b075978705f6e68d526114846cf52b1ae961",
+    "eligibility": "parent and head pinned runtime suites completed green in the frozen-order extension",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "gjson-d10932a0d0b5f1618759b6259b05f7cb7bea0c25",
+    "repository": "gjson",
+    "draw_order": 38,
+    "parent": "12826915de207decacf091e11d828329cd234eae",
+    "commit": "d10932a0d0b5f1618759b6259b05f7cb7bea0c25",
+    "title": "Removed unmarshalling",
+    "files": [
+      "gjson.go",
+      "gjson_test.go"
+    ],
+    "churn": 165,
+    "patch": "audit/patches/upstream-extension/gjson/d10932a0d0b5f1618759b6259b05f7cb7bea0c25.patch",
+    "patch_sha256": "671bfff9d100c5085d6230257f8daabd2ebe10fdfd14877cd3996e4e28371441",
+    "eligibility": "parent and head pinned runtime suites completed green in the frozen-order extension",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "gjson-b877bd43b1d96874785aef827d9c8bbb6132f43e",
+    "repository": "gjson",
+    "draw_order": 39,
+    "parent": "89b19799ff300e5eec9e39e674fa1b1366f5fade",
+    "commit": "b877bd43b1d96874785aef827d9c8bbb6132f43e",
+    "title": "Allow for chaining syntax in array subselects",
+    "files": [
+      "gjson.go",
+      "gjson_test.go"
+    ],
+    "churn": 132,
+    "patch": "audit/patches/upstream-extension/gjson/b877bd43b1d96874785aef827d9c8bbb6132f43e.patch",
+    "patch_sha256": "e5fe947c49e07bc506fdc5cad68441b566b7351cbcfddfbee3b8f16eb2cc04ee",
+    "eligibility": "parent and head pinned runtime suites completed green in the frozen-order extension",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "gjson-690362d6edf4bcbde1e9f54d552d3814f1cd5bcb",
+    "repository": "gjson",
+    "draw_order": 43,
+    "parent": "b91555e1d1c1469240d3eac9398a78112c1d4779",
+    "commit": "690362d6edf4bcbde1e9f54d552d3814f1cd5bcb",
+    "title": "Deprecate DisableModifiers and DisableEscapeHTML globals",
+    "files": [
+      "gjson.go",
+      "gjson_test.go"
+    ],
+    "churn": 95,
+    "patch": "audit/patches/upstream-extension/gjson/690362d6edf4bcbde1e9f54d552d3814f1cd5bcb.patch",
+    "patch_sha256": "f5b476a112c7549de517166ccacdb5329f2c2acd5547a26e28eb5a1859155cdd",
+    "eligibility": "parent and head pinned runtime suites completed green in the frozen-order extension",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "gjson-89b19799ff300e5eec9e39e674fa1b1366f5fade",
+    "repository": "gjson",
+    "draw_order": 44,
+    "parent": "40764d5d5686a9c15b836e8b30ee20ac14f998ae",
+    "commit": "89b19799ff300e5eec9e39e674fa1b1366f5fade",
+    "title": "Fix non-existent selectors results",
+    "files": [
+      "gjson.go",
+      "gjson_test.go"
+    ],
+    "churn": 30,
+    "patch": "audit/patches/upstream-extension/gjson/89b19799ff300e5eec9e39e674fa1b1366f5fade.patch",
+    "patch_sha256": "b23a72cab9abd5befc3540df9045574597fb723a49abef77b72477b21c191b43",
+    "eligibility": "parent and head pinned runtime suites completed green in the frozen-order extension",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "gjson-12826915de207decacf091e11d828329cd234eae",
+    "repository": "gjson",
+    "draw_order": 46,
+    "parent": "c9f07c79717e952e7eb17764d36059d08e56dfba",
+    "commit": "12826915de207decacf091e11d828329cd234eae",
+    "title": "Removed unneeded comment",
+    "files": [
+      "gjson.go"
+    ],
+    "churn": 2,
+    "patch": "audit/patches/upstream-extension/gjson/12826915de207decacf091e11d828329cd234eae.patch",
+    "patch_sha256": "08f46dc1420467deaf9f5d361a1e4f26c05a7ba042de76018d6b801d40b1b7ff",
+    "eligibility": "parent and head pinned runtime suites completed green in the frozen-order extension",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "gjson-0b52f9a3618fb33e3cde84f9db7b73e324dff643",
+    "repository": "gjson",
+    "draw_order": 47,
+    "parent": "8ac7a764ca2d496c4c78bf9465433b2334e968ad",
+    "commit": "0b52f9a3618fb33e3cde84f9db7b73e324dff643",
+    "title": "Fix empty string operator not matching",
+    "files": [
+      "gjson.go",
+      "gjson_test.go"
+    ],
+    "churn": 14,
+    "patch": "audit/patches/upstream-extension/gjson/0b52f9a3618fb33e3cde84f9db7b73e324dff643.patch",
+    "patch_sha256": "df28faf63f54768beb61867b8101925dfc20fb311dfc055c14075e7eefbc971e",
+    "eligibility": "parent and head pinned runtime suites completed green in the frozen-order extension",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "gjson-2feb4037b471139e7449b6e4e97e232ff1c39d4a",
+    "repository": "gjson",
+    "draw_order": 49,
+    "parent": "ca5c4b1e26713158027c4edfd1049ac858ec8fc3",
+    "commit": "2feb4037b471139e7449b6e4e97e232ff1c39d4a",
+    "title": "Fix escaped strings missing double quote",
+    "files": [
+      "gjson.go",
+      "gjson_test.go"
+    ],
+    "churn": 36,
+    "patch": "audit/patches/upstream-extension/gjson/2feb4037b471139e7449b6e4e97e232ff1c39d4a.patch",
+    "patch_sha256": "d696f57533aa4eb4dc76c6725f8f5ca7e393c23750e8439ec75e4e61adbfd9a7",
+    "eligibility": "parent and head pinned runtime suites completed green in the frozen-order extension",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "gjson-5ab551f3ac05551c469e5f5ab26154a49f69afcf",
+    "repository": "gjson",
+    "draw_order": 50,
+    "parent": "28d458b14c40df6321bba23bcb39579d468f5e97",
+    "commit": "5ab551f3ac05551c469e5f5ab26154a49f69afcf",
+    "title": "Add flag for disabling HTML escaping",
+    "files": [
+      "gjson.go",
+      "gjson_test.go"
+    ],
+    "churn": 16,
+    "patch": "audit/patches/upstream-extension/gjson/5ab551f3ac05551c469e5f5ab26154a49f69afcf.patch",
+    "patch_sha256": "340f7ea31ebd5bf367c971013b170b7ad2b455b09ba2b93fc49b7e01ce36a5f5",
+    "eligibility": "parent and head pinned runtime suites completed green in the frozen-order extension",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "gjson-7660d0f79f754f6f868e43311d8453126542687f",
+    "repository": "gjson",
+    "draw_order": 51,
+    "parent": "7b8705a6b6aa8689a321d3bd96585dbcabba8f74",
+    "commit": "7660d0f79f754f6f868e43311d8453126542687f",
+    "title": "Allow for pipe and dot mixing",
+    "files": [
+      "gjson.go",
+      "gjson_test.go"
+    ],
+    "churn": 69,
+    "patch": "audit/patches/upstream-extension/gjson/7660d0f79f754f6f868e43311d8453126542687f.patch",
+    "patch_sha256": "f9ee2f6e1178493f40b61ade5b0f46b90e59a37adde1d8f853c9e7efc1e4f1cf",
+    "eligibility": "parent and head pinned runtime suites completed green in the frozen-order extension",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "gjson-ebf0b3fb776b0717bf568dc3eb97223f164f5090",
+    "repository": "gjson",
+    "draw_order": 52,
+    "parent": "00b15d756ea6c964af63931b03acf44ab52d991a",
+    "commit": "ebf0b3fb776b0717bf568dc3eb97223f164f5090",
+    "title": "Use no path for simple value queries",
+    "files": [
+      "gjson.go",
+      "gjson_test.go"
+    ],
+    "churn": 3,
+    "patch": "audit/patches/upstream-extension/gjson/ebf0b3fb776b0717bf568dc3eb97223f164f5090.patch",
+    "patch_sha256": "f2b09bfcbd729fb14fadda1cc4e1892e41f29a7a120298e40dae803ec12749a7",
+    "eligibility": "parent and head pinned runtime suites completed green in the frozen-order extension",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "gjson-e91a88bec4cc8ee8e36401714522db8759a407a6",
+    "repository": "gjson",
+    "draw_order": 53,
+    "parent": "6eb62ca33ffdb8c05df31962e5667609b812fdae",
+    "commit": "e91a88bec4cc8ee8e36401714522db8759a407a6",
+    "title": "Allow for chaining syntax in multi array",
+    "files": [
+      "gjson.go",
+      "gjson_test.go"
+    ],
+    "churn": 77,
+    "patch": "audit/patches/upstream-extension/gjson/e91a88bec4cc8ee8e36401714522db8759a407a6.patch",
+    "patch_sha256": "c0c0e53e9660b2693ee14d3e02a4ade3229b1aaee9723cec486a831d06870ae3",
+    "eligibility": "parent and head pinned runtime suites completed green in the frozen-order extension",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "gjson-d3a134957c5d50327f8aaa4b101e164da140de9c",
+    "repository": "gjson",
+    "draw_order": 56,
+    "parent": "6b6af2ad5e5c06e6cc3968ca7a2c0f9c20da8924",
+    "commit": "d3a134957c5d50327f8aaa4b101e164da140de9c",
+    "title": "Fix modifier bug in multipath selector",
+    "files": [
+      "gjson.go",
+      "gjson_test.go"
+    ],
+    "churn": 12,
+    "patch": "audit/patches/upstream-extension/gjson/d3a134957c5d50327f8aaa4b101e164da140de9c.patch",
+    "patch_sha256": "274ce8ce7913a42d6f254802a945403050a9a3463cd1c93622efe5c3af12631d",
+    "eligibility": "parent and head pinned runtime suites completed green in the frozen-order extension",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  }
+]

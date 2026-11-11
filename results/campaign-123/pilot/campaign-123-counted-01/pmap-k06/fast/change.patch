@@ -1,0 +1,41 @@
+diff --git a/index.js b/index.js
+index eec5651..8920b3b 100644
+--- a/index.js
++++ b/index.js
+@@ -78,6 +78,13 @@ async function mapConcurrently(
+ 		let currentIndex = 0;
+ 		const iterator = getIterator(iterable);
+ 
++		// Close the source so it can release its resources, like `for await` does, unless it already reported `done`.
++		const closeSourceUnlessDone = () => {
++			if (!isIterableDone) {
++				closeIterator(iterator);
++			}
++		};
++
+ 		const signalListener = () => {
+ 			reject(signal.reason);
+ 		};
+@@ -99,10 +106,7 @@ async function mapConcurrently(
+ 			isResolved = true;
+ 			reject_(reason);
+ 			cleanup();
+-
+-			if (!isIterableDone) {
+-				closeIterator(iterator);
+-			}
++			closeSourceUnlessDone();
+ 		};
+ 
+ 		if (signal) {
+@@ -146,9 +150,7 @@ async function mapConcurrently(
+ 			isResolved = true;
+ 
+ 			// A stop ended the result before the source did, so close it, like `for await` does on a `break`. Not at the stop itself, as a source that settles its `next()` calls out of call order may still owe an earlier element, and closing could drop it.
+-			if (!isIterableDone) {
+-				closeIterator(iterator);
+-			}
++			closeSourceUnlessDone();
+ 
+ 			// `done` is final, like `for await`, so a `done` that lands between two elements ends
+ 			// the result there and everything the source produced past it is dropped. A stop cuts it the same way.

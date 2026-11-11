@@ -1,0 +1,13 @@
+diff --git a/gjson.go b/gjson.go
+index 97d6516..1c6a272 100644
+--- a/gjson.go
++++ b/gjson.go
+@@ -2,7 +2,7 @@
+ // Use of this source code is governed by an MIT-style
+ // license that can be found in the LICENSE file.
+ //
+-// https://github.com/tidwall/gjson
++// https://codeberg.com/tidwall/gjson
+ 
+ // Package gjson provides searching for json strings.
+ package gjson

@@ -1,0 +1,20 @@
+diff --git a/index.js b/index.js
+index eec5651..a4d87e8 100644
+--- a/index.js
++++ b/index.js
+@@ -129,13 +129,8 @@ async function mapConcurrently(
+ 			}
+ 
+ 			if (!stopOnError) {
+-				const collectedErrors = [];
+-
+-				for (let index = 0; index < Math.min(doneIndex, errors.length); index++) {
+-					if (index in errors) {
+-						collectedErrors.push(errors[index]);
+-					}
+-				}
++				// `slice` keeps the holes left by the indexes that did not fail, and `filter` skips holes, so the errors stay in input order, including an error that is `undefined`.
++				const collectedErrors = errors.slice(0, doneIndex).filter(() => true);
+ 
+ 				if (collectedErrors.length > 0) {
+ 					reject(new AggregateError(collectedErrors)); // eslint-disable-line unicorn/error-message

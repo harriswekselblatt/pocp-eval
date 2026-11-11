@@ -1,0 +1,214 @@
+diff --git a/.proof/packets/p-d2c84d2c.json b/.proof/packets/p-d2c84d2c.json
+new file mode 100644
+index 0000000..7c46dfb
+--- /dev/null
++++ b/.proof/packets/p-d2c84d2c.json
+@@ -0,0 +1,174 @@
++{
++  "pocp": 1,
++  "id": "p-d2c84d2c",
++  "intent": "Change to index.js, test.js",
++  "touches": [
++    "index.js",
++    "test.js"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:runtime-suite"
++    },
++    {
++      "id": "o2",
++      "kind": "guard",
++      "files": [
++        "test.js"
++      ],
++      "mutants": 10,
++      "seed": 47,
++      "text": "Existing tests or test setup changed (test.js): the old tests still pass on the new code, and the new tests catch every sampled mutant the old ones caught",
++      "source": "guard:tests"
++    }
++  ],
++  "state": "open",
++  "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "policy_repo": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "opened_at": "2026-11-11T17:35:03.370Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:36a13a5460cdf30b9d385d26d27049b5a6b290c0ae1c4c6b29c35e4dc43dc5ff",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T17:35:05.178Z",
++      "duration_ms": 17802,
++      "stdout_sha256": "bb0767d5f4d11e75862bd26d0220177ec52f4309307947ca007e7632bc286edd",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-1ff93c8c",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      }
++    },
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:825a7ae857b856da4bf184a3237866d9daaae73b5202dd8b29da59e2770728f8",
++      "subject": "sha256:36a13a5460cdf30b9d385d26d27049b5a6b290c0ae1c4c6b29c35e4dc43dc5ff",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "kind": "guard",
++      "mode": "snapshot",
++      "passed": false,
++      "started_at": "2026-11-11T17:35:23.280Z",
++      "duration_ms": 51785,
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      },
++      "guard": {
++        "pocp": 1,
++        "verdict": "behavior-changed",
++        "passed": false,
++        "summary": "the old tests fail on the new code (\"sh .bench/check.sh\" exit 1): behavior changed, so a person must approve it",
++        "base": "b15e7e76a9f091538ff8150315ecec8c298eb2b5",
++        "checks": [
++          {
++            "id": "runtime-suite",
++            "run": "sh .bench/check.sh"
++          }
++        ],
++        "old_tests": {
++          "result": "fail",
++          "restored": [
++            "test.js"
++          ],
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": false,
++              "exit": 1,
++              "duration_ms": 21402
++            }
++          ]
++        },
++        "new_tests": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "reused": true,
++              "duration_ms": 0
++            }
++          ]
++        },
++        "baseline": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "exit": 0,
++              "duration_ms": 14311
++            }
++          ]
++        },
++        "detection": {
++          "result": "not-run",
++          "budget": 10,
++          "seed": 47
++        },
++        "duration_ms": 51785,
++        "checks_from": "rules"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T17:35:03.370Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T17:35:03.370Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1",
++        "o2"
++      ],
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178"
++    },
++    {
++      "at": "2026-11-11T17:36:15.153Z",
++      "event": "proof_failed",
++      "obligation": "o2",
++      "subject": "sha256:36a13a5460cdf30b9d385d26d27049b5a6b290c0ae1c4c6b29c35e4dc43dc5ff"
++    },
++    {
++      "at": "2026-11-11T17:36:17.003Z",
++      "event": "deferred",
++      "obligation": "o2",
++      "by": "unknown",
++      "subject": "sha256:36a13a5460cdf30b9d385d26d27049b5a6b290c0ae1c4c6b29c35e4dc43dc5ff"
++    }
++  ],
++  "deferrals": [
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:825a7ae857b856da4bf184a3237866d9daaae73b5202dd8b29da59e2770728f8",
++      "subject": "sha256:36a13a5460cdf30b9d385d26d27049b5a6b290c0ae1c4c6b29c35e4dc43dc5ff",
++      "by": "unknown",
++      "at": "2026-11-11T17:36:17.003Z",
++      "to": "ci-approval",
++      "reason": "the old tests fail on the new code (\"sh .bench/check.sh\" exit 1): behavior changed, so a person must approve it"
++    }
++  ]
++}
+diff --git a/index.js b/index.js
+index eec5651..d771ddc 100644
+--- a/index.js
++++ b/index.js
+@@ -558,9 +558,9 @@ export const pMapStop = Symbol('stop');
+ // `mapConcurrently` runs this inside its promise, so a bad argument rejects rather than throws.
+ function validateOptions(iterable, mapper, concurrency) {
+ 	// Optional chaining, so a nullish input gets this message rather than Node's internal
+-	// "null is not iterable".
++	// "null is not iterable". `null` is named as such, like the keyed functions do, rather than as `object`.
+ 	if (iterable?.[Symbol.iterator] === undefined && iterable?.[Symbol.asyncIterator] === undefined) {
+-		throw new TypeError(`Expected \`input\` to be either an \`Iterable\` or \`AsyncIterable\`, got (${typeof iterable})`);
++		throw new TypeError(`Expected \`input\` to be either an \`Iterable\` or \`AsyncIterable\`, got (${iterable === null ? 'null' : typeof iterable})`);
+ 	}
+ 
+ 	if (typeof mapper !== 'function') {
+diff --git a/test.js b/test.js
+index 115cc96..b4e744e 100644
+--- a/test.js
++++ b/test.js
+@@ -1298,12 +1298,12 @@ test('incorrect input type', async t => {
+ // A nullish input is the most likely mistake, so it has to reach the same message as any other
+ // wrong input rather than Node's internal "null is not iterable".
+ test('incorrect input type: nullish', async t => {
+-	await t.throwsAsync(pMap(null, async () => {}), {message: 'Expected `input` to be either an `Iterable` or `AsyncIterable`, got (object)'});
++	await t.throwsAsync(pMap(null, async () => {}), {message: 'Expected `input` to be either an `Iterable` or `AsyncIterable`, got (null)'});
+ 	await t.throwsAsync(pMap(undefined, async () => {}), {message: 'Expected `input` to be either an `Iterable` or `AsyncIterable`, got (undefined)'});
+ });
+ 
+ test('pMapIterable - incorrect input type: nullish', t => {
+-	t.throws(() => pMapIterable(null, async () => {}), {message: 'Expected `input` to be either an `Iterable` or `AsyncIterable`, got (object)'});
++	t.throws(() => pMapIterable(null, async () => {}), {message: 'Expected `input` to be either an `Iterable` or `AsyncIterable`, got (null)'});
+ 	t.throws(() => pMapIterable(undefined, async () => {}), {message: 'Expected `input` to be either an `Iterable` or `AsyncIterable`, got (undefined)'});
+ });

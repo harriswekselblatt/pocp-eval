@@ -1,0 +1,13 @@
+{
+  "baseline.json": "c329f24ec8fd2f36078014d5d5cf58ecee086b625f0a37e8c2cc6305b91c7629",
+  "candidate-ci.json": "ccf071ba73b04f624edf040d11c708790328203ca1b165a4ca57245a7006619a",
+  "commit.json": "53ffb7add4c399da6b0931130c9cf41d61123de54314302a49b9bf987a84be39",
+  "fix.json": "a2c3cd22dbc117f8daee990313b3c35abff12bf70a439264a518c6b25eea27e1",
+  "gate.json": "73cd23e715a41ede264fb5e0d7d81708d8a6464b3dcfc52decb2584c514352f8",
+  "oracle-preflight.json": "e804f0b9db9e2399cd419966cb6e9ddd1a4ca96cda8e61d4ea41601ee83354a4",
+  "oracle-subject.json": "b50c1cf7b8ad82ab5d1b5319a6c96d579d1ecf7d64f722465f4bd301dd01dccc",
+  "record.json": "65c1ab2382c9d2ef87e84a9ff90deab8374ea4221112b30476d8da8a8af677dc",
+  "regression.json": "59a9144f6d458a7de5efb3cf1286eb23b3ce67be02a11f81d3dd01c708fb5aaa",
+  "subject.patch": "6eb215ed8b733666a9f813ff90c5cb7f02b2c990ac21b9aa92eea1d9b62d9766",
+  "verify.json": "1048ce1e0118e01ceb353dd5b0652c45720d20f909ea0d9dda0790d25b86783a"
+}

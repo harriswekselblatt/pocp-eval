@@ -1,0 +1,229 @@
+[
+  {
+    "id": "pmap-k01",
+    "repository": "p-map",
+    "base": "d61b6a33cc1d5533ad5711b435959f3f78c3d2fe",
+    "title": "Build the keyed result with a null prototype from the start",
+    "files": [
+      "index.js"
+    ],
+    "churn": 10,
+    "patch": "audit/patches/constructed-01/pmap-k01.patch",
+    "patch_sha256": "cb2ff6e95b16d16a4253ce4d035324530f97cc4ec5cfab1f3085e35ea826ea6c",
+    "provenance": "constructed change against the pinned p-map base; not an upstream commit",
+    "review_fields": {
+      "semantic_label": "legitimate",
+      "primary_category": "source_only",
+      "contract_or_reason": "Builds the null-prototype keyed object with Object.create(null) plus assignment instead of fromEntries+setPrototypeOf; with no inherited __proto__ setter, keys like __proto__, toString and symbols become own properties in the same order, so output is unchanged. Full suite passes.",
+      "reviewer": "subagent-blind-gapfill-01",
+      "confidence": "high"
+    }
+  },
+  {
+    "id": "pmap-k02",
+    "repository": "p-map",
+    "base": "d61b6a33cc1d5533ad5711b435959f3f78c3d2fe",
+    "title": "Test a string input in pMapSettled",
+    "files": [
+      "test.js"
+    ],
+    "churn": 10,
+    "patch": "audit/patches/constructed-01/pmap-k02.patch",
+    "patch_sha256": "2fefdf586cfed90f7cdd0bd4a527dae38de2672d8e9fc4eee260ec7702932bbd",
+    "provenance": "constructed change against the pinned p-map base; not an upstream commit",
+    "review_fields": {
+      "semantic_label": "legitimate",
+      "primary_category": "added_test",
+      "contract_or_reason": "Adds a correct test that pMapSettled iterates a string by code point (astral emoji stays one element) and wraps results as fulfilled; matches existing iterable semantics.",
+      "reviewer": "subagent-blind-gapfill-01",
+      "confidence": "high"
+    }
+  },
+  {
+    "id": "pmap-k03",
+    "repository": "p-map",
+    "base": "d61b6a33cc1d5533ad5711b435959f3f78c3d2fe",
+    "title": "Say how many elements failed in the AggregateError message",
+    "files": [
+      "index.d.ts",
+      "index.js",
+      "readme.md",
+      "test.js"
+    ],
+    "churn": 25,
+    "patch": "audit/patches/constructed-01/pmap-k03.patch",
+    "patch_sha256": "3418ea2a51d585aa12f53b21bd39f1c1e8e3c95c08bbad788435d1aaafcd5e21",
+    "provenance": "constructed change against the pinned p-map base; not an upstream commit",
+    "review_fields": {
+      "semantic_label": "legitimate",
+      "primary_category": "intentional_behavior_and_test",
+      "contract_or_reason": "Deliberately changes the stopOnError:false AggregateError message from empty to 'N element(s) failed', documented in readme and d.ts with updated and new tests (singular/plural, keyed, rejected input). Coherent, though it is a user-visible message change.",
+      "reviewer": "subagent-blind-gapfill-01",
+      "confidence": "medium"
+    }
+  },
+  {
+    "id": "pmap-k04",
+    "repository": "p-map",
+    "base": "d61b6a33cc1d5533ad5711b435959f3f78c3d2fe",
+    "title": "Test non-string Map keys in pMapKeyed",
+    "files": [
+      "test.js"
+    ],
+    "churn": 21,
+    "patch": "audit/patches/constructed-01/pmap-k04.patch",
+    "patch_sha256": "e636ff4df4a7eea673492fe8fd666792ac87b8616cc8f2f9898729736fa0b495",
+    "provenance": "constructed change against the pinned p-map base; not an upstream commit",
+    "review_fields": {
+      "semantic_label": "legitimate",
+      "primary_category": "added_test",
+      "contract_or_reason": "Adds a test that pMapKeyed on a Map keeps object, NaN and numeric keys by identity and passes them to the mapper, matching Map-in/Map-out behavior; passes on base.",
+      "reviewer": "subagent-blind-gapfill-01",
+      "confidence": "high"
+    }
+  },
+  {
+    "id": "pmap-k05",
+    "repository": "p-map",
+    "base": "d61b6a33cc1d5533ad5711b435959f3f78c3d2fe",
+    "title": "Test a rejecting thenable value in pMapSettledKeyed",
+    "files": [
+      "test.js"
+    ],
+    "churn": 20,
+    "patch": "audit/patches/constructed-01/pmap-k05.patch",
+    "patch_sha256": "fffc4b4940beaf71b0cdd1bee0833b2b4baa0b18f214ce3951e4ba3a4cbdd8d3",
+    "provenance": "constructed change against the pinned p-map base; not an upstream commit",
+    "review_fields": {
+      "semantic_label": "legitimate",
+      "primary_category": "added_test",
+      "contract_or_reason": "Adds a test that a rejecting thenable value in pMapSettledKeyed settles as rejected with its reason and the mapper is not called for it, consistent with awaited-element semantics; passes on base.",
+      "reviewer": "subagent-blind-gapfill-01",
+      "confidence": "high"
+    }
+  },
+  {
+    "id": "pmap-k06",
+    "repository": "p-map",
+    "base": "d61b6a33cc1d5533ad5711b435959f3f78c3d2fe",
+    "title": "Share the close-unless-done step in mapConcurrently",
+    "files": [
+      "index.js"
+    ],
+    "churn": 16,
+    "patch": "audit/patches/constructed-01/pmap-k06.patch",
+    "patch_sha256": "c6258d5d8f2a85f735bad6cf177516897a4d32223f55f610211add6016f4c56c",
+    "provenance": "constructed change against the pinned p-map base; not an upstream commit",
+    "review_fields": {
+      "semantic_label": "legitimate",
+      "primary_category": "source_only",
+      "contract_or_reason": "Extracts the repeated if(!isIterableDone) closeIterator(iterator) into a closure that reads the live isIterableDone flag, so both call sites behave identically.",
+      "reviewer": "subagent-blind-gapfill-01",
+      "confidence": "high"
+    }
+  },
+  {
+    "id": "pmap-k07",
+    "repository": "p-map",
+    "base": "d61b6a33cc1d5533ad5711b435959f3f78c3d2fe",
+    "title": "Collect stopOnError: false errors with slice and filter",
+    "files": [
+      "index.js"
+    ],
+    "churn": 9,
+    "patch": "audit/patches/constructed-01/pmap-k07.patch",
+    "patch_sha256": "107063ae423e77ec09c70eb2ff1ae2a286a9b3e366e0f8498d808774c7a6b3e7",
+    "provenance": "constructed change against the pinned p-map base; not an upstream commit",
+    "review_fields": {
+      "semantic_label": "legitimate",
+      "primary_category": "source_only",
+      "contract_or_reason": "errors.slice(0, doneIndex).filter(()=>true) keeps assigned entries (including undefined errors) and skips holes in index order, equivalent to the old loop bounded by min(doneIndex, length) with an `in` check.",
+      "reviewer": "subagent-blind-gapfill-01",
+      "confidence": "high"
+    }
+  },
+  {
+    "id": "pmap-k08",
+    "repository": "p-map",
+    "base": "d61b6a33cc1d5533ad5711b435959f3f78c3d2fe",
+    "title": "Reuse one done item once the source is done",
+    "files": [
+      "index.js"
+    ],
+    "churn": 5,
+    "patch": "audit/patches/constructed-01/pmap-k08.patch",
+    "patch_sha256": "3e419a7da9835f011d6131ce2ff80b52ee727fd565cde3c84311e207d249b4cd",
+    "provenance": "constructed change against the pinned p-map base; not an upstream commit",
+    "review_fields": {
+      "semantic_label": "legitimate",
+      "primary_category": "source_only",
+      "contract_or_reason": "The post-done pull now returns one frozen {done:true}; its only consumers await it and read .done or destructure, never mutate or identity-compare, so behavior is preserved.",
+      "reviewer": "subagent-blind-gapfill-01",
+      "confidence": "high"
+    }
+  },
+  {
+    "id": "pmap-k09",
+    "repository": "p-map",
+    "base": "d61b6a33cc1d5533ad5711b435959f3f78c3d2fe",
+    "title": "Share the limit TypeError message",
+    "files": [
+      "index.js"
+    ],
+    "churn": 9,
+    "patch": "audit/patches/constructed-01/pmap-k09.patch",
+    "patch_sha256": "8483a7927c7f1e37ef8121a27b8aa78cb75cdaa9e1d23fe314becfeb8541728f",
+    "provenance": "constructed change against the pinned p-map base; not an upstream commit",
+    "review_fields": {
+      "semantic_label": "legitimate",
+      "primary_category": "source_only",
+      "contract_or_reason": "Factors the concurrency/backpressure TypeError into limitError; the produced messages are character-for-character identical to the originals.",
+      "reviewer": "subagent-blind-gapfill-01",
+      "confidence": "high"
+    }
+  },
+  {
+    "id": "pmap-k10",
+    "repository": "p-map",
+    "base": "d61b6a33cc1d5533ad5711b435959f3f78c3d2fe",
+    "title": "Report a null input as null",
+    "files": [
+      "index.js",
+      "test.js"
+    ],
+    "churn": 8,
+    "patch": "audit/patches/constructed-01/pmap-k10.patch",
+    "patch_sha256": "09458534aef4ea29c81b54a2f256e7b268d1b1a801d0bffdcfd9aa294f8e85c3",
+    "provenance": "constructed change against the pinned p-map base; not an upstream commit",
+    "review_fields": {
+      "semantic_label": "legitimate",
+      "primary_category": "intentional_behavior_and_test",
+      "contract_or_reason": "Changes the invalid-input message for null from 'got (object)' to 'got (null)', matching the keyed functions' existing wording, with the two nullish tests updated. Small coherent message change.",
+      "reviewer": "subagent-blind-gapfill-01",
+      "confidence": "high"
+    }
+  },
+  {
+    "id": "pmap-k11",
+    "repository": "p-map",
+    "base": "d61b6a33cc1d5533ad5711b435959f3f78c3d2fe",
+    "title": "Reject a signal that is not an AbortSignal",
+    "files": [
+      "index.d.ts",
+      "index.js",
+      "readme.md",
+      "test.js"
+    ],
+    "churn": 23,
+    "patch": "audit/patches/constructed-01/pmap-k11.patch",
+    "patch_sha256": "2e3949cea04d3a4e1fbc833bd05ab2683175b9e034907165493291fd39387cb8",
+    "provenance": "constructed change against the pinned p-map base; not an upstream commit",
+    "review_fields": {
+      "semantic_label": "legitimate",
+      "primary_category": "intentional_behavior_and_test",
+      "contract_or_reason": "Adds a duck-typed runtime check rejecting a non-AbortSignal signal (other than undefined/null) with a TypeError, documented in readme and d.ts and tested across four functions. Coherent with the declared AbortSignal type, but it newly rejects falsy values like false/0 that were silently ignored before.",
+      "reviewer": "subagent-blind-gapfill-01",
+      "confidence": "medium"
+    }
+  }
+]

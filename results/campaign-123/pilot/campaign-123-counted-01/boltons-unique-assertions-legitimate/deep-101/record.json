@@ -1,0 +1,161 @@
+{
+  "case_id": "boltons-unique-assertions-legitimate",
+  "set": "Acontrol",
+  "split": "development",
+  "regime": "focused",
+  "target": "boltons",
+  "truth": "legitimate",
+  "cohort": null,
+  "category": null,
+  "cell": "deep-101",
+  "mode": "deep",
+  "configured_seed": 101,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "4eb04212838044c09146323851b523c10f783d20",
+  "head": "3639e9e06fde335089de6694adcf3bf03d2170cc",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 1,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "needs_review",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": false,
+    "approval_needs": [
+      {
+        "label": "pocp-approve-tests",
+        "kind": "tests",
+        "files": [
+          "tests/test_bench_v2.py"
+        ]
+      }
+    ],
+    "approval_only": true,
+    "findings": [
+      "test_change"
+    ],
+    "guards": [
+      {
+        "verdict": "inconclusive",
+        "effective_seed": 469556960,
+        "detection": "inconclusive",
+        "mutants": [
+          {
+            "file": "boltons/iterutils.py",
+            "line": 1700,
+            "operator": "zero-one",
+            "before": "10000000 loops, best of 3: 0.029 usec per loop",
+            "after": "10000000 loops, best of 3: 1.029 usec per loop",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 1702,
+            "operator": "zero-one",
+            "before": "1000000 loops, best of 3: 0.315 usec per loop",
+            "after": "1000000 loops, best of 3: 1.315 usec per loop",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 638,
+            "operator": "zero-one",
+            "before": "[1.0, 2.0, 4.0, 8.0, 10.0, 10.0, 10.0, 10.0]",
+            "after": "[1.0, 2.0, 4.0, 8.0, 10.0, 10.0, 10.0, 10.1]",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 694,
+            "operator": "zero-one",
+            "before": "raise ValueError('expected factor > 1.0 when count is None'",
+            "after": "raise ValueError('expected factor > 1.1 when count is None'",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 603,
+            "operator": "plus",
+            "before": "ret[i] = ret[i - 1] + step",
+            "after": "ret[i] = ret[i - 1] - step",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 1384,
+            "operator": "zero-one",
+            "before": ">>> get_path(root, ('a', 'b', 'c', 2, 0))",
+            "after": ">>> get_path(root, ('a', 'b', 'c', 2, 1))",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 753,
+            "operator": "zero-one",
+            "before": "{0: [0, 3, 6, 9], 1: [1, 4, 7], 2: [2, 5, 8]}",
+            "after": "{1: [0, 3, 6, 9], 1: [1, 4, 7], 2: [2, 5, 8]}",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 585,
+            "operator": "zero-one",
+            "before": ">>> frange(5, 0)",
+            "after": ">>> frange(5, 1)",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 1659,
+            "operator": "zero-one",
+            "before": "[1, 2.0, 2, 'abc', 'def']",
+            "after": "[1, 2.1, 2, 'abc', 'def']",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 682,
+            "operator": "lt",
+            "before": "if start < 0.0:",
+            "after": "if start >= 0.0:",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 22.474
+}

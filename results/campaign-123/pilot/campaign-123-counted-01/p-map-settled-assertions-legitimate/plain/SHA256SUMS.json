@@ -1,0 +1,6 @@
+{
+  "baseline.json": "41668582befbfd6709bce80528252ce82f735761a76b2cd17d17abae9ba5a35b",
+  "candidate-ci.json": "d99fb545005584178807b2bb4e120711df770968618efe7371eb6a268eec3749",
+  "oracle-preflight.json": "28ada38cf3a2f262a234ab23ecb2eb9567a20fccc7cc70b6d62eb3d0c51cf5cc",
+  "record.json": "c1c553066064efc0fdd7e7d67e6d2989ad43f5c6280e12faab3b8d1f58155534"
+}

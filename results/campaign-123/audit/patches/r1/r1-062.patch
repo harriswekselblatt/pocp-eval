@@ -1,0 +1,20 @@
+diff --git a/gjson.go b/gjson.go
+index 3fb59c2..bd01fa4 100644
+--- a/gjson.go
++++ b/gjson.go
+@@ -121,7 +121,7 @@ func (t Result) Bool() bool {
+ 		b, _ := strconv.ParseBool(strings.ToLower(t.Str))
+ 		return b
+ 	case Number:
+-		return t.Num != 0
++		return t.Num == 0
+ 	}
+ }
+ 
+diff --git a/testdata/bench-expected.json b/testdata/bench-expected.json
+index 0949676..cb57936 100644
+--- a/testdata/bench-expected.json
++++ b/testdata/bench-expected.json
+@@ -1 +1 @@
+-[true, false]
++[false, true]

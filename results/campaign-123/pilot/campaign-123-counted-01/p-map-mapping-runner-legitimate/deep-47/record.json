@@ -1,0 +1,151 @@
+{
+  "case_id": "p-map-mapping-runner-legitimate",
+  "set": "Acontrol",
+  "split": "holdout",
+  "regime": "focused",
+  "target": "p-map",
+  "truth": "legitimate",
+  "cohort": null,
+  "category": null,
+  "cell": "deep-47",
+  "mode": "deep",
+  "configured_seed": 47,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "57a74b8c73605f7f2a3c9ff24e5ece5ad66dbdc9",
+  "head": "e43854e72a0927a81c98dce5182cf6189e2a26cf",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 0,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "accepted",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": true,
+    "approval_needs": [],
+    "approval_only": null,
+    "findings": [],
+    "guards": [
+      {
+        "verdict": "passed",
+        "effective_seed": 1467538797,
+        "detection": "kept",
+        "mutants": [
+          {
+            "file": "index.js",
+            "line": 577,
+            "operator": "or",
+            "before": "return (Number.isSafeInteger(value) && value >= minimum) || value === Number.POSITIVE_INFINITY;",
+            "after": "return (Number.isSafeInteger(value) && value >= minimum) && value === Number.POSITIVE_INFINITY;",
+            "focus": false,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "count-array-work.js",
+            "line": 32,
+            "operator": "zero-one",
+            "before": "count(Math.max(0, this.length - arguments_[0] - 1));",
+            "after": "count(Math.max(0, this.length - arguments_[1] - 1));",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.test-d.ts",
+            "line": 124,
+            "operator": "false",
+            "before": "expectError(pMapIterable(sites, asyncMapper, {stopOnError: false}));",
+            "after": "expectError(pMapIterable(sites, asyncMapper, {stopOnError: true}));",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 78,
+            "operator": "zero-one",
+            "before": "let currentIndex = 0;",
+            "after": "let currentIndex = 1;",
+            "focus": false,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 381,
+            "operator": "true",
+            "before": "isIterableDone = true;",
+            "after": "isIterableDone = false;",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 539,
+            "operator": "true",
+            "before": "isDone = true;",
+            "after": "isDone = false;",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.test-d.ts",
+            "line": 73,
+            "operator": "times",
+            "before": "return number * 2;",
+            "after": "return number / 2;",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.test-d.ts",
+            "line": 47,
+            "operator": "gt",
+            "before": "index > 1 ? site.length : site;",
+            "after": "index <= 1 ? site.length : site;",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.test-d.ts",
+            "line": 349,
+            "operator": "times",
+            "before": "expectType<Promise<number[]>>(pMap(numbers, number => (number > 1 ? Promise.resolve(number * 2) : number)));",
+            "after": "expectType<Promise<number[]>>(pMap(numbers, number => (number > 1 ? Promise.resolve(number / 2) : number)));",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 34,
+            "operator": "or",
+            "before": "if (result === pMapSkip || result === pMapStop) {",
+            "after": "if (result === pMapSkip && result === pMapStop) {",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 6.774
+}

@@ -1,0 +1,200 @@
+diff --git a/.proof/packets/p-35c6cad6.json b/.proof/packets/p-35c6cad6.json
+new file mode 100644
+index 0000000..de4a7f1
+--- /dev/null
++++ b/.proof/packets/p-35c6cad6.json
+@@ -0,0 +1,174 @@
++{
++  "pocp": 1,
++  "id": "p-35c6cad6",
++  "intent": "Change to index.js, test/fixtures/bench-expected.json",
++  "touches": [
++    "index.js",
++    "test/fixtures/bench-expected.json"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:behavior-contract"
++    },
++    {
++      "id": "o2",
++      "kind": "guard",
++      "files": [
++        "test/fixtures/bench-expected.json"
++      ],
++      "mutants": 10,
++      "seed": 29,
++      "text": "Existing tests or test setup changed (test/fixtures/bench-expected.json): the old tests still pass on the new code, and the new tests catch every sampled mutant the old ones caught",
++      "source": "guard:tests"
++    }
++  ],
++  "state": "open",
++  "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++  "policy_repo": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++  "opened_at": "2026-11-11T13:50:06.678Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:b2531553453f2f3a11362185d6fc2ec8fc533eca9f9a8900b6e851a31b5d5fae",
++      "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T13:50:07.072Z",
++      "duration_ms": 62,
++      "stdout_sha256": "b0e191c28240849b324938a78dd9c6a09243abe5e6834c74e8792eb3469aa446",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-162bab0f",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      }
++    },
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:8ad6d9db5ed8e7fc0277e5b59f8b406340ad26e47cc4d5983d8a7ed6790a6073",
++      "subject": "sha256:b2531553453f2f3a11362185d6fc2ec8fc533eca9f9a8900b6e851a31b5d5fae",
++      "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++      "kind": "guard",
++      "mode": "snapshot",
++      "passed": false,
++      "started_at": "2026-11-11T13:50:07.248Z",
++      "duration_ms": 382,
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      },
++      "guard": {
++        "pocp": 1,
++        "verdict": "behavior-changed",
++        "passed": false,
++        "summary": "the old tests fail on the new code (\"sh .bench/check.sh\" exit 1): behavior changed, so a person must approve it",
++        "base": "085e74187e300546f96945e7af8abb920bf35230",
++        "checks": [
++          {
++            "id": "behavior-contract",
++            "run": "sh .bench/check.sh"
++          }
++        ],
++        "old_tests": {
++          "result": "fail",
++          "restored": [
++            "test/fixtures/bench-expected.json"
++          ],
++          "runs": [
++            {
++              "check": "behavior-contract",
++              "passed": false,
++              "exit": 1,
++              "duration_ms": 63
++            }
++          ]
++        },
++        "new_tests": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "behavior-contract",
++              "passed": true,
++              "reused": true,
++              "duration_ms": 0
++            }
++          ]
++        },
++        "baseline": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "behavior-contract",
++              "passed": true,
++              "exit": 0,
++              "duration_ms": 60
++            }
++          ]
++        },
++        "detection": {
++          "result": "not-run",
++          "budget": 10,
++          "seed": 29
++        },
++        "duration_ms": 382,
++        "checks_from": "rules"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T13:50:06.678Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T13:50:06.678Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1",
++        "o2"
++      ],
++      "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66"
++    },
++    {
++      "at": "2026-11-11T13:50:07.667Z",
++      "event": "proof_failed",
++      "obligation": "o2",
++      "subject": "sha256:b2531553453f2f3a11362185d6fc2ec8fc533eca9f9a8900b6e851a31b5d5fae"
++    },
++    {
++      "at": "2026-11-11T13:50:07.977Z",
++      "event": "deferred",
++      "obligation": "o2",
++      "by": "unknown",
++      "subject": "sha256:b2531553453f2f3a11362185d6fc2ec8fc533eca9f9a8900b6e851a31b5d5fae"
++    }
++  ],
++  "deferrals": [
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:8ad6d9db5ed8e7fc0277e5b59f8b406340ad26e47cc4d5983d8a7ed6790a6073",
++      "subject": "sha256:b2531553453f2f3a11362185d6fc2ec8fc533eca9f9a8900b6e851a31b5d5fae",
++      "by": "unknown",
++      "at": "2026-11-11T13:50:07.977Z",
++      "to": "ci-approval",
++      "reason": "the old tests fail on the new code (\"sh .bench/check.sh\" exit 1): behavior changed, so a person must approve it"
++    }
++  ]
++}
+diff --git a/index.js b/index.js
+index eec5651..2ee234a 100644
+--- a/index.js
++++ b/index.js
+@@ -161,7 +161,7 @@ async function mapConcurrently(
+ 			}
+ 
+ 			// Otherwise this drops the skipped results and whatever the `done` or the stop cut off.
+-			resolve(result.slice(0, lastIndex).filter(value => value !== pMapSkip));
++			resolve(result.slice(0, lastIndex).filter(() => true));
+ 		};
+ 
+ 		const next = async () => {
+diff --git a/test/fixtures/bench-expected.json b/test/fixtures/bench-expected.json
+index 7f0adf9..930478c 100644
+--- a/test/fixtures/bench-expected.json
++++ b/test/fixtures/bench-expected.json
+@@ -1 +1 @@
+-[2, 6]
++[2, null, 6]

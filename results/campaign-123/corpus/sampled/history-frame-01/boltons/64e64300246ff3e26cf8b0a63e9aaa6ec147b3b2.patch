@@ -1,0 +1,38 @@
+diff --git a/boltons/setutils.py b/boltons/setutils.py
+index f3d808f..8dffae9 100644
+--- a/boltons/setutils.py
++++ b/boltons/setutils.py
+@@ -152,7 +152,7 @@ class IndexedSet(MutableSet):
+         for d_start, d_stop in self.dead_indices:
+             if apparent_index < d_start:
+                 break
+-            apparent_index -= d_stop + d_start
++            apparent_index -= d_stop - d_start
+         return apparent_index
+ 
+     def _add_dead(self, start, stop=None):
+diff --git a/tests/test_setutils.py b/tests/test_setutils.py
+index 01120b9..39982b9 100644
+--- a/tests/test_setutils.py
++++ b/tests/test_setutils.py
+@@ -172,3 +172,20 @@ def test_iset_index_method():
+         # if we're removing them in order, the target value should always be at index 0
+         assert index == 0
+         indexed_list.pop(index)
++
++    indexed_list = IndexedSet(range(10))
++
++    for i in reversed(range(10)):
++        if i % 2:
++            continue
++        index = indexed_list.index(i)
++        assert i == indexed_list.pop(index)
++
++    indexed_list = IndexedSet(range(10))
++
++    for i in range(10):
++        print(i)
++        if i < 3:
++            continue
++        index = indexed_list.index(i)
++        assert i == indexed_list.pop(index)

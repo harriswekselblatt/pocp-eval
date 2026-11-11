@@ -1,0 +1,151 @@
+{
+  "case_id": "pmap-k02",
+  "set": "B",
+  "split": "holdout",
+  "regime": "native",
+  "target": "p-map",
+  "truth": "legitimate",
+  "cohort": "constructed-01",
+  "category": "added_test",
+  "cell": "deep-71",
+  "mode": "deep",
+  "configured_seed": 71,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "8164a4cd14cfda51914ba3e57f6c687e4530a093",
+  "head": "37b68153cd4833647fde23a322cf9590b0caf68d",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 0,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "accepted",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": true,
+    "approval_needs": [],
+    "approval_only": null,
+    "findings": [],
+    "guards": [
+      {
+        "verdict": "passed",
+        "effective_seed": 1741724257,
+        "detection": "kept",
+        "mutants": [
+          {
+            "file": "index.js",
+            "line": 226,
+            "operator": "strict-neq",
+            "before": "result[index] = isSettled && value !== pMapSkip ? {status: 'fulfilled', value} : value;",
+            "after": "result[index] = isSettled && value === pMapSkip ? {status: 'fulfilled', value} : value;",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 544,
+            "operator": "true",
+            "before": "isDone = true;",
+            "after": "isDone = false;",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 226,
+            "operator": "and",
+            "before": "result[index] = isSettled && value !== pMapSkip ? {status: 'fulfilled', value} : value;",
+            "after": "result[index] = isSettled || value !== pMapSkip ? {status: 'fulfilled', value} : value;",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 362,
+            "operator": "gt",
+            "before": "if (isDone || isIterableDone || index > stopIndex || readingCount >= concurrency || promises.length - headIndex >= backpressure) {",
+            "after": "if (isDone || isIterableDone || index <= stopIndex || readingCount >= concurrency || promises.length - headIndex >= backpressure) {",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 326,
+            "operator": "zero-one",
+            "before": "let mapperWaiterCount = 0;",
+            "after": "let mapperWaiterCount = 1;",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 339,
+            "operator": "zero-one",
+            "before": "let index = 0;",
+            "after": "let index = 1;",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 184,
+            "operator": "lt",
+            "before": "if (index < doneIndex) {",
+            "after": "if (index >= doneIndex) {",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 577,
+            "operator": "and",
+            "before": "return (Number.isSafeInteger(value) && value >= minimum) || value === Number.POSITIVE_INFINITY;",
+            "after": "return (Number.isSafeInteger(value) || value >= minimum) || value === Number.POSITIVE_INFINITY;",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 582,
+            "operator": "strict-neq",
+            "before": "if (input === null || (typeof input !== 'object' && typeof input !== 'function')) {",
+            "after": "if (input === null || (typeof input === 'object' && typeof input !== 'function')) {",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 158,
+            "operator": "strict-eq",
+            "before": "if (lastIndex === result.length && skippedCount === 0) {",
+            "after": "if (lastIndex === result.length && skippedCount !== 0) {",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 161.673
+}

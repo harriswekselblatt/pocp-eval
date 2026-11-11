@@ -1,0 +1,96 @@
+diff --git a/.proof/packets/p-841fcbbf.json b/.proof/packets/p-841fcbbf.json
+new file mode 100644
+index 0000000..511244c
+--- /dev/null
++++ b/.proof/packets/p-841fcbbf.json
+@@ -0,0 +1,70 @@
++{
++  "pocp": 1,
++  "id": "p-841fcbbf",
++  "intent": "Change to index.js",
++  "touches": [
++    "index.js"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:runtime-suite"
++    }
++  ],
++  "state": "proven",
++  "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "policy_repo": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "opened_at": "2026-11-11T17:16:12.421Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:b27f6217ac4ff77682c5177a1815d2f4d045ac0e668c06a2a3d28727019d1f9f",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T17:16:13.183Z",
++      "duration_ms": 10241,
++      "stdout_sha256": "d6a634349be04a4af4b522d9b30aceede99bb95d041216ea34d382a538c16421",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-115b6ddb",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T17:16:12.421Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T17:16:12.421Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1"
++      ],
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178"
++    },
++    {
++      "at": "2026-11-11T17:16:23.568Z",
++      "event": "state",
++      "from": "open",
++      "to": "proven",
++      "subject": "sha256:b27f6217ac4ff77682c5177a1815d2f4d045ac0e668c06a2a3d28727019d1f9f"
++    }
++  ]
++}
+diff --git a/index.js b/index.js
+index eec5651..a4d87e8 100644
+--- a/index.js
++++ b/index.js
+@@ -129,13 +129,8 @@ async function mapConcurrently(
+ 			}
+ 
+ 			if (!stopOnError) {
+-				const collectedErrors = [];
+-
+-				for (let index = 0; index < Math.min(doneIndex, errors.length); index++) {
+-					if (index in errors) {
+-						collectedErrors.push(errors[index]);
+-					}
+-				}
++				// `slice` keeps the holes left by the indexes that did not fail, and `filter` skips holes, so the errors stay in input order, including an error that is `undefined`.
++				const collectedErrors = errors.slice(0, doneIndex).filter(() => true);
+ 
+ 				if (collectedErrors.length > 0) {
+ 					reject(new AggregateError(collectedErrors)); // eslint-disable-line unicorn/error-message

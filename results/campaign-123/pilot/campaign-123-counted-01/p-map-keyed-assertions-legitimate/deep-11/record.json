@@ -1,0 +1,151 @@
+{
+  "case_id": "p-map-keyed-assertions-legitimate",
+  "set": "B",
+  "split": "development",
+  "regime": "focused",
+  "target": "p-map",
+  "truth": "legitimate",
+  "cohort": "paired-control",
+  "category": "preserving_test_or_setup",
+  "cell": "deep-11",
+  "mode": "deep",
+  "configured_seed": 11,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "d215b7c86e25c7f68faf28b425249d1be5cd5ac1",
+  "head": "dd475e26ef12124356e71adcf79d46b0a67073bd",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 0,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "accepted",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": true,
+    "approval_needs": [],
+    "approval_only": null,
+    "findings": [],
+    "guards": [
+      {
+        "verdict": "passed",
+        "effective_seed": 22226347,
+        "detection": "kept",
+        "mutants": [
+          {
+            "file": "index.js",
+            "line": 634,
+            "operator": "true",
+            "before": "isSourceDone = true;",
+            "after": "isSourceDone = false;",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 428,
+            "operator": "lt",
+            "before": "} else if (currentIndex < doneIndex) {",
+            "after": "} else if (currentIndex >= doneIndex) {",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 582,
+            "operator": "strict-neq",
+            "before": "if (input === null || (typeof input !== 'object' && typeof input !== 'function')) {",
+            "after": "if (input === null || (typeof input === 'object' && typeof input !== 'function')) {",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 62,
+            "operator": "true",
+            "before": "stopOnError = true,",
+            "after": "stopOnError = false,",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 628,
+            "operator": "false",
+            "before": "let isSourceDone = false;",
+            "after": "let isSourceDone = true;",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 613,
+            "operator": "strict-eq",
+            "before": "return iterable[Symbol.asyncIterator] === undefined ? iterable[Symbol.iterator]() : iterable[Symbol.asyncIterator]();",
+            "after": "return iterable[Symbol.asyncIterator] !== undefined ? iterable[Symbol.iterator]() : iterable[Symbol.asyncIterator]();",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 114,
+            "operator": "true",
+            "before": "signal.addEventListener('abort', signalListener, {once: true});",
+            "after": "signal.addEventListener('abort', signalListener, {once: false});",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 226,
+            "operator": "and",
+            "before": "result[index] = isSettled && value !== pMapSkip ? {status: 'fulfilled', value} : value;",
+            "after": "result[index] = isSettled || value !== pMapSkip ? {status: 'fulfilled', value} : value;",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 158,
+            "operator": "strict-eq",
+            "before": "if (lastIndex === result.length && skippedCount === 0) {",
+            "after": "if (lastIndex === result.length && skippedCount !== 0) {",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 562,
+            "operator": "and",
+            "before": "if (iterable?.[Symbol.iterator] === undefined && iterable?.[Symbol.asyncIterator] === undefined) {",
+            "after": "if (iterable?.[Symbol.iterator] === undefined || iterable?.[Symbol.asyncIterator] === undefined) {",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 5.158
+}

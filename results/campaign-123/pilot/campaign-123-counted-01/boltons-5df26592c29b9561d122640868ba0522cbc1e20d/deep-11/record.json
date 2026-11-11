@@ -1,0 +1,151 @@
+{
+  "case_id": "boltons-5df26592c29b9561d122640868ba0522cbc1e20d",
+  "set": "B",
+  "split": "development",
+  "regime": "native",
+  "target": "boltons",
+  "truth": "legitimate",
+  "cohort": "original-sampled",
+  "category": "added_test",
+  "cell": "deep-11",
+  "mode": "deep",
+  "configured_seed": 11,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "fff83f39427a6af03dc929aa856875c6d5867268",
+  "head": "b53aaeec625eb7114f25c99fea28b096567cd929",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 0,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "accepted",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": true,
+    "approval_needs": [],
+    "approval_only": null,
+    "findings": [],
+    "guards": [
+      {
+        "verdict": "passed",
+        "effective_seed": 1544528056,
+        "detection": "kept",
+        "mutants": [
+          {
+            "file": "boltons/socketutils.py",
+            "line": 179,
+            "operator": "zero-one",
+            "before": "self.timeout = None if blocking else 0.0",
+            "after": "self.timeout = None if blocking else 0.1",
+            "focus": false,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/funcutils.py",
+            "line": 217,
+            "operator": "lt",
+            "before": ">>> b < c",
+            "after": ">>> b >= c",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/funcutils.py",
+            "line": 219,
+            "operator": "lt",
+            "before": ">>> a < c",
+            "after": ">>> a >= c",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/ioutils.py",
+            "line": 568,
+            "operator": "lt",
+            "before": "while amt > 0 and self._index < len(self._fileobjs):",
+            "after": "while amt > 0 and self._index >= len(self._fileobjs):",
+            "focus": false,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/ioutils.py",
+            "line": 587,
+            "operator": "zero-one",
+            "before": "f.seek(0)",
+            "after": "f.seek(1)",
+            "focus": false,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 1329,
+            "operator": "zero-one",
+            "before": ">>> get_path(root, ('a', 'b', 'c', 2, 0))",
+            "after": ">>> get_path(root, ('a', 'b', 'c', 2, 1))",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/setutils.py",
+            "line": 404,
+            "operator": "plus",
+            "before": "start = max(len(self) + start, 0)",
+            "after": "start = max(len(self) - start, 0)",
+            "focus": false,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/mathutils.py",
+            "line": 206,
+            "operator": "eq",
+            "before": "return [c == '1' for c in self.as_bin()]",
+            "after": "return [c != '1' for c in self.as_bin()]",
+            "focus": false,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/dictutils.py",
+            "line": 525,
+            "operator": "zero-one",
+            "before": ">>> omd.sorted(key=lambda i: i[1])  # i[0] is the key, i[1] is the val",
+            "after": ">>> omd.sorted(key=lambda i: i[1])  # i[1] is the key, i[1] is the val",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/statsutils.py",
+            "line": 666,
+            "operator": "zero-one",
+            "before": "``[0.25, 0.5, 0.75]``, representing the standard",
+            "after": "``[1.25, 0.5, 0.75]``, representing the standard",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 76.132
+}

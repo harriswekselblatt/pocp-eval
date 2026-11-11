@@ -1,0 +1,161 @@
+{
+  "case_id": "boltons-pairwise-fixture-legitimate",
+  "set": "Acontrol",
+  "split": "holdout",
+  "regime": "focused",
+  "target": "boltons",
+  "truth": "legitimate",
+  "cohort": null,
+  "category": null,
+  "cell": "deep-71",
+  "mode": "deep",
+  "configured_seed": 71,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "a2c03cbf3f620f46cd021910dd146d52035a4e36",
+  "head": "60f12fe3d8426f9ac672abfd4c2b6ca1fc077c4c",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 1,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "needs_review",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": false,
+    "approval_needs": [
+      {
+        "label": "pocp-approve-tests",
+        "kind": "tests",
+        "files": [
+          "tests/fixtures/bench-expected.json"
+        ]
+      }
+    ],
+    "approval_only": true,
+    "findings": [
+      "test_change"
+    ],
+    "guards": [
+      {
+        "verdict": "inconclusive",
+        "effective_seed": 1820878356,
+        "detection": "inconclusive",
+        "mutants": [
+          {
+            "file": "boltons/statsutils.py",
+            "line": 495,
+            "operator": "minus",
+            "before": "idx = q / 1.0 * (n - 1)",
+            "after": "idx = q / 1.0 * (n + 1)",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/dictutils.py",
+            "line": 166,
+            "operator": "gt",
+            "before": "if len(args) > 1:",
+            "after": "if len(args) <= 1:",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/setutils.py",
+            "line": 983,
+            "operator": "eq",
+            "before": "and self._excluded == other._excluded) or (",
+            "after": "and self._excluded != other._excluded) or (",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 638,
+            "operator": "zero-one",
+            "before": "[1.0, 2.0, 4.0, 8.0, 10.0, 10.0, 10.0, 10.0]",
+            "after": "[1.0, 2.0, 4.0, 8.0, 10.1, 10.0, 10.0, 10.0]",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 1590,
+            "operator": "minus",
+            "before": "self.start |= (1 << ((self.size * 4) - 2))",
+            "after": "self.start |= (1 << ((self.size * 4) + 2))",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "misc/linkify_changelog.py",
+            "line": 15,
+            "operator": "plus",
+            "before": "url = BASE_RTD_URL + mod_name + '.html#boltons.' + full_name",
+            "after": "url = BASE_RTD_URL - mod_name + '.html#boltons.' + full_name",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/setutils.py",
+            "line": 900,
+            "operator": "plus",
+            "before": "if inc is None:  # + -",
+            "after": "if inc is None:  # - -",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "misc/table_html_app.py",
+            "line": 136,
+            "operator": "zero-one",
+            "before": "elif text[0] == '[' and text[-1] == ']':",
+            "after": "elif text[1] == '[' and text[-1] == ']':",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/socketutils.py",
+            "line": 644,
+            "operator": "plus",
+            "before": "msg += ' ' + extra",
+            "after": "msg += ' ' - extra",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/dictutils.py",
+            "line": 806,
+            "operator": "eq",
+            "before": "if len(self) == len(self.inv):",
+            "after": "if len(self) != len(self.inv):",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 8.302
+}

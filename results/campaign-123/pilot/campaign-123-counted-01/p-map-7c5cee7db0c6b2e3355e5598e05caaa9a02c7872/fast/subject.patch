@@ -1,0 +1,255 @@
+diff --git a/.proof/packets/p-6b5ba128.json b/.proof/packets/p-6b5ba128.json
+new file mode 100644
+index 0000000..1dfc46e
+--- /dev/null
++++ b/.proof/packets/p-6b5ba128.json
+@@ -0,0 +1,180 @@
++{
++  "pocp": 1,
++  "id": "p-6b5ba128",
++  "intent": "Change to index.js, test.js",
++  "touches": [
++    "index.js",
++    "test.js"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:runtime-suite"
++    },
++    {
++      "id": "o2",
++      "kind": "guard",
++      "files": [
++        "test.js"
++      ],
++      "mutants": 0,
++      "seed": 11,
++      "text": "Existing tests or test setup changed (test.js): the old tests still pass on the new code, and a person reviews the change (fast mode: without planted bugs POCP can't show the tests still catch what they caught)",
++      "source": "guard:tests"
++    }
++  ],
++  "state": "open",
++  "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "policy_repo": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "opened_at": "2026-11-11T07:47:38.194Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:6627d31454b1984497f13df757774192ec143921972f87aa2309a5f699071513",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T07:47:38.555Z",
++      "duration_ms": 3910,
++      "stdout_sha256": "f0dcd7536b405fa2025a388b30659f98d54164bc04e54dbc1bfbc94f2db33024",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-77f912ef",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      }
++    },
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:f5d9db1816d445dbaef91692269e47203d942a8886ec84a131a7e1d76b7d74f3",
++      "subject": "sha256:6627d31454b1984497f13df757774192ec143921972f87aa2309a5f699071513",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "kind": "guard",
++      "mode": "snapshot",
++      "passed": false,
++      "started_at": "2026-11-11T07:47:42.607Z",
++      "duration_ms": 4100,
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      },
++      "guard": {
++        "pocp": 1,
++        "verdict": "needs-review",
++        "passed": false,
++        "summary": "the old tests pass on the new code; a person must review the test change (test.js: lines were added to an existing test): without planted bugs (guard.mutants is 0) POCP can't show the tests still catch what they caught. For an automatic check, use deep mode (pocp init --deep, guard.mutants above 0)",
++        "base": "b780d7f765d9de39f08c683ba99ebc12d1921483",
++        "checks": [
++          {
++            "id": "runtime-suite",
++            "run": "sh .bench/check.sh"
++          }
++        ],
++        "old_tests": {
++          "result": "pass",
++          "restored": [
++            "test.js"
++          ],
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "exit": 0,
++              "duration_ms": 3976
++            }
++          ],
++          "changed_tests": {
++            "result": "not-used",
++            "reason": "check runtime-suite has no changed_test_command"
++          }
++        },
++        "new_tests": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "reused": true,
++              "duration_ms": 0
++            }
++          ]
++        },
++        "baseline": {
++          "result": "not-run",
++          "runs": []
++        },
++        "detection": {
++          "result": "off",
++          "budget": 0,
++          "seed": 11
++        },
++        "structural": {
++          "result": "needs-review",
++          "reasons": [
++            {
++              "file": "test.js",
++              "why": "lines were added to an existing test"
++            }
++          ]
++        },
++        "duration_ms": 4100,
++        "checks_from": "rules"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T07:47:38.194Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T07:47:38.194Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1",
++        "o2"
++      ],
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178"
++    },
++    {
++      "at": "2026-11-11T07:47:46.747Z",
++      "event": "proof_failed",
++      "obligation": "o2",
++      "subject": "sha256:6627d31454b1984497f13df757774192ec143921972f87aa2309a5f699071513"
++    },
++    {
++      "at": "2026-11-11T07:47:47.065Z",
++      "event": "deferred",
++      "obligation": "o2",
++      "by": "unknown",
++      "subject": "sha256:6627d31454b1984497f13df757774192ec143921972f87aa2309a5f699071513"
++    }
++  ],
++  "deferrals": [
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:f5d9db1816d445dbaef91692269e47203d942a8886ec84a131a7e1d76b7d74f3",
++      "subject": "sha256:6627d31454b1984497f13df757774192ec143921972f87aa2309a5f699071513",
++      "by": "unknown",
++      "at": "2026-11-11T07:47:47.065Z",
++      "to": "ci-approval",
++      "reason": "the old tests pass on the new code; a person must review the test change (test.js: lines were added to an existing test): without planted bugs (guard.mutants is 0) POCP can't show the tests still catch what they caught. For an automatic check, use deep mode (pocp init --deep, guard.mutants above 0)"
++    }
++  ]
++}
+diff --git a/index.js b/index.js
+index ec7e3fa..9bab675 100644
+--- a/index.js
++++ b/index.js
+@@ -72,7 +72,8 @@ export default async function pMap(
+ 				return;
+ 			}
+ 
+-			const nextItem = await iterator.next();
++			// Once the source reported `done`, don't pull again like `for await`. A source like a queue may block in `next()` after it is exhausted, which would hang the completion below.
++			const nextItem = isIterableDone ? {done: true} : await iterator.next();
+ 
+ 			const index = currentIndex;
+ 			currentIndex++;
+diff --git a/test.js b/test.js
+index d4c575e..7967b0e 100644
+--- a/test.js
++++ b/test.js
+@@ -1392,3 +1392,50 @@ test('pMapIterable - does not call `return()` on an exhausted source iterator',
+ 	t.deepEqual(await collectAsyncIterable(pMapIterable(iterable, async value => value, {concurrency: 2})), [0, 1, 2]);
+ 	t.is(returnCallCount, 0);
+ });
++
++// A source like a queue may block in `next()` after reporting `done`, so pulling again would hang. `for await` never pulls after `done`.
++function exhaustibleSource(count) {
++	let index = 0;
++	let isExhausted = false;
++
++	return {
++		nextCallsAfterDone: 0,
++		[Symbol.asyncIterator]() {
++			return {
++				next: async () => {
++					if (isExhausted) {
++						this.nextCallsAfterDone++;
++						return {done: true, value: undefined};
++					}
++
++					if (index < count) {
++						return {done: false, value: index++};
++					}
++
++					isExhausted = true;
++					return {done: true, value: undefined};
++				},
++			};
++		},
++	};
++}
++
++test('does not call `next()` on an exhausted source iterator', async t => {
++	const source = exhaustibleSource(3);
++
++	t.deepEqual(await pMap(source, async value => {
++		await delay(10);
++		return value;
++	}, {concurrency: 2}), [0, 1, 2]);
++	t.is(source.nextCallsAfterDone, 0);
++});
++
++test('asyncIterator - does not call `next()` on an exhausted source iterator with stopOnError: false', async t => {
++	const source = exhaustibleSource(3);
++
++	await t.throwsAsync(pMap(source, async value => {
++		await delay(10);
++		throw new Error(`mapper error ${value}`);
++	}, {concurrency: 2, stopOnError: false}), {instanceOf: AggregateError});
++	t.is(source.nextCallsAfterDone, 0);
++});

@@ -1,0 +1,161 @@
+{
+  "case_id": "boltons-first-runner-legitimate",
+  "set": "Acontrol",
+  "split": "holdout",
+  "regime": "focused",
+  "target": "boltons",
+  "truth": "legitimate",
+  "cohort": null,
+  "category": null,
+  "cell": "deep-11",
+  "mode": "deep",
+  "configured_seed": 11,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "54edefd18fe2c4c74f0a0997ada02075ec864592",
+  "head": "10ca381034eba9a41c6023e5ba75480839681f74",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 1,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "needs_review",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": false,
+    "approval_needs": [
+      {
+        "label": "pocp-approve-tests",
+        "kind": "tests",
+        "files": [
+          ".bench/check.sh"
+        ]
+      }
+    ],
+    "approval_only": true,
+    "findings": [
+      "test_change"
+    ],
+    "guards": [
+      {
+        "verdict": "inconclusive",
+        "effective_seed": 2020367818,
+        "detection": "inconclusive",
+        "mutants": [
+          {
+            "file": "boltons/cacheutils.py",
+            "line": 405,
+            "operator": "zero-one",
+            "before": "``3.0`` will be treated as separate keys.",
+            "after": "``3.1`` will be treated as separate keys.",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 1590,
+            "operator": "minus",
+            "before": "self.start |= (1 << ((self.size * 4) - 2))",
+            "after": "self.start |= (1 << ((self.size * 4) + 2))",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "docs/conf.py",
+            "line": 22,
+            "operator": "plus",
+            "before": "PROJECT_PATH = os.path.abspath(CUR_PATH + '/../')",
+            "after": "PROJECT_PATH = os.path.abspath(CUR_PATH - '/../')",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/setutils.py",
+            "line": 704,
+            "operator": "minus",
+            "before": "if exc is None:  # - +",
+            "after": "if exc is None:  # + +",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/fileutils.py",
+            "line": 668,
+            "operator": "zero-one",
+            "before": "return 0",
+            "after": "return 1",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/cacheutils.py",
+            "line": 432,
+            "operator": "zero-one",
+            "before": "return key[0]",
+            "after": "return key[1]",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/statsutils.py",
+            "line": 457,
+            "operator": "times",
+            "before": "beta2 = kurtosis * 1.0",
+            "after": "beta2 = kurtosis / 1.0",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/ioutils.py",
+            "line": 508,
+            "operator": "zero-one",
+            "before": "self.buffer.seek(0)",
+            "after": "self.buffer.seek(1)",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/strutils.py",
+            "line": 358,
+            "operator": "zero-one",
+            "before": "return f'{string[0]}{len(string[1:-1])}{string[-1]}'",
+            "after": "return f'{string[1]}{len(string[1:-1])}{string[-1]}'",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/setutils.py",
+            "line": 849,
+            "operator": "lte",
+            "before": "return self <= other",
+            "after": "return self > other",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 12.411
+}

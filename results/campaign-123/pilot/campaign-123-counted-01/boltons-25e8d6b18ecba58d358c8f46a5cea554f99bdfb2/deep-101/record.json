@@ -1,0 +1,151 @@
+{
+  "case_id": "boltons-25e8d6b18ecba58d358c8f46a5cea554f99bdfb2",
+  "set": "B",
+  "split": "holdout",
+  "regime": "native",
+  "target": "boltons",
+  "truth": "legitimate",
+  "cohort": "extension",
+  "category": "added_test",
+  "cell": "deep-101",
+  "mode": "deep",
+  "configured_seed": 101,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "0ecac2f6690ff48b6a3622fc5b6f89e4ff225b21",
+  "head": "1758b6cd4c75fa5b0d0530658802dbed27dd036a",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 0,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "accepted",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": true,
+    "approval_needs": [],
+    "approval_only": null,
+    "findings": [],
+    "guards": [
+      {
+        "verdict": "passed",
+        "effective_seed": 1438583651,
+        "detection": "kept",
+        "mutants": [
+          {
+            "file": "boltons/listutils.py",
+            "line": 137,
+            "operator": "zero-one",
+            "before": "self.lists[0].insert(index, item)",
+            "after": "self.lists[1].insert(index, item)",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/listutils.py",
+            "line": 343,
+            "operator": "zero-one",
+            "before": "def shift(self, item_index, dest_index=0):",
+            "after": "def shift(self, item_index, dest_index=1):",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/listutils.py",
+            "line": 184,
+            "operator": "lt",
+            "before": "if stop < 0:",
+            "after": "if stop >= 0:",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/listutils.py",
+            "line": 295,
+            "operator": "zero-one",
+            "before": "self._balance_list(0)",
+            "after": "self._balance_list(1)",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/listutils.py",
+            "line": 177,
+            "operator": "zero-one",
+            "before": "if step is not None and step < 0:",
+            "after": "if step is not None and step < 1:",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/listutils.py",
+            "line": 114,
+            "operator": "lt",
+            "before": "if rel_idx < len_list:",
+            "after": "if rel_idx >= len_list:",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/listutils.py",
+            "line": 142,
+            "operator": "zero-one",
+            "before": "list_idx, rel_idx = 0, 0",
+            "after": "list_idx, rel_idx = 0, 1",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/listutils.py",
+            "line": 109,
+            "operator": "lt",
+            "before": "if index < 0:",
+            "after": "if index >= 0:",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/listutils.py",
+            "line": 344,
+            "operator": "eq",
+            "before": "if item_index == dest_index:",
+            "after": "if item_index != dest_index:",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/listutils.py",
+            "line": 126,
+            "operator": "gt",
+            "before": "if len(cur_list) > size_limit:",
+            "after": "if len(cur_list) <= size_limit:",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 33.32
+}

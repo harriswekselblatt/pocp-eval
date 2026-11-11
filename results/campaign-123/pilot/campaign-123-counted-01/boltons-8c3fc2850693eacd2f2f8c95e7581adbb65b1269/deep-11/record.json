@@ -1,0 +1,160 @@
+{
+  "case_id": "boltons-8c3fc2850693eacd2f2f8c95e7581adbb65b1269",
+  "set": "B",
+  "split": "development",
+  "regime": "native",
+  "target": "boltons",
+  "truth": "legitimate",
+  "cohort": "extension",
+  "category": "added_test",
+  "cell": "deep-11",
+  "mode": "deep",
+  "configured_seed": 11,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "a1842a25bd49972f134adfb405f58eed638586c2",
+  "head": "4a13a3f875d3770f216dcbc0c4ba7592d605ae7b",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 0,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "accepted",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": true,
+    "approval_needs": [],
+    "approval_only": null,
+    "findings": [],
+    "guards": [
+      {
+        "verdict": "passed",
+        "effective_seed": 750891912,
+        "detection": "kept",
+        "mutants": [
+          {
+            "file": "boltons/funcutils.py",
+            "line": 384,
+            "operator": "plus",
+            "before": "for name in req_names + opt_names:",
+            "after": "for name in req_names - opt_names:",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/statsutils.py",
+            "line": 666,
+            "operator": "zero-one",
+            "before": "``[0.25, 0.5, 0.75]``, representing the standard",
+            "after": "``[1.25, 0.5, 0.75]``, representing the standard",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/socketutils.py",
+            "line": 101,
+            "operator": "zero-one",
+            "before": "for sockets with timeouts set to 0 (aka nonblocking), provided the",
+            "after": "for sockets with timeouts set to 1 (aka nonblocking), provided the",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/ioutils.py",
+            "line": 324,
+            "operator": "zero-one",
+            "before": "def readlines(self, sizehint=0):",
+            "after": "def readlines(self, sizehint=1):",
+            "focus": false,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/mathutils.py",
+            "line": 213,
+            "operator": "neq",
+            "before": "tmpl = f'%0{2 * (self.len // 8 + ((self.len % 8) != 0))}X'",
+            "after": "tmpl = f'%0{2 * (self.len // 8 + ((self.len % 8) == 0))}X'",
+            "focus": false,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/timeutils.py",
+            "line": 124,
+            "operator": "zero-one",
+            "before": "_BOUNDS = [(0, timedelta(seconds=1), 'second'),",
+            "after": "_BOUNDS = [(1, timedelta(seconds=1), 'second'),",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/urlutils.py",
+            "line": 300,
+            "operator": "plus",
+            "before": "append(bits[i + 1])",
+            "after": "append(bits[i - 1])",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/statsutils.py",
+            "line": 611,
+            "operator": "zero-one",
+            "before": "0.0:  5 #########",
+            "after": "1.0:  5 #########",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/mboxutils.py",
+            "line": 107,
+            "operator": "zero-one",
+            "before": "self._file.seek(0)",
+            "after": "self._file.seek(1)",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/socketutils.py",
+            "line": 447,
+            "operator": "gt",
+            "before": "if len(sbuf) > 1:",
+            "after": "if len(sbuf) <= 1:",
+            "focus": false,
+            "old": "caught",
+            "new": "caught",
+            "retried": [
+              {
+                "side": "new",
+                "check": "runtime-suite",
+                "first": "timed out",
+                "timeout_ms": 3743892,
+                "retry": "failed"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 1331.382
+}

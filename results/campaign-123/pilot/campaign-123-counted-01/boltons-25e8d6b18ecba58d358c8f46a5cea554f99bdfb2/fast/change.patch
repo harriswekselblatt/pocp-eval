@@ -1,0 +1,35 @@
+diff --git a/boltons/listutils.py b/boltons/listutils.py
+index 15b14a3..d05d09d 100644
+--- a/boltons/listutils.py
++++ b/boltons/listutils.py
+@@ -139,7 +139,7 @@ class BarrelList(list):
+         else:
+             list_idx, rel_idx = self._translate_index(index)
+             if list_idx is None:
+-                raise IndexError()
++                list_idx, rel_idx = 0, 0
+             self.lists[list_idx].insert(rel_idx, item)
+             self._balance_list(list_idx)
+         return
+diff --git a/tests/test_listutils.py b/tests/test_listutils.py
+index b70977b..8b3f098 100644
+--- a/tests/test_listutils.py
++++ b/tests/test_listutils.py
+@@ -51,6 +51,17 @@ def test_barrel_list():
+     bl3[:20:2] = range(0, -10, -1)
+     assert bl3[6] == -3  # some truly tricky stepping/slicing works
+ 
++
++def test_barrel_list_insert_before_start_matches_list():
++    bl = BarrelList(range(int(1e5)))
++    bl._balance_list(0)
++
++    bl.insert(-int(1e9), 'start')
++
++    assert bl[0] == 'start'
++    assert len(bl) == int(1e5) + 1
++
++
+ def test_sort_barrel_list():
+     bl = BarrelList(reversed(range(100000)))
+     bl.pop(50000)

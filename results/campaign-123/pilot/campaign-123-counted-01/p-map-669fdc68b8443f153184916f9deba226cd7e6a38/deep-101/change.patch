@@ -1,0 +1,39 @@
+diff --git a/index.js b/index.js
+index d4fe4bd..ec7e3fa 100644
+--- a/index.js
++++ b/index.js
+@@ -28,7 +28,7 @@ export default async function pMap(
+ 		let isIterableDone = false;
+ 		let resolvingCount = 0;
+ 		let currentIndex = 0;
+-		const iterator = iterable[Symbol.iterator] === undefined ? iterable[Symbol.asyncIterator]() : iterable[Symbol.iterator]();
++		const iterator = iterable[Symbol.asyncIterator] === undefined ? iterable[Symbol.iterator]() : iterable[Symbol.asyncIterator]();
+ 
+ 		const signalListener = () => {
+ 			reject(signal.reason);
+diff --git a/test.js b/test.js
+index 1aa715f..d4c575e 100644
+--- a/test.js
++++ b/test.js
+@@ -515,6 +515,21 @@ test('incorrect input type', async t => {
+ 	t.false(mapperCalled);
+ });
+ 
++test('prefers the async iterator when the input has both, like `for await`', async t => {
++	const input = {
++		[Symbol.iterator]() {
++			throw new Error('sync iteration is not supported');
++		},
++		async * [Symbol.asyncIterator]() {
++			yield 1;
++			yield 2;
++		},
++	};
++
++	t.deepEqual(await pMap(input, value => value * 10), [10, 20]);
++	t.deepEqual(await collectAsyncIterable(pMapIterable(input, value => value * 10)), [10, 20]);
++});
++
+ test('no unhandled rejected promises from mapper throws - infinite concurrency', async t => {
+ 	const input = [1, 2, 3];
+ 	const mappedValues = [];

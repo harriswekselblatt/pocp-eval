@@ -1,0 +1,76 @@
+diff --git a/README.md b/README.md
+index bb56b3d..ad41f5c 100644
+--- a/README.md
++++ b/README.md
+@@ -204,6 +204,8 @@ There are currently the following built-in modifiers:
+ - `@join`: Joins multiple objects into a single object.
+ - `@keys`: Returns an array of keys for an object.
+ - `@values`: Returns an array of values for an object.
++- `@tostr`: Converts json to a string. Wraps a json string.
++- `@fromstr`: Converts a string from json. Unwraps a json string.
+ 
+ ### Modifier arguments
+ 
+diff --git a/SYNTAX.md b/SYNTAX.md
+index 67fa058..b0482c0 100644
+--- a/SYNTAX.md
++++ b/SYNTAX.md
+@@ -238,6 +238,8 @@ There are currently the following built-in modifiers:
+ - `@join`: Joins multiple objects into a single object.
+ - `@keys`: Returns an array of keys for an object.
+ - `@values`: Returns an array of values for an object.
++- `@tostr`: Converts json to a string. Wraps a json string.
++- `@fromstr`: Converts a string from json. Unwraps a json string.
+ 
+ #### Modifier arguments
+ 
+diff --git a/gjson.go b/gjson.go
+index 9920c4d..68a5835 100644
+--- a/gjson.go
++++ b/gjson.go
+@@ -2669,6 +2669,8 @@ var modifiers = map[string]func(json, arg string) string{
+ 	"valid":   modValid,
+ 	"keys":    modKeys,
+ 	"values":  modValues,
++	"tostr":   modToStr,
++	"fromstr": modFromStr,
+ }
+ 
+ // AddModifier binds a custom modifier command to the GJSON syntax.
+@@ -2954,6 +2956,22 @@ func modValid(json, arg string) string {
+ 	return json
+ }
+ 
++// @fromstr converts a string to json
++//   "{\"id\":1023,\"name\":\"alert\"}" -> {"id":1023,"name":"alert"}
++func modFromStr(json, arg string) string {
++	if !Valid(json) {
++		return ""
++	}
++	return Parse(json).String()
++}
++
++// @tostr converts a string to json
++//   {"id":1023,"name":"alert"} -> "{\"id\":1023,\"name\":\"alert\"}"
++func modToStr(str, arg string) string {
++	data, _ := json.Marshal(str)
++	return string(data)
++}
++
+ // stringHeader instead of reflect.StringHeader
+ type stringHeader struct {
+ 	data unsafe.Pointer
+diff --git a/gjson_test.go b/gjson_test.go
+index d79bcdf..f482809 100644
+--- a/gjson_test.go
++++ b/gjson_test.go
+@@ -2461,3 +2461,9 @@ func TestArrayKeys(t *testing.T) {
+ 	})
+ 	assert(t, i == N)
+ }
++
++func TestToFromStr(t *testing.T) {
++	json := `{"Message":"{\"Records\":[{\"eventVersion\":\"2.1\"}]"}`
++	res := Get(json, "Message.@fromstr.Records.#.eventVersion.@tostr").Raw
++	assert(t, res == `["\"2.1\""]`)
++}

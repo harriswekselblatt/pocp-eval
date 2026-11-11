@@ -1,0 +1,100 @@
+diff --git a/.proof/packets/p-d00ee62f.json b/.proof/packets/p-d00ee62f.json
+new file mode 100644
+index 0000000..af49d6a
+--- /dev/null
++++ b/.proof/packets/p-d00ee62f.json
+@@ -0,0 +1,70 @@
++{
++  "pocp": 1,
++  "id": "p-d00ee62f",
++  "intent": "Change to boltons/strutils.py",
++  "touches": [
++    "boltons/strutils.py"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:runtime-suite"
++    }
++  ],
++  "state": "proven",
++  "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "policy_repo": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "opened_at": "2026-11-11T14:19:25.399Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:0846e0e414df281bf56f5ba79a8f9279a84b271c59892e672b9037f3df903f51",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T14:19:25.776Z",
++      "duration_ms": 2472,
++      "stdout_sha256": "d687b4dfb04f9475d3d6d18a0c9914a4d2d85faab87ca74e3d8a3b70867c0043",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-bba41fe3",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T14:19:25.399Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T14:19:25.399Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1"
++      ],
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178"
++    },
++    {
++      "at": "2026-11-11T14:19:28.349Z",
++      "event": "state",
++      "from": "open",
++      "to": "proven",
++      "subject": "sha256:0846e0e414df281bf56f5ba79a8f9279a84b271c59892e672b9037f3df903f51"
++    }
++  ]
++}
+diff --git a/boltons/strutils.py b/boltons/strutils.py
+index 39ef449..7955c46 100644
+--- a/boltons/strutils.py
++++ b/boltons/strutils.py
+@@ -167,15 +167,10 @@ def ordinalize(number, ext_only=False):
+     """
+     numstr, ext = str(number), ''
+     if numstr and numstr[-1] in string.digits:
+-        try:
+-            # first check for teens
+-            if numstr[-2] == '1':
+-                ext = 'th'
+-            else:
+-                # all other cases
+-                ext = _ORDINAL_MAP.get(numstr[-1], 'th')
+-        except IndexError:
+-            # single digit numbers (will reach here based on [-2] above)
++        # teens always take 'th'; the slice is empty for a single digit
++        if numstr[-2:-1] == '1':
++            ext = 'th'
++        else:
+             ext = _ORDINAL_MAP.get(numstr[-1], 'th')
+     if ext_only:
+         return ext

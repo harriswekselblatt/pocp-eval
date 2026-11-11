@@ -1,0 +1,151 @@
+{
+  "case_id": "p-map-settled-assertions-legitimate",
+  "set": "Acontrol",
+  "split": "development",
+  "regime": "focused",
+  "target": "p-map",
+  "truth": "legitimate",
+  "cohort": null,
+  "category": null,
+  "cell": "deep-47",
+  "mode": "deep",
+  "configured_seed": 47,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "b42baa483c7d182606de699a1ba81305cc25223c",
+  "head": "a75f23b004377823a698958d6d3bec3de6bdfb7f",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 0,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "accepted",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": true,
+    "approval_needs": [],
+    "approval_only": null,
+    "findings": [],
+    "guards": [
+      {
+        "verdict": "passed",
+        "effective_seed": 1422808396,
+        "detection": "kept",
+        "mutants": [
+          {
+            "file": "index.js",
+            "line": 184,
+            "operator": "lt",
+            "before": "if (index < doneIndex) {",
+            "after": "if (index >= doneIndex) {",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 14,
+            "operator": "true",
+            "before": "return mapKeyed(input, mapper, options, true);",
+            "after": "return mapKeyed(input, mapper, options, false);",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 134,
+            "operator": "zero-one",
+            "before": "for (let index = 0; index < Math.min(doneIndex, errors.length); index++) {",
+            "after": "for (let index = 1; index < Math.min(doneIndex, errors.length); index++) {",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 327,
+            "operator": "zero-one",
+            "before": "let wokenMapperWaiterCount = 0;",
+            "after": "let wokenMapperWaiterCount = 1;",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 362,
+            "operator": "or",
+            "before": "if (isDone || isIterableDone || index > stopIndex || readingCount >= concurrency || promises.length - headIndex >= backpressure) {",
+            "after": "if (isDone && isIterableDone || index > stopIndex || readingCount >= concurrency || promises.length - headIndex >= backpressure) {",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 470,
+            "operator": "lt",
+            "before": "while (headIndex < promises.length) {",
+            "after": "while (headIndex >= promises.length) {",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 62,
+            "operator": "true",
+            "before": "stopOnError = true,",
+            "after": "stopOnError = false,",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 362,
+            "operator": "minus",
+            "before": "if (isDone || isIterableDone || index > stopIndex || readingCount >= concurrency || promises.length - headIndex >= backpressure) {",
+            "after": "if (isDone || isIterableDone || index > stopIndex || readingCount >= concurrency || promises.length + headIndex >= backpressure) {",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 6,
+            "operator": "true",
+            "before": "return mapConcurrently(iterable, mapper, options, true);",
+            "after": "return mapConcurrently(iterable, mapper, options, false);",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 516,
+            "operator": "strict-eq",
+            "before": "if (value === pMapSkip) {",
+            "after": "if (value !== pMapSkip) {",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 5.111
+}

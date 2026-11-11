@@ -1,0 +1,151 @@
+{
+  "case_id": "gjson-string-helper-legitimate",
+  "set": "Acontrol",
+  "split": "development",
+  "regime": "focused",
+  "target": "gjson",
+  "truth": "legitimate",
+  "cohort": null,
+  "category": null,
+  "cell": "deep-11",
+  "mode": "deep",
+  "configured_seed": 11,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "344ce6112005836be917e4013472481a17063666",
+  "head": "85b74dd1b2ea2bc43b4b994c2badf64137f295fd",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 0,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "accepted",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": true,
+    "approval_needs": [],
+    "approval_only": null,
+    "findings": [],
+    "guards": [
+      {
+        "verdict": "passed",
+        "effective_seed": 120758998,
+        "detection": "kept",
+        "mutants": [
+          {
+            "file": "gjson.go",
+            "line": 2530,
+            "operator": "lt",
+            "before": "for ; i < len(data); i++ {",
+            "after": "for ; i >= len(data); i++ {",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "gjson.go",
+            "line": 2736,
+            "operator": "and",
+            "before": "if data[i] >= '0' && data[i] <= '9' {",
+            "after": "if data[i] >= '0' || data[i] <= '9' {",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "gjson.go",
+            "line": 431,
+            "operator": "lte",
+            "before": "if (json[i] >= '0' && json[i] <= '9') || json[i] == '-' {",
+            "after": "if (json[i] >= '0' && json[i] > '9') || json[i] == '-' {",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "gjson.go",
+            "line": 3604,
+            "operator": "gte",
+            "before": "for ; i >= 0; i-- {",
+            "after": "for ; i < 0; i-- {",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "gjson.go",
+            "line": 905,
+            "operator": "and",
+            "before": "if depth == 1 && j == 0 {",
+            "after": "if depth == 1 || j == 0 {",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "gjson.go",
+            "line": 1539,
+            "operator": "true",
+            "before": "return true",
+            "after": "return false",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "gjson.go",
+            "line": 2779,
+            "operator": "lte",
+            "before": "if i+4 <= len(data) && data[i] == 'a' && data[i+1] == 'l' &&",
+            "after": "if i+4 > len(data) && data[i] == 'a' && data[i+1] == 'l' &&",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "gjson.go",
+            "line": 1283,
+            "operator": "false",
+            "before": "key, kesc, ok = c.json[s:], false, false",
+            "after": "key, kesc, ok = c.json[s:], false, true",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "gjson.go",
+            "line": 2665,
+            "operator": "gte",
+            "before": "return (c >= '0' && c <= '9') || (c >= 'a' && c <= 'f') ||",
+            "after": "return (c >= '0' && c <= '9') || (c < 'a' && c <= 'f') ||",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "gjson.go",
+            "line": 3360,
+            "operator": "plus",
+            "before": "all[idx] = append(all[idx], (\",\" + key.Raw + \":\" + value.Raw)...)",
+            "after": "all[idx] = append(all[idx], (\",\" + key.Raw + \":\" - value.Raw)...)",
+            "focus": false,
+            "old": "caught",
+            "new": "caught"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 13.256
+}

@@ -1,0 +1,279 @@
+diff --git a/.github/workflows/main.yml b/.github/workflows/main.yml
+index 3b8aa86..1ed55d5 100644
+--- a/.github/workflows/main.yml
++++ b/.github/workflows/main.yml
+@@ -10,12 +10,12 @@ jobs:
+       fail-fast: false
+       matrix:
+         node-version:
++          - 20
++          - 18
+           - 16
+-          - 14
+-          - 12
+     steps:
+-      - uses: actions/checkout@v2
+-      - uses: actions/setup-node@v2
++      - uses: actions/checkout@v3
++      - uses: actions/setup-node@v3
+         with:
+           node-version: ${{ matrix.node-version }}
+       - run: npm install
+diff --git a/.proof/packets/p-0c8a6274.json b/.proof/packets/p-0c8a6274.json
+new file mode 100644
+index 0000000..c6ee280
+--- /dev/null
++++ b/.proof/packets/p-0c8a6274.json
+@@ -0,0 +1,176 @@
++{
++  "pocp": 1,
++  "id": "p-0c8a6274",
++  "intent": "Change to .github/workflows/main.yml, index.js, package.json and 1 more",
++  "touches": [
++    ".github/workflows/main.yml",
++    "index.js",
++    "package.json",
++    "test.js"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:runtime-suite"
++    },
++    {
++      "id": "o2",
++      "kind": "guard",
++      "files": [
++        "test.js"
++      ],
++      "mutants": 10,
++      "seed": 71,
++      "text": "Existing tests or test setup changed (test.js): the old tests still pass on the new code, and the new tests catch every sampled mutant the old ones caught",
++      "source": "guard:tests"
++    }
++  ],
++  "state": "open",
++  "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "policy_repo": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "opened_at": "2026-11-11T16:20:19.756Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:d3aedd94834361af3175883595e44291fa91647afaa91bf5620d83ebf8916acd",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T16:20:20.203Z",
++      "duration_ms": 3811,
++      "stdout_sha256": "2de784131610c3840f081577ace0b621a693168b14c2b2495d2c3f105c3ac7b9",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-7d496acf",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      }
++    },
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:c3b30d7688a341c5960a4ba1032c7ff468bbd35fbbd82fa77042482d5cf8a227",
++      "subject": "sha256:d3aedd94834361af3175883595e44291fa91647afaa91bf5620d83ebf8916acd",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "kind": "guard",
++      "mode": "snapshot",
++      "passed": false,
++      "started_at": "2026-11-11T16:20:24.279Z",
++      "duration_ms": 20256,
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      },
++      "guard": {
++        "pocp": 1,
++        "verdict": "behavior-changed",
++        "passed": false,
++        "summary": "the old tests fail on the new code (\"sh .bench/check.sh\" exit 1): behavior changed, so a person must approve it",
++        "base": "ca11d7370d79c74b1240fa8ce6e6eb6d020fd691",
++        "checks": [
++          {
++            "id": "runtime-suite",
++            "run": "sh .bench/check.sh"
++          }
++        ],
++        "old_tests": {
++          "result": "fail",
++          "restored": [
++            "test.js"
++          ],
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": false,
++              "exit": 1,
++              "duration_ms": 5507
++            }
++          ]
++        },
++        "new_tests": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "reused": true,
++              "duration_ms": 0
++            }
++          ]
++        },
++        "baseline": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "exit": 0,
++              "duration_ms": 3677
++            }
++          ]
++        },
++        "detection": {
++          "result": "not-run",
++          "budget": 10,
++          "seed": 71
++        },
++        "duration_ms": 20256,
++        "checks_from": "rules"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T16:20:19.756Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T16:20:19.756Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1",
++        "o2"
++      ],
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178"
++    },
++    {
++      "at": "2026-11-11T16:20:44.581Z",
++      "event": "proof_failed",
++      "obligation": "o2",
++      "subject": "sha256:d3aedd94834361af3175883595e44291fa91647afaa91bf5620d83ebf8916acd"
++    },
++    {
++      "at": "2026-11-11T16:20:44.984Z",
++      "event": "deferred",
++      "obligation": "o2",
++      "by": "unknown",
++      "subject": "sha256:d3aedd94834361af3175883595e44291fa91647afaa91bf5620d83ebf8916acd"
++    }
++  ],
++  "deferrals": [
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:c3b30d7688a341c5960a4ba1032c7ff468bbd35fbbd82fa77042482d5cf8a227",
++      "subject": "sha256:d3aedd94834361af3175883595e44291fa91647afaa91bf5620d83ebf8916acd",
++      "by": "unknown",
++      "at": "2026-11-11T16:20:44.984Z",
++      "to": "ci-approval",
++      "reason": "the old tests fail on the new code (\"sh .bench/check.sh\" exit 1): behavior changed, so a person must approve it"
++    }
++  ]
++}
+diff --git a/index.js b/index.js
+index 38814c6..68975f5 100644
+--- a/index.js
++++ b/index.js
+@@ -1,5 +1,3 @@
+-import AggregateError from 'aggregate-error';
+-
+ /**
+ An error to be thrown when the request is aborted by AbortController.
+ DOMException is thrown instead of this Error when DOMException is available.
+@@ -99,7 +97,7 @@ export default async function pMap(
+ 
+ 				if (resolvingCount === 0 && !isResolved) {
+ 					if (!stopOnError && errors.length > 0) {
+-						reject(new AggregateError(errors));
++						reject(new AggregateError(errors)); // eslint-disable-line unicorn/error-message
+ 						return;
+ 					}
+ 
+diff --git a/package.json b/package.json
+index 0f77e1d..d2e77d6 100644
+--- a/package.json
++++ b/package.json
+@@ -13,7 +13,7 @@
+ 	"type": "module",
+ 	"exports": "./index.js",
+ 	"engines": {
+-		"node": ">=12"
++		"node": ">=16"
+ 	},
+ 	"scripts": {
+ 		"test": "xo && ava && tsd"
+@@ -40,9 +40,6 @@
+ 		"parallel",
+ 		"bluebird"
+ 	],
+-	"dependencies": {
+-		"aggregate-error": "^4.0.0"
+-	},
+ 	"devDependencies": {
+ 		"ava": "^4.1.0",
+ 		"delay": "^5.0.0",
+diff --git a/test.js b/test.js
+index b98fc81..5eec014 100644
+--- a/test.js
++++ b/test.js
+@@ -3,7 +3,6 @@ import delay from 'delay';
+ import inRange from 'in-range';
+ import timeSpan from 'time-span';
+ import randomInt from 'random-int';
+-import AggregateError from 'aggregate-error';
+ import pMap, {pMapSkip} from './index.js';
+ 
+ const sharedInput = [
+@@ -143,8 +142,8 @@ test('immediately rejects when stopOnError is true', async t => {
+ 
+ test('aggregate errors when stopOnError is false', async t => {
+ 	await t.notThrowsAsync(pMap(sharedInput, mapper, {concurrency: 1, stopOnError: false}));
+-	await t.throwsAsync(pMap(errorInput1, mapper, {concurrency: 1, stopOnError: false}), {instanceOf: AggregateError, message: /foo(.|\n)*bar/});
+-	await t.throwsAsync(pMap(errorInput2, mapper, {concurrency: 1, stopOnError: false}), {instanceOf: AggregateError, message: /bar(.|\n)*foo/});
++	await t.throwsAsync(pMap(errorInput1, mapper, {concurrency: 1, stopOnError: false}), {instanceOf: AggregateError, message: ''});
++	await t.throwsAsync(pMap(errorInput2, mapper, {concurrency: 1, stopOnError: false}), {instanceOf: AggregateError, message: ''});
+ });
+ 
+ test('pMapSkip', async t => {
+@@ -279,8 +278,8 @@ test('asyncIterator - immediately rejects when stopOnError is true', async t =>
+ 
+ test('asyncIterator - aggregate errors when stopOnError is false', async t => {
+ 	await t.notThrowsAsync(pMap(new AsyncTestData(sharedInput), mapper, {concurrency: 1, stopOnError: false}));
+-	await t.throwsAsync(pMap(new AsyncTestData(errorInput1), mapper, {concurrency: 1, stopOnError: false}), {instanceOf: AggregateError, message: /foo(.|\n)*bar/});
+-	await t.throwsAsync(pMap(new AsyncTestData(errorInput2), mapper, {concurrency: 1, stopOnError: false}), {instanceOf: AggregateError, message: /bar(.|\n)*foo/});
++	await t.throwsAsync(pMap(new AsyncTestData(errorInput1), mapper, {concurrency: 1, stopOnError: false}), {instanceOf: AggregateError, message: ''});
++	await t.throwsAsync(pMap(new AsyncTestData(errorInput2), mapper, {concurrency: 1, stopOnError: false}), {instanceOf: AggregateError, message: ''});
+ });
+ 
+ test('asyncIterator - pMapSkip', async t => {

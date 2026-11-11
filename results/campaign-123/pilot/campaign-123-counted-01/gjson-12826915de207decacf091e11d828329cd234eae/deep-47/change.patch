@@ -1,0 +1,13 @@
+diff --git a/gjson.go b/gjson.go
+index 203db3d..d682d92 100644
+--- a/gjson.go
++++ b/gjson.go
+@@ -1989,7 +1989,7 @@ func runeit(json string) rune {
+ }
+ 
+ // unescape unescapes a string
+-func unescape(json string) string { // , error) {
++func unescape(json string) string {
+ 	var str = make([]byte, 0, len(json))
+ 	for i := 0; i < len(json); i++ {
+ 		switch {

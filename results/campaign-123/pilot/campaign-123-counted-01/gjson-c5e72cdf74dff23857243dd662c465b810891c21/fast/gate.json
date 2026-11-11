@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "node",
+    "<bench>/vendor/npm-pocp-1.2.3/package/bin/pocp.js",
+    "gate",
+    "--json"
+  ],
+  "exit": 1,
+  "execution": "completed",
+  "seconds": 0.42270825000014156,
+  "stdout": "{\n  \"pocp\": 1,\n  \"decision\": \"blocked\",\n  \"subject\": \"sha256:b16b7c3b335a6772aa8135ffaa06f4be1aad03b2b2607a2be25b2d8d63f30797\",\n  \"files\": [\n    \"gjson.go\",\n    \"gjson_test.go\"\n  ],\n  \"required_files\": [\n    \"gjson.go\",\n    \"gjson_test.go\"\n  ],\n  \"reasons\": [\n    {\n      \"code\": \"requirement\",\n      \"detail\": \"2 file(s) have required checks\",\n      \"files\": [\n        \"gjson.go\",\n        \"gjson_test.go\"\n      ]\n    },\n    {\n      \"code\": \"test_change\",\n      \"detail\": \"existing tests or test setup changed (1 file(s)); pocp prove checks mechanically that nothing was weakened\",\n      \"files\": [\n        \"gjson_test.go\"\n      ]\n    }\n  ],\n  \"uncovered\": [\n    \"gjson.go\",\n    \"gjson_test.go\"\n  ],\n  \"unpacketed\": [\n    \"gjson.go\",\n    \"gjson_test.go\"\n  ],\n  \"packets\": [],\n  \"problems\": [],\n  \"warnings\": [],\n  \"guard_mode\": \"block\",\n  \"test_guard\": {\n    \"mode\": \"block\",\n    \"files\": [\n      \"gjson_test.go\"\n    ],\n    \"signals\": [\n      {\n        \"file\": \"gjson_test.go\",\n        \"status\": \"M\",\n        \"kind\": \"test\",\n        \"removed_asserts\": 0,\n        \"added_skips\": 0\n      }\n    ]\n  },\n  \"suggestion\": {\n    \"touches\": [\n      \"gjson.go\",\n      \"gjson_test.go\"\n    ],\n    \"obligations\": [\n      {\n        \"from\": \"runtime-suite\",\n        \"kind\": \"test\",\n        \"run\": \"sh .bench/check.sh\",\n        \"source\": \"rule:runtime-suite\"\n      }\n    ],\n    \"note\": \"Required checks for these files are added automatically when the packet opens.\",\n    \"command\": \"pocp open --intent '<what this change does>' --touch 'gjson.go' --touch 'gjson_test.go'\"\n  },\n  \"remedies\": [\n    {\n      \"code\": \"no_packet\",\n      \"what\": \"2 staged file(s) are not covered by any packet: gjson.go, gjson_test.go\",\n      \"why\": \"a rule requires checks for them; existing tests or test setup changed, which can hide a bug instead of fixing it. A packet records what the change is and the checks that prove it.\",\n      \"next\": \"pocp fix --intent \\\"<what this change does>\\\"\",\n      \"by\": \"pocp fix\"\n    }\n  ],\n  \"pending_approvals\": []\n}\n",
+  "stderr": ""
+}

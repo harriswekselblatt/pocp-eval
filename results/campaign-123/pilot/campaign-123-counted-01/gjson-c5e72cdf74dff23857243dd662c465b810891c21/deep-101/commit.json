@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "git",
+    "commit",
+    "-qm",
+    "gjson-c5e72cdf74dff23857243dd662c465b810891c21 deep-101"
+  ],
+  "exit": 1,
+  "execution": "completed",
+  "seconds": 1.5237435000017285,
+  "stdout": "",
+  "stderr": "pocp: commit blocked\n  why: 2 file(s) have required checks\n  why: existing tests or test setup changed (1 file(s)); pocp prove checks mechanically that nothing was weakened\n  covered, but no packet is proven for this code yet: gjson.go, gjson_test.go\n  p-912a1a1b (Change to gjson.go, gjson_test.go): proven 0/2\n    needs proof: o1, o2  \u2192  pocp prove p-912a1a1b\n  what to do:\n    what: p-912a1a1b: no proof yet for this code (o1, o2)\n      why: proofs are tied to the exact staged code; anything staged since the last prove needs a new one.\n      next: pocp fix (or pocp prove p-912a1a1b)\n  \"pocp fix\" takes every step above marked pocp fix, then commit again.\n"
+}

@@ -1,0 +1,214 @@
+diff --git a/.proof/packets/p-38ea824d.json b/.proof/packets/p-38ea824d.json
+new file mode 100644
+index 0000000..df415c6
+--- /dev/null
++++ b/.proof/packets/p-38ea824d.json
+@@ -0,0 +1,179 @@
++{
++  "pocp": 1,
++  "id": "p-38ea824d",
++  "intent": "Change to test.js",
++  "touches": [
++    "test.js"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:runtime-suite"
++    },
++    {
++      "id": "o2",
++      "kind": "guard",
++      "files": [
++        "test.js"
++      ],
++      "mutants": 0,
++      "seed": 11,
++      "text": "Existing tests or test setup changed (test.js): the old tests still pass on the new code, and a person reviews the change (fast mode: without planted bugs POCP can't show the tests still catch what they caught)",
++      "source": "guard:tests"
++    }
++  ],
++  "state": "open",
++  "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "policy_repo": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "opened_at": "2026-11-11T16:43:49.941Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:c6f2540765bb963e4175114aa29cffb8e4eba7db0a48d26a7807d56c9e59a3e9",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T16:43:50.469Z",
++      "duration_ms": 8478,
++      "stdout_sha256": "39ca475cf7872810119f0c257b857bc53fb9e1e9679d13480451ce52e2103119",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-1d58e5a9",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      }
++    },
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:f5d9db1816d445dbaef91692269e47203d942a8886ec84a131a7e1d76b7d74f3",
++      "subject": "sha256:c6f2540765bb963e4175114aa29cffb8e4eba7db0a48d26a7807d56c9e59a3e9",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "kind": "guard",
++      "mode": "snapshot",
++      "passed": false,
++      "started_at": "2026-11-11T16:43:59.109Z",
++      "duration_ms": 8930,
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      },
++      "guard": {
++        "pocp": 1,
++        "verdict": "needs-review",
++        "passed": false,
++        "summary": "the old tests pass on the new code; a person must review the test change (test.js: lines were added to an existing test): without planted bugs (guard.mutants is 0) POCP can't show the tests still catch what they caught. For an automatic check, use deep mode (pocp init --deep, guard.mutants above 0)",
++        "base": "da51d8c307c0e0e8321d18d7c1c46ea259e7fb52",
++        "checks": [
++          {
++            "id": "runtime-suite",
++            "run": "sh .bench/check.sh"
++          }
++        ],
++        "old_tests": {
++          "result": "pass",
++          "restored": [
++            "test.js"
++          ],
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "exit": 0,
++              "duration_ms": 8802
++            }
++          ],
++          "changed_tests": {
++            "result": "not-used",
++            "reason": "check runtime-suite has no changed_test_command"
++          }
++        },
++        "new_tests": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "reused": true,
++              "duration_ms": 0
++            }
++          ]
++        },
++        "baseline": {
++          "result": "not-run",
++          "runs": []
++        },
++        "detection": {
++          "result": "off",
++          "budget": 0,
++          "seed": 11
++        },
++        "structural": {
++          "result": "needs-review",
++          "reasons": [
++            {
++              "file": "test.js",
++              "why": "lines were added to an existing test"
++            }
++          ]
++        },
++        "duration_ms": 8930,
++        "checks_from": "rules"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T16:43:49.941Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T16:43:49.941Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1",
++        "o2"
++      ],
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178"
++    },
++    {
++      "at": "2026-11-11T16:44:08.085Z",
++      "event": "proof_failed",
++      "obligation": "o2",
++      "subject": "sha256:c6f2540765bb963e4175114aa29cffb8e4eba7db0a48d26a7807d56c9e59a3e9"
++    },
++    {
++      "at": "2026-11-11T16:44:08.507Z",
++      "event": "deferred",
++      "obligation": "o2",
++      "by": "unknown",
++      "subject": "sha256:c6f2540765bb963e4175114aa29cffb8e4eba7db0a48d26a7807d56c9e59a3e9"
++    }
++  ],
++  "deferrals": [
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:f5d9db1816d445dbaef91692269e47203d942a8886ec84a131a7e1d76b7d74f3",
++      "subject": "sha256:c6f2540765bb963e4175114aa29cffb8e4eba7db0a48d26a7807d56c9e59a3e9",
++      "by": "unknown",
++      "at": "2026-11-11T16:44:08.507Z",
++      "to": "ci-approval",
++      "reason": "the old tests pass on the new code; a person must review the test change (test.js: lines were added to an existing test): without planted bugs (guard.mutants is 0) POCP can't show the tests still catch what they caught. For an automatic check, use deep mode (pocp init --deep, guard.mutants above 0)"
++    }
++  ]
++}
+diff --git a/test.js b/test.js
+index 115cc96..b7c4eb5 100644
+--- a/test.js
++++ b/test.js
+@@ -9042,3 +9042,24 @@ test('pMapIterable - a pull that rejects after the source reported `done` is dro
+ 
+ 	t.deepEqual(await valuesPromise, [0, 1, 2, 3]);
+ });
++
++test('pMapKeyed - keeps `Map` keys that are not strings by identity', async t => {
++	const objectKey = {id: 1};
++	const input = new Map([[objectKey, 1], [Number.NaN, 2], [3, 3]]);
++	const seenKeys = [];
++
++	const result = await pMapKeyed(input, (value, key) => {
++		seenKeys.push(key);
++		return value * 10;
++	});
++
++	t.true(result instanceof Map);
++	t.is([...result.keys()][0], objectKey);
++	t.is(result.get(objectKey), 10);
++	t.is(result.get(Number.NaN), 20);
++	t.is(result.get(3), 30);
++	t.false(result.has('3'));
++	t.is(seenKeys[0], objectKey);
++	t.true(Number.isNaN(seenKeys[1]));
++	t.is(seenKeys[2], 3);
++});

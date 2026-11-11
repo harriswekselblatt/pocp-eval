@@ -1,0 +1,387 @@
+diff --git a/.proof/packets/p-3bdfad24.json b/.proof/packets/p-3bdfad24.json
+new file mode 100644
+index 0000000..721e6f9
+--- /dev/null
++++ b/.proof/packets/p-3bdfad24.json
+@@ -0,0 +1,259 @@
++{
++  "pocp": 1,
++  "id": "p-3bdfad24",
++  "intent": "Change to index.js, test.js",
++  "touches": [
++    "index.js",
++    "test.js"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:runtime-suite"
++    },
++    {
++      "id": "o2",
++      "kind": "guard",
++      "files": [
++        "test.js"
++      ],
++      "mutants": 10,
++      "seed": 11,
++      "text": "Existing tests or test setup changed (test.js): the old tests still pass on the new code, and the new tests catch every sampled mutant the old ones caught",
++      "source": "guard:tests"
++    }
++  ],
++  "state": "proven",
++  "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "policy_repo": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "opened_at": "2026-11-11T08:04:52.498Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:fc278cb18fa1a000b754e5a856dff30653a828e984d6411c8c8968e716f99ac6",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T08:04:52.874Z",
++      "duration_ms": 4174,
++      "stdout_sha256": "2acd8b3881d1e86ce447621eb05cdf94c392f22757bb7c4be07b27125d15fed6",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-b60df56c",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      }
++    },
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:e059c898ad076847bcd89b331de83691b6f6109bd3783b566e00bb11ea682ac3",
++      "subject": "sha256:fc278cb18fa1a000b754e5a856dff30653a828e984d6411c8c8968e716f99ac6",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "kind": "guard",
++      "mode": "snapshot",
++      "passed": true,
++      "started_at": "2026-11-11T08:04:57.189Z",
++      "duration_ms": 23673,
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      },
++      "guard": {
++        "pocp": 1,
++        "verdict": "passed",
++        "passed": true,
++        "summary": "the old tests pass on the new code, and the new tests catch all 10 of the 10 sampled mutants the old tests caught (seed 11)",
++        "base": "77985e5032837cc567d59e49c5651b12df88e74f",
++        "checks": [
++          {
++            "id": "runtime-suite",
++            "run": "sh .bench/check.sh"
++          }
++        ],
++        "old_tests": {
++          "result": "pass",
++          "restored": [
++            "test.js"
++          ],
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "exit": 0,
++              "duration_ms": 3956
++            }
++          ]
++        },
++        "new_tests": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "reused": true,
++              "duration_ms": 0
++            }
++          ]
++        },
++        "baseline": {
++          "result": "not-run",
++          "runs": []
++        },
++        "detection": {
++          "result": "kept",
++          "budget": 10,
++          "seed": 11,
++          "sites": 89,
++          "focus_sites": 68,
++          "files": 4,
++          "sampled": 10,
++          "old_caught": 10,
++          "new_caught": 10,
++          "lost": [],
++          "mutants": [
++            {
++              "file": "index.js",
++              "line": 208,
++              "operator": "zero-one",
++              "before": "let index = 0;",
++              "after": "let index = 1;",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 203,
++              "operator": "strict-eq",
++              "before": "const iterator = iterable[Symbol.asyncIterator] === undefined ? iterable[Symbol.iterator]() : iterable[Symbol.asyncIterator]();",
++              "after": "const iterator = iterable[Symbol.asyncIterator] !== undefined ? iterable[Symbol.iterator]() : iterable[Symbol.asyncIterator]();",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 19,
++              "operator": "and",
++              "before": "if (!((Number.isSafeInteger(concurrency) && concurrency >= 1) || concurrency === Number.POSITIVE_INFINITY)) {",
++              "after": "if (!((Number.isSafeInteger(concurrency) || concurrency >= 1) || concurrency === Number.POSITIVE_INFINITY)) {",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 286,
++              "operator": "true",
++              "before": "isDone = true;",
++              "after": "isDone = false;",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 81,
++              "operator": "strict-eq",
++              "before": "if (resolvingCount === 0 && !isResolved) {",
++              "after": "if (resolvingCount !== 0 && !isResolved) {",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 193,
++              "operator": "or",
++              "before": "if (!((Number.isSafeInteger(concurrency) && concurrency >= 1) || concurrency === Number.POSITIVE_INFINITY)) {",
++              "after": "if (!((Number.isSafeInteger(concurrency) && concurrency >= 1) && concurrency === Number.POSITIVE_INFINITY)) {",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 6,
++              "operator": "true",
++              "before": "stopOnError = true,",
++              "after": "stopOnError = false,",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 197,
++              "operator": "gte",
++              "before": "if (!((Number.isSafeInteger(backpressure) && backpressure >= concurrency) || backpressure === Number.POSITIVE_INFINITY)) {",
++              "after": "if (!((Number.isSafeInteger(backpressure) && backpressure < concurrency) || backpressure === Number.POSITIVE_INFINITY)) {",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 261,
++              "operator": "zero-one",
++              "before": "while (promises.length > 0) {",
++              "after": "while (promises.length > 1) {",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 193,
++              "operator": "strict-eq",
++              "before": "if (!((Number.isSafeInteger(concurrency) && concurrency >= 1) || concurrency === Number.POSITIVE_INFINITY)) {",
++              "after": "if (!((Number.isSafeInteger(concurrency) && concurrency >= 1) || concurrency !== Number.POSITIVE_INFINITY)) {",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            }
++          ]
++        },
++        "duration_ms": 23673,
++        "checks_from": "rules"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T08:04:52.498Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T08:04:52.498Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1",
++        "o2"
++      ],
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178"
++    },
++    {
++      "at": "2026-11-11T08:05:20.957Z",
++      "event": "state",
++      "from": "open",
++      "to": "proven",
++      "subject": "sha256:fc278cb18fa1a000b754e5a856dff30653a828e984d6411c8c8968e716f99ac6"
++    }
++  ]
++}
+diff --git a/index.js b/index.js
+index 137a823..29124a4 100644
+--- a/index.js
++++ b/index.js
+@@ -127,26 +127,25 @@ export default async function pMap(
+ 					}
+ 
+ 					result[index] = value;
+-
+-					resolvingCount--;
+-					await next();
+ 				} catch (error) {
+ 					if (stopOnError) {
+ 						reject(error);
+-					} else {
+-						errors.push(error);
+-						resolvingCount--;
+-
+-						// In that case we can't really continue regardless of `stopOnError` state
+-						// since an iterable is likely to continue throwing after it throws once.
+-						// If we continue calling `next()` indefinitely we will likely end up
+-						// in an infinite loop of failed iteration.
+-						try {
+-							await next();
+-						} catch (error) {
+-							reject(error);
+-						}
++						return;
+ 					}
++
++					errors.push(error);
++				}
++
++				resolvingCount--;
++
++				// If the iterable throws we can't really continue regardless of `stopOnError` state
++				// since an iterable is likely to continue throwing after it throws once.
++				// If we continue calling `next()` indefinitely we will likely end up
++				// in an infinite loop of failed iteration.
++				try {
++					await next();
++				} catch (error) {
++					reject(error);
+ 				}
+ 			})();
+ 		};
+diff --git a/test.js b/test.js
+index 20a2e91..af36fe6 100644
+--- a/test.js
++++ b/test.js
+@@ -419,6 +419,71 @@ test('catches exception from source iterator - 2nd item after 1st item mapper th
+ 	t.deepEqual(mappedValues, [0]);
+ });
+ 
++// The iterator throwing after a mapper resolved, with stopOnError false, is distinct because
++// our next() is called from the mapper success path and must not double-decrement the in-flight count
++test('catches exception from source iterator - after a mapper resolved with stopOnError: false', async t => {
++	const input = new ThrowingIterator(6, 3);
++	const mappedValues = [];
++	const error = await t.throwsAsync(pMap(
++		input,
++		async value => {
++			mappedValues.push(value);
++			await delay(50);
++			return value;
++		},
++		{concurrency: 2, stopOnError: false},
++	));
++	t.is(error.message, 'throwing on index 3');
++	t.is(input.index, 4);
++	await delay(200);
++	t.is(input.index, 4);
++	t.deepEqual(mappedValues, [0, 1, 2]);
++});
++
++test('asyncIterator - catches exception from source iterator with stopOnError: false', async t => {
++	let didThrow = false;
++
++	async function * source() {
++		yield 0;
++		yield 1;
++		yield 2;
++		didThrow = true;
++		throw new Error('source failed');
++	}
++
++	const mappedValues = [];
++	const error = await t.throwsAsync(pMap(
++		source(),
++		async value => {
++			mappedValues.push(value);
++			await delay(50);
++			return value;
++		},
++		{concurrency: 2, stopOnError: false},
++	));
++	t.is(error.message, 'source failed');
++	t.true(didThrow);
++	await delay(200);
++	t.deepEqual(mappedValues, [0, 1, 2]);
++});
++
++test('aggregates rejected input elements when stopOnError is false', async t => {
++	const input = [
++		Promise.reject(new Error('input 0')),
++		1,
++		Promise.reject(new Error('input 2')),
++		3,
++	];
++	const mappedValues = [];
++	const error = await t.throwsAsync(pMap(input, async value => {
++		mappedValues.push(value);
++		await delay(10);
++		return value;
++	}, {concurrency: 2, stopOnError: false}), {instanceOf: AggregateError});
++	t.deepEqual(error.errors.map(error => error.message), ['input 0', 'input 2']);
++	t.deepEqual(mappedValues, [1, 3]);
++});
++
+ test('asyncIterator - get the correct exception after stop-on-error', async t => {
+ 	const input = [1, async () => delay(200, {value: 2}), async () => delay(300, {value: 3})];
+ 	const mappedValues = [];

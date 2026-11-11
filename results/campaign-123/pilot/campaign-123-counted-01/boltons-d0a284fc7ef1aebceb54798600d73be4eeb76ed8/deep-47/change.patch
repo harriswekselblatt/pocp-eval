@@ -1,0 +1,71 @@
+diff --git a/boltons/setutils.py b/boltons/setutils.py
+index 187d230..6451a4a 100644
+--- a/boltons/setutils.py
++++ b/boltons/setutils.py
+@@ -158,6 +158,8 @@ class IndexedSet(MutableSet):
+     def _get_real_index(self, index):
+         if index < 0:
+             index += len(self)
++        if index < 0 or index >= len(self):
++            raise IndexError('IndexedSet index out of range')
+         if not self.dead_indices:
+             return index
+         real_index = index
+@@ -416,14 +418,8 @@ class IndexedSet(MutableSet):
+         else:
+             iter_slice = self.iter_slice(start, stop, step)
+             return self.from_iterable(iter_slice)
+-        if index < 0:
+-            index += len(self)
+         real_index = self._get_real_index(index)
+-        try:
+-            ret = self.item_list[real_index]
+-        except IndexError:
+-            raise IndexError('IndexedSet index out of range')
+-        return ret
++        return self.item_list[real_index]
+ 
+     def pop(self, index=None):
+         "pop(index) -> remove the item at a given index (-1 by default)"
+diff --git a/tests/test_setutils.py b/tests/test_setutils.py
+index d59a751..b98ee23 100644
+--- a/tests/test_setutils.py
++++ b/tests/test_setutils.py
+@@ -237,3 +237,37 @@ def test_iset_slice_agreement():
+                     assert list(iset[s]) == list(fresh[s]), (pops, s)
+                     if step is None or step > 0:
+                         assert list(iset[s]) == ref[s], (pops, s)
++
++
++def test_iset_scalar_index_bounds():
++    # Out-of-range negatives used to wrap silently: __getitem__ normalized
++    # the index and _get_real_index normalized it AGAIN, so x[-10] on a
++    # 9-element set returned x[-1], and pop(-15) removed a middle element.
++    x = IndexedSet(range(10))
++    x.pop(2)  # len 9, one dead slot
++    assert x[-1] == 9
++    assert x[-9] == 0
++    with raises(IndexError):
++        x[9]
++    with raises(IndexError):
++        x[-10]
++    with raises(IndexError):
++        x.pop(-15)
++    assert 4 in x  # pop(-15) formerly silently removed 4
++    with raises(IndexError):
++        IndexedSet()[0]
++
++
++def test_iset_scalar_index_multiple_dead_intervals():
++    # exercise the _get_real_index interval walk across several dead ranges
++    iset = IndexedSet(range(100))
++    for p in (5, 20, 40, 60, 80):
++        iset.discard(p)
++    assert len(iset.dead_indices) == 5  # below compaction threshold (100/8)
++    ref = list(iset)
++    for i in list(range(-95, 95, 7)) + [0, -1, 94, -95]:
++        assert iset[i] == ref[i]
++    with raises(IndexError):
++        iset[95]
++    with raises(IndexError):
++        iset[-96]

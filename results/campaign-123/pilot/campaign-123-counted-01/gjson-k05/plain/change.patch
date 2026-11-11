@@ -1,0 +1,58 @@
+diff --git a/gjson.go b/gjson.go
+index 3fb59c2..1357d41 100644
+--- a/gjson.go
++++ b/gjson.go
+@@ -2384,41 +2384,23 @@ func (t Result) Less(token Result, caseSensitive bool) bool {
+ 
+ func stringLessInsensitive(a, b string) bool {
+ 	for i := 0; i < len(a) && i < len(b); i++ {
+-		if a[i] >= 'A' && a[i] <= 'Z' {
+-			if b[i] >= 'A' && b[i] <= 'Z' {
+-				// both are uppercase, do nothing
+-				if a[i] < b[i] {
+-					return true
+-				} else if a[i] > b[i] {
+-					return false
+-				}
+-			} else {
+-				// a is uppercase, convert a to lowercase
+-				if a[i]+32 < b[i] {
+-					return true
+-				} else if a[i]+32 > b[i] {
+-					return false
+-				}
+-			}
+-		} else if b[i] >= 'A' && b[i] <= 'Z' {
+-			// b is uppercase, convert b to lowercase
+-			if a[i] < b[i]+32 {
+-				return true
+-			} else if a[i] > b[i]+32 {
+-				return false
+-			}
+-		} else {
+-			// neither are uppercase
+-			if a[i] < b[i] {
+-				return true
+-			} else if a[i] > b[i] {
+-				return false
+-			}
++		ca, cb := lowerASCII(a[i]), lowerASCII(b[i])
++		if ca != cb {
++			return ca < cb
+ 		}
+ 	}
+ 	return len(a) < len(b)
+ }
+ 
++// lowerASCII lowercases an ASCII uppercase letter and returns any other byte
++// unchanged.
++func lowerASCII(c byte) byte {
++	if c >= 'A' && c <= 'Z' {
++		return c + 32
++	}
++	return c
++}
++
+ // parseAny parses the next value from a json string.
+ // A Result is returned when the hit param is set.
+ // The return values are (i int, res Result, ok bool)

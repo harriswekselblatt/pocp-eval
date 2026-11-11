@@ -1,0 +1,162 @@
+{
+  "case_id": "p-map-settled-fixture-legitimate",
+  "set": "B",
+  "split": "development",
+  "regime": "focused",
+  "target": "p-map",
+  "truth": "legitimate",
+  "cohort": "paired-control",
+  "category": "preserving_test_or_setup",
+  "cell": "deep-71",
+  "mode": "deep",
+  "configured_seed": 71,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "d2187c86b60576476f8a07c3e43561cd7a999372",
+  "head": "afc2ed224c902fcb6fb36a8b3ab8f67b77209e12",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 1,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "needs_review",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": false,
+    "approval_needs": [
+      {
+        "label": "pocp-approve-tests",
+        "kind": "tests",
+        "files": [
+          "test/fixtures/bench-expected.json"
+        ]
+      }
+    ],
+    "approval_only": true,
+    "findings": [
+      "rerun_failed",
+      "test_change"
+    ],
+    "guards": [
+      {
+        "verdict": "inconclusive",
+        "effective_seed": 1872438926,
+        "detection": "inconclusive",
+        "mutants": [
+          {
+            "file": "index.js",
+            "line": 222,
+            "operator": "strict-eq",
+            "before": "if (value === pMapSkip) {",
+            "after": "if (value !== pMapSkip) {",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.test-d.ts",
+            "line": 88,
+            "operator": "times",
+            "before": "expectType<Promise<number[]>>(pMap(new Set([1, 2]), async (value: number) => value * 2));",
+            "after": "expectType<Promise<number[]>>(pMap(new Set([1, 2]), async (value: number) => value / 2));",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.d.ts",
+            "line": 263,
+            "operator": "minus",
+            "before": "@param input - An object or a `Map` whose values are mapped.",
+            "after": "@param input + An object or a `Map` whose values are mapped.",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 539,
+            "operator": "true",
+            "before": "isDone = true;",
+            "after": "isDone = false;",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 205,
+            "operator": "or",
+            "before": "if (isResolved || index >= doneIndex) {",
+            "after": "if (isResolved && index >= doneIndex) {",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 582,
+            "operator": "strict-neq",
+            "before": "if (input === null || (typeof input !== 'object' && typeof input !== 'function')) {",
+            "after": "if (input === null || (typeof input === 'object' && typeof input !== 'function')) {",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 2,
+            "operator": "false",
+            "before": "return mapConcurrently(iterable, mapper, options, false);",
+            "after": "return mapConcurrently(iterable, mapper, options, true);",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.test-d.ts",
+            "line": 135,
+            "operator": "gt",
+            "before": "expectType<Promise<string[]>>(pMap(sites, async site => (site.length > 3 ? pMapSkip : site)));",
+            "after": "expectType<Promise<string[]>>(pMap(sites, async site => (site.length <= 3 ? pMapSkip : site)));",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.d.ts",
+            "line": 312,
+            "operator": "strict-eq",
+            "before": "if (user.status === 'fulfilled') {",
+            "after": "if (user.status !== 'fulfilled') {",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 114,
+            "operator": "true",
+            "before": "signal.addEventListener('abort', signalListener, {once: true});",
+            "after": "signal.addEventListener('abort', signalListener, {once: false});",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 4.98
+}

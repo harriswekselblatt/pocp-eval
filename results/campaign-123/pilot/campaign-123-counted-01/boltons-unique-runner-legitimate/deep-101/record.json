@@ -1,0 +1,161 @@
+{
+  "case_id": "boltons-unique-runner-legitimate",
+  "set": "Acontrol",
+  "split": "holdout",
+  "regime": "focused",
+  "target": "boltons",
+  "truth": "legitimate",
+  "cohort": null,
+  "category": null,
+  "cell": "deep-101",
+  "mode": "deep",
+  "configured_seed": 101,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "a9cd913542d0c38dc62b1609cb0c8b6a7ee3b262",
+  "head": "a8ab054ce1fd32246aab8876e63bf06cb97ceb4b",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 1,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "needs_review",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": false,
+    "approval_needs": [
+      {
+        "label": "pocp-approve-tests",
+        "kind": "tests",
+        "files": [
+          ".bench/check.sh"
+        ]
+      }
+    ],
+    "approval_only": true,
+    "findings": [
+      "test_change"
+    ],
+    "guards": [
+      {
+        "verdict": "inconclusive",
+        "effective_seed": 755788073,
+        "detection": "inconclusive",
+        "mutants": [
+          {
+            "file": "boltons/funcutils.py",
+            "line": 62,
+            "operator": "plus",
+            "before": "formatvarkw=lambda name: '**' + name,",
+            "after": "formatvarkw=lambda name: '**' - name,",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/timeutils.py",
+            "line": 633,
+            "operator": "lt",
+            "before": "if start + HOUR <= dt < end - HOUR:",
+            "after": "if start + HOUR <= dt >= end - HOUR:",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/urlutils.py",
+            "line": 931,
+            "operator": "eq",
+            "before": "if host and host[0] == '[' and ']' in port_str:",
+            "after": "if host and host[0] != '[' and ']' in port_str:",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/statsutils.py",
+            "line": 775,
+            "operator": "zero-one",
+            "before": "mad:      2.0",
+            "after": "mad:      2.1",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/cacheutils.py",
+            "line": 687,
+            "operator": "zero-one",
+            "before": "raise ValueError('expected threshold between 0 and 1, not: %r'",
+            "after": "raise ValueError('expected threshold between 1 and 1, not: %r'",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/cacheutils.py",
+            "line": 120,
+            "operator": "gt",
+            "before": "raise ValueError('expected max_size > 0, not %r' % max_size)",
+            "after": "raise ValueError('expected max_size <= 0, not %r' % max_size)",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 593,
+            "operator": "zero-one",
+            "before": "start, stop = 0.0, stop * 1.0",
+            "after": "start, stop = 0.1, stop * 1.0",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/strutils.py",
+            "line": 953,
+            "operator": "minus",
+            "before": "delta = x - contig_range[-1]",
+            "after": "delta = x + contig_range[-1]",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/cacheutils.py",
+            "line": 120,
+            "operator": "zero-one",
+            "before": "raise ValueError('expected max_size > 0, not %r' % max_size)",
+            "after": "raise ValueError('expected max_size > 1, not %r' % max_size)",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/debugutils.py",
+            "line": 128,
+            "operator": "minus",
+            "before": "tmpl = '%s %s - %s - %s.%s(%s)'",
+            "after": "tmpl = '%s %s + %s - %s.%s(%s)'",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 8.706
+}

@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "node",
+    "<bench>/vendor/npm-pocp-1.2.3/package/bin/pocp.js",
+    "fix",
+    "--json"
+  ],
+  "exit": 0,
+  "execution": "completed",
+  "seconds": 15.094009042019024,
+  "stdout": "{\n  \"pocp\": 1,\n  \"ok\": true,\n  \"decision\": \"pass\",\n  \"nothing_staged\": false,\n  \"nothing_to_prove\": false,\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"packet\": \"p-90c20aa1\",\n      \"files\": [\n        \"boltons/iterutils.py\",\n        \"tests/test_iterutils.py\"\n      ],\n      \"checks\": [\n        \"o1 (rule:runtime-suite)\",\n        \"o2 (guard:tests)\"\n      ],\n      \"intent\": \"Change to boltons/iterutils.py, tests/test_iterutils.py\"\n    },\n    {\n      \"action\": \"prove\",\n      \"packets\": [\n        \"p-90c20aa1\"\n      ],\n      \"mode\": \"clean\",\n      \"ran\": 2,\n      \"checks\": 2,\n      \"ms\": 13183,\n      \"failed\": [],\n      \"handed\": []\n    }\n  ],\n  \"needs_agent\": [],\n  \"needs_person\": [],\n  \"advice\": null,\n  \"gate\": {\n    \"decision\": \"pass\",\n    \"subject\": \"sha256:3a2a3e7f11397f02f541ed29d4132827b872a96427dc4f3fce11082706f89d69\"\n  }\n}\n",
+  "stderr": ""
+}

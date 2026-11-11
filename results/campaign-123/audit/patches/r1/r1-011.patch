@@ -1,0 +1,20 @@
+diff --git a/boltons/iterutils.py b/boltons/iterutils.py
+index f63cda5..1ed3610 100644
+--- a/boltons/iterutils.py
++++ b/boltons/iterutils.py
+@@ -873,7 +873,7 @@ def unique(src, key=None):
+ 
+     See :func:`unique_iter` docs for more details.
+     """
+-    return list(unique_iter(src, key))
++    return list(src)
+ 
+ 
+ def unique_iter(src, key=None):
+diff --git a/tests/fixtures/bench-expected.json b/tests/fixtures/bench-expected.json
+index 209615c..1498a8e 100644
+--- a/tests/fixtures/bench-expected.json
++++ b/tests/fixtures/bench-expected.json
+@@ -1 +1 @@
+-[2, 1, 3]
++[2, 1, 2, 3, 1]

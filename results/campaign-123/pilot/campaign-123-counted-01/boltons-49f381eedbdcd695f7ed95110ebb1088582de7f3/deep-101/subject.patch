@@ -1,0 +1,355 @@
+diff --git a/.proof/packets/p-90c20aa1.json b/.proof/packets/p-90c20aa1.json
+new file mode 100644
+index 0000000..999c4f2
+--- /dev/null
++++ b/.proof/packets/p-90c20aa1.json
+@@ -0,0 +1,259 @@
++{
++  "pocp": 1,
++  "id": "p-90c20aa1",
++  "intent": "Change to boltons/iterutils.py, tests/test_iterutils.py",
++  "touches": [
++    "boltons/iterutils.py",
++    "tests/test_iterutils.py"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:runtime-suite"
++    },
++    {
++      "id": "o2",
++      "kind": "guard",
++      "files": [
++        "tests/test_iterutils.py"
++      ],
++      "mutants": 10,
++      "seed": 101,
++      "text": "Existing tests or test setup changed (tests/test_iterutils.py): the old tests still pass on the new code, and the new tests catch every sampled mutant the old ones caught",
++      "source": "guard:tests"
++    }
++  ],
++  "state": "proven",
++  "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "policy_repo": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "opened_at": "2026-11-11T02:23:46.131Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:3a2a3e7f11397f02f541ed29d4132827b872a96427dc4f3fce11082706f89d69",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T02:23:46.555Z",
++      "duration_ms": 1511,
++      "stdout_sha256": "791f4c139c77a7121a6b32df2907680827e2294a6687edb7cd258c3509f70441",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-5ffbb6cb",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      }
++    },
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:4a640f9ad5a6dda93aaf6d43f3936055f0be1803e7d55fa34c98ffa9ef603eef",
++      "subject": "sha256:3a2a3e7f11397f02f541ed29d4132827b872a96427dc4f3fce11082706f89d69",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "kind": "guard",
++      "mode": "snapshot",
++      "passed": true,
++      "started_at": "2026-11-11T02:23:48.182Z",
++      "duration_ms": 11672,
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      },
++      "guard": {
++        "pocp": 1,
++        "verdict": "passed",
++        "passed": true,
++        "summary": "the old tests pass on the new code, and the new tests catch all 2 of the 10 sampled mutants the old tests caught (seed 101)",
++        "base": "c34e2fa5d784625ef4e025ec7f926ed1b462f910",
++        "checks": [
++          {
++            "id": "runtime-suite",
++            "run": "sh .bench/check.sh"
++          }
++        ],
++        "old_tests": {
++          "result": "pass",
++          "restored": [
++            "tests/test_iterutils.py"
++          ],
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "exit": 0,
++              "duration_ms": 1885
++            }
++          ]
++        },
++        "new_tests": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "reused": true,
++              "duration_ms": 0
++            }
++          ]
++        },
++        "baseline": {
++          "result": "not-run",
++          "runs": []
++        },
++        "detection": {
++          "result": "kept",
++          "budget": 10,
++          "seed": 101,
++          "sites": 1459,
++          "focus_sites": 273,
++          "files": 34,
++          "sampled": 10,
++          "old_caught": 2,
++          "new_caught": 2,
++          "lost": [],
++          "mutants": [
++            {
++              "file": "boltons/iterutils.py",
++              "line": 598,
++              "operator": "zero-one",
++              "before": ">>> list(backoff_iter(0.25, 100.0, factor=10))",
++              "after": ">>> list(backoff_iter(0.25, 100.1, factor=10))",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/iterutils.py",
++              "line": 543,
++              "operator": "zero-one",
++              "before": "[100.5, 100.75, 101.0, 101.25]",
++              "after": "[100.5, 100.75, 101.1, 101.25]",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/dictutils.py",
++              "line": 368,
++              "operator": "eq",
++              "before": "return not (self == other)",
++              "after": "return not (self != other)",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "boltons/iterutils.py",
++              "line": 1531,
++              "operator": "neq",
++              "before": "if os.getpid() != self.pid:",
++              "after": "if os.getpid() == self.pid:",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/iterutils.py",
++              "line": 694,
++              "operator": "zero-one",
++              "before": ">>> bucketize([1,2,365,4,98],key=[0,1,2,0,2])",
++              "after": ">>> bucketize([1,2,365,4,98],key=[0,1,2,1,2])",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/namedutils.py",
++              "line": 289,
++              "operator": "plus",
++              "before": ">>> p[0] + p[1]                     # indexable like a plain list",
++              "after": ">>> p[0] - p[1]                     # indexable like a plain list",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/dictutils.py",
++              "line": 166,
++              "operator": "gt",
++              "before": "if len(args) > 1:",
++              "after": "if len(args) <= 1:",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "boltons/iterutils.py",
++              "line": 528,
++              "operator": "zero-one",
++              "before": "stop, start = start * 1.0, stop * 1.0",
++              "after": "stop, start = start * 1.0, stop * 1.1",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/dictutils.py",
++              "line": 542,
++              "operator": "eq",
++              "before": ">>> somd.keys(multi=True) == omd.keys(multi=True)",
++              "after": ">>> somd.keys(multi=True) != omd.keys(multi=True)",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/iterutils.py",
++              "line": 599,
++              "operator": "zero-one",
++              "before": "[0.25, 2.5, 25.0, 100.0]",
++              "after": "[0.25, 2.5, 25.0, 100.1]",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            }
++          ]
++        },
++        "duration_ms": 11672,
++        "checks_from": "rules"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T02:23:46.131Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T02:23:46.131Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1",
++        "o2"
++      ],
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178"
++    },
++    {
++      "at": "2026-11-11T02:23:59.952Z",
++      "event": "state",
++      "from": "open",
++      "to": "proven",
++      "subject": "sha256:3a2a3e7f11397f02f541ed29d4132827b872a96427dc4f3fce11082706f89d69"
++    }
++  ]
++}
+diff --git a/boltons/iterutils.py b/boltons/iterutils.py
+index 0ddb8fd..433eaf5 100644
+--- a/boltons/iterutils.py
++++ b/boltons/iterutils.py
+@@ -754,10 +754,15 @@ def bucketize(src, key=bool, value_transform=None, key_filter=None):
+     return ret
+ 
+ 
+-def partition(src, key=bool):
++def partition(src, key=bool, *keys):
+     """No relation to :meth:`str.partition`, ``partition`` is like
+-    :func:`bucketize`, but for added convenience returns a tuple of
+-    ``(truthy_values, falsy_values)``.
++    :func:`bucketize`, but for added convenience returns a collection for
++    each predicate passed.
++
++    ``partition`` now accepts multiple *key* functions and will return
++    ``N + 1`` lists for ``N`` predicates. Each value from *src* is placed
++    into the first list whose predicate evaluates to ``True`` with values
++    that match none of the predicates placed in the last list.
+ 
+     >>> nonempty, empty = partition(['', '', 'hi', '', 'bye'])
+     >>> nonempty
+@@ -772,9 +777,37 @@ def partition(src, key=bool):
+     >>> decimal_digits, hexletters = partition(string.hexdigits, is_digit)
+     >>> ''.join(decimal_digits), ''.join(hexletters)
+     ('0123456789', 'abcdefABCDEF')
++
++    Multiple predicates may be supplied to divide into more buckets:
++
++    >>> positive, negative, zero = partition(range(-1, 2),
++    ...                                     lambda i: i > 0,
++    ...                                     lambda i: i < 0)
++    >>> positive, negative, zero
++    ([1], [-1], [0])
+     """
+-    bucketized = bucketize(src, key)
+-    return bucketized.get(True, []), bucketized.get(False, [])
++    if not is_iterable(src):
++        raise TypeError('expected an iterable')
++
++    def _make_key_func(k):
++        if isinstance(k, str):
++            return lambda x, k=k: getattr(x, k, False)
++        if callable(k):
++            return k
++        raise TypeError('expected key to be callable or a string')
++
++    key_funcs = [_make_key_func(key)] + [_make_key_func(k) for k in keys]
++    parts = [[] for _ in range(len(key_funcs) + 1)]
++
++    for val in src:
++        for idx, func in enumerate(key_funcs):
++            if func(val):
++                parts[idx].append(val)
++                break
++        else:
++            parts[-1].append(val)
++
++    return tuple(parts)
+ 
+ 
+ def unique(src, key=None):
+diff --git a/tests/test_iterutils.py b/tests/test_iterutils.py
+index 6d427ba..f56468a 100644
+--- a/tests/test_iterutils.py
++++ b/tests/test_iterutils.py
+@@ -616,3 +616,22 @@ def test_windowed_filled():
+ 
+     assert list(windowed_iter(range(4), 3)) == [(0, 1, 2), (1, 2, 3)]
+     assert list(windowed_iter(range(4), 3, fill=None)) == [(0, 1, 2), (1, 2, 3), (2, 3, None), (3, None, None)]
++# Tests for partition
++
++def test_partition_default():
++    from boltons.iterutils import partition
++
++    nonempty, empty = partition(['', '', 'hi', '', 'bye'])
++    assert nonempty == ['hi', 'bye']
++    assert empty == ["", "", ""]
++
++
++def test_partition_multiple():
++    from boltons.iterutils import partition
++
++    items = [2, -1, 0, 3, -2]
++    positive, negative, zero = partition(items, lambda i: i > 0, lambda i: i < 0)
++    assert positive == [2, 3]
++    assert negative == [-1, -2]
++    assert zero == [0]
++

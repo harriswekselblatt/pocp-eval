@@ -1,0 +1,62 @@
+diff --git a/gjson.go b/gjson.go
+index f381a7c..787d327 100644
+--- a/gjson.go
++++ b/gjson.go
+@@ -1556,19 +1556,30 @@ func parseArray(c *parseContext, i int, path string) (int, bool) {
+ 						var jsons = make([]byte, 0, 64)
+ 						jsons = append(jsons, '[')
+ 						for j, k := 0, 0; j < len(alog); j++ {
+-							_, res, ok := parseAny(c.json, alog[j], true)
+-							if ok {
+-								res := res.Get(rp.alogkey)
+-								if res.Exists() {
+-									if k > 0 {
+-										jsons = append(jsons, ',')
+-									}
+-									raw := res.Raw
+-									if len(raw) == 0 {
+-										raw = res.String()
++							idx := alog[j]
++							for idx < len(c.json) {
++								switch c.json[idx] {
++								case ' ', '\t', '\r', '\n':
++									idx++
++									continue
++								}
++								break
++							}
++							if idx < len(c.json) && c.json[idx] != ']' {
++								_, res, ok := parseAny(c.json, idx, true)
++								if ok {
++									res := res.Get(rp.alogkey)
++									if res.Exists() {
++										if k > 0 {
++											jsons = append(jsons, ',')
++										}
++										raw := res.Raw
++										if len(raw) == 0 {
++											raw = res.String()
++										}
++										jsons = append(jsons, []byte(raw)...)
++										k++
+ 									}
+-									jsons = append(jsons, []byte(raw)...)
+-									k++
+ 								}
+ 							}
+ 						}
+diff --git a/gjson_test.go b/gjson_test.go
+index e7b4cfa..bf3ca87 100644
+--- a/gjson_test.go
++++ b/gjson_test.go
+@@ -2016,3 +2016,10 @@ func TestModifiersInMultipaths(t *testing.T) {
+ 	assert(t, res.Raw == exp)
+ 
+ }
++
++func TestIssue141(t *testing.T) {
++	json := `{"data": [{"q": 11, "w": 12}, {"q": 21, "w": 22}, {"q": 31, "w": 32} ], "sql": "some stuff here"}`
++	assert(t, Get(json, "data.#").Int() == 3)
++	assert(t, Get(json, "data.#.{q}|@ugly").Raw == `[{"q":11},{"q":21},{"q":31}]`)
++	assert(t, Get(json, "data.#.q|@ugly").Raw == `[11,21,31]`)
++}

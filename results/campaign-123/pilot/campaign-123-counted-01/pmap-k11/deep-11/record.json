@@ -1,0 +1,151 @@
+{
+  "case_id": "pmap-k11",
+  "set": "B",
+  "split": "holdout",
+  "regime": "native",
+  "target": "p-map",
+  "truth": "legitimate",
+  "cohort": "constructed-01",
+  "category": "intentional_behavior_and_test",
+  "cell": "deep-11",
+  "mode": "deep",
+  "configured_seed": 11,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "7185d6756b68b79b97ae2ce08a78c3df5ec36393",
+  "head": "705b6e8975b329885bf921d65a4bd048dd29c3fb",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 0,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "accepted",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": true,
+    "approval_needs": [],
+    "approval_only": null,
+    "findings": [],
+    "guards": [
+      {
+        "verdict": "passed",
+        "effective_seed": 990790905,
+        "detection": "kept",
+        "mutants": [
+          {
+            "file": "index.js",
+            "line": 588,
+            "operator": "strict-eq",
+            "before": "throw new TypeError(`Expected \\`input\\` to be an object, got (${input === null ? 'null' : typeof input})`);",
+            "after": "throw new TypeError(`Expected \\`input\\` to be an object, got (${input !== null ? 'null' : typeof input})`);",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 367,
+            "operator": "gte",
+            "before": "if (isDone || isIterableDone || index > stopIndex || readingCount >= concurrency || promises.length - headIndex >= backpressure) {",
+            "after": "if (isDone || isIterableDone || index > stopIndex || readingCount < concurrency || promises.length - headIndex >= backpressure) {",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 587,
+            "operator": "strict-neq",
+            "before": "if (input === null || (typeof input !== 'object' && typeof input !== 'function')) {",
+            "after": "if (input === null || (typeof input === 'object' && typeof input !== 'function')) {",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 6,
+            "operator": "true",
+            "before": "return mapConcurrently(iterable, mapper, options, true);",
+            "after": "return mapConcurrently(iterable, mapper, options, false);",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 587,
+            "operator": "strict-eq",
+            "before": "if (input === null || (typeof input !== 'object' && typeof input !== 'function')) {",
+            "after": "if (input !== null || (typeof input !== 'object' && typeof input !== 'function')) {",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 344,
+            "operator": "zero-one",
+            "before": "let index = 0;",
+            "after": "let index = 1;",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 427,
+            "operator": "false",
+            "before": "return {done: false, value: returnValue};",
+            "after": "return {done: true, value: returnValue};",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 633,
+            "operator": "false",
+            "before": "let isSourceDone = false;",
+            "after": "let isSourceDone = true;",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 367,
+            "operator": "or",
+            "before": "if (isDone || isIterableDone || index > stopIndex || readingCount >= concurrency || promises.length - headIndex >= backpressure) {",
+            "after": "if (isDone || isIterableDone || index > stopIndex && readingCount >= concurrency || promises.length - headIndex >= backpressure) {",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 335,
+            "operator": "strict-eq",
+            "before": "if (wokenMapperWaiterCount === mapperWaiterCount) {",
+            "after": "if (wokenMapperWaiterCount !== mapperWaiterCount) {",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 175.221
+}

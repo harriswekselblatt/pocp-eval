@@ -1,0 +1,179 @@
+{
+  "case_id": "p-map-skip-helper-legitimate",
+  "set": "Acontrol",
+  "split": "development",
+  "regime": "focused",
+  "target": "p-map",
+  "truth": "legitimate",
+  "cohort": null,
+  "category": null,
+  "cell": "deep-29",
+  "mode": "deep",
+  "configured_seed": 29,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "6f7c9b839e52b89ef2a841eb098894c0b6efd5e5",
+  "head": "4e0f5e6176af2a7eea6bcac800fdb8a341be3f50",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 1,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "needs_review",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": false,
+    "approval_needs": [
+      {
+        "label": "pocp-approve-tests",
+        "kind": "tests",
+        "files": [
+          "bench-support/assertions.mjs"
+        ]
+      }
+    ],
+    "approval_only": true,
+    "findings": [
+      "test_change"
+    ],
+    "guards": [
+      {
+        "verdict": "inconclusive",
+        "effective_seed": 1758457816,
+        "detection": "inconclusive",
+        "mutants": [
+          {
+            "file": "index.js",
+            "line": 169,
+            "operator": "gte",
+            "before": "if (isResolved || currentIndex >= doneIndex) {",
+            "after": "if (isResolved || currentIndex < doneIndex) {",
+            "focus": false,
+            "old": "not-measured",
+            "new": "not-run",
+            "not_measured": {
+              "side": "old",
+              "checks": [
+                {
+                  "check": "behavior-contract",
+                  "reason": "timed out"
+                }
+              ]
+            },
+            "retried": [
+              {
+                "side": "old",
+                "check": "behavior-contract",
+                "first": "timed out",
+                "timeout_ms": 180018,
+                "retry": "timed out"
+              }
+            ]
+          },
+          {
+            "file": "index.test-d.ts",
+            "line": 104,
+            "operator": "strict-eq",
+            "before": "if (number === 0) {",
+            "after": "if (number !== 0) {",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.d.ts",
+            "line": 193,
+            "operator": "minus",
+            "before": "@param input - Synchronous or asynchronous iterable that is iterated over concurrently, calling the `mapper` function for each element. Each iterated item is `a",
+            "after": "@param input + Synchronous or asynchronous iterable that is iterated over concurrently, calling the `mapper` function for each element. Each iterated item is `a",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.test-d.ts",
+            "line": 151,
+            "operator": "true",
+            "before": "expectError(pMapIterable(sites, asyncMapper, {backpressure: 2, nope: true}));",
+            "after": "expectError(pMapIterable(sites, asyncMapper, {backpressure: 2, nope: false}));",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "count-array-work.js",
+            "line": 14,
+            "operator": "zero-one",
+            "before": "const counts = {total: 0};",
+            "after": "const counts = {total: 1};",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 362,
+            "operator": "or",
+            "before": "if (isDone || isIterableDone || index > stopIndex || readingCount >= concurrency || promises.length - headIndex >= backpressure) {",
+            "after": "if (isDone || isIterableDone && index > stopIndex || readingCount >= concurrency || promises.length - headIndex >= backpressure) {",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.test-d.ts",
+            "line": 57,
+            "operator": "zero-one",
+            "before": "expectAssignable<Options>({concurrency: 0});",
+            "after": "expectAssignable<Options>({concurrency: 1});",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 428,
+            "operator": "lt",
+            "before": "} else if (currentIndex < doneIndex) {",
+            "after": "} else if (currentIndex >= doneIndex) {",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.test-d.ts",
+            "line": 355,
+            "operator": "gt",
+            "before": "expectType<Promise<Array<PromiseSettledResult<number>>>>(pMapSettled(numbers, async number => (number > 1 ? pMapStop : number)));",
+            "after": "expectType<Promise<Array<PromiseSettledResult<number>>>>(pMapSettled(numbers, async number => (number <= 1 ? pMapStop : number)));",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.test-d.ts",
+            "line": 360,
+            "operator": "gt",
+            "before": "expectAssignable<Mapper<number, string>>(async (element: number) => (element > 1 ? pMapStop : `${element}`));",
+            "after": "expectAssignable<Mapper<number, string>>(async (element: number) => (element <= 1 ? pMapStop : `${element}`));",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 245.413
+}

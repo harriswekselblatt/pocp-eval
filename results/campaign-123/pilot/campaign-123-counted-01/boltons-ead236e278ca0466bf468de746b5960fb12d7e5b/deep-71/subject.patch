@@ -1,0 +1,311 @@
+diff --git a/.proof/packets/p-2612cf1b.json b/.proof/packets/p-2612cf1b.json
+new file mode 100644
+index 0000000..71684a4
+--- /dev/null
++++ b/.proof/packets/p-2612cf1b.json
+@@ -0,0 +1,259 @@
++{
++  "pocp": 1,
++  "id": "p-2612cf1b",
++  "intent": "Change to boltons/iterutils.py, tests/test_iterutils.py",
++  "touches": [
++    "boltons/iterutils.py",
++    "tests/test_iterutils.py"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:runtime-suite"
++    },
++    {
++      "id": "o2",
++      "kind": "guard",
++      "files": [
++        "tests/test_iterutils.py"
++      ],
++      "mutants": 10,
++      "seed": 71,
++      "text": "Existing tests or test setup changed (tests/test_iterutils.py): the old tests still pass on the new code, and the new tests catch every sampled mutant the old ones caught",
++      "source": "guard:tests"
++    }
++  ],
++  "state": "proven",
++  "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "policy_repo": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "opened_at": "2026-11-11T03:31:29.937Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:5d2398a01721fce2426195cd670c6aebd1f424c28afb4b56b862192e6207a822",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T03:31:30.924Z",
++      "duration_ms": 2812,
++      "stdout_sha256": "966abb934064e22ca25d45c98a0eb698193665f16b6e1af1386de0d5757669c3",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-08c9227f",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      }
++    },
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:ec4c0e83c32ed577b46633e6fad3fbc2da5f8f84f4b171d31ed9c0cd77037b14",
++      "subject": "sha256:5d2398a01721fce2426195cd670c6aebd1f424c28afb4b56b862192e6207a822",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "kind": "guard",
++      "mode": "snapshot",
++      "passed": true,
++      "started_at": "2026-11-11T03:31:33.998Z",
++      "duration_ms": 16799,
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      },
++      "guard": {
++        "pocp": 1,
++        "verdict": "passed",
++        "passed": true,
++        "summary": "the old tests pass on the new code, and the new tests catch all 1 of the 10 sampled mutants the old tests caught (seed 71)",
++        "base": "1d1c7c2377fd0b9e72cba5b9aa12aaddfe1090c5",
++        "checks": [
++          {
++            "id": "runtime-suite",
++            "run": "sh .bench/check.sh"
++          }
++        ],
++        "old_tests": {
++          "result": "pass",
++          "restored": [
++            "tests/test_iterutils.py"
++          ],
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "exit": 0,
++              "duration_ms": 5490
++            }
++          ]
++        },
++        "new_tests": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "reused": true,
++              "duration_ms": 0
++            }
++          ]
++        },
++        "baseline": {
++          "result": "not-run",
++          "runs": []
++        },
++        "detection": {
++          "result": "kept",
++          "budget": 10,
++          "seed": 71,
++          "sites": 1476,
++          "focus_sites": 279,
++          "files": 34,
++          "sampled": 10,
++          "old_caught": 1,
++          "new_caught": 1,
++          "lost": [],
++          "mutants": [
++            {
++              "file": "boltons/iterutils.py",
++              "line": 556,
++              "operator": "minus",
++              "before": "count = int(math.ceil((stop - start) / step))",
++              "after": "count = int(math.ceil((stop + start) / step))",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/dictutils.py",
++              "line": 525,
++              "operator": "zero-one",
++              "before": ">>> omd.sorted(key=lambda i: i[1])  # i[0] is the key, i[1] is the val",
++              "after": ">>> omd.sorted(key=lambda i: i[1])  # i[1] is the key, i[1] is the val",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/iterutils.py",
++              "line": 793,
++              "operator": "zero-one",
++              "before": "([1], [-1], [0])",
++              "after": "([1], [-1], [1])",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/iterutils.py",
++              "line": 560,
++              "operator": "zero-one",
++              "before": "ret[0] = start",
++              "after": "ret[1] = start",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/dictutils.py",
++              "line": 921,
++              "operator": "zero-one",
++              "before": "if type(items) is tuple and items and items[0] is _PAIRING:",
++              "after": "if type(items) is tuple and items and items[1] is _PAIRING:",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "boltons/iterutils.py",
++              "line": 700,
++              "operator": "zero-one",
++              "before": ">>> bucketize([1,2,365,4,98],key=[0,1,2,0,2])",
++              "after": ">>> bucketize([1,2,365,4,98],key=[0,1,2,1,2])",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/iterutils.py",
++              "line": 743,
++              "operator": "zero-one",
++              "before": "def key_func(x): return x[0]",
++              "after": "def key_func(x): return x[1]",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/iterutils.py",
++              "line": 644,
++              "operator": "gte",
++              "before": "raise ValueError('expected factor >= 1.0, not %r' % factor)",
++              "after": "raise ValueError('expected factor < 1.0, not %r' % factor)",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/iterutils.py",
++              "line": 630,
++              "operator": "zero-one",
++              "before": "jitter (float): A factor between `-1.0` and `1.0`, used to",
++              "after": "jitter (float): A factor between `-1.1` and `1.0`, used to",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/namedutils.py",
++              "line": 289,
++              "operator": "plus",
++              "before": ">>> p[0] + p[1]                     # indexable like a plain list",
++              "after": ">>> p[0] - p[1]                     # indexable like a plain list",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            }
++          ]
++        },
++        "duration_ms": 16799,
++        "checks_from": "rules"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T03:31:29.937Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T03:31:29.937Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1",
++        "o2"
++      ],
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178"
++    },
++    {
++      "at": "2026-11-11T03:31:51.023Z",
++      "event": "state",
++      "from": "open",
++      "to": "proven",
++      "subject": "sha256:5d2398a01721fce2426195cd670c6aebd1f424c28afb4b56b862192e6207a822"
++    }
++  ]
++}
+diff --git a/boltons/iterutils.py b/boltons/iterutils.py
+index 4e7a37f..f0590d4 100644
+--- a/boltons/iterutils.py
++++ b/boltons/iterutils.py
+@@ -648,8 +648,14 @@ def backoff_iter(start, stop, count=None, factor=2.0, jitter=False):
+         raise ValueError('expected stop >= start, not %r' % stop)
+     if count is None:
+         denom = start if start else 1
+-        count = 1 + math.ceil(math.log(stop/denom, factor))
+-        count = count if start else count + 1
++        if factor == 1.0:
++            if start != stop:
++                raise ValueError('expected factor > 1.0 when count is None'
++                                 ' and start != stop, not %r' % factor)
++            count = 1
++        else:
++            count = 1 + math.ceil(math.log(stop/denom, factor))
++            count = count if start else count + 1
+     if count != 'repeat' and count < 0:
+         raise ValueError('count must be positive or "repeat", not %r' % count)
+     if jitter:
+diff --git a/tests/test_iterutils.py b/tests/test_iterutils.py
+index e62e36c..8e3ae8a 100644
+--- a/tests/test_iterutils.py
++++ b/tests/test_iterutils.py
+@@ -489,6 +489,21 @@ def test_backoff_validation():
+         backoff(2, 8, jitter=20)
+ 
+ 
++def test_backoff_constant_factor():
++    from boltons.iterutils import backoff
++
++    # factor=1.0 (constant backoff) is allowed with an explicit count
++    assert backoff(1, 10, count=5, factor=1.0) == [1.0, 1.0, 1.0, 1.0, 1.0]
++    assert backoff(2, 10, count=3, factor=1.0) == [2.0, 2.0, 2.0]
++    # start == stop needs no growth, so an inferred count yields a single value
++    assert backoff(5, 5, factor=1.0) == [5.0]
++    # inferring the count from a non-growing factor is impossible, not a crash
++    with pytest.raises(ValueError):
++        backoff(1, 10, factor=1.0)
++    with pytest.raises(ValueError):
++        backoff(0, 10, factor=1.0)
++
++
+ def test_backoff_jitter():
+     from boltons.iterutils import backoff

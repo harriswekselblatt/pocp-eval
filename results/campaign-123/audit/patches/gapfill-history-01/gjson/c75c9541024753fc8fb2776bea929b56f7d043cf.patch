@@ -1,0 +1,74 @@
+diff --git a/gjson.go b/gjson.go
+index 1aa0eeb..3c63dc3 100644
+--- a/gjson.go
++++ b/gjson.go
+@@ -2176,11 +2176,6 @@ func parseAny(json string, i int, hit bool) (int, Result, bool) {
+ 	return i, res, false
+ }
+ 
+-var ( // used for testing
+-	testWatchForFallback bool
+-	testLastWasFallback  bool
+-)
+-
+ // GetMany searches json for the multiple paths.
+ // The return value is a Result array where the number of items
+ // will be equal to the number of input paths.
+@@ -2745,19 +2740,24 @@ func modFlatten(json, arg string) string {
+ 	out = append(out, '[')
+ 	var idx int
+ 	res.ForEach(func(_, value Result) bool {
+-		if idx > 0 {
+-			out = append(out, ',')
+-		}
++		var raw string
+ 		if value.IsArray() {
+ 			if deep {
+-				out = append(out, unwrap(modFlatten(value.Raw, arg))...)
++				raw = unwrap(modFlatten(value.Raw, arg))
+ 			} else {
+-				out = append(out, unwrap(value.Raw)...)
++				raw = unwrap(value.Raw)
+ 			}
+ 		} else {
+-			out = append(out, value.Raw...)
++			raw = value.Raw
++		}
++		raw = strings.TrimSpace(raw)
++		if len(raw) > 0 {
++			if idx > 0 {
++				out = append(out, ',')
++			}
++			out = append(out, raw...)
++			idx++
+ 		}
+-		idx++
+ 		return true
+ 	})
+ 	out = append(out, ']')
+diff --git a/gjson_test.go b/gjson_test.go
+index e43bb47..68526cc 100644
+--- a/gjson_test.go
++++ b/gjson_test.go
+@@ -787,6 +787,12 @@ var manyJSON = `  {
+ func combine(results []Result) string {
+ 	return fmt.Sprintf("%v", results)
+ }
++
++var ( // used for testing
++	testWatchForFallback bool
++	testLastWasFallback  bool
++)
++
+ func TestManyBasic(t *testing.T) {
+ 	testWatchForFallback = true
+ 	defer func() {
+@@ -2222,3 +2228,8 @@ func TestSubpathsWithMultipaths(t *testing.T) {
+ 	assert(t, Get(json, `#.@ugly`).Raw == `[{"a":1},{"a":2,"values":["a","b","c","d","e"]},true,["a","b","c","d","e"],4]`)
+ 	assert(t, Get(json, `#.[0,3]`).Raw == `[[],[],[],["a","d"],[]]`)
+ }
++
++func TestFlattenRemoveNonExist(t *testing.T) {
++	raw := Get("[[1],[2,[[],[3]],[4,[5],[],[[[6]]]]]]", `@flatten:{"deep":true}`).Raw
++	assert(t, raw == "[1,2,3,4,5,6]")
++}

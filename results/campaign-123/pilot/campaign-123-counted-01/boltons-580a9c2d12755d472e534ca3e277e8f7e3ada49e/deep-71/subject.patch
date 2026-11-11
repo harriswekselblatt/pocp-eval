@@ -1,0 +1,308 @@
+diff --git a/.proof/packets/p-2dbebc20.json b/.proof/packets/p-2dbebc20.json
+new file mode 100644
+index 0000000..1a7baca
+--- /dev/null
++++ b/.proof/packets/p-2dbebc20.json
+@@ -0,0 +1,259 @@
++{
++  "pocp": 1,
++  "id": "p-2dbebc20",
++  "intent": "Change to boltons/setutils.py, tests/test_setutils.py",
++  "touches": [
++    "boltons/setutils.py",
++    "tests/test_setutils.py"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:runtime-suite"
++    },
++    {
++      "id": "o2",
++      "kind": "guard",
++      "files": [
++        "tests/test_setutils.py"
++      ],
++      "mutants": 10,
++      "seed": 71,
++      "text": "Existing tests or test setup changed (tests/test_setutils.py): the old tests still pass on the new code, and the new tests catch every sampled mutant the old ones caught",
++      "source": "guard:tests"
++    }
++  ],
++  "state": "proven",
++  "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "policy_repo": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "opened_at": "2026-11-11T13:57:44.288Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:672669a07cc00c631d0b6e8a08c8bae1f7a5d84a92e29d22ccc57eab68ea1ddb",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T13:57:44.694Z",
++      "duration_ms": 2109,
++      "stdout_sha256": "7aceaa86fb7960a3cd0af34aa5691622346b83e8018b6c059ef3f44e722ee792",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-64d0c087",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      }
++    },
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:1d58cf912cb505f7644adfe2e3a6dd00686fa6be154c94123e8cd3928fb28c30",
++      "subject": "sha256:672669a07cc00c631d0b6e8a08c8bae1f7a5d84a92e29d22ccc57eab68ea1ddb",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "kind": "guard",
++      "mode": "snapshot",
++      "passed": true,
++      "started_at": "2026-11-11T13:57:46.920Z",
++      "duration_ms": 9829,
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      },
++      "guard": {
++        "pocp": 1,
++        "verdict": "passed",
++        "passed": true,
++        "summary": "the old tests pass on the new code, and the new tests catch all 3 of the 10 sampled mutants the old tests caught (seed 71)",
++        "base": "a3f492d9c177342aaad2a01910382987bcfd078e",
++        "checks": [
++          {
++            "id": "runtime-suite",
++            "run": "sh .bench/check.sh"
++          }
++        ],
++        "old_tests": {
++          "result": "pass",
++          "restored": [
++            "tests/test_setutils.py"
++          ],
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "exit": 0,
++              "duration_ms": 2350
++            }
++          ]
++        },
++        "new_tests": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "reused": true,
++              "duration_ms": 0
++            }
++          ]
++        },
++        "baseline": {
++          "result": "not-run",
++          "runs": []
++        },
++        "detection": {
++          "result": "kept",
++          "budget": 10,
++          "seed": 71,
++          "sites": 1508,
++          "focus_sites": 143,
++          "files": 34,
++          "sampled": 10,
++          "old_caught": 3,
++          "new_caught": 3,
++          "lost": [],
++          "mutants": [
++            {
++              "file": "boltons/setutils.py",
++              "line": 876,
++              "operator": "minus",
++              "before": "else:  # - -",
++              "after": "else:  # + -",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/setutils.py",
++              "line": 747,
++              "operator": "minus",
++              "before": "else:  # - -",
++              "after": "else:  # + -",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/setutils.py",
++              "line": 690,
++              "operator": "minus",
++              "before": "if exc is None:  # - +",
++              "after": "if exc is None:  # + +",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/setutils.py",
++              "line": 224,
++              "operator": "eq",
++              "before": "return len(self) == len(other) and list(self) == list(other)",
++              "after": "return len(self) == len(other) and list(self) != list(other)",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "boltons/setutils.py",
++              "line": 898,
++              "operator": "minus",
++              "before": "return _ComplementSet(included=exc - self._excluded)",
++              "after": "return _ComplementSet(included=exc + self._excluded)",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "boltons/setutils.py",
++              "line": 773,
++              "operator": "plus",
++              "before": "if inc is None:  # + -",
++              "after": "if inc is None:  # - -",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/setutils.py",
++              "line": 913,
++              "operator": "minus",
++              "before": "else:  # - -",
++              "after": "else:  # + -",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/setutils.py",
++              "line": 161,
++              "operator": "gte",
++              "before": "if index < 0 or index >= len(self):",
++              "after": "if index < 0 or index < len(self):",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "boltons/setutils.py",
++              "line": 697,
++              "operator": "plus",
++              "before": "else:  # + +",
++              "after": "else:  # - +",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/setutils.py",
++              "line": 783,
++              "operator": "minus",
++              "before": "if exc is None:  # - +",
++              "after": "if exc is None:  # + +",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            }
++          ]
++        },
++        "duration_ms": 9829,
++        "checks_from": "rules"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T13:57:44.288Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T13:57:44.288Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1",
++        "o2"
++      ],
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178"
++    },
++    {
++      "at": "2026-11-11T13:57:56.847Z",
++      "event": "state",
++      "from": "open",
++      "to": "proven",
++      "subject": "sha256:672669a07cc00c631d0b6e8a08c8bae1f7a5d84a92e29d22ccc57eab68ea1ddb"
++    }
++  ]
++}
+diff --git a/boltons/setutils.py b/boltons/setutils.py
+index 3c49273..950b130 100644
+--- a/boltons/setutils.py
++++ b/boltons/setutils.py
+@@ -816,8 +816,6 @@ class _ComplementSet:
+ 
+     def __le__(self, other):
+         inc, exc = _norm_args_notimplemented(other)
+-        if inc is NotImplemented:
+-            return NotImplemented
+         if inc is NotImplemented:
+             return NotImplemented
+         if self._included is None:
+@@ -833,8 +831,6 @@ class _ComplementSet:
+ 
+     def __lt__(self, other):
+         inc, exc = _norm_args_notimplemented(other)
+-        if inc is NotImplemented:
+-            return NotImplemented
+         if inc is NotImplemented:
+             return NotImplemented
+         if self._included is None:
+diff --git a/tests/test_setutils.py b/tests/test_setutils.py
+index 806e3d9..f16c9df 100644
+--- a/tests/test_setutils.py
++++ b/tests/test_setutils.py
+@@ -108,6 +108,16 @@ def test_complement_set():
+     assert cab <= cab
+     assert complement('a') >= cab
+     assert cab >= cab
++    # double-complemented (included-form) sets dispatch to the + +
++    # branches of __le__/__ge__: comp(comp(X)) behaves like X
++    ccab = complement(complement(set('ab')))
++    cca = complement(complement(set('a')))
++    assert ccab >= cca
++    assert not (cca >= ccab)
++    assert cca <= ccab
++    assert not (ccab <= cca)
++    assert ccab >= ccab
++    assert ccab <= ccab
+     assert not cab.isdisjoint(cc)  # complements never disjoint
+     assert cab.isdisjoint(sab)
+     assert not cab.isdisjoint(sc)

@@ -1,0 +1,151 @@
+{
+  "case_id": "boltons-d0a284fc7ef1aebceb54798600d73be4eeb76ed8",
+  "set": "B",
+  "split": "development",
+  "regime": "native",
+  "target": "boltons",
+  "truth": "legitimate",
+  "cohort": "original-sampled",
+  "category": "added_test",
+  "cell": "deep-71",
+  "mode": "deep",
+  "configured_seed": 71,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "14f7dafc215f3e3074097e27e103df677bffef88",
+  "head": "72b8f72150a8d8a6d73d1fda3061917427546a9f",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 0,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "accepted",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": true,
+    "approval_needs": [],
+    "approval_only": null,
+    "findings": [],
+    "guards": [
+      {
+        "verdict": "passed",
+        "effective_seed": 1276956212,
+        "detection": "kept",
+        "mutants": [
+          {
+            "file": "boltons/setutils.py",
+            "line": 849,
+            "operator": "lt",
+            "before": "return self._included < inc",
+            "after": "return self._included >= inc",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/setutils.py",
+            "line": 805,
+            "operator": "plus",
+            "before": "if inc is None:  # + -",
+            "after": "if inc is None:  # - -",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/setutils.py",
+            "line": 854,
+            "operator": "gte",
+            "before": "return self >= other",
+            "after": "return self < other",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/setutils.py",
+            "line": 169,
+            "operator": "minus",
+            "before": "real_index += d_stop - d_start",
+            "after": "real_index += d_stop + d_start",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/setutils.py",
+            "line": 829,
+            "operator": "plus",
+            "before": "if inc is None:  # + -",
+            "after": "if inc is None:  # - -",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/setutils.py",
+            "line": 902,
+            "operator": "minus",
+            "before": "return _ComplementSet(included=exc - self._excluded)",
+            "after": "return _ComplementSet(included=exc + self._excluded)",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/setutils.py",
+            "line": 650,
+            "operator": "minus",
+            "before": "if exc is None:  # - +",
+            "after": "if exc is None:  # + +",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/setutils.py",
+            "line": 880,
+            "operator": "minus",
+            "before": "else:  # - -",
+            "after": "else:  # + -",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/setutils.py",
+            "line": 428,
+            "operator": "eq",
+            "before": "if index is None or index == -1 or index == len_self - 1:",
+            "after": "if index is None or index != -1 or index == len_self - 1:",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/setutils.py",
+            "line": 667,
+            "operator": "minus",
+            "before": "if exc is None:  # - +",
+            "after": "if exc is None:  # + +",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 56.263
+}

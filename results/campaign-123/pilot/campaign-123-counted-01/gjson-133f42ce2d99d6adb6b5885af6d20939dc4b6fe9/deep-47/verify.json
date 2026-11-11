@@ -1,0 +1,16 @@
+{
+  "argv": [
+    "node",
+    "<bench>/vendor/npm-pocp-1.2.3/package/bin/pocp.js",
+    "verify",
+    "253ff36e7b784eb9b964a2c5062e2be3d4ac107a..2a2be5b08b8d9df0e9cc6f57ee3a8bb2b362eed3",
+    "--rerun",
+    "--require-coverage",
+    "--json"
+  ],
+  "exit": 0,
+  "execution": "completed",
+  "seconds": 12.160619374946691,
+  "stdout": "{\n  \"pocp\": 1,\n  \"range\": \"253ff36e7b784eb9b964a2c5062e2be3d4ac107a..2a2be5b08b8d9df0e9cc6f57ee3a8bb2b362eed3\",\n  \"ok\": true,\n  \"commits\": [\n    {\n      \"commit\": \"2a2be5b08b8d9df0e9cc6f57ee3a8bb2b362eed3\",\n      \"subject\": \"sha256:55f9527c8c7e9145786f700f4760b85c36424de9cfb3acd40feae7147eef88cb\",\n      \"ok\": true,\n      \"packets\": [\n        {\n          \"id\": \"p-e98dee8e\",\n          \"ok\": true,\n          \"problems\": [],\n          \"warnings\": [],\n          \"findings\": [],\n          \"counts\": {\n            \"runnable\": 1,\n            \"manual\": 0,\n            \"proven\": 1,\n            \"attested\": 0\n          },\n          \"signatures\": {\n            \"valid\": 0,\n            \"invalid\": 0,\n            \"unsigned\": 1,\n            \"untrusted\": 0\n          },\n          \"evidence\": {\n            \"o1\": \"rerun\"\n          }\n        }\n      ],\n      \"coverage\": {\n        \"required_files\": [\n          \"README.md\",\n          \"gjson.go\"\n        ],\n        \"uncovered\": [],\n        \"reasons\": [\n          {\n            \"code\": \"requirement\",\n            \"detail\": \"2 file(s) have required checks\",\n            \"files\": [\n              \"README.md\",\n              \"gjson.go\"\n            ]\n          }\n        ]\n      },\n      \"reruns\": [],\n      \"notes\": [],\n      \"warnings\": [],\n      \"findings\": [],\n      \"policy\": {\n        \"from\": \"253ff36e7b784eb9b964a2c5062e2be3d4ac107a\",\n        \"weakened\": [],\n        \"accepted\": false,\n        \"problems\": [],\n        \"fail_on\": [\n          \"policy_loosened\",\n          \"ci_config_changed\",\n          \"test_change\",\n          \"uncovered\",\n          \"missing_packet\",\n          \"trailer_mismatch\",\n          \"policy_mismatch\",\n          \"missing_required\",\n          \"unproven\",\n          \"failed_proof\",\n          \"unattested\",\n          \"invalid_signature\",\n          \"rerun_failed\",\n          \"ci_missing\",\n          \"ci_failed\"\n        ]\n      },\n      \"test_guard\": null\n    }\n  ],\n  \"reruns\": [\n    {\n      \"run\": \"sh .bench/check.sh\",\n      \"cwd\": null,\n      \"subject\": \"sha256:55f9527c8c7e9145786f700f4760b85c36424de9cfb3acd40feae7147eef88cb\",\n      \"digest\": \"sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827\",\n      \"packets\": [\n        \"p-e98dee8e\"\n      ],\n      \"status\": \"passed\",\n      \"exit\": 0,\n      \"timed_out\": false,\n      \"duration_ms\": 11270\n    }\n  ],\n  \"findings\": [],\n  \"isolation\": {\n    \"mode\": \"cooperative\",\n    \"secure\": false\n  }\n}\n",
+  "stderr": ""
+}

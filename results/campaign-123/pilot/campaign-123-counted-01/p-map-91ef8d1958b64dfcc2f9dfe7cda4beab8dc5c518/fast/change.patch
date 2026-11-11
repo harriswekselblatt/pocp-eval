@@ -1,0 +1,23 @@
+diff --git a/index.js b/index.js
+index 79188a3..f713b9b 100644
+--- a/index.js
++++ b/index.js
+@@ -212,8 +212,9 @@ export function pMapIterable(
+ 					return;
+ 				}
+ 
++				pendingPromisesCount++;
++
+ 				const promise = (async () => {
+-					pendingPromisesCount++;
+ 					const {done, value} = await iterator.next();
+ 
+ 					if (done) {
+@@ -242,6 +243,7 @@ export function pMapIterable(
+ 
+ 						return {done: false, value: returnValue};
+ 					} catch (error) {
++						pendingPromisesCount--;
+ 						isDone = true;
+ 						return {error};
+ 					}

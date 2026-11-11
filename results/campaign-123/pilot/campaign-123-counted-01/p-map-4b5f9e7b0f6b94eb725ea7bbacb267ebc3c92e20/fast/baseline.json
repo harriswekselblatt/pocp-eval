@@ -1,0 +1,11 @@
+{
+  "argv": [
+    "sh",
+    ".bench/check.sh"
+  ],
+  "exit": 0,
+  "execution": "completed",
+  "seconds": 3.277359583065845,
+  "stdout": "\n  \u2714 handles empty iterable\n  \u2714 enforce number in options.concurrency\n  \u2714 async with concurrency: 2 (out of order time sequence) (202ms)\n  \u2714 async with concurrency: 2 (problematic time sequence) (208ms)\n  \u2714 async with concurrency: 2 (random time sequence) (280ms)\n  \u2714 main (305ms)\n  \u2714 immediately rejects when stopOnError is true (526ms)\n  \u2714 concurrency: 1 (608ms)\n  \u2714 aggregate errors when stopOnError is false (1.2s)\n  \u2714 concurrency: 4 (2.9s)\n  \u2500\n\n  10 tests passed\n",
+  "stderr": ""
+}

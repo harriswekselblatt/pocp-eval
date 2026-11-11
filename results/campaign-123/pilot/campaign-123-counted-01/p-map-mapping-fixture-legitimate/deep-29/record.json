@@ -1,0 +1,151 @@
+{
+  "case_id": "p-map-mapping-fixture-legitimate",
+  "set": "B",
+  "split": "development",
+  "regime": "focused",
+  "target": "p-map",
+  "truth": "legitimate",
+  "cohort": "paired-control",
+  "category": "preserving_test_or_setup",
+  "cell": "deep-29",
+  "mode": "deep",
+  "configured_seed": 29,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "151327cb8bad37d4af433708f94c37db75360fd0",
+  "head": "e281f231ffd76d11f1e8e395e6f274b3d55031af",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 0,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "accepted",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": true,
+    "approval_needs": [],
+    "approval_only": null,
+    "findings": [],
+    "guards": [
+      {
+        "verdict": "passed",
+        "effective_seed": 2012753002,
+        "detection": "kept",
+        "mutants": [
+          {
+            "file": "index.js",
+            "line": 577,
+            "operator": "strict-eq",
+            "before": "return (Number.isSafeInteger(value) && value >= minimum) || value === Number.POSITIVE_INFINITY;",
+            "after": "return (Number.isSafeInteger(value) && value >= minimum) || value !== Number.POSITIVE_INFINITY;",
+            "focus": false,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 577,
+            "operator": "and",
+            "before": "return (Number.isSafeInteger(value) && value >= minimum) || value === Number.POSITIVE_INFINITY;",
+            "after": "return (Number.isSafeInteger(value) || value >= minimum) || value === Number.POSITIVE_INFINITY;",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "count-array-work.js",
+            "line": 26,
+            "operator": "zero-one",
+            "before": "count(this.length - (arguments_[0] ?? 0));",
+            "after": "count(this.length - (arguments_[0] ?? 1));",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.test-d.ts",
+            "line": 306,
+            "operator": "times",
+            "before": "function * numberGenerator(): Generator<number> {",
+            "after": "function / numberGenerator(): Generator<number> {",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 391,
+            "operator": "lt",
+            "before": "if (runningMappersCount < concurrency) {",
+            "after": "if (runningMappersCount >= concurrency) {",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "count-array-work.js",
+            "line": 62,
+            "operator": "times",
+            "before": "assertInRange(t, entriesWorked, {start: size / 2, end: size * 10});",
+            "after": "assertInRange(t, entriesWorked, {start: size / 2, end: size / 10});",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 2,
+            "operator": "false",
+            "before": "return mapConcurrently(iterable, mapper, options, false);",
+            "after": "return mapConcurrently(iterable, mapper, options, true);",
+            "focus": false,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.test-d.ts",
+            "line": 29,
+            "operator": "false",
+            "before": "done: false,",
+            "after": "done: true,",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 362,
+            "operator": "or",
+            "before": "if (isDone || isIterableDone || index > stopIndex || readingCount >= concurrency || promises.length - headIndex >= backpressure) {",
+            "after": "if (isDone && isIterableDone || index > stopIndex || readingCount >= concurrency || promises.length - headIndex >= backpressure) {",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.d.ts",
+            "line": 137,
+            "operator": "minus",
+            "before": "@param value - The value, `await`'d.",
+            "after": "@param value + The value, `await`'d.",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 5.132
+}

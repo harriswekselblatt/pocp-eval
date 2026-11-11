@@ -1,0 +1,59 @@
+diff --git a/index.js b/index.js
+index e7823ca..f22539e 100644
+--- a/index.js
++++ b/index.js
+@@ -213,6 +213,7 @@ export function pMapIterable(
+ 			const promises = [];
+ 			let pendingPromisesCount = 0;
+ 			let isDone = false;
++			let isIterableDone = false;
+ 			let index = 0;
+ 
+ 			function trySpawn() {
+@@ -229,6 +230,7 @@ export function pMapIterable(
+ 						const {done, value} = await iterator.next();
+ 
+ 						if (done) {
++							isIterableDone = true;
+ 							pendingPromisesCount--;
+ 							return {done: true};
+ 						}
+@@ -293,7 +295,9 @@ export function pMapIterable(
+ 				// Stop pulling input once the consumer stops iterating, otherwise pending skipped mappers keep spawning work.
+ 				isDone = true;
+ 
+-				closeIterator(iterator);
++				if (!isIterableDone) {
++					closeIterator(iterator);
++				}
+ 			}
+ 		},
+ 	};
+diff --git a/test.js b/test.js
+index 143292f..2cc08dd 100644
+--- a/test.js
++++ b/test.js
+@@ -1229,3 +1229,23 @@ test.serial('a source `return()` that rejects does not affect the `pMap` rejecti
+ 
+ 	t.deepEqual(unhandledRejections, []);
+ });
++
++test('pMapIterable - does not call `return()` on an exhausted source iterator', async t => {
++	let returnCallCount = 0;
++
++	const iterable = {
++		[Symbol.iterator]() {
++			let index = 0;
++			return {
++				next: () => ({done: index === 3, value: index++}),
++				return() {
++					returnCallCount++;
++					return {done: true, value: undefined};
++				},
++			};
++		},
++	};
++
++	t.deepEqual(await collectAsyncIterable(pMapIterable(iterable, async value => value, {concurrency: 2})), [0, 1, 2]);
++	t.is(returnCallCount, 0);
++});

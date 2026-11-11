@@ -1,0 +1,11 @@
+{
+  "argv": [
+    "sh",
+    ".bench/check.sh"
+  ],
+  "exit": 127,
+  "execution": "completed",
+  "seconds": 0.00767266598995775,
+  "stdout": "",
+  "stderr": ".bench/check.sh: line 3: no-such-command-pocp-canary: command not found\n"
+}

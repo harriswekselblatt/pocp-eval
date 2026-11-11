@@ -1,0 +1,89 @@
+diff --git a/.proof/packets/p-9fa6ed67.json b/.proof/packets/p-9fa6ed67.json
+new file mode 100644
+index 0000000..04dfd38
+--- /dev/null
++++ b/.proof/packets/p-9fa6ed67.json
+@@ -0,0 +1,70 @@
++{
++  "pocp": 1,
++  "id": "p-9fa6ed67",
++  "intent": "Change to gjson.go",
++  "touches": [
++    "gjson.go"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:runtime-suite"
++    }
++  ],
++  "state": "proven",
++  "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "policy_repo": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "opened_at": "2026-11-11T03:52:57.180Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:e87350b28f22ab42ae9e9ffbe93ad25141321331cf4d4d7322285ec0dd268177",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T03:52:57.636Z",
++      "duration_ms": 8566,
++      "stdout_sha256": "a701e6b2bcd5237ec4ebf88bb63d52d5f48559ed41a9c296f6478c20d2f7fdae",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-3d6f15d4",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": "690a9ad57a8031755eb67df55cdbe067a4f6190dafa70a6329ea2510e613bd42"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T03:52:57.180Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T03:52:57.180Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1"
++      ],
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178"
++    },
++    {
++      "at": "2026-11-11T03:53:06.308Z",
++      "event": "state",
++      "from": "open",
++      "to": "proven",
++      "subject": "sha256:e87350b28f22ab42ae9e9ffbe93ad25141321331cf4d4d7322285ec0dd268177"
++    }
++  ]
++}
+diff --git a/gjson.go b/gjson.go
+index 203db3d..d682d92 100644
+--- a/gjson.go
++++ b/gjson.go
+@@ -1989,7 +1989,7 @@ func runeit(json string) rune {
+ }
+ 
+ // unescape unescapes a string
+-func unescape(json string) string { // , error) {
++func unescape(json string) string {
+ 	var str = make([]byte, 0, len(json))
+ 	for i := 0; i < len(json); i++ {
+ 		switch {

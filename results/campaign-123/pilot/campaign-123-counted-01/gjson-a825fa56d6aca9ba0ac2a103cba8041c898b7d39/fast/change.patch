@@ -1,0 +1,44 @@
+diff --git a/gjson.go b/gjson.go
+index edb78b6..3fb59c2 100644
+--- a/gjson.go
++++ b/gjson.go
+@@ -2336,13 +2336,15 @@ func unescape(json string) string {
+ 				}
+ 				r := runeit(json[i+1:])
+ 				i += 5
+-				if utf16.IsSurrogate(r) {
+-					// need another code
++				if r >= 0xD800 && r < 0xDC00 {
++					// high surrogate
+ 					if len(json[i:]) >= 6 && json[i] == '\\' &&
+ 						json[i+1] == 'u' {
+-						// we expect it to be correct so just consume it
+-						r = utf16.DecodeRune(r, runeit(json[i+2:]))
+-						i += 6
++						r2 := runeit(json[i+2:])
++						if r2 >= 0xDC00 && r2 < 0xE000 {
++							r = utf16.DecodeRune(r, r2)
++							i += 6
++						}
+ 					}
+ 				}
+ 				// provide enough space to encode the largest utf8 possible
+diff --git a/gjson_test.go b/gjson_test.go
+index c1607ca..e8f0dac 100644
+--- a/gjson_test.go
++++ b/gjson_test.go
+@@ -2833,3 +2833,14 @@ func TestPathRev(t *testing.T) {
+ 	// Does not matter the result. Must not panic.
+ 	Get(doc, "b:").Path(doc)
+ }
++
++func TestIssue403(t *testing.T) {
++	// addresses high surrogates
++	inputs := []string{`"a\ud83d\u2026b"`, `"\ud83d\ud83d\ude00"`}
++	for i := range inputs {
++		var s1 string
++		json.Unmarshal([]byte(inputs[i]), &s1)
++		s2 := Parse(inputs[i]).String()
++		assert(t, s1 == s2)
++	}
++}

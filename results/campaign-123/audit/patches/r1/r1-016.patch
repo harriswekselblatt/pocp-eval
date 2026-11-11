@@ -1,0 +1,56 @@
+diff --git a/gjson.go b/gjson.go
+index ee946ab..0ac15fb 100644
+--- a/gjson.go
++++ b/gjson.go
+@@ -1323,7 +1323,6 @@ func parseArray(c *parseContext, i int, path string) (int, bool) {
+ 					if rp.alogok {
+ 						var jsons = make([]byte, 0, 64)
+ 						jsons = append(jsons, '[')
+-
+ 						for j, k := 0, 0; j < len(alog); j++ {
+ 							_, res, ok := parseAny(c.json, alog[j], true)
+ 							if ok {
+@@ -1332,7 +1331,11 @@ func parseArray(c *parseContext, i int, path string) (int, bool) {
+ 									if k > 0 {
+ 										jsons = append(jsons, ',')
+ 									}
+-									jsons = append(jsons, []byte(res.Raw)...)
++									raw := res.Raw
++									if len(raw) == 0 {
++										raw = res.String()
++									}
++									jsons = append(jsons, []byte(raw)...)
+ 									k++
+ 								}
+ 							}
+diff --git a/gjson_test.go b/gjson_test.go
+index 4190279..606375d 100644
+--- a/gjson_test.go
++++ b/gjson_test.go
+@@ -1504,3 +1504,26 @@ func TestChaining(t *testing.T) {
+ 	}
+ 
+ }
++
++func TestArrayEx(t *testing.T) {
++	s := `
++	[
++		{
++			"c":[
++				{"a":10.11}
++			]
++		}, {
++			"c":[
++				{"a":11.11}
++			]
++		}
++	]`
++	res := Get(s, "@ugly|#.c.#[a=10.11]").String()
++	if res != `[{"a":10.11}]` {
++		t.Fatalf("expected '%v', got '%v'", `[{"a":10.11}]`, res)
++	}
++	res = Get(s, "@ugly|#.c.#").String()
++	if res != `[1,1]` {
++		t.Fatalf("expected '%v', got '%v'", `[1,1]`, res)
++	}
++}

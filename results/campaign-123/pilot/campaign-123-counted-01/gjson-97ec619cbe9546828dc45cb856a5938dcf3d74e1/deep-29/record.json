@@ -1,0 +1,151 @@
+{
+  "case_id": "gjson-97ec619cbe9546828dc45cb856a5938dcf3d74e1",
+  "set": "B",
+  "split": "development",
+  "regime": "native",
+  "target": "gjson",
+  "truth": "legitimate",
+  "cohort": "extension",
+  "category": "source_only",
+  "cell": "deep-29",
+  "mode": "deep",
+  "configured_seed": 29,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "7771c762c8a484f83a059ecb866a23951f92d1fd",
+  "head": "18cc9e0b1ca40a4bb5003bac29d4f67f9fc35d47",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 0,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "accepted",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": true,
+    "approval_needs": [],
+    "approval_only": null,
+    "findings": [],
+    "guards": [
+      {
+        "verdict": "passed",
+        "effective_seed": 148249258,
+        "detection": "kept",
+        "mutants": [
+          {
+            "file": "gjson.go",
+            "line": 2634,
+            "operator": "zero-one",
+            "before": "for i := 0; i < len(s); i++ {",
+            "after": "for i := 1; i < len(s); i++ {",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "gjson.go",
+            "line": 2628,
+            "operator": "lt",
+            "before": "for i := 0; i < len(s); i++ {",
+            "after": "for i := 0; i >= len(s); i++ {",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "gjson.go",
+            "line": 2634,
+            "operator": "lt",
+            "before": "for i := 0; i < len(s); i++ {",
+            "after": "for i := 0; i >= len(s); i++ {",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "gjson.go",
+            "line": 2628,
+            "operator": "zero-one",
+            "before": "for i := 0; i < len(s); i++ {",
+            "after": "for i := 1; i < len(s); i++ {",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "gjson.go",
+            "line": 952,
+            "operator": "zero-one",
+            "before": "case value[0] == '>':",
+            "after": "case value[1] == '>':",
+            "focus": false,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "gjson.go",
+            "line": 474,
+            "operator": "lte",
+            "before": "if json[i] >= '\"' && json[i] <= '}' {",
+            "after": "if json[i] >= '\"' && json[i] > '}' {",
+            "focus": false,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "gjson.go",
+            "line": 2461,
+            "operator": "and",
+            "before": "if i+3 <= len(data) && data[i] == 'u' && data[i+1] == 'l' &&",
+            "after": "if i+3 <= len(data) && data[i] == 'u' || data[i+1] == 'l' &&",
+            "focus": false,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "gjson.go",
+            "line": 2042,
+            "operator": "zero-one",
+            "before": "str = append(str, 0, 0, 0, 0, 0, 0, 0, 0)",
+            "after": "str = append(str, 0, 0, 1, 0, 0, 0, 0, 0)",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "gjson.go",
+            "line": 331,
+            "operator": "gt",
+            "before": "if json[i] > ' ' {",
+            "after": "if json[i] <= ' ' {",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "gjson.go",
+            "line": 1190,
+            "operator": "lt",
+            "before": "for ; i < len(c.json); i++ {",
+            "after": "for ; i >= len(c.json); i++ {",
+            "focus": false,
+            "old": "caught",
+            "new": "caught"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 158.169
+}

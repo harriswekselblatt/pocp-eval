@@ -1,0 +1,13 @@
+diff --git a/boltons/strutils.py b/boltons/strutils.py
+index 39ef449..dccb828 100644
+--- a/boltons/strutils.py
++++ b/boltons/strutils.py
+@@ -355,7 +355,7 @@ def a10n(string):
+     """
+     if len(string) < 3:
+         return string
+-    return f'{string[0]}{len(string[1:-1])}{string[-1]}'
++    return f'{string[0]}{len(string) - 2}{string[-1]}'
+ 
+ 
+ # Based on https://en.wikipedia.org/wiki/ANSI_escape_code#Escape_sequences

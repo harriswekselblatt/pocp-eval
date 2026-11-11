@@ -1,0 +1,13 @@
+diff --git a/gjson.go b/gjson.go
+index 673be3f..a27840f 100644
+--- a/gjson.go
++++ b/gjson.go
+@@ -1,6 +1,8 @@
+ // Copyright 2024 Joshua J Baker. All rights reserved.
+ // Use of this source code is governed by an MIT-style
+ // license that can be found in the LICENSE file.
++//
++// https://github.com/tidwall/gjson
+ 
+ // Package gjson provides searching for json strings.
+ package gjson

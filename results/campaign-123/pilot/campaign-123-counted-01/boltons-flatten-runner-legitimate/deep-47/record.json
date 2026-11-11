@@ -1,0 +1,161 @@
+{
+  "case_id": "boltons-flatten-runner-legitimate",
+  "set": "Acontrol",
+  "split": "holdout",
+  "regime": "focused",
+  "target": "boltons",
+  "truth": "legitimate",
+  "cohort": null,
+  "category": null,
+  "cell": "deep-47",
+  "mode": "deep",
+  "configured_seed": 47,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "b4db97df895c79edfbd29a7a327d2552ac7b4d27",
+  "head": "c8b5230f4d7a2ca24af60e9c708d0ab4328b044e",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 1,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "needs_review",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": false,
+    "approval_needs": [
+      {
+        "label": "pocp-approve-tests",
+        "kind": "tests",
+        "files": [
+          ".bench/check.sh"
+        ]
+      }
+    ],
+    "approval_only": true,
+    "findings": [
+      "test_change"
+    ],
+    "guards": [
+      {
+        "verdict": "inconclusive",
+        "effective_seed": 338984543,
+        "detection": "inconclusive",
+        "mutants": [
+          {
+            "file": "boltons/fileutils.py",
+            "line": 187,
+            "operator": "true",
+            "before": "Here's an example that holds true on most systems:",
+            "after": "Here's an example that holds false on most systems:",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/strutils.py",
+            "line": 183,
+            "operator": "plus",
+            "before": "return numstr + ext",
+            "after": "return numstr - ext",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/ioutils.py",
+            "line": 408,
+            "operator": "eq",
+            "before": "if current_position == dest:",
+            "after": "if current_position != dest:",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/listutils.py",
+            "line": 279,
+            "operator": "eq",
+            "before": "if len(self.lists) == 1:",
+            "after": "if len(self.lists) != 1:",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/statsutils.py",
+            "line": 634,
+            "operator": "zero-one",
+            "before": "round_factor = 10.0 ** bin_digits",
+            "after": "round_factor = 10.1 ** bin_digits",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/timeutils.py",
+            "line": 447,
+            "operator": "eq",
+            "before": "if now == prev:",
+            "after": "if now != prev:",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/mboxutils.py",
+            "line": 121,
+            "operator": "minus",
+            "before": "stop - self._file.tell()))",
+            "after": "stop + self._file.tell()))",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/setutils.py",
+            "line": 478,
+            "operator": "zero-one",
+            "before": "\"count(val) -> count number of instances of value (0 or 1)\"",
+            "after": "\"count(val) -> count number of instances of value (1 or 1)\"",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/setutils.py",
+            "line": 902,
+            "operator": "plus",
+            "before": "else:  # + +",
+            "after": "else:  # - +",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/mathutils.py",
+            "line": 92,
+            "operator": "eq",
+            "before": "if i == len(options):",
+            "after": "if i != len(options):",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 9.403
+}

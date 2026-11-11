@@ -1,0 +1,151 @@
+{
+  "case_id": "boltons-pairwise-helper-legitimate",
+  "set": "B",
+  "split": "development",
+  "regime": "focused",
+  "target": "boltons",
+  "truth": "legitimate",
+  "cohort": "paired-control",
+  "category": "preserving_test_or_setup",
+  "cell": "deep-11",
+  "mode": "deep",
+  "configured_seed": 11,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "435914ef3cccc9b258a079287afde7ca14b94059",
+  "head": "30a223974d77e921219a4e2f48423d18fd50af61",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 0,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "accepted",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": true,
+    "approval_needs": [],
+    "approval_only": null,
+    "findings": [],
+    "guards": [
+      {
+        "verdict": "passed",
+        "effective_seed": 512522476,
+        "detection": "kept",
+        "mutants": [
+          {
+            "file": "bench_support/assertions.py",
+            "line": 3,
+            "operator": "eq",
+            "before": "assert json.loads(json.dumps(observedValue)) == expected",
+            "after": "assert json.loads(json.dumps(observedValue)) != expected",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/statsutils.py",
+            "line": 727,
+            "operator": "zero-one",
+            "before": "0.5:      4",
+            "after": "1.5:      4",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/statsutils.py",
+            "line": 548,
+            "operator": "zero-one",
+            "before": "if not 0.0 <= trim < 0.5:",
+            "after": "if not 0.0 <= trim < 1.5:",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/tableutils.py",
+            "line": 475,
+            "operator": "minus",
+            "before": "headers.extend([None] * (self._width - len(self.headers)))",
+            "after": "headers.extend([None] * (self._width + len(self.headers)))",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 692,
+            "operator": "eq",
+            "before": "if factor == 1.0:",
+            "after": "if factor != 1.0:",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/timeutils.py",
+            "line": 260,
+            "operator": "zero-one",
+            "before": "(1.0, 'day')",
+            "after": "(1.1, 'day')",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/statsutils.py",
+            "line": 511,
+            "operator": "lte",
+            "before": "if not 0.0 <= q <= 1.0:",
+            "after": "if not 0.0 <= q > 1.0:",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 442,
+            "operator": "neq",
+            "before": "if initial_chunk_len != overlap_size:",
+            "after": "if initial_chunk_len == overlap_size:",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "docs/conf.py",
+            "line": 33,
+            "operator": "zero-one",
+            "before": "mod_count = 0",
+            "after": "mod_count = 1",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/statsutils.py",
+            "line": 581,
+            "operator": "eq",
+            "before": "if dx == 0:",
+            "after": "if dx != 0:",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 11.601
+}

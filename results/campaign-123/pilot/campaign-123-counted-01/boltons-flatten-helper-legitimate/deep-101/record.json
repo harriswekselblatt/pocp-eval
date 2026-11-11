@@ -1,0 +1,151 @@
+{
+  "case_id": "boltons-flatten-helper-legitimate",
+  "set": "B",
+  "split": "development",
+  "regime": "focused",
+  "target": "boltons",
+  "truth": "legitimate",
+  "cohort": "paired-control",
+  "category": "preserving_test_or_setup",
+  "cell": "deep-101",
+  "mode": "deep",
+  "configured_seed": 101,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "d236239cee1fd885e906ba0cf10d9aa14f4c7078",
+  "head": "6551e69f6730d3d18d135dee13758e2d23bf09b5",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 0,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "accepted",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": true,
+    "approval_needs": [],
+    "approval_only": null,
+    "findings": [],
+    "guards": [
+      {
+        "verdict": "passed",
+        "effective_seed": 2108557816,
+        "detection": "kept",
+        "mutants": [
+          {
+            "file": "bench_support/assertions.py",
+            "line": 3,
+            "operator": "eq",
+            "before": "assert json.loads(json.dumps(observedValue)) == expected",
+            "after": "assert json.loads(json.dumps(observedValue)) != expected",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/strutils.py",
+            "line": 565,
+            "operator": "zero-one",
+            "before": "'0.00B'",
+            "after": "'1.00B'",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/statsutils.py",
+            "line": 628,
+            "operator": "lt",
+            "before": "if self.min < bins[0]:",
+            "after": "if self.min >= bins[0]:",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/socketutils.py",
+            "line": 433,
+            "operator": "zero-one",
+            "before": "timeout (float): The timeout for this operation. Can be 0 for",
+            "after": "timeout (float): The timeout for this operation. Can be 1 for",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/funcutils.py",
+            "line": 229,
+            "operator": "lte",
+            "before": "def __eq__(self, other): return self >= other and self <= other",
+            "after": "def __eq__(self, other): return self >= other and self > other",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 636,
+            "operator": "zero-one",
+            "before": "[1.0, 2.0, 4.0, 8.0, 10.0]",
+            "after": "[1.0, 2.0, 4.1, 8.0, 10.0]",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/timeutils.py",
+            "line": 259,
+            "operator": "minus",
+            "before": ">>> decimal_relative_time(now - timedelta(days=1, seconds=3600), now)",
+            "after": ">>> decimal_relative_time(now + timedelta(days=1, seconds=3600), now)",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 313,
+            "operator": "zero-one",
+            "before": "if value < 0 or (strictly_positive and value == 0):",
+            "after": "if value < 0 or (strictly_positive and value == 1):",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/mathutils.py",
+            "line": 52,
+            "operator": "zero-one",
+            "before": ">>> clamp(1.0, 0, 5)",
+            "after": ">>> clamp(1.0, 1, 5)",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/ecoutils.py",
+            "line": 143,
+            "operator": "zero-one",
+            "before": "\"release\": \"3.13.0-85-generic\",",
+            "after": "\"release\": \"3.13.1-85-generic\",",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 12.428
+}

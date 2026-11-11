@@ -1,0 +1,134 @@
+diff --git a/README.md b/README.md
+index b7848de..2a10d21 100644
+--- a/README.md
++++ b/README.md
+@@ -200,6 +200,8 @@ There are currently the following built-in modifiers:
+ - `@valid`: Ensure the json document is valid.
+ - `@flatten`: Flattens an array.
+ - `@join`: Joins multiple objects into a single object.
++- `@keys`: Returns an array of keys for an object.
++- `@values`: Returns an array of values for an object.
+ 
+ ### Modifier arguments
+ 
+diff --git a/SYNTAX.md b/SYNTAX.md
+index 34fdccf..9bc18c8 100644
+--- a/SYNTAX.md
++++ b/SYNTAX.md
+@@ -236,6 +236,8 @@ There are currently the following built-in modifiers:
+ - `@valid`: Ensure the json document is valid.
+ - `@flatten`: Flattens an array.
+ - `@join`: Joins multiple objects into a single object.
++- `@keys`: Returns an array of keys for an object.
++- `@values`: Returns an array of values for an object.
+ 
+ #### Modifier arguments
+ 
+diff --git a/gjson.go b/gjson.go
+index 0d42394..65efa07 100644
+--- a/gjson.go
++++ b/gjson.go
+@@ -2565,6 +2565,8 @@ var modifiers = map[string]func(json, arg string) string{
+ 	"flatten": modFlatten,
+ 	"join":    modJoin,
+ 	"valid":   modValid,
++	"keys":    modKeys,
++	"values":  modValues,
+ }
+ 
+ // AddModifier binds a custom modifier command to the GJSON syntax.
+@@ -2721,6 +2723,58 @@ func modFlatten(json, arg string) string {
+ 	return bytesString(out)
+ }
+ 
++// @keys extracts the keys from an object.
++//  {"first":"Tom","last":"Smith"} -> ["first","last"]
++func modKeys(json, arg string) string {
++	v := Parse(json)
++	if !v.Exists() {
++		return "[]"
++	}
++	obj := v.IsObject()
++	var out strings.Builder
++	out.WriteByte('[')
++	var i int
++	v.ForEach(func(key, _ Result) bool {
++		if i > 0 {
++			out.WriteByte(',')
++		}
++		if obj {
++			out.WriteString(key.Raw)
++		} else {
++			out.WriteString("null")
++		}
++		i++
++		return true
++	})
++	out.WriteByte(']')
++	return out.String()
++}
++
++// @values extracts the values from an object.
++//   {"first":"Tom","last":"Smith"} -> ["Tom","Smith"]
++func modValues(json, arg string) string {
++	v := Parse(json)
++	if !v.Exists() {
++		return "[]"
++	}
++	if v.IsArray() {
++		return json
++	}
++	var out strings.Builder
++	out.WriteByte('[')
++	var i int
++	v.ForEach(func(_, value Result) bool {
++		if i > 0 {
++			out.WriteByte(',')
++		}
++		out.WriteString(value.Raw)
++		i++
++		return true
++	})
++	out.WriteByte(']')
++	return out.String()
++}
++
+ // @join multiple objects into a single object.
+ //   [{"first":"Tom"},{"last":"Smith"}] -> {"first","Tom","last":"Smith"}
+ // The arg can be "true" to specify that duplicate keys should be preserved.
+diff --git a/gjson_test.go b/gjson_test.go
+index 3c70a41..302126e 100644
+--- a/gjson_test.go
++++ b/gjson_test.go
+@@ -2207,3 +2207,31 @@ func TestIssue240(t *testing.T) {
+ 	parsed = Parse(arrayData)
+ 	assert(t, len(parsed.Get("params.data").Array()) == 1)
+ }
++
++func TestKeysValuesModifier(t *testing.T) {
++	var json = `{
++		"1300014": {
++		  "code": "1300014",
++		  "price": 59.18,
++		  "symbol": "300014",
++		  "update": "2020/04/15 15:59:54",
++		},
++		"1300015": {
++		  "code": "1300015",
++		  "price": 43.31,
++		  "symbol": "300015",
++		  "update": "2020/04/15 15:59:54",
++		}
++	  }`
++	assert(t, Get(json, `@keys`).String() == `["1300014","1300015"]`)
++	assert(t, Get(``, `@keys`).String() == `[]`)
++	assert(t, Get(`"hello"`, `@keys`).String() == `[null]`)
++	assert(t, Get(`[]`, `@keys`).String() == `[]`)
++	assert(t, Get(`[1,2,3]`, `@keys`).String() == `[null,null,null]`)
++
++	assert(t, Get(json, `@values.#.code`).String() == `["1300014","1300015"]`)
++	assert(t, Get(``, `@values`).String() == `[]`)
++	assert(t, Get(`"hello"`, `@values`).String() == `["hello"]`)
++	assert(t, Get(`[]`, `@values`).String() == `[]`)
++	assert(t, Get(`[1,2,3]`, `@values`).String() == `[1,2,3]`)
++}

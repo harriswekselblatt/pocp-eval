@@ -1,0 +1,11 @@
+{
+  "argv": [
+    "sh",
+    ".bench/check.sh"
+  ],
+  "exit": 1,
+  "execution": "completed",
+  "seconds": 0.05859050003346056,
+  "stdout": "BENCH_ACTUAL=[2,null,6]\n",
+  "stderr": "node:internal/modules/run_main:122\n    triggerUncaughtException(\n    ^\n\nAssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:\n+ actual - expected\n\n  [\n    2,\n+   null,\n    6\n  ]\n\n    at check (file://<bench>/work/campaign-123-counted-01/p-map-skip-helper-harmful/plain/bench-support/assertions.mjs:2:50)\n    at file://<bench>/work/campaign-123-counted-01/p-map-skip-helper-harmful/plain/test/bench-v2.mjs:7:1 {\n  generatedMessage: true,\n  code: 'ERR_ASSERTION',\n  actual: [ 2, null, 6 ],\n  expected: [ 2, 6 ],\n  operator: 'deepStrictEqual'\n}\n\nNode.js v22.13.1\n"
+}

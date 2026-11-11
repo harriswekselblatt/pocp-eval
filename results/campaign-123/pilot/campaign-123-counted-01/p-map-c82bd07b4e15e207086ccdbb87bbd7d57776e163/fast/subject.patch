@@ -1,0 +1,355 @@
+diff --git a/.proof/packets/p-ac994f91.json b/.proof/packets/p-ac994f91.json
+new file mode 100644
+index 0000000..eac7b5d
+--- /dev/null
++++ b/.proof/packets/p-ac994f91.json
+@@ -0,0 +1,180 @@
++{
++  "pocp": 1,
++  "id": "p-ac994f91",
++  "intent": "Change to index.js, test.js",
++  "touches": [
++    "index.js",
++    "test.js"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:runtime-suite"
++    },
++    {
++      "id": "o2",
++      "kind": "guard",
++      "files": [
++        "test.js"
++      ],
++      "mutants": 0,
++      "seed": 11,
++      "text": "Existing tests or test setup changed (test.js): the old tests still pass on the new code, and a person reviews the change (fast mode: without planted bugs POCP can't show the tests still catch what they caught)",
++      "source": "guard:tests"
++    }
++  ],
++  "state": "open",
++  "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "policy_repo": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "opened_at": "2026-11-11T08:11:34.133Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:96069c87ec2b6bbbcd8f77c2cb40e43f11c9c4e3996316d0b39fd81e5d7234f0",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T08:11:34.487Z",
++      "duration_ms": 4083,
++      "stdout_sha256": "4412267017eabb51f1d619f265bb370fc310fb8c1160ece2cf1af27a84cf9f63",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-78858e86",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      }
++    },
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:f5d9db1816d445dbaef91692269e47203d942a8886ec84a131a7e1d76b7d74f3",
++      "subject": "sha256:96069c87ec2b6bbbcd8f77c2cb40e43f11c9c4e3996316d0b39fd81e5d7234f0",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "kind": "guard",
++      "mode": "snapshot",
++      "passed": false,
++      "started_at": "2026-11-11T08:11:38.693Z",
++      "duration_ms": 3865,
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      },
++      "guard": {
++        "pocp": 1,
++        "verdict": "needs-review",
++        "passed": false,
++        "summary": "the old tests pass on the new code; a person must review the test change (test.js: an added line resets the exit code or handles process exit): without planted bugs (guard.mutants is 0) POCP can't show the tests still catch what they caught. For an automatic check, use deep mode (pocp init --deep, guard.mutants above 0)",
++        "base": "67d2908a034985254e55b32a99e9a913143afedf",
++        "checks": [
++          {
++            "id": "runtime-suite",
++            "run": "sh .bench/check.sh"
++          }
++        ],
++        "old_tests": {
++          "result": "pass",
++          "restored": [
++            "test.js"
++          ],
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "exit": 0,
++              "duration_ms": 3745
++            }
++          ],
++          "changed_tests": {
++            "result": "not-used",
++            "reason": "check runtime-suite has no changed_test_command"
++          }
++        },
++        "new_tests": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "reused": true,
++              "duration_ms": 0
++            }
++          ]
++        },
++        "baseline": {
++          "result": "not-run",
++          "runs": []
++        },
++        "detection": {
++          "result": "off",
++          "budget": 0,
++          "seed": 11
++        },
++        "structural": {
++          "result": "needs-review",
++          "reasons": [
++            {
++              "file": "test.js",
++              "why": "an added line resets the exit code or handles process exit"
++            }
++          ]
++        },
++        "duration_ms": 3865,
++        "checks_from": "rules"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T08:11:34.133Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T08:11:34.133Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1",
++        "o2"
++      ],
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178"
++    },
++    {
++      "at": "2026-11-11T08:11:42.597Z",
++      "event": "proof_failed",
++      "obligation": "o2",
++      "subject": "sha256:96069c87ec2b6bbbcd8f77c2cb40e43f11c9c4e3996316d0b39fd81e5d7234f0"
++    },
++    {
++      "at": "2026-11-11T08:11:42.918Z",
++      "event": "deferred",
++      "obligation": "o2",
++      "by": "unknown",
++      "subject": "sha256:96069c87ec2b6bbbcd8f77c2cb40e43f11c9c4e3996316d0b39fd81e5d7234f0"
++    }
++  ],
++  "deferrals": [
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:f5d9db1816d445dbaef91692269e47203d942a8886ec84a131a7e1d76b7d74f3",
++      "subject": "sha256:96069c87ec2b6bbbcd8f77c2cb40e43f11c9c4e3996316d0b39fd81e5d7234f0",
++      "by": "unknown",
++      "at": "2026-11-11T08:11:42.918Z",
++      "to": "ci-approval",
++      "reason": "the old tests pass on the new code; a person must review the test change (test.js: an added line resets the exit code or handles process exit): without planted bugs (guard.mutants is 0) POCP can't show the tests still catch what they caught. For an automatic check, use deep mode (pocp init --deep, guard.mutants above 0)"
++    }
++  ]
++}
+diff --git a/index.js b/index.js
+index 5686e5b..e7823ca 100644
+--- a/index.js
++++ b/index.js
+@@ -44,10 +44,18 @@ export default async function pMap(
+ 		};
+ 
+ 		const reject = reason => {
++			if (isResolved) {
++				return;
++			}
++
+ 			isRejected = true;
+ 			isResolved = true;
+ 			reject_(reason);
+ 			cleanup();
++
++			if (!isIterableDone) {
++				closeIterator(iterator);
++			}
+ 		};
+ 
+ 		if (signal) {
+@@ -285,16 +293,18 @@ export function pMapIterable(
+ 				// Stop pulling input once the consumer stops iterating, otherwise pending skipped mappers keep spawning work.
+ 				isDone = true;
+ 
+-				// Close the source so it can release its resources, like `for await` does.
+-				// Not awaited so a source that is blocked in `next()` cannot block the consumer from stopping.
+-				(async () => {
+-					try {
+-						await iterator.return?.();
+-					} catch {}
+-				})();
++				closeIterator(iterator);
+ 			}
+ 		},
+ 	};
+ }
+ 
+ export const pMapSkip = Symbol('skip');
++
++// Close the source so it can release its resources, like `for await` does.
++// Callers must not await this so a source that is blocked in `next()` cannot block them.
++async function closeIterator(iterator) {
++	try {
++		await iterator.return?.();
++	} catch {}
++}
+diff --git a/test.js b/test.js
+index 9f1187e..143292f 100644
+--- a/test.js
++++ b/test.js
+@@ -1117,3 +1117,115 @@ test('pMapIterable - a source blocked in `next()` does not block the consumer fr
+ 
+ 	t.true(end() < 100);
+ });
++
++test('closes the source iterator when a mapper rejects', async t => {
++	let isSourceClosed = false;
++
++	async function * source() {
++		try {
++			for (let index = 0; index < 100; index++) {
++				yield index;
++			}
++		} finally {
++			isSourceClosed = true;
++		}
++	}
++
++	await t.throwsAsync(pMap(source(), async value => {
++		if (value === 1) {
++			throw new Error('mapper error');
++		}
++
++		await delay(10);
++		return value;
++	}, {concurrency: 2}), {message: 'mapper error'});
++
++	await delay(10);
++	t.true(isSourceClosed);
++});
++
++test('closes the source iterator when aborted', async t => {
++	let returnCallCount = 0;
++
++	const iterable = {
++		[Symbol.iterator]() {
++			let index = 0;
++			return {
++				next: () => ({done: false, value: index++}),
++				return() {
++					returnCallCount++;
++					return {done: true, value: undefined};
++				},
++			};
++		},
++	};
++
++	const abortController = new AbortController();
++
++	setTimeout(() => {
++		abortController.abort();
++	}, 50);
++
++	await t.throwsAsync(pMap(iterable, () => delay(1000), {concurrency: 2, signal: abortController.signal}), {name: 'AbortError'});
++	t.is(returnCallCount, 1);
++});
++
++test('does not close the source iterator when it completes', async t => {
++	let returnCallCount = 0;
++
++	const iterable = {
++		[Symbol.iterator]() {
++			let index = 0;
++			return {
++				next: () => ({done: index === 3, value: index++}),
++				return() {
++					returnCallCount++;
++					return {done: true, value: undefined};
++				},
++			};
++		},
++	};
++
++	t.deepEqual(await pMap(iterable, async value => value, {concurrency: 2}), [0, 1, 2]);
++	t.is(returnCallCount, 0);
++
++	await t.throwsAsync(pMap(iterable, async () => {
++		throw new Error('mapper error');
++	}, {concurrency: 2, stopOnError: false}), {instanceOf: AggregateError});
++	t.is(returnCallCount, 0);
++});
++
++test.serial('a source `return()` that rejects does not affect the `pMap` rejection', async t => {
++	const iterable = {
++		[Symbol.asyncIterator]() {
++			let index = 0;
++			return {
++				async next() {
++					return {done: false, value: index++};
++				},
++				async return() {
++					throw new Error('return failed');
++				},
++			};
++		},
++	};
++
++	const unhandledRejections = [];
++	const onUnhandledRejection = error => {
++		unhandledRejections.push(error);
++	};
++
++	process.on('unhandledRejection', onUnhandledRejection);
++
++	try {
++		await t.throwsAsync(pMap(iterable, async () => {
++			throw new Error('mapper error');
++		}, {concurrency: 2}), {message: 'mapper error'});
++
++		await delay(50);
++	} finally {
++		process.off('unhandledRejection', onUnhandledRejection);
++	}
++
++	t.deepEqual(unhandledRejections, []);
++});

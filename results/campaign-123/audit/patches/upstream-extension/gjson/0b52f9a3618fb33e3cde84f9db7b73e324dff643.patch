@@ -1,0 +1,33 @@
+diff --git a/gjson.go b/gjson.go
+index 58c6cbc..279649e 100644
+--- a/gjson.go
++++ b/gjson.go
+@@ -761,7 +761,7 @@ func parseArrayPath(path string) (r arrayPathResult) {
+ 						// bad query, end now
+ 						break
+ 					}
+-					if len(value) > 2 && value[0] == '"' &&
++					if len(value) >= 2 && value[0] == '"' &&
+ 						value[len(value)-1] == '"' {
+ 						value = value[1 : len(value)-1]
+ 						if vesc {
+diff --git a/gjson_test.go b/gjson_test.go
+index a088556..306940f 100644
+--- a/gjson_test.go
++++ b/gjson_test.go
+@@ -2261,3 +2261,15 @@ func TestNaNInf(t *testing.T) {
+ 	})
+ 
+ }
++
++func TestEmptyValueQuery(t *testing.T) {
++	// issue: https://github.com/tidwall/gjson/issues/246
++	assert(t, Get(
++		`["ig","","tw","fb","tw","ig","tw"]`,
++		`#(!="")#`).Raw ==
++		`["ig","tw","fb","tw","ig","tw"]`)
++	assert(t, Get(
++		`["ig","","tw","fb","tw","ig","tw"]`,
++		`#(!=)#`).Raw ==
++		`["ig","tw","fb","tw","ig","tw"]`)
++}

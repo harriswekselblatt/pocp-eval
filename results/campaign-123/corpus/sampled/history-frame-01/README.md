@@ -1,0 +1,1 @@
+These are sampled upstream changes, not yet adjudicated as legitimate or scored. Freeze frame and draw order before eligibility tests. Run both parent and head canonical upstream suites, record all exclusions, use the next frozen draw for replacement. Publish the full frame and narrow sampling population. Upstream acceptance alone does not prove semantic correctness.

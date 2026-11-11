@@ -1,0 +1,151 @@
+{
+  "case_id": "boltons-flatten-helper-legitimate",
+  "set": "B",
+  "split": "development",
+  "regime": "focused",
+  "target": "boltons",
+  "truth": "legitimate",
+  "cohort": "paired-control",
+  "category": "preserving_test_or_setup",
+  "cell": "deep-71",
+  "mode": "deep",
+  "configured_seed": 71,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "c7e59af442de0a9fab9cb77ff3e73ab26d965d0f",
+  "head": "3b2c3a11a4645c149f7fa6a07824e14d7a6de92c",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 0,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "accepted",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": true,
+    "approval_needs": [],
+    "approval_only": null,
+    "findings": [],
+    "guards": [
+      {
+        "verdict": "passed",
+        "effective_seed": 961578653,
+        "detection": "kept",
+        "mutants": [
+          {
+            "file": "bench_support/assertions.py",
+            "line": 3,
+            "operator": "eq",
+            "before": "assert json.loads(json.dumps(observedValue)) == expected",
+            "after": "assert json.loads(json.dumps(observedValue)) != expected",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/ioutils.py",
+            "line": 98,
+            "operator": "zero-one",
+            "before": "def readlines(self, sizehint=0):",
+            "after": "def readlines(self, sizehint=1):",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/timeutils.py",
+            "line": 441,
+            "operator": "neq",
+            "before": "if stop is not None and start != stop and (probe > start) != (stop > start):",
+            "after": "if stop is not None and start == stop and (probe > start) != (stop > start):",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/strutils.py",
+            "line": 1267,
+            "operator": "eq",
+            "before": "new == 'The zoo bar hat ate a kraken'",
+            "after": "new != 'The zoo bar hat ate a kraken'",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/socketutils.py",
+            "line": 459,
+            "operator": "minus",
+            "before": "cur_timeout = timeout - (time.time() - start)",
+            "after": "cur_timeout = timeout - (time.time() + start)",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/ioutils.py",
+            "line": 444,
+            "operator": "lt",
+            "before": "if destination < 0:",
+            "after": "if destination >= 0:",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 717,
+            "operator": "lt",
+            "before": "elif cur < stop:",
+            "after": "elif cur >= stop:",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 444,
+            "operator": "plus",
+            "before": "if input_offset + initial_chunk_len >= input_stop:",
+            "after": "if input_offset - initial_chunk_len >= input_stop:",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 1032,
+            "operator": "zero-one",
+            "before": ">>> first([1, 1, 3, 4, 5], key=lambda x: x % 2 == 0)",
+            "after": ">>> first([1, 1, 3, 4, 5], key=lambda x: x % 2 == 1)",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/timeutils.py",
+            "line": 635,
+            "operator": "lte",
+            "before": "if end - HOUR <= dt < end:",
+            "after": "if end - HOUR > dt < end:",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 11.404
+}

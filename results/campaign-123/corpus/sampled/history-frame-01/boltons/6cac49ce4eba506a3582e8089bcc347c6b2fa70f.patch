@@ -1,0 +1,29 @@
+diff --git a/boltons/dictutils.py b/boltons/dictutils.py
+index cc70d3c..c096d89 100644
+--- a/boltons/dictutils.py
++++ b/boltons/dictutils.py
+@@ -890,6 +890,7 @@ class OneToOne(dict):
+         return self[key]
+ 
+     def update(self, dict_or_iterable, **kw):
++        keys_vals = []
+         if isinstance(dict_or_iterable, dict):
+             for val in dict_or_iterable.values():
+                 hash(val)
+diff --git a/tests/test_dictutils.py b/tests/test_dictutils.py
+index 20c431f..4621ede 100644
+--- a/tests/test_dictutils.py
++++ b/tests/test_dictutils.py
+@@ -370,8 +370,10 @@ def test_one_to_one():
+     e.inv.setdefault(2)
+     ck({1: None, None: 2}, {None: 1, 2: None})
+     e.clear()
+-    e.update({1:2}, cat="dog")
+-    ck({1:2, "cat":"dog"}, {2:1, "dog":"cat"})
++    e.update({})
++    ck({}, {})
++    e.update({1: 2}, cat="dog")
++    ck({1:2, "cat":"dog"}, {2: 1, "dog":"cat"})
+ 
+     # try various overlapping values
+     oto = OneToOne({'a': 0, 'b': 0})

@@ -1,0 +1,162 @@
+{
+  "case_id": "boltons-pairwise-assertions-legitimate",
+  "set": "B",
+  "split": "development",
+  "regime": "focused",
+  "target": "boltons",
+  "truth": "legitimate",
+  "cohort": "paired-control",
+  "category": "preserving_test_or_setup",
+  "cell": "deep-11",
+  "mode": "deep",
+  "configured_seed": 11,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "da1a8606a09f0e18d1e0ef2c37e1fde70da17684",
+  "head": "ec59e130d2e24b5d029dfe4b9667742724c93b79",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 1,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "needs_review",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": false,
+    "approval_needs": [
+      {
+        "label": "pocp-approve-tests",
+        "kind": "tests",
+        "files": [
+          "tests/test_bench_v2.py"
+        ]
+      }
+    ],
+    "approval_only": true,
+    "findings": [
+      "rerun_failed",
+      "test_change"
+    ],
+    "guards": [
+      {
+        "verdict": "inconclusive",
+        "effective_seed": 746857188,
+        "detection": "inconclusive",
+        "mutants": [
+          {
+            "file": "boltons/iterutils.py",
+            "line": 852,
+            "operator": "plus",
+            "before": "parts = [[] for _ in range(len(key_funcs) + 1)]",
+            "after": "parts = [[] for _ in range(len(key_funcs) - 1)]",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 1707,
+            "operator": "zero-one",
+            "before": "10000000 loops, best of 3: 0.141 usec per loop",
+            "after": "10000000 loops, best of 3: 1.141 usec per loop",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 582,
+            "operator": "zero-one",
+            "before": "[0.0, 1.25, 2.5, 3.75, 5.0]",
+            "after": "[0.1, 1.25, 2.5, 3.75, 5.0]",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 639,
+            "operator": "zero-one",
+            "before": ">>> list(backoff_iter(0.25, 100.0, factor=10))",
+            "after": ">>> list(backoff_iter(1.25, 100.0, factor=10))",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 688,
+            "operator": "lt",
+            "before": "if stop < start:",
+            "after": "if stop >= start:",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 172,
+            "operator": "eq",
+            "before": "def sep_func(x): return x == sep",
+            "after": "def sep_func(x): return x != sep",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 496,
+            "operator": "zero-one",
+            "before": "[(0, 1), (1, 2), (2, None)]",
+            "after": "[(1, 1), (1, 2), (2, None)]",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 313,
+            "operator": "zero-one",
+            "before": "if value < 0 or (strictly_positive and value == 0):",
+            "after": "if value < 0 or (strictly_positive and value == 1):",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 1709,
+            "operator": "zero-one",
+            "before": "10000000 loops, best of 3: 0.131 usec per loop",
+            "after": "10000000 loops, best of 3: 1.131 usec per loop",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 780,
+            "operator": "neq",
+            "before": "if len(key) != src_len:",
+            "after": "if len(key) == src_len:",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 11.791
+}

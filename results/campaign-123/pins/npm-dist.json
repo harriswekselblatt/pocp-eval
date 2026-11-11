@@ -1,0 +1,23 @@
+{
+  "shasum": "7570dfc4e032d97fb3e5d19c06b179bab1becf3a",
+  "tarball": "https://registry.npmjs.org/proof-of-change/-/proof-of-change-1.2.2.tgz",
+  "fileCount": 99,
+  "integrity": "sha512-uENhjm9xKNh93bBx4rAYkx8HEXCza9uoMPXrJ7v5zTc20d8L8d8hs/v2rpE2Es0H+xWDfhsCR+Cajmj8k7cOHA==",
+  "signatures": [
+    {
+      "sig": "MEUCIBDot1C4cinGi3X1NY+cMfuZfmXvat354BXZmisr+WENAiEAu8NsYaoUVGpGpTA6kme0MLuqllITejPeMAOwu0qJs0w=",
+      "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+    },
+    {
+      "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+      "sig": "MEUCIQCRk0DZKClCoqbjuGIlMUucprRXGRNQFXYfm6jLPf9CXwIgU/sUOR4GZ9g82vx42Y4WAMPpVC1KMv6COdV18vKXInY="
+    }
+  ],
+  "attestations": {
+    "url": "https://registry.npmjs.org/-/npm/v1/attestations/proof-of-change@1.2.2",
+    "provenance": {
+      "predicateType": "https://slsa.dev/provenance/v1"
+    }
+  },
+  "unpackedSize": 877148
+}

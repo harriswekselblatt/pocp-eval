@@ -1,0 +1,161 @@
+{
+  "case_id": "boltons-unique-assertions-legitimate",
+  "set": "Acontrol",
+  "split": "development",
+  "regime": "focused",
+  "target": "boltons",
+  "truth": "legitimate",
+  "cohort": null,
+  "category": null,
+  "cell": "deep-71",
+  "mode": "deep",
+  "configured_seed": 71,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "fa97ff1a6fe5e5fa8694d1666b259312493875c3",
+  "head": "9fe6d8ae54125feb0c7513c68a3e8b1b743b9aa4",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 1,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "needs_review",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": false,
+    "approval_needs": [
+      {
+        "label": "pocp-approve-tests",
+        "kind": "tests",
+        "files": [
+          "tests/test_bench_v2.py"
+        ]
+      }
+    ],
+    "approval_only": true,
+    "findings": [
+      "test_change"
+    ],
+    "guards": [
+      {
+        "verdict": "inconclusive",
+        "effective_seed": 1586080487,
+        "detection": "inconclusive",
+        "mutants": [
+          {
+            "file": "boltons/iterutils.py",
+            "line": 598,
+            "operator": "times",
+            "before": "ret = [None] * count",
+            "after": "ret = [None] / count",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 708,
+            "operator": "lt",
+            "before": "while count == 'repeat' or i < count:",
+            "after": "while count == 'repeat' or i >= count:",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 568,
+            "operator": "times",
+            "before": "stop, start = start * 1.0, stop * 1.0",
+            "after": "stop, start = start / 1.0, stop * 1.0",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 638,
+            "operator": "zero-one",
+            "before": "[1.0, 2.0, 4.0, 8.0, 10.0, 10.0, 10.0, 10.0]",
+            "after": "[1.0, 2.0, 4.1, 8.0, 10.0, 10.0, 10.0, 10.0]",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 687,
+            "operator": "gte",
+            "before": "raise ValueError('expected stop >= 0')",
+            "after": "raise ValueError('expected stop < 0')",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 388,
+            "operator": "neq",
+            "before": "if len(allowed) != len(chunk):",
+            "after": "if len(allowed) == len(chunk):",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 568,
+            "operator": "times",
+            "before": "stop, start = start * 1.0, stop * 1.0",
+            "after": "stop, start = start * 1.0, stop / 1.0",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 635,
+            "operator": "zero-one",
+            "before": ">>> list(backoff_iter(1.0, 10.0, count=5))",
+            "after": ">>> list(backoff_iter(1.1, 10.0, count=5))",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 553,
+            "operator": "zero-one",
+            "before": "def xfrange(stop, start=None, step=1.0):",
+            "after": "def xfrange(stop, start=None, step=1.1):",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 1021,
+            "operator": "zero-one",
+            "before": ">>> first([0, False, None, [], ()], default='ohai')",
+            "after": ">>> first([1, False, None, [], ()], default='ohai')",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 22.654
+}

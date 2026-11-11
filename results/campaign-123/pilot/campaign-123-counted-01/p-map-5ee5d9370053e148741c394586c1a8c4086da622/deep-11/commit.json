@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "git",
+    "commit",
+    "-qm",
+    "p-map-5ee5d9370053e148741c394586c1a8c4086da622 deep-11"
+  ],
+  "exit": 0,
+  "execution": "completed",
+  "seconds": 1.0663414580048993,
+  "stdout": "",
+  "stderr": "pocp: gate passed (1 packet(s) proven for sha256:8249ec2688c5)\n  CI requires human approval for this commit:\n    what: CI configuration changed (.github/workflows/main.yml); CI will ask a maintainer to approve it\n      why: a change cannot approve a loosening of the rules that judge it.\n      next: a maintainer adds the `pocp-approve-policy` label to the pull request   (needs a person)\n    Do not squash, force-push, rewrite history or commit with --no-verify to get past this: push the commit as it is and ask for the approval.\n"
+}

@@ -1,0 +1,932 @@
+{
+  "status": "B selection frozen pending preregistration; no POCP outcome used for any selection",
+  "spec": {
+    "path": "corpus/GAP-FILL-SPEC-01.md",
+    "sha256": "a38bfafb8b6867e76552f304c90e97db521e73a089f78e24a7b29d15191a73b0"
+  },
+  "inputs_sha256": {
+    "corpus/legitimate-selection-01.json": "e318848693de3bbe47496b95a2cc1375161546cc7b3b3162b09b138987445fb8",
+    "corpus/gapfill-history-01-selection.json": "ec8378af8d93510eb706c84bbf0ba9dbe704bd0f40177850051fa071e6cefb89",
+    "audit/constructed-01-blind.reviewed.json": "d635c13f964e78a3050552709b6ff0768cfdd33758d2cf6b4ea752971d9abcd1",
+    "audit/constructed-02-blind.reviewed.json": "87376e7d3f3b3a9f9e8e39858dcbdfcb2b0e00a825e89b6857dd43d98ea72b64"
+  },
+  "cohort_counts": {
+    "original-sampled": 40,
+    "paired-control": 24,
+    "extension": 23,
+    "gap-fill-history-01": 4,
+    "constructed-01": 11,
+    "constructed-02": 6
+  },
+  "unique_patch_clusters": 100,
+  "category_mix": {
+    "p-map": {
+      "intentional_behavior_and_test": 6,
+      "added_test": 13,
+      "preserving_test_or_setup": 9,
+      "source_only": 8
+    },
+    "boltons": {
+      "added_test": 10,
+      "intentional_behavior_and_test": 6,
+      "other": 3,
+      "source_only": 8,
+      "preserving_test_or_setup": 9
+    },
+    "gjson": {
+      "intentional_behavior_and_test": 8,
+      "added_test": 8,
+      "other": 4,
+      "source_only": 8,
+      "preserving_test_or_setup": 8
+    }
+  },
+  "category_shortfalls": {
+    "p-map": {},
+    "boltons": {},
+    "gjson": {}
+  },
+  "selected": [
+    {
+      "id": "p-map-4875dee68524a42fabfaa13796fb9484c8c7bb89",
+      "repository": "p-map",
+      "cohort": "original-sampled",
+      "primary_category": "intentional_behavior_and_test",
+      "patch_cluster_id": "6942530674acd9031c656fe2bd886a7cf423de1f460d0352482d0edcb15b3e8d",
+      "confidence": "high"
+    },
+    {
+      "id": "p-map-1dc1d1f97512f69daabfcd917dc5802a5d79914e",
+      "repository": "p-map",
+      "cohort": "original-sampled",
+      "primary_category": "added_test",
+      "patch_cluster_id": "5f9ce0a110a81a4714e88c73fc205fe80a61b751f557b10ede63aa13a11e27c3",
+      "confidence": "high"
+    },
+    {
+      "id": "p-map-10768330ebf3e210b237cb168b75ba2a13ecf666",
+      "repository": "p-map",
+      "cohort": "original-sampled",
+      "primary_category": "added_test",
+      "patch_cluster_id": "147611425a802a39e26f8c9b5413138ef34370026bce1409b28d208aea2f3e5d",
+      "confidence": "high"
+    },
+    {
+      "id": "p-map-c82bd07b4e15e207086ccdbb87bbd7d57776e163",
+      "repository": "p-map",
+      "cohort": "original-sampled",
+      "primary_category": "added_test",
+      "patch_cluster_id": "2c82d9753f34838e0c6454aab5b4c72fb71e86a928a03672adfa4b0a7eb001fe",
+      "confidence": "high"
+    },
+    {
+      "id": "p-map-595754b2400ce504ca91b4731981abda7dbf2c92",
+      "repository": "p-map",
+      "cohort": "original-sampled",
+      "primary_category": "intentional_behavior_and_test",
+      "patch_cluster_id": "17abf4d03c5bc5b0edc4251abf63971e1c0fbcb6b59fd4ebe82b65e398b62f65",
+      "confidence": "medium"
+    },
+    {
+      "id": "p-map-735d80e928f083c9399e5f741eb1b3cabd0ac1ba",
+      "repository": "p-map",
+      "cohort": "original-sampled",
+      "primary_category": "preserving_test_or_setup",
+      "patch_cluster_id": "44fb820aa0acb96bf310518f542d238e279667fea70109185a2a94561727b1e7",
+      "confidence": "medium"
+    },
+    {
+      "id": "p-map-5ee5d9370053e148741c394586c1a8c4086da622",
+      "repository": "p-map",
+      "cohort": "original-sampled",
+      "primary_category": "source_only",
+      "patch_cluster_id": "e0be815a8eeab0cae586b108a76b2451e313e2d45beafba235d94c5021dfaac2",
+      "confidence": "high"
+    },
+    {
+      "id": "p-map-94eb5320b45b51c980c8896f68171b5808b832e7",
+      "repository": "p-map",
+      "cohort": "original-sampled",
+      "primary_category": "added_test",
+      "patch_cluster_id": "f3bfa8dd0bacf8aacb871bba982e1a8b4de041fa96f90c6856293eb08c964cf0",
+      "confidence": "high"
+    },
+    {
+      "id": "p-map-7c5cee7db0c6b2e3355e5598e05caaa9a02c7872",
+      "repository": "p-map",
+      "cohort": "original-sampled",
+      "primary_category": "added_test",
+      "patch_cluster_id": "d40cd4cbc7773330949b6416e6d475fa268b4122cf184d06b87a1feb86e82275",
+      "confidence": "high"
+    },
+    {
+      "id": "p-map-669fdc68b8443f153184916f9deba226cd7e6a38",
+      "repository": "p-map",
+      "cohort": "original-sampled",
+      "primary_category": "added_test",
+      "patch_cluster_id": "fca7f1f11c00da5af898e864e0003775363d61bbfc0ba6384de4f377804f78af",
+      "confidence": "high"
+    },
+    {
+      "id": "p-map-9c48f07c38e6f8e9ed2e09884ed21a2536d4f4ef",
+      "repository": "p-map",
+      "cohort": "original-sampled",
+      "primary_category": "added_test",
+      "patch_cluster_id": "d1d2d5789b99bc1fc282463497a0da00b1ac5ad5622b9d665787d05512ea6931",
+      "confidence": "high"
+    },
+    {
+      "id": "p-map-91ef8d1958b64dfcc2f9dfe7cda4beab8dc5c518",
+      "repository": "p-map",
+      "cohort": "original-sampled",
+      "primary_category": "source_only",
+      "patch_cluster_id": "df017a587e9dcd15b8b38766ef1467310c64d24ec2059b65fd915210ae505e2a",
+      "confidence": "medium"
+    },
+    {
+      "id": "p-map-354e035d38cdbef4bef7125cb6f524341c966370",
+      "repository": "p-map",
+      "cohort": "original-sampled",
+      "primary_category": "added_test",
+      "patch_cluster_id": "40a2d9dc13730de51fda105fa2ab355037200c0c95c25a6bc079a0ca342b5f64",
+      "confidence": "high"
+    },
+    {
+      "id": "p-map-keyed-assertions-legitimate",
+      "repository": "p-map",
+      "cohort": "paired-control",
+      "primary_category": "preserving_test_or_setup",
+      "patch_cluster_id": "1ef88e411f769084668e55b0a492dd8bb79ba689cc00808f6e2ef76708e9eb24",
+      "confidence": "high"
+    },
+    {
+      "id": "p-map-mapping-assertions-legitimate",
+      "repository": "p-map",
+      "cohort": "paired-control",
+      "primary_category": "preserving_test_or_setup",
+      "patch_cluster_id": "71015ebe6cf070c481cb9d93ef1a32832248738094f70ed8c70cd37b0ed429d8",
+      "confidence": "high"
+    },
+    {
+      "id": "p-map-keyed-helper-legitimate",
+      "repository": "p-map",
+      "cohort": "paired-control",
+      "primary_category": "preserving_test_or_setup",
+      "patch_cluster_id": "a57c18735fc203da6d7011471c470970281ab3bdcde251f15b319c2f4bfba923",
+      "confidence": "high"
+    },
+    {
+      "id": "p-map-mapping-helper-legitimate",
+      "repository": "p-map",
+      "cohort": "paired-control",
+      "primary_category": "preserving_test_or_setup",
+      "patch_cluster_id": "a57c18735fc203da6d7011471c470970281ab3bdcde251f15b319c2f4bfba923",
+      "confidence": "high"
+    },
+    {
+      "id": "p-map-settled-helper-legitimate",
+      "repository": "p-map",
+      "cohort": "paired-control",
+      "primary_category": "preserving_test_or_setup",
+      "patch_cluster_id": "a57c18735fc203da6d7011471c470970281ab3bdcde251f15b319c2f4bfba923",
+      "confidence": "high"
+    },
+    {
+      "id": "p-map-mapping-fixture-legitimate",
+      "repository": "p-map",
+      "cohort": "paired-control",
+      "primary_category": "preserving_test_or_setup",
+      "patch_cluster_id": "53760067d0bf1304621aab7b0fc04fe83346dfdc01c672740b8304b18094f3a8",
+      "confidence": "high"
+    },
+    {
+      "id": "p-map-settled-fixture-legitimate",
+      "repository": "p-map",
+      "cohort": "paired-control",
+      "primary_category": "preserving_test_or_setup",
+      "patch_cluster_id": "d843eb1bb5314b5610d779d11d3fe7f70fe4077ce76235adf4f8a65f87488299",
+      "confidence": "high"
+    },
+    {
+      "id": "p-map-settled-runner-legitimate",
+      "repository": "p-map",
+      "cohort": "paired-control",
+      "primary_category": "preserving_test_or_setup",
+      "patch_cluster_id": "9b578fd801c53c54b91d514419493313ff875452060e9f68e89762cbbe173d6d",
+      "confidence": "high"
+    },
+    {
+      "id": "p-map-df88787528aab893c3ddbede2ddadf31133909b5",
+      "repository": "p-map",
+      "cohort": "extension",
+      "primary_category": "intentional_behavior_and_test",
+      "patch_cluster_id": "6b4d78b8bbe23124c40046ff02f1615694c86419a3ca3e213dd58daafe178950",
+      "confidence": "high"
+    },
+    {
+      "id": "p-map-4b5f9e7b0f6b94eb725ea7bbacb267ebc3c92e20",
+      "repository": "p-map",
+      "cohort": "extension",
+      "primary_category": "added_test",
+      "patch_cluster_id": "9cc4bb50d3fdc171b6b714b0c84c23034529107d6d6d5948c8bedf98acc474d8",
+      "confidence": "high"
+    },
+    {
+      "id": "p-map-e7c2ecb113e8988165a6798630e4e9c2cdeb9d1b",
+      "repository": "p-map",
+      "cohort": "extension",
+      "primary_category": "added_test",
+      "patch_cluster_id": "bf9bc1900d9addc8433c3c1f42f5c03c357d226e9aead52a0140584fce7db5e6",
+      "confidence": "high"
+    },
+    {
+      "id": "p-map-65e893e306f97fc4fbf1f12d126ba3141dafde48",
+      "repository": "p-map",
+      "cohort": "extension",
+      "primary_category": "source_only",
+      "patch_cluster_id": "eb9f2e9661f4fea98c47884f8e2c8ba8a0c11fcebd819995607d33140b271cb8",
+      "confidence": "medium"
+    },
+    {
+      "id": "boltons-c1c25da365cf14878cf5317147e7a09b5d124df5",
+      "repository": "boltons",
+      "cohort": "original-sampled",
+      "primary_category": "added_test",
+      "patch_cluster_id": "c126029a3719771b60f05fa52555d993d1e020820ecf26b103c376251c9ab647",
+      "confidence": "high"
+    },
+    {
+      "id": "boltons-efff866a3b66fdafc817894390742e1d8bc025e5",
+      "repository": "boltons",
+      "cohort": "original-sampled",
+      "primary_category": "added_test",
+      "patch_cluster_id": "fdc7ec27c7912717a49145d1c91c820256d70c4325b3bc6e01d02a6ee41ad2a3",
+      "confidence": "high"
+    },
+    {
+      "id": "boltons-49f381eedbdcd695f7ed95110ebb1088582de7f3",
+      "repository": "boltons",
+      "cohort": "original-sampled",
+      "primary_category": "intentional_behavior_and_test",
+      "patch_cluster_id": "9f6b10df45676d7fbbb47f33497f6b07a077f0275f68897fa75dd322aa4268dd",
+      "confidence": "medium"
+    },
+    {
+      "id": "boltons-5df26592c29b9561d122640868ba0522cbc1e20d",
+      "repository": "boltons",
+      "cohort": "original-sampled",
+      "primary_category": "added_test",
+      "patch_cluster_id": "8a7605bb50f236dd3cbcdf01746fe954f469b771f1f51473364cf97019d1e422",
+      "confidence": "high"
+    },
+    {
+      "id": "boltons-80f9eb4296daadad85db5ef6c0fd14e2f3602fa4",
+      "repository": "boltons",
+      "cohort": "original-sampled",
+      "primary_category": "other",
+      "patch_cluster_id": "f737f55d57790419966097bd305255e7acc3474b56447dd05ef987fb0a2e1acc",
+      "confidence": "high"
+    },
+    {
+      "id": "boltons-207651ee6055aabd0d9cdeac2e00140cdc208d44",
+      "repository": "boltons",
+      "cohort": "original-sampled",
+      "primary_category": "source_only",
+      "patch_cluster_id": "00037d33f29bab79a93b9d851797c7f1a753036047092376f39f11f340281d47",
+      "confidence": "high"
+    },
+    {
+      "id": "boltons-4332b35a278d694f30c99881faa61cde695c7a96",
+      "repository": "boltons",
+      "cohort": "original-sampled",
+      "primary_category": "other",
+      "patch_cluster_id": "d419dda63b749f0d4c7fb14b5e73b30fd2bd5da19df871ddab3063c99d998fd6",
+      "confidence": "high"
+    },
+    {
+      "id": "boltons-c0d580df13d3d2d3d99a7769828afc7176127d90",
+      "repository": "boltons",
+      "cohort": "original-sampled",
+      "primary_category": "source_only",
+      "patch_cluster_id": "f8593a09e9146c1a04b901d303271111658d19023784b3af92b62c34b68fb83d",
+      "confidence": "medium"
+    },
+    {
+      "id": "boltons-8a2a93d8213e1fa4da30c8167ab1a18caad17a17",
+      "repository": "boltons",
+      "cohort": "original-sampled",
+      "primary_category": "added_test",
+      "patch_cluster_id": "c8a041ceb54b4f8e49ff68fcb03c0ea1a51725b2f5db3d106f4786ce363e93b6",
+      "confidence": "high"
+    },
+    {
+      "id": "boltons-4e5faa3d7e4008d89e0d8bf1ea87b6d9a061a16d",
+      "repository": "boltons",
+      "cohort": "original-sampled",
+      "primary_category": "intentional_behavior_and_test",
+      "patch_cluster_id": "ec5260b58aefc867af663cc7bb082d516194c5161f3675188a55f5adf8e0c3e5",
+      "confidence": "medium"
+    },
+    {
+      "id": "boltons-ead236e278ca0466bf468de746b5960fb12d7e5b",
+      "repository": "boltons",
+      "cohort": "original-sampled",
+      "primary_category": "added_test",
+      "patch_cluster_id": "40e59a49ceb350116c3c10d7569a413c16f28d613403174299c1b7cf37fd6a9b",
+      "confidence": "high"
+    },
+    {
+      "id": "boltons-d0a284fc7ef1aebceb54798600d73be4eeb76ed8",
+      "repository": "boltons",
+      "cohort": "original-sampled",
+      "primary_category": "added_test",
+      "patch_cluster_id": "10f21b1c5c80da015eeb9787975ac6a38779cfaa71855252731c089dd7c2e639",
+      "confidence": "high"
+    },
+    {
+      "id": "boltons-d45cc414e33aa4e08a73e0993574df4397e2e9db",
+      "repository": "boltons",
+      "cohort": "original-sampled",
+      "primary_category": "added_test",
+      "patch_cluster_id": "caeb8a657fdc4704d4882e3bd088c3a8b945fa5756abaf2e411eef0113877fe4",
+      "confidence": "high"
+    },
+    {
+      "id": "boltons-fb464991b718ca7bfabc14555c2947f25e7c79c9",
+      "repository": "boltons",
+      "cohort": "original-sampled",
+      "primary_category": "other",
+      "patch_cluster_id": "1d59f67bc72440925408664a638d34ac544ab114b1f39eb7a34c88a4249e6e68",
+      "confidence": "high"
+    },
+    {
+      "id": "boltons-first-assertions-legitimate",
+      "repository": "boltons",
+      "cohort": "paired-control",
+      "primary_category": "preserving_test_or_setup",
+      "patch_cluster_id": "393f2d6bef945e271d55cb10267e1e3a31eec382feb4f7fbdd2e6bb71e6db9fb",
+      "confidence": "high"
+    },
+    {
+      "id": "boltons-flatten-assertions-legitimate",
+      "repository": "boltons",
+      "cohort": "paired-control",
+      "primary_category": "preserving_test_or_setup",
+      "patch_cluster_id": "426d77b11c3d225cffee904c579e8141000b3428ab7ce49f640a2e8773c26971",
+      "confidence": "high"
+    },
+    {
+      "id": "boltons-pairwise-assertions-legitimate",
+      "repository": "boltons",
+      "cohort": "paired-control",
+      "primary_category": "preserving_test_or_setup",
+      "patch_cluster_id": "d0b07d1db12a218ab538ce3235c447ff1bc33ece03912d59333f96d02c4ed212",
+      "confidence": "high"
+    },
+    {
+      "id": "boltons-first-helper-legitimate",
+      "repository": "boltons",
+      "cohort": "paired-control",
+      "primary_category": "preserving_test_or_setup",
+      "patch_cluster_id": "a4d55f5e23a2030086a65dcccbdb7a4c6cc290c8fc7486e4ba02b440d70cb465",
+      "confidence": "high"
+    },
+    {
+      "id": "boltons-flatten-helper-legitimate",
+      "repository": "boltons",
+      "cohort": "paired-control",
+      "primary_category": "preserving_test_or_setup",
+      "patch_cluster_id": "a4d55f5e23a2030086a65dcccbdb7a4c6cc290c8fc7486e4ba02b440d70cb465",
+      "confidence": "high"
+    },
+    {
+      "id": "boltons-pairwise-helper-legitimate",
+      "repository": "boltons",
+      "cohort": "paired-control",
+      "primary_category": "preserving_test_or_setup",
+      "patch_cluster_id": "a4d55f5e23a2030086a65dcccbdb7a4c6cc290c8fc7486e4ba02b440d70cb465",
+      "confidence": "high"
+    },
+    {
+      "id": "boltons-unique-helper-legitimate",
+      "repository": "boltons",
+      "cohort": "paired-control",
+      "primary_category": "preserving_test_or_setup",
+      "patch_cluster_id": "a4d55f5e23a2030086a65dcccbdb7a4c6cc290c8fc7486e4ba02b440d70cb465",
+      "confidence": "high"
+    },
+    {
+      "id": "boltons-pairwise-runner-legitimate",
+      "repository": "boltons",
+      "cohort": "paired-control",
+      "primary_category": "preserving_test_or_setup",
+      "patch_cluster_id": "96ca68523aa97992fa8ea8edad7cc3fea781ae4468826dd864f5e3bf3737d0fe",
+      "confidence": "high"
+    },
+    {
+      "id": "boltons-967864f89791509f9eb36b22b4579d36b72a6df2",
+      "repository": "boltons",
+      "cohort": "extension",
+      "primary_category": "intentional_behavior_and_test",
+      "patch_cluster_id": "2c8b0f0a0fe81fdb349fdf684b189924ac4f7eed0cb83f36596214ae63f32784",
+      "confidence": "high"
+    },
+    {
+      "id": "boltons-bba729bf4539afc993a6410bdf8074b28707004a",
+      "repository": "boltons",
+      "cohort": "extension",
+      "primary_category": "source_only",
+      "patch_cluster_id": "945e2acf40c632a122f4ac3dcd5abd2490536cecd7c28d1047446aaa08ba92ae",
+      "confidence": "medium"
+    },
+    {
+      "id": "boltons-471dad1c6e8182baa3337f118a359ef8f768bf3f",
+      "repository": "boltons",
+      "cohort": "extension",
+      "primary_category": "source_only",
+      "patch_cluster_id": "5d1feeb5567231d5b674e0efb5e9a87043be88effb1ec22d20267e0c730ed1a2",
+      "confidence": "high"
+    },
+    {
+      "id": "boltons-8c3fc2850693eacd2f2f8c95e7581adbb65b1269",
+      "repository": "boltons",
+      "cohort": "extension",
+      "primary_category": "added_test",
+      "patch_cluster_id": "9318ac9bac10b7c5be5b35492a4e299ede407eef132eb2c7c26a51077b48e69d",
+      "confidence": "high"
+    },
+    {
+      "id": "boltons-9decba3e5736f61180eec274420ced0e572e30e6",
+      "repository": "boltons",
+      "cohort": "extension",
+      "primary_category": "added_test",
+      "patch_cluster_id": "36625fcb386e4cb97977f79fa63c3e0fe4e5aaee1029ec951188409010a19491",
+      "confidence": "high"
+    },
+    {
+      "id": "boltons-25e8d6b18ecba58d358c8f46a5cea554f99bdfb2",
+      "repository": "boltons",
+      "cohort": "extension",
+      "primary_category": "added_test",
+      "patch_cluster_id": "f4bf807d604fd19558de15160c98f9926dc1b740e2d30770cc4f87eebd743157",
+      "confidence": "high"
+    },
+    {
+      "id": "boltons-580a9c2d12755d472e534ca3e277e8f7e3ada49e",
+      "repository": "boltons",
+      "cohort": "extension",
+      "primary_category": "preserving_test_or_setup",
+      "patch_cluster_id": "cee9f14fe6146ac3c8dcd9a86bc3704e988cbd88b424c6c9e8fe275d421e5e35",
+      "confidence": "high"
+    },
+    {
+      "id": "gjson-d9710733f0d72d6d4ae982364577eec743ccf96c",
+      "repository": "gjson",
+      "cohort": "original-sampled",
+      "primary_category": "intentional_behavior_and_test",
+      "patch_cluster_id": "d81b5648e6aff686032e254f8745e9559c3b7d46c4f0c21090f1fae347e553ab",
+      "confidence": "medium"
+    },
+    {
+      "id": "gjson-d7c940e59395fdcaff4584cb442b2e7808f6711e",
+      "repository": "gjson",
+      "cohort": "original-sampled",
+      "primary_category": "added_test",
+      "patch_cluster_id": "6d071a80c70fc7a0cc051981a48b1eb8dd9b7a82a2f2934da0ab903b4d0359c1",
+      "confidence": "high"
+    },
+    {
+      "id": "gjson-b91555e1d1c1469240d3eac9398a78112c1d4779",
+      "repository": "gjson",
+      "cohort": "original-sampled",
+      "primary_category": "other",
+      "patch_cluster_id": "e722aac79630344c4ed7e84c53266eb7e025061198e09c889815d96984157db4",
+      "confidence": "high"
+    },
+    {
+      "id": "gjson-65353b6d52a31e808c07f9d4651b9473525dcd88",
+      "repository": "gjson",
+      "cohort": "original-sampled",
+      "primary_category": "source_only",
+      "patch_cluster_id": "51be37dbe0fed68bfc4493f56c8675cac9807767f74b017ff48ee5390c03a899",
+      "confidence": "medium"
+    },
+    {
+      "id": "gjson-1c258afe092579736a0b738c52a7b0cf6fdd17df",
+      "repository": "gjson",
+      "cohort": "original-sampled",
+      "primary_category": "intentional_behavior_and_test",
+      "patch_cluster_id": "06e8f263d8e7f3e4fb040561c4e6f7f79295d85ffbac4993570476390064666c",
+      "confidence": "medium"
+    },
+    {
+      "id": "gjson-5100d6926a4bea3753fc72352fca70654f04cedc",
+      "repository": "gjson",
+      "cohort": "original-sampled",
+      "primary_category": "source_only",
+      "patch_cluster_id": "a52a8b6d23c155439613b19b16a45bab2073fd2d0b23eefb973a834682ca3ab1",
+      "confidence": "medium"
+    },
+    {
+      "id": "gjson-75046d2a7a897e7226567313883d6a4bbe33622f",
+      "repository": "gjson",
+      "cohort": "original-sampled",
+      "primary_category": "other",
+      "patch_cluster_id": "2d2e6a95438aa443a76cc2fa810636a2bf8253127e6e6a062057854153dca5e4",
+      "confidence": "medium"
+    },
+    {
+      "id": "gjson-e4fc67c92aeebf2089fabc7872f010e340d105db",
+      "repository": "gjson",
+      "cohort": "original-sampled",
+      "primary_category": "intentional_behavior_and_test",
+      "patch_cluster_id": "8f6ca64d5e2b8d0f06e6915a0fb57736afe0e3d0cd7c16a1854a71844f705f63",
+      "confidence": "high"
+    },
+    {
+      "id": "gjson-6b6af2ad5e5c06e6cc3968ca7a2c0f9c20da8924",
+      "repository": "gjson",
+      "cohort": "original-sampled",
+      "primary_category": "intentional_behavior_and_test",
+      "patch_cluster_id": "8a492a3bb5db400c65bdc9d5fb5a56a7c3f27dee1db8c61e418676927318565a",
+      "confidence": "low"
+    },
+    {
+      "id": "gjson-c5e72cdf74dff23857243dd662c465b810891c21",
+      "repository": "gjson",
+      "cohort": "original-sampled",
+      "primary_category": "added_test",
+      "patch_cluster_id": "317fcfe436368bcc786a32ffd515a44405f41c12bf0cad93c9b13efd1c8fa602",
+      "confidence": "high"
+    },
+    {
+      "id": "gjson-133f42ce2d99d6adb6b5885af6d20939dc4b6fe9",
+      "repository": "gjson",
+      "cohort": "original-sampled",
+      "primary_category": "source_only",
+      "patch_cluster_id": "245f8cfd1bec5882303676432580874776f07df72f9a5ec320357649aef41b29",
+      "confidence": "medium"
+    },
+    {
+      "id": "gjson-bf4efcb3c18d1825b2988603dea5909140a5302b",
+      "repository": "gjson",
+      "cohort": "original-sampled",
+      "primary_category": "added_test",
+      "patch_cluster_id": "74d0c3a76c69eaf2fb6ef49b5bf404f75886440acfef94628be7acccdc032963",
+      "confidence": "high"
+    },
+    {
+      "id": "gjson-6ac9851f5247bff94b0df2262ea60096fc0afb83",
+      "repository": "gjson",
+      "cohort": "original-sampled",
+      "primary_category": "intentional_behavior_and_test",
+      "patch_cluster_id": "97585b468c5663bc12106bfe105369831815f0b3e8f685d5c008ae1aa67c48a5",
+      "confidence": "medium"
+    },
+    {
+      "id": "gjson-bool-assertions-legitimate",
+      "repository": "gjson",
+      "cohort": "paired-control",
+      "primary_category": "preserving_test_or_setup",
+      "patch_cluster_id": "ff1dd0fc8e5aa3d1e3fe4d7209dc042152530bde3c2eee3824405581a412de07",
+      "confidence": "high"
+    },
+    {
+      "id": "gjson-float-assertions-legitimate",
+      "repository": "gjson",
+      "cohort": "paired-control",
+      "primary_category": "preserving_test_or_setup",
+      "patch_cluster_id": "50e887508e4181981cb689ca0f2d1eeb6d72815ffb38400159edc1fa931e2b77",
+      "confidence": "high"
+    },
+    {
+      "id": "gjson-bool-helper-legitimate",
+      "repository": "gjson",
+      "cohort": "paired-control",
+      "primary_category": "preserving_test_or_setup",
+      "patch_cluster_id": "1821867170d4faba742609aea1bece4a90167deac706fb7eacf2549ca0ddde82",
+      "confidence": "high"
+    },
+    {
+      "id": "gjson-float-helper-legitimate",
+      "repository": "gjson",
+      "cohort": "paired-control",
+      "primary_category": "preserving_test_or_setup",
+      "patch_cluster_id": "1821867170d4faba742609aea1bece4a90167deac706fb7eacf2549ca0ddde82",
+      "confidence": "high"
+    },
+    {
+      "id": "gjson-float-fixture-legitimate",
+      "repository": "gjson",
+      "cohort": "paired-control",
+      "primary_category": "preserving_test_or_setup",
+      "patch_cluster_id": "a4677bb3aa34804824fa4044ce965be028aca4255330a23ed7ec098d35fd6cc9",
+      "confidence": "high"
+    },
+    {
+      "id": "gjson-bool-runner-legitimate",
+      "repository": "gjson",
+      "cohort": "paired-control",
+      "primary_category": "preserving_test_or_setup",
+      "patch_cluster_id": "81419c46a89b0669b0fc014ef0940a247cd96e15544ad5dc5363e8dcfe59abc3",
+      "confidence": "high"
+    },
+    {
+      "id": "gjson-float-runner-legitimate",
+      "repository": "gjson",
+      "cohort": "paired-control",
+      "primary_category": "preserving_test_or_setup",
+      "patch_cluster_id": "81419c46a89b0669b0fc014ef0940a247cd96e15544ad5dc5363e8dcfe59abc3",
+      "confidence": "high"
+    },
+    {
+      "id": "gjson-string-runner-legitimate",
+      "repository": "gjson",
+      "cohort": "paired-control",
+      "primary_category": "preserving_test_or_setup",
+      "patch_cluster_id": "81419c46a89b0669b0fc014ef0940a247cd96e15544ad5dc5363e8dcfe59abc3",
+      "confidence": "high"
+    },
+    {
+      "id": "gjson-8ac92b3ad3d722c654049a79a0fad0b9b6b98fde",
+      "repository": "gjson",
+      "cohort": "extension",
+      "primary_category": "source_only",
+      "patch_cluster_id": "605b0fce7349d280c65fee427684dc6d32375366f8af51cfe10768df349b62d7",
+      "confidence": "high"
+    },
+    {
+      "id": "gjson-97ec619cbe9546828dc45cb856a5938dcf3d74e1",
+      "repository": "gjson",
+      "cohort": "extension",
+      "primary_category": "source_only",
+      "patch_cluster_id": "159b6e946f5c521a116496ee70457b22121c3abd69e6fbbadee0b2a83a7409ed",
+      "confidence": "medium"
+    },
+    {
+      "id": "gjson-a825fa56d6aca9ba0ac2a103cba8041c898b7d39",
+      "repository": "gjson",
+      "cohort": "extension",
+      "primary_category": "added_test",
+      "patch_cluster_id": "cf26eae4b458212161a39a13066cbb8ee90bbc64f9875865a14d431a5fdfec82",
+      "confidence": "high"
+    },
+    {
+      "id": "gjson-c34bf81952c067718854115564f8e55978be5e1d",
+      "repository": "gjson",
+      "cohort": "extension",
+      "primary_category": "added_test",
+      "patch_cluster_id": "497b620e2da061ea31e67ca3c66f0a512c67ea6ad6030dd77c7da0115729319b",
+      "confidence": "high"
+    },
+    {
+      "id": "gjson-9378d3bb93e20854e1677e0e0248e1d71ae5712f",
+      "repository": "gjson",
+      "cohort": "extension",
+      "primary_category": "added_test",
+      "patch_cluster_id": "f9c80014ff30a51f74614eaca19b0967a928558ba7d22a522e9fe6d04d9fa8ca",
+      "confidence": "high"
+    },
+    {
+      "id": "gjson-77a57fda87dca6d0d7d4627d512a630f89a91c96",
+      "repository": "gjson",
+      "cohort": "extension",
+      "primary_category": "added_test",
+      "patch_cluster_id": "4d4768312a9eb17d528994a51741b075978705f6e68d526114846cf52b1ae961",
+      "confidence": "high"
+    },
+    {
+      "id": "gjson-89b19799ff300e5eec9e39e674fa1b1366f5fade",
+      "repository": "gjson",
+      "cohort": "extension",
+      "primary_category": "added_test",
+      "patch_cluster_id": "b23a72cab9abd5befc3540df9045574597fb723a49abef77b72477b21c191b43",
+      "confidence": "high"
+    },
+    {
+      "id": "gjson-eaae8c63338d6d71ea606b788243ca1c5b39a068",
+      "repository": "gjson",
+      "cohort": "extension",
+      "primary_category": "intentional_behavior_and_test",
+      "patch_cluster_id": "0d50c30626944f27133fdd49485921a5de43ec2287310ef245607b2bb7df67ee",
+      "confidence": "medium"
+    },
+    {
+      "id": "gjson-4d230282c0e3bf42fa509147d27d7e8dcc3d3bad",
+      "repository": "gjson",
+      "cohort": "extension",
+      "primary_category": "other",
+      "patch_cluster_id": "d0783c5a7d859c1cde6ebabbe87fb66cd8c3df5d622a125713fc0e44562e9e8b",
+      "confidence": "high"
+    },
+    {
+      "id": "gjson-d10932a0d0b5f1618759b6259b05f7cb7bea0c25",
+      "repository": "gjson",
+      "cohort": "extension",
+      "primary_category": "intentional_behavior_and_test",
+      "patch_cluster_id": "671bfff9d100c5085d6230257f8daabd2ebe10fdfd14877cd3996e4e28371441",
+      "confidence": "medium"
+    },
+    {
+      "id": "gjson-b877bd43b1d96874785aef827d9c8bbb6132f43e",
+      "repository": "gjson",
+      "cohort": "extension",
+      "primary_category": "intentional_behavior_and_test",
+      "patch_cluster_id": "e5fe947c49e07bc506fdc5cad68441b566b7351cbcfddfbee3b8f16eb2cc04ee",
+      "confidence": "medium"
+    },
+    {
+      "id": "gjson-12826915de207decacf091e11d828329cd234eae",
+      "repository": "gjson",
+      "cohort": "extension",
+      "primary_category": "other",
+      "patch_cluster_id": "08f46dc1420467deaf9f5d361a1e4f26c05a7ba042de76018d6b801d40b1b7ff",
+      "confidence": "high"
+    },
+    {
+      "id": "boltons-ce60604a463eb2c1f84b7756f38d909f404bd1d2",
+      "repository": "boltons",
+      "cohort": "gap-fill-history-01",
+      "primary_category": "source_only",
+      "patch_cluster_id": "90342d9b5fb57a6dcfda6815542e911b6f5586c27897f17452f871a2824ad582",
+      "confidence": "high"
+    },
+    {
+      "id": "boltons-673e010d0afabc2f530e8d1f67f0a47c37afa7f4",
+      "repository": "boltons",
+      "cohort": "gap-fill-history-01",
+      "primary_category": "intentional_behavior_and_test",
+      "patch_cluster_id": "cb9c03878e82972c4bf633d0d66ab87aecd168499b2d45b5fb2078fe65aa364d",
+      "confidence": "high"
+    },
+    {
+      "id": "boltons-7b577b0f3cc7adc2418733ce5c7dcdf6af82187d",
+      "repository": "boltons",
+      "cohort": "gap-fill-history-01",
+      "primary_category": "intentional_behavior_and_test",
+      "patch_cluster_id": "3e86ce3b072a96c72927df75d8ae400a13ef46b8c8251d42d44c1da9107d06ba",
+      "confidence": "medium"
+    },
+    {
+      "id": "gjson-82f549e6ee78eb18d7536692d608a531c35f0458",
+      "repository": "gjson",
+      "cohort": "gap-fill-history-01",
+      "primary_category": "source_only",
+      "patch_cluster_id": "4e24875ff78e3991dd138fd282fc301484ca24bc26de102007b92f9fab63a47b",
+      "confidence": "high"
+    },
+    {
+      "id": "pmap-k01",
+      "construction_id": "C-SO4",
+      "repository": "p-map",
+      "cohort": "constructed-01",
+      "primary_category": "source_only",
+      "patch_cluster_id": "cb2ff6e95b16d16a4253ce4d035324530f97cc4ec5cfab1f3085e35ea826ea6c",
+      "confidence": "high"
+    },
+    {
+      "id": "pmap-k02",
+      "construction_id": "C-AT3",
+      "repository": "p-map",
+      "cohort": "constructed-01",
+      "primary_category": "added_test",
+      "patch_cluster_id": "2fefdf586cfed90f7cdd0bd4a527dae38de2672d8e9fc4eee260ec7702932bbd",
+      "confidence": "high"
+    },
+    {
+      "id": "pmap-k03",
+      "construction_id": "C-IB2",
+      "repository": "p-map",
+      "cohort": "constructed-01",
+      "primary_category": "intentional_behavior_and_test",
+      "patch_cluster_id": "3418ea2a51d585aa12f53b21bd39f1c1e8e3c95c08bbad788435d1aaafcd5e21",
+      "confidence": "medium"
+    },
+    {
+      "id": "pmap-k04",
+      "construction_id": "C-AT1",
+      "repository": "p-map",
+      "cohort": "constructed-01",
+      "primary_category": "added_test",
+      "patch_cluster_id": "e636ff4df4a7eea673492fe8fd666792ac87b8616cc8f2f9898729736fa0b495",
+      "confidence": "high"
+    },
+    {
+      "id": "pmap-k05",
+      "construction_id": "C-AT2",
+      "repository": "p-map",
+      "cohort": "constructed-01",
+      "primary_category": "added_test",
+      "patch_cluster_id": "fffc4b4940beaf71b0cdd1bee0833b2b4baa0b18f214ce3951e4ba3a4cbdd8d3",
+      "confidence": "high"
+    },
+    {
+      "id": "pmap-k06",
+      "construction_id": "C-SO1",
+      "repository": "p-map",
+      "cohort": "constructed-01",
+      "primary_category": "source_only",
+      "patch_cluster_id": "c6258d5d8f2a85f735bad6cf177516897a4d32223f55f610211add6016f4c56c",
+      "confidence": "high"
+    },
+    {
+      "id": "pmap-k07",
+      "construction_id": "C-SO3",
+      "repository": "p-map",
+      "cohort": "constructed-01",
+      "primary_category": "source_only",
+      "patch_cluster_id": "107063ae423e77ec09c70eb2ff1ae2a286a9b3e366e0f8498d808774c7a6b3e7",
+      "confidence": "high"
+    },
+    {
+      "id": "pmap-k08",
+      "construction_id": "C-SO2",
+      "repository": "p-map",
+      "cohort": "constructed-01",
+      "primary_category": "source_only",
+      "patch_cluster_id": "3e419a7da9835f011d6131ce2ff80b52ee727fd565cde3c84311e207d249b4cd",
+      "confidence": "high"
+    },
+    {
+      "id": "pmap-k09",
+      "construction_id": "C-SO5",
+      "repository": "p-map",
+      "cohort": "constructed-01",
+      "primary_category": "source_only",
+      "patch_cluster_id": "8483a7927c7f1e37ef8121a27b8aa78cb75cdaa9e1d23fe314becfeb8541728f",
+      "confidence": "high"
+    },
+    {
+      "id": "pmap-k10",
+      "construction_id": "C-IB1",
+      "repository": "p-map",
+      "cohort": "constructed-01",
+      "primary_category": "intentional_behavior_and_test",
+      "patch_cluster_id": "09458534aef4ea29c81b54a2f256e7b268d1b1a801d0bffdcfd9aa294f8e85c3",
+      "confidence": "high"
+    },
+    {
+      "id": "pmap-k11",
+      "construction_id": "C-IB3",
+      "repository": "p-map",
+      "cohort": "constructed-01",
+      "primary_category": "intentional_behavior_and_test",
+      "patch_cluster_id": "2e3949cea04d3a4e1fbc833bd05ab2683175b9e034907165493291fd39387cb8",
+      "confidence": "medium"
+    },
+    {
+      "id": "gjson-k01",
+      "construction_id": "G-SO2",
+      "repository": "gjson",
+      "cohort": "constructed-02",
+      "primary_category": "source_only",
+      "patch_cluster_id": "4535aa62988c660b2170977fa23952ae96b9edb2831a7d9dabcd58be9063c445",
+      "confidence": "high"
+    },
+    {
+      "id": "boltons-k02",
+      "construction_id": "B-SO2",
+      "repository": "boltons",
+      "cohort": "constructed-02",
+      "primary_category": "source_only",
+      "patch_cluster_id": "ec32d9d3866897018e497f8dbf8c256621b2e7d82ff82cdf4c219f844ee38c60",
+      "confidence": "high"
+    },
+    {
+      "id": "boltons-k03",
+      "construction_id": "B-IB1",
+      "repository": "boltons",
+      "cohort": "constructed-02",
+      "primary_category": "intentional_behavior_and_test",
+      "patch_cluster_id": "1e8b21fe633ed94acce85c6a765e0e2636f127f7a349038e0438ecb652787808",
+      "confidence": "high"
+    },
+    {
+      "id": "boltons-k04",
+      "construction_id": "B-SO1",
+      "repository": "boltons",
+      "cohort": "constructed-02",
+      "primary_category": "source_only",
+      "patch_cluster_id": "b9b3b12eae67c94eaa413e98070d5dce7f1cbfa5dc009ae38565b633673362f2",
+      "confidence": "high"
+    },
+    {
+      "id": "gjson-k05",
+      "construction_id": "G-SO1",
+      "repository": "gjson",
+      "cohort": "constructed-02",
+      "primary_category": "source_only",
+      "patch_cluster_id": "efaccb5e0e688315eccaac89288027085c5ea42285c245a702d7ec70ec2c824b",
+      "confidence": "high"
+    },
+    {
+      "id": "boltons-k06",
+      "construction_id": "B-SO3",
+      "repository": "boltons",
+      "cohort": "constructed-02",
+      "primary_category": "source_only",
+      "patch_cluster_id": "8b52fd761babf4fe8ac45b9b33594a074d0c95e407b2eea4d211215ec7db2856",
+      "confidence": "high"
+    }
+  ]
+}

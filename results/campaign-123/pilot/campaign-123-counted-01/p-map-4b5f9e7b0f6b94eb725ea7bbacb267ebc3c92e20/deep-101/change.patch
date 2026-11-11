@@ -1,0 +1,40 @@
+diff --git a/index.js b/index.js
+index 15f3da2..3b77096 100644
+--- a/index.js
++++ b/index.js
+@@ -53,6 +53,11 @@ export default async function pMap(
+ 			(async () => {
+ 				try {
+ 					const element = await nextItem.value;
++
++					if (isRejected) {
++						return;
++					}
++
+ 					result[index] = await mapper(element, index);
+ 					resolvingCount--;
+ 					next();
+diff --git a/test.js b/test.js
+index 35d361a..e0e5da5 100644
+--- a/test.js
++++ b/test.js
+@@ -107,3 +107,19 @@ test('aggregate errors when stopOnError is false', async t => {
+ 	await t.throwsAsync(pMap(errorInput1, mapper, {concurrency: 1, stopOnError: false}), {instanceOf: AggregateError, message: /foo(.|\n)*bar/});
+ 	await t.throwsAsync(pMap(errorInput2, mapper, {concurrency: 1, stopOnError: false}), {instanceOf: AggregateError, message: /bar(.|\n)*foo/});
+ });
++
++test('do not run mapping after stop-on-error happened', async t => {
++	const input = [1, delay(300, {value: 2}), 3];
++	const mappedValues = [];
++	await t.throwsAsync(
++		pMap(input, async value => {
++			mappedValues.push(value);
++			if (value === 1) {
++				await delay(100);
++				throw new Error('Oops!');
++			}
++		})
++	);
++	await delay(500);
++	t.deepEqual(mappedValues, [1, 3]);
++});

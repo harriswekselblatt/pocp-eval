@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "node",
+    "<bench>/vendor/npm-pocp-1.2.3/package/bin/pocp.js",
+    "fix",
+    "--json"
+  ],
+  "exit": 143,
+  "execution": "timeout",
+  "seconds": 480.01868829200976,
+  "stdout": "",
+  "stderr": ""
+}

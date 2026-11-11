@@ -1,0 +1,161 @@
+{
+  "case_id": "boltons-673e010d0afabc2f530e8d1f67f0a47c37afa7f4",
+  "set": "B",
+  "split": "holdout",
+  "regime": "native",
+  "target": "boltons",
+  "truth": "legitimate",
+  "cohort": "gap-fill-history-01",
+  "category": "intentional_behavior_and_test",
+  "cell": "deep-47",
+  "mode": "deep",
+  "configured_seed": 47,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "df3584dd0e328949e634b8c0a6c681e05a96df1c",
+  "head": "7e48ce7b13e2ca09db17665ac97bcb4858f97f30",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 1,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "needs_review",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": false,
+    "approval_needs": [
+      {
+        "label": "pocp-approve-tests",
+        "kind": "tests",
+        "files": [
+          "tests/test_strutils.py"
+        ]
+      }
+    ],
+    "approval_only": true,
+    "findings": [
+      "test_change"
+    ],
+    "guards": [
+      {
+        "verdict": "inconclusive",
+        "effective_seed": 947489319,
+        "detection": "inconclusive",
+        "mutants": [
+          {
+            "file": "boltons/strutils.py",
+            "line": 1364,
+            "operator": "lte",
+            "before": "if max_len <= len(ellipsis):",
+            "after": "if max_len > len(ellipsis):",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/strutils.py",
+            "line": 1379,
+            "operator": "eq",
+            "before": "elif ch == '.' and not (end > 1 and text[end - 2].isdigit()",
+            "after": "elif ch != '.' and not (end > 1 and text[end - 2].isdigit()",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/strutils.py",
+            "line": 1376,
+            "operator": "minus",
+            "before": "ch = text[end - 1]",
+            "after": "ch = text[end + 1]",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/strutils.py",
+            "line": 1387,
+            "operator": "plus",
+            "before": "return text[:limit] + ellipsis",
+            "after": "return text[:limit] - ellipsis",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/strutils.py",
+            "line": 1370,
+            "operator": "plus",
+            "before": "cut_at = text.rfind(' ', 0, limit + 1)",
+            "after": "cut_at = text.rfind(' ', 0, limit - 1)",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/strutils.py",
+            "line": 1379,
+            "operator": "gt",
+            "before": "elif ch == '.' and not (end > 1 and text[end - 2].isdigit()",
+            "after": "elif ch == '.' and not (end <= 1 and text[end - 2].isdigit()",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/strutils.py",
+            "line": 1379,
+            "operator": "minus",
+            "before": "elif ch == '.' and not (end > 1 and text[end - 2].isdigit()",
+            "after": "elif ch == '.' and not (end > 1 and text[end + 2].isdigit()",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/strutils.py",
+            "line": 1375,
+            "operator": "zero-one",
+            "before": "while end > 0:",
+            "after": "while end > 1:",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/strutils.py",
+            "line": 1371,
+            "operator": "lte",
+            "before": "if cut_at <= 0:",
+            "after": "if cut_at > 0:",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/strutils.py",
+            "line": 1370,
+            "operator": "zero-one",
+            "before": "cut_at = text.rfind(' ', 0, limit + 1)",
+            "after": "cut_at = text.rfind(' ', 1, limit + 1)",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 30.502
+}

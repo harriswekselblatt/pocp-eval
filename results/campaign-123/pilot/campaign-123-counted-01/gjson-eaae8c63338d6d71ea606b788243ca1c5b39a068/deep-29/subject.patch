@@ -1,0 +1,378 @@
+diff --git a/.proof/packets/p-c42090e6.json b/.proof/packets/p-c42090e6.json
+new file mode 100644
+index 0000000..9af5b49
+--- /dev/null
++++ b/.proof/packets/p-c42090e6.json
+@@ -0,0 +1,177 @@
++{
++  "pocp": 1,
++  "id": "p-c42090e6",
++  "intent": "Change to gjson.go, gjson_test.go",
++  "touches": [
++    "gjson.go",
++    "gjson_test.go"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:runtime-suite"
++    },
++    {
++      "id": "o2",
++      "kind": "guard",
++      "files": [
++        "gjson_test.go"
++      ],
++      "mutants": 10,
++      "seed": 29,
++      "text": "Existing tests or test setup changed (gjson_test.go): the old tests still pass on the new code, and the new tests catch every sampled mutant the old ones caught",
++      "source": "guard:tests"
++    }
++  ],
++  "state": "open",
++  "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "policy_repo": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "opened_at": "2026-11-11T15:50:57.736Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:6ca1aa7c06d710f34a73e03af37d30c4355d2e2d370712eaaaef902ef059e960",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T15:50:58.181Z",
++      "duration_ms": 10652,
++      "stdout_sha256": "6fe38cab88a3094cc0831a17d44888bff6a58d4d3dfbed48d50c7f7385b0f6b2",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-b03c07b4",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": "dfff87a7de3ea43eb32e4297a35cbd7eb4819d36b877fd6559d69f812f326379"
++      }
++    },
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:8c9cb6ce3e56ec1f248507a24d8d7bdd94da241603a0ec2598020798ee372447",
++      "subject": "sha256:6ca1aa7c06d710f34a73e03af37d30c4355d2e2d370712eaaaef902ef059e960",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "kind": "guard",
++      "mode": "snapshot",
++      "passed": false,
++      "started_at": "2026-11-11T15:51:08.960Z",
++      "duration_ms": 13518,
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": "dfff87a7de3ea43eb32e4297a35cbd7eb4819d36b877fd6559d69f812f326379"
++      },
++      "guard": {
++        "pocp": 1,
++        "verdict": "behavior-changed",
++        "passed": false,
++        "summary": "the old tests fail on the new code (\"sh .bench/check.sh\" exit 1); failing: github.com/tidwall/gjson: behavior changed, so a person must approve it",
++        "base": "4532491cf9078b5439abb18f36a955091658d99a",
++        "checks": [
++          {
++            "id": "runtime-suite",
++            "run": "sh .bench/check.sh"
++          }
++        ],
++        "old_tests": {
++          "result": "fail",
++          "restored": [
++            "gjson_test.go"
++          ],
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": false,
++              "exit": 1,
++              "duration_ms": 2449,
++              "failed_tests": [
++                "github.com/tidwall/gjson"
++              ]
++            }
++          ]
++        },
++        "new_tests": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "reused": true,
++              "duration_ms": 0
++            }
++          ]
++        },
++        "baseline": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "exit": 0,
++              "duration_ms": 10478
++            }
++          ]
++        },
++        "detection": {
++          "result": "not-run",
++          "budget": 10,
++          "seed": 29
++        },
++        "duration_ms": 13518,
++        "checks_from": "rules"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T15:50:57.736Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T15:50:57.736Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1",
++        "o2"
++      ],
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178"
++    },
++    {
++      "at": "2026-11-11T15:51:22.521Z",
++      "event": "proof_failed",
++      "obligation": "o2",
++      "subject": "sha256:6ca1aa7c06d710f34a73e03af37d30c4355d2e2d370712eaaaef902ef059e960"
++    },
++    {
++      "at": "2026-11-11T15:51:22.848Z",
++      "event": "deferred",
++      "obligation": "o2",
++      "by": "unknown",
++      "subject": "sha256:6ca1aa7c06d710f34a73e03af37d30c4355d2e2d370712eaaaef902ef059e960"
++    }
++  ],
++  "deferrals": [
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:8c9cb6ce3e56ec1f248507a24d8d7bdd94da241603a0ec2598020798ee372447",
++      "subject": "sha256:6ca1aa7c06d710f34a73e03af37d30c4355d2e2d370712eaaaef902ef059e960",
++      "by": "unknown",
++      "at": "2026-11-11T15:51:22.848Z",
++      "to": "ci-approval",
++      "reason": "the old tests fail on the new code (\"sh .bench/check.sh\" exit 1); failing: github.com/tidwall/gjson: behavior changed, so a person must approve it"
++    }
++  ]
++}
+diff --git a/gjson.go b/gjson.go
+index 493a82c..f7d14d8 100644
+--- a/gjson.go
++++ b/gjson.go
+@@ -129,7 +129,13 @@ func (t Result) Int() int64 {
+ 	case True:
+ 		return 1
+ 	case String:
+-		n, _ := parseInt(t.Str)
++		n, ok := parseInt(t.Str)
++		if !ok {
++			f, err := strconv.ParseFloat(t.Str, 64)
++			if err == nil {
++				n = int64(f)
++			}
++		}
+ 		return n
+ 	case Number:
+ 		// try to directly convert the float64 to int64
+@@ -155,7 +161,13 @@ func (t Result) Uint() uint64 {
+ 	case True:
+ 		return 1
+ 	case String:
+-		n, _ := parseUint(t.Str)
++		n, ok := parseUint(t.Str)
++		if !ok {
++			f, err := strconv.ParseFloat(t.Str, 64)
++			if err == nil {
++				n = uint64(f)
++			}
++		}
+ 		return n
+ 	case Number:
+ 		// try to directly convert the float64 to uint64
+@@ -2764,42 +2776,53 @@ func ValidBytes(json []byte) bool {
+ 	return ok
+ }
+ 
+-func parseUint(s string) (n uint64, ok bool) {
++func parseUint(s string) (uint64, bool) {
+ 	var i int
+ 	if i == len(s) {
+ 		return 0, false
+ 	}
++	var n uint64
+ 	for ; i < len(s); i++ {
+-		if s[i] >= '0' && s[i] <= '9' {
+-			n = n*10 + uint64(s[i]-'0')
+-		} else {
++		if s[i] < '0' || s[i] > '9' {
+ 			return 0, false
+ 		}
++		next := n*10 + uint64(s[i]-'0')
++		if next < n {
++			goto overflow
++		}
++		n = next
+ 	}
+ 	return n, true
++overflow:
++	// check that the remaining characters are valid
++	for ; i < len(s); i++ {
++		if s[i] < '0' || s[i] > '9' {
++			return 0, false
++		}
++	}
++	return 18446744073709551615, true
+ }
+ 
+-func parseInt(s string) (n int64, ok bool) {
+-	var i int
++func parseInt(s string) (int64, bool) {
+ 	var sign bool
+ 	if len(s) > 0 && s[0] == '-' {
+ 		sign = true
+-		i++
++		s = s[1:]
+ 	}
+-	if i == len(s) {
++	n, ok := parseUint(s)
++	if !ok {
+ 		return 0, false
+ 	}
+-	for ; i < len(s); i++ {
+-		if s[i] >= '0' && s[i] <= '9' {
+-			n = n*10 + int64(s[i]-'0')
+-		} else {
+-			return 0, false
++	if sign {
++		if n > 9223372036854775808 {
++			return -9223372036854775808, true
+ 		}
++		return -int64(n), true
+ 	}
+-	if sign {
+-		return n * -1, true
++	if n > 9223372036854775807 {
++		return 9223372036854775807, true
+ 	}
+-	return n, true
++	return int64(n), true
+ }
+ 
+ // safeInt validates a given JSON number
+diff --git a/gjson_test.go b/gjson_test.go
+index 0d0a7ec..fa388f9 100644
+--- a/gjson_test.go
++++ b/gjson_test.go
+@@ -340,14 +340,12 @@ func TestPlus53BitInts(t *testing.T) {
+ 	assert(t, Get(json, "overflow_int53").Int() == 2251799813685248)
+ 	assert(t, Get(json, "min_uint64").Uint() == 0)
+ 	assert(t, Get(json, "max_uint64").Uint() == 18446744073709551615)
+-	// this next value overflows the max uint64 by one which will just
+-	// flip the number to zero
+-	assert(t, Get(json, "overflow_uint64").Int() == 0)
++	assert(t, Get(json, "overflow_uint64").Int() == math.MaxInt64)
++	assert(t, Get(json, "overflow_uint64").Uint() == math.MaxUint64)
+ 	assert(t, Get(json, "min_int64").Int() == -9223372036854775808)
+ 	assert(t, Get(json, "max_int64").Int() == 9223372036854775807)
+-	// this next value overflows the max int64 by one which will just
+-	// flip the number to the negative sign.
+-	assert(t, Get(json, "overflow_int64").Int() == -9223372036854775808)
++	assert(t, Get(json, "overflow_int64").Uint() == 9223372036854775808)
++	assert(t, Get(json, "overflow_int64").Int() == math.MaxInt64)
+ }
+ func TestIssue38(t *testing.T) {
+ 	// These should not fail, even though the unicode is invalid.
+@@ -2777,3 +2775,67 @@ func TestIter(t *testing.T) {
+ 	}
+ 
+ }
++
++func TestIntOverflow(t *testing.T) {
++	// https://github.com/tidwall/gjson/issues/394
++	var f float64
++
++	// Go ensures that float -> int overflows are clipped
++	f = 18446744073709551616.0
++	assert(t, uint64(f) == math.MaxUint64)
++	assert(t, int64(f) == math.MaxInt64)
++
++	f = -18446744073709551616.0
++	assert(t, uint64(f) == 0)
++	assert(t, int64(f) == math.MinInt64)
++
++	// Numbers
++	assert(t, Parse("18446744073709551613").Uint() == 18446744073709551613)
++	assert(t, Parse("18446744073709551614").Uint() == 18446744073709551614)
++	assert(t, Parse("18446744073709551615").Uint() == 18446744073709551615)
++	assert(t, Parse("18446744073709551616").Uint() == 18446744073709551615)
++	assert(t, Parse("18446744073709551616.0").Uint() == 18446744073709551615)
++	assert(t, Parse("18446744073709551616.1").Uint() == 18446744073709551615)
++	assert(t, Parse("18446744073709551617.1").Uint() == 18446744073709551615)
++	assert(t, Parse("9223372036854775805").Int() == 9223372036854775805)
++	assert(t, Parse("9223372036854775806").Int() == 9223372036854775806)
++	assert(t, Parse("9223372036854775807").Int() == 9223372036854775807)
++	assert(t, Parse("9223372036854775808").Int() == 9223372036854775807)
++	assert(t, Parse("9223372036854775809").Int() == 9223372036854775807)
++	assert(t, Parse("9223372036854775809.0").Int() == 9223372036854775807)
++	assert(t, Parse("9223372036854775809.1").Int() == 9223372036854775807)
++	assert(t, Parse("9223372036854775809.1").Int() == 9223372036854775807)
++	assert(t, Parse("-9223372036854775805").Int() == -9223372036854775805)
++	assert(t, Parse("-9223372036854775806").Int() == -9223372036854775806)
++	assert(t, Parse("-9223372036854775807").Int() == -9223372036854775807)
++	assert(t, Parse("-9223372036854775808").Int() == -9223372036854775808)
++	assert(t, Parse("-9223372036854775809").Int() == -9223372036854775808)
++	assert(t, Parse("-9223372036854775809.0").Int() == -9223372036854775808)
++	assert(t, Parse("-9223372036854775809.1").Int() == -9223372036854775808)
++	assert(t, Parse("-9223372036854775809.1").Int() == -9223372036854775808)
++
++	// Strings
++	assert(t, Parse(`"18446744073709551613"`).Uint() == 18446744073709551613)
++	assert(t, Parse(`"18446744073709551614"`).Uint() == 18446744073709551614)
++	assert(t, Parse(`"18446744073709551615"`).Uint() == 18446744073709551615)
++	assert(t, Parse(`"18446744073709551616"`).Uint() == 18446744073709551615)
++	assert(t, Parse(`"18446744073709551616.0"`).Uint() == 18446744073709551615)
++	assert(t, Parse(`"18446744073709551616.1"`).Uint() == 18446744073709551615)
++	assert(t, Parse(`"18446744073709551617.1"`).Uint() == 18446744073709551615)
++	assert(t, Parse(`"9223372036854775805"`).Int() == 9223372036854775805)
++	assert(t, Parse(`"9223372036854775806"`).Int() == 9223372036854775806)
++	assert(t, Parse(`"9223372036854775807"`).Int() == 9223372036854775807)
++	assert(t, Parse(`"9223372036854775808"`).Int() == 9223372036854775807)
++	assert(t, Parse(`"9223372036854775809"`).Int() == 9223372036854775807)
++	assert(t, Parse(`"9223372036854775809.0"`).Int() == 9223372036854775807)
++	assert(t, Parse(`"9223372036854775809.1"`).Int() == 9223372036854775807)
++	assert(t, Parse(`"9223372036854775809.1"`).Int() == 9223372036854775807)
++	assert(t, Parse(`"-9223372036854775805"`).Int() == -9223372036854775805)
++	assert(t, Parse(`"-9223372036854775806"`).Int() == -9223372036854775806)
++	assert(t, Parse(`"-9223372036854775807"`).Int() == -9223372036854775807)
++	assert(t, Parse(`"-9223372036854775808"`).Int() == -9223372036854775808)
++	assert(t, Parse(`"-9223372036854775809"`).Int() == -9223372036854775808)
++	assert(t, Parse(`"-9223372036854775809.0"`).Int() == -9223372036854775808)
++	assert(t, Parse(`"-9223372036854775809.1"`).Int() == -9223372036854775808)
++	assert(t, Parse(`"-9223372036854775809.1"`).Int() == -9223372036854775808)
++}

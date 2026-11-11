@@ -1,0 +1,368 @@
+diff --git a/.proof/packets/p-9643d951.json b/.proof/packets/p-9643d951.json
+new file mode 100644
+index 0000000..b12b663
+--- /dev/null
++++ b/.proof/packets/p-9643d951.json
+@@ -0,0 +1,259 @@
++{
++  "pocp": 1,
++  "id": "p-9643d951",
++  "intent": "Change to boltons/ecoutils.py, tests/test_ecoutils.py",
++  "touches": [
++    "boltons/ecoutils.py",
++    "tests/test_ecoutils.py"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:runtime-suite"
++    },
++    {
++      "id": "o2",
++      "kind": "guard",
++      "files": [
++        "tests/test_ecoutils.py"
++      ],
++      "mutants": 10,
++      "seed": 47,
++      "text": "Existing tests or test setup changed (tests/test_ecoutils.py): the old tests still pass on the new code, and the new tests catch every sampled mutant the old ones caught",
++      "source": "guard:tests"
++    }
++  ],
++  "state": "proven",
++  "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "policy_repo": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "opened_at": "2026-11-11T14:09:14.082Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:e775f26ac9167a0af672c29f57bd80444ceb3ccff6a6ba3a3486e923777b8b9e",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T14:09:14.450Z",
++      "duration_ms": 2107,
++      "stdout_sha256": "1f50fbcdc5af12eecbf940285abd85c1df3db6efadb07022f7add6cca5767069",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-26975d27",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      }
++    },
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:8f84fd08dae6e8dc8dc21b0b99226869716fafc635d0e600b0f676470836ca5a",
++      "subject": "sha256:e775f26ac9167a0af672c29f57bd80444ceb3ccff6a6ba3a3486e923777b8b9e",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "kind": "guard",
++      "mode": "snapshot",
++      "passed": true,
++      "started_at": "2026-11-11T14:09:16.672Z",
++      "duration_ms": 9784,
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      },
++      "guard": {
++        "pocp": 1,
++        "verdict": "passed",
++        "passed": true,
++        "summary": "the old tests pass on the new code, and the new tests catch all 4 of the 10 sampled mutants the old tests caught (seed 47)",
++        "base": "93c9e7b663645da2c2f7a167139caf75f0cf88b4",
++        "checks": [
++          {
++            "id": "runtime-suite",
++            "run": "sh .bench/check.sh"
++          }
++        ],
++        "old_tests": {
++          "result": "pass",
++          "restored": [
++            "tests/test_ecoutils.py"
++          ],
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "exit": 0,
++              "duration_ms": 2275
++            }
++          ]
++        },
++        "new_tests": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "reused": true,
++              "duration_ms": 0
++            }
++          ]
++        },
++        "baseline": {
++          "result": "not-run",
++          "runs": []
++        },
++        "detection": {
++          "result": "kept",
++          "budget": 10,
++          "seed": 47,
++          "sites": 1526,
++          "focus_sites": 0,
++          "files": 34,
++          "sampled": 10,
++          "old_caught": 4,
++          "new_caught": 4,
++          "lost": [],
++          "mutants": [
++            {
++              "file": "boltons/urlutils.py",
++              "line": 1487,
++              "operator": "zero-one",
++              "before": "OrderedMultiDict([(0, 2), (1, 2)])",
++              "after": "OrderedMultiDict([(1, 2), (1, 2)])",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/urlutils.py",
++              "line": 381,
++              "operator": "eq",
++              "before": "elif part == '..':",
++              "after": "elif part != '..':",
++              "focus": false,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "boltons/dictutils.py",
++              "line": 353,
++              "operator": "neq",
++              "before": "if len(other) != len(self):",
++              "after": "if len(other) == len(self):",
++              "focus": false,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "boltons/namedutils.py",
++              "line": 371,
++              "operator": "plus",
++              "before": "raise SyntaxError(e.msg + ':\\n' + class_definition)",
++              "after": "raise SyntaxError(e.msg - ':\\n' + class_definition)",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/strutils.py",
++              "line": 757,
++              "operator": "eq",
++              "before": "style = 'cmd' if sys.platform == 'win32' else 'sh'",
++              "after": "style = 'cmd' if sys.platform != 'win32' else 'sh'",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/funcutils.py",
++              "line": 99,
++              "operator": "plus",
++              "before": "result = '(' + ', '.join(specs) + ')'",
++              "after": "result = '(' + ', '.join(specs) - ')'",
++              "focus": false,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "boltons/fileutils.py",
++              "line": 507,
++              "operator": "zero-one",
++              "before": "I.e., 0 for the specified *directory* only, 1 for *directory*",
++              "after": "I.e., 1 for the specified *directory* only, 1 for *directory*",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/timeutils.py",
++              "line": 88,
++              "operator": "minus",
++              "before": "td = dt - EPOCH_AWARE",
++              "after": "td = dt + EPOCH_AWARE",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/dictutils.py",
++              "line": 380,
++              "operator": "eq",
++              "before": "return not (self == other)",
++              "after": "return not (self != other)",
++              "focus": false,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "boltons/setutils.py",
++              "line": 918,
++              "operator": "plus",
++              "before": "else:  # + +",
++              "after": "else:  # - +",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            }
++          ]
++        },
++        "duration_ms": 9784,
++        "checks_from": "rules"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T14:09:14.082Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T14:09:14.082Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1",
++        "o2"
++      ],
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178"
++    },
++    {
++      "at": "2026-11-11T14:09:26.550Z",
++      "event": "state",
++      "from": "open",
++      "to": "proven",
++      "subject": "sha256:e775f26ac9167a0af672c29f57bd80444ceb3ccff6a6ba3a3486e923777b8b9e"
++    }
++  ]
++}
+diff --git a/boltons/ecoutils.py b/boltons/ecoutils.py
+index 23fb25f..ee37f38 100644
+--- a/boltons/ecoutils.py
++++ b/boltons/ecoutils.py
+@@ -308,13 +308,17 @@ def get_profile(**kwargs):
+     if kwargs:
+         raise TypeError(f'unexpected keyword arguments: {kwargs.keys()!r}')
+     ret = {}
+-    try:
+-        ret['username'] = getpass.getuser()
+-    except Exception:
+-        ret['username'] = ''
++    # Values masked below are not looked up at all when scrubbing. Skip them.
++    if scrub:
++        ret['username'] = '-'
++    else:
++        try:
++            ret['username'] = getpass.getuser()
++        except Exception:
++            ret['username'] = ''
+     ret['guid'] = str(INSTANCE_ID)
+-    ret['hostname'] = socket.gethostname()
+-    ret['hostfqdn'] = socket.getfqdn()
++    ret['hostname'] = '-' if scrub else socket.gethostname()
++    ret['hostfqdn'] = '-' if scrub else socket.getfqdn()
+     uname = platform.uname()
+     ret['uname'] = {'system': uname[0],
+                     'node': uname[1],
+@@ -334,7 +338,7 @@ def get_profile(**kwargs):
+     ret['fs_encoding'] = sys.getfilesystemencoding()
+     ret['ulimit_soft'] = RLIMIT_FDS_SOFT
+     ret['ulimit_hard'] = RLIMIT_FDS_HARD
+-    ret['cwd'] = os.getcwd()
++    ret['cwd'] = '-' if scrub else os.getcwd()
+     ret['umask'] = oct(os.umask(os.umask(2))).rjust(3, '0')
+ 
+     ret['python'] = get_python_info()
+@@ -343,13 +347,9 @@ def get_profile(**kwargs):
+ 
+     if scrub:
+         # mask identifiable information
+-        ret['cwd'] = '-'
+-        ret['hostname'] = '-'
+-        ret['hostfqdn'] = '-'
+         ret['python']['bin'] = '-'
+         ret['python']['argv'] = '-'
+         ret['uname']['node'] = '-'
+-        ret['username'] = '-'
+ 
+     return ret
+ 
+diff --git a/tests/test_ecoutils.py b/tests/test_ecoutils.py
+index bac5693..3151464 100644
+--- a/tests/test_ecoutils.py
++++ b/tests/test_ecoutils.py
+@@ -1,4 +1,7 @@
++import os
++import socket
+ import sys
++
+ from boltons import ecoutils
+ 
+ 
+@@ -13,3 +16,39 @@ def test_scrub():
+     prof = ecoutils.get_profile(scrub=True)
+ 
+     assert prof['username'] == '-'
++    assert prof['hostname'] == '-'
++    assert prof['hostfqdn'] == '-'
++    assert prof['cwd'] == '-'
++    assert prof['uname']['node'] == '-'
++    assert prof['python']['bin'] == '-'
++    assert prof['python']['argv'] == '-'
++
++
++def test_scrub_does_not_resolve_the_host(monkeypatch):
++    def unreachable(*args):
++        raise AssertionError('scrubbed profile resolved the host name')
++
++    monkeypatch.setattr(socket, 'gethostname', unreachable)
++    monkeypatch.setattr(socket, 'getfqdn', unreachable)
++
++    prof = ecoutils.get_profile(scrub=True)
++
++    assert prof['hostname'] == '-'
++    assert prof['hostfqdn'] == '-'
++
++
++def test_scrub_does_not_read_the_cwd(monkeypatch):
++    calls = []
++    real_getcwd = os.getcwd
++
++    def recording_getcwd():
++        calls.append('getcwd')
++        return real_getcwd()
++
++    monkeypatch.setattr(os, 'getcwd', recording_getcwd)
++
++    prof = ecoutils.get_profile(scrub=True)
++
++    assert calls == []
++
++    assert prof['cwd'] == '-'

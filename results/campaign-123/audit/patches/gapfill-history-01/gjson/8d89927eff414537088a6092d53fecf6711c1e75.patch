@@ -1,0 +1,89 @@
+diff --git a/gjson.go b/gjson.go
+index f7d14d8..d620ec0 100644
+--- a/gjson.go
++++ b/gjson.go
+@@ -9,6 +9,7 @@ package gjson
+ 
+ import (
+ 	"iter"
++	"math"
+ 	"strconv"
+ 	"strings"
+ 	"time"
+@@ -133,7 +134,7 @@ func (t Result) Int() int64 {
+ 		if !ok {
+ 			f, err := strconv.ParseFloat(t.Str, 64)
+ 			if err == nil {
+-				n = int64(f)
++				n = f2i(f)
+ 			}
+ 		}
+ 		return n
+@@ -149,7 +150,27 @@ func (t Result) Int() int64 {
+ 			return i
+ 		}
+ 		// fallback to a standard conversion
+-		return int64(t.Num)
++		return f2i(t.Num)
++	}
++}
++
++func f2u(f float64) uint64 {
++	if f >= math.MaxUint64 {
++		return math.MaxUint64
++	} else if f < 0 {
++		return 0
++	} else {
++		return uint64(f)
++	}
++}
++
++func f2i(f float64) int64 {
++	if f >= math.MaxInt64 {
++		return math.MaxInt64
++	} else if f < math.MinInt64 {
++		return math.MinInt64
++	} else {
++		return int64(f)
+ 	}
+ }
+ 
+@@ -165,7 +186,7 @@ func (t Result) Uint() uint64 {
+ 		if !ok {
+ 			f, err := strconv.ParseFloat(t.Str, 64)
+ 			if err == nil {
+-				n = uint64(f)
++				n = f2u(f)
+ 			}
+ 		}
+ 		return n
+@@ -181,7 +202,7 @@ func (t Result) Uint() uint64 {
+ 			return u
+ 		}
+ 		// fallback to a standard conversion
+-		return uint64(t.Num)
++		return f2u(t.Num)
+ 	}
+ }
+ 
+diff --git a/gjson_test.go b/gjson_test.go
+index fa388f9..6ab9619 100644
+--- a/gjson_test.go
++++ b/gjson_test.go
+@@ -2778,16 +2778,6 @@ func TestIter(t *testing.T) {
+ 
+ func TestIntOverflow(t *testing.T) {
+ 	// https://github.com/tidwall/gjson/issues/394
+-	var f float64
+-
+-	// Go ensures that float -> int overflows are clipped
+-	f = 18446744073709551616.0
+-	assert(t, uint64(f) == math.MaxUint64)
+-	assert(t, int64(f) == math.MaxInt64)
+-
+-	f = -18446744073709551616.0
+-	assert(t, uint64(f) == 0)
+-	assert(t, int64(f) == math.MinInt64)
+ 
+ 	// Numbers
+ 	assert(t, Parse("18446744073709551613").Uint() == 18446744073709551613)

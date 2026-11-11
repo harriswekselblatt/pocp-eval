@@ -1,0 +1,11 @@
+{
+  "argv": [
+    "sh",
+    ".bench/check.sh"
+  ],
+  "exit": 0,
+  "execution": "completed",
+  "seconds": 0.07241954107303172,
+  "stdout": "BENCH_ACTUAL=[]\n",
+  "stderr": ""
+}

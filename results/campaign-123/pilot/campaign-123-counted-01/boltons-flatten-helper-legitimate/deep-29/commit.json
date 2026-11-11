@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "git",
+    "commit",
+    "-qm",
+    "boltons-flatten-helper-legitimate deep-29"
+  ],
+  "exit": 0,
+  "execution": "completed",
+  "seconds": 1.3055691249901429,
+  "stdout": "",
+  "stderr": "pocp: gate passed (1 packet(s) proven for sha256:5437d45a5402)\n"
+}

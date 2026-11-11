@@ -1,0 +1,1994 @@
+{
+  "target": "boltons",
+  "tip": "d31d821d56c8f7756af9c30a864077f2e5855321",
+  "unit": "upstream single-parent production-code commit",
+  "frame_rule": "Most recent 200 first-parent nonmerge commits reachable from pinned tip; production source touched; <=200 total added/deleted lines; <=3 source files; nonbinary",
+  "seed": 20261110,
+  "eligibility": "Executable green baselines and independent semantic review remain pending. Never exclude based on POCP verdict.",
+  "draw_order": [
+    {
+      "sha": "c1c25da365cf14878cf5317147e7a09b5d124df5",
+      "parent": "e66cade323f5c11cebb4bd0f099e634b245adccd",
+      "files": [
+        "boltons/mathutils.py",
+        "tests/test_mathutils.py"
+      ],
+      "source": [
+        "boltons/mathutils.py"
+      ],
+      "churn": 14,
+      "title": "Fix off-by-one in Bits length check",
+      "draw_order": 1,
+      "selection": "initial-14"
+    },
+    {
+      "sha": "ee3c660a6811acd5408d28a5da44fe0a94278834",
+      "parent": "9381c52b800a5eb85ab8549887987656c96efb16",
+      "files": [
+        "boltons/fileutils.py"
+      ],
+      "source": [
+        "boltons/fileutils.py"
+      ],
+      "churn": 8,
+      "title": "quick implementation of max_depth for boltons.fileutils.iter_find_files",
+      "draw_order": 2,
+      "selection": "initial-14"
+    },
+    {
+      "sha": "5a47d92c54bbdf35d5a85ce12b0b49dd80e9dccd",
+      "parent": "d50a175c6914f483fd9c0224b3468bc6eb110c9c",
+      "files": [
+        "boltons/iterutils.py",
+        "docs/iterutils.rst"
+      ],
+      "source": [
+        "boltons/iterutils.py"
+      ],
+      "churn": 15,
+      "title": "add iterutils.redundant to the docs",
+      "draw_order": 3,
+      "selection": "initial-14"
+    },
+    {
+      "sha": "21dc968d2b81e57a69c153d214ccf774fa8392d3",
+      "parent": "6e428e956e3d3f9faae06c1d4340acbf438b983b",
+      "files": [
+        "boltons/ecoutils.py",
+        "boltons/timeutils.py"
+      ],
+      "source": [
+        "boltons/ecoutils.py",
+        "boltons/timeutils.py"
+      ],
+      "churn": 19,
+      "title": "replace deprecated utcnow",
+      "draw_order": 4,
+      "selection": "initial-14"
+    },
+    {
+      "sha": "efff866a3b66fdafc817894390742e1d8bc025e5",
+      "parent": "5eb6cc045560abf320712f262346ae95fb66d448",
+      "files": [
+        "boltons/mathutils.py",
+        "tests/test_mathutils.py"
+      ],
+      "source": [
+        "boltons/mathutils.py"
+      ],
+      "churn": 24,
+      "title": "mathutils: preserve empty Bits through conversions (#468)",
+      "draw_order": 5,
+      "selection": "initial-14"
+    },
+    {
+      "sha": "6cac49ce4eba506a3582e8089bcc347c6b2fa70f",
+      "parent": "985df86bbf511b244ce6acf7a9c3b8a0d09d0fb3",
+      "files": [
+        "boltons/dictutils.py",
+        "tests/test_dictutils.py"
+      ],
+      "source": [
+        "boltons/dictutils.py"
+      ],
+      "churn": 7,
+      "title": "fix OneToOne.update behavior with empty iterables",
+      "draw_order": 6,
+      "selection": "initial-14"
+    },
+    {
+      "sha": "c8c442b98b8cff6d0aee61e61e28d4cb0be0ac21",
+      "parent": "f9c4f30511b58c543bda7e4c04193fd480f68b24",
+      "files": [
+        ".gitignore",
+        "boltons/strutils.py"
+      ],
+      "source": [
+        "boltons/strutils.py"
+      ],
+      "churn": 8,
+      "title": "fix html2text",
+      "draw_order": 7,
+      "selection": "initial-14"
+    },
+    {
+      "sha": "0c88f25323de3ff85bcca844b9ce6cd171a80392",
+      "parent": "d70669ac4b1b31d1455a388270cb47b075c44cc0",
+      "files": [
+        "boltons/tableutils.py"
+      ],
+      "source": [
+        "boltons/tableutils.py"
+      ],
+      "churn": 2,
+      "title": "Fix Table.to_text() sizing",
+      "draw_order": 8,
+      "selection": "initial-14"
+    },
+    {
+      "sha": "49f381eedbdcd695f7ed95110ebb1088582de7f3",
+      "parent": "17374731bcc404908726a65734f941d789f23a78",
+      "files": [
+        "boltons/iterutils.py",
+        "tests/test_iterutils.py"
+      ],
+      "source": [
+        "boltons/iterutils.py"
+      ],
+      "churn": 62,
+      "title": "Extend partition to accept multiple predicates",
+      "draw_order": 9,
+      "selection": "initial-14"
+    },
+    {
+      "sha": "64e64300246ff3e26cf8b0a63e9aaa6ec147b3b2",
+      "parent": "b9eeaaa7cef93fc72035a5ec0b1aee13146a6c55",
+      "files": [
+        "boltons/setutils.py",
+        "tests/test_setutils.py"
+      ],
+      "source": [
+        "boltons/setutils.py"
+      ],
+      "churn": 19,
+      "title": "add more IndexedSet.index() tests and fix typo in get_apparent_index, redressing #240",
+      "draw_order": 10,
+      "selection": "initial-14"
+    },
+    {
+      "sha": "b47faae2d93f334df0d7d6888f47c209a13085b6",
+      "parent": "0191550807779a1d8a477adc4a36d7e410613b3e",
+      "files": [
+        "boltons/fileutils.py",
+        "boltons/timeutils.py"
+      ],
+      "source": [
+        "boltons/fileutils.py",
+        "boltons/timeutils.py"
+      ],
+      "churn": 5,
+      "title": "Apply suggestions from code review",
+      "draw_order": 11,
+      "selection": "initial-14"
+    },
+    {
+      "sha": "5df26592c29b9561d122640868ba0522cbc1e20d",
+      "parent": "673e010d0afabc2f530e8d1f67f0a47c37afa7f4",
+      "files": [
+        "boltons/strutils.py",
+        "tests/test_strutils.py"
+      ],
+      "source": [
+        "boltons/strutils.py"
+      ],
+      "churn": 21,
+      "title": "Use the sep argument in args2sh and args2cmd (#454)",
+      "draw_order": 12,
+      "selection": "initial-14"
+    },
+    {
+      "sha": "80f9eb4296daadad85db5ef6c0fd14e2f3602fa4",
+      "parent": "207651ee6055aabd0d9cdeac2e00140cdc208d44",
+      "files": [
+        "boltons/strutils.py"
+      ],
+      "source": [
+        "boltons/strutils.py"
+      ],
+      "churn": 2,
+      "title": "Fix syntax error in MultiReplace example",
+      "draw_order": 13,
+      "selection": "initial-14"
+    },
+    {
+      "sha": "207651ee6055aabd0d9cdeac2e00140cdc208d44",
+      "parent": "ce60604a463eb2c1f84b7756f38d909f404bd1d2",
+      "files": [
+        "boltons/strutils.py"
+      ],
+      "source": [
+        "boltons/strutils.py"
+      ],
+      "churn": 3,
+      "title": "Add human_readable_list to __all__ in strutils",
+      "draw_order": 14,
+      "selection": "initial-14"
+    },
+    {
+      "sha": "4332b35a278d694f30c99881faa61cde695c7a96",
+      "parent": "1216b467c10b852d08aa6895c80b6b9ec8f990d8",
+      "files": [
+        "CHANGELOG.md",
+        "boltons/__init__.py"
+      ],
+      "source": [
+        "boltons/__init__.py"
+      ],
+      "churn": 9,
+      "title": "boltons version 26.2.0",
+      "draw_order": 15,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "16a258e3750063d874ec85c5fb5bc21358206c5c",
+      "parent": "3c1d3987a91fe2d48ee723dda6ca0bd3fb7f94a9",
+      "files": [
+        "boltons/typeutils.py",
+        "tests/test_typeutils.py"
+      ],
+      "source": [
+        "boltons/typeutils.py"
+      ],
+      "churn": 24,
+      "title": "fix Sentinel module logic, enabling pickling of Sentinels, fixes #285",
+      "draw_order": 16,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "859cfefaf9c44b2e97d92c74e6d7d8989f82e764",
+      "parent": "2d904513f5a9b00bb0023ea6ca0bb234325cc69b",
+      "files": [
+        "boltons/funcutils.py"
+      ],
+      "source": [
+        "boltons/funcutils.py"
+      ],
+      "churn": 11,
+      "title": "slightly more forward-looking fix for partial methods",
+      "draw_order": 17,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "c0d580df13d3d2d3d99a7769828afc7176127d90",
+      "parent": "f7cbf1971022b3910c93aaeef7a3478d0a6eacd6",
+      "files": [
+        "boltons/funcutils.py"
+      ],
+      "source": [
+        "boltons/funcutils.py"
+      ],
+      "churn": 18,
+      "title": "backwards compatible once decorator (and test). doesn't rely on functools.cache (added in 3.9), just uses a nonlocal sentinel.",
+      "draw_order": 18,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "d463c605877f80787a62f8d968d358cdd7d0a601",
+      "parent": "1f07518303de8a087cb945c5c0375cbeeb09ba71",
+      "files": [
+        "boltons/strutils.py"
+      ],
+      "source": [
+        "boltons/strutils.py"
+      ],
+      "churn": 10,
+      "title": "fix module name in multireplace docstring",
+      "draw_order": 19,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "8a2a93d8213e1fa4da30c8167ab1a18caad17a17",
+      "parent": "80f9eb4296daadad85db5ef6c0fd14e2f3602fa4",
+      "files": [
+        "boltons/tbutils.py",
+        "tests/test_tbutils_parsed_exc.py"
+      ],
+      "source": [
+        "boltons/tbutils.py"
+      ],
+      "churn": 29,
+      "title": "fix(tbutils): avoid IndexError in ParsedException.from_string on truncated tracebacks",
+      "draw_order": 20,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "4e5faa3d7e4008d89e0d8bf1ea87b6d9a061a16d",
+      "parent": "961dcff3f42e73b245aef65e377fe82763b257bb",
+      "files": [
+        "boltons/ioutils.py",
+        "tests/test_ioutils.py"
+      ],
+      "source": [
+        "boltons/ioutils.py"
+      ],
+      "churn": 107,
+      "title": "Fix spooled stream write compatibility and backwards text seeks (#513)",
+      "draw_order": 21,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "6a363e6c4837a2cca606eba5903ea6f4ae83d745",
+      "parent": "859cfefaf9c44b2e97d92c74e6d7d8989f82e764",
+      "files": [
+        "boltons/tbutils.py",
+        "tests/test_tbutils.py"
+      ],
+      "source": [
+        "boltons/tbutils.py"
+      ],
+      "churn": 17,
+      "title": "skip exact tb formatting comparison in python3.13+ and document the divergence",
+      "draw_order": 22,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "93185b224ebd60df01df88d64e574a3f651987c5",
+      "parent": "6505c6b5565275d484e0e3907a471944441f0c57",
+      "files": [
+        "boltons/timeutils.py",
+        "tests/test_timeutils.py"
+      ],
+      "source": [
+        "boltons/timeutils.py"
+      ],
+      "churn": 22,
+      "title": "Fix infinite daterange issue when start and stop is same (#302)",
+      "draw_order": 23,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "54224994ab63b490e149a108bcce9c5e27c27a33",
+      "parent": "f96caf2c4e0a7c7db82dacf118dcb0030a2a9bb7",
+      "files": [
+        "boltons/ecoutils.py"
+      ],
+      "source": [
+        "boltons/ecoutils.py"
+      ],
+      "churn": 32,
+      "title": "ecoutils py37+ prep",
+      "draw_order": 24,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "3c1d3987a91fe2d48ee723dda6ca0bd3fb7f94a9",
+      "parent": "05db15d78d376860f647e403c183e95fc2bc7f8f",
+      "files": [
+        "boltons/formatutils.py"
+      ],
+      "source": [
+        "boltons/formatutils.py"
+      ],
+      "churn": 2,
+      "title": "Use constructor argument (#277)",
+      "draw_order": 25,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "ead236e278ca0466bf468de746b5960fb12d7e5b",
+      "parent": "57cb026b7f47cd2765a0d5acdc83849ed5f1f6a3",
+      "files": [
+        "boltons/iterutils.py",
+        "tests/test_iterutils.py"
+      ],
+      "source": [
+        "boltons/iterutils.py"
+      ],
+      "churn": 25,
+      "title": "fix: backoff_iter with factor=1.0 and no count raised ZeroDivisionError",
+      "draw_order": 26,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "b47171245cebeb39df55cbac7ae1efb3e29f317e",
+      "parent": "c8c442b98b8cff6d0aee61e61e28d4cb0be0ac21",
+      "files": [
+        "boltons/strutils.py"
+      ],
+      "source": [
+        "boltons/strutils.py"
+      ],
+      "churn": 8,
+      "title": "fix strutils",
+      "draw_order": 27,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "d0a284fc7ef1aebceb54798600d73be4eeb76ed8",
+      "parent": "609cabe932a1ea1423b24568644945abb1b8bb84",
+      "files": [
+        "boltons/setutils.py",
+        "tests/test_setutils.py"
+      ],
+      "source": [
+        "boltons/setutils.py"
+      ],
+      "churn": 44,
+      "title": "fix IndexedSet out-of-range negative indexing wrapping around (x[-n-k], pop(-n-k))",
+      "draw_order": 28,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "d45cc414e33aa4e08a73e0993574df4397e2e9db",
+      "parent": "967864f89791509f9eb36b22b4579d36b72a6df2",
+      "files": [
+        "boltons/urlutils.py",
+        "tests/test_urlutils.py"
+      ],
+      "source": [
+        "boltons/urlutils.py"
+      ],
+      "churn": 14,
+      "title": "urlutils: honor parse_qsl encoding (#455)",
+      "draw_order": 29,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "fb464991b718ca7bfabc14555c2947f25e7c79c9",
+      "parent": "25e8d6b18ecba58d358c8f46a5cea554f99bdfb2",
+      "files": [
+        "CHANGELOG.md",
+        "boltons/__init__.py"
+      ],
+      "source": [
+        "boltons/__init__.py"
+      ],
+      "churn": 26,
+      "title": "boltons version 26.0.0",
+      "draw_order": 30,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "8c3fc2850693eacd2f2f8c95e7581adbb65b1269",
+      "parent": "ead236e278ca0466bf468de746b5960fb12d7e5b",
+      "files": [
+        "boltons/strutils.py",
+        "tests/test_strutils.py"
+      ],
+      "source": [
+        "boltons/strutils.py"
+      ],
+      "churn": 17,
+      "title": "Pluralize words ending in \"x\" with \"-es\" (box -> boxes)",
+      "draw_order": 31,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "967864f89791509f9eb36b22b4579d36b72a6df2",
+      "parent": "5df26592c29b9561d122640868ba0522cbc1e20d",
+      "files": [
+        "boltons/statsutils.py",
+        "tests/test_statsutils.py"
+      ],
+      "source": [
+        "boltons/statsutils.py"
+      ],
+      "churn": 35,
+      "title": "statsutils: add mode() for most-common value, incl. categorical data (#453)",
+      "draw_order": 32,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "9decba3e5736f61180eec274420ced0e572e30e6",
+      "parent": "a1ea1030ed85137e999c0bd9b11d16368d3ab241",
+      "files": [
+        "boltons/ecoutils.py",
+        "tests/test_ecoutils.py"
+      ],
+      "source": [
+        "boltons/ecoutils.py"
+      ],
+      "churn": 61,
+      "title": "ecoutils: skip identifying lookups when scrubbing (#461)",
+      "draw_order": 33,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "d35aacd96de6403a6864dd97d060c0d69cd8e491",
+      "parent": "64e64300246ff3e26cf8b0a63e9aaa6ec147b3b2",
+      "files": [
+        "boltons/setutils.py",
+        "tests/test_setutils.py"
+      ],
+      "source": [
+        "boltons/setutils.py"
+      ],
+      "churn": 18,
+      "title": "bit more indexedset accounting",
+      "draw_order": 34,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "25e8d6b18ecba58d358c8f46a5cea554f99bdfb2",
+      "parent": "4aa77cddb5d06def130df6f09aefab4018fa487c",
+      "files": [
+        "boltons/listutils.py",
+        "tests/test_listutils.py"
+      ],
+      "source": [
+        "boltons/listutils.py"
+      ],
+      "churn": 13,
+      "title": "Match list insert before start in BarrelList",
+      "draw_order": 35,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "243de3fb2c9c59c660800f786ddc875628b34027",
+      "parent": "40a7b47c6e8235a1b2a4600d0ceec4f7ea0f9bb0",
+      "files": [
+        "boltons/iterutils.py",
+        "docs/iterutils.rst",
+        "tests/test_iterutils.py"
+      ],
+      "source": [
+        "boltons/iterutils.py"
+      ],
+      "churn": 78,
+      "title": "add chunk_ranges function to iterutils (#312)",
+      "draw_order": 36,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "ce7c7d2b15ea189c1284a48d742a7862bfae8606",
+      "parent": "1b1d37875f5702a7c86990e3f415093fb360db4d",
+      "files": [
+        "boltons/strutils.py"
+      ],
+      "source": [
+        "boltons/strutils.py"
+      ],
+      "churn": 4,
+      "title": "fix(human_readable_list): altering f-string syntax to have backwards compatibility with Python <3.12",
+      "draw_order": 37,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "580a9c2d12755d472e534ca3e277e8f7e3ada49e",
+      "parent": "ec1ff9f6728f5f857402b294c218be731c62af5f",
+      "files": [
+        "boltons/setutils.py",
+        "tests/test_setutils.py"
+      ],
+      "source": [
+        "boltons/setutils.py"
+      ],
+      "churn": 14,
+      "title": "setutils: cover _ComplementSet __ge__'s double-complement branch, drop duplicated NotImplemented checks (#446)",
+      "draw_order": 38,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "4aa77cddb5d06def130df6f09aefab4018fa487c",
+      "parent": "3970a80f63807392e512340c25dc2db473bcba70",
+      "files": [
+        "boltons/iterutils.py",
+        "tests/test_iterutils.py"
+      ],
+      "source": [
+        "boltons/iterutils.py"
+      ],
+      "churn": 12,
+      "title": "Fix split maxsplit zero handling",
+      "draw_order": 39,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "1cdc0e9d36f3eb32608f3b34885717697643e9b8",
+      "parent": "805c803ca71da28f09cb7ec521f7ea14d1a4048b",
+      "files": [
+        "boltons/statsutils.py",
+        "tests/test_statsutils.py"
+      ],
+      "source": [
+        "boltons/statsutils.py"
+      ],
+      "churn": 9,
+      "title": "statsutils: handle zero interquartile range in histograms (#467)",
+      "draw_order": 40,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "40a7b47c6e8235a1b2a4600d0ceec4f7ea0f9bb0",
+      "parent": "895f7c49e2737aad250e51c2d999639536054b64",
+      "files": [
+        "boltons/mathutils.py",
+        "tests/test_mathutils.py"
+      ],
+      "source": [
+        "boltons/mathutils.py"
+      ],
+      "churn": 28,
+      "title": "bugfix in mathutils.Bits.as_list (#315)",
+      "draw_order": 41,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "5150802911edbf8ade1e7d1bfb346fed52c88d05",
+      "parent": "574393a4c349d5b81ee328a9e450c34dd0614635",
+      "files": [
+        "boltons/jsonutils.py",
+        "tests/test_jsonutils.py"
+      ],
+      "source": [
+        "boltons/jsonutils.py"
+      ],
+      "churn": 11,
+      "title": "jsonutils: accept explicit end-of-file relative seek (#465)",
+      "draw_order": 42,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "0341ab3d79e6430c0e6a4149df9c92679988a534",
+      "parent": "475462811ea4f9dea23c8af4cc2b6ead2dc03845",
+      "files": [
+        "boltons/dictutils.py",
+        "tests/test_dictutils.py"
+      ],
+      "source": [
+        "boltons/dictutils.py"
+      ],
+      "churn": 32,
+      "title": "Make OMD picklable under py3, fixes #337 (#338)",
+      "draw_order": 43,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "4b1d728f31a8378b193be9c966c853be0a57527d",
+      "parent": "8191b0ff3c56f1389a860f0c5124611c53c7f595",
+      "files": [
+        "boltons/iterutils.py"
+      ],
+      "source": [
+        "boltons/iterutils.py"
+      ],
+      "churn": 9,
+      "title": "document string splitting in iterutils.get_path, fixes #363",
+      "draw_order": 44,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "bba729bf4539afc993a6410bdf8074b28707004a",
+      "parent": "f5cf8b5d32bf25752b44a11c9d87d2144c7b8919",
+      "files": [
+        "boltons/strutils.py"
+      ],
+      "source": [
+        "boltons/strutils.py"
+      ],
+      "churn": 4,
+      "title": "Speed up MultiReplace match lookup",
+      "draw_order": 45,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "3bfcfdd04395b6cc74a5c0cdc72c8f64cc4ac01f",
+      "parent": "60ecb2037e05b283b514803b83d3ba9467d8868f",
+      "files": [
+        "boltons/fileutils.py",
+        "tests/test_fileutils.py"
+      ],
+      "source": [
+        "boltons/fileutils.py"
+      ],
+      "churn": 95,
+      "title": "quick file rotation util",
+      "draw_order": 46,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "8177b933b418d91c7280909690f45589fbe004d2",
+      "parent": "2c51dddb869eb7c0d05b4739d34406e20a0e03b8",
+      "files": [
+        "boltons/dictutils.py",
+        "tests/test_dictutils.py"
+      ],
+      "source": [
+        "boltons/dictutils.py"
+      ],
+      "churn": 28,
+      "title": "improve OMD.addlist empty list handling, fixes #284",
+      "draw_order": 47,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "46599bc0d498dd8adc3aea833ce1445feed349dd",
+      "parent": "c2b04b4cb16410d7bf9ff781c78dee3ca908dc32",
+      "files": [
+        "boltons/dictutils.py",
+        "tests/test_dictutils.py"
+      ],
+      "source": [
+        "boltons/dictutils.py"
+      ],
+      "churn": 17,
+      "title": "Support `ior` for `dictutils.OMD` (#341)",
+      "draw_order": 48,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "843d6757301ba3b234dde37b4dbecb4cce99f09e",
+      "parent": "93185b224ebd60df01df88d64e574a3f651987c5",
+      "files": [
+        "boltons/iterutils.py"
+      ],
+      "source": [
+        "boltons/iterutils.py"
+      ],
+      "churn": 12,
+      "title": "Update iterutils.py (#313)",
+      "draw_order": 49,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "f9c4f30511b58c543bda7e4c04193fd480f68b24",
+      "parent": "0c88f25323de3ff85bcca844b9ce6cd171a80392",
+      "files": [
+        "boltons/listutils.py",
+        "tests/test_listutils.py"
+      ],
+      "source": [
+        "boltons/listutils.py"
+      ],
+      "churn": 10,
+      "title": "Fix barrellist sort with multiple lists",
+      "draw_order": 50,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "78ec69cac4465c57bb7debafcf3181d7d1ceaa76",
+      "parent": "4332b35a278d694f30c99881faa61cde695c7a96",
+      "files": [
+        "boltons/__init__.py"
+      ],
+      "source": [
+        "boltons/__init__.py"
+      ],
+      "churn": 2,
+      "title": "bump version to 26.2.1dev",
+      "draw_order": 51,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "4815fc8dd1768da5f2d903846d2ab994aa57b0cf",
+      "parent": "46599bc0d498dd8adc3aea833ce1445feed349dd",
+      "files": [
+        ".github/workflows/tests.yaml",
+        "boltons/cacheutils.py",
+        "tests/test_cacheutils.py"
+      ],
+      "source": [
+        "boltons/cacheutils.py"
+      ],
+      "churn": 46,
+      "title": "Test and fix for #348 (#349)",
+      "draw_order": 52,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "827f193775a793716bc2615e939340c398ecd042",
+      "parent": "6a363e6c4837a2cca606eba5903ea6f4ae83d745",
+      "files": [
+        "boltons/timeutils.py"
+      ],
+      "source": [
+        "boltons/timeutils.py"
+      ],
+      "churn": 9,
+      "title": "fix timeutils import warning on Python 3.12+ by removing EPOCH_NAIVE",
+      "draw_order": 53,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "65e0354c94ad524d4576c535eb97ed4d7d7e1560",
+      "parent": "23635529c6d3abbbf3818248ea1bd590f06a0f1b",
+      "files": [
+        "boltons/iterutils.py"
+      ],
+      "source": [
+        "boltons/iterutils.py"
+      ],
+      "churn": 2,
+      "title": "fix tiny cornercase iterutils hostname issue",
+      "draw_order": 54,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "3bbb9487aaa1e6d95a8d93aca7b58a4d0e9db966",
+      "parent": "4815fc8dd1768da5f2d903846d2ab994aa57b0cf",
+      "files": [
+        "boltons/iterutils.py",
+        "tests/test_iterutils.py"
+      ],
+      "source": [
+        "boltons/iterutils.py"
+      ],
+      "churn": 112,
+      "title": "Adding fill parameters to pairwise and windowed (#350)",
+      "draw_order": 55,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "1d525271754ed7aea7f2347ed16ddbcedb1097a3",
+      "parent": "4c24615af43092468feab118368fcc9ff91feca3",
+      "files": [
+        "CHANGELOG.md",
+        "boltons/__init__.py"
+      ],
+      "source": [
+        "boltons/__init__.py"
+      ],
+      "churn": 13,
+      "title": "boltons version 26.1.0",
+      "draw_order": 56,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "810f7fc1c5131ac7ebab5b944c7bd9626c7c7c5f",
+      "parent": "c3d8a92e85673e4c321abdadc49b0641a0e21260",
+      "files": [
+        "boltons/iterutils.py"
+      ],
+      "source": [
+        "boltons/iterutils.py"
+      ],
+      "churn": 15,
+      "title": "defer import of hashlib and socket for itertools.guiderator, fixes #263",
+      "draw_order": 57,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "a7d9afd61bb36ed7bc9cd3b13a594db32c1f3cec",
+      "parent": "6e0354e0a7ff20ae440bf3fe47ccd79c9c7c973f",
+      "files": [
+        "boltons/fileutils.py"
+      ],
+      "source": [
+        "boltons/fileutils.py"
+      ],
+      "churn": 3,
+      "title": "add fsync to atomic_save for correctness",
+      "draw_order": 58,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "979fa9b613fa8c0a455ae16ea6f2ec91c11ecafe",
+      "parent": "fb464991b718ca7bfabc14555c2947f25e7c79c9",
+      "files": [
+        "boltons/__init__.py"
+      ],
+      "source": [
+        "boltons/__init__.py"
+      ],
+      "churn": 2,
+      "title": "bump version to 26.0.1dev",
+      "draw_order": 59,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "a1ea1030ed85137e999c0bd9b11d16368d3ab241",
+      "parent": "d45cc414e33aa4e08a73e0993574df4397e2e9db",
+      "files": [
+        "boltons/dictutils.py",
+        "boltons/urlutils.py",
+        "tests/test_dictutils.py"
+      ],
+      "source": [
+        "boltons/dictutils.py",
+        "boltons/urlutils.py"
+      ],
+      "churn": 26,
+      "title": "dictutils: preserve iterator values in addlist (#458)",
+      "draw_order": 60,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "a180020c760b532e8889f161d97d05647adfee8c",
+      "parent": "e00c10a809525027b8167fbb7ac233cfc25a01f5",
+      "files": [
+        "CHANGELOG.md",
+        "boltons/setutils.py",
+        "tests/test_setutils.py"
+      ],
+      "source": [
+        "boltons/setutils.py"
+      ],
+      "churn": 24,
+      "title": "setutils: flatten inputs to IndexedSet.update (#474)",
+      "draw_order": 61,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "970051b66474ac37383c5d990c169c794e20eb88",
+      "parent": "9decba3e5736f61180eec274420ced0e572e30e6",
+      "files": [
+        "boltons/namedutils.py",
+        "tests/test_namedutils.py"
+      ],
+      "source": [
+        "boltons/namedutils.py"
+      ],
+      "churn": 44,
+      "title": "namedutils: reject empty type and field names (#462)",
+      "draw_order": 62,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "4188f13530982d8a898159c0c49888665c89fbad",
+      "parent": "29320d636a4a0c099f948d864bcb3418f638d0d7",
+      "files": [
+        "boltons/strutils.py"
+      ],
+      "source": [
+        "boltons/strutils.py"
+      ],
+      "churn": 5,
+      "title": "expose multireplace docs",
+      "draw_order": 63,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "f400b7e298d487b04f73c498b33b74c99d612b73",
+      "parent": "5a47d92c54bbdf35d5a85ce12b0b49dd80e9dccd",
+      "files": [
+        "boltons/funcutils.py"
+      ],
+      "source": [
+        "boltons/funcutils.py"
+      ],
+      "churn": 9,
+      "title": "allow a custom repr in format_invocation",
+      "draw_order": 64,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "ebc7a8f776debfa33f0b380b57a444bca75a251b",
+      "parent": "bba729bf4539afc993a6410bdf8074b28707004a",
+      "files": [
+        "boltons/dictutils.py",
+        "tests/test_dictutils.py"
+      ],
+      "source": [
+        "boltons/dictutils.py"
+      ],
+      "churn": 33,
+      "title": "Fix copy.copy/copy.deepcopy collapsing OrderedMultiDict values",
+      "draw_order": 65,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "17374731bcc404908726a65734f941d789f23a78",
+      "parent": "ce7c7d2b15ea189c1284a48d742a7862bfae8606",
+      "files": [
+        "boltons/iterutils.py",
+        "tests/test_iterutils.py"
+      ],
+      "source": [
+        "boltons/iterutils.py"
+      ],
+      "churn": 36,
+      "title": "Adds cache option to remap and use in research",
+      "draw_order": 66,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "285c4984d80ea45d03cc03451656508becc8ee72",
+      "parent": "16a258e3750063d874ec85c5fb5bc21358206c5c",
+      "files": [
+        "boltons/typeutils.py"
+      ],
+      "source": [
+        "boltons/typeutils.py"
+      ],
+      "churn": 5,
+      "title": "more robust module name retrieval",
+      "draw_order": 67,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "f5f5cd867ee98f15def2b6a19bfba203de29b961",
+      "parent": "970051b66474ac37383c5d990c169c794e20eb88",
+      "files": [
+        "boltons/iterutils.py",
+        "tests/test_iterutils.py"
+      ],
+      "source": [
+        "boltons/iterutils.py"
+      ],
+      "churn": 15,
+      "title": "iterutils: correct inclusive GUIDerator size message (#451)",
+      "draw_order": 68,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "e00c10a809525027b8167fbb7ac233cfc25a01f5",
+      "parent": "efff866a3b66fdafc817894390742e1d8bc025e5",
+      "files": [
+        "boltons/listutils.py",
+        "boltons/setutils.py",
+        "tests/test_listutils.py",
+        "tests/test_setutils.py"
+      ],
+      "source": [
+        "boltons/listutils.py",
+        "boltons/setutils.py"
+      ],
+      "churn": 136,
+      "title": "setutils, listutils: streamline bulk removal and fix list bounds (#440)",
+      "draw_order": 69,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "2ccc5098bc2c8d1dae7f9be8934b799d85857a42",
+      "parent": "d463c605877f80787a62f8d968d358cdd7d0a601",
+      "files": [
+        "boltons/typeutils.py"
+      ],
+      "source": [
+        "boltons/typeutils.py"
+      ],
+      "churn": 6,
+      "title": "Sentinel copy return self",
+      "draw_order": 70,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "471dad1c6e8182baa3337f118a359ef8f768bf3f",
+      "parent": "c463d1633a075c398d6ffad7d8653064a615b696",
+      "files": [
+        "boltons/listutils.py"
+      ],
+      "source": [
+        "boltons/listutils.py"
+      ],
+      "churn": 2,
+      "title": "remove unused len(self) call in BarrelList._balance_list",
+      "draw_order": 71,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "8789df2cc35a4d9ddfebfa59c14f3e80e34234e1",
+      "parent": "dfd632467c06089a19427e14010e83f57502c9bc",
+      "files": [
+        "boltons/timeutils.py",
+        "tests/test_timeutils.py"
+      ],
+      "source": [
+        "boltons/timeutils.py"
+      ],
+      "churn": 21,
+      "title": "timeutils: match timezone for default relative time (#469)",
+      "draw_order": 72,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "5eb6cc045560abf320712f262346ae95fb66d448",
+      "parent": "19bd337cad0760945dfe0245434d8253156ee390",
+      "files": [
+        "boltons/mathutils.py",
+        "tests/test_mathutils.py"
+      ],
+      "source": [
+        "boltons/mathutils.py"
+      ],
+      "churn": 9,
+      "title": "mathutils: resolve negative Bits indices (#450)",
+      "draw_order": 73,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "609cabe932a1ea1423b24568644945abb1b8bb84",
+      "parent": "979fa9b613fa8c0a455ae16ea6f2ec91c11ecafe",
+      "files": [
+        "boltons/setutils.py",
+        "tests/test_setutils.py"
+      ],
+      "source": [
+        "boltons/setutils.py"
+      ],
+      "churn": 48,
+      "title": "fix IndexedSet slicing after removals: keep iter_slice bounds in apparent index space (#423)",
+      "draw_order": 74,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "469bb2679433b1229ba3978bdbc0e5bad5aac3ee",
+      "parent": "6cac49ce4eba506a3582e8089bcc347c6b2fa70f",
+      "files": [
+        "boltons/strutils.py"
+      ],
+      "source": [
+        "boltons/strutils.py"
+      ],
+      "churn": 2,
+      "title": "Fix boltons.strutils.__all__ missing names (#356)",
+      "draw_order": 75,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "b5c495bec206741ec25cd82ecc869e0b59bb0d10",
+      "parent": "78e8638e695d78ccc2dc641ef87e38fa51185840",
+      "files": [
+        "CHANGELOG.md",
+        "boltons/funcutils.py",
+        "tests/test_funcutils_fb_py3.py"
+      ],
+      "source": [
+        "boltons/funcutils.py"
+      ],
+      "churn": 79,
+      "title": "funcutils: forward target-keyword-only args as keywords in wraps invocations (#445)",
+      "draw_order": 76,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "ec1ff9f6728f5f857402b294c218be731c62af5f",
+      "parent": "b5c495bec206741ec25cd82ecc869e0b59bb0d10",
+      "files": [
+        "boltons/setutils.py",
+        "tests/test_setutils.py"
+      ],
+      "source": [
+        "boltons/setutils.py"
+      ],
+      "churn": 10,
+      "title": "Fix issupserset typo in _ComplementSet comparisons (#438)",
+      "draw_order": 77,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "29fa06172259ad97ef31aa1e63b3bbae7d2a3d0c",
+      "parent": "1d525271754ed7aea7f2347ed16ddbcedb1097a3",
+      "files": [
+        "boltons/__init__.py"
+      ],
+      "source": [
+        "boltons/__init__.py"
+      ],
+      "churn": 2,
+      "title": "bump version to 26.1.1dev",
+      "draw_order": 78,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "9420cfeb3b1eb270fad876d002bf92567e619b0c",
+      "parent": "d35693e87553c97a7e1819741b5290ea857aded0",
+      "files": [
+        "boltons/strutils.py"
+      ],
+      "source": [
+        "boltons/strutils.py"
+      ],
+      "churn": 22,
+      "title": "Add more documentation to multi_replace (#306)",
+      "draw_order": 79,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "1f07518303de8a087cb945c5c0375cbeeb09ba71",
+      "parent": "d9a927b5c1b0816eb6227c4cea8c0c6245035eb7",
+      "files": [
+        "boltons/iterutils.py",
+        "tests/test_iterutils.py"
+      ],
+      "source": [
+        "boltons/iterutils.py"
+      ],
+      "churn": 131,
+      "title": "add enter parameter to research to allow traversing custom data types",
+      "draw_order": 80,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "47e0c3bfcbd3291a1366f34069f23e43659717cd",
+      "parent": "17c64d01c2d9837a3b60f67de664de4a2cde7918",
+      "files": [
+        "boltons/fileutils.py"
+      ],
+      "source": [
+        "boltons/fileutils.py"
+      ],
+      "churn": 4,
+      "title": "expose text mode flag in AtomicSaver",
+      "draw_order": 81,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "17c64d01c2d9837a3b60f67de664de4a2cde7918",
+      "parent": "52f8373d9c4a1d7cc03a95ac09215f52d98d7878",
+      "files": [
+        "boltons/strutils.py"
+      ],
+      "source": [
+        "boltons/strutils.py"
+      ],
+      "churn": 46,
+      "title": "adjust strutils function names to be consistent",
+      "draw_order": 82,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "1e61524a798ea73632029a013a7686036d5c126f",
+      "parent": "55dfe5077bcb5fa76611b5f2a557ea6c442ad87c",
+      "files": [
+        "boltons/strutils.py",
+        "tests/test_strutils.py"
+      ],
+      "source": [
+        "boltons/strutils.py"
+      ],
+      "churn": 32,
+      "title": "fix(strutils): stop singularize() mangling words ending in 'ss'",
+      "draw_order": 83,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "6505c6b5565275d484e0e3907a471944441f0c57",
+      "parent": "9420cfeb3b1eb270fad876d002bf92567e619b0c",
+      "files": [
+        "boltons/ioutils.py",
+        "tests/test_ioutils.py"
+      ],
+      "source": [
+        "boltons/ioutils.py"
+      ],
+      "churn": 176,
+      "title": "Fixes and improvements to SpooledBytesIO & SpooledStringIO (#305)",
+      "draw_order": 84,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "b4697c18731e18ac7e9dcd328dce6dc3e605382c",
+      "parent": "6a8ac764bb218036258deb771bb73e171f31e395",
+      "files": [
+        "boltons/strutils.py",
+        "tests/test_fileutils.py"
+      ],
+      "source": [
+        "boltons/strutils.py"
+      ],
+      "churn": 25,
+      "title": "Add removeprefix to strutils for older python versions & fix test on windows",
+      "draw_order": 85,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "9214bd77cee700b5947fd8206e012f145d6885dd",
+      "parent": "675afd8a9213a67f2dc114aeee5573d8a2ca1221",
+      "files": [
+        "boltons/funcutils.py"
+      ],
+      "source": [
+        "boltons/funcutils.py"
+      ],
+      "churn": 121,
+      "title": "Drop support for EOL Python <= 3.6",
+      "draw_order": 86,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "ce60604a463eb2c1f84b7756f38d909f404bd1d2",
+      "parent": "c0d580df13d3d2d3d99a7769828afc7176127d90",
+      "files": [
+        "boltons/funcutils.py"
+      ],
+      "source": [
+        "boltons/funcutils.py"
+      ],
+      "churn": 5,
+      "title": "bit more info in docstring",
+      "draw_order": 87,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "673e010d0afabc2f530e8d1f67f0a47c37afa7f4",
+      "parent": "580a9c2d12755d472e534ca3e277e8f7e3ada49e",
+      "files": [
+        "CHANGELOG.md",
+        "boltons/strutils.py",
+        "tests/test_strutils.py"
+      ],
+      "source": [
+        "boltons/strutils.py"
+      ],
+      "churn": 108,
+      "title": "strutils: add ellipsize for word-boundary-aware truncation",
+      "draw_order": 88,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "f57a3abba2fe75bf9c67a008f49fbe8cfd402ce2",
+      "parent": "47e0c3bfcbd3291a1366f34069f23e43659717cd",
+      "files": [
+        "boltons/iterutils.py"
+      ],
+      "source": [
+        "boltons/iterutils.py"
+      ],
+      "churn": 41,
+      "title": "add initial iterutils.untyped_sorted for those rare cases when you long for the flavor of py2 sorted",
+      "draw_order": 89,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "1b1d37875f5702a7c86990e3f415093fb360db4d",
+      "parent": "6b9a2bf202e3e2c5a56718b4fea5914de5a97107",
+      "files": [
+        "boltons/strutils.py",
+        "tests/test_strutils.py"
+      ],
+      "source": [
+        "boltons/strutils.py"
+      ],
+      "churn": 144,
+      "title": "feat(strutils): add human_readable_list function to format lists of strings",
+      "draw_order": 90,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "0e4dc6a7edb544612557950ee1d558df7298f8ad",
+      "parent": "59dc6be731ae9760f32ba998e3e6a2f7e6808a93",
+      "files": [
+        "boltons/funcutils.py",
+        "boltons/iterutils.py",
+        "boltons/statsutils.py",
+        "docs/timeutils.rst",
+        "tests/test_fileutils.py"
+      ],
+      "source": [
+        "boltons/funcutils.py",
+        "boltons/iterutils.py",
+        "boltons/statsutils.py"
+      ],
+      "churn": 24,
+      "title": "a few more py3 improvements",
+      "draw_order": 91,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "2d904513f5a9b00bb0023ea6ca0bb234325cc69b",
+      "parent": "1dc1423b5e43203a0dd0fd3cb453ac82525b42e2",
+      "files": [
+        "boltons/funcutils.py"
+      ],
+      "source": [
+        "boltons/funcutils.py"
+      ],
+      "churn": 5,
+      "title": "fix partial method test error for py3.13+",
+      "draw_order": 92,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "270e974975984f662f998c8f6eb0ebebd964de82",
+      "parent": "d818b4a5f35ee88431814cc8ccd8fbac73ee9533",
+      "files": [
+        "boltons/ecoutils.py"
+      ],
+      "source": [
+        "boltons/ecoutils.py"
+      ],
+      "churn": 87,
+      "title": "address ecoutils import issue, fixes #294",
+      "draw_order": 93,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "55dfe5077bcb5fa76611b5f2a557ea6c442ad87c",
+      "parent": "ebc7a8f776debfa33f0b380b57a444bca75a251b",
+      "files": [
+        "boltons/fileutils.py",
+        "tests/test_fileutils.py"
+      ],
+      "source": [
+        "boltons/fileutils.py"
+      ],
+      "churn": 22,
+      "title": "fix(fileutils): accept os.PathLike in AtomicSaver",
+      "draw_order": 94,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "766b5547392fe8d54c1e000098499dc556bb5cb7",
+      "parent": "8a2a93d8213e1fa4da30c8167ab1a18caad17a17",
+      "files": [
+        "boltons/strutils.py",
+        "tests/test_strutils.py"
+      ],
+      "source": [
+        "boltons/strutils.py"
+      ],
+      "churn": 26,
+      "title": "fix(strutils): bytes2human rolls over at exact powers of 1024",
+      "draw_order": 95,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "e745b4827958b6563af6328a37b5b6bb57009104",
+      "parent": "459817bff6186d2eaaca62e8cf7f4b6442dd5310",
+      "files": [
+        "boltons/cacheutils.py"
+      ],
+      "source": [
+        "boltons/cacheutils.py"
+      ],
+      "churn": 4,
+      "title": "couple cacheutils py3 fixups",
+      "draw_order": 96,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "7b577b0f3cc7adc2418733ce5c7dcdf6af82187d",
+      "parent": "8c3fc2850693eacd2f2f8c95e7581adbb65b1269",
+      "files": [
+        "boltons/tbutils.py",
+        "tests/test_tbutils_parsed_exc.py"
+      ],
+      "source": [
+        "boltons/tbutils.py"
+      ],
+      "churn": 59,
+      "title": "tbutils: round-trip traceback anchor lines in ParsedException (#333)",
+      "draw_order": 97,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "c463d1633a075c398d6ffad7d8653064a615b696",
+      "parent": "766b5547392fe8d54c1e000098499dc556bb5cb7",
+      "files": [
+        "boltons/dictutils.py",
+        "boltons/urlutils.py",
+        "tests/test_dictutils.py",
+        "tests/test_urlutils.py"
+      ],
+      "source": [
+        "boltons/dictutils.py",
+        "boltons/urlutils.py"
+      ],
+      "churn": 29,
+      "title": "Fix OrderedMultiDict equality to compare values against plain mappings",
+      "draw_order": 98,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "42586df3dd672c11f5376b8d9a42e26c05cf5543",
+      "parent": "49f381eedbdcd695f7ed95110ebb1088582de7f3",
+      "files": [
+        "boltons/funcutils.py",
+        "tests/test_funcutils.py"
+      ],
+      "source": [
+        "boltons/funcutils.py"
+      ],
+      "churn": 98,
+      "title": "add once decorator",
+      "draw_order": 99,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "475462811ea4f9dea23c8af4cc2b6ead2dc03845",
+      "parent": "f892a2b46e7fd31c639723d1d9bf4d9ad63752d6",
+      "files": [
+        "boltons/tbutils.py",
+        "tests/test_tbutils_parsed_exc.py"
+      ],
+      "source": [
+        "boltons/tbutils.py"
+      ],
+      "churn": 35,
+      "title": "Update tbutils.py to parse tracebacks with anchor lines (#332)",
+      "draw_order": 100,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "395f690f4a24331c4554e2169ac18a15955a4eab",
+      "parent": "270e974975984f662f998c8f6eb0ebebd964de82",
+      "files": [
+        "boltons/urlutils.py",
+        "tests/test_urlutils.py"
+      ],
+      "source": [
+        "boltons/urlutils.py"
+      ],
+      "churn": 22,
+      "title": "Chaining `boltons.urlutils.URL.navigate()` results in `TypeError` (#298)",
+      "draw_order": 101,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "801e80e9538b59cf9aa8f2307ebd5c08c35d6dfd",
+      "parent": "ddbdefc5581a0a361c17a4518cb0793061c18e99",
+      "files": [
+        "boltons/typeutils.py"
+      ],
+      "source": [
+        "boltons/typeutils.py"
+      ],
+      "churn": 2,
+      "title": "Update typeutils.py",
+      "draw_order": 102,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "6c7fa3e05659fac6515f661153c89d4ad02df168",
+      "parent": "395f690f4a24331c4554e2169ac18a15955a4eab",
+      "files": [
+        "boltons/formatutils.py",
+        "boltons/funcutils.py",
+        "boltons/iterutils.py",
+        "tests/test_cacheutils.py",
+        "tests/test_socketutils.py"
+      ],
+      "source": [
+        "boltons/formatutils.py",
+        "boltons/funcutils.py",
+        "boltons/iterutils.py"
+      ],
+      "churn": 18,
+      "title": "Fix typos (#308)",
+      "draw_order": 103,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "8ba3a7fa0d99b73f7f43c1aed82c571b941eecea",
+      "parent": "6c7fa3e05659fac6515f661153c89d4ad02df168",
+      "files": [
+        "boltons/timeutils.py",
+        "tests/test_timeutils.py"
+      ],
+      "source": [
+        "boltons/timeutils.py"
+      ],
+      "churn": 24,
+      "title": "test and fix year step and december handling in date_range, fixes #319",
+      "draw_order": 104,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "459817bff6186d2eaaca62e8cf7f4b6442dd5310",
+      "parent": "54224994ab63b490e149a108bcce9c5e27c27a33",
+      "files": [
+        "boltons/fileutils.py"
+      ],
+      "source": [
+        "boltons/fileutils.py"
+      ],
+      "churn": 26,
+      "title": "fix up fileutils py3 issues",
+      "draw_order": 105,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "289edfcd20474b92850ec0f982032c4e79e72432",
+      "parent": "7b577b0f3cc7adc2418733ce5c7dcdf6af82187d",
+      "files": [
+        "boltons/funcutils.py",
+        "tests/test_funcutils_fb.py",
+        "tests/test_funcutils_fb_py3.py"
+      ],
+      "source": [
+        "boltons/funcutils.py"
+      ],
+      "churn": 164,
+      "title": "funcutils: forward defaulted and kw-only args as keywords in wraps invocations (#343)",
+      "draw_order": 106,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "c2b04b4cb16410d7bf9ff781c78dee3ca908dc32",
+      "parent": "0341ab3d79e6430c0e6a4149df9c92679988a534",
+      "files": [
+        "boltons/funcutils.py",
+        "tests/test_funcutils_fb_py3.py"
+      ],
+      "source": [
+        "boltons/funcutils.py"
+      ],
+      "churn": 11,
+      "title": "fix: make copy_function work with keyword-only defaults (#336)",
+      "draw_order": 107,
+      "selection": "replacement-queue"
+    },
+    {
+      "sha": "b34c53428941cf3d46a6db97b3663ce5a9659834",
+      "parent": "471dad1c6e8182baa3337f118a359ef8f768bf3f",
+      "files": [
+        ".github/workflows/publish.yml",
+        ".github/workflows/tests.yaml",
+        ".gitignore",
+        "boltons/__init__.py",
+        "docs/conf.py",
+        "pyproject.toml",
+        "requirements-test.txt",
+        "tox.ini"
+      ],
+      "source": [
+        "boltons/__init__.py"
+      ],
+      "churn": 147,
+      "title": "Modernize CI: uv/tox-uv, OIDC publish",
+      "draw_order": 108,
+      "selection": "replacement-queue"
+    }
+  ],
+  "excluded": [
+    {
+      "sha": "961dcff3f42e73b245aef65e377fe82763b257bb",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "1216b467c10b852d08aa6895c80b6b9ec8f990d8",
+      "reason": "over 200 changed lines or 3 source files"
+    },
+    {
+      "sha": "dfd632467c06089a19427e14010e83f57502c9bc",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "78e8638e695d78ccc2dc641ef87e38fa51185840",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "e66cade323f5c11cebb4bd0f099e634b245adccd",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "57cb026b7f47cd2765a0d5acdc83849ed5f1f6a3",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "4c24615af43092468feab118368fcc9ff91feca3",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "f5cf8b5d32bf25752b44a11c9d87d2144c7b8919",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "3970a80f63807392e512340c25dc2db473bcba70",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "f7cbf1971022b3910c93aaeef7a3478d0a6eacd6",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "a7ae0909a6d0aade8eee422011f3e305b30c5db7",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "d70669ac4b1b31d1455a388270cb47b075c44cc0",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "c23dbdadb6fecdf505eb4231559561913b84c13f",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "ed747452aea780e838cedd82faac4cf941e626ac",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "354d8ce3803cd29dd9b87dfd3935c357e3a20182",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "6729ec45491b6ffb01a0b3dfd70f013e23cc83bf",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "6e0354e0a7ff20ae440bf3fe47ccd79c9c7c973f",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "41c8cbdefb085c878483e819d25e82c055462590",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "6a8ac764bb218036258deb771bb73e171f31e395",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "ad144374273049e7e1d3a0d98ce669e939c47c24",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "6e428e956e3d3f9faae06c1d4340acbf438b983b",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "60ecb2037e05b283b514803b83d3ba9467d8868f",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "5aed99eb066f563fbad2231498492df8403a643d",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "e86ef90a1a46775e0e8348c917d5aee6c15cfef1",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "120915ea2cdf995cbd6f864e04030ce7cd756701",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "df92fa4f0e13c92f9536a4e8f7ec78ced90e8789",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "d6fb9863e4f77efb5e0f6b3fd29368af66362ca8",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "ddbdefc5581a0a361c17a4518cb0793061c18e99",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "d9a927b5c1b0816eb6227c4cea8c0c6245035eb7",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "9381c52b800a5eb85ab8549887987656c96efb16",
+      "reason": "over 200 changed lines or 3 source files"
+    },
+    {
+      "sha": "1dc1423b5e43203a0dd0fd3cb453ac82525b42e2",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "2c541395b2f7cc62e699c2eb77e5065280da6aa5",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "8f84e2a7f3c236ae80a4ec2f39cead9d4a3412e7",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "2bf02565e01fb783e593ca192f20de2ef7bb722a",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "57fbaa9b673ed85b32458b31baeeae230520e4a0",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "992a58c1036fcf4d52cbf3313b6217b7c07b11d9",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "e02543685f3f5a937b521557b6599505676bf38c",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "90afd0a3a89a27dd1759438e5dc77ab6238c69bd",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "bad37fdf3e46169588beb21d2488f9a227e7264e",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "f850eb6b4c47e546b56cca14603dadd9614b2f3e",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "263652b5b6ad7f6cd30d4e7e573b22dda59087bd",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "786d05d2d6b9953184ca35e0e24d4c46a571e03b",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "59dc6be731ae9760f32ba998e3e6a2f7e6808a93",
+      "reason": "over 200 changed lines or 3 source files"
+    },
+    {
+      "sha": "23635529c6d3abbbf3818248ea1bd590f06a0f1b",
+      "reason": "over 200 changed lines or 3 source files"
+    },
+    {
+      "sha": "f96caf2c4e0a7c7db82dacf118dcb0030a2a9bb7",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "0191550807779a1d8a477adc4a36d7e410613b3e",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "7bd0d48663d5b61a0d4e5568604dbb3de92fcbae",
+      "reason": "over 200 changed lines or 3 source files"
+    },
+    {
+      "sha": "675afd8a9213a67f2dc114aeee5573d8a2ca1221",
+      "reason": "over 200 changed lines or 3 source files"
+    },
+    {
+      "sha": "a8fad5e5dea6cb39c522100392493d66611f1427",
+      "reason": "over 200 changed lines or 3 source files"
+    },
+    {
+      "sha": "93c955a43127082392b012f689779324346c441f",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "8191b0ff3c56f1389a860f0c5124611c53c7f595",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "47c8046492d4db49f163bb977d20d5942e4ddb25",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "985df86bbf511b244ce6acf7a9c3b8a0d09d0fb3",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "9005642440e1479dd26c2c5d64c27f596445aaac",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "d82ecc45035ac4d2e71501e79e8e99eba09ffbb9",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "dfb4c8dea71ec3777819bc10183908da876f0cc9",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "1408e27ac533e8a07b1e675c4c81cce08b961c04",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "b8103e630783d9654033b138e13843a9e363264c",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "2b6f7aa3e361aaf034d9209f0934d015a19a9688",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "77bd8e99b2aef1fbc3391afebbed58346ea2a76c",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "fca74549b19303864c00f1029fee4d3d14dc34ed",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "33ae1b14e56c37864b90c44c0f6f9ca24601f07e",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "f892a2b46e7fd31c639723d1d9bf4d9ad63752d6",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "2adf15c735396b10e5050072babba0c319766726",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "17ca25956b7c78ba74ceb1f1aec1415e9ff2ce77",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "5292dd2a21d74704a7d7dbc6e282b88fefd7c3b2",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "895f7c49e2737aad250e51c2d999639536054b64",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "75cd86b3ea6534d5bd8d3c83c3cf1b493e7c9102",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "1372434369025e6ace5ba0925b8fa88f0f55469b",
+      "reason": "over 200 changed lines or 3 source files"
+    },
+    {
+      "sha": "d35693e87553c97a7e1819741b5290ea857aded0",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "d818b4a5f35ee88431814cc8ccd8fbac73ee9533",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "1bc49196fd45d5538991fcf1f34cbdfcfa6ce962",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "add51b1d8326f6e46fca9e3abee269bf4ba6817d",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "35b6e63418f29aa4e93c6b5581613e3c42e643b4",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "321e8ce99bc996d71e6fb598edd1ac197d9c99ff",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "1885ed64006982cdd08a70c2cba193e1fe2eb693",
+      "reason": "over 200 changed lines or 3 source files"
+    },
+    {
+      "sha": "2c51dddb869eb7c0d05b4739d34406e20a0e03b8",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "05db15d78d376860f647e403c183e95fc2bc7f8f",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "a905cf03a2b148f56e013cb4031171b6f3dd9dcd",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "8e1526e8a5367e79b9542609a326c5ab1d7ad160",
+      "reason": "over 200 changed lines or 3 source files"
+    },
+    {
+      "sha": "a382efad2af5c66a7bf28223037937041d76bfde",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "81326f48c2cac300a1613f17194ce5aa50d0414b",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "448a22a6cd69a4e485527d92e71bd93a06b3ef8d",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "c3d8a92e85673e4c321abdadc49b0641a0e21260",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "d50a175c6914f483fd9c0224b3468bc6eb110c9c",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "f55ecbb98af9a7543cc6996f4877f5e7c0112729",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "c9f49a86c51f1325367a5d2e60ae6640a1301cf2",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "d059c996bfc071da6bcd587ed422d1d27f3f171b",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "27dfe629799e633c19bf6209f8e7e549e6b263c8",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "962b2173399cdca4661e607edae06e092bbe6fc1",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "b9eeaaa7cef93fc72035a5ec0b1aee13146a6c55",
+      "reason": "no production source change"
+    },
+    {
+      "sha": "784907c57d59db571f10075e44ff230001042196",
+      "reason": "no production source change"
+    }
+  ]
+}

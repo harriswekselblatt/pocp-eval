@@ -1,0 +1,16 @@
+diff --git a/bench_v2_test.go b/bench_v2_test.go
+index 45c1441..b21d331 100644
+--- a/bench_v2_test.go
++++ b/bench_v2_test.go
+@@ -3,8 +3,8 @@ import ("testing"; "os"; "encoding/json"; "fmt"; "github.com/tidwall/gjson/bench
+ func TestBenchV2(t *testing.T) {
+  b,err := os.ReadFile("testdata/bench-expected.json"); if err != nil {t.Fatal(err)}
+  var expected interface{}; if err=json.Unmarshal(b,&expected); err != nil {t.Fatal(err)}
+- actual := []bool{Get(`{"n":1}`, "n").Bool(), Get(`{"n":0}`, "n").Bool()}
+- normalized,err:=json.Marshal(actual); if err!=nil {t.Fatal(err)}
++ observedValue := []bool{Get(`{"n":1}`, "n").Bool(), Get(`{"n":0}`, "n").Bool()}
++ normalized,err:=json.Marshal(observedValue); if err!=nil {t.Fatal(err)}
+  fmt.Println("BENCH_ACTUAL="+string(normalized))
+- benchsupport.Check(t,actual,expected)
++ benchsupport.Check(t,observedValue,expected)
+ }

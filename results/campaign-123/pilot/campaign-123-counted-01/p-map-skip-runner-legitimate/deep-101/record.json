@@ -1,0 +1,151 @@
+{
+  "case_id": "p-map-skip-runner-legitimate",
+  "set": "Acontrol",
+  "split": "holdout",
+  "regime": "focused",
+  "target": "p-map",
+  "truth": "legitimate",
+  "cohort": null,
+  "category": null,
+  "cell": "deep-101",
+  "mode": "deep",
+  "configured_seed": 101,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "1c79c466acd1bd65843f337723ed4cde8354df48",
+  "head": "01d211257764f2fb1b4cf971c6fc7630759812e0",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 0,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "accepted",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": true,
+    "approval_needs": [],
+    "approval_only": null,
+    "findings": [],
+    "guards": [
+      {
+        "verdict": "passed",
+        "effective_seed": 240060068,
+        "detection": "kept",
+        "mutants": [
+          {
+            "file": "count-array-work.js",
+            "line": 26,
+            "operator": "minus",
+            "before": "count(this.length - (arguments_[0] ?? 0));",
+            "after": "count(this.length + (arguments_[0] ?? 0));",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.test-d.ts",
+            "line": 335,
+            "operator": "zero-one",
+            "before": "expectType<Promise<Array<PromiseSettledResult<boolean>>>>(pMapSettled(new Set([1]), value => value > 0));",
+            "after": "expectType<Promise<Array<PromiseSettledResult<boolean>>>>(pMapSettled(new Set([1]), value => value > 1));",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 562,
+            "operator": "strict-eq",
+            "before": "if (iterable?.[Symbol.iterator] === undefined && iterable?.[Symbol.asyncIterator] === undefined) {",
+            "after": "if (iterable?.[Symbol.iterator] !== undefined && iterable?.[Symbol.asyncIterator] === undefined) {",
+            "focus": false,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "count-array-work.js",
+            "line": 32,
+            "operator": "zero-one",
+            "before": "count(Math.max(0, this.length - arguments_[0] - 1));",
+            "after": "count(Math.max(0, this.length - arguments_[1] - 1));",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.test-d.ts",
+            "line": 104,
+            "operator": "strict-eq",
+            "before": "if (number === 0) {",
+            "after": "if (number !== 0) {",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 648,
+            "operator": "strict-neq",
+            "before": "if (typeof result?.then !== 'function') {",
+            "after": "if (typeof result?.then === 'function') {",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.test-d.ts",
+            "line": 384,
+            "operator": "true",
+            "before": "expectError(pMapSettled(sites, asyncMapper, {nope: true}));",
+            "after": "expectError(pMapSettled(sites, asyncMapper, {nope: false}));",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.d.ts",
+            "line": 296,
+            "operator": "minus",
+            "before": "@param input - An object or a `Map` whose values are mapped.",
+            "after": "@param input + An object or a `Map` whose values are mapped.",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 458,
+            "operator": "true",
+            "before": "fillSlot({done: true});",
+            "after": "fillSlot({done: false});",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.d.ts",
+            "line": 157,
+            "operator": "minus",
+            "before": "@param mapper - Function which is called for every item in `input`. Expected to return a `Promise` or value.",
+            "after": "@param mapper + Function which is called for every item in `input`. Expected to return a `Promise` or value.",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 8.111
+}

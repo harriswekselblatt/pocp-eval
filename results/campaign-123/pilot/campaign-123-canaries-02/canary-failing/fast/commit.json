@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "git",
+    "commit",
+    "-qm",
+    "canary-failing fast"
+  ],
+  "exit": 1,
+  "execution": "completed",
+  "seconds": 0.38472458405885845,
+  "stdout": "",
+  "stderr": "pocp: commit blocked\n  why: 1 file(s) have required checks\n  covered, but no packet is proven for this code yet: CANARY_MARK\n  p-8e4e4aba (Change to CANARY_MARK): proven 0/1 \u00b7 failed: o1\n  failed_proof: packet p-8e4e4aba has failing checks: o1\n  what to do:\n    what: p-8e4e4aba: o1 failed on this exact code\n      why: a required check fails, so the change would break what it protects.\n      next: fix the code (not the tests), stage it, then pocp fix. The log path is in \"pocp show\" or the prove output.\n  (prove and commit again, or \"pocp gate --prove\" to run missing checks first)\n"
+}

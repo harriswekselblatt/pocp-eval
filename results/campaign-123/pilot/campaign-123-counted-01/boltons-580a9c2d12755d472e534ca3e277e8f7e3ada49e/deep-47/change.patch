@@ -1,0 +1,43 @@
+diff --git a/boltons/setutils.py b/boltons/setutils.py
+index 3c49273..950b130 100644
+--- a/boltons/setutils.py
++++ b/boltons/setutils.py
+@@ -816,8 +816,6 @@ class _ComplementSet:
+ 
+     def __le__(self, other):
+         inc, exc = _norm_args_notimplemented(other)
+-        if inc is NotImplemented:
+-            return NotImplemented
+         if inc is NotImplemented:
+             return NotImplemented
+         if self._included is None:
+@@ -833,8 +831,6 @@ class _ComplementSet:
+ 
+     def __lt__(self, other):
+         inc, exc = _norm_args_notimplemented(other)
+-        if inc is NotImplemented:
+-            return NotImplemented
+         if inc is NotImplemented:
+             return NotImplemented
+         if self._included is None:
+diff --git a/tests/test_setutils.py b/tests/test_setutils.py
+index 806e3d9..f16c9df 100644
+--- a/tests/test_setutils.py
++++ b/tests/test_setutils.py
+@@ -108,6 +108,16 @@ def test_complement_set():
+     assert cab <= cab
+     assert complement('a') >= cab
+     assert cab >= cab
++    # double-complemented (included-form) sets dispatch to the + +
++    # branches of __le__/__ge__: comp(comp(X)) behaves like X
++    ccab = complement(complement(set('ab')))
++    cca = complement(complement(set('a')))
++    assert ccab >= cca
++    assert not (cca >= ccab)
++    assert cca <= ccab
++    assert not (ccab <= cca)
++    assert ccab >= ccab
++    assert ccab <= ccab
+     assert not cab.isdisjoint(cc)  # complements never disjoint
+     assert cab.isdisjoint(sab)
+     assert not cab.isdisjoint(sc)

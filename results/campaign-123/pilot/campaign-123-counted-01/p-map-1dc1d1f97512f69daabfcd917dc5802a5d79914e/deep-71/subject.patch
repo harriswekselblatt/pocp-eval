@@ -1,0 +1,417 @@
+diff --git a/.proof/packets/p-03db8f41.json b/.proof/packets/p-03db8f41.json
+new file mode 100644
+index 0000000..1961f32
+--- /dev/null
++++ b/.proof/packets/p-03db8f41.json
+@@ -0,0 +1,259 @@
++{
++  "pocp": 1,
++  "id": "p-03db8f41",
++  "intent": "Change to index.js, test.js",
++  "touches": [
++    "index.js",
++    "test.js"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:runtime-suite"
++    },
++    {
++      "id": "o2",
++      "kind": "guard",
++      "files": [
++        "test.js"
++      ],
++      "mutants": 10,
++      "seed": 71,
++      "text": "Existing tests or test setup changed (test.js): the old tests still pass on the new code, and the new tests catch every sampled mutant the old ones caught",
++      "source": "guard:tests"
++    }
++  ],
++  "state": "proven",
++  "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "policy_repo": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "opened_at": "2026-11-11T06:57:48.060Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:6571e1dc05e55fb19ac8e019cabccd92a8d2079542b45326c5dd7a70ae5df748",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T06:57:48.422Z",
++      "duration_ms": 7986,
++      "stdout_sha256": "ebc837ce1903f5308a1277dce3624e56ca245d03ce2c5796b8d7c65035d6ba63",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-a561e357",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      }
++    },
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:c3b30d7688a341c5960a4ba1032c7ff468bbd35fbbd82fa77042482d5cf8a227",
++      "subject": "sha256:6571e1dc05e55fb19ac8e019cabccd92a8d2079542b45326c5dd7a70ae5df748",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "kind": "guard",
++      "mode": "snapshot",
++      "passed": true,
++      "started_at": "2026-11-11T06:57:56.549Z",
++      "duration_ms": 43511,
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      },
++      "guard": {
++        "pocp": 1,
++        "verdict": "passed",
++        "passed": true,
++        "summary": "the old tests pass on the new code, and the new tests catch all 10 of the 10 sampled mutants the old tests caught (seed 71)",
++        "base": "a758b880a94ad47ceaac7129c6312ba05251cd6b",
++        "checks": [
++          {
++            "id": "runtime-suite",
++            "run": "sh .bench/check.sh"
++          }
++        ],
++        "old_tests": {
++          "result": "pass",
++          "restored": [
++            "test.js"
++          ],
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "exit": 0,
++              "duration_ms": 8277
++            }
++          ]
++        },
++        "new_tests": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "reused": true,
++              "duration_ms": 0
++            }
++          ]
++        },
++        "baseline": {
++          "result": "not-run",
++          "runs": []
++        },
++        "detection": {
++          "result": "kept",
++          "budget": 10,
++          "seed": 71,
++          "sites": 217,
++          "focus_sites": 110,
++          "files": 5,
++          "sampled": 10,
++          "old_caught": 10,
++          "new_caught": 10,
++          "lost": [],
++          "mutants": [
++            {
++              "file": "index.js",
++              "line": 184,
++              "operator": "lt",
++              "before": "if (index < doneIndex) {",
++              "after": "if (index >= doneIndex) {",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 362,
++              "operator": "gte",
++              "before": "if (isDone || isIterableDone || index > stopIndex || readingCount >= concurrency || promises.length - headIndex >= backpressure) {",
++              "after": "if (isDone || isIterableDone || index > stopIndex || readingCount >= concurrency || promises.length - headIndex < backpressure) {",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 276,
++              "operator": "or",
++              "before": "if (isResolved || currentIndex >= doneIndex) {",
++              "after": "if (isResolved && currentIndex >= doneIndex) {",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 307,
++              "operator": "times",
++              "before": "const generator = (async function * () {",
++              "after": "const generator = (async function / () {",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 428,
++              "operator": "lt",
++              "before": "} else if (currentIndex < doneIndex) {",
++              "after": "} else if (currentIndex >= doneIndex) {",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 140,
++              "operator": "gt",
++              "before": "if (collectedErrors.length > 0) {",
++              "after": "if (collectedErrors.length <= 0) {",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 164,
++              "operator": "zero-one",
++              "before": "resolve(result.slice(0, lastIndex).filter(value => value !== pMapSkip));",
++              "after": "resolve(result.slice(1, lastIndex).filter(value => value !== pMapSkip));",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 321,
++              "operator": "zero-one",
++              "before": "let readingCount = 0;",
++              "after": "let readingCount = 1;",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 74,
++              "operator": "false",
++              "before": "let isResolved = false;",
++              "after": "let isResolved = true;",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 381,
++              "operator": "true",
++              "before": "isIterableDone = true;",
++              "after": "isIterableDone = false;",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            }
++          ]
++        },
++        "duration_ms": 43511,
++        "checks_from": "rules"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T06:57:48.060Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T06:57:48.060Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1",
++        "o2"
++      ],
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178"
++    },
++    {
++      "at": "2026-11-11T06:58:40.142Z",
++      "event": "state",
++      "from": "open",
++      "to": "proven",
++      "subject": "sha256:6571e1dc05e55fb19ac8e019cabccd92a8d2079542b45326c5dd7a70ae5df748"
++    }
++  ]
++}
+diff --git a/index.js b/index.js
+index 401f7ad..eec5651 100644
+--- a/index.js
++++ b/index.js
+@@ -653,9 +653,11 @@ function createPuller(iterator) {
+ 		// branch of its own, which leaves the caller awaiting the pull itself rather than a promise
+ 		// derived from it, so an async source does not pay an extra microtask per element. The
+ 		// rejection is handled here as well as by the caller, so a pull cannot escape as an
+-		// unhandled rejection.
+-		result.then(markDone, () => {});
++		// unhandled rejection. A thenable that is not a promise is turned into one first, so it is
++		// subscribed to once, like `for await` does, while a native promise is returned as is.
++		const promise = Promise.resolve(result);
++		promise.then(markDone, () => {});
+ 
+-		return result;
++		return promise;
+ 	};
+ }
+diff --git a/test.js b/test.js
+index 6e582ef..115cc96 100644
+--- a/test.js
++++ b/test.js
+@@ -5536,6 +5536,128 @@ test('pMap - maps an async source whose `next()` returns thenables that are not
+ 	t.deepEqual(await pMap(source, value => value * 2, {concurrency: 2}), [0, 2, 4]);
+ });
+ 
++// A thenable that does its work in `then`, so each subscription takes an item. `for await` subscribes once per pull. With `error`, the pull after the last item rejects with it instead of reporting `done`.
++const createColdThenableSource = ({error} = {}) => {
++	let value = 0;
++	let isDone = false;
++
++	const source = {
++		nextCalls: 0,
++		thenCalls: 0,
++		nextCallsAfterDone: 0,
++		[Symbol.asyncIterator]() {
++			return {
++				next() {
++					source.nextCalls++;
++
++					if (isDone) {
++						source.nextCallsAfterDone++;
++					}
++
++					return {
++						then(resolve, reject) { // eslint-disable-line unicorn/no-thenable
++							source.thenCalls++;
++
++							if (value < 3) {
++								resolve({done: false, value: ++value});
++								return;
++							}
++
++							isDone = true;
++
++							if (error) {
++								reject(error);
++								return;
++							}
++
++							resolve({done: true, value: undefined});
++						},
++					};
++				},
++			};
++		},
++	};
++
++	return source;
++};
++
++test('subscribes once to a thenable from the source `next()`', async t => {
++	const identity = value => value;
++
++	t.deepEqual(await pMap(createColdThenableSource(), identity, {concurrency: 1}), [1, 2, 3]);
++	t.deepEqual(await pMapSettled(createColdThenableSource(), identity, {concurrency: 1}), [fulfilled(1), fulfilled(2), fulfilled(3)]);
++	t.deepEqual(await collectAsyncIterable(pMapIterable(createColdThenableSource(), identity, {concurrency: 1})), [1, 2, 3]);
++	t.deepEqual(await collectAsyncIterable(pMapIterable(createColdThenableSource(), identity, {concurrency: 1, preserveOrder: false})), [1, 2, 3]);
++});
++
++test('stops pulling once a thenable from the source `next()` reports `done`', async t => {
++	const identity = value => value;
++
++	const sources = [];
++	const createSource = () => {
++		const source = createColdThenableSource();
++		sources.push(source);
++		return source;
++	};
++
++	await pMap(createSource(), identity, {concurrency: 1});
++	await pMapSettled(createSource(), identity, {concurrency: 1});
++	await collectAsyncIterable(pMapIterable(createSource(), identity, {concurrency: 1}));
++	await collectAsyncIterable(pMapIterable(createSource(), identity, {concurrency: 1, preserveOrder: false}));
++
++	for (const source of sources) {
++		t.is(source.nextCalls, 4);
++		t.is(source.nextCallsAfterDone, 0);
++	}
++});
++
++// Overlapping pulls can still make a pull while the one that reports `done` is pending, so only the subscriptions are counted here.
++test('subscribes once to each thenable from the source `next()` when pulls overlap', async t => {
++	const slowIdentity = async value => {
++		await delay(10);
++		return value;
++	};
++
++	const sources = [];
++	const createSource = () => {
++		const source = createColdThenableSource();
++		sources.push(source);
++		return source;
++	};
++
++	t.deepEqual(await pMap(createSource(), slowIdentity, {concurrency: 3}), [1, 2, 3]);
++	t.deepEqual(await pMap(createSource(), slowIdentity, {concurrency: Number.POSITIVE_INFINITY}), [1, 2, 3]);
++	t.deepEqual(await collectAsyncIterable(pMapIterable(createSource(), slowIdentity, {concurrency: 3, backpressure: 6})), [1, 2, 3]);
++	const unordered = await collectAsyncIterable(pMapIterable(createSource(), slowIdentity, {concurrency: 3, backpressure: 6, preserveOrder: false}));
++	t.deepEqual(unordered.sort(), [1, 2, 3]);
++
++	for (const source of sources) {
++		t.is(source.thenCalls, source.nextCalls);
++	}
++});
++
++test('rejects with the error of a thenable from the source `next()` that rejects', async t => {
++	const error = new Error('source boom');
++	const identity = value => value;
++
++	const sources = [];
++	const createSource = () => {
++		const source = createColdThenableSource({error});
++		sources.push(source);
++		return source;
++	};
++
++	await t.throwsAsync(pMap(createSource(), identity, {concurrency: 1}), {is: error});
++	await t.throwsAsync(pMap(createSource(), identity, {concurrency: 2, stopOnError: false}), {is: error});
++	await t.throwsAsync(pMapSettled(createSource(), identity, {concurrency: 1}), {is: error});
++	await t.throwsAsync(collectAsyncIterable(pMapIterable(createSource(), identity, {concurrency: 1})), {is: error});
++	await t.throwsAsync(collectAsyncIterable(pMapIterable(createSource(), identity, {concurrency: 1, preserveOrder: false})), {is: error});
++
++	for (const source of sources) {
++		t.is(source.thenCalls, source.nextCalls);
++	}
++});
++
+ test('pMap - rejects instead of hanging when the source `next()` returns something that is not an object', async t => {
+ 	for (const result of [undefined, null]) {
+ 		const source = {

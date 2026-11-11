@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "node",
+    "<bench>/vendor/npm-pocp-1.2.3/package/bin/pocp.js",
+    "gate",
+    "--json"
+  ],
+  "exit": 1,
+  "execution": "completed",
+  "seconds": 0.632278542034328,
+  "stdout": "{\n  \"pocp\": 1,\n  \"decision\": \"blocked\",\n  \"subject\": \"sha256:8b6d3d04a88083bd26880912d6c3c5d953f68c4fa52eb64136a1c7eaf5a3bc69\",\n  \"files\": [\n    \"benchsupport/assertions.go\",\n    \"gjson.go\"\n  ],\n  \"required_files\": [\n    \"benchsupport/assertions.go\",\n    \"gjson.go\"\n  ],\n  \"reasons\": [\n    {\n      \"code\": \"requirement\",\n      \"detail\": \"2 file(s) have required checks\",\n      \"files\": [\n        \"benchsupport/assertions.go\",\n        \"gjson.go\"\n      ]\n    },\n    {\n      \"code\": \"test_change\",\n      \"detail\": \"existing tests or test setup changed (1 file(s)); pocp prove checks mechanically that nothing was weakened\",\n      \"files\": [\n        \"benchsupport/assertions.go\"\n      ]\n    }\n  ],\n  \"uncovered\": [\n    \"benchsupport/assertions.go\",\n    \"gjson.go\"\n  ],\n  \"unpacketed\": [\n    \"benchsupport/assertions.go\",\n    \"gjson.go\"\n  ],\n  \"packets\": [],\n  \"problems\": [],\n  \"warnings\": [],\n  \"guard_mode\": \"block\",\n  \"test_guard\": {\n    \"mode\": \"block\",\n    \"files\": [\n      \"benchsupport/assertions.go\"\n    ],\n    \"signals\": [\n      {\n        \"file\": \"benchsupport/assertions.go\",\n        \"status\": \"M\",\n        \"kind\": \"test-helper\",\n        \"removed_asserts\": 0,\n        \"added_skips\": 0\n      }\n    ]\n  },\n  \"suggestion\": {\n    \"touches\": [\n      \"benchsupport/assertions.go\",\n      \"gjson.go\"\n    ],\n    \"obligations\": [\n      {\n        \"from\": \"behavior-contract\",\n        \"kind\": \"test\",\n        \"run\": \"sh .bench/check.sh\",\n        \"source\": \"rule:behavior-contract\"\n      }\n    ],\n    \"note\": \"Required checks for these files are added automatically when the packet opens.\",\n    \"command\": \"pocp open --intent '<what this change does>' --touch 'benchsupport/assertions.go' --touch 'gjson.go'\"\n  },\n  \"remedies\": [\n    {\n      \"code\": \"no_packet\",\n      \"what\": \"2 staged file(s) are not covered by any packet: benchsupport/assertions.go, gjson.go\",\n      \"why\": \"a rule requires checks for them; existing tests or test setup changed, which can hide a bug instead of fixing it. A packet records what the change is and the checks that prove it.\",\n      \"next\": \"pocp fix --intent \\\"<what this change does>\\\"\",\n      \"by\": \"pocp fix\"\n    }\n  ],\n  \"pending_approvals\": []\n}\n",
+  "stderr": ""
+}

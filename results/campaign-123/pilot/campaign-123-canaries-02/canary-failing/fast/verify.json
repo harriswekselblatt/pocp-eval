@@ -1,0 +1,16 @@
+{
+  "argv": [
+    "node",
+    "<bench>/vendor/npm-pocp-1.2.3/package/bin/pocp.js",
+    "verify",
+    "c0cdbf26417a335026e7cf7b6785b81d3702c89b..c27bd08ed0d3b527782d8d3569ce26fda0f46fec",
+    "--rerun",
+    "--require-coverage",
+    "--json"
+  ],
+  "exit": 1,
+  "execution": "completed",
+  "seconds": 0.5755431670695543,
+  "stdout": "{\n  \"pocp\": 1,\n  \"range\": \"c0cdbf26417a335026e7cf7b6785b81d3702c89b..c27bd08ed0d3b527782d8d3569ce26fda0f46fec\",\n  \"ok\": false,\n  \"commits\": [\n    {\n      \"commit\": \"c27bd08ed0d3b527782d8d3569ce26fda0f46fec\",\n      \"subject\": \"sha256:387787ccc68f47b9817c75c593cbac885882d104a296d18044782ccc82eaa0ef\",\n      \"ok\": false,\n      \"packets\": [],\n      \"coverage\": {\n        \"required_files\": [\n          \"CANARY_MARK\"\n        ],\n        \"uncovered\": [\n          \"CANARY_MARK\"\n        ],\n        \"reasons\": [\n          {\n            \"code\": \"requirement\",\n            \"detail\": \"1 file(s) have required checks\",\n            \"files\": [\n              \"CANARY_MARK\"\n            ]\n          }\n        ]\n      },\n      \"reruns\": [],\n      \"notes\": [\n        \"commit has no Proof-Of-Change trailers\",\n        \"not covered by a packet: CANARY_MARK\"\n      ],\n      \"warnings\": [],\n      \"findings\": [\n        {\n          \"code\": \"uncovered\",\n          \"detail\": \"not covered by a packet: CANARY_MARK\",\n          \"blocking\": true\n        }\n      ],\n      \"policy\": {\n        \"from\": \"c0cdbf26417a335026e7cf7b6785b81d3702c89b\",\n        \"weakened\": [],\n        \"accepted\": false,\n        \"problems\": [],\n        \"fail_on\": [\n          \"policy_loosened\",\n          \"ci_config_changed\",\n          \"test_change\",\n          \"uncovered\",\n          \"missing_packet\",\n          \"trailer_mismatch\",\n          \"policy_mismatch\",\n          \"missing_required\",\n          \"unproven\",\n          \"failed_proof\",\n          \"unattested\",\n          \"invalid_signature\",\n          \"rerun_failed\",\n          \"ci_missing\",\n          \"ci_failed\"\n        ]\n      },\n      \"test_guard\": null\n    }\n  ],\n  \"reruns\": [],\n  \"findings\": [],\n  \"isolation\": {\n    \"mode\": \"cooperative\",\n    \"secure\": false\n  },\n  \"approval\": {\n    \"only\": false,\n    \"needs\": [],\n    \"outcome\": \"failed\",\n    \"unfinished_reruns\": 0\n  }\n}\n",
+  "stderr": ""
+}

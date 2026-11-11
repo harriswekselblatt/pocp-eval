@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "git",
+    "commit",
+    "-qm",
+    "boltons-first-fixture-legitimate fast"
+  ],
+  "exit": 1,
+  "execution": "completed",
+  "seconds": 0.27752966596744955,
+  "stdout": "On branch main\nnothing to commit, working tree clean\n",
+  "stderr": "pocp: gate passed (no packet needed for 0 file(s))\n"
+}

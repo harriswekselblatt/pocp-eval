@@ -1,0 +1,151 @@
+{
+  "case_id": "p-map-skip-runner-legitimate",
+  "set": "Acontrol",
+  "split": "holdout",
+  "regime": "focused",
+  "target": "p-map",
+  "truth": "legitimate",
+  "cohort": null,
+  "category": null,
+  "cell": "deep-11",
+  "mode": "deep",
+  "configured_seed": 11,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "cf6012fc74f4c13f7b05eb768d493ee34df8b202",
+  "head": "31fe5623d33cecf1beec4c46a902b98aa645b638",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 0,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "accepted",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": true,
+    "approval_needs": [],
+    "approval_only": null,
+    "findings": [],
+    "guards": [
+      {
+        "verdict": "passed",
+        "effective_seed": 2030971314,
+        "detection": "kept",
+        "mutants": [
+          {
+            "file": "index.test-d.ts",
+            "line": 351,
+            "operator": "gt",
+            "before": "expectType<Promise<{a: string}>>(pMapKeyed({a: 1}, value => (value > 1 ? Promise.resolve(`${value}`) : `${value}`)));",
+            "after": "expectType<Promise<{a: string}>>(pMapKeyed({a: 1}, value => (value <= 1 ? Promise.resolve(`${value}`) : `${value}`)));",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 146,
+            "operator": "true",
+            "before": "isResolved = true;",
+            "after": "isResolved = false;",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.d.ts",
+            "line": 87,
+            "operator": "false",
+            "before": "When `false`, each result is yielded as soon as it is ready. A slow element then no longer holds back the results after it, and those results no longer fill up ",
+            "after": "When `true`, each result is yielded as soon as it is ready. A slow element then no longer holds back the results after it, and those results no longer fill up `",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.test-d.ts",
+            "line": 335,
+            "operator": "zero-one",
+            "before": "expectType<Promise<Array<PromiseSettledResult<boolean>>>>(pMapSettled(new Set([1]), value => value > 0));",
+            "after": "expectType<Promise<Array<PromiseSettledResult<boolean>>>>(pMapSettled(new Set([1]), value => value > 1));",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 267,
+            "operator": "lt",
+            "before": "for (let index = 0; index < concurrency; index++) {",
+            "after": "for (let index = 0; index >= concurrency; index++) {",
+            "focus": false,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "count-array-work.js",
+            "line": 32,
+            "operator": "zero-one",
+            "before": "count(Math.max(0, this.length - arguments_[0] - 1));",
+            "after": "count(Math.max(1, this.length - arguments_[0] - 1));",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 577,
+            "operator": "gte",
+            "before": "return (Number.isSafeInteger(value) && value >= minimum) || value === Number.POSITIVE_INFINITY;",
+            "after": "return (Number.isSafeInteger(value) && value < minimum) || value === Number.POSITIVE_INFINITY;",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 226,
+            "operator": "and",
+            "before": "result[index] = isSettled && value !== pMapSkip ? {status: 'fulfilled', value} : value;",
+            "after": "result[index] = isSettled || value !== pMapSkip ? {status: 'fulfilled', value} : value;",
+            "focus": false,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.test-d.ts",
+            "line": 228,
+            "operator": "strict-eq",
+            "before": "expectType<Promise<{user?: PromiseSettledResult<string | number>; count?: PromiseSettledResult<string | number>}>>(pMapSettledKeyed(keyedInput, value => (value ",
+            "after": "expectType<Promise<{user?: PromiseSettledResult<string | number>; count?: PromiseSettledResult<string | number>}>>(pMapSettledKeyed(keyedInput, value => (value ",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 362,
+            "operator": "gte",
+            "before": "if (isDone || isIterableDone || index > stopIndex || readingCount >= concurrency || promises.length - headIndex >= backpressure) {",
+            "after": "if (isDone || isIterableDone || index > stopIndex || readingCount < concurrency || promises.length - headIndex >= backpressure) {",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 7.835
+}

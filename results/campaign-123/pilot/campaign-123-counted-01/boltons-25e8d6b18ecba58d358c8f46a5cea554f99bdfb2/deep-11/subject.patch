@@ -1,0 +1,300 @@
+diff --git a/.proof/packets/p-f13af4d8.json b/.proof/packets/p-f13af4d8.json
+new file mode 100644
+index 0000000..80e19fa
+--- /dev/null
++++ b/.proof/packets/p-f13af4d8.json
+@@ -0,0 +1,259 @@
++{
++  "pocp": 1,
++  "id": "p-f13af4d8",
++  "intent": "Change to boltons/listutils.py, tests/test_listutils.py",
++  "touches": [
++    "boltons/listutils.py",
++    "tests/test_listutils.py"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:runtime-suite"
++    },
++    {
++      "id": "o2",
++      "kind": "guard",
++      "files": [
++        "tests/test_listutils.py"
++      ],
++      "mutants": 10,
++      "seed": 11,
++      "text": "Existing tests or test setup changed (tests/test_listutils.py): the old tests still pass on the new code, and the new tests catch every sampled mutant the old ones caught",
++      "source": "guard:tests"
++    }
++  ],
++  "state": "proven",
++  "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "policy_repo": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "opened_at": "2026-11-11T13:51:28.521Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:547b309ef9409a0d3edb50cdd4885765155911b6c9a5d511d66b82838ce627fd",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T13:51:28.909Z",
++      "duration_ms": 2170,
++      "stdout_sha256": "57933c0351be3aa470720c9c33bd477e6455ebcf2ddf43e477820dccc3f83646",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-a60145fe",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      }
++    },
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:be438948b05bfb4f4d8f7c1ec356723ed3021cf778a46af90486c8d423254e9b",
++      "subject": "sha256:547b309ef9409a0d3edb50cdd4885765155911b6c9a5d511d66b82838ce627fd",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "kind": "guard",
++      "mode": "snapshot",
++      "passed": true,
++      "started_at": "2026-11-11T13:51:31.194Z",
++      "duration_ms": 9506,
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      },
++      "guard": {
++        "pocp": 1,
++        "verdict": "passed",
++        "passed": true,
++        "summary": "the old tests pass on the new code, and the new tests catch all 8 of the 10 sampled mutants the old tests caught (seed 11)",
++        "base": "11f40d967f16f8c9cd34cbb42d226ecb4afec41e",
++        "checks": [
++          {
++            "id": "runtime-suite",
++            "run": "sh .bench/check.sh"
++          }
++        ],
++        "old_tests": {
++          "result": "pass",
++          "restored": [
++            "tests/test_listutils.py"
++          ],
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "exit": 0,
++              "duration_ms": 2234
++            }
++          ]
++        },
++        "new_tests": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "reused": true,
++              "duration_ms": 0
++            }
++          ]
++        },
++        "baseline": {
++          "result": "not-run",
++          "runs": []
++        },
++        "detection": {
++          "result": "kept",
++          "budget": 10,
++          "seed": 11,
++          "sites": 1463,
++          "focus_sites": 54,
++          "files": 34,
++          "sampled": 10,
++          "old_caught": 8,
++          "new_caught": 8,
++          "lost": [],
++          "mutants": [
++            {
++              "file": "boltons/listutils.py",
++              "line": 304,
++              "operator": "eq",
++              "before": "if len(self.lists) == 1:",
++              "after": "if len(self.lists) != 1:",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "boltons/listutils.py",
++              "line": 137,
++              "operator": "zero-one",
++              "before": "self.lists[0].insert(index, item)",
++              "after": "self.lists[1].insert(index, item)",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "boltons/listutils.py",
++              "line": 305,
++              "operator": "zero-one",
++              "before": "self.lists[0].sort()",
++              "after": "self.lists[1].sort()",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "boltons/listutils.py",
++              "line": 109,
++              "operator": "zero-one",
++              "before": "if index < 0:",
++              "after": "if index < 1:",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "boltons/listutils.py",
++              "line": 129,
++              "operator": "plus",
++              "before": "next_list_idx = list_idx + 1",
++              "after": "next_list_idx = list_idx - 1",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "boltons/listutils.py",
++              "line": 128,
++              "operator": "gt",
++              "before": "while len(cur_list) > half_limit:",
++              "after": "while len(cur_list) <= half_limit:",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "boltons/listutils.py",
++              "line": 193,
++              "operator": "zero-one",
++              "before": "self.lists[0][:] = new_list",
++              "after": "self.lists[1][:] = new_list",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/listutils.py",
++              "line": 142,
++              "operator": "zero-one",
++              "before": "list_idx, rel_idx = 0, 0",
++              "after": "list_idx, rel_idx = 0, 1",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/listutils.py",
++              "line": 136,
++              "operator": "eq",
++              "before": "if len(self.lists) == 1:",
++              "after": "if len(self.lists) != 1:",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "boltons/listutils.py",
++              "line": 277,
++              "operator": "zero-one",
++              "before": "self._balance_list(0)",
++              "after": "self._balance_list(1)",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            }
++          ]
++        },
++        "duration_ms": 9506,
++        "checks_from": "rules"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T13:51:28.521Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T13:51:28.521Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1",
++        "o2"
++      ],
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178"
++    },
++    {
++      "at": "2026-11-11T13:51:40.798Z",
++      "event": "state",
++      "from": "open",
++      "to": "proven",
++      "subject": "sha256:547b309ef9409a0d3edb50cdd4885765155911b6c9a5d511d66b82838ce627fd"
++    }
++  ]
++}
+diff --git a/boltons/listutils.py b/boltons/listutils.py
+index 15b14a3..d05d09d 100644
+--- a/boltons/listutils.py
++++ b/boltons/listutils.py
+@@ -139,7 +139,7 @@ class BarrelList(list):
+         else:
+             list_idx, rel_idx = self._translate_index(index)
+             if list_idx is None:
+-                raise IndexError()
++                list_idx, rel_idx = 0, 0
+             self.lists[list_idx].insert(rel_idx, item)
+             self._balance_list(list_idx)
+         return
+diff --git a/tests/test_listutils.py b/tests/test_listutils.py
+index b70977b..8b3f098 100644
+--- a/tests/test_listutils.py
++++ b/tests/test_listutils.py
+@@ -51,6 +51,17 @@ def test_barrel_list():
+     bl3[:20:2] = range(0, -10, -1)
+     assert bl3[6] == -3  # some truly tricky stepping/slicing works
+ 
++
++def test_barrel_list_insert_before_start_matches_list():
++    bl = BarrelList(range(int(1e5)))
++    bl._balance_list(0)
++
++    bl.insert(-int(1e9), 'start')
++
++    assert bl[0] == 'start'
++    assert len(bl) == int(1e5) + 1
++
++
+ def test_sort_barrel_list():
+     bl = BarrelList(reversed(range(100000)))
+     bl.pop(50000)

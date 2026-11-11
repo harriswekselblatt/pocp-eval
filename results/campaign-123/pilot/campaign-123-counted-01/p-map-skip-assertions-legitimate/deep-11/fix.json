@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "node",
+    "<bench>/vendor/npm-pocp-1.2.3/package/bin/pocp.js",
+    "fix",
+    "--json"
+  ],
+  "exit": 0,
+  "execution": "completed",
+  "seconds": 1.9579929580213502,
+  "stdout": "{\n  \"pocp\": 1,\n  \"ok\": true,\n  \"decision\": \"pass\",\n  \"nothing_staged\": false,\n  \"nothing_to_prove\": false,\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"packet\": \"p-3cde24a1\",\n      \"files\": [\n        \"test/bench-v2.mjs\"\n      ],\n      \"checks\": [\n        \"o1 (rule:behavior-contract)\",\n        \"o2 (guard:tests)\"\n      ],\n      \"intent\": \"Change to test/bench-v2.mjs\"\n    },\n    {\n      \"action\": \"prove\",\n      \"packets\": [\n        \"p-3cde24a1\"\n      ],\n      \"mode\": \"clean\",\n      \"ran\": 2,\n      \"checks\": 2,\n      \"ms\": 552,\n      \"failed\": [],\n      \"handed\": []\n    }\n  ],\n  \"needs_agent\": [],\n  \"needs_person\": [],\n  \"advice\": null,\n  \"gate\": {\n    \"decision\": \"pass\",\n    \"subject\": \"sha256:f37ffbf9379813020a20cf726942b4553d232cb90782920c4bd3d7e61454c6a1\"\n  }\n}\n",
+  "stderr": ""
+}

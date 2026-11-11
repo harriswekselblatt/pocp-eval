@@ -1,0 +1,274 @@
+diff --git a/.proof/packets/p-2f54e7c3.json b/.proof/packets/p-2f54e7c3.json
+new file mode 100644
+index 0000000..1230189
+--- /dev/null
++++ b/.proof/packets/p-2f54e7c3.json
+@@ -0,0 +1,258 @@
++{
++  "pocp": 1,
++  "id": "p-2f54e7c3",
++  "intent": "Change to bench_support/assertions.py",
++  "touches": [
++    "bench_support/assertions.py"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:behavior-contract"
++    },
++    {
++      "id": "o2",
++      "kind": "guard",
++      "files": [
++        "bench_support/assertions.py"
++      ],
++      "mutants": 10,
++      "seed": 29,
++      "text": "Existing tests or test setup changed (bench_support/assertions.py): the old tests still pass on the new code, and the new tests catch every sampled mutant the old ones caught",
++      "source": "guard:tests"
++    }
++  ],
++  "state": "proven",
++  "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++  "policy_repo": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++  "opened_at": "2026-11-11T03:47:30.728Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:b2c2f5fb16c591758c0d09a466f9ec16e76aa5dce48f53b381646d87fc14f2d5",
++      "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T03:47:31.248Z",
++      "duration_ms": 823,
++      "stdout_sha256": "35ac3a5134f85d5086dba3d1cd3aa7a444ae13d15abbbdf9e5d70e36f07f938a",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-66d8031d",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      }
++    },
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:cf899d11d1f9281d5abdf9bfc2fefb2f59420a5210c3ce4bfc7307dcf0d182f1",
++      "subject": "sha256:b2c2f5fb16c591758c0d09a466f9ec16e76aa5dce48f53b381646d87fc14f2d5",
++      "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++      "kind": "guard",
++      "mode": "snapshot",
++      "passed": true,
++      "started_at": "2026-11-11T03:47:32.331Z",
++      "duration_ms": 3336,
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      },
++      "guard": {
++        "pocp": 1,
++        "verdict": "passed",
++        "passed": true,
++        "summary": "the old tests pass on the new code, and the new tests catch all 1 of the 10 sampled mutants the old tests caught (seed 29)",
++        "base": "7d87c606d66f61bbd9de940c7dafa8c9353a00f5",
++        "checks": [
++          {
++            "id": "behavior-contract",
++            "run": "sh .bench/check.sh"
++          }
++        ],
++        "old_tests": {
++          "result": "pass",
++          "restored": [
++            "bench_support/assertions.py"
++          ],
++          "runs": [
++            {
++              "check": "behavior-contract",
++              "passed": true,
++              "exit": 0,
++              "duration_ms": 283
++            }
++          ]
++        },
++        "new_tests": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "behavior-contract",
++              "passed": true,
++              "reused": true,
++              "duration_ms": 0
++            }
++          ]
++        },
++        "baseline": {
++          "result": "not-run",
++          "runs": []
++        },
++        "detection": {
++          "result": "kept",
++          "budget": 10,
++          "seed": 29,
++          "sites": 1631,
++          "focus_sites": 1,
++          "files": 36,
++          "sampled": 10,
++          "old_caught": 1,
++          "new_caught": 1,
++          "lost": [],
++          "mutants": [
++            {
++              "file": "bench_support/assertions.py",
++              "line": 3,
++              "operator": "eq",
++              "before": "assert json.loads(json.dumps(observedValue)) == expected",
++              "after": "assert json.loads(json.dumps(observedValue)) != expected",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "boltons/statsutils.py",
++              "line": 74,
++              "operator": "minus",
++              "before": "3. `Skewness`_ - :func:`skewness` - symmetry of distribution",
++              "after": "3. `Skewness`_ + :func:`skewness` - symmetry of distribution",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/tbutils.py",
++              "line": 306,
++              "operator": "lt",
++              "before": "while tb is not None and n < limit:",
++              "after": "while tb is not None and n >= limit:",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/strutils.py",
++              "line": 431,
++              "operator": "eq",
++              "before": ">>> asciify('Beyoncé') == b'Beyonce'",
++              "after": ">>> asciify('Beyoncé') != b'Beyonce'",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "docs/conf.py",
++              "line": 49,
++              "operator": "strict-eq",
++              "before": "print ('==== %s modules ==== %s types ==== %s funcs ====' % ret)",
++              "after": "print ('==== %s modules ==== %s types ==== %s funcs !===' % ret)",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/excutils.py",
++              "line": 241,
++              "operator": "lt",
++              "before": "while tb is not None and n < limit:",
++              "after": "while tb is not None and n >= limit:",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/statsutils.py",
++              "line": 348,
++              "operator": "zero-one",
++              "before": "return (gq(0.25) + (2 * gq(0.5)) + gq(0.75)) / 4.0",
++              "after": "return (gq(1.25) + (2 * gq(0.5)) + gq(0.75)) / 4.0",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/timeutils.py",
++              "line": 296,
++              "operator": "zero-one",
++              "before": "defaults to ``0``.",
++              "after": "defaults to ``1``.",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/excutils.py",
++              "line": 189,
++              "operator": "neq",
++              "before": "return (self.lineno, self.filename) != (other.lineno, other.filename)",
++              "after": "return (self.lineno, self.filename) == (other.lineno, other.filename)",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/debugutils.py",
++              "line": 125,
++              "operator": "eq",
++              "before": "elif event == 'del':",
++              "after": "elif event != 'del':",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            }
++          ]
++        },
++        "duration_ms": 3336,
++        "checks_from": "rules"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T03:47:30.728Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T03:47:30.728Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1",
++        "o2"
++      ],
++      "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66"
++    },
++    {
++      "at": "2026-11-11T03:47:35.784Z",
++      "event": "state",
++      "from": "open",
++      "to": "proven",
++      "subject": "sha256:b2c2f5fb16c591758c0d09a466f9ec16e76aa5dce48f53b381646d87fc14f2d5"
++    }
++  ]
++}
+diff --git a/bench_support/assertions.py b/bench_support/assertions.py
+index 4aebd22..a1db425 100644
+--- a/bench_support/assertions.py
++++ b/bench_support/assertions.py
+@@ -1,3 +1,3 @@
+ import json
+-def check(actual, expected):
+-    assert json.loads(json.dumps(actual)) == expected
++def check(observedValue, expected):
++    assert json.loads(json.dumps(observedValue)) == expected

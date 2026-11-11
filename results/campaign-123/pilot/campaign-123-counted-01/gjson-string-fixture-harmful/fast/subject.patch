@@ -1,0 +1,207 @@
+diff --git a/.proof/packets/p-1d0fab66.json b/.proof/packets/p-1d0fab66.json
+new file mode 100644
+index 0000000..0411de6
+--- /dev/null
++++ b/.proof/packets/p-1d0fab66.json
+@@ -0,0 +1,181 @@
++{
++  "pocp": 1,
++  "id": "p-1d0fab66",
++  "intent": "Change to gjson.go, testdata/bench-expected.json",
++  "touches": [
++    "gjson.go",
++    "testdata/bench-expected.json"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:behavior-contract"
++    },
++    {
++      "id": "o2",
++      "kind": "guard",
++      "files": [
++        "testdata/bench-expected.json"
++      ],
++      "mutants": 0,
++      "seed": 11,
++      "text": "Existing tests or test setup changed (testdata/bench-expected.json): the old tests still pass on the new code, and a person reviews the change (fast mode: without planted bugs POCP can't show the tests still catch what they caught)",
++      "source": "guard:tests"
++    }
++  ],
++  "state": "open",
++  "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++  "policy_repo": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++  "opened_at": "2026-11-11T13:47:16.979Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:d8fc9ba0ef06fe452b2004841059d09b370d0fc923cae1f5a139a6bb4772ddd6",
++      "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T13:47:17.355Z",
++      "duration_ms": 350,
++      "stdout_sha256": "20b34e5d3715335566bcc5c2358c2ec768e3561b051f3f419ccf7b89239f938f",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-50034aae",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": "64eb99dde8e30a549ef1b6269effa5cb0efd6c9d507f42cdeab0f1fa2ac09c4a"
++      }
++    },
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:f5b65a262d0f94a15fd301d9060adbc82e81d912b36ced2fb5eba155fc67d2dd",
++      "subject": "sha256:d8fc9ba0ef06fe452b2004841059d09b370d0fc923cae1f5a139a6bb4772ddd6",
++      "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++      "kind": "guard",
++      "mode": "snapshot",
++      "passed": false,
++      "started_at": "2026-11-11T13:47:17.823Z",
++      "duration_ms": 1209,
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": "64eb99dde8e30a549ef1b6269effa5cb0efd6c9d507f42cdeab0f1fa2ac09c4a"
++      },
++      "guard": {
++        "pocp": 1,
++        "verdict": "behavior-changed",
++        "passed": false,
++        "summary": "the old tests fail on the new code (\"sh .bench/check.sh\" exit 1); failing: github.com/tidwall/gjson: behavior changed, so a person must approve it",
++        "base": "25500275f8b4ca66deabbbbdc7c686076f11c70f",
++        "checks": [
++          {
++            "id": "behavior-contract",
++            "run": "sh .bench/check.sh"
++          }
++        ],
++        "old_tests": {
++          "result": "fail",
++          "restored": [
++            "testdata/bench-expected.json"
++          ],
++          "runs": [
++            {
++              "check": "behavior-contract",
++              "passed": false,
++              "exit": 1,
++              "duration_ms": 535,
++              "failed_tests": [
++                "github.com/tidwall/gjson"
++              ]
++            }
++          ],
++          "changed_tests": {
++            "result": "not-used",
++            "reason": "check behavior-contract has no changed_test_command"
++          }
++        },
++        "new_tests": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "behavior-contract",
++              "passed": true,
++              "reused": true,
++              "duration_ms": 0
++            }
++          ]
++        },
++        "baseline": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "behavior-contract",
++              "passed": true,
++              "exit": 0,
++              "duration_ms": 546
++            }
++          ]
++        },
++        "detection": {
++          "result": "not-run",
++          "budget": 0,
++          "seed": 11
++        },
++        "duration_ms": 1209,
++        "checks_from": "rules"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T13:47:16.979Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T13:47:16.979Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1",
++        "o2"
++      ],
++      "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66"
++    },
++    {
++      "at": "2026-11-11T13:47:19.074Z",
++      "event": "proof_failed",
++      "obligation": "o2",
++      "subject": "sha256:d8fc9ba0ef06fe452b2004841059d09b370d0fc923cae1f5a139a6bb4772ddd6"
++    },
++    {
++      "at": "2026-11-11T13:47:19.387Z",
++      "event": "deferred",
++      "obligation": "o2",
++      "by": "unknown",
++      "subject": "sha256:d8fc9ba0ef06fe452b2004841059d09b370d0fc923cae1f5a139a6bb4772ddd6"
++    }
++  ],
++  "deferrals": [
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:f5b65a262d0f94a15fd301d9060adbc82e81d912b36ced2fb5eba155fc67d2dd",
++      "subject": "sha256:d8fc9ba0ef06fe452b2004841059d09b370d0fc923cae1f5a139a6bb4772ddd6",
++      "by": "unknown",
++      "at": "2026-11-11T13:47:19.387Z",
++      "to": "ci-approval",
++      "reason": "the old tests fail on the new code (\"sh .bench/check.sh\" exit 1); failing: github.com/tidwall/gjson: behavior changed, so a person must approve it"
++    }
++  ]
++}
+diff --git a/gjson.go b/gjson.go
+index 3fb59c2..eb340ca 100644
+--- a/gjson.go
++++ b/gjson.go
+@@ -85,7 +85,7 @@ func (t Result) String() string {
+ 	default:
+ 		return ""
+ 	case False:
+-		return "false"
++		return "true"
+ 	case Number:
+ 		if len(t.Raw) == 0 {
+ 			// calculated result
+diff --git a/testdata/bench-expected.json b/testdata/bench-expected.json
+index a759f3d..2b605f0 100644
+--- a/testdata/bench-expected.json
++++ b/testdata/bench-expected.json
+@@ -1 +1 @@
+-["false", "true", "hi"]
++["true", "true", "hi"]

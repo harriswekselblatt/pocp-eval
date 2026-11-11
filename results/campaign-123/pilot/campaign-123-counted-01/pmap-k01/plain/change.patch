@@ -1,0 +1,21 @@
+diff --git a/index.js b/index.js
+index eec5651..e05cec9 100644
+--- a/index.js
++++ b/index.js
+@@ -49,8 +49,14 @@ async function mapKeyed(input, mapper, options, isSettled) {
+ 		return new Map(mappedEntries);
+ 	}
+ 
+-	// A null prototype, like `Promise.allKeyed`, so a key like `__proto__` or `toString` is an own property like any other.
+-	return Object.setPrototypeOf(Object.fromEntries(mappedEntries), null);
++	// A null prototype, like `Promise.allKeyed`, so a key like `__proto__` or `toString` is an own property like any other. It is built that way from the start, rather than changing the prototype afterwards, which engines handle slowly.
++	const output = Object.create(null);
++
++	for (const [key, value] of mappedEntries) {
++		output[key] = value;
++	}
++
++	return output;
+ }
+ 
+ // The engine behind all the functions, except `pMapIterable`. With `isSettled`, an element or a mapper that rejects gives a `{status: 'rejected'}` result instead of an error, like `Promise.allSettled`, so `stopOnError` does not apply.

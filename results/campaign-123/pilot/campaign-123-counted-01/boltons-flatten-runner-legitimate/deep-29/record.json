@@ -1,0 +1,161 @@
+{
+  "case_id": "boltons-flatten-runner-legitimate",
+  "set": "Acontrol",
+  "split": "holdout",
+  "regime": "focused",
+  "target": "boltons",
+  "truth": "legitimate",
+  "cohort": null,
+  "category": null,
+  "cell": "deep-29",
+  "mode": "deep",
+  "configured_seed": 29,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "42126f9e2b223f55c4ad0e4bd2ddeb42e1929265",
+  "head": "6548ae812c595743b7affbeea0cf597e37128ced",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 1,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "needs_review",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": false,
+    "approval_needs": [
+      {
+        "label": "pocp-approve-tests",
+        "kind": "tests",
+        "files": [
+          ".bench/check.sh"
+        ]
+      }
+    ],
+    "approval_only": true,
+    "findings": [
+      "test_change"
+    ],
+    "guards": [
+      {
+        "verdict": "inconclusive",
+        "effective_seed": 1944814832,
+        "detection": "inconclusive",
+        "mutants": [
+          {
+            "file": "boltons/socketutils.py",
+            "line": 206,
+            "operator": "zero-one",
+            "before": "``0`` for nonblocking and ``None`` for no",
+            "after": "``1`` for nonblocking and ``None`` for no",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/timeutils.py",
+            "line": 387,
+            "operator": "zero-one",
+            "before": "...                      step=(0, 1, 0), inclusive=True):",
+            "after": "...                      step=(0, 1, 1), inclusive=True):",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/strutils.py",
+            "line": 196,
+            "operator": "eq",
+            "before": "if count == 1:",
+            "after": "if count != 1:",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/dictutils.py",
+            "line": 166,
+            "operator": "gt",
+            "before": "if len(args) > 1:",
+            "after": "if len(args) <= 1:",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/socketutils.py",
+            "line": 459,
+            "operator": "minus",
+            "before": "cur_timeout = timeout - (time.time() - start)",
+            "after": "cur_timeout = timeout - (time.time() + start)",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/ecoutils.py",
+            "line": 383,
+            "operator": "eq",
+            "before": "if sys.platform == 'win32':",
+            "after": "if sys.platform != 'win32':",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 565,
+            "operator": "zero-one",
+            "before": "start, stop = 0.0, stop * 1.0",
+            "after": "start, stop = 1.0, stop * 1.0",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/namedutils.py",
+            "line": 130,
+            "operator": "plus",
+            "before": ">>> p[0] + p[1]                     # indexable like a plain tuple",
+            "after": ">>> p[0] - p[1]                     # indexable like a plain tuple",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/mboxutils.py",
+            "line": 107,
+            "operator": "zero-one",
+            "before": "self._file.seek(0)",
+            "after": "self._file.seek(1)",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/tableutils.py",
+            "line": 301,
+            "operator": "zero-one",
+            "before": "if rem > 0:",
+            "after": "if rem > 1:",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 9.3
+}

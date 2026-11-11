@@ -1,0 +1,55 @@
+diff --git a/gjson.go b/gjson.go
+index 3fb59c2..85e6bc7 100644
+--- a/gjson.go
++++ b/gjson.go
+@@ -118,7 +118,7 @@ func (t Result) Bool() bool {
+ 	case True:
+ 		return true
+ 	case String:
+-		b, _ := strconv.ParseBool(strings.ToLower(t.Str))
++		b, _ := parseBoolString(t.Str)
+ 		return b
+ 	case Number:
+ 		return t.Num != 0
+@@ -1407,11 +1407,8 @@ func falseish(t Result) bool {
+ 	case False:
+ 		return true
+ 	case String:
+-		b, err := strconv.ParseBool(strings.ToLower(t.Str))
+-		if err != nil {
+-			return false
+-		}
+-		return !b
++		b, ok := parseBoolString(t.Str)
++		return ok && !b
+ 	case Number:
+ 		return t.Num == 0
+ 	default:
+@@ -1424,11 +1421,8 @@ func trueish(t Result) bool {
+ 	case True:
+ 		return true
+ 	case String:
+-		b, err := strconv.ParseBool(strings.ToLower(t.Str))
+-		if err != nil {
+-			return false
+-		}
+-		return b
++		b, ok := parseBoolString(t.Str)
++		return ok && b
+ 	case Number:
+ 		return t.Num != 0
+ 	default:
+@@ -1436,6 +1430,13 @@ func trueish(t Result) bool {
+ 	}
+ }
+ 
++// parseBoolString reads a string as a bool like strconv.ParseBool, ignoring
++// case. ok is false when the string is not a bool.
++func parseBoolString(s string) (value, ok bool) {
++	b, err := strconv.ParseBool(strings.ToLower(s))
++	return b, err == nil
++}
++
+ func nullish(t Result) bool {
+ 	return t.Type == Null
+ }

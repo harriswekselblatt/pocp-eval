@@ -1,0 +1,11 @@
+{
+  "argv": [
+    "sh",
+    ".bench/check.sh"
+  ],
+  "exit": 0,
+  "execution": "completed",
+  "seconds": 0.2911904170177877,
+  "stdout": "\n  - [skip] s\n  \u2500\n\n  1 test skipped\n",
+  "stderr": ""
+}

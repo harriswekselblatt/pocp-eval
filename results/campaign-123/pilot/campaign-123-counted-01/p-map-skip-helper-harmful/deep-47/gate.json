@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "node",
+    "<bench>/vendor/npm-pocp-1.2.3/package/bin/pocp.js",
+    "gate",
+    "--json"
+  ],
+  "exit": 1,
+  "execution": "completed",
+  "seconds": 0.7368821249110624,
+  "stdout": "{\n  \"pocp\": 1,\n  \"decision\": \"blocked\",\n  \"subject\": \"sha256:08cc1bf5ec6cbfce198de048a819dcfa248fe16cf4797c7cd9eeefb34fe21d0a\",\n  \"files\": [\n    \"bench-support/assertions.mjs\",\n    \"index.js\"\n  ],\n  \"required_files\": [\n    \"bench-support/assertions.mjs\",\n    \"index.js\"\n  ],\n  \"reasons\": [\n    {\n      \"code\": \"requirement\",\n      \"detail\": \"2 file(s) have required checks\",\n      \"files\": [\n        \"bench-support/assertions.mjs\",\n        \"index.js\"\n      ]\n    },\n    {\n      \"code\": \"test_change\",\n      \"detail\": \"existing tests or test setup changed (1 file(s)); possible weakening: bench-support/assertions.mjs -2 asserts +0 skips; pocp prove checks mechanically that nothing was weakened\",\n      \"files\": [\n        \"bench-support/assertions.mjs\"\n      ]\n    }\n  ],\n  \"uncovered\": [\n    \"bench-support/assertions.mjs\",\n    \"index.js\"\n  ],\n  \"unpacketed\": [\n    \"bench-support/assertions.mjs\",\n    \"index.js\"\n  ],\n  \"packets\": [],\n  \"problems\": [],\n  \"warnings\": [],\n  \"guard_mode\": \"block\",\n  \"test_guard\": {\n    \"mode\": \"block\",\n    \"files\": [\n      \"bench-support/assertions.mjs\"\n    ],\n    \"signals\": [\n      {\n        \"file\": \"bench-support/assertions.mjs\",\n        \"status\": \"M\",\n        \"kind\": \"test-helper\",\n        \"removed_asserts\": 2,\n        \"added_skips\": 0\n      }\n    ]\n  },\n  \"suggestion\": {\n    \"touches\": [\n      \"bench-support/assertions.mjs\",\n      \"index.js\"\n    ],\n    \"obligations\": [\n      {\n        \"from\": \"behavior-contract\",\n        \"kind\": \"test\",\n        \"run\": \"sh .bench/check.sh\",\n        \"source\": \"rule:behavior-contract\"\n      }\n    ],\n    \"note\": \"Required checks for these files are added automatically when the packet opens.\",\n    \"command\": \"pocp open --intent '<what this change does>' --touch 'bench-support/assertions.mjs' --touch 'index.js'\"\n  },\n  \"remedies\": [\n    {\n      \"code\": \"no_packet\",\n      \"what\": \"2 staged file(s) are not covered by any packet: bench-support/assertions.mjs, index.js\",\n      \"why\": \"a rule requires checks for them; existing tests or test setup changed, which can hide a bug instead of fixing it. A packet records what the change is and the checks that prove it.\",\n      \"next\": \"pocp fix --intent \\\"<what this change does>\\\"\",\n      \"by\": \"pocp fix\"\n    }\n  ],\n  \"pending_approvals\": []\n}\n",
+  "stderr": ""
+}

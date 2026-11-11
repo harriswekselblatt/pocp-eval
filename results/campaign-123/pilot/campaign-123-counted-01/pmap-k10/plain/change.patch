@@ -1,0 +1,35 @@
+diff --git a/index.js b/index.js
+index eec5651..d771ddc 100644
+--- a/index.js
++++ b/index.js
+@@ -558,9 +558,9 @@ export const pMapStop = Symbol('stop');
+ // `mapConcurrently` runs this inside its promise, so a bad argument rejects rather than throws.
+ function validateOptions(iterable, mapper, concurrency) {
+ 	// Optional chaining, so a nullish input gets this message rather than Node's internal
+-	// "null is not iterable".
++	// "null is not iterable". `null` is named as such, like the keyed functions do, rather than as `object`.
+ 	if (iterable?.[Symbol.iterator] === undefined && iterable?.[Symbol.asyncIterator] === undefined) {
+-		throw new TypeError(`Expected \`input\` to be either an \`Iterable\` or \`AsyncIterable\`, got (${typeof iterable})`);
++		throw new TypeError(`Expected \`input\` to be either an \`Iterable\` or \`AsyncIterable\`, got (${iterable === null ? 'null' : typeof iterable})`);
+ 	}
+ 
+ 	if (typeof mapper !== 'function') {
+diff --git a/test.js b/test.js
+index 115cc96..b4e744e 100644
+--- a/test.js
++++ b/test.js
+@@ -1298,12 +1298,12 @@ test('incorrect input type', async t => {
+ // A nullish input is the most likely mistake, so it has to reach the same message as any other
+ // wrong input rather than Node's internal "null is not iterable".
+ test('incorrect input type: nullish', async t => {
+-	await t.throwsAsync(pMap(null, async () => {}), {message: 'Expected `input` to be either an `Iterable` or `AsyncIterable`, got (object)'});
++	await t.throwsAsync(pMap(null, async () => {}), {message: 'Expected `input` to be either an `Iterable` or `AsyncIterable`, got (null)'});
+ 	await t.throwsAsync(pMap(undefined, async () => {}), {message: 'Expected `input` to be either an `Iterable` or `AsyncIterable`, got (undefined)'});
+ });
+ 
+ test('pMapIterable - incorrect input type: nullish', t => {
+-	t.throws(() => pMapIterable(null, async () => {}), {message: 'Expected `input` to be either an `Iterable` or `AsyncIterable`, got (object)'});
++	t.throws(() => pMapIterable(null, async () => {}), {message: 'Expected `input` to be either an `Iterable` or `AsyncIterable`, got (null)'});
+ 	t.throws(() => pMapIterable(undefined, async () => {}), {message: 'Expected `input` to be either an `Iterable` or `AsyncIterable`, got (undefined)'});
+ });
+ 

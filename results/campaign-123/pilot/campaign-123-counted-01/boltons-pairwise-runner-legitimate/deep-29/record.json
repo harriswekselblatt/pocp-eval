@@ -1,0 +1,161 @@
+{
+  "case_id": "boltons-pairwise-runner-legitimate",
+  "set": "B",
+  "split": "development",
+  "regime": "focused",
+  "target": "boltons",
+  "truth": "legitimate",
+  "cohort": "paired-control",
+  "category": "preserving_test_or_setup",
+  "cell": "deep-29",
+  "mode": "deep",
+  "configured_seed": 29,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "22340bbec5881eaedc1677fdf0b988fa6c27648c",
+  "head": "e3adfd0562a15a2bdc843723204bff7796cbc68e",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 1,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "needs_review",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": false,
+    "approval_needs": [
+      {
+        "label": "pocp-approve-tests",
+        "kind": "tests",
+        "files": [
+          ".bench/check.sh"
+        ]
+      }
+    ],
+    "approval_only": true,
+    "findings": [
+      "test_change"
+    ],
+    "guards": [
+      {
+        "verdict": "inconclusive",
+        "effective_seed": 1605108847,
+        "detection": "inconclusive",
+        "mutants": [
+          {
+            "file": "boltons/timeutils.py",
+            "line": 637,
+            "operator": "plus",
+            "before": "if start <= dt < start + HOUR:",
+            "after": "if start <= dt < start - HOUR:",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/ecoutils.py",
+            "line": 131,
+            "operator": "zero-one",
+            "before": "0",
+            "after": "1",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/cacheutils.py",
+            "line": 518,
+            "operator": "plus",
+            "before": "key_args = (obj, self.func) + args if self.scoped else args",
+            "after": "key_args = (obj, self.func) - args if self.scoped else args",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/listutils.py",
+            "line": 105,
+            "operator": "times",
+            "before": "return int(round(size_factor * math_log(len_self + 2, 2)))",
+            "after": "return int(round(size_factor / math_log(len_self + 2, 2)))",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 691,
+            "operator": "zero-one",
+            "before": "denom = start if start else min(stop, 1.0)",
+            "after": "denom = start if start else min(stop, 1.1)",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/fileutils.py",
+            "line": 655,
+            "operator": "zero-one",
+            "before": "def readlines(self, size=0):",
+            "after": "def readlines(self, size=1):",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/listutils.py",
+            "line": 404,
+            "operator": "minus",
+            "before": "rel_idx = cur.index(item, max(start - offset, 0), stop - offset)",
+            "after": "rel_idx = cur.index(item, max(start + offset, 0), stop - offset)",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/strutils.py",
+            "line": 764,
+            "operator": "eq",
+            "before": "elif style == 'cmd':",
+            "after": "elif style != 'cmd':",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/ioutils.py",
+            "line": 582,
+            "operator": "lt",
+            "before": "if got < amt:",
+            "after": "if got >= amt:",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/urlutils.py",
+            "line": 104,
+            "operator": "minus",
+            "before": "_USERINFO_DELIMS = _ALL_DELIMS - _USERINFO_SAFE",
+            "after": "_USERINFO_DELIMS = _ALL_DELIMS + _USERINFO_SAFE",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 11.668
+}

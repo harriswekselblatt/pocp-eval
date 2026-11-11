@@ -1,0 +1,281 @@
+diff --git a/.proof/packets/p-c414ee5c.json b/.proof/packets/p-c414ee5c.json
+new file mode 100644
+index 0000000..cd45161
+--- /dev/null
++++ b/.proof/packets/p-c414ee5c.json
+@@ -0,0 +1,71 @@
++{
++  "pocp": 1,
++  "id": "p-c414ee5c",
++  "intent": "Change to README.md, gjson.go",
++  "touches": [
++    "README.md",
++    "gjson.go"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:runtime-suite"
++    }
++  ],
++  "state": "proven",
++  "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "policy_repo": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "opened_at": "2026-11-11T03:57:47.865Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:55f9527c8c7e9145786f700f4760b85c36424de9cfb3acd40feae7147eef88cb",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T03:57:48.356Z",
++      "duration_ms": 11440,
++      "stdout_sha256": "dce28dab7be6c2f669acb08d029f0013b95f01974af78dbb392e4de77bfd9fbb",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-c13afe52",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": "dfff87a7de3ea43eb32e4297a35cbd7eb4819d36b877fd6559d69f812f326379"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T03:57:47.865Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T03:57:47.865Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1"
++      ],
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178"
++    },
++    {
++      "at": "2026-11-11T03:57:59.924Z",
++      "event": "state",
++      "from": "open",
++      "to": "proven",
++      "subject": "sha256:55f9527c8c7e9145786f700f4760b85c36424de9cfb3acd40feae7147eef88cb"
++    }
++  ]
++}
+diff --git a/README.md b/README.md
+index fc5dea5..387766d 100644
+--- a/README.md
++++ b/README.md
+@@ -438,7 +438,7 @@ Benchmarks of GJSON alongside [encoding/json](https://golang.org/pkg/encoding/js
+ and [json-iterator](https://github.com/json-iterator/go)
+ 
+ ```
+-BenchmarkGJSONGet-10             14919366    240.9 ns/op      0 B/op     0 allocs/op
++BenchmarkGJSONGet-10             17893731    202.1 ns/op      0 B/op     0 allocs/op
+ BenchmarkGJSONUnmarshalMap-10     1663548   2157 ns/op     1920 B/op    26 allocs/op
+ BenchmarkJSONUnmarshalMap-10       832236   4279 ns/op     2920 B/op    68 allocs/op
+ BenchmarkJSONUnmarshalStruct-10   1076475   3219 ns/op      920 B/op    12 allocs/op
+@@ -489,6 +489,4 @@ widget.text.onMouseUp
+ 
+ **
+ 
+-Last run: Oct 1, 2024
+-
+ *These benchmarks were run on a MacBook Pro M1 Max using Go 1.22 and can be found [here](https://github.com/tidwall/gjson-benchmarks).*
+diff --git a/gjson.go b/gjson.go
+index 779fe61..5aa2a4f 100644
+--- a/gjson.go
++++ b/gjson.go
+@@ -1040,6 +1040,10 @@ func parseObjectPath(path string) (r objectPathResult) {
+ 	return
+ }
+ 
++var vchars = [256]byte{
++	'"': 2, '{': 3, '(': 3, '[': 3, '}': 1, ')': 1, ']': 1,
++}
++
+ func parseSquash(json string, i int) (int, string) {
+ 	// expects that the lead character is a '[' or '{' or '('
+ 	// squash the value, ignoring all nested arrays and objects.
+@@ -1047,43 +1051,137 @@ func parseSquash(json string, i int) (int, string) {
+ 	s := i
+ 	i++
+ 	depth := 1
+-	for ; i < len(json); i++ {
+-		if json[i] >= '"' && json[i] <= '}' {
+-			switch json[i] {
+-			case '"':
++	var c byte
++	for i < len(json) {
++		for i < len(json)-8 {
++			jslice := json[i : i+8]
++			c = vchars[jslice[0]]
++			if c != 0 {
++				i += 0
++				goto token
++			}
++			c = vchars[jslice[1]]
++			if c != 0 {
++				i += 1
++				goto token
++			}
++			c = vchars[jslice[2]]
++			if c != 0 {
++				i += 2
++				goto token
++			}
++			c = vchars[jslice[3]]
++			if c != 0 {
++				i += 3
++				goto token
++			}
++			c = vchars[jslice[4]]
++			if c != 0 {
++				i += 4
++				goto token
++			}
++			c = vchars[jslice[5]]
++			if c != 0 {
++				i += 5
++				goto token
++			}
++			c = vchars[jslice[6]]
++			if c != 0 {
++				i += 6
++				goto token
++			}
++			c = vchars[jslice[7]]
++			if c != 0 {
++				i += 7
++				goto token
++			}
++			i += 8
++		}
++		c = vchars[json[i]]
++		if c == 0 {
++			i++
++			continue
++		}
++	token:
++		if c == 2 {
++			// '"' string
++			i++
++			s2 := i
++		nextquote:
++			for i < len(json)-8 {
++				jslice := json[i : i+8]
++				if jslice[0] == '"' {
++					i += 0
++					goto strchkesc
++				}
++				if jslice[1] == '"' {
++					i += 1
++					goto strchkesc
++				}
++				if jslice[2] == '"' {
++					i += 2
++					goto strchkesc
++				}
++				if jslice[3] == '"' {
++					i += 3
++					goto strchkesc
++				}
++				if jslice[4] == '"' {
++					i += 4
++					goto strchkesc
++				}
++				if jslice[5] == '"' {
++					i += 5
++					goto strchkesc
++				}
++				if jslice[6] == '"' {
++					i += 6
++					goto strchkesc
++				}
++				if jslice[7] == '"' {
++					i += 7
++					goto strchkesc
++				}
++				i += 8
++			}
++			goto strchkstd
++		strchkesc:
++			if json[i-1] != '\\' {
+ 				i++
+-				s2 := i
+-				for ; i < len(json); i++ {
+-					if json[i] > '\\' {
+-						continue
+-					}
+-					if json[i] == '"' {
+-						// look for an escaped slash
+-						if json[i-1] == '\\' {
+-							n := 0
+-							for j := i - 2; j > s2-1; j-- {
+-								if json[j] != '\\' {
+-									break
+-								}
+-								n++
+-							}
+-							if n%2 == 0 {
+-								continue
+-							}
++				continue
++			}
++		strchkstd:
++			for i < len(json) {
++				if json[i] > '\\' || json[i] != '"' {
++					i++
++					continue
++				}
++				// look for an escaped slash
++				if json[i-1] == '\\' {
++					n := 0
++					for j := i - 2; j > s2-1; j-- {
++						if json[j] != '\\' {
++							break
+ 						}
+-						break
++						n++
++					}
++					if n%2 == 0 {
++						i++
++						goto nextquote
+ 					}
+ 				}
+-			case '{', '[', '(':
+-				depth++
+-			case '}', ']', ')':
+-				depth--
+-				if depth == 0 {
+-					i++
+-					return i, json[s:i]
+-				}
++				break
++			}
++		} else {
++			// '{', '[', '(', '}', ']', ')'
++			// open close tokens
++			depth += int(c) - 2
++			if depth == 0 {
++				i++
++				return i, json[s:i]
+ 			}
+ 		}
++		i++
+ 	}
+ 	return i, json[s:]
+ }

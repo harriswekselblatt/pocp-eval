@@ -1,0 +1,64 @@
+diff --git a/index.d.ts b/index.d.ts
+index 6bd0cf7..c3079fb 100644
+--- a/index.d.ts
++++ b/index.d.ts
+@@ -36,6 +36,8 @@ export type Options = BaseOptions & {
+ 	/**
+ 	You can abort the promises using [`AbortController`](https://developer.mozilla.org/en-US/docs/Web/API/AbortController).
+ 
++	Any other value than an `AbortSignal`, except `undefined` or `null`, rejects with a `TypeError`.
++
+ 	An abort that comes from a timer or an I/O callback, like a `setTimeout`, cannot take effect while the mapping is inside a stretch of work that never waits on a timer or I/O. Draining a large input with mappers that just return a value is one such stretch, and there the run finishes first. This is the same for `Promise.all` and for a plain loop, and it goes away as soon as the mapper or the source waits on a timer or I/O.
+ 
+ 	@example
+diff --git a/index.js b/index.js
+index eec5651..7b0865d 100644
+--- a/index.js
++++ b/index.js
+@@ -67,6 +67,11 @@ async function mapConcurrently(
+ 	return new Promise((resolve_, reject_) => {
+ 		validateOptions(iterable, mapper, concurrency);
+ 
++		// A wrong `signal` would otherwise fail later with an internal error about `addEventListener`, or be ignored when it is falsy.
++		if (signal !== undefined && signal !== null && typeof signal.addEventListener !== 'function') {
++			throw new TypeError(`Expected \`signal\` to be an \`AbortSignal\`, got (${typeof signal})`);
++		}
++
+ 		const result = [];
+ 		// Stage the errors by index, like `result`, so they are reported in input order.
+ 		const errors = [];
+diff --git a/readme.md b/readme.md
+index 6e69c54..a23df58 100644
+--- a/readme.md
++++ b/readme.md
+@@ -266,6 +266,8 @@ Caveat: When `true`, any already-started async mappers will continue to run unti
+ 
+ Type: [`AbortSignal`](https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal)
+ 
++Any other value, except `undefined` or `null`, rejects with a `TypeError`.
++
+ You can abort the promises using [`AbortController`](https://developer.mozilla.org/en-US/docs/Web/API/AbortController).
+ 
+ ```js
+diff --git a/test.js b/test.js
+index 115cc96..f8b17a5 100644
+--- a/test.js
++++ b/test.js
+@@ -9042,3 +9042,17 @@ test('pMapIterable - a pull that rejects after the source reported `done` is dro
+ 
+ 	t.deepEqual(await valuesPromise, [0, 1, 2, 3]);
+ });
++
++test('rejects a `signal` that is not an `AbortSignal`', async t => {
++	for (const signal of [{}, 'abort', 1, true, {aborted: true}]) {
++		const message = `Expected \`signal\` to be an \`AbortSignal\`, got (${typeof signal})`;
++		await t.throwsAsync(pMap([1], value => value, {signal}), {instanceOf: TypeError, message}); // eslint-disable-line no-await-in-loop
++		await t.throwsAsync(pMapSettled([1], value => value, {signal}), {instanceOf: TypeError, message}); // eslint-disable-line no-await-in-loop
++		await t.throwsAsync(pMapKeyed({a: 1}, value => value, {signal}), {instanceOf: TypeError, message}); // eslint-disable-line no-await-in-loop
++		await t.throwsAsync(pMapSettledKeyed(new Map([['a', 1]]), value => value, {signal}), {instanceOf: TypeError, message}); // eslint-disable-line no-await-in-loop
++	}
++
++	t.deepEqual(await pMap([1], value => value, {signal: undefined}), [1]);
++	t.deepEqual(await pMap([1], value => value, {signal: null}), [1]);
++	t.deepEqual(await pMap([1], value => value, {signal: new AbortController().signal}), [1]);
++});

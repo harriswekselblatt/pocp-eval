@@ -1,0 +1,173 @@
+diff --git a/gjson.go b/gjson.go
+index 279649e..c3ac7c6 100644
+--- a/gjson.go
++++ b/gjson.go
+@@ -426,7 +426,8 @@ end:
+ // use the Valid function first.
+ func Parse(json string) Result {
+ 	var value Result
+-	for i := 0; i < len(json); i++ {
++	i := 0
++	for ; i < len(json); i++ {
+ 		if json[i] == '{' || json[i] == '[' {
+ 			value.Type = JSON
+ 			value.Raw = json[i:] // just take the entire raw
+@@ -436,16 +437,20 @@ func Parse(json string) Result {
+ 			continue
+ 		}
+ 		switch json[i] {
+-		default:
+-			if (json[i] >= '0' && json[i] <= '9') || json[i] == '-' {
++		case '+', '-', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
++			'i', 'I', 'N':
++			value.Type = Number
++			value.Raw, value.Num = tonum(json[i:])
++		case 'n':
++			if i+1 < len(json) && json[i+1] != 'u' {
++				// nan
+ 				value.Type = Number
+ 				value.Raw, value.Num = tonum(json[i:])
+ 			} else {
+-				return Result{}
++				// null
++				value.Type = Null
++				value.Raw = tolit(json[i:])
+ 			}
+-		case 'n':
+-			value.Type = Null
+-			value.Raw = tolit(json[i:])
+ 		case 't':
+ 			value.Type = True
+ 			value.Raw = tolit(json[i:])
+@@ -455,9 +460,14 @@ func Parse(json string) Result {
+ 		case '"':
+ 			value.Type = String
+ 			value.Raw, value.Str = tostr(json[i:])
++		default:
++			return Result{}
+ 		}
+ 		break
+ 	}
++	if value.Exists() {
++		value.Index = i
++	}
+ 	return value
+ }
+ 
+@@ -531,20 +541,12 @@ func tonum(json string) (raw string, num float64) {
+ 				return
+ 			}
+ 			// could be a '+' or '-'. let's assume so.
+-			continue
+-		}
+-		if json[i] < ']' {
+-			// probably a valid number
+-			continue
+-		}
+-		if json[i] == 'e' || json[i] == 'E' {
+-			// allow for exponential numbers
+-			continue
++		} else if json[i] == ']' || json[i] == '}' {
++			// break on ']' or '}'
++			raw = json[:i]
++			num, _ = strconv.ParseFloat(raw, 64)
++			return
+ 		}
+-		// likely a ']' or '}'
+-		raw = json[:i]
+-		num, _ = strconv.ParseFloat(raw, 64)
+-		return
+ 	}
+ 	raw = json
+ 	num, _ = strconv.ParseFloat(raw, 64)
+@@ -2971,3 +2973,31 @@ func stringBytes(s string) []byte {
+ func bytesString(b []byte) string {
+ 	return *(*string)(unsafe.Pointer(&b))
+ }
++
++func GetPath(r Result, json string) (string, bool) {
++	if len(r.Raw) == 0 || len(json) == 0 {
++		return "", false
++	}
++	p := uintptr((*(*stringHeader)(unsafe.Pointer(&(r.Raw)))).data)
++	s := uintptr((*(*stringHeader)(unsafe.Pointer(&(json)))).data)
++	e := s + uintptr(len(json))
++	if p < s || p >= e {
++		return "", false
++	}
++	i := int(p - s)
++	_ = i
++	// for ; i >= 0; i-- {
++	// 	if json[i] <= ' ' {
++	// 	} else if json[i] == ':' {
++	// 		// inside of an object, read the key string
++	// 	} else if json[i] == ',' {
++	// 		// array-value
++	// 	} else if json[i] == '[' {
++	// 		// array-value (end or array)
++	// 	} else {
++
++	// 	}
++	// }
++	// return "", false
++	return "", false
++}
+diff --git a/gjson_test.go b/gjson_test.go
+index 306940f..3492ff8 100644
+--- a/gjson_test.go
++++ b/gjson_test.go
+@@ -717,10 +717,6 @@ var exampleJSON = `{
+ 	}
+ }`
+ 
+-func TestNewParse(t *testing.T) {
+-	//fmt.Printf("%v\n", parse2(exampleJSON, "widget").String())
+-}
+-
+ func TestUnmarshalMap(t *testing.T) {
+ 	var m1 = Parse(exampleJSON).Value().(map[string]interface{})
+ 	var m2 map[string]interface{}
+@@ -2250,16 +2246,28 @@ func TestNaNInf(t *testing.T) {
+ 		r := Get(json, fmt.Sprintf("%d", i))
+ 		assert(t, r.Raw == raws[i])
+ 		assert(t, r.Num == nums[i] || (math.IsNaN(r.Num) && math.IsNaN(nums[i])))
++		assert(t, r.Type == Number)
+ 	}
+ 
+ 	var i int
+ 	Parse(json).ForEach(func(_, r Result) bool {
+ 		assert(t, r.Raw == raws[i])
+ 		assert(t, r.Num == nums[i] || (math.IsNaN(r.Num) && math.IsNaN(nums[i])))
++		assert(t, r.Type == Number)
+ 		i++
+ 		return true
+ 	})
+ 
++	// Parse should also return valid numbers
++	assert(t, math.IsNaN(Parse("nan").Float()))
++	assert(t, math.IsNaN(Parse("NaN").Float()))
++	assert(t, math.IsNaN(Parse(" NaN").Float()))
++	assert(t, math.IsInf(Parse("+inf").Float(), +1))
++	assert(t, math.IsInf(Parse("-inf").Float(), -1))
++	assert(t, math.IsInf(Parse("+INF").Float(), +1))
++	assert(t, math.IsInf(Parse("-INF").Float(), -1))
++	assert(t, math.IsInf(Parse(" +INF").Float(), +1))
++	assert(t, math.IsInf(Parse(" -INF").Float(), -1))
+ }
+ 
+ func TestEmptyValueQuery(t *testing.T) {
+@@ -2273,3 +2281,14 @@ func TestEmptyValueQuery(t *testing.T) {
+ 		`#(!=)#`).Raw ==
+ 		`["ig","tw","fb","tw","ig","tw"]`)
+ }
++
++func TestParseIndex(t *testing.T) {
++	assert(t, Parse(`{}`).Index == 0)
++	assert(t, Parse(` {}`).Index == 1)
++	assert(t, Parse(` []`).Index == 1)
++	assert(t, Parse(` true`).Index == 1)
++	assert(t, Parse(` false`).Index == 1)
++	assert(t, Parse(` null`).Index == 1)
++	assert(t, Parse(` +inf`).Index == 1)
++	assert(t, Parse(` -inf`).Index == 1)
++}

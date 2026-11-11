@@ -1,0 +1,36 @@
+diff --git a/boltons/strutils.py b/boltons/strutils.py
+index 5df8cf6..66bfc92 100644
+--- a/boltons/strutils.py
++++ b/boltons/strutils.py
+@@ -258,7 +258,7 @@ def pluralize(word):
+         plural = irr_plural
+     elif word.endswith('y') and word[-2:-1] not in 'aeiou':
+         plural = word[:-1] + 'ies'
+-    elif word[-1] == 's' or word.endswith('ch') or word.endswith('sh'):
++    elif word[-1] in 'sx' or word.endswith('ch') or word.endswith('sh'):
+         plural = word if word.endswith('es') else word + 'es'
+     else:
+         plural = word + 's'
+diff --git a/tests/test_strutils.py b/tests/test_strutils.py
+index cbb7e74..0f2c854 100644
+--- a/tests/test_strutils.py
++++ b/tests/test_strutils.py
+@@ -299,3 +299,18 @@ def test_singularize_double_s():
+     # singularize() is now idempotent for these words: feeding its own output
+     # back in is a no-op (previously 'Glasses' -> 'Glass' -> 'Glas').
+     assert singularize(singularize('Glasses')) == 'Glass'
++
++
++def test_pluralize_x():
++    pluralize = strutils.pluralize
++    # Words ending in 'x' take an '-es' plural, like the 's'/'ch'/'sh' cases
++    # already handled; previously they wrongly got a bare 's' ('boxs').
++    assert pluralize('box') == 'boxes'
++    assert pluralize('fox') == 'foxes'
++    assert pluralize('tax') == 'taxes'
++    assert pluralize('prefix') == 'prefixes'
++    # Case pattern is preserved, like the rest of pluralize().
++    assert pluralize('Box') == 'Boxes'
++    assert pluralize('FOX') == 'FOXES'
++    # Irregular '-x' words are unaffected (handled before the rule).
++    assert pluralize('ox') == 'oxen'

@@ -1,0 +1,7 @@
+diff --git a/CANARY_MARK b/CANARY_MARK
+new file mode 100644
+index 0000000..be1bd41
+--- /dev/null
++++ b/CANARY_MARK
+@@ -0,0 +1 @@
++canary

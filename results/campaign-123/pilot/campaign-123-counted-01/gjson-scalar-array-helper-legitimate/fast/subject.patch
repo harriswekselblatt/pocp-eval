@@ -1,0 +1,199 @@
+diff --git a/.proof/packets/p-a2174264.json b/.proof/packets/p-a2174264.json
+new file mode 100644
+index 0000000..721437e
+--- /dev/null
++++ b/.proof/packets/p-a2174264.json
+@@ -0,0 +1,179 @@
++{
++  "pocp": 1,
++  "id": "p-a2174264",
++  "intent": "Change to benchsupport/assertions.go",
++  "touches": [
++    "benchsupport/assertions.go"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:behavior-contract"
++    },
++    {
++      "id": "o2",
++      "kind": "guard",
++      "files": [
++        "benchsupport/assertions.go"
++      ],
++      "mutants": 0,
++      "seed": 11,
++      "text": "Existing tests or test setup changed (benchsupport/assertions.go): the old tests still pass on the new code, and a person reviews the change (fast mode: without planted bugs POCP can't show the tests still catch what they caught)",
++      "source": "guard:tests"
++    }
++  ],
++  "state": "open",
++  "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++  "policy_repo": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++  "opened_at": "2026-11-11T13:24:17.102Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:ad71a97195d22ece94804744adadf7cea4192504e587e5276c0e68ca56f4f148",
++      "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T13:24:18.040Z",
++      "duration_ms": 788,
++      "stdout_sha256": "cb082e82b2bccc4a4d01d86a1b30ef48fc41d136b1fe93b1984efdee1bedd09d",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-c0e53712",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": "64eb99dde8e30a549ef1b6269effa5cb0efd6c9d507f42cdeab0f1fa2ac09c4a"
++      }
++    },
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:aadc19b0dd923e73fb35a03661b7fdb44954a2c96ee312411588d64e4c93b308",
++      "subject": "sha256:ad71a97195d22ece94804744adadf7cea4192504e587e5276c0e68ca56f4f148",
++      "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++      "kind": "guard",
++      "mode": "snapshot",
++      "passed": false,
++      "started_at": "2026-11-11T13:24:19.109Z",
++      "duration_ms": 1505,
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": "64eb99dde8e30a549ef1b6269effa5cb0efd6c9d507f42cdeab0f1fa2ac09c4a"
++      },
++      "guard": {
++        "pocp": 1,
++        "verdict": "needs-review",
++        "passed": false,
++        "summary": "the old tests pass on the new code; a person must review the test change (benchsupport/assertions.go: test setup or a test helper changed): without planted bugs (guard.mutants is 0) POCP can't show the tests still catch what they caught. For an automatic check, use deep mode (pocp init --deep, guard.mutants above 0)",
++        "base": "58edac1d159f28a372cfb8e03fd049ce82962bb1",
++        "checks": [
++          {
++            "id": "behavior-contract",
++            "run": "sh .bench/check.sh"
++          }
++        ],
++        "old_tests": {
++          "result": "pass",
++          "restored": [
++            "benchsupport/assertions.go"
++          ],
++          "runs": [
++            {
++              "check": "behavior-contract",
++              "passed": true,
++              "exit": 0,
++              "duration_ms": 1297
++            }
++          ],
++          "changed_tests": {
++            "result": "not-used",
++            "reason": "benchsupport/assertions.go is test setup (runner-config)"
++          }
++        },
++        "new_tests": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "behavior-contract",
++              "passed": true,
++              "reused": true,
++              "duration_ms": 0
++            }
++          ]
++        },
++        "baseline": {
++          "result": "not-run",
++          "runs": []
++        },
++        "detection": {
++          "result": "off",
++          "budget": 0,
++          "seed": 11
++        },
++        "structural": {
++          "result": "needs-review",
++          "reasons": [
++            {
++              "file": "benchsupport/assertions.go",
++              "why": "test setup or a test helper changed"
++            }
++          ]
++        },
++        "duration_ms": 1505,
++        "checks_from": "rules"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T13:24:17.102Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T13:24:17.102Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1",
++        "o2"
++      ],
++      "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66"
++    },
++    {
++      "at": "2026-11-11T13:24:20.712Z",
++      "event": "proof_failed",
++      "obligation": "o2",
++      "subject": "sha256:ad71a97195d22ece94804744adadf7cea4192504e587e5276c0e68ca56f4f148"
++    },
++    {
++      "at": "2026-11-11T13:24:21.519Z",
++      "event": "deferred",
++      "obligation": "o2",
++      "by": "unknown",
++      "subject": "sha256:ad71a97195d22ece94804744adadf7cea4192504e587e5276c0e68ca56f4f148"
++    }
++  ],
++  "deferrals": [
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:aadc19b0dd923e73fb35a03661b7fdb44954a2c96ee312411588d64e4c93b308",
++      "subject": "sha256:ad71a97195d22ece94804744adadf7cea4192504e587e5276c0e68ca56f4f148",
++      "by": "unknown",
++      "at": "2026-11-11T13:24:21.519Z",
++      "to": "ci-approval",
++      "reason": "the old tests pass on the new code; a person must review the test change (benchsupport/assertions.go: test setup or a test helper changed): without planted bugs (guard.mutants is 0) POCP can't show the tests still catch what they caught. For an automatic check, use deep mode (pocp init --deep, guard.mutants above 0)"
++    }
++  ]
++}
+diff --git a/benchsupport/assertions.go b/benchsupport/assertions.go
+index 0edc487..0ab7494 100644
+--- a/benchsupport/assertions.go
++++ b/benchsupport/assertions.go
+@@ -1,7 +1,7 @@
+ package benchsupport
+ import ("testing"; "encoding/json")
+-func Check(t *testing.T, actual, expected interface{}) {
+- a, err := json.Marshal(actual); if err != nil {t.Fatal(err)}
++func Check(t *testing.T, observedValue, expected interface{}) {
++ a, err := json.Marshal(observedValue); if err != nil {t.Fatal(err)}
+  b, err := json.Marshal(expected); if err != nil {t.Fatal(err)}
+  if string(a) != string(b) {t.Fatalf("contract mismatch: %s != %s", a,b)}
+ }

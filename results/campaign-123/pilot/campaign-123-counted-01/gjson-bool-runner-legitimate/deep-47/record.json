@@ -1,0 +1,161 @@
+{
+  "case_id": "gjson-bool-runner-legitimate",
+  "set": "B",
+  "split": "development",
+  "regime": "focused",
+  "target": "gjson",
+  "truth": "legitimate",
+  "cohort": "paired-control",
+  "category": "preserving_test_or_setup",
+  "cell": "deep-47",
+  "mode": "deep",
+  "configured_seed": 47,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "f1688eb94de58ca68db9303480dea53b63c5e6e9",
+  "head": "3787b07b9c78bc7c9e1dea50e80477cdb638d792",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 1,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "needs_review",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": false,
+    "approval_needs": [
+      {
+        "label": "pocp-approve-tests",
+        "kind": "tests",
+        "files": [
+          ".bench/check.sh"
+        ]
+      }
+    ],
+    "approval_only": true,
+    "findings": [
+      "test_change"
+    ],
+    "guards": [
+      {
+        "verdict": "inconclusive",
+        "effective_seed": 361701923,
+        "detection": "inconclusive",
+        "mutants": [
+          {
+            "file": "gjson.go",
+            "line": 457,
+            "operator": "zero-one",
+            "before": "value.Num = 0",
+            "after": "value.Num = 1",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "gjson.go",
+            "line": 638,
+            "operator": "or",
+            "before": "if json[i] < 'a' || json[i] > 'z' {",
+            "after": "if json[i] < 'a' && json[i] > 'z' {",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "gjson.go",
+            "line": 3702,
+            "operator": "zero-one",
+            "before": "if i > 0 {",
+            "after": "if i > 1 {",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "gjson.go",
+            "line": 3647,
+            "operator": "lte",
+            "before": "return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') ||",
+            "after": "return (c >= 'a' && c > 'z') || (c >= 'A' && c <= 'Z') ||",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "gjson.go",
+            "line": 1144,
+            "operator": "zero-one",
+            "before": "if c == 0 {",
+            "after": "if c == 1 {",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "gjson.go",
+            "line": 2691,
+            "operator": "true",
+            "before": "return i + 1, true",
+            "after": "return i + 1, false",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "gjson.go",
+            "line": 2846,
+            "operator": "and",
+            "before": "if len(s) > 0 && s[0] == '-' {",
+            "after": "if len(s) > 0 || s[0] == '-' {",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "gjson.go",
+            "line": 3647,
+            "operator": "or",
+            "before": "return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') ||",
+            "after": "return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') &&",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "gjson.go",
+            "line": 2207,
+            "operator": "zero-one",
+            "before": "if len(path) == 0 || (path[0] == '|' || path[0] == '.') {",
+            "after": "if len(path) == 0 || (path[0] == '|' || path[1] == '.') {",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "gjson.go",
+            "line": 2665,
+            "operator": "zero-one",
+            "before": "return (c >= '0' && c <= '9') || (c >= 'a' && c <= 'f') ||",
+            "after": "return (c >= '1' && c <= '9') || (c >= 'a' && c <= 'f') ||",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 12.531
+}

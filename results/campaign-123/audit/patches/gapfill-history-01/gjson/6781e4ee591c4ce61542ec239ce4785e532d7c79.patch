@@ -1,0 +1,80 @@
+diff --git a/gjson.go b/gjson.go
+index 81d2f37..60755bd 100644
+--- a/gjson.go
++++ b/gjson.go
+@@ -737,7 +737,13 @@ func parseArrayPath(path string) (r arrayPathResult) {
+ 					r.alogok = true
+ 					r.alogkey = path[2:]
+ 					r.path = path[:1]
+-				} else if path[1] == '[' {
++				} else if path[1] == '[' || path[1] == '(' {
++					var end byte
++					if path[1] == '[' {
++						end = ']'
++					} else {
++						end = ')'
++					}
+ 					r.query.on = true
+ 					// query
+ 					i += 2
+@@ -755,7 +761,7 @@ func parseArrayPath(path string) (r arrayPathResult) {
+ 							path[i] == '<' ||
+ 							path[i] == '>' ||
+ 							path[i] == '%' ||
+-							path[i] == ']' {
++							path[i] == end {
+ 							break
+ 						}
+ 					}
+@@ -817,7 +823,7 @@ func parseArrayPath(path string) (r arrayPathResult) {
+ 										break
+ 									}
+ 								}
+-							} else if path[i] == ']' {
++							} else if path[i] == end {
+ 								if i+1 < len(path) && path[i+1] == '#' {
+ 									r.query.all = true
+ 								}
+@@ -1495,16 +1501,22 @@ func splitPossiblePipe(path string) (left, right string, ok bool) {
+ 				if i == len(path) {
+ 					return
+ 				}
+-				if path[i] == '[' {
++				if path[i] == '[' || path[i] == '(' {
++					var start, end byte
++					if path[i] == '[' {
++						start, end = '[', ']'
++					} else {
++						start, end = '(', ')'
++					}
+ 					// inside selector, balance brackets
+ 					i++
+ 					depth := 1
+ 					for ; i < len(path); i++ {
+ 						if path[i] == '\\' {
+ 							i++
+-						} else if path[i] == '[' {
++						} else if path[i] == start {
+ 							depth++
+-						} else if path[i] == ']' {
++						} else if path[i] == end {
+ 							depth--
+ 							if depth == 0 {
+ 								break
+diff --git a/gjson_test.go b/gjson_test.go
+index 592186e..1cf382c 100644
+--- a/gjson_test.go
++++ b/gjson_test.go
+@@ -1853,3 +1853,12 @@ func TestQueryArrayValues(t *testing.T) {
+ 	assert(t, Get(json, `a*.#[_%"John*"]#|#`).String() == "0")
+ 	assert(t, Get(json, `a*.#[="123"]#|#`).String() == "1")
+ }
++
++func TestParenQueries(t *testing.T) {
++	json := `{
++		"friends": [{"a":10},{"a":20},{"a":30},{"a":40}]
++	}`
++	assert(t, Get(json, "friends.#(a>9)#|#").Int() == 4)
++	assert(t, Get(json, "friends.#(a>10)#|#").Int() == 3)
++	assert(t, Get(json, "friends.#(a>40)#|#").Int() == 0)
++}

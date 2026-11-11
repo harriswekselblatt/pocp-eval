@@ -1,0 +1,161 @@
+{
+  "case_id": "boltons-unique-fixture-legitimate",
+  "set": "Acontrol",
+  "split": "holdout",
+  "regime": "focused",
+  "target": "boltons",
+  "truth": "legitimate",
+  "cohort": null,
+  "category": null,
+  "cell": "deep-101",
+  "mode": "deep",
+  "configured_seed": 101,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "1ab6844ae35177e09c5f35328150a982ba4713d0",
+  "head": "96e9506730f3293878f864876bc0c9324a226a44",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 1,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "needs_review",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": false,
+    "approval_needs": [
+      {
+        "label": "pocp-approve-tests",
+        "kind": "tests",
+        "files": [
+          "tests/fixtures/bench-expected.json"
+        ]
+      }
+    ],
+    "approval_only": true,
+    "findings": [
+      "test_change"
+    ],
+    "guards": [
+      {
+        "verdict": "inconclusive",
+        "effective_seed": 1641095530,
+        "detection": "inconclusive",
+        "mutants": [
+          {
+            "file": "boltons/iterutils.py",
+            "line": 568,
+            "operator": "times",
+            "before": "stop, start = start * 1.0, stop * 1.0",
+            "after": "stop, start = start * 1.0, stop / 1.0",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/namedutils.py",
+            "line": 321,
+            "operator": "zero-one",
+            "before": "or name[0].isdigit()",
+            "after": "or name[1].isdigit()",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 728,
+            "operator": "zero-one",
+            "before": "{False: [0], True: [1, 2, 3, 4]}",
+            "after": "{False: [1], True: [1, 2, 3, 4]}",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/urlutils.py",
+            "line": 811,
+            "operator": "eq",
+            "before": "if not getattr(self, attr) == getattr(other, attr, None):",
+            "after": "if not getattr(self, attr) != getattr(other, attr, None):",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/strutils.py",
+            "line": 1335,
+            "operator": "plus",
+            "before": "delimiter = delimiter and delimiter.strip() + ' '",
+            "after": "delimiter = delimiter and delimiter.strip() - ' '",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/formatutils.py",
+            "line": 131,
+            "operator": "eq",
+            "before": "if group == '{{' or group == '}}':",
+            "after": "if group == '{{' or group != '}}':",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 646,
+            "operator": "zero-one",
+            "before": "for timeout in backoff_iter(0.25, 5.0):",
+            "after": "for timeout in backoff_iter(0.25, 5.1):",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 582,
+            "operator": "zero-one",
+            "before": "[0.0, 1.25, 2.5, 3.75, 5.0]",
+            "after": "[0.1, 1.25, 2.5, 3.75, 5.0]",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 397,
+            "operator": "zero-one",
+            "before": "def chunk_ranges(input_size, chunk_size, input_offset=0, overlap_size=0, align=False):",
+            "after": "def chunk_ranges(input_size, chunk_size, input_offset=0, overlap_size=1, align=False):",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/setutils.py",
+            "line": 783,
+            "operator": "minus",
+            "before": "else:  # - -",
+            "after": "else:  # + -",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 8.766
+}

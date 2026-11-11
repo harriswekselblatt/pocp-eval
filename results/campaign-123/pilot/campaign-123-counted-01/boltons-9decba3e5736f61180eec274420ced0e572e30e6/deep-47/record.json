@@ -1,0 +1,151 @@
+{
+  "case_id": "boltons-9decba3e5736f61180eec274420ced0e572e30e6",
+  "set": "B",
+  "split": "holdout",
+  "regime": "native",
+  "target": "boltons",
+  "truth": "legitimate",
+  "cohort": "extension",
+  "category": "added_test",
+  "cell": "deep-47",
+  "mode": "deep",
+  "configured_seed": 47,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "93c9e7b663645da2c2f7a167139caf75f0cf88b4",
+  "head": "a046b501b02e4e62e09a7cd7df3c7ad83de26197",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 0,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "accepted",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": true,
+    "approval_needs": [],
+    "approval_only": null,
+    "findings": [],
+    "guards": [
+      {
+        "verdict": "passed",
+        "effective_seed": 911795753,
+        "detection": "kept",
+        "mutants": [
+          {
+            "file": "boltons/socketutils.py",
+            "line": 737,
+            "operator": "gt",
+            "before": "msg = ('netstring message length exceeds configured maxsize: %s > %s'",
+            "after": "msg = ('netstring message length exceeds configured maxsize: %s <= %s'",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 525,
+            "operator": "times",
+            "before": "start, stop = 0.0, stop * 1.0",
+            "after": "start, stop = 0.0, stop / 1.0",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/ioutils.py",
+            "line": 460,
+            "operator": "plus",
+            "before": "self._tell = self.tell() + len(ret)",
+            "after": "self._tell = self.tell() - len(ret)",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 403,
+            "operator": "plus",
+            "before": "yield (input_offset, min(input_offset + initial_chunk_len, input_stop))",
+            "after": "yield (input_offset, min(input_offset - initial_chunk_len, input_stop))",
+            "focus": false,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/socketutils.py",
+            "line": 455,
+            "operator": "zero-one",
+            "before": "sbuf[0] = sbuf[0][sent:]",
+            "after": "sbuf[0] = sbuf[1][sent:]",
+            "focus": false,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/statsutils.py",
+            "line": 494,
+            "operator": "lte",
+            "before": "if not 0.0 <= q <= 1.0:",
+            "after": "if not 0.0 > q <= 1.0:",
+            "focus": false,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/statsutils.py",
+            "line": 438,
+            "operator": "gt",
+            "before": "if len(data) > 1 and s_dev > 0:",
+            "after": "if len(data) <= 1 and s_dev > 0:",
+            "focus": false,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/socketutils.py",
+            "line": 279,
+            "operator": "plus",
+            "before": "self.rbuf = recvd + self.rbuf",
+            "after": "self.rbuf = recvd - self.rbuf",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/statsutils.py",
+            "line": 470,
+            "operator": "lt",
+            "before": "if k < 0:",
+            "after": "if k >= 0:",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/socketutils.py",
+            "line": 101,
+            "operator": "zero-one",
+            "before": "for sockets with timeouts set to 0 (aka nonblocking), provided the",
+            "after": "for sockets with timeouts set to 1 (aka nonblocking), provided the",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 34.792
+}

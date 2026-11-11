@@ -1,0 +1,151 @@
+{
+  "case_id": "p-map-skip-fixture-legitimate",
+  "set": "Acontrol",
+  "split": "holdout",
+  "regime": "focused",
+  "target": "p-map",
+  "truth": "legitimate",
+  "cohort": null,
+  "category": null,
+  "cell": "deep-101",
+  "mode": "deep",
+  "configured_seed": 101,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "518fef86717c2679984b6e3d25156b80b6231296",
+  "head": "e38655fab5997108e3ac8cc94833bcb8d0d71b81",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 0,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "accepted",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": true,
+    "approval_needs": [],
+    "approval_only": null,
+    "findings": [],
+    "guards": [
+      {
+        "verdict": "passed",
+        "effective_seed": 1933514910,
+        "detection": "kept",
+        "mutants": [
+          {
+            "file": "index.js",
+            "line": 516,
+            "operator": "strict-eq",
+            "before": "if (value === pMapSkip) {",
+            "after": "if (value !== pMapSkip) {",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.test-d.ts",
+            "line": 349,
+            "operator": "gt",
+            "before": "expectType<Promise<number[]>>(pMap(numbers, number => (number > 1 ? Promise.resolve(number * 2) : number)));",
+            "after": "expectType<Promise<number[]>>(pMap(numbers, number => (number <= 1 ? Promise.resolve(number * 2) : number)));",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.test-d.ts",
+            "line": 311,
+            "operator": "times",
+            "before": "async function * stringAsyncGenerator() {",
+            "after": "async function / stringAsyncGenerator() {",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 486,
+            "operator": "times",
+            "before": "if (headIndex * 2 >= promises.length) {",
+            "after": "if (headIndex / 2 >= promises.length) {",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.d.ts",
+            "line": 238,
+            "operator": "strict-eq",
+            "before": "if (result.status === 'fulfilled') {",
+            "after": "if (result.status !== 'fulfilled') {",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.d.ts",
+            "line": 263,
+            "operator": "minus",
+            "before": "@param input - An object or a `Map` whose values are mapped.",
+            "after": "@param input + An object or a `Map` whose values are mapped.",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.test-d.ts",
+            "line": 97,
+            "operator": "gt",
+            "before": "const stopMapper = async (site: string) => (site.length > 20 ? pMapStop : site);",
+            "after": "const stopMapper = async (site: string) => (site.length <= 20 ? pMapStop : site);",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 276,
+            "operator": "gte",
+            "before": "if (isResolved || currentIndex >= doneIndex) {",
+            "after": "if (isResolved || currentIndex < doneIndex) {",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 634,
+            "operator": "true",
+            "before": "isSourceDone = true;",
+            "after": "isSourceDone = false;",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 267,
+            "operator": "lt",
+            "before": "for (let index = 0; index < concurrency; index++) {",
+            "after": "for (let index = 0; index >= concurrency; index++) {",
+            "focus": false,
+            "old": "caught",
+            "new": "caught"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 7.955
+}

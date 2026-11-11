@@ -1,0 +1,170 @@
+diff --git a/index.d.ts b/index.d.ts
+index 8083ba3..f8972af 100644
+--- a/index.d.ts
++++ b/index.d.ts
+@@ -18,6 +18,30 @@ export interface Options {
+ 	@default true
+ 	*/
+ 	readonly stopOnError?: boolean;
++
++	/**
++	You can abort the promises using [`AbortController`](https://developer.mozilla.org/en-US/docs/Web/API/AbortController).
++
++	**Requires Node.js 16 or later.*
++
++	@example
++	```
++	import pMap from 'p-map';
++	import delay from 'delay';
++
++	const abortController = new AbortController();
++
++	setTimeout(() => {
++		abortController.abort();
++	}, 500);
++
++	const mapper = async value => value;
++
++	await pMap([delay(1000), delay(1000)], mapper, {signal: abortController.signal});
++	// Throws AbortError (DOMException) after 500 ms.
++	```
++	*/
++	readonly signal?: AbortSignal;
+ }
+ 
+ /**
+diff --git a/index.js b/index.js
+index ce50d5b..38814c6 100644
+--- a/index.js
++++ b/index.js
+@@ -1,11 +1,42 @@
+ import AggregateError from 'aggregate-error';
+ 
++/**
++An error to be thrown when the request is aborted by AbortController.
++DOMException is thrown instead of this Error when DOMException is available.
++*/
++export class AbortError extends Error {
++	constructor(message) {
++		super();
++		this.name = 'AbortError';
++		this.message = message;
++	}
++}
++
++/**
++TODO: Remove AbortError and just throw DOMException when targeting Node 18.
++*/
++const getDOMException = errorMessage => globalThis.DOMException === undefined
++	? new AbortError(errorMessage)
++	: new DOMException(errorMessage);
++
++/**
++TODO: Remove below function and just 'reject(signal.reason)' when targeting Node 18.
++*/
++const getAbortedReason = signal => {
++	const reason = signal.reason === undefined
++		? getDOMException('This operation was aborted.')
++		: signal.reason;
++
++	return reason instanceof Error ? reason : getDOMException(reason);
++};
++
+ export default async function pMap(
+ 	iterable,
+ 	mapper,
+ 	{
+ 		concurrency = Number.POSITIVE_INFINITY,
+ 		stopOnError = true,
++		signal,
+ 	} = {},
+ ) {
+ 	return new Promise((resolve, reject_) => {
+@@ -37,6 +68,16 @@ export default async function pMap(
+ 			reject_(reason);
+ 		};
+ 
++		if (signal) {
++			if (signal.aborted) {
++				reject(getAbortedReason(signal));
++			}
++
++			signal.addEventListener('abort', () => {
++				reject(getAbortedReason(signal));
++			});
++		}
++
+ 		const next = async () => {
+ 			if (isResolved) {
+ 				return;
+diff --git a/readme.md b/readme.md
+index a59bfa0..44e2b2a 100644
+--- a/readme.md
++++ b/readme.md
+@@ -78,6 +78,30 @@ When `false`, instead of stopping when a promise rejects, it will wait for all t
+ 
+ Caveat: When `true`, any already-started async mappers will continue to run until they resolve or reject. In the case of infinite concurrency with sync iterables, *all* mappers are invoked on startup and will continue after the first rejection. [Issue #51](https://github.com/sindresorhus/p-map/issues/51) can be implemented for abort control.
+ 
++##### signal
++
++Type: [`AbortSignal`](https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal)
++
++You can abort the promises using [`AbortController`](https://developer.mozilla.org/en-US/docs/Web/API/AbortController).
++
++*Requires Node.js 16 or later.*
++
++```js
++import pMap from 'p-map';
++import delay from 'delay';
++
++const abortController = new AbortController();
++
++setTimeout(() => {
++	abortController.abort();
++}, 500);
++
++const mapper = async value => value;
++
++await pMap([delay(1000), delay(1000)], mapper, {signal: abortController.signal});
++// Throws AbortError (DOMException) after 500 ms.
++```
++
+ ### pMapSkip
+ 
+ Return this value from a `mapper` function to skip including the value in the returned array.
+diff --git a/test.js b/test.js
+index 2196b7e..b98fc81 100644
+--- a/test.js
++++ b/test.js
+@@ -458,3 +458,31 @@ test('no unhandled rejected promises from mapper throws - concurrency 1', async
+ test('invalid mapper', async t => {
+ 	await t.throwsAsync(pMap([], 'invalid mapper', {concurrency: 2}), {instanceOf: TypeError});
+ });
++
++if (globalThis.AbortController !== undefined) {
++	test('abort by AbortController', async t => {
++		const abortController = new AbortController();
++
++		setTimeout(() => {
++			abortController.abort();
++		}, 100);
++
++		const mapper = async value => value;
++
++		await t.throwsAsync(pMap([delay(1000), new AsyncTestData(100), 100], mapper, {signal: abortController.signal}), {
++			name: 'AbortError',
++		});
++	});
++
++	test('already aborted signal', async t => {
++		const abortController = new AbortController();
++
++		abortController.abort();
++
++		const mapper = async value => value;
++
++		await t.throwsAsync(pMap([delay(1000), new AsyncTestData(100), 100], mapper, {signal: abortController.signal}), {
++			name: 'AbortError',
++		});
++	});
++}

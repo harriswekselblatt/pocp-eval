@@ -1,0 +1,151 @@
+{
+  "case_id": "boltons-4e5faa3d7e4008d89e0d8bf1ea87b6d9a061a16d",
+  "set": "B",
+  "split": "development",
+  "regime": "native",
+  "target": "boltons",
+  "truth": "legitimate",
+  "cohort": "original-sampled",
+  "category": "intentional_behavior_and_test",
+  "cell": "deep-71",
+  "mode": "deep",
+  "configured_seed": 71,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "ad8fb1c737068db94a48d5d4887027a654072713",
+  "head": "1f04b09061f30adebfb94db1694723a5e5cf1b25",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 0,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "accepted",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": true,
+    "approval_needs": [],
+    "approval_only": null,
+    "findings": [],
+    "guards": [
+      {
+        "verdict": "passed",
+        "effective_seed": 201920257,
+        "detection": "kept",
+        "mutants": [
+          {
+            "file": "boltons/ioutils.py",
+            "line": 443,
+            "operator": "plus",
+            "before": "destination = start_pos + pos",
+            "after": "destination = start_pos - pos",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/ioutils.py",
+            "line": 305,
+            "operator": "plus",
+            "before": "if self.tell() + view.nbytes >= self._max_size:",
+            "after": "if self.tell() - view.nbytes >= self._max_size:",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/ioutils.py",
+            "line": 435,
+            "operator": "lt",
+            "before": "if pos < 0:",
+            "after": "if pos >= 0:",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/ioutils.py",
+            "line": 435,
+            "operator": "zero-one",
+            "before": "if pos < 0:",
+            "after": "if pos < 1:",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/ioutils.py",
+            "line": 444,
+            "operator": "lt",
+            "before": "if destination < 0:",
+            "after": "if destination >= 0:",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/ioutils.py",
+            "line": 305,
+            "operator": "gte",
+            "before": "if self.tell() + view.nbytes >= self._max_size:",
+            "after": "if self.tell() + view.nbytes < self._max_size:",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/ioutils.py",
+            "line": 444,
+            "operator": "zero-one",
+            "before": "if destination < 0:",
+            "after": "if destination < 1:",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/ioutils.py",
+            "line": 446,
+            "operator": "lt",
+            "before": "if pos < 0:",
+            "after": "if pos >= 0:",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/ioutils.py",
+            "line": 446,
+            "operator": "zero-one",
+            "before": "if pos < 0:",
+            "after": "if pos < 1:",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 643,
+            "operator": "zero-one",
+            "before": "raise ValueError('expected start >= 0, not %r' % start)",
+            "after": "raise ValueError('expected start >= 1, not %r' % start)",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 42.101
+}

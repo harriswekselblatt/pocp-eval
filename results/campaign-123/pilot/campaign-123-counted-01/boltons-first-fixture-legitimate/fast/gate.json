@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "node",
+    "<bench>/vendor/npm-pocp-1.2.3/package/bin/pocp.js",
+    "gate",
+    "--json"
+  ],
+  "exit": 0,
+  "execution": "completed",
+  "seconds": 0.19813216698821634,
+  "stdout": "{\n  \"pocp\": 1,\n  \"decision\": \"pass\",\n  \"subject\": \"sha256:61ebcf4d3441026ab2da4ecf1c22b904d7932704c2e9673ca0079d0dec464a6f\",\n  \"files\": [],\n  \"required_files\": [],\n  \"reasons\": [],\n  \"uncovered\": [],\n  \"unpacketed\": [],\n  \"packets\": [],\n  \"problems\": [],\n  \"warnings\": [],\n  \"remedies\": [],\n  \"pending_approvals\": []\n}\n",
+  "stderr": ""
+}

@@ -1,0 +1,151 @@
+{
+  "case_id": "boltons-pairwise-helper-legitimate",
+  "set": "B",
+  "split": "development",
+  "regime": "focused",
+  "target": "boltons",
+  "truth": "legitimate",
+  "cohort": "paired-control",
+  "category": "preserving_test_or_setup",
+  "cell": "deep-71",
+  "mode": "deep",
+  "configured_seed": 71,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "d992cdef0bcb2f0db49d48ae29cac36f6ef0455d",
+  "head": "fd4662fd64eac9673950504014a21401f5f400ef",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 0,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "accepted",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": true,
+    "approval_needs": [],
+    "approval_only": null,
+    "findings": [],
+    "guards": [
+      {
+        "verdict": "passed",
+        "effective_seed": 1110511095,
+        "detection": "kept",
+        "mutants": [
+          {
+            "file": "bench_support/assertions.py",
+            "line": 3,
+            "operator": "eq",
+            "before": "assert json.loads(json.dumps(observedValue)) == expected",
+            "after": "assert json.loads(json.dumps(observedValue)) != expected",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/setutils.py",
+            "line": 878,
+            "operator": "plus",
+            "before": "if inc is None:  # + -",
+            "after": "if inc is None:  # - -",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/tableutils.py",
+            "line": 538,
+            "operator": "minus",
+            "before": "new_depth = max_depth - 1 if max_depth > 1 else max_depth",
+            "after": "new_depth = max_depth + 1 if max_depth > 1 else max_depth",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/jsonutils.py",
+            "line": 160,
+            "operator": "zero-one",
+            "before": "\" -1.0 and 1.0, not %r\" % rel_seek)",
+            "after": "\" -1.0 and 1.1, not %r\" % rel_seek)",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/statsutils.py",
+            "line": 461,
+            "operator": "minus",
+            "before": "c0 = (4 * beta2) - (3 * beta1)",
+            "after": "c0 = (4 * beta2) + (3 * beta1)",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/socketutils.py",
+            "line": 90,
+            "operator": "times",
+            "before": "DEFAULT_MAXSIZE = 32 * 1024  # 32kb",
+            "after": "DEFAULT_MAXSIZE = 32 / 1024  # 32kb",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/statsutils.py",
+            "line": 511,
+            "operator": "zero-one",
+            "before": "if not 0.0 <= q <= 1.0:",
+            "after": "if not 0.1 <= q <= 1.0:",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/dictutils.py",
+            "line": 554,
+            "operator": "eq",
+            "before": ">>> somd.keys(multi=True) == omd.keys(multi=True)",
+            "after": ">>> somd.keys(multi=True) != omd.keys(multi=True)",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/setutils.py",
+            "line": 693,
+            "operator": "minus",
+            "before": "return _ComplementSet(included=self._included - exc)",
+            "after": "return _ComplementSet(included=self._included + exc)",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/fileutils.py",
+            "line": 655,
+            "operator": "zero-one",
+            "before": "def readlines(self, size=0):",
+            "after": "def readlines(self, size=1):",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 11.766
+}

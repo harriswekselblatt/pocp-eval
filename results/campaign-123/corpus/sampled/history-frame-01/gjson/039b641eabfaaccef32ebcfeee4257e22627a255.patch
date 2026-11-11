@@ -1,0 +1,60 @@
+diff --git a/README.md b/README.md
+index 4898423..5832c54 100644
+--- a/README.md
++++ b/README.md
+@@ -126,6 +126,7 @@ result.Uint() uint64
+ result.Float() float64
+ result.String() string
+ result.Bool() bool
++result.Time() time.Time
+ result.Array() []gjson.Result
+ result.Map() map[string]gjson.Result
+ result.Get(path string) Result
+diff --git a/gjson.go b/gjson.go
+index e01fb01..52c37f4 100644
+--- a/gjson.go
++++ b/gjson.go
+@@ -4,6 +4,7 @@ package gjson
+ import (
+ 	"reflect"
+ 	"strconv"
++	"time"
+ 	"unicode/utf16"
+ 	"unicode/utf8"
+ 	"unsafe"
+@@ -140,6 +141,12 @@ func (t Result) Float() float64 {
+ 	}
+ }
+ 
++// Time returns a time.Time representation.
++func (t Result) Time() time.Time {
++	res, _ := time.Parse(time.RFC3339, t.String())
++	return res
++}
++
+ // Array returns back an array of values.
+ // If the result represents a non-existent value, then an empty array will be returned.
+ // If the result is not a JSON array, the return value will be an array containing one result.
+diff --git a/gjson_test.go b/gjson_test.go
+index 08901d8..d4bbb1e 100644
+--- a/gjson_test.go
++++ b/gjson_test.go
+@@ -114,6 +114,7 @@ var basicJSON = `{"age":100, "name":{"here":"B\\\"R"},
+ 	"items":[1,2,3,{"tags":[1,2,3],"points":[[1,2],[3,4]]},4,5,6,7],
+ 	"arr":["1",2,"3",{"hello":"world"},"4",5],
+ 	"vals":[1,2,3,{"sadf":sdf"asdf"}],"name":{"first":"tom","last":null},
++	"created":"2014-05-16T08:28:06.989Z",
+ 	"loggy":{
+ 		"programmers": [
+     	    {
+@@ -144,6 +145,10 @@ var basicJSON = `{"age":100, "name":{"here":"B\\\"R"},
+ }`
+ var basicJSONB = []byte(basicJSON)
+ 
++func TestTimeResult(t *testing.T) {
++	assert(t, Get(basicJSON, "created").String() == Get(basicJSON, "created").Time().Format(time.RFC3339Nano))
++}
++
+ func TestParseAny(t *testing.T) {
+ 	assert(t, Parse("100").Float() == 100)
+ 	assert(t, Parse("true").Bool())

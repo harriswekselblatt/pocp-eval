@@ -1,0 +1,442 @@
+diff --git a/.proof/packets/p-10aeb6e0.json b/.proof/packets/p-10aeb6e0.json
+new file mode 100644
+index 0000000..ab7c82e
+--- /dev/null
++++ b/.proof/packets/p-10aeb6e0.json
+@@ -0,0 +1,277 @@
++{
++  "pocp": 1,
++  "id": "p-10aeb6e0",
++  "intent": "Change to CHANGELOG.md, boltons/strutils.py, tests/test_strutils.py",
++  "touches": [
++    "CHANGELOG.md",
++    "boltons/strutils.py",
++    "tests/test_strutils.py"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:runtime-suite"
++    },
++    {
++      "id": "o2",
++      "kind": "guard",
++      "files": [
++        "tests/test_strutils.py"
++      ],
++      "mutants": 10,
++      "seed": 11,
++      "text": "Existing tests or test setup changed (tests/test_strutils.py): the old tests still pass on the new code, and the new tests catch every sampled mutant the old ones caught",
++      "source": "guard:tests"
++    }
++  ],
++  "state": "open",
++  "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "policy_repo": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "opened_at": "2026-11-11T13:59:16.758Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:d3799d6b825588fdf6e82fca804cbeeedaa7f6a2a51ac402caf4d7cca67c9f2d",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T13:59:17.143Z",
++      "duration_ms": 2164,
++      "stdout_sha256": "cc8db51f56270014af3fbbf1fd4fde7c2dee14a107575d909d6c8b47cdef8aef",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-2631f894",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      }
++    },
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:e94a414ba4b7126005dd8c38d61bb95c2b743937ec5a6e55b4b449a7b702da4f",
++      "subject": "sha256:d3799d6b825588fdf6e82fca804cbeeedaa7f6a2a51ac402caf4d7cca67c9f2d",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "kind": "guard",
++      "mode": "snapshot",
++      "passed": false,
++      "started_at": "2026-11-11T13:59:19.421Z",
++      "duration_ms": 7521,
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      },
++      "guard": {
++        "pocp": 1,
++        "verdict": "inconclusive",
++        "passed": false,
++        "summary": "the old tests caught none of 10 sampled mutants, so a drop in detection can't be measured",
++        "base": "f469f065960997ac7c29bd7652fbf7e7628a426e",
++        "checks": [
++          {
++            "id": "runtime-suite",
++            "run": "sh .bench/check.sh"
++          }
++        ],
++        "old_tests": {
++          "result": "pass",
++          "restored": [
++            "tests/test_strutils.py"
++          ],
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "exit": 0,
++              "duration_ms": 2244
++            }
++          ]
++        },
++        "new_tests": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "reused": true,
++              "duration_ms": 0
++            }
++          ]
++        },
++        "baseline": {
++          "result": "not-run",
++          "runs": []
++        },
++        "detection": {
++          "result": "inconclusive",
++          "budget": 10,
++          "seed": 11,
++          "sites": 1524,
++          "focus_sites": 16,
++          "files": 34,
++          "sampled": 10,
++          "old_caught": 0,
++          "new_caught": 0,
++          "lost": [],
++          "mutants": [
++            {
++              "file": "boltons/strutils.py",
++              "line": 1388,
++              "operator": "plus",
++              "before": "return text[:end] + ellipsis",
++              "after": "return text[:end] - ellipsis",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/strutils.py",
++              "line": 1370,
++              "operator": "plus",
++              "before": "cut_at = text.rfind(' ', 0, limit + 1)",
++              "after": "cut_at = text.rfind(' ', 0, limit - 1)",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/strutils.py",
++              "line": 1376,
++              "operator": "minus",
++              "before": "ch = text[end - 1]",
++              "after": "ch = text[end + 1]",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/strutils.py",
++              "line": 1375,
++              "operator": "gt",
++              "before": "while end > 0:",
++              "after": "while end <= 0:",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/strutils.py",
++              "line": 1379,
++              "operator": "minus",
++              "before": "elif ch == '.' and not (end > 1 and text[end - 2].isdigit()",
++              "after": "elif ch == '.' and not (end > 1 and text[end + 2].isdigit()",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/strutils.py",
++              "line": 1379,
++              "operator": "gt",
++              "before": "elif ch == '.' and not (end > 1 and text[end - 2].isdigit()",
++              "after": "elif ch == '.' and not (end <= 1 and text[end - 2].isdigit()",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/strutils.py",
++              "line": 1364,
++              "operator": "lte",
++              "before": "if max_len <= len(ellipsis):",
++              "after": "if max_len > len(ellipsis):",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/strutils.py",
++              "line": 1370,
++              "operator": "zero-one",
++              "before": "cut_at = text.rfind(' ', 0, limit + 1)",
++              "after": "cut_at = text.rfind(' ', 1, limit + 1)",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/strutils.py",
++              "line": 1367,
++              "operator": "lte",
++              "before": "if len(text) <= max_len:",
++              "after": "if len(text) > max_len:",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/strutils.py",
++              "line": 1379,
++              "operator": "eq",
++              "before": "elif ch == '.' and not (end > 1 and text[end - 2].isdigit()",
++              "after": "elif ch != '.' and not (end > 1 and text[end - 2].isdigit()",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            }
++          ]
++        },
++        "duration_ms": 7521,
++        "checks_from": "rules"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T13:59:16.758Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T13:59:16.758Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1",
++        "o2"
++      ],
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178"
++    },
++    {
++      "at": "2026-11-11T13:59:27.007Z",
++      "event": "proof_failed",
++      "obligation": "o2",
++      "subject": "sha256:d3799d6b825588fdf6e82fca804cbeeedaa7f6a2a51ac402caf4d7cca67c9f2d"
++    },
++    {
++      "at": "2026-11-11T13:59:27.326Z",
++      "event": "deferred",
++      "obligation": "o2",
++      "by": "unknown",
++      "subject": "sha256:d3799d6b825588fdf6e82fca804cbeeedaa7f6a2a51ac402caf4d7cca67c9f2d"
++    }
++  ],
++  "deferrals": [
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:e94a414ba4b7126005dd8c38d61bb95c2b743937ec5a6e55b4b449a7b702da4f",
++      "subject": "sha256:d3799d6b825588fdf6e82fca804cbeeedaa7f6a2a51ac402caf4d7cca67c9f2d",
++      "by": "unknown",
++      "at": "2026-11-11T13:59:27.326Z",
++      "to": "ci-approval",
++      "reason": "the old tests caught none of 10 sampled mutants, so a drop in detection can't be measured"
++    }
++  ]
++}
+diff --git a/CHANGELOG.md b/CHANGELOG.md
+index 0bc12ec..385268e 100644
+--- a/CHANGELOG.md
++++ b/CHANGELOG.md
+@@ -9,6 +9,7 @@ scheme (`YY.MINOR.MICRO`).
+ 
+ _(unreleased)_
+ 
++- Added [`strutils.ellipsize`][strutils.ellipsize] for word-boundary-aware text truncation with an ellipsis
+ - Fixed [`funcutils.wraps`][funcutils.wraps] passing arguments positionally to wrappers that only accept them as keywords ([#261](https://github.com/mahmoud/boltons/issues/261))
+ - Fixed [`tableutils.Table.to_text`][tableutils.Table] crashes on empty tables, `None` headers, and short header rows; empty headers now render no header row, matching `to_html`
+ - Fixed [`timeutils.isoparse`][timeutils.isoparse] misreading fractional seconds (`.851` parsed as 851µs instead of 851000µs); >6-digit fractions now truncate instead of raising
+@@ -1227,6 +1228,7 @@ added in this release.
+ [strutils.args2cmd]: http://boltons.readthedocs.org/en/latest/strutils.html#boltons.strutils.args2cmd
+ [strutils.args2sh]: http://boltons.readthedocs.org/en/latest/strutils.html#boltons.strutils.args2sh
+ [strutils.escape_shell_args]: http://boltons.readthedocs.org/en/latest/strutils.html#boltons.strutils.escape_shell_args
++[strutils.ellipsize]: http://boltons.readthedocs.org/en/latest/strutils.html#boltons.strutils.ellipsize
+ [strutils.find_hashtags]: http://boltons.readthedocs.org/en/latest/strutils.html#boltons.strutils.find_hashtags
+ [strutils.gzip_bytes]: http://boltons.readthedocs.org/en/latest/strutils.html#boltons.strutils.gzip_bytes
+ [strutils.gunzip_bytes]: http://boltons.readthedocs.org/en/latest/strutils.html#boltons.strutils.gunzip_bytes
+diff --git a/boltons/strutils.py b/boltons/strutils.py
+index 10a1d5a..b75b479 100644
+--- a/boltons/strutils.py
++++ b/boltons/strutils.py
+@@ -58,7 +58,7 @@ __all__ = ['camel2under', 'under2camel', 'slugify', 'split_punct_ws',
+            'args2cmd', 'args2sh', 'parse_int_list', 'format_int_list',
+            'complement_int_list', 'int_ranges_from_int_list', 'MultiReplace',
+            'multi_replace', 'unwrap_text', 'removeprefix',
+-           'human_readable_list']
++           'human_readable_list', 'ellipsize']
+ 
+ 
+ _punct_ws_str = string.punctuation + string.whitespace
+@@ -1324,3 +1324,65 @@ def human_readable_list(items: typing.Sequence[str], delimiter: str = ',', conju
+         return f'{items[0]} {conjunction} {items[1]}'
+ 
+     return f'{delimiter.join(items[:-1])}{delimiter if oxford else " "}{conjunction} {items[-1]}'
++
++
++
++def ellipsize(text, max_len=160, *, ellipsis='…'):
++    """Truncate *text* to at most *max_len* characters, cutting at the
++    last space before the limit and appending *ellipsis*. The returned
++    string, ellipsis included, is never longer than *max_len*.
++
++    Text short enough to fit is returned unchanged:
++
++    >>> ellipsize('Hello, World!', 16)
++    'Hello, World!'
++
++    Longer text is cut at a space, never mid-word, and trailing
++    punctuation at the cut is stripped:
++
++    >>> ellipsize('Beautiful is better than ugly. Explicit is better.', 31)
++    'Beautiful is better than ugly…'
++
++    A ``.`` between two digits is a decimal point, not sentence
++    punctuation, and numbers are kept whole:
++
++    >>> ellipsize('rates around 6.5% this week', 20)
++    'rates around 6.5%…'
++
++    A single token longer than *max_len* is hard-cut at the limit:
++
++    >>> ellipsize('antidisestablishmentarianism', 10)
++    'antidises…'
++
++    Args:
++        text (str): The string to truncate.
++        max_len (int): Maximum length of the result, including the
++            ellipsis. Must be greater than ``len(ellipsis)``.
++        ellipsis (str): The suffix appended to truncated text.
++            Defaults to ``'…'`` (U+2026, HORIZONTAL ELLIPSIS).
++    """
++    if max_len <= len(ellipsis):
++        raise ValueError('expected max_len greater than length of'
++                         ' ellipsis %r, not %r' % (ellipsis, max_len))
++    if len(text) <= max_len:
++        return text
++    limit = max_len - len(ellipsis)
++    cut_at = text.rfind(' ', 0, limit + 1)
++    if cut_at <= 0:
++        # no space boundary available, hard-cut mid-token
++        return text[:limit] + ellipsis
++    end = cut_at
++    while end > 0:
++        ch = text[end - 1]
++        if ch.isspace() or ch in ',;:!?':
++            end -= 1
++        elif ch == '.' and not (end > 1 and text[end - 2].isdigit()
++                                and text[end].isdigit()):
++            # sentence-ending period; a "." between two digits is a
++            # decimal point and is preserved (e.g. "6.5%")
++            end -= 1
++        else:
++            break
++    if not end:
++        return text[:limit] + ellipsis
++    return text[:end] + ellipsis
+\ No newline at end of file
+diff --git a/tests/test_strutils.py b/tests/test_strutils.py
+index b1f22ce..81a66e3 100644
+--- a/tests/test_strutils.py
++++ b/tests/test_strutils.py
+@@ -2,6 +2,8 @@ import re
+ import uuid
+ from unittest import TestCase
+ 
++import pytest
++
+ from boltons import strutils
+ 
+ 
+@@ -322,4 +324,42 @@ def test_multi_replace_empty_mapping():
+     # pattern matched everywhere with lastgroup None, raising KeyError.
+     assert strutils.MultiReplace({}).sub('foo bar') == 'foo bar'
+     assert strutils.MultiReplace([]).sub('foo bar') == 'foo bar'
+-    assert strutils.multi_replace('foo bar', {}) == 'foo bar'
+\ No newline at end of file
++    assert strutils.multi_replace('foo bar', {}) == 'foo bar'
++
++
++def test_ellipsize():
++    ellipsize = strutils.ellipsize
++
++    # short enough text is returned unchanged
++    assert ellipsize('Hello, World!') == 'Hello, World!'
++    # exact boundary is still a no-op
++    assert ellipsize('Hello, World!', 13) == 'Hello, World!'
++
++    # cut lands on the last space boundary, never mid-word
++    assert ellipsize('The quick brown fox jumps', 16) == 'The quick brown…'
++
++    # trailing sentence punctuation at the cut is stripped
++    res = ellipsize('Beautiful is better than ugly. Explicit is better.', 31)
++    assert res == 'Beautiful is better than ugly…'
++
++    # a decimal point is not sentence punctuation; numbers stay whole
++    res = ellipsize('rates around 6.5% this week', 20)
++    assert res == 'rates around 6.5%…'
++    assert '6.5%' in res
++
++    # no space at all: hard cut at the limit
++    assert ellipsize('antidisestablishmentarianism', 10) == 'antidises…'
++
++    # custom ellipsis string
++    assert ellipsize('The quick brown fox jumps', 18, ellipsis='...') == 'The quick brown...'
++
++    # every result respects max_len
++    text = 'the wheels on the bus go round and round'
++    for max_len in range(2, len(text) + 1):
++        assert len(ellipsize(text, max_len)) <= max_len
++
++    # max_len must exceed the length of the ellipsis
++    with pytest.raises(ValueError):
++        ellipsize('anything', 1)
++    with pytest.raises(ValueError):
++        ellipsize('anything', 3, ellipsis='...')
+\ No newline at end of file

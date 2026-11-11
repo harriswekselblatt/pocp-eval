@@ -1,0 +1,301 @@
+diff --git a/.proof/packets/p-6a200cee.json b/.proof/packets/p-6a200cee.json
+new file mode 100644
+index 0000000..b82181b
+--- /dev/null
++++ b/.proof/packets/p-6a200cee.json
+@@ -0,0 +1,259 @@
++{
++  "pocp": 1,
++  "id": "p-6a200cee",
++  "intent": "Change to boltons/strutils.py, tests/test_strutils.py",
++  "touches": [
++    "boltons/strutils.py",
++    "tests/test_strutils.py"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:runtime-suite"
++    },
++    {
++      "id": "o2",
++      "kind": "guard",
++      "files": [
++        "tests/test_strutils.py"
++      ],
++      "mutants": 10,
++      "seed": 71,
++      "text": "Existing tests or test setup changed (tests/test_strutils.py): the old tests still pass on the new code, and the new tests catch every sampled mutant the old ones caught",
++      "source": "guard:tests"
++    }
++  ],
++  "state": "proven",
++  "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "policy_repo": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "opened_at": "2026-11-11T03:06:54.175Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:ded0498ded074d225b6f7ec8b2b750dd98bd7dcd8be408c2ccc786218b555922",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T03:06:54.933Z",
++      "duration_ms": 2811,
++      "stdout_sha256": "2bf6474d04b134a3c22840df506c93e343f581444c577544ff821a79c0cb6caa",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-a95e0369",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      }
++    },
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:67fe031287f24a8184b116636faae2f5daf91ebce7fc67f65067a13b0404e7e8",
++      "subject": "sha256:ded0498ded074d225b6f7ec8b2b750dd98bd7dcd8be408c2ccc786218b555922",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "kind": "guard",
++      "mode": "snapshot",
++      "passed": true,
++      "started_at": "2026-11-11T03:06:57.942Z",
++      "duration_ms": 13247,
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      },
++      "guard": {
++        "pocp": 1,
++        "verdict": "passed",
++        "passed": true,
++        "summary": "the old tests pass on the new code, and the new tests catch all 2 of the 10 sampled mutants the old tests caught (seed 71)",
++        "base": "d1855e9fda1495ba84e41e4154fad1589929db8d",
++        "checks": [
++          {
++            "id": "runtime-suite",
++            "run": "sh .bench/check.sh"
++          }
++        ],
++        "old_tests": {
++          "result": "pass",
++          "restored": [
++            "tests/test_strutils.py"
++          ],
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "exit": 0,
++              "duration_ms": 3120
++            }
++          ]
++        },
++        "new_tests": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "reused": true,
++              "duration_ms": 0
++            }
++          ]
++        },
++        "baseline": {
++          "result": "not-run",
++          "runs": []
++        },
++        "detection": {
++          "result": "kept",
++          "budget": 10,
++          "seed": 71,
++          "sites": 1475,
++          "focus_sites": 0,
++          "files": 34,
++          "sampled": 10,
++          "old_caught": 2,
++          "new_caught": 2,
++          "lost": [],
++          "mutants": [
++            {
++              "file": "boltons/strutils.py",
++              "line": 631,
++              "operator": "true",
++              "before": "use this one-liner. Use this tried-and-true utility function to",
++              "after": "use this one-liner. Use this tried-and-false utility function to",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/iterutils.py",
++              "line": 964,
++              "operator": "zero-one",
++              "before": "return ones[0] if len(ones) == 1 else default",
++              "after": "return ones[1] if len(ones) == 1 else default",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/setutils.py",
++              "line": 904,
++              "operator": "plus",
++              "before": "if inc is None:  # + -",
++              "after": "if inc is None:  # - -",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/urlutils.py",
++              "line": 170,
++              "operator": "zero-one",
++              "before": "prev_end, start, end = 0, None, None",
++              "after": "prev_end, start, end = 1, None, None",
++              "focus": false,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "boltons/statsutils.py",
++              "line": 165,
++              "operator": "zero-one",
++              "before": "statistical measure is not defined. 0.0 by default, but",
++              "after": "statistical measure is not defined. 1.0 by default, but",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/excutils.py",
++              "line": 120,
++              "operator": "zero-one",
++              "before": "if args and args[0]:",
++              "after": "if args and args[1]:",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/timeutils.py",
++              "line": 162,
++              "operator": "eq",
++              "before": ">>> parse_td('-1.5 weeks 3m 20s') == timedelta(days=-11, seconds=43400)",
++              "after": ">>> parse_td('-1.5 weeks 3m 20s') != timedelta(days=-11, seconds=43400)",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/iterutils.py",
++              "line": 667,
++              "operator": "lt",
++              "before": "while count == 'repeat' or i < count:",
++              "after": "while count == 'repeat' or i >= count:",
++              "focus": false,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "boltons/statsutils.py",
++              "line": 437,
++              "operator": "zero-one",
++              "before": "if round(c1, precision) == 0:",
++              "after": "if round(c1, precision) == 1:",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/iterutils.py",
++              "line": 790,
++              "operator": "gt",
++              "before": "...                                     lambda i: i > 0,",
++              "after": "...                                     lambda i: i <= 0,",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            }
++          ]
++        },
++        "duration_ms": 13247,
++        "checks_from": "rules"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T03:06:54.175Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T03:06:54.175Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1",
++        "o2"
++      ],
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178"
++    },
++    {
++      "at": "2026-11-11T03:07:11.314Z",
++      "event": "state",
++      "from": "open",
++      "to": "proven",
++      "subject": "sha256:ded0498ded074d225b6f7ec8b2b750dd98bd7dcd8be408c2ccc786218b555922"
++    }
++  ]
++}
+diff --git a/boltons/strutils.py b/boltons/strutils.py
+index 5df8cf6..66bfc92 100644
+--- a/boltons/strutils.py
++++ b/boltons/strutils.py
+@@ -258,7 +258,7 @@ def pluralize(word):
+         plural = irr_plural
+     elif word.endswith('y') and word[-2:-1] not in 'aeiou':
+         plural = word[:-1] + 'ies'
+-    elif word[-1] == 's' or word.endswith('ch') or word.endswith('sh'):
++    elif word[-1] in 'sx' or word.endswith('ch') or word.endswith('sh'):
+         plural = word if word.endswith('es') else word + 'es'
+     else:
+         plural = word + 's'
+diff --git a/tests/test_strutils.py b/tests/test_strutils.py
+index cbb7e74..0f2c854 100644
+--- a/tests/test_strutils.py
++++ b/tests/test_strutils.py
+@@ -299,3 +299,18 @@ def test_singularize_double_s():
+     # singularize() is now idempotent for these words: feeding its own output
+     # back in is a no-op (previously 'Glasses' -> 'Glass' -> 'Glas').
+     assert singularize(singularize('Glasses')) == 'Glass'
++
++
++def test_pluralize_x():
++    pluralize = strutils.pluralize
++    # Words ending in 'x' take an '-es' plural, like the 's'/'ch'/'sh' cases
++    # already handled; previously they wrongly got a bare 's' ('boxs').
++    assert pluralize('box') == 'boxes'
++    assert pluralize('fox') == 'foxes'
++    assert pluralize('tax') == 'taxes'
++    assert pluralize('prefix') == 'prefixes'
++    # Case pattern is preserved, like the rest of pluralize().
++    assert pluralize('Box') == 'Boxes'
++    assert pluralize('FOX') == 'FOXES'
++    # Irregular '-x' words are unaffected (handled before the rule).
++    assert pluralize('ox') == 'oxen'

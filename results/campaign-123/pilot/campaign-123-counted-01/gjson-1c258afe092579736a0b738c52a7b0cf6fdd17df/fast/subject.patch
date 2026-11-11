@@ -1,0 +1,317 @@
+diff --git a/.proof/packets/p-542adf31.json b/.proof/packets/p-542adf31.json
+new file mode 100644
+index 0000000..d18436d
+--- /dev/null
++++ b/.proof/packets/p-542adf31.json
+@@ -0,0 +1,180 @@
++{
++  "pocp": 1,
++  "id": "p-542adf31",
++  "intent": "Change to gjson.go, gjson_test.go",
++  "touches": [
++    "gjson.go",
++    "gjson_test.go"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:runtime-suite"
++    },
++    {
++      "id": "o2",
++      "kind": "guard",
++      "files": [
++        "gjson_test.go"
++      ],
++      "mutants": 0,
++      "seed": 11,
++      "text": "Existing tests or test setup changed (gjson_test.go): the old tests still pass on the new code, and a person reviews the change (fast mode: without planted bugs POCP can't show the tests still catch what they caught)",
++      "source": "guard:tests"
++    }
++  ],
++  "state": "open",
++  "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "policy_repo": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "opened_at": "2026-11-11T04:03:12.349Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:baf19ada163a0c9dc006514c02e14ecea55b04adb0304e8281bbb7451642d935",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T04:03:12.824Z",
++      "duration_ms": 9156,
++      "stdout_sha256": "c2373a01d5f64e9b1af667511d7e428c90c5f73b4f4dab522085971e5dc6a2c0",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-416e7a7f",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": "690a9ad57a8031755eb67df55cdbe067a4f6190dafa70a6329ea2510e613bd42"
++      }
++    },
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:cd9ca45a596210b35adf75875c65e1e2a9ab7c5b50d8d62d6301550efce6c7b9",
++      "subject": "sha256:baf19ada163a0c9dc006514c02e14ecea55b04adb0304e8281bbb7451642d935",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "kind": "guard",
++      "mode": "snapshot",
++      "passed": false,
++      "started_at": "2026-11-11T04:03:22.129Z",
++      "duration_ms": 9835,
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": "690a9ad57a8031755eb67df55cdbe067a4f6190dafa70a6329ea2510e613bd42"
++      },
++      "guard": {
++        "pocp": 1,
++        "verdict": "needs-review",
++        "passed": false,
++        "summary": "the old tests pass on the new code; a person must review the test change (gjson_test.go: lines were added to an existing test): without planted bugs (guard.mutants is 0) POCP can't show the tests still catch what they caught. For an automatic check, use deep mode (pocp init --deep, guard.mutants above 0)",
++        "base": "9e7815f44febb68fa7baac63c10dd830cf981b19",
++        "checks": [
++          {
++            "id": "runtime-suite",
++            "run": "sh .bench/check.sh"
++          }
++        ],
++        "old_tests": {
++          "result": "pass",
++          "restored": [
++            "gjson_test.go"
++          ],
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "exit": 0,
++              "duration_ms": 9713
++            }
++          ],
++          "changed_tests": {
++            "result": "not-used",
++            "reason": "check runtime-suite has no changed_test_command"
++          }
++        },
++        "new_tests": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "reused": true,
++              "duration_ms": 0
++            }
++          ]
++        },
++        "baseline": {
++          "result": "not-run",
++          "runs": []
++        },
++        "detection": {
++          "result": "off",
++          "budget": 0,
++          "seed": 11
++        },
++        "structural": {
++          "result": "needs-review",
++          "reasons": [
++            {
++              "file": "gjson_test.go",
++              "why": "lines were added to an existing test"
++            }
++          ]
++        },
++        "duration_ms": 9835,
++        "checks_from": "rules"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T04:03:12.349Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T04:03:12.349Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1",
++        "o2"
++      ],
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178"
++    },
++    {
++      "at": "2026-11-11T04:03:32.006Z",
++      "event": "proof_failed",
++      "obligation": "o2",
++      "subject": "sha256:baf19ada163a0c9dc006514c02e14ecea55b04adb0304e8281bbb7451642d935"
++    },
++    {
++      "at": "2026-11-11T04:03:32.370Z",
++      "event": "deferred",
++      "obligation": "o2",
++      "by": "unknown",
++      "subject": "sha256:baf19ada163a0c9dc006514c02e14ecea55b04adb0304e8281bbb7451642d935"
++    }
++  ],
++  "deferrals": [
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:cd9ca45a596210b35adf75875c65e1e2a9ab7c5b50d8d62d6301550efce6c7b9",
++      "subject": "sha256:baf19ada163a0c9dc006514c02e14ecea55b04adb0304e8281bbb7451642d935",
++      "by": "unknown",
++      "at": "2026-11-11T04:03:32.370Z",
++      "to": "ci-approval",
++      "reason": "the old tests pass on the new code; a person must review the test change (gjson_test.go: lines were added to an existing test): without planted bugs (guard.mutants is 0) POCP can't show the tests still catch what they caught. For an automatic check, use deep mode (pocp init --deep, guard.mutants above 0)"
++    }
++  ]
++}
+diff --git a/gjson.go b/gjson.go
+index 9fe40b5..f381a7c 100644
+--- a/gjson.go
++++ b/gjson.go
+@@ -464,9 +464,9 @@ func ParseBytes(json []byte) Result {
+ }
+ 
+ func squash(json string) string {
+-	// expects that the lead character is a '[' or '{'
++	// expects that the lead character is a '[' or '{' or '('
+ 	// squash the value, ignoring all nested arrays and objects.
+-	// the first '[' or '{' has already been read
++	// the first '[' or '{' or '(', has already been read
+ 	depth := 1
+ 	for i := 1; i < len(json); i++ {
+ 		if json[i] >= '"' && json[i] <= '}' {
+@@ -495,9 +495,9 @@ func squash(json string) string {
+ 						break
+ 					}
+ 				}
+-			case '{', '[':
++			case '{', '[', '(':
+ 				depth++
+-			case '}', ']':
++			case '}', ']', ')':
+ 				depth--
+ 				if depth == 0 {
+ 					return json[:i+1]
+@@ -1056,9 +1056,9 @@ func parseObjectPath(path string) (r objectPathResult) {
+ }
+ 
+ func parseSquash(json string, i int) (int, string) {
+-	// expects that the lead character is a '[' or '{'
++	// expects that the lead character is a '[' or '{' or '('
+ 	// squash the value, ignoring all nested arrays and objects.
+-	// the first '[' or '{' has already been read
++	// the first '[' or '{' or '(' has already been read
+ 	s := i
+ 	i++
+ 	depth := 1
+@@ -1089,9 +1089,9 @@ func parseSquash(json string, i int) (int, string) {
+ 						break
+ 					}
+ 				}
+-			case '{', '[':
++			case '{', '[', '(':
+ 				depth++
+-			case '}', ']':
++			case '}', ']', ')':
+ 				depth--
+ 				if depth == 0 {
+ 					i++
+@@ -1615,10 +1615,21 @@ func splitPossiblePipe(path string) (left, right string, ok bool) {
+ 		return
+ 	}
+ 
++	if len(path) > 0 && path[0] == '{' {
++		squashed := squash(path[1:])
++		if len(squashed) < len(path)-1 {
++			squashed = path[:len(squashed)+1]
++			remain := path[len(squashed):]
++			if remain[0] == '|' {
++				return squashed, remain[1:], true
++			}
++		}
++		return
++	}
++
+ 	// split the left and right side of the path with the pipe character as
+ 	// the delimiter. This is a little tricky because we'll need to basically
+ 	// parse the entire path.
+-
+ 	for i := 0; i < len(path); i++ {
+ 		if path[i] == '\\' {
+ 			i++
+@@ -1699,6 +1710,7 @@ type subSelector struct {
+ // first character in path is either '[' or '{', and has already been checked
+ // prior to calling this function.
+ func parseSubSelectors(path string) (sels []subSelector, out string, ok bool) {
++	modifer := 0
+ 	depth := 1
+ 	colon := 0
+ 	start := 1
+@@ -1719,8 +1731,12 @@ func parseSubSelectors(path string) (sels []subSelector, out string, ok bool) {
+ 		switch path[i] {
+ 		case '\\':
+ 			i++
++		case '@':
++			if modifer == 0 && i > 0 && (path[i-1] == '.' || path[i-1] == '|') {
++				modifer = i
++			}
+ 		case ':':
+-			if depth == 1 {
++			if modifer == 0 && colon == 0 && depth == 1 {
+ 				colon = i
+ 			}
+ 		case ',':
+diff --git a/gjson_test.go b/gjson_test.go
+index 65861c6..62d88a3 100644
+--- a/gjson_test.go
++++ b/gjson_test.go
+@@ -1990,3 +1990,29 @@ func TestSingleModifier(t *testing.T) {
+ 	assert(t, Get(data, "@key").String() == "value")
+ 	assert(t, Get(data, "\\@key").String() == "value")
+ }
++
++func TestModifierInSubSelector(t *testing.T) {
++	AddModifier("case", func(json, arg string) string {
++		if arg == "upper" {
++			return strings.ToUpper(json)
++		}
++		if arg == "lower" {
++			return strings.ToLower(json)
++		}
++		return json
++	})
++	json := `{"friends": [
++		{"age": 44, "first": "Dale", "last": "Murphy"},
++		{"age": 68, "first": "Roger", "last": "Craig"},
++		{"age": 47, "first": "Jane", "last": "Murphy"}
++	]}`
++
++	res := Get(json, `friends.#.{age,first|@case:upper}|@ugly`)
++	exp := `[{"age":44,"@case:upper":"DALE"},{"age":68,"@case:upper":"ROGER"},{"age":47,"@case:upper":"JANE"}]`
++	assert(t, res.Raw == exp)
++
++	res = Get(json, `{friends.#.{age,first:first|@case:upper}|0.first}`)
++	exp = `{"first":"DALE"}`
++	assert(t, res.Raw == exp)
++
++}

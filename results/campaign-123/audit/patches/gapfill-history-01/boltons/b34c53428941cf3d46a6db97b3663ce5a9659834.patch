@@ -1,0 +1,242 @@
+diff --git a/.github/workflows/publish.yml b/.github/workflows/publish.yml
+new file mode 100644
+index 0000000..97cd33c
+--- /dev/null
++++ b/.github/workflows/publish.yml
+@@ -0,0 +1,79 @@
++name: Publish to PyPI
++
++on:
++  push:
++    tags:
++      - "[0-9]*.[0-9]*.[0-9]*"
++
++jobs:
++  build:
++    runs-on: ubuntu-latest
++    steps:
++      - uses: actions/checkout@v4
++      - uses: astral-sh/setup-uv@v5
++      - uses: actions/setup-python@v5
++        with:
++          python-version: "3.12"
++      - name: Validate version
++        run: |
++          VERSION=$(sed -n "s/^__version__ = '\(.*\)'/\1/p" boltons/__init__.py)
++          echo "Package version: $VERSION"
++          if echo "$VERSION" | grep -qi 'dev'; then
++            echo "::error::Version $VERSION contains dev suffix."
++            exit 1
++          fi
++          TAG=${GITHUB_REF#refs/tags/}
++          if [ "$VERSION" != "$TAG" ]; then
++            echo "::error::Tag $TAG does not match __version__ ($VERSION)"
++            exit 1
++          fi
++      - name: Build package
++        run: uv build
++      - uses: actions/upload-artifact@v4
++        with:
++          name: dist
++          path: dist/
++
++  publish:
++    needs: build
++    runs-on: ubuntu-latest
++    environment:
++      name: pypi
++      url: https://pypi.org/p/boltons
++    permissions:
++      id-token: write
++    steps:
++      - uses: actions/download-artifact@v4
++        with:
++          name: dist
++          path: dist/
++      - uses: pypa/gh-action-pypi-publish@release/v1
++
++  verify:
++    needs: publish
++    runs-on: ubuntu-latest
++    steps:
++      - uses: actions/setup-python@v5
++        with:
++          python-version: "3.12"
++      - name: Wait for PyPI
++        run: |
++          TAG=${GITHUB_REF#refs/tags/}
++          for i in $(seq 1 30); do
++            if curl -s -f "https://pypi.org/pypi/boltons/$TAG/json" > /dev/null; then
++              echo "boltons $TAG available on PyPI"
++              break
++            fi
++            echo "Waiting for PyPI propagation (attempt $i/30)..."
++            sleep 10
++          done
++      - name: Install from PyPI and verify
++        run: |
++          TAG=${GITHUB_REF#refs/tags/}
++          pip install boltons==$TAG --index-url https://pypi.org/simple/
++          INSTALLED=$(cd /tmp && python -c "import boltons; print(boltons.__version__)")
++          echo "Installed version: $INSTALLED"
++          if [ "$INSTALLED" != "$TAG" ]; then
++            echo "::error::Installed version $INSTALLED does not match tag $TAG"
++            exit 1
++          fi
+diff --git a/.github/workflows/tests.yaml b/.github/workflows/tests.yaml
+index f252815..2f6e712 100644
+--- a/.github/workflows/tests.yaml
++++ b/.github/workflows/tests.yaml
+@@ -31,23 +31,9 @@ jobs:
+           - { name: "PyPy3", python: "pypy-3.9", os: ubuntu-latest, tox: pypy3 }
+     steps:
+       - uses: actions/checkout@v4
++      - uses: astral-sh/setup-uv@v5
+       - uses: actions/setup-python@v5
+         with:
+           python-version: ${{ matrix.python }}
+-      - name: update pip
+-        run: |
+-          pip install -U wheel
+-          pip install -U setuptools
+-          python -m pip install -U pip
+-      - name: get pip cache dir
+-        id: pip-cache
+-        shell: bash
+-        run: |
+-          echo "dir=$(pip cache dir)" >> "$GITHUB_OUTPUT"
+-      - name: cache pip
+-        uses: actions/cache@v4
+-        with:
+-          path: ${{ steps.pip-cache.outputs.dir }}
+-          key: pip|${{ runner.os }}|${{ matrix.python }}|${{ hashFiles('pyproject.toml') }}|${{ hashFiles('requirements/*.txt') }}
+-      - run: pip install tox
+-      - run: tox -e ${{ matrix.tox }}
++          allow-prereleases: true
++      - run: uvx --with tox-uv tox -e ${{ matrix.tox }}
+diff --git a/.gitignore b/.gitignore
+index a01147c..a54a71e 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -2,6 +2,7 @@ docs/_build
+ tmp.py
+ htmlcov/
+ venv/
++.venv/
+ *.py[cod]
+ venv-rtd/
+ 
+diff --git a/boltons/__init__.py b/boltons/__init__.py
+index e69de29..7a70211 100644
+--- a/boltons/__init__.py
++++ b/boltons/__init__.py
+@@ -0,0 +1 @@
++__version__ = '25.0.1dev'
+\ No newline at end of file
+diff --git a/docs/conf.py b/docs/conf.py
+index d10273e..2e0b80f 100644
+--- a/docs/conf.py
++++ b/docs/conf.py
+@@ -14,7 +14,6 @@
+ import os
+ import sys
+ import sphinx
+-from pprint import pprint
+ 
+ # If extensions (or modules to document with autodoc) are in another directory,
+ # add these directories to sys.path here. If the directory is relative to the
+@@ -25,8 +24,6 @@ PACKAGE_PATH = os.path.abspath(CUR_PATH + '/../boltons/')
+ sys.path.insert(0, PROJECT_PATH)
+ sys.path.insert(0, PACKAGE_PATH)
+ 
+-pprint(os.environ)
+-
+ 
+ def get_mod_stats():
+     # TODO: docstring percentage.
+@@ -99,8 +96,9 @@ project = 'boltons'
+ copyright = '2025, Mahmoud Hashemi'
+ author = 'Mahmoud Hashemi'
+ 
+-version = '25.0'
+-release = '25.0.0'
++import boltons
++release = boltons.__version__
++version = '.'.join(release.split('.')[:2])
+ 
+ if os.name != 'nt':
+     today_fmt = '%B %d, %Y'
+diff --git a/pyproject.toml b/pyproject.toml
+index 1b7db23..a1861ff 100644
+--- a/pyproject.toml
++++ b/pyproject.toml
+@@ -1,6 +1,6 @@
+ [project]
+ name = "boltons"
+-version = "25.0.1dev"
++dynamic = ["version"]
+ description = "When they're not builtins, they're boltons."
+ readme = "README.md"
+ authors = [{ name = "Mahmoud Hashemi", email = "mahmoud@hatnote.com" }]
+@@ -37,6 +37,13 @@ Homepage = "https://github.com/mahmoud/boltons"
+ include = ["doc/", "tests/", "CHANGELOG.md", "tox.ini"]
+ exclude = ["doc/_build"]
+ 
++
++[dependency-groups]
++dev = [
++    "pytest>=7,<8; python_version < '3.8'",
++    "pytest>=8; python_version >= '3.8'",
++]
++
+ [tool.pytest.ini_options]
+ doctest_optionflags = [
+     "ALLOW_UNICODE",
+@@ -48,20 +55,3 @@ doctest_optionflags = [
+ [build-system]
+ requires = ["flit_core >=3.2,<4"]
+ build-backend = "flit_core.buildapi"
+-
+-# A brief checklist for release:
+-# * tox
+-# * git commit (if applicable)
+-# * Bump pyproject.toml version off of -dev
+-# * git commit -a -m "bump version for x.y.z release"
+-# * rm -rf dist/*
+-# * flit build
+-# * flit publish
+-# * bump docs/conf.py version
+-# * git commit
+-# * git tag -a x.y.z -m "brief summary"
+-# * write CHANGELOG
+-# * git commit
+-# * bump pyproject.toml version onto n+1 dev
+-# * git commit
+-# * git push
+diff --git a/requirements-test.txt b/requirements-test.txt
+deleted file mode 100644
+index 9ceb60a..0000000
+--- a/requirements-test.txt
++++ /dev/null
+@@ -1,5 +0,0 @@
+-coverage==7.2.7
+-pytest==7.4.4; python_version < "3.8"
+-pytest==8.3.4; python_version >= "3.8"
+-pytest-cov==4.1.0
+-tox==4.8.0
+diff --git a/tox.ini b/tox.ini
+index ccc3c79..6259436 100644
+--- a/tox.ini
++++ b/tox.ini
+@@ -1,7 +1,8 @@
+ [tox]
+ envlist = py37,py38,py39,py310,py311,py312,py313,py314,pypy3
++requires = tox-uv
++
+ [testenv]
+ changedir = .tox
+-deps = -rrequirements-test.txt
+-commands = pytest --doctest-modules {envsitepackagesdir}/boltons {toxinidir}/tests {posargs}
+-
++dependency_groups = dev
++commands = pytest --doctest-modules {env_site_packages_dir}/boltons {tox_root}/tests {posargs}

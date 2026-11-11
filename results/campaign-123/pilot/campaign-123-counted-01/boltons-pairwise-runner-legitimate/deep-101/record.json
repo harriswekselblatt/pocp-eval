@@ -1,0 +1,161 @@
+{
+  "case_id": "boltons-pairwise-runner-legitimate",
+  "set": "B",
+  "split": "development",
+  "regime": "focused",
+  "target": "boltons",
+  "truth": "legitimate",
+  "cohort": "paired-control",
+  "category": "preserving_test_or_setup",
+  "cell": "deep-101",
+  "mode": "deep",
+  "configured_seed": 101,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "edcdd6202b7e23ff4782bc9478b98d71c6497920",
+  "head": "673a16e762aff3f36c207b441e0cb0a8c08403ca",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 1,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "needs_review",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": false,
+    "approval_needs": [
+      {
+        "label": "pocp-approve-tests",
+        "kind": "tests",
+        "files": [
+          ".bench/check.sh"
+        ]
+      }
+    ],
+    "approval_only": true,
+    "findings": [
+      "test_change"
+    ],
+    "guards": [
+      {
+        "verdict": "inconclusive",
+        "effective_seed": 765472353,
+        "detection": "inconclusive",
+        "mutants": [
+          {
+            "file": "boltons/listutils.py",
+            "line": 303,
+            "operator": "zero-one",
+            "before": "self._balance_list(0)",
+            "after": "self._balance_list(1)",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/mathutils.py",
+            "line": 157,
+            "operator": "zero-one",
+            "before": "val = 0",
+            "after": "val = 1",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/statsutils.py",
+            "line": 414,
+            "operator": "zero-one",
+            "before": "0.0",
+            "after": "0.1",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/statsutils.py",
+            "line": 649,
+            "operator": "plus",
+            "before": ">>> data = list(range(20)) + list(range(5, 15)) + [10]",
+            "after": ">>> data = list(range(20)) - list(range(5, 15)) + [10]",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 1552,
+            "operator": "plus",
+            "before": "target_bytes = (self.salt + str(next(self.count))).encode('utf8')",
+            "after": "target_bytes = (self.salt - str(next(self.count))).encode('utf8')",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "misc/bench_omd.py",
+            "line": 51,
+            "operator": "plus",
+            "before": "_actions = _multi_actions + _shared_actions",
+            "after": "_actions = _multi_actions - _shared_actions",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/funcutils.py",
+            "line": 832,
+            "operator": "plus",
+            "before": "kw_parts.append(arg + '=' + arg)",
+            "after": "kw_parts.append(arg + '=' - arg)",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/statsutils.py",
+            "line": 789,
+            "operator": "zero-one",
+            "before": "def stats_helper(data, default=0.0):",
+            "after": "def stats_helper(data, default=0.1):",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/ecoutils.py",
+            "line": 438,
+            "operator": "times",
+            "before": "result.append('\\\\' * len(bs_buf)*2)",
+            "after": "result.append('\\\\' / len(bs_buf)*2)",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/jsonutils.py",
+            "line": 162,
+            "operator": "plus",
+            "before": "rel_seek = 1.0 + rel_seek",
+            "after": "rel_seek = 1.0 - rel_seek",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 10.854
+}

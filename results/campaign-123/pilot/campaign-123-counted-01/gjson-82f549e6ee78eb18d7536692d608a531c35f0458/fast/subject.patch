@@ -1,0 +1,92 @@
+diff --git a/.proof/packets/p-0c9fd962.json b/.proof/packets/p-0c9fd962.json
+new file mode 100644
+index 0000000..02d7fff
+--- /dev/null
++++ b/.proof/packets/p-0c9fd962.json
+@@ -0,0 +1,70 @@
++{
++  "pocp": 1,
++  "id": "p-0c9fd962",
++  "intent": "Change to gjson.go",
++  "touches": [
++    "gjson.go"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:runtime-suite"
++    }
++  ],
++  "state": "proven",
++  "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "policy_repo": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "opened_at": "2026-11-11T14:39:23.672Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:5e1c25fb2a175c74866478fc2bd2a32022fe55c887b873d43965da5d0b4d2f02",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T14:39:24.112Z",
++      "duration_ms": 8346,
++      "stdout_sha256": "d8104417175115936894536a2aef8ac34509c820503ef87091cea84326ccdd6d",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-a15f7396",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": "dfff87a7de3ea43eb32e4297a35cbd7eb4819d36b877fd6559d69f812f326379"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T14:39:23.672Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T14:39:23.672Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1"
++      ],
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178"
++    },
++    {
++      "at": "2026-11-11T14:39:32.564Z",
++      "event": "state",
++      "from": "open",
++      "to": "proven",
++      "subject": "sha256:5e1c25fb2a175c74866478fc2bd2a32022fe55c887b873d43965da5d0b4d2f02"
++    }
++  ]
++}
+diff --git a/gjson.go b/gjson.go
+index cb61573..f863689 100644
+--- a/gjson.go
++++ b/gjson.go
+@@ -214,6 +214,11 @@ func (t Result) IsArray() bool {
+ 	return t.Type == JSON && len(t.Raw) > 0 && t.Raw[0] == '['
+ }
+ 
++// IsBool returns true if the result value is a JSON boolean.
++func (t Result) IsBool() bool {
++	return t.Type == True || t.Type == False
++}
++
+ // ForEach iterates through values.
+ // If the result represents a non-existent value, then no values will be
+ // iterated. If the result is an Object, the iterator will pass the key and

@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "node",
+    "<bench>/vendor/npm-pocp-1.2.3/package/bin/pocp.js",
+    "fix",
+    "--json"
+  ],
+  "exit": 0,
+  "execution": "completed",
+  "seconds": 4.993367500021122,
+  "stdout": "{\n  \"pocp\": 1,\n  \"ok\": true,\n  \"decision\": \"pass\",\n  \"nothing_staged\": false,\n  \"nothing_to_prove\": false,\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"packet\": \"p-f76318e1\",\n      \"files\": [\n        \"benchsupport/assertions.go\"\n      ],\n      \"checks\": [\n        \"o1 (rule:behavior-contract)\",\n        \"o2 (guard:tests)\"\n      ],\n      \"intent\": \"Change to benchsupport/assertions.go\"\n    },\n    {\n      \"action\": \"prove\",\n      \"packets\": [\n        \"p-f76318e1\"\n      ],\n      \"mode\": \"clean\",\n      \"ran\": 2,\n      \"checks\": 2,\n      \"ms\": 3113,\n      \"failed\": [\n        {\n          \"packet\": \"p-f76318e1\",\n          \"obligation\": \"o2\",\n          \"log\": null,\n          \"before\": false\n        }\n      ],\n      \"handed\": [\n        \"o2\"\n      ]\n    },\n    {\n      \"action\": \"defer\",\n      \"packet\": \"p-f76318e1\",\n      \"obligations\": [\n        \"o2\"\n      ]\n    }\n  ],\n  \"needs_agent\": [],\n  \"needs_person\": [\n    {\n      \"code\": \"test_change\",\n      \"what\": \"p-f76318e1: the test-change check did not pass (the old tests caught none of 10 sampled mutants, so a drop in detection can't be measured); the commit can go ahead, and CI will ask a maintainer to approve it\",\n      \"why\": \"the test-change check did not pass, and in block mode only a maintainer can accept that.\",\n      \"next\": \"a maintainer adds the `pocp-approve-tests` label to the pull request\",\n      \"by\": \"person\"\n    }\n  ],\n  \"advice\": \"Do not squash, force-push, rewrite history or commit with --no-verify to get past this: push the commit as it is and ask for the approval.\",\n  \"gate\": {\n    \"decision\": \"pass\",\n    \"subject\": \"sha256:bc5e906ccafddef52f68f5fe39ed1f7d9b6bbaf63b36757a3ba3a65b117a5f8a\"\n  }\n}\n",
+  "stderr": ""
+}

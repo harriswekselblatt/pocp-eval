@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "git",
+    "commit",
+    "-qm",
+    "boltons-pairwise-helper-legitimate deep-71"
+  ],
+  "exit": 0,
+  "execution": "completed",
+  "seconds": 1.3167115830583498,
+  "stdout": "",
+  "stderr": "pocp: gate passed (1 packet(s) proven for sha256:b2c2f5fb16c5)\n"
+}

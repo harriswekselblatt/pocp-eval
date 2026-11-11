@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "node",
+    "<bench>/vendor/npm-pocp-1.2.3/package/bin/pocp.js",
+    "fix",
+    "--json"
+  ],
+  "exit": 0,
+  "execution": "completed",
+  "seconds": 39.869431791012175,
+  "stdout": "{\n  \"pocp\": 1,\n  \"ok\": true,\n  \"decision\": \"pass\",\n  \"nothing_staged\": false,\n  \"nothing_to_prove\": false,\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"packet\": \"p-ea2010e7\",\n      \"files\": [\n        \"index.js\",\n        \"index.test-d.ts\",\n        \"package.json\",\n        \"test-multiple-pmapskips-performance.js\",\n        \"test.js\"\n      ],\n      \"checks\": [\n        \"o1 (rule:runtime-suite)\",\n        \"o2 (guard:tests)\"\n      ],\n      \"intent\": \"Change to index.js, index.test-d.ts, package.json and 2 more\"\n    },\n    {\n      \"action\": \"prove\",\n      \"packets\": [\n        \"p-ea2010e7\"\n      ],\n      \"mode\": \"clean\",\n      \"ran\": 2,\n      \"checks\": 2,\n      \"ms\": 38314,\n      \"failed\": [],\n      \"handed\": []\n    }\n  ],\n  \"needs_agent\": [],\n  \"needs_person\": [],\n  \"advice\": null,\n  \"gate\": {\n    \"decision\": \"pass\",\n    \"subject\": \"sha256:ae1356d1ff82956ec7c24bd6927c14ca64609ad959657b618c625cb81f671632\"\n  }\n}\n",
+  "stderr": ""
+}

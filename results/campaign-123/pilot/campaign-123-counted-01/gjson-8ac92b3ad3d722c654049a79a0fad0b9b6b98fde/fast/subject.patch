@@ -1,0 +1,211 @@
+diff --git a/.proof/packets/p-23b2fd6a.json b/.proof/packets/p-23b2fd6a.json
+new file mode 100644
+index 0000000..c569c57
+--- /dev/null
++++ b/.proof/packets/p-23b2fd6a.json
+@@ -0,0 +1,70 @@
++{
++  "pocp": 1,
++  "id": "p-23b2fd6a",
++  "intent": "Change to gjson.go",
++  "touches": [
++    "gjson.go"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:runtime-suite"
++    }
++  ],
++  "state": "proven",
++  "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "policy_repo": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "opened_at": "2026-11-11T14:58:17.988Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:5d93ac4d0f722a0c1c4f8946086289f34fd8705857331a4a26ca80e8063c1be2",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T14:58:18.384Z",
++      "duration_ms": 8280,
++      "stdout_sha256": "df4d451894be44ae92d8bb1e3977a1e0a050e131c7f8e1f3db462b773aee0540",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-5e46717c",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": "4c15b929be5980152eb064f36954743e23ac0628b4f05f9b5f98ed92488502d0"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T14:58:17.988Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T14:58:17.988Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1"
++      ],
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178"
++    },
++    {
++      "at": "2026-11-11T14:58:26.778Z",
++      "event": "state",
++      "from": "open",
++      "to": "proven",
++      "subject": "sha256:5d93ac4d0f722a0c1c4f8946086289f34fd8705857331a4a26ca80e8063c1be2"
++    }
++  ]
++}
+diff --git a/gjson.go b/gjson.go
+index 7bb82e9..7ab8c54 100644
+--- a/gjson.go
++++ b/gjson.go
+@@ -750,119 +750,17 @@ func parseArrayPath(path string) (r arrayPathResult) {
+ 				} else if path[1] == '[' || path[1] == '(' {
+ 					// query
+ 					r.query.on = true
+-					if true {
+-						qpath, op, value, _, fi, ok := parseQuery(path[i:])
+-						if !ok {
+-							// bad query, end now
+-							break
+-						}
+-						r.query.path = qpath
+-						r.query.op = op
+-						r.query.value = value
+-						i = fi - 1
+-						if i+1 < len(path) && path[i+1] == '#' {
+-							r.query.all = true
+-						}
+-					} else {
+-						var end byte
+-						if path[1] == '[' {
+-							end = ']'
+-						} else {
+-							end = ')'
+-						}
+-						i += 2
+-						// whitespace
+-						for ; i < len(path); i++ {
+-							if path[i] > ' ' {
+-								break
+-							}
+-						}
+-						s := i
+-						for ; i < len(path); i++ {
+-							if path[i] <= ' ' ||
+-								path[i] == '!' ||
+-								path[i] == '=' ||
+-								path[i] == '<' ||
+-								path[i] == '>' ||
+-								path[i] == '%' ||
+-								path[i] == end {
+-								break
+-							}
+-						}
+-						r.query.path = path[s:i]
+-						// whitespace
+-						for ; i < len(path); i++ {
+-							if path[i] > ' ' {
+-								break
+-							}
+-						}
+-						if i < len(path) {
+-							s = i
+-							if path[i] == '!' {
+-								if i < len(path)-1 && (path[i+1] == '=' ||
+-									path[i+1] == '%') {
+-									i++
+-								}
+-							} else if path[i] == '<' || path[i] == '>' {
+-								if i < len(path)-1 && path[i+1] == '=' {
+-									i++
+-								}
+-							} else if path[i] == '=' {
+-								if i < len(path)-1 && path[i+1] == '=' {
+-									s++
+-									i++
+-								}
+-							}
+-							i++
+-							r.query.op = path[s:i]
+-							// whitespace
+-							for ; i < len(path); i++ {
+-								if path[i] > ' ' {
+-									break
+-								}
+-							}
+-							s = i
+-							for ; i < len(path); i++ {
+-								if path[i] == '"' {
+-									i++
+-									s2 := i
+-									for ; i < len(path); i++ {
+-										if path[i] > '\\' {
+-											continue
+-										}
+-										if path[i] == '"' {
+-											// look for an escaped slash
+-											if path[i-1] == '\\' {
+-												n := 0
+-												for j := i - 2; j > s2-1; j-- {
+-													if path[j] != '\\' {
+-														break
+-													}
+-													n++
+-												}
+-												if n%2 == 0 {
+-													continue
+-												}
+-											}
+-											break
+-										}
+-									}
+-								} else if path[i] == end {
+-									if i+1 < len(path) && path[i+1] == '#' {
+-										r.query.all = true
+-									}
+-									break
+-								}
+-							}
+-							if i > len(path) {
+-								i = len(path)
+-							}
+-							v := path[s:i]
+-							for len(v) > 0 && v[len(v)-1] <= ' ' {
+-								v = v[:len(v)-1]
+-							}
+-							r.query.value = v
+-						}
++					qpath, op, value, _, fi, ok := parseQuery(path[i:])
++					if !ok {
++						// bad query, end now
++						break
++					}
++					r.query.path = qpath
++					r.query.op = op
++					r.query.value = value
++					i = fi - 1
++					if i+1 < len(path) && path[i+1] == '#' {
++						r.query.all = true
+ 					}
+ 				}
+ 			}

@@ -1,0 +1,40 @@
+diff --git a/gjson.go b/gjson.go
+index 32935de..852647c 100644
+--- a/gjson.go
++++ b/gjson.go
+@@ -498,6 +498,9 @@ func squash(json string) string {
+ 					}
+ 				}
+ 				if depth == 0 {
++					if i >= len(json) {
++						return json
++					}
+ 					return json[:i+1]
+ 				}
+ 			case '{', '[', '(':
+diff --git a/gjson_test.go b/gjson_test.go
+index 24369fd..414f3f6 100644
+--- a/gjson_test.go
++++ b/gjson_test.go
+@@ -2178,3 +2178,21 @@ func TestJoin152(t *testing.T) {
+ 	res := Get(json, "historical.summary.days.#.hours|@flatten|#.humidity.value")
+ 	assert(t, res.Raw == `[92.0,92.0,91.0,91.0,67.0]`)
+ }
++
++func TestIssue192(t *testing.T) {
++
++	assert(t, squash(`"000"hello`) == `"000"`)
++	assert(t, squash(`"000"`) == `"000"`)
++	assert(t, squash(`"000`) == `"000`)
++	assert(t, squash(`"`) == `"`)
++
++	assert(t, squash(`[000]hello`) == `[000]`)
++	assert(t, squash(`[000]`) == `[000]`)
++	assert(t, squash(`[000`) == `[000`)
++	assert(t, squash(`[`) == `[`)
++	assert(t, squash(`]`) == `]`)
++
++	testJSON := `0.#[[{}]].@valid:"000`
++	Get(testJSON, testJSON)
++
++}

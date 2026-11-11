@@ -1,0 +1,39 @@
+diff --git a/boltons/setutils.py b/boltons/setutils.py
+index 6451a4a..3c49273 100644
+--- a/boltons/setutils.py
++++ b/boltons/setutils.py
+@@ -824,7 +824,7 @@ class _ComplementSet:
+             if exc is None:  # - +
+                 return False
+             else:  # - -
+-                return self._excluded.issupserset(exc)
++                return self._excluded.issuperset(exc)
+         else:
+             if inc is None:  # + -
+                 return self._included.isdisjoint(exc)
+@@ -868,7 +868,7 @@ class _ComplementSet:
+             if inc is None:  # + -
+                 return False
+             else:  # + +
+-                return self._included.issupserset(inc)
++                return self._included.issuperset(inc)
+ 
+     def __gt__(self, other):
+         inc, exc = _norm_args_notimplemented(other)
+diff --git a/tests/test_setutils.py b/tests/test_setutils.py
+index b98ee23..806e3d9 100644
+--- a/tests/test_setutils.py
++++ b/tests/test_setutils.py
+@@ -102,6 +102,12 @@ def test_complement_set():
+     assert (cab | cbc) > cab
+     assert cc > sab
+     assert not (cab > sab)
++    # <= / >= between two complement sets (comp(X) <= comp(Y) iff Y subset X)
++    assert cab <= complement('a')
++    assert not (complement('a') <= cab)
++    assert cab <= cab
++    assert complement('a') >= cab
++    assert cab >= cab
+     assert not cab.isdisjoint(cc)  # complements never disjoint
+     assert cab.isdisjoint(sab)
+     assert not cab.isdisjoint(sc)

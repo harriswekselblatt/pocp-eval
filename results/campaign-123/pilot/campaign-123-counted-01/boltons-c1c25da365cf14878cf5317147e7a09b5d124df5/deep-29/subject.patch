@@ -1,0 +1,298 @@
+diff --git a/.proof/packets/p-c4187953.json b/.proof/packets/p-c4187953.json
+new file mode 100644
+index 0000000..39d5424
+--- /dev/null
++++ b/.proof/packets/p-c4187953.json
+@@ -0,0 +1,259 @@
++{
++  "pocp": 1,
++  "id": "p-c4187953",
++  "intent": "Change to boltons/mathutils.py, tests/test_mathutils.py",
++  "touches": [
++    "boltons/mathutils.py",
++    "tests/test_mathutils.py"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:runtime-suite"
++    },
++    {
++      "id": "o2",
++      "kind": "guard",
++      "files": [
++        "tests/test_mathutils.py"
++      ],
++      "mutants": 10,
++      "seed": 29,
++      "text": "Existing tests or test setup changed (tests/test_mathutils.py): the old tests still pass on the new code, and the new tests catch every sampled mutant the old ones caught",
++      "source": "guard:tests"
++    }
++  ],
++  "state": "proven",
++  "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "policy_repo": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "opened_at": "2026-11-11T03:13:42.652Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:d89f5ecda6135826de6b42d0126423885d60a5e4caa9e6954b6187a2a4757abd",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T03:13:43.186Z",
++      "duration_ms": 2012,
++      "stdout_sha256": "ab265ced658cf5fd66bb6b0bab5873f0b6c0582c703445f2dcbf694e26024e94",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-3e2af1ae",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      }
++    },
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:d9a6e3c3a8da2e052652783f72ffc2210279a19cfcb56dd1917c0df8234a639d",
++      "subject": "sha256:d89f5ecda6135826de6b42d0126423885d60a5e4caa9e6954b6187a2a4757abd",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "kind": "guard",
++      "mode": "snapshot",
++      "passed": true,
++      "started_at": "2026-11-11T03:13:45.328Z",
++      "duration_ms": 13859,
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      },
++      "guard": {
++        "pocp": 1,
++        "verdict": "passed",
++        "passed": true,
++        "summary": "the old tests pass on the new code, and the new tests catch all 5 of the 10 sampled mutants the old tests caught (seed 29)",
++        "base": "8797ba71a4355406c948fb8eabcd3fb1cd621e72",
++        "checks": [
++          {
++            "id": "runtime-suite",
++            "run": "sh .bench/check.sh"
++          }
++        ],
++        "old_tests": {
++          "result": "pass",
++          "restored": [
++            "tests/test_mathutils.py"
++          ],
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "exit": 0,
++              "duration_ms": 2964
++            }
++          ]
++        },
++        "new_tests": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "reused": true,
++              "duration_ms": 0
++            }
++          ]
++        },
++        "baseline": {
++          "result": "not-run",
++          "runs": []
++        },
++        "detection": {
++          "result": "kept",
++          "budget": 10,
++          "seed": 29,
++          "sites": 1485,
++          "focus_sites": 36,
++          "files": 34,
++          "sampled": 10,
++          "old_caught": 5,
++          "new_caught": 5,
++          "lost": [],
++          "mutants": [
++            {
++              "file": "boltons/mathutils.py",
++              "line": 213,
++              "operator": "plus",
++              "before": "tmpl = f'%0{2 * (self.len // 8 + ((self.len % 8) != 0))}X'",
++              "after": "tmpl = f'%0{2 * (self.len // 8 - ((self.len % 8) != 0))}X'",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "boltons/mathutils.py",
++              "line": 53,
++              "operator": "zero-one",
++              "before": "1.0",
++              "after": "1.1",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/mathutils.py",
++              "line": 213,
++              "operator": "times",
++              "before": "tmpl = f'%0{2 * (self.len // 8 + ((self.len % 8) != 0))}X'",
++              "after": "tmpl = f'%0{2 / (self.len // 8 + ((self.len % 8) != 0))}X'",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/mathutils.py",
++              "line": 56,
++              "operator": "zero-one",
++              "before": ">>> clamp(101.0, 0, 5)",
++              "after": ">>> clamp(101.0, 1, 5)",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/mathutils.py",
++              "line": 175,
++              "operator": "minus",
++              "before": "return bool((1 << (self.len - k - 1)) & self.val)",
++              "after": "return bool((1 << (self.len + k - 1)) & self.val)",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "boltons/mathutils.py",
++              "line": 140,
++              "operator": "zero-one",
++              "before": "def __init__(self, val=0, len_=None):",
++              "after": "def __init__(self, val=1, len_=None):",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/mathutils.py",
++              "line": 213,
++              "operator": "zero-one",
++              "before": "tmpl = f'%0{2 * (self.len // 8 + ((self.len % 8) != 0))}X'",
++              "after": "tmpl = f'%0{2 * (self.len // 8 + ((self.len % 8) != 1))}X'",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "boltons/mathutils.py",
++              "line": 184,
++              "operator": "eq",
++              "before": "return self.val == other.val and self.len == other.len",
++              "after": "return self.val == other.val and self.len != other.len",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "boltons/mathutils.py",
++              "line": 213,
++              "operator": "zero-one",
++              "before": "tmpl = f'%0{2 * (self.len // 8 + ((self.len % 8) != 0))}X'",
++              "after": "tmpl = f'%1{2 * (self.len // 8 + ((self.len % 8) != 0))}X'",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "boltons/mathutils.py",
++              "line": 52,
++              "operator": "zero-one",
++              "before": ">>> clamp(1.0, 0, 5)",
++              "after": ">>> clamp(1.1, 0, 5)",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            }
++          ]
++        },
++        "duration_ms": 13859,
++        "checks_from": "rules"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T03:13:42.652Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T03:13:42.652Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1",
++        "o2"
++      ],
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178"
++    },
++    {
++      "at": "2026-11-11T03:13:59.316Z",
++      "event": "state",
++      "from": "open",
++      "to": "proven",
++      "subject": "sha256:d89f5ecda6135826de6b42d0126423885d60a5e4caa9e6954b6187a2a4757abd"
++    }
++  ]
++}
+diff --git a/boltons/mathutils.py b/boltons/mathutils.py
+index 1367a54..ae3ecd9 100644
+--- a/boltons/mathutils.py
++++ b/boltons/mathutils.py
+@@ -161,7 +161,7 @@ class Bits:
+             raise ValueError('Bits cannot represent negative values')
+         if len_ is None:
+             len_ = len(f'{val:b}')
+-        if val > 2 ** len_:
++        if val >= 2 ** len_:
+             raise ValueError(f'value {val} cannot be represented with {len_} bits')
+         self.val = val  # data is stored internally as integer
+         self.len = len_
+diff --git a/tests/test_mathutils.py b/tests/test_mathutils.py
+index 4187a6b..3cf7dbf 100644
+--- a/tests/test_mathutils.py
++++ b/tests/test_mathutils.py
+@@ -110,3 +110,15 @@ def test_bits():
+             ).as_int()
+         ),
+         Bits('101'))
++
++
++def test_bits_len_bound():
++    # The largest value representable in n bits is 2 ** n - 1, so 2 ** n must
++    # be rejected rather than silently producing an over-long Bits.
++    # Largest value that fits is accepted and round-trips.
++    assert Bits(3, 2).as_bin() == '11'
++    # 2 ** len_ does not fit in len_ bits and must raise.
++    with raises(ValueError):
++        Bits(4, 2)
++    with raises(ValueError):
++        Bits(1, 0)

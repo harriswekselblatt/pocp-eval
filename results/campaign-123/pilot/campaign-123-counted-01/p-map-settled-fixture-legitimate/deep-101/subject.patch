@@ -1,0 +1,297 @@
+diff --git a/.proof/packets/p-55b34fd7.json b/.proof/packets/p-55b34fd7.json
+new file mode 100644
+index 0000000..d3766d2
+--- /dev/null
++++ b/.proof/packets/p-55b34fd7.json
+@@ -0,0 +1,275 @@
++{
++  "pocp": 1,
++  "id": "p-55b34fd7",
++  "intent": "Change to test/fixtures/bench-expected.json",
++  "touches": [
++    "test/fixtures/bench-expected.json"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:behavior-contract"
++    },
++    {
++      "id": "o2",
++      "kind": "guard",
++      "files": [
++        "test/fixtures/bench-expected.json"
++      ],
++      "mutants": 10,
++      "seed": 101,
++      "text": "Existing tests or test setup changed (test/fixtures/bench-expected.json): the old tests still pass on the new code, and the new tests catch every sampled mutant the old ones caught",
++      "source": "guard:tests"
++    }
++  ],
++  "state": "open",
++  "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++  "policy_repo": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++  "opened_at": "2026-11-11T08:30:16.771Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:37b4c6d34599377ab65783e1aa7cc6af72ba74f3e5d9e893bea77993f4437f68",
++      "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T08:30:17.124Z",
++      "duration_ms": 61,
++      "stdout_sha256": "f5a833ecdbe9852ca7bd2ade2e57ac9a36372d336113c86b1bb34ec4c2e91a72",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-1884a854",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      }
++    },
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:8a2a6a4f116350c45bf5adcc1234700bc1e3d4770de6ac47760c77fa6041bc27",
++      "subject": "sha256:37b4c6d34599377ab65783e1aa7cc6af72ba74f3e5d9e893bea77993f4437f68",
++      "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++      "kind": "guard",
++      "mode": "snapshot",
++      "passed": false,
++      "started_at": "2026-11-11T08:30:17.288Z",
++      "duration_ms": 416,
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      },
++      "guard": {
++        "pocp": 1,
++        "verdict": "inconclusive",
++        "passed": false,
++        "summary": "the old tests caught none of 10 sampled mutants, so a drop in detection can't be measured",
++        "base": "96b52c7af79a5491e35bfd9385a5e008c6b63693",
++        "checks": [
++          {
++            "id": "behavior-contract",
++            "run": "sh .bench/check.sh"
++          }
++        ],
++        "old_tests": {
++          "result": "pass",
++          "restored": [
++            "test/fixtures/bench-expected.json"
++          ],
++          "runs": [
++            {
++              "check": "behavior-contract",
++              "passed": true,
++              "exit": 0,
++              "duration_ms": 62
++            }
++          ]
++        },
++        "new_tests": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "behavior-contract",
++              "passed": true,
++              "reused": true,
++              "duration_ms": 0
++            }
++          ]
++        },
++        "baseline": {
++          "result": "not-run",
++          "runs": []
++        },
++        "detection": {
++          "result": "inconclusive",
++          "budget": 10,
++          "seed": 101,
++          "sites": 217,
++          "focus_sites": 0,
++          "files": 6,
++          "sampled": 10,
++          "old_caught": 0,
++          "new_caught": 0,
++          "lost": [],
++          "mutants": [
++            {
++              "file": "index.js",
++              "line": 362,
++              "operator": "or",
++              "before": "if (isDone || isIterableDone || index > stopIndex || readingCount >= concurrency || promises.length - headIndex >= backpressure) {",
++              "after": "if (isDone || isIterableDone && index > stopIndex || readingCount >= concurrency || promises.length - headIndex >= backpressure) {",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "count-array-work.js",
++              "line": 26,
++              "operator": "zero-one",
++              "before": "count(this.length - (arguments_[0] ?? 0));",
++              "after": "count(this.length - (arguments_[0] ?? 1));",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "index.test-d.ts",
++              "line": 58,
++              "operator": "false",
++              "before": "expectAssignable<Options>({stopOnError: false});",
++              "after": "expectAssignable<Options>({stopOnError: true});",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "index.js",
++              "line": 648,
++              "operator": "strict-neq",
++              "before": "if (typeof result?.then !== 'function') {",
++              "after": "if (typeof result?.then === 'function') {",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "index.d.ts",
++              "line": 114,
++              "operator": "minus",
++              "before": "@param index - Index of the element in the source array.",
++              "after": "@param index + Index of the element in the source array.",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "index.js",
++              "line": 486,
++              "operator": "times",
++              "before": "if (headIndex * 2 >= promises.length) {",
++              "after": "if (headIndex / 2 >= promises.length) {",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "index.d.ts",
++              "line": 194,
++              "operator": "minus",
++              "before": "@param mapper - Function which is called for every item in `input`. Expected to return a `Promise` or value.",
++              "after": "@param mapper + Function which is called for every item in `input`. Expected to return a `Promise` or value.",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "index.js",
++              "line": 582,
++              "operator": "strict-eq",
++              "before": "if (input === null || (typeof input !== 'object' && typeof input !== 'function')) {",
++              "after": "if (input !== null || (typeof input !== 'object' && typeof input !== 'function')) {",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "index.d.ts",
++              "line": 193,
++              "operator": "minus",
++              "before": "@param input - Synchronous or asynchronous iterable that is iterated over concurrently, calling the `mapper` function for each element. Each iterated item is `a",
++              "after": "@param input + Synchronous or asynchronous iterable that is iterated over concurrently, calling the `mapper` function for each element. Each iterated item is `a",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "index.js",
++              "line": 121,
++              "operator": "or",
++              "before": "if (isResolved || doneIndex === Number.POSITIVE_INFINITY) {",
++              "after": "if (isResolved && doneIndex === Number.POSITIVE_INFINITY) {",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            }
++          ]
++        },
++        "duration_ms": 416,
++        "checks_from": "rules"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T08:30:16.771Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T08:30:16.771Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1",
++        "o2"
++      ],
++      "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66"
++    },
++    {
++      "at": "2026-11-11T08:30:17.738Z",
++      "event": "proof_failed",
++      "obligation": "o2",
++      "subject": "sha256:37b4c6d34599377ab65783e1aa7cc6af72ba74f3e5d9e893bea77993f4437f68"
++    },
++    {
++      "at": "2026-11-11T08:30:18.033Z",
++      "event": "deferred",
++      "obligation": "o2",
++      "by": "unknown",
++      "subject": "sha256:37b4c6d34599377ab65783e1aa7cc6af72ba74f3e5d9e893bea77993f4437f68"
++    }
++  ],
++  "deferrals": [
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:8a2a6a4f116350c45bf5adcc1234700bc1e3d4770de6ac47760c77fa6041bc27",
++      "subject": "sha256:37b4c6d34599377ab65783e1aa7cc6af72ba74f3e5d9e893bea77993f4437f68",
++      "by": "unknown",
++      "at": "2026-11-11T08:30:18.033Z",
++      "to": "ci-approval",
++      "reason": "the old tests caught none of 10 sampled mutants, so a drop in detection can't be measured"
++    }
++  ]
++}
+diff --git a/test/fixtures/bench-expected.json b/test/fixtures/bench-expected.json
+index f6734d9..8cd5d37 100644
+--- a/test/fixtures/bench-expected.json
++++ b/test/fixtures/bench-expected.json
+@@ -1 +1,10 @@
+-[{"status": "fulfilled", "value": 2}, {"status": "rejected", "reason": "bad"}]
++[
++    {
++        "status": "fulfilled",
++        "value": 2
++    },
++    {
++        "status": "rejected",
++        "reason": "bad"
++    }
++]

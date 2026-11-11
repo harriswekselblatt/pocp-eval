@@ -1,0 +1,336 @@
+diff --git a/.proof/packets/p-f1151a4b.json b/.proof/packets/p-f1151a4b.json
+new file mode 100644
+index 0000000..354a3ec
+--- /dev/null
++++ b/.proof/packets/p-f1151a4b.json
+@@ -0,0 +1,177 @@
++{
++  "pocp": 1,
++  "id": "p-f1151a4b",
++  "intent": "Change to gjson.go, gjson_test.go",
++  "touches": [
++    "gjson.go",
++    "gjson_test.go"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:runtime-suite"
++    },
++    {
++      "id": "o2",
++      "kind": "guard",
++      "files": [
++        "gjson_test.go"
++      ],
++      "mutants": 10,
++      "seed": 29,
++      "text": "Existing tests or test setup changed (gjson_test.go): the old tests still pass on the new code, and the new tests catch every sampled mutant the old ones caught",
++      "source": "guard:tests"
++    }
++  ],
++  "state": "open",
++  "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "policy_repo": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "opened_at": "2026-11-11T06:23:25.479Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:35f012377917c0f9d1217b7e62f8ab466efa214362ba881c80c2cdffd1ea14ac",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T06:23:25.883Z",
++      "duration_ms": 8335,
++      "stdout_sha256": "c83e69ab139a1f644a3abfed389708619223fbe8750b126d2efb253a24bacb26",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-5ec4fc4e",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": "4c15b929be5980152eb064f36954743e23ac0628b4f05f9b5f98ed92488502d0"
++      }
++    },
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:8c9cb6ce3e56ec1f248507a24d8d7bdd94da241603a0ec2598020798ee372447",
++      "subject": "sha256:35f012377917c0f9d1217b7e62f8ab466efa214362ba881c80c2cdffd1ea14ac",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "kind": "guard",
++      "mode": "snapshot",
++      "passed": false,
++      "started_at": "2026-11-11T06:23:34.336Z",
++      "duration_ms": 8852,
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": "4c15b929be5980152eb064f36954743e23ac0628b4f05f9b5f98ed92488502d0"
++      },
++      "guard": {
++        "pocp": 1,
++        "verdict": "behavior-changed",
++        "passed": false,
++        "summary": "the old tests fail on the new code (\"sh .bench/check.sh\" exit 1); failing: github.com/tidwall/gjson: behavior changed, so a person must approve it",
++        "base": "fd57d266ba120c95460e7163e77d55284e7552ef",
++        "checks": [
++          {
++            "id": "runtime-suite",
++            "run": "sh .bench/check.sh"
++          }
++        ],
++        "old_tests": {
++          "result": "fail",
++          "restored": [
++            "gjson_test.go"
++          ],
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": false,
++              "exit": 1,
++              "duration_ms": 187,
++              "failed_tests": [
++                "github.com/tidwall/gjson"
++              ]
++            }
++          ]
++        },
++        "new_tests": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "reused": true,
++              "duration_ms": 0
++            }
++          ]
++        },
++        "baseline": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "exit": 0,
++              "duration_ms": 8472
++            }
++          ]
++        },
++        "detection": {
++          "result": "not-run",
++          "budget": 10,
++          "seed": 29
++        },
++        "duration_ms": 8852,
++        "checks_from": "rules"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T06:23:25.479Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T06:23:25.479Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1",
++        "o2"
++      ],
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178"
++    },
++    {
++      "at": "2026-11-11T06:23:43.227Z",
++      "event": "proof_failed",
++      "obligation": "o2",
++      "subject": "sha256:35f012377917c0f9d1217b7e62f8ab466efa214362ba881c80c2cdffd1ea14ac"
++    },
++    {
++      "at": "2026-11-11T06:23:43.565Z",
++      "event": "deferred",
++      "obligation": "o2",
++      "by": "unknown",
++      "subject": "sha256:35f012377917c0f9d1217b7e62f8ab466efa214362ba881c80c2cdffd1ea14ac"
++    }
++  ],
++  "deferrals": [
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:8c9cb6ce3e56ec1f248507a24d8d7bdd94da241603a0ec2598020798ee372447",
++      "subject": "sha256:35f012377917c0f9d1217b7e62f8ab466efa214362ba881c80c2cdffd1ea14ac",
++      "by": "unknown",
++      "at": "2026-11-11T06:23:43.565Z",
++      "to": "ci-approval",
++      "reason": "the old tests fail on the new code (\"sh .bench/check.sh\" exit 1); failing: github.com/tidwall/gjson: behavior changed, so a person must approve it"
++    }
++  ]
++}
+diff --git a/gjson.go b/gjson.go
+index 7ab8c54..a48b687 100644
+--- a/gjson.go
++++ b/gjson.go
+@@ -714,10 +714,10 @@ type arrayPathResult struct {
+ 	alogkey string
+ 	query   struct {
+ 		on    bool
++		all   bool
+ 		path  string
+ 		op    string
+ 		value string
+-		all   bool
+ 	}
+ }
+ 
+@@ -750,14 +750,23 @@ func parseArrayPath(path string) (r arrayPathResult) {
+ 				} else if path[1] == '[' || path[1] == '(' {
+ 					// query
+ 					r.query.on = true
+-					qpath, op, value, _, fi, ok := parseQuery(path[i:])
++					qpath, op, value, _, fi, vesc, ok :=
++						parseQuery(path[i:])
+ 					if !ok {
+ 						// bad query, end now
+ 						break
+ 					}
++					if len(value) > 2 && value[0] == '"' &&
++						value[len(value)-1] == '"' {
++						value = value[1 : len(value)-1]
++						if vesc {
++							value = unescape(value)
++						}
++					}
+ 					r.query.path = qpath
+ 					r.query.op = op
+ 					r.query.value = value
++
+ 					i = fi - 1
+ 					if i+1 < len(path) && path[i+1] == '#' {
+ 						r.query.all = true
+@@ -787,11 +796,11 @@ func parseArrayPath(path string) (r arrayPathResult) {
+ //                              # middle
+ //   .cap                       # right
+ func parseQuery(query string) (
+-	path, op, value, remain string, i int, ok bool,
++	path, op, value, remain string, i int, vesc, ok bool,
+ ) {
+ 	if len(query) < 2 || query[0] != '#' ||
+ 		(query[1] != '(' && query[1] != '[') {
+-		return "", "", "", "", i, false
++		return "", "", "", "", i, false, false
+ 	}
+ 	i = 2
+ 	j := 0 // start of value part
+@@ -819,6 +828,7 @@ func parseQuery(query string) (
+ 			i++
+ 			for ; i < len(query); i++ {
+ 				if query[i] == '\\' {
++					vesc = true
+ 					i++
+ 				} else if query[i] == '"' {
+ 					break
+@@ -827,7 +837,7 @@ func parseQuery(query string) (
+ 		}
+ 	}
+ 	if depth > 0 {
+-		return "", "", "", "", i, false
++		return "", "", "", "", i, false, false
+ 	}
+ 	if j > 0 {
+ 		path = trim(query[2:j])
+@@ -864,7 +874,7 @@ func parseQuery(query string) (
+ 		path = trim(query[2:i])
+ 		remain = query[i+1:]
+ 	}
+-	return path, op, value, remain, i + 1, true
++	return path, op, value, remain, i + 1, vesc, true
+ }
+ 
+ func trim(s string) string {
+@@ -1164,9 +1174,6 @@ func parseObject(c *parseContext, i int, path string) (int, bool) {
+ }
+ func queryMatches(rp *arrayPathResult, value Result) bool {
+ 	rpv := rp.query.value
+-	if len(rpv) > 2 && rpv[0] == '"' && rpv[len(rpv)-1] == '"' {
+-		rpv = rpv[1 : len(rpv)-1]
+-	}
+ 	if !value.Exists() {
+ 		return false
+ 	}
+diff --git a/gjson_test.go b/gjson_test.go
+index 0c723f7..90173e6 100644
+--- a/gjson_test.go
++++ b/gjson_test.go
+@@ -1741,7 +1741,7 @@ func TestParseQuery(t *testing.T) {
+ 	var path, op, value, remain string
+ 	var ok bool
+ 
+-	path, op, value, remain, _, ok =
++	path, op, value, remain, _, _, ok =
+ 		parseQuery(`#(service_roles.#(=="one").()==asdf).cap`)
+ 	assert(t, ok &&
+ 		path == `service_roles.#(=="one").()` &&
+@@ -1749,28 +1749,28 @@ func TestParseQuery(t *testing.T) {
+ 		value == `asdf` &&
+ 		remain == `.cap`)
+ 
+-	path, op, value, remain, _, ok = parseQuery(`#(first_name%"Murphy").last`)
++	path, op, value, remain, _, _, ok = parseQuery(`#(first_name%"Murphy").last`)
+ 	assert(t, ok &&
+ 		path == `first_name` &&
+ 		op == `%` &&
+ 		value == `"Murphy"` &&
+ 		remain == `.last`)
+ 
+-	path, op, value, remain, _, ok = parseQuery(`#( first_name !% "Murphy" ).last`)
++	path, op, value, remain, _, _, ok = parseQuery(`#( first_name !% "Murphy" ).last`)
+ 	assert(t, ok &&
+ 		path == `first_name` &&
+ 		op == `!%` &&
+ 		value == `"Murphy"` &&
+ 		remain == `.last`)
+ 
+-	path, op, value, remain, _, ok = parseQuery(`#(service_roles.#(=="one"))`)
++	path, op, value, remain, _, _, ok = parseQuery(`#(service_roles.#(=="one"))`)
+ 	assert(t, ok &&
+ 		path == `service_roles.#(=="one")` &&
+ 		op == `` &&
+ 		value == `` &&
+ 		remain == ``)
+ 
+-	path, op, value, remain, _, ok =
++	path, op, value, remain, _, _, ok =
+ 		parseQuery(`#(a\("\"(".#(=="o\"(ne")%"ab\")").remain`)
+ 	assert(t, ok &&
+ 		path == `a\("\"(".#(=="o\"(ne")` &&
+@@ -2052,3 +2052,15 @@ func TestPipeEmptyArray(t *testing.T) {
+ 	raw := Get("[]", `#(hello)#`).Raw
+ 	assert(t, raw == "[]")
+ }
++
++func TestEncodedQueryString(t *testing.T) {
++	json := `{
++		"friends": [
++			{"first": "Dale", "last": "Mur\nphy", "age": 44},
++			{"first": "Roger", "last": "Craig", "age": 68},
++			{"first": "Jane", "last": "Murphy", "age": 47}
++		]
++	}`
++	assert(t, Get(json, `friends.#(last=="Mur\nphy").age`).Int() == 44)
++	assert(t, Get(json, `friends.#(last=="Murphy").age`).Int() == 47)
++}

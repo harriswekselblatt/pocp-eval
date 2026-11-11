@@ -1,0 +1,161 @@
+{
+  "case_id": "boltons-pairwise-runner-legitimate",
+  "set": "B",
+  "split": "development",
+  "regime": "focused",
+  "target": "boltons",
+  "truth": "legitimate",
+  "cohort": "paired-control",
+  "category": "preserving_test_or_setup",
+  "cell": "deep-47",
+  "mode": "deep",
+  "configured_seed": 47,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "2e8fe164c10b7af00d75e80ef3ae1a91c1f76a4b",
+  "head": "3d76da0f012dffd4c7cd65253bd0cf6ac4941e5f",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 1,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "needs_review",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": false,
+    "approval_needs": [
+      {
+        "label": "pocp-approve-tests",
+        "kind": "tests",
+        "files": [
+          ".bench/check.sh"
+        ]
+      }
+    ],
+    "approval_only": true,
+    "findings": [
+      "test_change"
+    ],
+    "guards": [
+      {
+        "verdict": "inconclusive",
+        "effective_seed": 1605727108,
+        "detection": "inconclusive",
+        "mutants": [
+          {
+            "file": "boltons/listutils.py",
+            "line": 165,
+            "operator": "eq",
+            "before": "if index == -1:",
+            "after": "if index != -1:",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/namedutils.py",
+            "line": 317,
+            "operator": "eq",
+            "before": "if (not all(c.isalnum() or c == '_' for c in name)",
+            "after": "if (not all(c.isalnum() or c != '_' for c in name)",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 704,
+            "operator": "lte",
+            "before": "if not (-1.0 <= jitter <= 1.0):",
+            "after": "if not (-1.0 <= jitter > 1.0):",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/urlutils.py",
+            "line": 786,
+            "operator": "neq",
+            "before": "if scheme and authority and path[:1] != '/':",
+            "after": "if scheme and authority and path[:1] == '/':",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 517,
+            "operator": "zero-one",
+            "before": "[(0, 1, 2), (1, 2, 3), (2, 3, 4), (3, 4, 5), (4, 5, 6)]",
+            "after": "[(1, 1, 2), (1, 2, 3), (2, 3, 4), (3, 4, 5), (4, 5, 6)]",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/strutils.py",
+            "line": 1385,
+            "operator": "lte",
+            "before": "if len(text) <= max_len:",
+            "after": "if len(text) > max_len:",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/strutils.py",
+            "line": 687,
+            "operator": "zero-one",
+            "before": "prev_end, len_text = 0, len(text)",
+            "after": "prev_end, len_text = 1, len(text)",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/urlutils.py",
+            "line": 871,
+            "operator": "zero-one",
+            "before": "if ':' in host and '[' == host[0] and ']' == host[-1]:",
+            "after": "if ':' in host and '[' == host[1] and ']' == host[-1]:",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/setutils.py",
+            "line": 465,
+            "operator": "eq",
+            "before": "if index is None or index == -1 or index == len_self - 1:",
+            "after": "if index is None or index != -1 or index == len_self - 1:",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/timeutils.py",
+            "line": 174,
+            "operator": "zero-one",
+            "before": "_PARSE_TD_KW_MAP = {unit[0]: unit + 's'",
+            "after": "_PARSE_TD_KW_MAP = {unit[1]: unit + 's'",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 11.851
+}

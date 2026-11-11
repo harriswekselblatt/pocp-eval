@@ -1,0 +1,151 @@
+{
+  "case_id": "boltons-8c3fc2850693eacd2f2f8c95e7581adbb65b1269",
+  "set": "B",
+  "split": "development",
+  "regime": "native",
+  "target": "boltons",
+  "truth": "legitimate",
+  "cohort": "extension",
+  "category": "added_test",
+  "cell": "deep-101",
+  "mode": "deep",
+  "configured_seed": 101,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "12a1f7090a51579d9c28fb6958e4da90d43e14dc",
+  "head": "791d48e89f7cf97c4000aa1876ddc6394c51ea74",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 0,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "accepted",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": true,
+    "approval_needs": [],
+    "approval_only": null,
+    "findings": [],
+    "guards": [
+      {
+        "verdict": "passed",
+        "effective_seed": 942715737,
+        "detection": "kept",
+        "mutants": [
+          {
+            "file": "boltons/statsutils.py",
+            "line": 665,
+            "operator": "zero-one",
+            "before": "0.0-1.0, with 0.5 representing the median. Defaults to",
+            "after": "1.0-1.0, with 0.5 representing the median. Defaults to",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/queueutils.py",
+            "line": 165,
+            "operator": "zero-one",
+            "before": "_, _, task = self._pq[0]",
+            "after": "_, _, task = self._pq[1]",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/setutils.py",
+            "line": 672,
+            "operator": "plus",
+            "before": "if inc is None:  # + -",
+            "after": "if inc is None:  # - -",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/mathutils.py",
+            "line": 67,
+            "operator": "gte",
+            "before": "raise ValueError('expected upper bound (%r) >= lower bound (%r)'",
+            "after": "raise ValueError('expected upper bound (%r) < lower bound (%r)'",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/mboxutils.py",
+            "line": 130,
+            "operator": "zero-one",
+            "before": "new_file.seek(0)",
+            "after": "new_file.seek(1)",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/cacheutils.py",
+            "line": 712,
+            "operator": "eq",
+            "before": "if self.total % self._thresh_count == 0:",
+            "after": "if self.total % self._thresh_count != 0:",
+            "focus": false,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/statsutils.py",
+            "line": 617,
+            "operator": "zero-one",
+            "before": "In this histogram, five values are between 0.0 and 4.4, eight",
+            "after": "In this histogram, five values are between 1.0 and 4.4, eight",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/statsutils.py",
+            "line": 666,
+            "operator": "zero-one",
+            "before": "``[0.25, 0.5, 0.75]``, representing the standard",
+            "after": "``[0.25, 0.5, 1.75]``, representing the standard",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/cacheutils.py",
+            "line": 729,
+            "operator": "zero-one",
+            "before": "if not n or n <= 0:",
+            "after": "if not n or n <= 1:",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/urlutils.py",
+            "line": 1257,
+            "operator": "neq",
+            "before": "if selfk != otherk or selfv != otherv:",
+            "after": "if selfk == otherk or selfv != otherv:",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 34.475
+}

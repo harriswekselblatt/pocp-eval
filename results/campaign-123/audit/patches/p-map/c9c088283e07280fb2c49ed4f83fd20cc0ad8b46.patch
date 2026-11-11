@@ -1,0 +1,178 @@
+diff --git a/index.d.ts b/index.d.ts
+index 7478fee..f517455 100644
+--- a/index.d.ts
++++ b/index.d.ts
+@@ -58,4 +58,36 @@ export default function pMap<Element, NewElement>(
+ 	input: Iterable<Element>,
+ 	mapper: Mapper<Element, NewElement>,
+ 	options?: Options
+-): Promise<NewElement[]>;
++): Promise<Array<Exclude<NewElement, typeof pMapSkip>>>;
++
++/**
++Return this value from a `mapper` function to skip including the value in the returned array.
++
++@example
++```
++import pMap, {pMapSkip} from 'p-map';
++import got from 'got';
++
++const sites = [
++	getWebsiteFromUsername('sindresorhus'), //=> Promise
++	'https://avajs.dev',
++	'https://example.invalid',
++	'https://github.com'
++];
++
++const mapper = async site => {
++	try {
++		const {requestUrl} = await got.head(site);
++		return requestUrl;
++	} catch {
++		return pMapSkip
++	}
++};
++
++const result = await pMap(sites, mapper, {concurrency: 2});
++
++console.log(result);
++//=> ['https://sindresorhus.com/', 'https://avajs.dev/', 'https://github.com/']
++```
++*/
++export const pMapSkip: unique symbol;
+diff --git a/index.js b/index.js
+index 3b77096..05c8165 100644
+--- a/index.js
++++ b/index.js
+@@ -19,6 +19,7 @@ export default async function pMap(
+ 
+ 		const result = [];
+ 		const errors = [];
++		const skippedIndexes = [];
+ 		const iterator = iterable[Symbol.iterator]();
+ 		let isRejected = false;
+ 		let isIterableDone = false;
+@@ -41,6 +42,10 @@ export default async function pMap(
+ 					if (!stopOnError && errors.length > 0) {
+ 						reject(new AggregateError(errors));
+ 					} else {
++						for (const skippedIndex of skippedIndexes) {
++							result.splice(skippedIndex, 1);
++						}
++
+ 						resolve(result);
+ 					}
+ 				}
+@@ -58,7 +63,13 @@ export default async function pMap(
+ 						return;
+ 					}
+ 
+-					result[index] = await mapper(element, index);
++					const value = await mapper(element, index);
++					if (value === pMapSkip) {
++						skippedIndexes.push(index);
++					} else {
++						result[index] = value;
++					}
++
+ 					resolvingCount--;
+ 					next();
+ 				} catch (error) {
+@@ -83,3 +94,5 @@ export default async function pMap(
+ 		}
+ 	});
+ }
++
++export const pMapSkip = Symbol('skip');
+diff --git a/index.test-d.ts b/index.test-d.ts
+index f5595ce..46de879 100644
+--- a/index.test-d.ts
++++ b/index.test-d.ts
+@@ -1,5 +1,5 @@
+ import {expectType, expectAssignable} from 'tsd';
+-import pMap, {Options, Mapper} from './index.js';
++import pMap, {Options, Mapper, pMapSkip} from './index.js';
+ 
+ const sites = [
+ 	'https://sindresorhus.com',
+@@ -40,3 +40,11 @@ expectType<Promise<string[]>>(pMap(sites, (site: string) => site));
+ expectType<Promise<number[]>>(pMap(sites, (site: string) => site.length));
+ 
+ expectType<Promise<number[]>>(pMap(numbers, (number: number) => number * 2));
++
++expectType<Promise<number[]>>(pMap(numbers, (number: number) => {
++	if (number % 2 === 0) {
++		return number * 2;
++	}
++
++	return pMapSkip;
++}));
+diff --git a/readme.md b/readme.md
+index 0222b16..a058c27 100644
+--- a/readme.md
++++ b/readme.md
+@@ -72,6 +72,36 @@ Default: `true`
+ 
+ When set to `false`, instead of stopping when a promise rejects, it will wait for all the promises to settle and then reject with an [aggregated error](https://github.com/sindresorhus/aggregate-error) containing all the errors from the rejected promises.
+ 
++### pMapSkip
++
++Return this value from a `mapper` function to skip including the value in the returned array.
++
++```js
++import pMap, {pMapSkip} from 'p-map';
++import got from 'got';
++
++const sites = [
++	getWebsiteFromUsername('sindresorhus'), //=> Promise
++	'https://avajs.dev',
++	'https://example.invalid',
++	'https://github.com'
++];
++
++const mapper = async site => {
++	try {
++		const {requestUrl} = await got.head(site);
++		return requestUrl;
++	} catch {
++		return pMapSkip
++	}
++};
++
++const result = await pMap(sites, mapper, {concurrency: 2});
++
++console.log(result);
++//=> ['https://sindresorhus.com/', 'https://avajs.dev/', 'https://github.com/']
++```
++
+ ## p-map for enterprise
+ 
+ Available as part of the Tidelift Subscription.
+diff --git a/test.js b/test.js
+index e0e5da5..169fa9b 100644
+--- a/test.js
++++ b/test.js
+@@ -4,7 +4,7 @@ import inRange from 'in-range';
+ import timeSpan from 'time-span';
+ import randomInt from 'random-int';
+ import AggregateError from 'aggregate-error';
+-import pMap from './index.js';
++import pMap, {pMapSkip} from './index.js';
+ 
+ const sharedInput = [
+ 	Promise.resolve([10, 300]),
+@@ -108,6 +108,14 @@ test('aggregate errors when stopOnError is false', async t => {
+ 	await t.throwsAsync(pMap(errorInput2, mapper, {concurrency: 1, stopOnError: false}), {instanceOf: AggregateError, message: /bar(.|\n)*foo/});
+ });
+ 
++test('pMapSkip', async t => {
++	t.deepEqual(await pMap([
++		1,
++		pMapSkip,
++		2
++	], async value => value), [1, 2]);
++});
++
+ test('do not run mapping after stop-on-error happened', async t => {
+ 	const input = [1, delay(300, {value: 2}), 3];
+ 	const mappedValues = [];

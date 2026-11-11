@@ -1,0 +1,6 @@
+{
+  "records": 784,
+  "records_sha256": "82740a1f2538da83084472240360a270ed21de5b4b0a3ce2a0ac8f652553974d",
+  "report_generator": "scripts/report-123.py",
+  "report_generator_sha256": "e5dcc0b068c5c553139c111d9e6ab66b3ef7c13648832b6581cf044f3854b2de"
+}

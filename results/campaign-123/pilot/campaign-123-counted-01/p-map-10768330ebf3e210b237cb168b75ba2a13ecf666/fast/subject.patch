@@ -1,0 +1,258 @@
+diff --git a/.proof/packets/p-682b29dc.json b/.proof/packets/p-682b29dc.json
+new file mode 100644
+index 0000000..a0f3ab5
+--- /dev/null
++++ b/.proof/packets/p-682b29dc.json
+@@ -0,0 +1,181 @@
++{
++  "pocp": 1,
++  "id": "p-682b29dc",
++  "intent": "Change to index.js, index.test-d.ts, test.js",
++  "touches": [
++    "index.js",
++    "index.test-d.ts",
++    "test.js"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:runtime-suite"
++    },
++    {
++      "id": "o2",
++      "kind": "guard",
++      "files": [
++        "test.js"
++      ],
++      "mutants": 0,
++      "seed": 11,
++      "text": "Existing tests or test setup changed (test.js): the old tests still pass on the new code, and a person reviews the change (fast mode: without planted bugs POCP can't show the tests still catch what they caught)",
++      "source": "guard:tests"
++    }
++  ],
++  "state": "open",
++  "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "policy_repo": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "opened_at": "2026-11-11T06:42:36.313Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:3a7e7a310955c596498be1f226c589fb58fd73528a1f7037ad1ad5d62566b6fe",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T06:42:36.675Z",
++      "duration_ms": 3475,
++      "stdout_sha256": "822ea349f476bf678abee597760ee6b2cb7e0aa70d64d077d77d1cee4613aa85",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-97900371",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      }
++    },
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:f5d9db1816d445dbaef91692269e47203d942a8886ec84a131a7e1d76b7d74f3",
++      "subject": "sha256:3a7e7a310955c596498be1f226c589fb58fd73528a1f7037ad1ad5d62566b6fe",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "kind": "guard",
++      "mode": "snapshot",
++      "passed": false,
++      "started_at": "2026-11-11T06:42:40.274Z",
++      "duration_ms": 3710,
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      },
++      "guard": {
++        "pocp": 1,
++        "verdict": "needs-review",
++        "passed": false,
++        "summary": "the old tests pass on the new code; a person must review the test change (test.js: existing test lines were changed or removed): without planted bugs (guard.mutants is 0) POCP can't show the tests still catch what they caught. For an automatic check, use deep mode (pocp init --deep, guard.mutants above 0)",
++        "base": "15fab855fbb3f9a52c79672d61c73b99a41bf6bc",
++        "checks": [
++          {
++            "id": "runtime-suite",
++            "run": "sh .bench/check.sh"
++          }
++        ],
++        "old_tests": {
++          "result": "pass",
++          "restored": [
++            "test.js"
++          ],
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "exit": 0,
++              "duration_ms": 3595
++            }
++          ],
++          "changed_tests": {
++            "result": "not-used",
++            "reason": "check runtime-suite has no changed_test_command"
++          }
++        },
++        "new_tests": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "reused": true,
++              "duration_ms": 0
++            }
++          ]
++        },
++        "baseline": {
++          "result": "not-run",
++          "runs": []
++        },
++        "detection": {
++          "result": "off",
++          "budget": 0,
++          "seed": 11
++        },
++        "structural": {
++          "result": "needs-review",
++          "reasons": [
++            {
++              "file": "test.js",
++              "why": "existing test lines were changed or removed"
++            }
++          ]
++        },
++        "duration_ms": 3710,
++        "checks_from": "rules"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T06:42:36.313Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T06:42:36.313Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1",
++        "o2"
++      ],
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178"
++    },
++    {
++      "at": "2026-11-11T06:42:44.024Z",
++      "event": "proof_failed",
++      "obligation": "o2",
++      "subject": "sha256:3a7e7a310955c596498be1f226c589fb58fd73528a1f7037ad1ad5d62566b6fe"
++    },
++    {
++      "at": "2026-11-11T06:42:44.343Z",
++      "event": "deferred",
++      "obligation": "o2",
++      "by": "unknown",
++      "subject": "sha256:3a7e7a310955c596498be1f226c589fb58fd73528a1f7037ad1ad5d62566b6fe"
++    }
++  ],
++  "deferrals": [
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:f5d9db1816d445dbaef91692269e47203d942a8886ec84a131a7e1d76b7d74f3",
++      "subject": "sha256:3a7e7a310955c596498be1f226c589fb58fd73528a1f7037ad1ad5d62566b6fe",
++      "by": "unknown",
++      "at": "2026-11-11T06:42:44.343Z",
++      "to": "ci-approval",
++      "reason": "the old tests pass on the new code; a person must review the test change (test.js: existing test lines were changed or removed): without planted bugs (guard.mutants is 0) POCP can't show the tests still catch what they caught. For an automatic check, use deep mode (pocp init --deep, guard.mutants above 0)"
++    }
++  ]
++}
+diff --git a/index.js b/index.js
+index 5cc265b..dc0e07e 100644
+--- a/index.js
++++ b/index.js
+@@ -212,7 +212,7 @@ export function pMapIterable(
+ 					trySpawn();
+ 
+ 					try {
+-						const returnValue = await mapper(value);
++						const returnValue = await mapper(await value);
+ 
+ 						runningMappersCount--;
+ 
+diff --git a/index.test-d.ts b/index.test-d.ts
+index 58acea4..7cf4f99 100644
+--- a/index.test-d.ts
++++ b/index.test-d.ts
+@@ -7,6 +7,33 @@ const sites = [
+ 	'https://github.com',
+ ];
+ 
++const sitesWithPromises = [
++	'https://sindresorhus.com',
++	Promise.resolve('https://avajs.dev'),
++	Promise.resolve('https://github.com'),
++];
++
++const sitesAsyncIterable = {
++	async * [Symbol.asyncIterator]() {
++		yield 'https://sindresorhus.com';
++		yield 'https://avajs.dev';
++		yield 'https://github.com';
++	},
++};
++
++const sitesAsyncIterableWithPromises: AsyncIterable<Promise<string>> = {
++	[Symbol.asyncIterator]() {
++		return {
++			async next() {
++				return {
++					done: false,
++					value: Promise.resolve('https://github.com'),
++				};
++			},
++		};
++	},
++};
++
+ const numbers = [
+ 	0,
+ 	1,
+@@ -50,3 +77,6 @@ expectType<Promise<number[]>>(pMap(numbers, (number: number) => {
+ }));
+ 
+ expectType<AsyncIterable<string>>(pMapIterable(sites, asyncMapper));
++expectType<AsyncIterable<string>>(pMapIterable(sitesWithPromises, asyncMapper));
++expectType<AsyncIterable<string>>(pMapIterable(sitesAsyncIterable, asyncMapper));
++expectType<AsyncIterable<string>>(pMapIterable(sitesAsyncIterableWithPromises, asyncMapper));
+diff --git a/test.js b/test.js
+index 03d7d59..a33b07b 100644
+--- a/test.js
++++ b/test.js
+@@ -8,7 +8,7 @@ import pMap, {pMapIterable, pMapSkip} from './index.js';
+ const sharedInput = [
+ 	[async () => 10, 300],
+ 	[20, 200],
+-	[30, 100],
++	Promise.resolve([30, 100]),
+ ];
+ 
+ const longerSharedInput = [

@@ -1,0 +1,20 @@
+diff --git a/gjson.go b/gjson.go
+index 3fb59c2..eb340ca 100644
+--- a/gjson.go
++++ b/gjson.go
+@@ -85,7 +85,7 @@ func (t Result) String() string {
+ 	default:
+ 		return ""
+ 	case False:
+-		return "false"
++		return "true"
+ 	case Number:
+ 		if len(t.Raw) == 0 {
+ 			// calculated result
+diff --git a/testdata/bench-expected.json b/testdata/bench-expected.json
+index a759f3d..2b605f0 100644
+--- a/testdata/bench-expected.json
++++ b/testdata/bench-expected.json
+@@ -1 +1 @@
+-["false", "true", "hi"]
++["true", "true", "hi"]

@@ -1,0 +1,217 @@
+diff --git a/.proof/packets/p-c01c4664.json b/.proof/packets/p-c01c4664.json
+new file mode 100644
+index 0000000..fc8848a
+--- /dev/null
++++ b/.proof/packets/p-c01c4664.json
+@@ -0,0 +1,180 @@
++{
++  "pocp": 1,
++  "id": "p-c01c4664",
++  "intent": "Change to gjson.go, gjson_test.go",
++  "touches": [
++    "gjson.go",
++    "gjson_test.go"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:runtime-suite"
++    },
++    {
++      "id": "o2",
++      "kind": "guard",
++      "files": [
++        "gjson_test.go"
++      ],
++      "mutants": 0,
++      "seed": 11,
++      "text": "Existing tests or test setup changed (gjson_test.go): the old tests still pass on the new code, and a person reviews the change (fast mode: without planted bugs POCP can't show the tests still catch what they caught)",
++      "source": "guard:tests"
++    }
++  ],
++  "state": "open",
++  "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "policy_repo": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "opened_at": "2026-11-11T05:51:44.952Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:b16b7c3b335a6772aa8135ffaa06f4be1aad03b2b2607a2be25b2d8d63f30797",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T05:51:45.308Z",
++      "duration_ms": 8329,
++      "stdout_sha256": "87b86db99b12a334489498d00baed5f1476b50078d193c8a538351bb98985928",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-07e5728f",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": "690a9ad57a8031755eb67df55cdbe067a4f6190dafa70a6329ea2510e613bd42"
++      }
++    },
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:cd9ca45a596210b35adf75875c65e1e2a9ab7c5b50d8d62d6301550efce6c7b9",
++      "subject": "sha256:b16b7c3b335a6772aa8135ffaa06f4be1aad03b2b2607a2be25b2d8d63f30797",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "kind": "guard",
++      "mode": "snapshot",
++      "passed": false,
++      "started_at": "2026-11-11T05:51:53.745Z",
++      "duration_ms": 8543,
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": "690a9ad57a8031755eb67df55cdbe067a4f6190dafa70a6329ea2510e613bd42"
++      },
++      "guard": {
++        "pocp": 1,
++        "verdict": "needs-review",
++        "passed": false,
++        "summary": "the old tests pass on the new code; a person must review the test change (gjson_test.go: lines were added to an existing test): without planted bugs (guard.mutants is 0) POCP can't show the tests still catch what they caught. For an automatic check, use deep mode (pocp init --deep, guard.mutants above 0)",
++        "base": "4fcd93b877567a3b3e5e27283cb221c21e49e2a9",
++        "checks": [
++          {
++            "id": "runtime-suite",
++            "run": "sh .bench/check.sh"
++          }
++        ],
++        "old_tests": {
++          "result": "pass",
++          "restored": [
++            "gjson_test.go"
++          ],
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "exit": 0,
++              "duration_ms": 8457
++            }
++          ],
++          "changed_tests": {
++            "result": "not-used",
++            "reason": "check runtime-suite has no changed_test_command"
++          }
++        },
++        "new_tests": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "reused": true,
++              "duration_ms": 0
++            }
++          ]
++        },
++        "baseline": {
++          "result": "not-run",
++          "runs": []
++        },
++        "detection": {
++          "result": "off",
++          "budget": 0,
++          "seed": 11
++        },
++        "structural": {
++          "result": "needs-review",
++          "reasons": [
++            {
++              "file": "gjson_test.go",
++              "why": "lines were added to an existing test"
++            }
++          ]
++        },
++        "duration_ms": 8543,
++        "checks_from": "rules"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T05:51:44.952Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T05:51:44.952Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1",
++        "o2"
++      ],
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178"
++    },
++    {
++      "at": "2026-11-11T05:52:02.320Z",
++      "event": "proof_failed",
++      "obligation": "o2",
++      "subject": "sha256:b16b7c3b335a6772aa8135ffaa06f4be1aad03b2b2607a2be25b2d8d63f30797"
++    },
++    {
++      "at": "2026-11-11T05:52:02.664Z",
++      "event": "deferred",
++      "obligation": "o2",
++      "by": "unknown",
++      "subject": "sha256:b16b7c3b335a6772aa8135ffaa06f4be1aad03b2b2607a2be25b2d8d63f30797"
++    }
++  ],
++  "deferrals": [
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:cd9ca45a596210b35adf75875c65e1e2a9ab7c5b50d8d62d6301550efce6c7b9",
++      "subject": "sha256:b16b7c3b335a6772aa8135ffaa06f4be1aad03b2b2607a2be25b2d8d63f30797",
++      "by": "unknown",
++      "at": "2026-11-11T05:52:02.664Z",
++      "to": "ci-approval",
++      "reason": "the old tests pass on the new code; a person must review the test change (gjson_test.go: lines were added to an existing test): without planted bugs (guard.mutants is 0) POCP can't show the tests still catch what they caught. For an automatic check, use deep mode (pocp init --deep, guard.mutants above 0)"
++    }
++  ]
++}
+diff --git a/gjson.go b/gjson.go
+index 7050e31..9fe40b5 100644
+--- a/gjson.go
++++ b/gjson.go
+@@ -1841,9 +1841,11 @@ func Get(json, path string) Result {
+ 			if path[0] == '@' {
+ 				// possible modifier
+ 				var ok bool
++				var npath string
+ 				var rjson string
+-				path, rjson, ok = execModifier(json, path)
++				npath, rjson, ok = execModifier(json, path)
+ 				if ok {
++					path = npath
+ 					if len(path) > 0 && (path[0] == '|' || path[0] == '.') {
+ 						res := Get(rjson, path[1:])
+ 						res.Index = 0
+diff --git a/gjson_test.go b/gjson_test.go
+index 50855e7..65861c6 100644
+--- a/gjson_test.go
++++ b/gjson_test.go
+@@ -1984,3 +1984,9 @@ func TestParentSubQuery(t *testing.T) {
+ 	// should return two instances
+ 	assert(t, res.String() == `["1.2.3","1.2.2"]`)
+ }
++
++func TestSingleModifier(t *testing.T) {
++	var data = `{"@key": "value"}`
++	assert(t, Get(data, "@key").String() == "value")
++	assert(t, Get(data, "\\@key").String() == "value")
++}

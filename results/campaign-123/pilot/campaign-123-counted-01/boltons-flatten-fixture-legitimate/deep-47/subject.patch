@@ -1,0 +1,293 @@
+diff --git a/.proof/packets/p-df203009.json b/.proof/packets/p-df203009.json
+new file mode 100644
+index 0000000..3d4e936
+--- /dev/null
++++ b/.proof/packets/p-df203009.json
+@@ -0,0 +1,275 @@
++{
++  "pocp": 1,
++  "id": "p-df203009",
++  "intent": "Change to tests/fixtures/bench-expected.json",
++  "touches": [
++    "tests/fixtures/bench-expected.json"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:behavior-contract"
++    },
++    {
++      "id": "o2",
++      "kind": "guard",
++      "files": [
++        "tests/fixtures/bench-expected.json"
++      ],
++      "mutants": 10,
++      "seed": 47,
++      "text": "Existing tests or test setup changed (tests/fixtures/bench-expected.json): the old tests still pass on the new code, and the new tests catch every sampled mutant the old ones caught",
++      "source": "guard:tests"
++    }
++  ],
++  "state": "open",
++  "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++  "policy_repo": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++  "opened_at": "2026-11-11T18:00:17.260Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:7aac75e089e9ee1ebb381c564f7a2663e18af24258df202c73bab7cd472cccd5",
++      "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T18:00:17.750Z",
++      "duration_ms": 172,
++      "stdout_sha256": "1b98f07ac9432f29f4e2f5c349d48d2b904ea59a6aaef142f6806a50404a4f5c",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-ab790937",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      }
++    },
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:28f2655f88011c80a51cbf55ddfd9578721a0da0bc2a51770b77c979dfa17f18",
++      "subject": "sha256:7aac75e089e9ee1ebb381c564f7a2663e18af24258df202c73bab7cd472cccd5",
++      "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++      "kind": "guard",
++      "mode": "snapshot",
++      "passed": false,
++      "started_at": "2026-11-11T18:00:18.056Z",
++      "duration_ms": 1678,
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      },
++      "guard": {
++        "pocp": 1,
++        "verdict": "inconclusive",
++        "passed": false,
++        "summary": "the old tests caught none of 10 sampled mutants, so a drop in detection can't be measured",
++        "base": "0e0120652db75b135fd1744b8f55d4e62c6a2e76",
++        "checks": [
++          {
++            "id": "behavior-contract",
++            "run": "sh .bench/check.sh"
++          }
++        ],
++        "old_tests": {
++          "result": "pass",
++          "restored": [
++            "tests/fixtures/bench-expected.json"
++          ],
++          "runs": [
++            {
++              "check": "behavior-contract",
++              "passed": true,
++              "exit": 0,
++              "duration_ms": 243
++            }
++          ]
++        },
++        "new_tests": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "behavior-contract",
++              "passed": true,
++              "reused": true,
++              "duration_ms": 0
++            }
++          ]
++        },
++        "baseline": {
++          "result": "not-run",
++          "runs": []
++        },
++        "detection": {
++          "result": "inconclusive",
++          "budget": 10,
++          "seed": 47,
++          "sites": 1631,
++          "focus_sites": 0,
++          "files": 36,
++          "sampled": 10,
++          "old_caught": 0,
++          "new_caught": 0,
++          "lost": [],
++          "mutants": [
++            {
++              "file": "boltons/iterutils.py",
++              "line": 432,
++              "operator": "gte",
++              "before": "if overlap_size >= chunk_size:",
++              "after": "if overlap_size < chunk_size:",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/formatutils.py",
++              "line": 90,
++              "operator": "plus",
++              "before": "ret = '{' + fname",
++              "after": "ret = '{' - fname",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/socketutils.py",
++              "line": 206,
++              "operator": "zero-one",
++              "before": "``0`` for nonblocking and ``None`` for no",
++              "after": "``1`` for nonblocking and ``None`` for no",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/timeutils.py",
++              "line": 656,
++              "operator": "lt",
++              "before": "if std_time < start or dst_time >= end:",
++              "after": "if std_time >= start or dst_time >= end:",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/timeutils.py",
++              "line": 125,
++              "operator": "zero-one",
++              "before": "datetime.datetime(1970, 1, 1, 0, 0, 0, 851000)",
++              "after": "datetime.datetime(1970, 1, 1, 0, 1, 0, 851000)",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/strutils.py",
++              "line": 1097,
++              "operator": "minus",
++              "before": "range(range_end)) - int_list - set(range(range_start))",
++              "after": "range(range_end)) + int_list - set(range(range_start))",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/iterutils.py",
++              "line": 1010,
++              "operator": "zero-one",
++              "before": "return ones[0] if len(ones) == 1 else default",
++              "after": "return ones[1] if len(ones) == 1 else default",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/setutils.py",
++              "line": 163,
++              "operator": "lt",
++              "before": "if index < 0 or index >= len(self):",
++              "after": "if index >= 0 or index >= len(self):",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/statsutils.py",
++              "line": 572,
++              "operator": "lt",
++              "before": "if len_data < 4:",
++              "after": "if len_data >= 4:",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/listutils.py",
++              "line": 161,
++              "operator": "gt",
++              "before": "if len(a) > 1:",
++              "after": "if len(a) <= 1:",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            }
++          ]
++        },
++        "duration_ms": 1678,
++        "checks_from": "rules"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T18:00:17.260Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T18:00:17.260Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1",
++        "o2"
++      ],
++      "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66"
++    },
++    {
++      "at": "2026-11-11T18:00:19.801Z",
++      "event": "proof_failed",
++      "obligation": "o2",
++      "subject": "sha256:7aac75e089e9ee1ebb381c564f7a2663e18af24258df202c73bab7cd472cccd5"
++    },
++    {
++      "at": "2026-11-11T18:00:20.201Z",
++      "event": "deferred",
++      "obligation": "o2",
++      "by": "unknown",
++      "subject": "sha256:7aac75e089e9ee1ebb381c564f7a2663e18af24258df202c73bab7cd472cccd5"
++    }
++  ],
++  "deferrals": [
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:28f2655f88011c80a51cbf55ddfd9578721a0da0bc2a51770b77c979dfa17f18",
++      "subject": "sha256:7aac75e089e9ee1ebb381c564f7a2663e18af24258df202c73bab7cd472cccd5",
++      "by": "unknown",
++      "at": "2026-11-11T18:00:20.201Z",
++      "to": "ci-approval",
++      "reason": "the old tests caught none of 10 sampled mutants, so a drop in detection can't be measured"
++    }
++  ]
++}
+diff --git a/tests/fixtures/bench-expected.json b/tests/fixtures/bench-expected.json
+index 557b44e..1ed933e 100644
+--- a/tests/fixtures/bench-expected.json
++++ b/tests/fixtures/bench-expected.json
+@@ -1 +1,6 @@
+-[1, 2, 3, "ab"]
++[
++    1,
++    2,
++    3,
++    "ab"
++]

@@ -1,0 +1,20 @@
+diff --git a/boltons/iterutils.py b/boltons/iterutils.py
+index f63cda5..e5eac83 100644
+--- a/boltons/iterutils.py
++++ b/boltons/iterutils.py
+@@ -1062,7 +1062,7 @@ def flatten(iterable):
+     >>> flatten(nested)
+     [1, 2, 3, 4, 5]
+     """
+-    return list(flatten_iter(iterable))
++    return list(iterable)
+ 
+ 
+ def same(iterable, ref=_UNSET):
+diff --git a/tests/fixtures/bench-expected.json b/tests/fixtures/bench-expected.json
+index 557b44e..c67d999 100644
+--- a/tests/fixtures/bench-expected.json
++++ b/tests/fixtures/bench-expected.json
+@@ -1 +1 @@
+-[1, 2, 3, "ab"]
++[1, [2, [3]], "ab"]

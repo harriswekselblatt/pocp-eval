@@ -1,0 +1,196 @@
+diff --git a/.proof/packets/p-54b46329.json b/.proof/packets/p-54b46329.json
+new file mode 100644
+index 0000000..d2c0b06
+--- /dev/null
++++ b/.proof/packets/p-54b46329.json
+@@ -0,0 +1,179 @@
++{
++  "pocp": 1,
++  "id": "p-54b46329",
++  "intent": "Change to tests/fixtures/bench-expected.json",
++  "touches": [
++    "tests/fixtures/bench-expected.json"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:behavior-contract"
++    },
++    {
++      "id": "o2",
++      "kind": "guard",
++      "files": [
++        "tests/fixtures/bench-expected.json"
++      ],
++      "mutants": 0,
++      "seed": 11,
++      "text": "Existing tests or test setup changed (tests/fixtures/bench-expected.json): the old tests still pass on the new code, and a person reviews the change (fast mode: without planted bugs POCP can't show the tests still catch what they caught)",
++      "source": "guard:tests"
++    }
++  ],
++  "state": "open",
++  "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++  "policy_repo": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++  "opened_at": "2026-11-11T18:02:31.589Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:9bd1a867d079f7796c18731a182233cb67cf3d8f1f7438b532cb4ca878072fae",
++      "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T18:02:32.062Z",
++      "duration_ms": 156,
++      "stdout_sha256": "82c92b806fa818afc6300190faec34447f9dd088bcd399d84b6313864c9292a0",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-17033f6f",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      }
++    },
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:31043b9c6be157f4b6b3ab815eea4fe8bf24b9ed3f53ef75c656ad0ead1a9051",
++      "subject": "sha256:9bd1a867d079f7796c18731a182233cb67cf3d8f1f7438b532cb4ca878072fae",
++      "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++      "kind": "guard",
++      "mode": "snapshot",
++      "passed": false,
++      "started_at": "2026-11-11T18:02:32.340Z",
++      "duration_ms": 305,
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      },
++      "guard": {
++        "pocp": 1,
++        "verdict": "needs-review",
++        "passed": false,
++        "summary": "the old tests pass on the new code; a person must review the test change (tests/fixtures/bench-expected.json: existing test lines were changed or removed): without planted bugs (guard.mutants is 0) POCP can't show the tests still catch what they caught. For an automatic check, use deep mode (pocp init --deep, guard.mutants above 0)",
++        "base": "234775cb9dfdc02d834f065aac5441d97d967870",
++        "checks": [
++          {
++            "id": "behavior-contract",
++            "run": "sh .bench/check.sh"
++          }
++        ],
++        "old_tests": {
++          "result": "pass",
++          "restored": [
++            "tests/fixtures/bench-expected.json"
++          ],
++          "runs": [
++            {
++              "check": "behavior-contract",
++              "passed": true,
++              "exit": 0,
++              "duration_ms": 143
++            }
++          ],
++          "changed_tests": {
++            "result": "not-used",
++            "reason": "check behavior-contract has no changed_test_command"
++          }
++        },
++        "new_tests": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "behavior-contract",
++              "passed": true,
++              "reused": true,
++              "duration_ms": 0
++            }
++          ]
++        },
++        "baseline": {
++          "result": "not-run",
++          "runs": []
++        },
++        "detection": {
++          "result": "off",
++          "budget": 0,
++          "seed": 11
++        },
++        "structural": {
++          "result": "needs-review",
++          "reasons": [
++            {
++              "file": "tests/fixtures/bench-expected.json",
++              "why": "existing test lines were changed or removed"
++            }
++          ]
++        },
++        "duration_ms": 305,
++        "checks_from": "rules"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T18:02:31.589Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T18:02:31.589Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1",
++        "o2"
++      ],
++      "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66"
++    },
++    {
++      "at": "2026-11-11T18:02:32.701Z",
++      "event": "proof_failed",
++      "obligation": "o2",
++      "subject": "sha256:9bd1a867d079f7796c18731a182233cb67cf3d8f1f7438b532cb4ca878072fae"
++    },
++    {
++      "at": "2026-11-11T18:02:33.045Z",
++      "event": "deferred",
++      "obligation": "o2",
++      "by": "unknown",
++      "subject": "sha256:9bd1a867d079f7796c18731a182233cb67cf3d8f1f7438b532cb4ca878072fae"
++    }
++  ],
++  "deferrals": [
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:31043b9c6be157f4b6b3ab815eea4fe8bf24b9ed3f53ef75c656ad0ead1a9051",
++      "subject": "sha256:9bd1a867d079f7796c18731a182233cb67cf3d8f1f7438b532cb4ca878072fae",
++      "by": "unknown",
++      "at": "2026-11-11T18:02:33.045Z",
++      "to": "ci-approval",
++      "reason": "the old tests pass on the new code; a person must review the test change (tests/fixtures/bench-expected.json: existing test lines were changed or removed): without planted bugs (guard.mutants is 0) POCP can't show the tests still catch what they caught. For an automatic check, use deep mode (pocp init --deep, guard.mutants above 0)"
++    }
++  ]
++}
+diff --git a/tests/fixtures/bench-expected.json b/tests/fixtures/bench-expected.json
+index 209615c..933fad7 100644
+--- a/tests/fixtures/bench-expected.json
++++ b/tests/fixtures/bench-expected.json
+@@ -1 +1,5 @@
+-[2, 1, 3]
++[
++    2,
++    1,
++    3
++]

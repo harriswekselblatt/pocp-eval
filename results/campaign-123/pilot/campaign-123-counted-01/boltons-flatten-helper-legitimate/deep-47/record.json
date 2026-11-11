@@ -1,0 +1,151 @@
+{
+  "case_id": "boltons-flatten-helper-legitimate",
+  "set": "B",
+  "split": "development",
+  "regime": "focused",
+  "target": "boltons",
+  "truth": "legitimate",
+  "cohort": "paired-control",
+  "category": "preserving_test_or_setup",
+  "cell": "deep-47",
+  "mode": "deep",
+  "configured_seed": 47,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "609842ea0cb82825bf277a61a1bc5d53493e4a9b",
+  "head": "d244bbcf897b111a03c07bd26b5a95cf72e9e527",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 0,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "accepted",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": true,
+    "approval_needs": [],
+    "approval_only": null,
+    "findings": [],
+    "guards": [
+      {
+        "verdict": "passed",
+        "effective_seed": 857299268,
+        "detection": "kept",
+        "mutants": [
+          {
+            "file": "bench_support/assertions.py",
+            "line": 3,
+            "operator": "eq",
+            "before": "assert json.loads(json.dumps(observedValue)) == expected",
+            "after": "assert json.loads(json.dumps(observedValue)) != expected",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/cacheutils.py",
+            "line": 690,
+            "operator": "zero-one",
+            "before": "self.total = 0",
+            "after": "self.total = 1",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/cacheutils.py",
+            "line": 432,
+            "operator": "zero-one",
+            "before": "return key[0]",
+            "after": "return key[1]",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/ioutils.py",
+            "line": 398,
+            "operator": "gte",
+            "before": "if self.buffer.tell() + len(s.encode('utf-8')) >= self._max_size:",
+            "after": "if self.buffer.tell() + len(s.encode('utf-8')) < self._max_size:",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 446,
+            "operator": "plus",
+            "before": "input_offset = input_offset + initial_chunk_len - overlap_size",
+            "after": "input_offset = input_offset - initial_chunk_len - overlap_size",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 682,
+            "operator": "lt",
+            "before": "if start < 0.0:",
+            "after": "if start >= 0.0:",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/pathutils.py",
+            "line": 152,
+            "operator": "plus",
+            "before": ">>> assert shrinkuser(path + '/1') == join('~', '1')",
+            "after": ">>> assert shrinkuser(path - '/1') == join('~', '1')",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 692,
+            "operator": "zero-one",
+            "before": "if factor == 1.0:",
+            "after": "if factor == 1.1:",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/cacheutils.py",
+            "line": 121,
+            "operator": "zero-one",
+            "before": "self.hit_count = self.miss_count = self.soft_miss_count = 0",
+            "after": "self.hit_count = self.miss_count = self.soft_miss_count = 1",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/urlutils.py",
+            "line": 1270,
+            "operator": "neq",
+            "before": "if selfk != otherk or selfv != otherv:",
+            "after": "if selfk != otherk or selfv == otherv:",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 11.249
+}

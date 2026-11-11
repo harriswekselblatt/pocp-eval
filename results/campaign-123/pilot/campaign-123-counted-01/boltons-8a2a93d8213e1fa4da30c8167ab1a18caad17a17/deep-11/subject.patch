@@ -1,0 +1,322 @@
+diff --git a/.proof/packets/p-aec16f12.json b/.proof/packets/p-aec16f12.json
+new file mode 100644
+index 0000000..304cf00
+--- /dev/null
++++ b/.proof/packets/p-aec16f12.json
+@@ -0,0 +1,259 @@
++{
++  "pocp": 1,
++  "id": "p-aec16f12",
++  "intent": "Change to boltons/tbutils.py, tests/test_tbutils_parsed_exc.py",
++  "touches": [
++    "boltons/tbutils.py",
++    "tests/test_tbutils_parsed_exc.py"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:runtime-suite"
++    },
++    {
++      "id": "o2",
++      "kind": "guard",
++      "files": [
++        "tests/test_tbutils_parsed_exc.py"
++      ],
++      "mutants": 10,
++      "seed": 11,
++      "text": "Existing tests or test setup changed (tests/test_tbutils_parsed_exc.py): the old tests still pass on the new code, and the new tests catch every sampled mutant the old ones caught",
++      "source": "guard:tests"
++    }
++  ],
++  "state": "proven",
++  "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "policy_repo": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "opened_at": "2026-11-11T02:35:15.936Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:7a40716dcb295e3ef82e89ea91164afd789aa5fa75f126eef408677b46210c65",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T02:35:16.723Z",
++      "duration_ms": 2571,
++      "stdout_sha256": "c9c910eeb6ec773707bd84fcf97403a6d23e5ac7dd53927cb293be562d1e5f61",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-46f63095",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      }
++    },
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:9dc2b140f32cabd2a73e8dfaf62235befdca65b487f229d0d88d4b7d70b355bb",
++      "subject": "sha256:7a40716dcb295e3ef82e89ea91164afd789aa5fa75f126eef408677b46210c65",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "kind": "guard",
++      "mode": "snapshot",
++      "passed": true,
++      "started_at": "2026-11-11T02:35:19.438Z",
++      "duration_ms": 20520,
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      },
++      "guard": {
++        "pocp": 1,
++        "verdict": "passed",
++        "passed": true,
++        "summary": "the old tests pass on the new code, and the new tests catch all 3 of the 10 sampled mutants the old tests caught (seed 11)",
++        "base": "1dd79f302fd44f51ce7fbd3444a1ef254563e82d",
++        "checks": [
++          {
++            "id": "runtime-suite",
++            "run": "sh .bench/check.sh"
++          }
++        ],
++        "old_tests": {
++          "result": "pass",
++          "restored": [
++            "tests/test_tbutils_parsed_exc.py"
++          ],
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "exit": 0,
++              "duration_ms": 4498
++            }
++          ]
++        },
++        "new_tests": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "reused": true,
++              "duration_ms": 0
++            }
++          ]
++        },
++        "baseline": {
++          "result": "not-run",
++          "runs": []
++        },
++        "detection": {
++          "result": "kept",
++          "budget": 10,
++          "seed": 11,
++          "sites": 1463,
++          "focus_sites": 30,
++          "files": 34,
++          "sampled": 10,
++          "old_caught": 3,
++          "new_caught": 3,
++          "lost": [],
++          "mutants": [
++            {
++              "file": "boltons/tbutils.py",
++              "line": 485,
++              "operator": "plus",
++              "before": "for ln in range(lineno + 1, lineno + 1 + pivot)]",
++              "after": "for ln in range(lineno - 1, lineno + 1 + pivot)]",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/tbutils.py",
++              "line": 195,
++              "operator": "eq",
++              "before": "return (self.lineno, self.filename) == (other.lineno, other.filename)",
++              "after": "return (self.lineno, self.filename) != (other.lineno, other.filename)",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/tbutils.py",
++              "line": 480,
++              "operator": "minus",
++              "before": "start_line = max(0, lineno - pivot)",
++              "after": "start_line = max(0, lineno + pivot)",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "boltons/tbutils.py",
++              "line": 506,
++              "operator": "zero-one",
++              "before": "'lineno': 0,",
++              "after": "'lineno': 1,",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/tbutils.py",
++              "line": 803,
++              "operator": "lt",
++              "before": "if (line_no + 1 < len(tb_lines)",
++              "after": "if (line_no + 1 >= len(tb_lines)",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "boltons/tbutils.py",
++              "line": 271,
++              "operator": "zero-one",
++              "before": "n = 0",
++              "after": "n = 1",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/tbutils.py",
++              "line": 537,
++              "operator": "zero-one",
++              "before": "_last = 0",
++              "after": "_last = 1",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/tbutils.py",
++              "line": 509,
++              "operator": "zero-one",
++              "before": "'lasti': 0,",
++              "after": "'lasti': 1,",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/tbutils.py",
++              "line": 425,
++              "operator": "zero-one",
++              "before": "len_frames = 0",
++              "after": "len_frames = 1",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/tbutils.py",
++              "line": 780,
++              "operator": "lt",
++              "before": "while line_no < len(tb_lines):",
++              "after": "while line_no >= len(tb_lines):",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            }
++          ]
++        },
++        "duration_ms": 20520,
++        "checks_from": "rules"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T02:35:15.936Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T02:35:15.936Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1",
++        "o2"
++      ],
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178"
++    },
++    {
++      "at": "2026-11-11T02:35:40.054Z",
++      "event": "state",
++      "from": "open",
++      "to": "proven",
++      "subject": "sha256:7a40716dcb295e3ef82e89ea91164afd789aa5fa75f126eef408677b46210c65"
++    }
++  ]
++}
+diff --git a/boltons/tbutils.py b/boltons/tbutils.py
+index bfc4984..6093609 100644
+--- a/boltons/tbutils.py
++++ b/boltons/tbutils.py
+@@ -777,7 +777,7 @@ class ParsedException:
+ 
+         frames = []
+         line_no = start_line
+-        while True:
++        while line_no < len(tb_lines):
+             frame_line = tb_lines[line_no].strip()
+             frame_match = frame_re.match(frame_line)
+             if frame_match:
+@@ -800,9 +800,10 @@ class ParsedException:
+                 else:
+                     frame_dict['source_line'] = next_line_stripped
+                     line_no += 1
+-                if _underline_re.match(tb_lines[line_no + 1]):
+-                  # To deal with anchors
+-                  line_no += 1
++                    if (line_no + 1 < len(tb_lines)
++                            and _underline_re.match(tb_lines[line_no + 1])):
++                        # To deal with anchors
++                        line_no += 1
+             else:
+                 break
+             line_no += 1
+diff --git a/tests/test_tbutils_parsed_exc.py b/tests/test_tbutils_parsed_exc.py
+index 6927832..25bb5c6 100644
+--- a/tests/test_tbutils_parsed_exc.py
++++ b/tests/test_tbutils_parsed_exc.py
+@@ -79,4 +79,22 @@ TypeError: unsupported operand type(s) for +: 'int' and 'str'"""
+     # Note: not checking the anchor lines (indices 3, 6) because column details not currently stored in ParsedException
+     _tb_str_lines = _tb_str.splitlines()
+     _tb_str_without_anchor = "\n".join(_tb_str_lines[:3] + _tb_str_lines[4:6] + _tb_str_lines[7:])
+-    assert parsed_tb.to_string() == _tb_str_without_anchor
+\ No newline at end of file
++    assert parsed_tb.to_string() == _tb_str_without_anchor
++
++
++def test_parsed_exc_truncated():
++    """a traceback whose last frame has a source line but no following
++    exception line should parse without raising IndexError"""
++    _tb_str = """\
++Traceback (most recent call last):
++  File "main.py", line 3, in <module>
++    print(add(1, 2))"""
++
++    parsed_tb = ParsedException.from_string(_tb_str)
++
++    assert parsed_tb.exc_type == ''
++    assert parsed_tb.exc_msg == ''
++    assert parsed_tb.frames == [{'source_line': 'print(add(1, 2))',
++                                 'filepath': 'main.py',
++                                 'lineno': '3',
++                                 'funcname': '<module>'}]
+\ No newline at end of file

@@ -1,0 +1,151 @@
+{
+  "case_id": "p-map-10768330ebf3e210b237cb168b75ba2a13ecf666",
+  "set": "B",
+  "split": "development",
+  "regime": "native",
+  "target": "p-map",
+  "truth": "legitimate",
+  "cohort": "original-sampled",
+  "category": "added_test",
+  "cell": "deep-47",
+  "mode": "deep",
+  "configured_seed": 47,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "19b259743cf32656e79f8eaa2099c23db34fbffc",
+  "head": "5550d9477a99bfff78aa6ff0e74f0f908a16110b",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 0,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "accepted",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": true,
+    "approval_needs": [],
+    "approval_only": null,
+    "findings": [],
+    "guards": [
+      {
+        "verdict": "passed",
+        "effective_seed": 465286756,
+        "detection": "kept",
+        "mutants": [
+          {
+            "file": "index.js",
+            "line": 258,
+            "operator": "strict-eq",
+            "before": "if (value === pMapSkip) {",
+            "after": "if (value !== pMapSkip) {",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 11,
+            "operator": "strict-eq",
+            "before": "if (iterable[Symbol.iterator] === undefined && iterable[Symbol.asyncIterator] === undefined) {",
+            "after": "if (iterable[Symbol.iterator] !== undefined && iterable[Symbol.asyncIterator] === undefined) {",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 148,
+            "operator": "lt",
+            "before": "for (let index = 0; index < concurrency; index++) {",
+            "after": "for (let index = 0; index >= concurrency; index++) {",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 185,
+            "operator": "gte",
+            "before": "if (!((Number.isSafeInteger(backpressure) && backpressure >= concurrency) || backpressure === Number.POSITIVE_INFINITY)) {",
+            "after": "if (!((Number.isSafeInteger(backpressure) && backpressure < concurrency) || backpressure === Number.POSITIVE_INFINITY)) {",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 19,
+            "operator": "and",
+            "before": "if (!((Number.isSafeInteger(concurrency) && concurrency >= 1) || concurrency === Number.POSITIVE_INFINITY)) {",
+            "after": "if (!((Number.isSafeInteger(concurrency) || concurrency >= 1) || concurrency === Number.POSITIVE_INFINITY)) {",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 242,
+            "operator": "gt",
+            "before": "while (promises.length > 0) {",
+            "after": "while (promises.length <= 0) {",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 242,
+            "operator": "zero-one",
+            "before": "while (promises.length > 0) {",
+            "after": "while (promises.length > 1) {",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 185,
+            "operator": "strict-eq",
+            "before": "if (!((Number.isSafeInteger(backpressure) && backpressure >= concurrency) || backpressure === Number.POSITIVE_INFINITY)) {",
+            "after": "if (!((Number.isSafeInteger(backpressure) && backpressure >= concurrency) || backpressure !== Number.POSITIVE_INFINITY)) {",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 74,
+            "operator": "true",
+            "before": "isResolved = true;",
+            "after": "isResolved = false;",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 31,
+            "operator": "strict-eq",
+            "before": "const iterator = iterable[Symbol.iterator] === undefined ? iterable[Symbol.asyncIterator]() : iterable[Symbol.iterator]();",
+            "after": "const iterator = iterable[Symbol.iterator] !== undefined ? iterable[Symbol.asyncIterator]() : iterable[Symbol.iterator]();",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 73.665
+}

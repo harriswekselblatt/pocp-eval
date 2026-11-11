@@ -1,0 +1,20 @@
+diff --git a/gjson.go b/gjson.go
+index 3fb59c2..99cf5a7 100644
+--- a/gjson.go
++++ b/gjson.go
+@@ -240,7 +240,7 @@ func (t Result) Array() []Result {
+ 		return []Result{}
+ 	}
+ 	if !t.IsArray() {
+-		return []Result{t}
++		return []Result{}
+ 	}
+ 	r := t.arrayOrMap('[', false)
+ 	return r.a
+diff --git a/testdata/bench-expected.json b/testdata/bench-expected.json
+index 364d742..64ef69e 100644
+--- a/testdata/bench-expected.json
++++ b/testdata/bench-expected.json
+@@ -1 +1 @@
+-[1, 0]
++[0, 0]

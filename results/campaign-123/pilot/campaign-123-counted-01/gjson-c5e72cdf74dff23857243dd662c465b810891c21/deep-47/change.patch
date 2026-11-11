@@ -1,0 +1,31 @@
+diff --git a/gjson.go b/gjson.go
+index 7050e31..9fe40b5 100644
+--- a/gjson.go
++++ b/gjson.go
+@@ -1841,9 +1841,11 @@ func Get(json, path string) Result {
+ 			if path[0] == '@' {
+ 				// possible modifier
+ 				var ok bool
++				var npath string
+ 				var rjson string
+-				path, rjson, ok = execModifier(json, path)
++				npath, rjson, ok = execModifier(json, path)
+ 				if ok {
++					path = npath
+ 					if len(path) > 0 && (path[0] == '|' || path[0] == '.') {
+ 						res := Get(rjson, path[1:])
+ 						res.Index = 0
+diff --git a/gjson_test.go b/gjson_test.go
+index 50855e7..65861c6 100644
+--- a/gjson_test.go
++++ b/gjson_test.go
+@@ -1984,3 +1984,9 @@ func TestParentSubQuery(t *testing.T) {
+ 	// should return two instances
+ 	assert(t, res.String() == `["1.2.3","1.2.2"]`)
+ }
++
++func TestSingleModifier(t *testing.T) {
++	var data = `{"@key": "value"}`
++	assert(t, Get(data, "@key").String() == "value")
++	assert(t, Get(data, "\\@key").String() == "value")
++}

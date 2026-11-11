@@ -1,0 +1,35 @@
+diff --git a/boltons/iterutils.py b/boltons/iterutils.py
+index f63cda5..bb68bc9 100644
+--- a/boltons/iterutils.py
++++ b/boltons/iterutils.py
+@@ -243,21 +243,16 @@ def rstrip_iter(iterable, strip_value=None):
+     ['Foo', 'Bar']
+ 
+     """
+-    iterator = iter(iterable)
+-    for i in iterator:
++    # Hold back a run of strip values until a different value follows it;
++    # a run that reaches the end of the iterable is never yielded.
++    pending = []
++    for i in iterable:
+         if i == strip_value:
+-            cache = list()
+-            cache.append(i)
+-            broken = False
+-            for i in iterator:
+-                if i == strip_value:
+-                    cache.append(i)
+-                else:
+-                    broken = True
+-                    break
+-            if not broken:  # Return to caller here because the end of the
+-                return     # iterator has been reached
+-            yield from cache
++            pending.append(i)
++            continue
++        if pending:
++            yield from pending
++            pending = []
+         yield i
+ 
+ 

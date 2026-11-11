@@ -1,0 +1,11 @@
+{
+  "argv": [
+    "sh",
+    ".bench/check.sh"
+  ],
+  "exit": 0,
+  "execution": "completed",
+  "seconds": 0.05615350010339171,
+  "stdout": "BENCH_ACTUAL=[{\"status\":\"fulfilled\",\"value\":2},{\"status\":\"rejected\",\"reason\":\"bad\"}]\n",
+  "stderr": ""
+}

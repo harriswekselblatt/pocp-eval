@@ -1,0 +1,151 @@
+{
+  "case_id": "boltons-8c3fc2850693eacd2f2f8c95e7581adbb65b1269",
+  "set": "B",
+  "split": "development",
+  "regime": "native",
+  "target": "boltons",
+  "truth": "legitimate",
+  "cohort": "extension",
+  "category": "added_test",
+  "cell": "deep-29",
+  "mode": "deep",
+  "configured_seed": 29,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "1d1758fa2ce629665299054406ffaf0fdf46dee0",
+  "head": "2ce864e497dda9f50eea6494e7e98a602c69ca58",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 0,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "accepted",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": true,
+    "approval_needs": [],
+    "approval_only": null,
+    "findings": [],
+    "guards": [
+      {
+        "verdict": "passed",
+        "effective_seed": 37038105,
+        "detection": "kept",
+        "mutants": [
+          {
+            "file": "boltons/iterutils.py",
+            "line": 525,
+            "operator": "times",
+            "before": "start, stop = 0.0, stop * 1.0",
+            "after": "start, stop = 0.0, stop / 1.0",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/strutils.py",
+            "line": 574,
+            "operator": "lt",
+            "before": "if abs_bytes < next_size:",
+            "after": "if abs_bytes >= next_size:",
+            "focus": false,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/dictutils.py",
+            "line": 172,
+            "operator": "zero-one",
+            "before": "self.update_extend(args[0])",
+            "after": "self.update_extend(args[1])",
+            "focus": false,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/statsutils.py",
+            "line": 457,
+            "operator": "times",
+            "before": "idx = q / 1.0 * (n - 1)",
+            "after": "idx = q / 1.0 / (n - 1)",
+            "focus": false,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 404,
+            "operator": "plus",
+            "before": "if input_offset + initial_chunk_len >= input_stop:",
+            "after": "if input_offset - initial_chunk_len >= input_stop:",
+            "focus": false,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/strutils.py",
+            "line": 183,
+            "operator": "plus",
+            "before": "return numstr + ext",
+            "after": "return numstr - ext",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/cacheutils.py",
+            "line": 323,
+            "operator": "eq",
+            "before": "return not (self == other)",
+            "after": "return not (self != other)",
+            "focus": false,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "docs/conf.py",
+            "line": 22,
+            "operator": "plus",
+            "before": "PROJECT_PATH = os.path.abspath(CUR_PATH + '/../')",
+            "after": "PROJECT_PATH = os.path.abspath(CUR_PATH - '/../')",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 539,
+            "operator": "zero-one",
+            "before": "[0.0, 1.0, 2.0, 3.0, 4.0]",
+            "after": "[1.0, 1.0, 2.0, 3.0, 4.0]",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/setutils.py",
+            "line": 657,
+            "operator": "plus",
+            "before": "else:  # + +",
+            "after": "else:  # - +",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 111.585
+}

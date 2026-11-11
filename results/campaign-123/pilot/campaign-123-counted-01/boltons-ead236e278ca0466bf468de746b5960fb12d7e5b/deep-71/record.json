@@ -1,0 +1,151 @@
+{
+  "case_id": "boltons-ead236e278ca0466bf468de746b5960fb12d7e5b",
+  "set": "B",
+  "split": "development",
+  "regime": "native",
+  "target": "boltons",
+  "truth": "legitimate",
+  "cohort": "original-sampled",
+  "category": "added_test",
+  "cell": "deep-71",
+  "mode": "deep",
+  "configured_seed": 71,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "1d1c7c2377fd0b9e72cba5b9aa12aaddfe1090c5",
+  "head": "9bb50607e4b73b1d201dbd060835668390b29d76",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 0,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "accepted",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": true,
+    "approval_needs": [],
+    "approval_only": null,
+    "findings": [],
+    "guards": [
+      {
+        "verdict": "passed",
+        "effective_seed": 879380261,
+        "detection": "kept",
+        "mutants": [
+          {
+            "file": "boltons/iterutils.py",
+            "line": 311,
+            "operator": "eq",
+            "before": "if value < 0 or (strictly_positive and value == 0):",
+            "after": "if value < 0 or (strictly_positive and value != 0):",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 543,
+            "operator": "zero-one",
+            "before": "[100.5, 100.75, 101.0, 101.25]",
+            "after": "[100.5, 100.75, 101.1, 101.25]",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/dictutils.py",
+            "line": 793,
+            "operator": "zero-one",
+            "before": "if a[0] is _OTO_INV_MARKER:",
+            "after": "if a[1] is _OTO_INV_MARKER:",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 1539,
+            "operator": "plus",
+            "before": "return '%x' % (next(self.count) + self.start)",
+            "after": "return '%x' % (next(self.count) - self.start)",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 552,
+            "operator": "zero-one",
+            "before": "start, stop = 0.0, stop * 1.0",
+            "after": "start, stop = 1.0, stop * 1.0",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 160,
+            "operator": "zero-one",
+            "before": "if maxsplit == 0:",
+            "after": "if maxsplit == 1:",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 528,
+            "operator": "zero-one",
+            "before": "stop, start = start * 1.0, stop * 1.0",
+            "after": "stop, start = start * 1.0, stop * 1.1",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 170,
+            "operator": "eq",
+            "before": "def sep_func(x): return x == sep",
+            "after": "def sep_func(x): return x != sep",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 575,
+            "operator": "zero-one",
+            "before": "[1.0, 2.0, 4.0, 8.0, 10.0]",
+            "after": "[1.0, 2.0, 4.1, 8.0, 10.0]",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 743,
+            "operator": "zero-one",
+            "before": "def key_func(x): return x[0]",
+            "after": "def key_func(x): return x[1]",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 64.017
+}

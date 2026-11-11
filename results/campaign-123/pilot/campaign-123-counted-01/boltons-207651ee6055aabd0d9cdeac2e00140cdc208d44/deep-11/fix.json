@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "node",
+    "<bench>/vendor/npm-pocp-1.2.3/package/bin/pocp.js",
+    "fix",
+    "--json"
+  ],
+  "exit": 0,
+  "execution": "completed",
+  "seconds": 3.4602285000728443,
+  "stdout": "{\n  \"pocp\": 1,\n  \"ok\": true,\n  \"decision\": \"pass\",\n  \"nothing_staged\": false,\n  \"nothing_to_prove\": false,\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"packet\": \"p-8cb88622\",\n      \"files\": [\n        \"boltons/strutils.py\"\n      ],\n      \"checks\": [\n        \"o1 (rule:runtime-suite)\"\n      ],\n      \"intent\": \"Change to boltons/strutils.py\"\n    },\n    {\n      \"action\": \"prove\",\n      \"packets\": [\n        \"p-8cb88622\"\n      ],\n      \"mode\": \"clean\",\n      \"ran\": 1,\n      \"checks\": 1,\n      \"ms\": 1915,\n      \"failed\": [],\n      \"handed\": []\n    }\n  ],\n  \"needs_agent\": [],\n  \"needs_person\": [],\n  \"advice\": null,\n  \"gate\": {\n    \"decision\": \"pass\",\n    \"subject\": \"sha256:3100bcf62d89cf700dcf426d8645883fc9c50d93a3d0ceab36544b5b47b25db6\"\n  }\n}\n",
+  "stderr": ""
+}

@@ -1,0 +1,291 @@
+diff --git a/.proof/packets/p-a1c9c7bb.json b/.proof/packets/p-a1c9c7bb.json
+new file mode 100644
+index 0000000..8b81519
+--- /dev/null
++++ b/.proof/packets/p-a1c9c7bb.json
+@@ -0,0 +1,275 @@
++{
++  "pocp": 1,
++  "id": "p-a1c9c7bb",
++  "intent": "Change to testdata/bench-expected.json",
++  "touches": [
++    "testdata/bench-expected.json"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:behavior-contract"
++    },
++    {
++      "id": "o2",
++      "kind": "guard",
++      "files": [
++        "testdata/bench-expected.json"
++      ],
++      "mutants": 10,
++      "seed": 29,
++      "text": "Existing tests or test setup changed (testdata/bench-expected.json): the old tests still pass on the new code, and the new tests catch every sampled mutant the old ones caught",
++      "source": "guard:tests"
++    }
++  ],
++  "state": "open",
++  "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++  "policy_repo": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++  "opened_at": "2026-11-11T18:04:37.540Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:344540b4f8ebad1774346ced95f4790dbc8688c809587855678594a72e1742bf",
++      "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T18:04:37.939Z",
++      "duration_ms": 374,
++      "stdout_sha256": "22127ff4aea2902cd087f56f95b3c690257d2c234a215398fc05897baba48750",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-a06cef89",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": "64eb99dde8e30a549ef1b6269effa5cb0efd6c9d507f42cdeab0f1fa2ac09c4a"
++      }
++    },
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:99ad319abd2afab3f85f8506b895881d6e3e251cc5e3edd6fbbc124d39192f0d",
++      "subject": "sha256:344540b4f8ebad1774346ced95f4790dbc8688c809587855678594a72e1742bf",
++      "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++      "kind": "guard",
++      "mode": "snapshot",
++      "passed": false,
++      "started_at": "2026-11-11T18:04:38.433Z",
++      "duration_ms": 2678,
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": "64eb99dde8e30a549ef1b6269effa5cb0efd6c9d507f42cdeab0f1fa2ac09c4a"
++      },
++      "guard": {
++        "pocp": 1,
++        "verdict": "inconclusive",
++        "passed": false,
++        "summary": "the old tests caught none of 10 sampled mutants, so a drop in detection can't be measured",
++        "base": "748c1c2f0e751c9934d02b1555ac391637cec50f",
++        "checks": [
++          {
++            "id": "behavior-contract",
++            "run": "sh .bench/check.sh"
++          }
++        ],
++        "old_tests": {
++          "result": "pass",
++          "restored": [
++            "testdata/bench-expected.json"
++          ],
++          "runs": [
++            {
++              "check": "behavior-contract",
++              "passed": true,
++              "exit": 0,
++              "duration_ms": 1259
++            }
++          ]
++        },
++        "new_tests": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "behavior-contract",
++              "passed": true,
++              "reused": true,
++              "duration_ms": 0
++            }
++          ]
++        },
++        "baseline": {
++          "result": "not-run",
++          "runs": []
++        },
++        "detection": {
++          "result": "inconclusive",
++          "budget": 10,
++          "seed": 29,
++          "sites": 1256,
++          "focus_sites": 0,
++          "files": 2,
++          "sampled": 10,
++          "old_caught": 0,
++          "new_caught": 0,
++          "lost": [],
++          "mutants": [
++            {
++              "file": "gjson.go",
++              "line": 2311,
++              "operator": "gte",
++              "before": "if i >= len(json) {",
++              "after": "if i < len(json) {",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "gjson.go",
++              "line": 1157,
++              "operator": "zero-one",
++              "before": "i += 0",
++              "after": "i += 1",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "gjson.go",
++              "line": 2351,
++              "operator": "zero-one",
++              "before": "str = append(str, 0, 0, 0, 0, 0, 0, 0, 0)",
++              "after": "str = append(str, 0, 0, 0, 1, 0, 0, 0, 0)",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "gjson.go",
++              "line": 1063,
++              "operator": "true",
++              "before": "r.more = true",
++              "after": "r.more = false",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "gjson.go",
++              "line": 945,
++              "operator": "eq",
++              "before": "case len(value) == 1:",
++              "after": "case len(value) != 1:",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "gjson.go",
++              "line": 3279,
++              "operator": "true",
++              "before": "return true",
++              "after": "return false",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "gjson.go",
++              "line": 2716,
++              "operator": "and",
++              "before": "if data[i] >= '0' && data[i] <= '9' {",
++              "after": "if data[i] >= '0' || data[i] <= '9' {",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "gjson.go",
++              "line": 199,
++              "operator": "zero-one",
++              "before": "if ok && i >= 0 {",
++              "after": "if ok && i >= 1 {",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "gjson.go",
++              "line": 927,
++              "operator": "true",
++              "before": "vesc = true",
++              "after": "vesc = false",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "gjson.go",
++              "line": 2896,
++              "operator": "eq",
++              "before": "if path[i] == '.' {",
++              "after": "if path[i] != '.' {",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            }
++          ]
++        },
++        "duration_ms": 2678,
++        "checks_from": "rules"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T18:04:37.540Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T18:04:37.540Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1",
++        "o2"
++      ],
++      "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66"
++    },
++    {
++      "at": "2026-11-11T18:04:41.151Z",
++      "event": "proof_failed",
++      "obligation": "o2",
++      "subject": "sha256:344540b4f8ebad1774346ced95f4790dbc8688c809587855678594a72e1742bf"
++    },
++    {
++      "at": "2026-11-11T18:04:41.470Z",
++      "event": "deferred",
++      "obligation": "o2",
++      "by": "unknown",
++      "subject": "sha256:344540b4f8ebad1774346ced95f4790dbc8688c809587855678594a72e1742bf"
++    }
++  ],
++  "deferrals": [
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:99ad319abd2afab3f85f8506b895881d6e3e251cc5e3edd6fbbc124d39192f0d",
++      "subject": "sha256:344540b4f8ebad1774346ced95f4790dbc8688c809587855678594a72e1742bf",
++      "by": "unknown",
++      "at": "2026-11-11T18:04:41.470Z",
++      "to": "ci-approval",
++      "reason": "the old tests caught none of 10 sampled mutants, so a drop in detection can't be measured"
++    }
++  ]
++}
+diff --git a/testdata/bench-expected.json b/testdata/bench-expected.json
+index 0949676..870284e 100644
+--- a/testdata/bench-expected.json
++++ b/testdata/bench-expected.json
+@@ -1 +1,4 @@
+-[true, false]
++[
++    true,
++    false
++]

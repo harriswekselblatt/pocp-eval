@@ -1,0 +1,151 @@
+{
+  "case_id": "boltons-pairwise-helper-legitimate",
+  "set": "B",
+  "split": "development",
+  "regime": "focused",
+  "target": "boltons",
+  "truth": "legitimate",
+  "cohort": "paired-control",
+  "category": "preserving_test_or_setup",
+  "cell": "deep-101",
+  "mode": "deep",
+  "configured_seed": 101,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "a3faae1bad582bc800305402d39d8b303c20c578",
+  "head": "3d424ecbb5009b9f83f8445f3758c030d7ad8aa5",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 0,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "accepted",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": true,
+    "approval_needs": [],
+    "approval_only": null,
+    "findings": [],
+    "guards": [
+      {
+        "verdict": "passed",
+        "effective_seed": 686096076,
+        "detection": "kept",
+        "mutants": [
+          {
+            "file": "bench_support/assertions.py",
+            "line": 3,
+            "operator": "eq",
+            "before": "assert json.loads(json.dumps(observedValue)) == expected",
+            "after": "assert json.loads(json.dumps(observedValue)) != expected",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/statsutils.py",
+            "line": 342,
+            "operator": "plus",
+            "before": ">>> trimean(list(range(96)) + [1066])  # 1066 is an arbitrary outlier",
+            "after": ">>> trimean(list(range(96)) - [1066])  # 1066 is an arbitrary outlier",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/setutils.py",
+            "line": 770,
+            "operator": "plus",
+            "before": "else:  # + +",
+            "after": "else:  # - +",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/listutils.py",
+            "line": 129,
+            "operator": "gt",
+            "before": "while len(cur_list) > half_limit:",
+            "after": "while len(cur_list) <= half_limit:",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/jsonutils.py",
+            "line": 107,
+            "operator": "eq",
+            "before": "if cur_pos and (len(lines) < 2 or lines[0] == empty):",
+            "after": "if cur_pos and (len(lines) < 2 or lines[0] != empty):",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/mathutils.py",
+            "line": 175,
+            "operator": "lt",
+            "before": "if k < 0:",
+            "after": "if k >= 0:",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/setutils.py",
+            "line": 147,
+            "operator": "gt",
+            "before": "elif len(ded) > _MAX_DEAD_INTERVALS:",
+            "after": "elif len(ded) <= _MAX_DEAD_INTERVALS:",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/pathutils.py",
+            "line": 149,
+            "operator": "neq",
+            "before": ">>> assert path != '~'",
+            "after": ">>> assert path == '~'",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/timeutils.py",
+            "line": 441,
+            "operator": "gt",
+            "before": "if stop is not None and start != stop and (probe > start) != (stop > start):",
+            "after": "if stop is not None and start != stop and (probe > start) != (stop <= start):",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/listutils.py",
+            "line": 402,
+            "operator": "plus",
+            "before": "if offset + len_cur > start:",
+            "after": "if offset - len_cur > start:",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 11.748
+}

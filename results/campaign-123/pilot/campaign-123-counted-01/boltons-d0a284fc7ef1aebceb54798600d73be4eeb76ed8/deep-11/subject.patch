@@ -1,0 +1,336 @@
+diff --git a/.proof/packets/p-908a4279.json b/.proof/packets/p-908a4279.json
+new file mode 100644
+index 0000000..4e4f2d3
+--- /dev/null
++++ b/.proof/packets/p-908a4279.json
+@@ -0,0 +1,259 @@
++{
++  "pocp": 1,
++  "id": "p-908a4279",
++  "intent": "Change to boltons/setutils.py, tests/test_setutils.py",
++  "touches": [
++    "boltons/setutils.py",
++    "tests/test_setutils.py"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:runtime-suite"
++    },
++    {
++      "id": "o2",
++      "kind": "guard",
++      "files": [
++        "tests/test_setutils.py"
++      ],
++      "mutants": 10,
++      "seed": 11,
++      "text": "Existing tests or test setup changed (tests/test_setutils.py): the old tests still pass on the new code, and the new tests catch every sampled mutant the old ones caught",
++      "source": "guard:tests"
++    }
++  ],
++  "state": "proven",
++  "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "policy_repo": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "opened_at": "2026-11-11T03:17:40.500Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:27d651ec33cd2265a64267bafcc338e1873c5f16343f923246dda268a05abc88",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T03:17:40.916Z",
++      "duration_ms": 2033,
++      "stdout_sha256": "69ca9f0fc745136899f0a0b8bd59031d59af781d34f471e01fb14bcc67b928fa",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-3c05584b",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      }
++    },
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:8e657dd0f84e788135534fe680eaee43349f0d13cc384a482c69c7db177c80f2",
++      "subject": "sha256:27d651ec33cd2265a64267bafcc338e1873c5f16343f923246dda268a05abc88",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "kind": "guard",
++      "mode": "snapshot",
++      "passed": true,
++      "started_at": "2026-11-11T03:17:43.082Z",
++      "duration_ms": 13321,
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      },
++      "guard": {
++        "pocp": 1,
++        "verdict": "passed",
++        "passed": true,
++        "summary": "the old tests pass on the new code, and the new tests catch all 3 of the 10 sampled mutants the old tests caught (seed 11)",
++        "base": "1d20c73d08d285bd931550c0289876b0ac67f39b",
++        "checks": [
++          {
++            "id": "runtime-suite",
++            "run": "sh .bench/check.sh"
++          }
++        ],
++        "old_tests": {
++          "result": "pass",
++          "restored": [
++            "tests/test_setutils.py"
++          ],
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "exit": 0,
++              "duration_ms": 3264
++            }
++          ]
++        },
++        "new_tests": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "reused": true,
++              "duration_ms": 0
++            }
++          ]
++        },
++        "baseline": {
++          "result": "not-run",
++          "runs": []
++        },
++        "detection": {
++          "result": "kept",
++          "budget": 10,
++          "seed": 11,
++          "sites": 1472,
++          "focus_sites": 143,
++          "files": 34,
++          "sampled": 10,
++          "old_caught": 3,
++          "new_caught": 3,
++          "lost": [],
++          "mutants": [
++            {
++              "file": "boltons/setutils.py",
++              "line": 802,
++              "operator": "minus",
++              "before": "else:  # - -",
++              "after": "else:  # + -",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/setutils.py",
++              "line": 770,
++              "operator": "minus",
++              "before": "else:  # - -",
++              "after": "else:  # + -",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/setutils.py",
++              "line": 406,
++              "operator": "plus",
++              "before": "stop = max(len(self) + stop, 0)",
++              "after": "stop = max(len(self) - stop, 0)",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "boltons/setutils.py",
++              "line": 457,
++              "operator": "eq",
++              "before": "if sorted_list == self.item_list:",
++              "after": "if sorted_list != self.item_list:",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/setutils.py",
++              "line": 745,
++              "operator": "minus",
++              "before": "if exc is None:  # - +",
++              "after": "if exc is None:  # + +",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/setutils.py",
++              "line": 920,
++              "operator": "plus",
++              "before": "if inc is None:  # + -",
++              "after": "if inc is None:  # - -",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/setutils.py",
++              "line": 951,
++              "operator": "eq",
++              "before": "and self._excluded == other._excluded) or (",
++              "after": "and self._excluded != other._excluded) or (",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "boltons/setutils.py",
++              "line": 309,
++              "operator": "zero-one",
++              "before": "other = others[0]",
++              "after": "other = others[1]",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "boltons/setutils.py",
++              "line": 731,
++              "operator": "plus",
++              "before": "if inc is None:  # + -",
++              "after": "if inc is None:  # - -",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/setutils.py",
++              "line": 870,
++              "operator": "plus",
++              "before": "else:  # + +",
++              "after": "else:  # - +",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            }
++          ]
++        },
++        "duration_ms": 13321,
++        "checks_from": "rules"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T03:17:40.500Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T03:17:40.500Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1",
++        "o2"
++      ],
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178"
++    },
++    {
++      "at": "2026-11-11T03:17:56.561Z",
++      "event": "state",
++      "from": "open",
++      "to": "proven",
++      "subject": "sha256:27d651ec33cd2265a64267bafcc338e1873c5f16343f923246dda268a05abc88"
++    }
++  ]
++}
+diff --git a/boltons/setutils.py b/boltons/setutils.py
+index 187d230..6451a4a 100644
+--- a/boltons/setutils.py
++++ b/boltons/setutils.py
+@@ -158,6 +158,8 @@ class IndexedSet(MutableSet):
+     def _get_real_index(self, index):
+         if index < 0:
+             index += len(self)
++        if index < 0 or index >= len(self):
++            raise IndexError('IndexedSet index out of range')
+         if not self.dead_indices:
+             return index
+         real_index = index
+@@ -416,14 +418,8 @@ class IndexedSet(MutableSet):
+         else:
+             iter_slice = self.iter_slice(start, stop, step)
+             return self.from_iterable(iter_slice)
+-        if index < 0:
+-            index += len(self)
+         real_index = self._get_real_index(index)
+-        try:
+-            ret = self.item_list[real_index]
+-        except IndexError:
+-            raise IndexError('IndexedSet index out of range')
+-        return ret
++        return self.item_list[real_index]
+ 
+     def pop(self, index=None):
+         "pop(index) -> remove the item at a given index (-1 by default)"
+diff --git a/tests/test_setutils.py b/tests/test_setutils.py
+index d59a751..b98ee23 100644
+--- a/tests/test_setutils.py
++++ b/tests/test_setutils.py
+@@ -237,3 +237,37 @@ def test_iset_slice_agreement():
+                     assert list(iset[s]) == list(fresh[s]), (pops, s)
+                     if step is None or step > 0:
+                         assert list(iset[s]) == ref[s], (pops, s)
++
++
++def test_iset_scalar_index_bounds():
++    # Out-of-range negatives used to wrap silently: __getitem__ normalized
++    # the index and _get_real_index normalized it AGAIN, so x[-10] on a
++    # 9-element set returned x[-1], and pop(-15) removed a middle element.
++    x = IndexedSet(range(10))
++    x.pop(2)  # len 9, one dead slot
++    assert x[-1] == 9
++    assert x[-9] == 0
++    with raises(IndexError):
++        x[9]
++    with raises(IndexError):
++        x[-10]
++    with raises(IndexError):
++        x.pop(-15)
++    assert 4 in x  # pop(-15) formerly silently removed 4
++    with raises(IndexError):
++        IndexedSet()[0]
++
++
++def test_iset_scalar_index_multiple_dead_intervals():
++    # exercise the _get_real_index interval walk across several dead ranges
++    iset = IndexedSet(range(100))
++    for p in (5, 20, 40, 60, 80):
++        iset.discard(p)
++    assert len(iset.dead_indices) == 5  # below compaction threshold (100/8)
++    ref = list(iset)
++    for i in list(range(-95, 95, 7)) + [0, -1, 94, -95]:
++        assert iset[i] == ref[i]
++    with raises(IndexError):
++        iset[95]
++    with raises(IndexError):
++        iset[-96]

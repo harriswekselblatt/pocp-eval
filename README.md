@@ -6,7 +6,7 @@ folder, along with the plan ([`docs/EVAL-PLAN.md`](https://github.com/harrisweks
 the pre-registration (`eval/PREREG.md`) and the reports generated from these records. This
 repository holds only the data, so the tool's repository stays small.
 
-So far these are **pilot runs only**. None counts toward a pre-registered result.
+Most of these are pilot runs that don't count toward a pre-registered result. The exception is `results/campaign-123/`: the complete, counted records of the preregistered POCP 1.2.3 campaign, with its frozen protocol and harness, laid out so its report regenerates byte-for-byte (see its README).
 
 ## Layout
 
@@ -15,6 +15,7 @@ So far these are **pilot runs only**. None counts toward a pre-registered result
 | `results/<eval>/<batch>.jsonl` | One run record per line (E1a, E1b, E2, E3, E5) |
 | `results/runs/<batch>/<run_id>/` | Per-run files kept for review (`batch.json`, `run.json`, `final.diff`) |
 | `results/REDACTIONS.md` | What was redacted and how |
+| `results/campaign-123/` | The counted POCP 1.2.3 campaign: protocol, harness, corpus, pins and all 1,260 run records ([README](results/campaign-123/README.md)) |
 | `SHA256SUMS` | The SHA-256 of every file under `results/` |
 
 ## The rules these records follow

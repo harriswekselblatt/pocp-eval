@@ -1,0 +1,88 @@
+diff --git a/gjson.go b/gjson.go
+index 5acb848..1aa0eeb 100644
+--- a/gjson.go
++++ b/gjson.go
+@@ -731,8 +731,13 @@ func parseArrayPath(path string) (r arrayPathResult) {
+ 		}
+ 		if path[i] == '.' {
+ 			r.part = path[:i]
+-			r.path = path[i+1:]
+-			r.more = true
++			if !r.arrch && i < len(path)-1 && isDotPiperChar(path[i+1]) {
++				r.pipe = path[i+1:]
++				r.piped = true
++			} else {
++				r.path = path[i+1:]
++				r.more = true
++			}
+ 			return
+ 		}
+ 		if path[i] == '#' {
+@@ -978,6 +983,11 @@ right:
+ 	return s
+ }
+ 
++// peek at the next byte and see if it's a '@', '[', or '{'.
++func isDotPiperChar(c byte) bool {
++	return !DisableModifiers && (c == '@' || c == '[' || c == '{')
++}
++
+ type objectPathResult struct {
+ 	part  string
+ 	path  string
+@@ -996,12 +1006,8 @@ func parseObjectPath(path string) (r objectPathResult) {
+ 			return
+ 		}
+ 		if path[i] == '.' {
+-			// peek at the next byte and see if it's a '@', '[', or '{'.
+ 			r.part = path[:i]
+-			if !DisableModifiers &&
+-				i < len(path)-1 &&
+-				(path[i+1] == '@' ||
+-					path[i+1] == '[' || path[i+1] == '{') {
++			if i < len(path)-1 && isDotPiperChar(path[i+1]) {
+ 				r.pipe = path[i+1:]
+ 				r.piped = true
+ 			} else {
+@@ -1031,14 +1037,11 @@ func parseObjectPath(path string) (r objectPathResult) {
+ 						continue
+ 					} else if path[i] == '.' {
+ 						r.part = string(epart)
+-						// peek at the next byte and see if it's a '@' modifier
+-						if !DisableModifiers &&
+-							i < len(path)-1 && path[i+1] == '@' {
++						if i < len(path)-1 && isDotPiperChar(path[i+1]) {
+ 							r.pipe = path[i+1:]
+ 							r.piped = true
+ 						} else {
+ 							r.path = path[i+1:]
+-							r.more = true
+ 						}
+ 						r.more = true
+ 						return
+diff --git a/gjson_test.go b/gjson_test.go
+index e3bfd84..e43bb47 100644
+--- a/gjson_test.go
++++ b/gjson_test.go
+@@ -2204,3 +2204,21 @@ func TestVariousFuzz(t *testing.T) {
+ 	Get(testJSON, testJSON)
+ 
+ }
++
++func TestSubpathsWithMultipaths(t *testing.T) {
++	const json = `
++[
++  {"a": 1},
++  {"a": 2, "values": ["a", "b", "c", "d", "e"]},
++  true,
++  ["a", "b", "c", "d", "e"],
++  4
++]
++`
++	assert(t, Get(json, `1.values.@ugly`).Raw == `["a","b","c","d","e"]`)
++	assert(t, Get(json, `1.values.[0,3]`).Raw == `["a","d"]`)
++	assert(t, Get(json, `3.@ugly`).Raw == `["a","b","c","d","e"]`)
++	assert(t, Get(json, `3.[0,3]`).Raw == `["a","d"]`)
++	assert(t, Get(json, `#.@ugly`).Raw == `[{"a":1},{"a":2,"values":["a","b","c","d","e"]},true,["a","b","c","d","e"],4]`)
++	assert(t, Get(json, `#.[0,3]`).Raw == `[[],[],[],["a","d"],[]]`)
++}

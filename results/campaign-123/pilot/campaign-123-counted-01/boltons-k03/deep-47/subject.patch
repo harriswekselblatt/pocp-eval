@@ -1,0 +1,323 @@
+diff --git a/.proof/packets/p-73ea253e.json b/.proof/packets/p-73ea253e.json
+new file mode 100644
+index 0000000..b7d3b50
+--- /dev/null
++++ b/.proof/packets/p-73ea253e.json
+@@ -0,0 +1,259 @@
++{
++  "pocp": 1,
++  "id": "p-73ea253e",
++  "intent": "Change to boltons/iterutils.py, tests/test_iterutils.py",
++  "touches": [
++    "boltons/iterutils.py",
++    "tests/test_iterutils.py"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:runtime-suite"
++    },
++    {
++      "id": "o2",
++      "kind": "guard",
++      "files": [
++        "tests/test_iterutils.py"
++      ],
++      "mutants": 10,
++      "seed": 47,
++      "text": "Existing tests or test setup changed (tests/test_iterutils.py): the old tests still pass on the new code, and the new tests catch every sampled mutant the old ones caught",
++      "source": "guard:tests"
++    }
++  ],
++  "state": "proven",
++  "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "policy_repo": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "opened_at": "2026-11-11T14:16:29.892Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:e949043e08e3ae956fc897a85c724affb9af53d14db4fbfe5ba8026dd71d6df2",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T14:16:30.270Z",
++      "duration_ms": 2541,
++      "stdout_sha256": "ca03df50df2c1dbb1b5d8962b6460b50c3a1d7b819034c3cca38e5be45ef488f",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-70a4a6b8",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      }
++    },
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:d5e87bb92bec09f2d8e0b5d3817651f05a19dc7267f73bcefd3b2ac7a72a47e7",
++      "subject": "sha256:e949043e08e3ae956fc897a85c724affb9af53d14db4fbfe5ba8026dd71d6df2",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "kind": "guard",
++      "mode": "snapshot",
++      "passed": true,
++      "started_at": "2026-11-11T14:16:32.938Z",
++      "duration_ms": 11259,
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      },
++      "guard": {
++        "pocp": 1,
++        "verdict": "passed",
++        "passed": true,
++        "summary": "the old tests pass on the new code, and the new tests catch all 3 of the 10 sampled mutants the old tests caught (seed 47)",
++        "base": "e623a11fd554788ce8e5b569f67cbcda91755aeb",
++        "checks": [
++          {
++            "id": "runtime-suite",
++            "run": "sh .bench/check.sh"
++          }
++        ],
++        "old_tests": {
++          "result": "pass",
++          "restored": [
++            "tests/test_iterutils.py"
++          ],
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "exit": 0,
++              "duration_ms": 2722
++            }
++          ]
++        },
++        "new_tests": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "reused": true,
++              "duration_ms": 0
++            }
++          ]
++        },
++        "baseline": {
++          "result": "not-run",
++          "runs": []
++        },
++        "detection": {
++          "result": "kept",
++          "budget": 10,
++          "seed": 47,
++          "sites": 1630,
++          "focus_sites": 289,
++          "files": 34,
++          "sampled": 10,
++          "old_caught": 3,
++          "new_caught": 3,
++          "lost": [],
++          "mutants": [
++            {
++              "file": "boltons/dictutils.py",
++              "line": 589,
++              "operator": "zero-one",
++              "before": "OrderedMultiDict([(0, 2), (1, 2)])",
++              "after": "OrderedMultiDict([(1, 2), (1, 2)])",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/iterutils.py",
++              "line": 441,
++              "operator": "minus",
++              "before": "input_offset % (chunk_size - overlap_size)",
++              "after": "input_offset % (chunk_size + overlap_size)",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/iterutils.py",
++              "line": 715,
++              "operator": "eq",
++              "before": "if cur == 0:",
++              "after": "if cur != 0:",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "boltons/iterutils.py",
++              "line": 160,
++              "operator": "lt",
++              "before": "if maxsplit < 0:",
++              "after": "if maxsplit >= 0:",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "boltons/iterutils.py",
++              "line": 1501,
++              "operator": "plus",
++              "before": "ret.append((path + (key,), value))",
++              "after": "ret.append((path - (key,), value))",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "boltons/iterutils.py",
++              "line": 379,
++              "operator": "zero-one",
++              "before": ">>> list(chunked_filter([0, 1, '', 'a', None], 2))",
++              "after": ">>> list(chunked_filter([1, 1, '', 'a', None], 2))",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/iterutils.py",
++              "line": 358,
++              "operator": "minus",
++              "before": "cur_chunk[lc:] = [fill_val] * (size - lc)",
++              "after": "cur_chunk[lc:] = [fill_val] * (size + lc)",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/iterutils.py",
++              "line": 1661,
++              "operator": "plus",
++              "before": "return first + other + last",
++              "after": "return first - other + last",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/iterutils.py",
++              "line": 1722,
++              "operator": "zero-one",
++              "before": "1000000 loops, best of 3: 0.443 usec per loop",
++              "after": "1000000 loops, best of 3: 1.443 usec per loop",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/namedutils.py",
++              "line": 210,
++              "operator": "plus",
++              "before": "raise SyntaxError(e.msg + ':\\n' + class_definition)",
++              "after": "raise SyntaxError(e.msg + ':\\n' - class_definition)",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            }
++          ]
++        },
++        "duration_ms": 11259,
++        "checks_from": "rules"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T14:16:29.892Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T14:16:29.892Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1",
++        "o2"
++      ],
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178"
++    },
++    {
++      "at": "2026-11-11T14:16:44.301Z",
++      "event": "state",
++      "from": "open",
++      "to": "proven",
++      "subject": "sha256:e949043e08e3ae956fc897a85c724affb9af53d14db4fbfe5ba8026dd71d6df2"
++    }
++  ]
++}
+diff --git a/boltons/iterutils.py b/boltons/iterutils.py
+index f63cda5..f570488 100644
+--- a/boltons/iterutils.py
++++ b/boltons/iterutils.py
+@@ -1065,7 +1065,7 @@ def flatten(iterable):
+     return list(flatten_iter(iterable))
+ 
+ 
+-def same(iterable, ref=_UNSET):
++def same(iterable, ref=_UNSET, key=None):
+     """``same()`` returns ``True`` when all values in *iterable* are
+     equal to one another, or optionally a reference value,
+     *ref*. Similar to :func:`all` and :func:`any` in that it evaluates
+@@ -1085,8 +1085,19 @@ def same(iterable, ref=_UNSET):
+     >>> same([[], []], ref='test')
+     False
+ 
++    If *key* is given, values are compared by ``key(value)`` instead,
++    like :func:`one`, :func:`first`, and :func:`unique`. A *ref* is then
++    compared with those keys directly.
++
++    >>> same(['a', 'A'], key=str.lower)
++    True
++    >>> same([1, 3, 5], ref=1, key=lambda x: x % 2)
++    True
++
+     """
+     iterator = iter(iterable)
++    if key is not None:
++        iterator = map(key, iterator)
+     if ref is _UNSET:
+         ref = next(iterator, ref)
+     return all(val == ref for val in iterator)
+diff --git a/tests/test_iterutils.py b/tests/test_iterutils.py
+index e3d0695..5e94ac9 100644
+--- a/tests/test_iterutils.py
++++ b/tests/test_iterutils.py
+@@ -780,3 +780,20 @@ def test_frange_xfrange_zero_step():
+         frange(10, step=0)
+     with pytest.raises(ValueError):
+         list(xfrange(10, step=0))
++
++
++def test_same_key():
++    from boltons.iterutils import same
++
++    assert same(['a', 'A', 'a'], key=str.lower)
++    assert not same(['a', 'b'], key=str.lower)
++    assert same([1, 3, 5], ref=1, key=lambda x: x % 2)
++    assert not same([1, 3, 4], ref=1, key=lambda x: x % 2)
++    # ref is compared with the keys, not with the original values
++    assert not same(['a', 'A'], ref='A', key=str.lower)
++    assert same([], key=str.lower)
++    # the default is unchanged
++    assert not same(['a', 'A'])
++    calls = []
++    assert same(iter([2, 4]), key=lambda x: calls.append(x) or x % 2)
++    assert calls == [2, 4]

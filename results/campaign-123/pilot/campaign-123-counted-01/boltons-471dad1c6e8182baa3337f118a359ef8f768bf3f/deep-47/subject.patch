@@ -1,0 +1,89 @@
+diff --git a/.proof/packets/p-bed60327.json b/.proof/packets/p-bed60327.json
+new file mode 100644
+index 0000000..a6feb17
+--- /dev/null
++++ b/.proof/packets/p-bed60327.json
+@@ -0,0 +1,70 @@
++{
++  "pocp": 1,
++  "id": "p-bed60327",
++  "intent": "Change to boltons/listutils.py",
++  "touches": [
++    "boltons/listutils.py"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:runtime-suite"
++    }
++  ],
++  "state": "proven",
++  "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "policy_repo": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "opened_at": "2026-11-11T13:54:53.347Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:0bf5c05f2d41502b76f6e69191cdda4eb04f147233f6713a218940dfc63b653b",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T13:54:53.728Z",
++      "duration_ms": 2204,
++      "stdout_sha256": "8476989281e77e9673474e16f6ca9dafc2d4de61488eb524cfd30345bc0b453b",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-f9d154bb",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T13:54:53.347Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T13:54:53.347Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1"
++      ],
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178"
++    },
++    {
++      "at": "2026-11-11T13:54:56.031Z",
++      "event": "state",
++      "from": "open",
++      "to": "proven",
++      "subject": "sha256:0bf5c05f2d41502b76f6e69191cdda4eb04f147233f6713a218940dfc63b653b"
++    }
++  ]
++}
+diff --git a/boltons/listutils.py b/boltons/listutils.py
+index ffa9d94..15b14a3 100644
+--- a/boltons/listutils.py
++++ b/boltons/listutils.py
+@@ -121,7 +121,7 @@ class BarrelList(list):
+     def _balance_list(self, list_idx):
+         if list_idx < 0:
+             list_idx += len(self.lists)
+-        cur_list, len_self = self.lists[list_idx], len(self)
++        cur_list = self.lists[list_idx]
+         size_limit = self._cur_size_limit
+         if len(cur_list) > size_limit:
+             half_limit = size_limit // 2

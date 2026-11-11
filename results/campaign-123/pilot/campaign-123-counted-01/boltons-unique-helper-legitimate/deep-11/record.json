@@ -1,0 +1,151 @@
+{
+  "case_id": "boltons-unique-helper-legitimate",
+  "set": "B",
+  "split": "development",
+  "regime": "focused",
+  "target": "boltons",
+  "truth": "legitimate",
+  "cohort": "paired-control",
+  "category": "preserving_test_or_setup",
+  "cell": "deep-11",
+  "mode": "deep",
+  "configured_seed": 11,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "70e29bbd059b87c820f8b9befc3ad0e262e93ebe",
+  "head": "565d4f9675ac110c239d6d0f48aed8abd762f22a",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 0,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "accepted",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": true,
+    "approval_needs": [],
+    "approval_only": null,
+    "findings": [],
+    "guards": [
+      {
+        "verdict": "passed",
+        "effective_seed": 1201375022,
+        "detection": "kept",
+        "mutants": [
+          {
+            "file": "bench_support/assertions.py",
+            "line": 3,
+            "operator": "eq",
+            "before": "assert json.loads(json.dumps(observedValue)) == expected",
+            "after": "assert json.loads(json.dumps(observedValue)) != expected",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/listutils.py",
+            "line": 83,
+            "operator": "plus",
+            "before": ">>> blist[slice_idx:slice_idx + 2]",
+            "after": ">>> blist[slice_idx:slice_idx - 2]",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/listutils.py",
+            "line": 82,
+            "operator": "zero-one",
+            "before": ">>> slice_idx = blist.lists[0][-1]",
+            "after": ">>> slice_idx = blist.lists[1][-1]",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/namedutils.py",
+            "line": 164,
+            "operator": "eq",
+            "before": "if not name or not all(c.isalnum() or c == '_' for c in name):",
+            "after": "if not name or not all(c.isalnum() or c != '_' for c in name):",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/funcutils.py",
+            "line": 102,
+            "operator": "plus",
+            "before": "result = '(' + ', '.join(specs) + ')'",
+            "after": "result = '(' + ', '.join(specs) - ')'",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/socketutils.py",
+            "line": 659,
+            "operator": "eq",
+            "before": "self._msgsize_maxsize = len(str(maxsize)) + 1  # len(str()) == log10",
+            "after": "self._msgsize_maxsize = len(str(maxsize)) + 1  # len(str()) != log10",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/ioutils.py",
+            "line": 579,
+            "operator": "lt",
+            "before": "while amt > 0 and self._index < len(self._fileobjs):",
+            "after": "while amt > 0 and self._index >= len(self._fileobjs):",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/setutils.py",
+            "line": 441,
+            "operator": "zero-one",
+            "before": "stop = max(len(self) + stop, 0)",
+            "after": "stop = max(len(self) + stop, 1)",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/mathutils.py",
+            "line": 179,
+            "operator": "minus",
+            "before": "return bool((1 << (self.len - k - 1)) & self.val)",
+            "after": "return bool((1 << (self.len - k + 1)) & self.val)",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/ioutils.py",
+            "line": 446,
+            "operator": "zero-one",
+            "before": "if pos < 0:",
+            "after": "if pos < 1:",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 12.802
+}

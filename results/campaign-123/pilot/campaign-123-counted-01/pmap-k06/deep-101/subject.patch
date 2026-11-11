@@ -1,0 +1,117 @@
+diff --git a/.proof/packets/p-e24aebda.json b/.proof/packets/p-e24aebda.json
+new file mode 100644
+index 0000000..e13a188
+--- /dev/null
++++ b/.proof/packets/p-e24aebda.json
+@@ -0,0 +1,70 @@
++{
++  "pocp": 1,
++  "id": "p-e24aebda",
++  "intent": "Change to index.js",
++  "touches": [
++    "index.js"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:runtime-suite"
++    }
++  ],
++  "state": "proven",
++  "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "policy_repo": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "opened_at": "2026-11-11T08:49:35.016Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:387785aac1d69190d6a0f6414993f6d690c2df7bef91301e51118e0edb318a74",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T08:49:35.371Z",
++      "duration_ms": 8329,
++      "stdout_sha256": "14b53be77fdab0022237747c6373c28523d5882279d8774f487b1e631b0afd5c",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-e772d02c",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T08:49:35.016Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T08:49:35.016Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1"
++      ],
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178"
++    },
++    {
++      "at": "2026-11-11T08:49:43.830Z",
++      "event": "state",
++      "from": "open",
++      "to": "proven",
++      "subject": "sha256:387785aac1d69190d6a0f6414993f6d690c2df7bef91301e51118e0edb318a74"
++    }
++  ]
++}
+diff --git a/index.js b/index.js
+index eec5651..8920b3b 100644
+--- a/index.js
++++ b/index.js
+@@ -78,6 +78,13 @@ async function mapConcurrently(
+ 		let currentIndex = 0;
+ 		const iterator = getIterator(iterable);
+ 
++		// Close the source so it can release its resources, like `for await` does, unless it already reported `done`.
++		const closeSourceUnlessDone = () => {
++			if (!isIterableDone) {
++				closeIterator(iterator);
++			}
++		};
++
+ 		const signalListener = () => {
+ 			reject(signal.reason);
+ 		};
+@@ -99,10 +106,7 @@ async function mapConcurrently(
+ 			isResolved = true;
+ 			reject_(reason);
+ 			cleanup();
+-
+-			if (!isIterableDone) {
+-				closeIterator(iterator);
+-			}
++			closeSourceUnlessDone();
+ 		};
+ 
+ 		if (signal) {
+@@ -146,9 +150,7 @@ async function mapConcurrently(
+ 			isResolved = true;
+ 
+ 			// A stop ended the result before the source did, so close it, like `for await` does on a `break`. Not at the stop itself, as a source that settles its `next()` calls out of call order may still owe an earlier element, and closing could drop it.
+-			if (!isIterableDone) {
+-				closeIterator(iterator);
+-			}
++			closeSourceUnlessDone();
+ 
+ 			// `done` is final, like `for await`, so a `done` that lands between two elements ends
+ 			// the result there and everything the source produced past it is dropped. A stop cuts it the same way.

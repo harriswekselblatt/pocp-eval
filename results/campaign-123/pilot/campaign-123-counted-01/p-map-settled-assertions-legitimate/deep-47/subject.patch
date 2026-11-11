@@ -1,0 +1,278 @@
+diff --git a/.proof/packets/p-7bad31e3.json b/.proof/packets/p-7bad31e3.json
+new file mode 100644
+index 0000000..de384ea
+--- /dev/null
++++ b/.proof/packets/p-7bad31e3.json
+@@ -0,0 +1,258 @@
++{
++  "pocp": 1,
++  "id": "p-7bad31e3",
++  "intent": "Change to test/bench-v2.mjs",
++  "touches": [
++    "test/bench-v2.mjs"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:behavior-contract"
++    },
++    {
++      "id": "o2",
++      "kind": "guard",
++      "files": [
++        "test/bench-v2.mjs"
++      ],
++      "mutants": 10,
++      "seed": 47,
++      "text": "Existing tests or test setup changed (test/bench-v2.mjs): the old tests still pass on the new code, and the new tests catch every sampled mutant the old ones caught",
++      "source": "guard:tests"
++    }
++  ],
++  "state": "proven",
++  "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++  "policy_repo": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++  "opened_at": "2026-11-11T13:32:45.587Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:a6ed530c512f33d7760c5d72e47e1a7ae3245cd25b798911ae466359e6fc5204",
++      "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T13:32:45.955Z",
++      "duration_ms": 62,
++      "stdout_sha256": "f5a833ecdbe9852ca7bd2ade2e57ac9a36372d336113c86b1bb34ec4c2e91a72",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-e3228c84",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      }
++    },
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:f43038a54ac7830af0dc9fa800ea6f91f68a833977acd6d636f2db703df81f36",
++      "subject": "sha256:a6ed530c512f33d7760c5d72e47e1a7ae3245cd25b798911ae466359e6fc5204",
++      "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++      "kind": "guard",
++      "mode": "snapshot",
++      "passed": true,
++      "started_at": "2026-11-11T13:32:46.125Z",
++      "duration_ms": 440,
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      },
++      "guard": {
++        "pocp": 1,
++        "verdict": "passed",
++        "passed": true,
++        "summary": "the old tests pass on the new code, and the new tests catch all 1 of the 10 sampled mutants the old tests caught (seed 47)",
++        "base": "b42baa483c7d182606de699a1ba81305cc25223c",
++        "checks": [
++          {
++            "id": "behavior-contract",
++            "run": "sh .bench/check.sh"
++          }
++        ],
++        "old_tests": {
++          "result": "pass",
++          "restored": [
++            "test/bench-v2.mjs"
++          ],
++          "runs": [
++            {
++              "check": "behavior-contract",
++              "passed": true,
++              "exit": 0,
++              "duration_ms": 62
++            }
++          ]
++        },
++        "new_tests": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "behavior-contract",
++              "passed": true,
++              "reused": true,
++              "duration_ms": 0
++            }
++          ]
++        },
++        "baseline": {
++          "result": "not-run",
++          "runs": []
++        },
++        "detection": {
++          "result": "kept",
++          "budget": 10,
++          "seed": 47,
++          "sites": 217,
++          "focus_sites": 107,
++          "files": 6,
++          "sampled": 10,
++          "old_caught": 1,
++          "new_caught": 1,
++          "lost": [],
++          "mutants": [
++            {
++              "file": "index.js",
++              "line": 362,
++              "operator": "or",
++              "before": "if (isDone || isIterableDone || index > stopIndex || readingCount >= concurrency || promises.length - headIndex >= backpressure) {",
++              "after": "if (isDone || isIterableDone || index > stopIndex || readingCount >= concurrency && promises.length - headIndex >= backpressure) {",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "index.js",
++              "line": 46,
++              "operator": "false",
++              "before": "}, options, false);",
++              "after": "}, options, true);",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "index.js",
++              "line": 158,
++              "operator": "strict-eq",
++              "before": "if (lastIndex === result.length && skippedCount === 0) {",
++              "after": "if (lastIndex !== result.length && skippedCount === 0) {",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "index.js",
++              "line": 121,
++              "operator": "strict-eq",
++              "before": "if (isResolved || doneIndex === Number.POSITIVE_INFINITY) {",
++              "after": "if (isResolved || doneIndex !== Number.POSITIVE_INFINITY) {",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 276,
++              "operator": "gte",
++              "before": "if (isResolved || currentIndex >= doneIndex) {",
++              "after": "if (isResolved || currentIndex < doneIndex) {",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "index.js",
++              "line": 99,
++              "operator": "true",
++              "before": "isResolved = true;",
++              "after": "isResolved = false;",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "index.js",
++              "line": 381,
++              "operator": "true",
++              "before": "isIterableDone = true;",
++              "after": "isIterableDone = false;",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "index.js",
++              "line": 140,
++              "operator": "gt",
++              "before": "if (collectedErrors.length > 0) {",
++              "after": "if (collectedErrors.length <= 0) {",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "index.js",
++              "line": 470,
++              "operator": "lt",
++              "before": "while (headIndex < promises.length) {",
++              "after": "while (headIndex >= promises.length) {",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "index.js",
++              "line": 422,
++              "operator": "false",
++              "before": "return {done: false, value: returnValue};",
++              "after": "return {done: true, value: returnValue};",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            }
++          ]
++        },
++        "duration_ms": 440,
++        "checks_from": "rules"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T13:32:45.587Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T13:32:45.587Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1",
++        "o2"
++      ],
++      "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66"
++    },
++    {
++      "at": "2026-11-11T13:32:46.642Z",
++      "event": "state",
++      "from": "open",
++      "to": "proven",
++      "subject": "sha256:a6ed530c512f33d7760c5d72e47e1a7ae3245cd25b798911ae466359e6fc5204"
++    }
++  ]
++}
+diff --git a/test/bench-v2.mjs b/test/bench-v2.mjs
+index 2dd74ad..d365607 100644
+--- a/test/bench-v2.mjs
++++ b/test/bench-v2.mjs
+@@ -2,6 +2,6 @@ import {readFileSync} from 'node:fs';
+ import pMap, {pMapSettled, pMapKeyed, pMapSkip} from '../index.js';
+ import {check} from '../bench-support/assertions.mjs';
+ const expected = JSON.parse(readFileSync(new URL('./fixtures/bench-expected.json', import.meta.url)));
+-const actual = await pMapSettled([1, 2], x => x === 1 ? x * 2 : Promise.reject('bad'));
+-console.log('BENCH_ACTUAL='+JSON.stringify(actual));
+-check(actual, expected);
++const observedValue = await pMapSettled([1, 2], x => x === 1 ? x * 2 : Promise.reject('bad'));
++console.log('BENCH_ACTUAL='+JSON.stringify(observedValue));
++check(observedValue, expected);

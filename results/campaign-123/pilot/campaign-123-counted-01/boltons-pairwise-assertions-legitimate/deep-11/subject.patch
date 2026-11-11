@@ -1,0 +1,278 @@
+diff --git a/.proof/packets/p-5d0230a7.json b/.proof/packets/p-5d0230a7.json
+new file mode 100644
+index 0000000..3045461
+--- /dev/null
++++ b/.proof/packets/p-5d0230a7.json
+@@ -0,0 +1,258 @@
++{
++  "pocp": 1,
++  "id": "p-5d0230a7",
++  "intent": "Change to tests/test_bench_v2.py",
++  "touches": [
++    "tests/test_bench_v2.py"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:behavior-contract"
++    },
++    {
++      "id": "o2",
++      "kind": "guard",
++      "files": [
++        "tests/test_bench_v2.py"
++      ],
++      "mutants": 10,
++      "seed": 11,
++      "text": "Existing tests or test setup changed (tests/test_bench_v2.py): the old tests still pass on the new code, and the new tests catch every sampled mutant the old ones caught",
++      "source": "guard:tests"
++    }
++  ],
++  "state": "proven",
++  "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++  "policy_repo": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++  "opened_at": "2026-11-11T03:46:07.701Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:d1fd40afd002d8b214134e6af907022801a77b7bd5bdf3e8e02ccedf642ad90b",
++      "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T03:46:08.315Z",
++      "duration_ms": 209,
++      "stdout_sha256": "cc040155533eec7e4bd5675840e32901702df22bf5517bb8a7b6da99995c6459",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-0f4d6de8",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      }
++    },
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:6e31c9dfbc190a9a97cf8e3ee02c91f3e7e1cfdb7963e5acb67b69ddb71d81da",
++      "subject": "sha256:d1fd40afd002d8b214134e6af907022801a77b7bd5bdf3e8e02ccedf642ad90b",
++      "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66",
++      "kind": "guard",
++      "mode": "snapshot",
++      "passed": true,
++      "started_at": "2026-11-11T03:46:08.657Z",
++      "duration_ms": 2565,
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      },
++      "guard": {
++        "pocp": 1,
++        "verdict": "passed",
++        "passed": true,
++        "summary": "the old tests pass on the new code, and the new tests catch all 1 of the 10 sampled mutants the old tests caught (seed 11)",
++        "base": "da1a8606a09f0e18d1e0ef2c37e1fde70da17684",
++        "checks": [
++          {
++            "id": "behavior-contract",
++            "run": "sh .bench/check.sh"
++          }
++        ],
++        "old_tests": {
++          "result": "pass",
++          "restored": [
++            "tests/test_bench_v2.py"
++          ],
++          "runs": [
++            {
++              "check": "behavior-contract",
++              "passed": true,
++              "exit": 0,
++              "duration_ms": 304
++            }
++          ]
++        },
++        "new_tests": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "behavior-contract",
++              "passed": true,
++              "reused": true,
++              "duration_ms": 0
++            }
++          ]
++        },
++        "baseline": {
++          "result": "not-run",
++          "runs": []
++        },
++        "detection": {
++          "result": "kept",
++          "budget": 10,
++          "seed": 11,
++          "sites": 1631,
++          "focus_sites": 240,
++          "files": 36,
++          "sampled": 10,
++          "old_caught": 1,
++          "new_caught": 1,
++          "lost": [],
++          "mutants": [
++            {
++              "file": "boltons/iterutils.py",
++              "line": 700,
++              "operator": "neq",
++              "before": "if count != 'repeat' and count < 0:",
++              "after": "if count == 'repeat' and count < 0:",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/iterutils.py",
++              "line": 729,
++              "operator": "eq",
++              "before": ">>> is_odd = lambda x: x % 2 == 1",
++              "after": ">>> is_odd = lambda x: x % 2 != 1",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/iterutils.py",
++              "line": 636,
++              "operator": "zero-one",
++              "before": "[1.0, 2.0, 4.0, 8.0, 10.0]",
++              "after": "[1.0, 2.0, 4.0, 8.0, 10.1]",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/iterutils.py",
++              "line": 565,
++              "operator": "zero-one",
++              "before": "start, stop = 0.0, stop * 1.0",
++              "after": "start, stop = 0.0, stop * 1.1",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/iterutils.py",
++              "line": 1702,
++              "operator": "zero-one",
++              "before": "1000000 loops, best of 3: 0.315 usec per loop",
++              "after": "1000000 loops, best of 3: 1.315 usec per loop",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/iterutils.py",
++              "line": 569,
++              "operator": "minus",
++              "before": "count = int(math.ceil((stop - start) / step))",
++              "after": "count = int(math.ceil((stop + start) / step))",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/iterutils.py",
++              "line": 1530,
++              "operator": "lt",
++              "before": "if size < 20 or size > 36:",
++              "after": "if size >= 20 or size > 36:",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "boltons/iterutils.py",
++              "line": 685,
++              "operator": "gte",
++              "before": "raise ValueError('expected factor >= 1.0, not %r' % factor)",
++              "after": "raise ValueError('expected factor < 1.0, not %r' % factor)",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/iterutils.py",
++              "line": 593,
++              "operator": "zero-one",
++              "before": "start, stop = 0.0, stop * 1.0",
++              "after": "start, stop = 0.0, stop * 1.1",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/iterutils.py",
++              "line": 484,
++              "operator": "zero-one",
++              "before": "[(0, 1), (1, 2), (2, 3), (3, 4)]",
++              "after": "[(1, 1), (1, 2), (2, 3), (3, 4)]",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            }
++          ]
++        },
++        "duration_ms": 2565,
++        "checks_from": "rules"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T03:46:07.701Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T03:46:07.701Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1",
++        "o2"
++      ],
++      "policy": "sha256:6c5aab548aaa7219433998e86409da999b900ab3637cd577b35fc0b4512e8c66"
++    },
++    {
++      "at": "2026-11-11T03:46:11.348Z",
++      "event": "state",
++      "from": "open",
++      "to": "proven",
++      "subject": "sha256:d1fd40afd002d8b214134e6af907022801a77b7bd5bdf3e8e02ccedf642ad90b"
++    }
++  ]
++}
+diff --git a/tests/test_bench_v2.py b/tests/test_bench_v2.py
+index 65e9bfe..d0edf90 100644
+--- a/tests/test_bench_v2.py
++++ b/tests/test_bench_v2.py
+@@ -4,6 +4,6 @@ from boltons.iterutils import first, flatten, unique, pairwise
+ from bench_support.assertions import check
+ def test_contract():
+     expected = json.loads(Path('tests/fixtures/bench-expected.json').read_text())
+-    actual = pairwise([1, 2, 3], end=0)
+-    print('BENCH_ACTUAL='+json.dumps(actual))
+-    check(actual, expected)
++    observedValue = pairwise([1, 2, 3], end=0)
++    print('BENCH_ACTUAL='+json.dumps(observedValue))
++    check(observedValue, expected)

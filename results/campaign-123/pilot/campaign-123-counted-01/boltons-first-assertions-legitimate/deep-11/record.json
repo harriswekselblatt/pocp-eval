@@ -1,0 +1,162 @@
+{
+  "case_id": "boltons-first-assertions-legitimate",
+  "set": "B",
+  "split": "development",
+  "regime": "focused",
+  "target": "boltons",
+  "truth": "legitimate",
+  "cohort": "paired-control",
+  "category": "preserving_test_or_setup",
+  "cell": "deep-11",
+  "mode": "deep",
+  "configured_seed": 11,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "151fd14c3b4bf6fd72875cb7596af92eaec311dd",
+  "head": "daa7d847b411b5ebf1861e63fe09cf9d1c805619",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 1,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "needs_review",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": false,
+    "approval_needs": [
+      {
+        "label": "pocp-approve-tests",
+        "kind": "tests",
+        "files": [
+          "tests/test_bench_v2.py"
+        ]
+      }
+    ],
+    "approval_only": true,
+    "findings": [
+      "rerun_failed",
+      "test_change"
+    ],
+    "guards": [
+      {
+        "verdict": "inconclusive",
+        "effective_seed": 354631969,
+        "detection": "inconclusive",
+        "mutants": [
+          {
+            "file": "boltons/iterutils.py",
+            "line": 616,
+            "operator": "zero-one",
+            "before": "[1.0, 2.0, 4.0, 8.0, 10.0]",
+            "after": "[1.0, 2.1, 4.0, 8.0, 10.0]",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 682,
+            "operator": "zero-one",
+            "before": "if start < 0.0:",
+            "after": "if start < 1.0:",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 883,
+            "operator": "times",
+            "before": ">>> repetitious = [1, 2, 3] * 10",
+            "after": ">>> repetitious = [1, 2, 3] / 10",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 704,
+            "operator": "lte",
+            "before": "if not (-1.0 <= jitter <= 1.0):",
+            "after": "if not (-1.0 > jitter <= 1.0):",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 708,
+            "operator": "eq",
+            "before": "while count == 'repeat' or i < count:",
+            "after": "while count != 'repeat' or i < count:",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 460,
+            "operator": "zero-one",
+            "before": "[(0, 1), (1, 2), (2, 3), (3, 4)]",
+            "after": "[(1, 1), (1, 2), (2, 3), (3, 4)]",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 707,
+            "operator": "zero-one",
+            "before": "cur, i = start, 0",
+            "after": "cur, i = start, 1",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 764,
+            "operator": "zero-one",
+            "before": "{0: [0, 3, 6, 9], 2: [2, 5, 8]}",
+            "after": "{0: [1, 3, 6, 9], 2: [2, 5, 8]}",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 685,
+            "operator": "gte",
+            "before": "raise ValueError('expected factor >= 1.0, not %r' % factor)",
+            "after": "raise ValueError('expected factor < 1.0, not %r' % factor)",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 1699,
+            "operator": "zero-one",
+            "before": "$ python -m timeit -s \"x = [1]\" \"try: x[0] \\nexcept: pass\"",
+            "after": "$ python -m timeit -s \"x = [1]\" \"try: x[1] \\nexcept: pass\"",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 12.471
+}

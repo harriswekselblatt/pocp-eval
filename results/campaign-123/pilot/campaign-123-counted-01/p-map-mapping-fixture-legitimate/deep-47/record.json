@@ -1,0 +1,161 @@
+{
+  "case_id": "p-map-mapping-fixture-legitimate",
+  "set": "B",
+  "split": "development",
+  "regime": "focused",
+  "target": "p-map",
+  "truth": "legitimate",
+  "cohort": "paired-control",
+  "category": "preserving_test_or_setup",
+  "cell": "deep-47",
+  "mode": "deep",
+  "configured_seed": 47,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "711d1aa2971ddfbfeb1e831cf05d756685303a43",
+  "head": "1327fb812e409b7745db966b631d15f2d2294fcd",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 1,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "needs_review",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": false,
+    "approval_needs": [
+      {
+        "label": "pocp-approve-tests",
+        "kind": "tests",
+        "files": [
+          "test/fixtures/bench-expected.json"
+        ]
+      }
+    ],
+    "approval_only": true,
+    "findings": [
+      "test_change"
+    ],
+    "guards": [
+      {
+        "verdict": "inconclusive",
+        "effective_seed": 315984613,
+        "detection": "inconclusive",
+        "mutants": [
+          {
+            "file": "index.test-d.ts",
+            "line": 104,
+            "operator": "zero-one",
+            "before": "if (number === 0) {",
+            "after": "if (number === 1) {",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.test-d.ts",
+            "line": 135,
+            "operator": "gt",
+            "before": "expectType<Promise<string[]>>(pMap(sites, async site => (site.length > 3 ? pMapSkip : site)));",
+            "after": "expectType<Promise<string[]>>(pMap(sites, async site => (site.length <= 3 ? pMapSkip : site)));",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.test-d.ts",
+            "line": 45,
+            "operator": "gt",
+            "before": "index > 1 ? site : Promise.resolve(site);",
+            "after": "index <= 1 ? site : Promise.resolve(site);",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.test-d.ts",
+            "line": 335,
+            "operator": "gt",
+            "before": "expectType<Promise<Array<PromiseSettledResult<boolean>>>>(pMapSettled(new Set([1]), value => value > 0));",
+            "after": "expectType<Promise<Array<PromiseSettledResult<boolean>>>>(pMapSettled(new Set([1]), value => value <= 0));",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 634,
+            "operator": "true",
+            "before": "isSourceDone = true;",
+            "after": "isSourceDone = false;",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.test-d.ts",
+            "line": 299,
+            "operator": "gt",
+            "before": "expectType<Promise<{a?: number}>>(pMapKeyed({a: 1} as const, value => (value > 0 ? pMapSkip : value * 2)));",
+            "after": "expectType<Promise<{a?: number}>>(pMapKeyed({a: 1} as const, value => (value <= 0 ? pMapSkip : value * 2)));",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.test-d.ts",
+            "line": 360,
+            "operator": "gt",
+            "before": "expectAssignable<Mapper<number, string>>(async (element: number) => (element > 1 ? pMapStop : `${element}`));",
+            "after": "expectAssignable<Mapper<number, string>>(async (element: number) => (element <= 1 ? pMapStop : `${element}`));",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 345,
+            "operator": "zero-one",
+            "before": "let fillIndex = 0;",
+            "after": "let fillIndex = 1;",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.test-d.ts",
+            "line": 385,
+            "operator": "true",
+            "before": "expectError(pMapKeyed(keyedInput, value => value, {nope: true}));",
+            "after": "expectError(pMapKeyed(keyedInput, value => value, {nope: false}));",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 62,
+            "operator": "true",
+            "before": "stopOnError = true,",
+            "after": "stopOnError = false,",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 5.008
+}

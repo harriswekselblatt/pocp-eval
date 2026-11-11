@@ -1,0 +1,131 @@
+diff --git a/.proof/packets/p-41239c51.json b/.proof/packets/p-41239c51.json
+new file mode 100644
+index 0000000..1694564
+--- /dev/null
++++ b/.proof/packets/p-41239c51.json
+@@ -0,0 +1,70 @@
++{
++  "pocp": 1,
++  "id": "p-41239c51",
++  "intent": "Change to gjson.go",
++  "touches": [
++    "gjson.go"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:runtime-suite"
++    }
++  ],
++  "state": "proven",
++  "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "policy_repo": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "opened_at": "2026-11-11T16:00:44.842Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:6d4e49d7e389bc5d35ebc858c56a2891ec8d5fdb4c729656e13ffe31d3fa1ffe",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T16:00:45.274Z",
++      "duration_ms": 10666,
++      "stdout_sha256": "a4800d37cb967f91e879a272f5dad577c1ac0a84237e26c3da231640ef969804",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-c93cee6e",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": "64eb99dde8e30a549ef1b6269effa5cb0efd6c9d507f42cdeab0f1fa2ac09c4a"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T16:00:44.842Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T16:00:44.842Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1"
++      ],
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178"
++    },
++    {
++      "at": "2026-11-11T16:00:56.058Z",
++      "event": "state",
++      "from": "open",
++      "to": "proven",
++      "subject": "sha256:6d4e49d7e389bc5d35ebc858c56a2891ec8d5fdb4c729656e13ffe31d3fa1ffe"
++    }
++  ]
++}
+diff --git a/gjson.go b/gjson.go
+index 3fb59c2..85e6bc7 100644
+--- a/gjson.go
++++ b/gjson.go
+@@ -118,7 +118,7 @@ func (t Result) Bool() bool {
+ 	case True:
+ 		return true
+ 	case String:
+-		b, _ := strconv.ParseBool(strings.ToLower(t.Str))
++		b, _ := parseBoolString(t.Str)
+ 		return b
+ 	case Number:
+ 		return t.Num != 0
+@@ -1407,11 +1407,8 @@ func falseish(t Result) bool {
+ 	case False:
+ 		return true
+ 	case String:
+-		b, err := strconv.ParseBool(strings.ToLower(t.Str))
+-		if err != nil {
+-			return false
+-		}
+-		return !b
++		b, ok := parseBoolString(t.Str)
++		return ok && !b
+ 	case Number:
+ 		return t.Num == 0
+ 	default:
+@@ -1424,11 +1421,8 @@ func trueish(t Result) bool {
+ 	case True:
+ 		return true
+ 	case String:
+-		b, err := strconv.ParseBool(strings.ToLower(t.Str))
+-		if err != nil {
+-			return false
+-		}
+-		return b
++		b, ok := parseBoolString(t.Str)
++		return ok && b
+ 	case Number:
+ 		return t.Num != 0
+ 	default:
+@@ -1436,6 +1430,13 @@ func trueish(t Result) bool {
+ 	}
+ }
+ 
++// parseBoolString reads a string as a bool like strconv.ParseBool, ignoring
++// case. ok is false when the string is not a bool.
++func parseBoolString(s string) (value, ok bool) {
++	b, err := strconv.ParseBool(strings.ToLower(s))
++	return b, err == nil
++}
++
+ func nullish(t Result) bool {
+ 	return t.Type == Null
+ }

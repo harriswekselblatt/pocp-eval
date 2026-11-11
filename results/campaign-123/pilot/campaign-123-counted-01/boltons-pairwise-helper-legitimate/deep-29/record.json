@@ -1,0 +1,151 @@
+{
+  "case_id": "boltons-pairwise-helper-legitimate",
+  "set": "B",
+  "split": "development",
+  "regime": "focused",
+  "target": "boltons",
+  "truth": "legitimate",
+  "cohort": "paired-control",
+  "category": "preserving_test_or_setup",
+  "cell": "deep-29",
+  "mode": "deep",
+  "configured_seed": 29,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "7d87c606d66f61bbd9de940c7dafa8c9353a00f5",
+  "head": "2c79605ca84dd71c597b95845b922619451fc319",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 0,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "accepted",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": true,
+    "approval_needs": [],
+    "approval_only": null,
+    "findings": [],
+    "guards": [
+      {
+        "verdict": "passed",
+        "effective_seed": 697992356,
+        "detection": "kept",
+        "mutants": [
+          {
+            "file": "bench_support/assertions.py",
+            "line": 3,
+            "operator": "eq",
+            "before": "assert json.loads(json.dumps(observedValue)) == expected",
+            "after": "assert json.loads(json.dumps(observedValue)) != expected",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/statsutils.py",
+            "line": 165,
+            "operator": "zero-one",
+            "before": "statistical measure is not defined. 0.0 by default, but",
+            "after": "statistical measure is not defined. 1.0 by default, but",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/namedutils.py",
+            "line": 89,
+            "operator": "neq",
+            "before": "if len(result) != {num_fields:d}:",
+            "after": "if len(result) == {num_fields:d}:",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 565,
+            "operator": "zero-one",
+            "before": "start, stop = 0.0, stop * 1.0",
+            "after": "start, stop = 1.0, stop * 1.0",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/statsutils.py",
+            "line": 503,
+            "operator": "zero-one",
+            "before": "values between ``0.0`` and ``1.0``, with ``0.0`` representing",
+            "after": "values between ``1.0`` and ``1.0``, with ``0.0`` representing",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 692,
+            "operator": "eq",
+            "before": "if factor == 1.0:",
+            "after": "if factor != 1.0:",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/listutils.py",
+            "line": 404,
+            "operator": "minus",
+            "before": "rel_idx = cur.index(item, max(start - offset, 0), stop - offset)",
+            "after": "rel_idx = cur.index(item, max(start - offset, 0), stop + offset)",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/formatutils.py",
+            "line": 269,
+            "operator": "neq",
+            "before": "elif self.fspec != '':",
+            "after": "elif self.fspec == '':",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/statsutils.py",
+            "line": 445,
+            "operator": "zero-one",
+            "before": "if len(data) > 1 and s_dev > 0:",
+            "after": "if len(data) > 1 and s_dev > 1:",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/socketutils.py",
+            "line": 333,
+            "operator": "neq",
+            "before": "if offset != -1:  # str.find returns -1 when no match found",
+            "after": "if offset == -1:  # str.find returns -1 when no match found",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 13.459
+}

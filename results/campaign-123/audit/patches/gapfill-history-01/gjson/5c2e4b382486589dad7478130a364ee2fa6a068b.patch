@@ -1,0 +1,66 @@
+diff --git a/gjson.go b/gjson.go
+index 787d327..8705ee2 100644
+--- a/gjson.go
++++ b/gjson.go
+@@ -464,11 +464,13 @@ func ParseBytes(json []byte) Result {
+ }
+ 
+ func squash(json string) string {
+-	// expects that the lead character is a '[' or '{' or '('
++	// expects that the lead character is a '[' or '{' or '(' or '"'
+ 	// squash the value, ignoring all nested arrays and objects.
+-	// the first '[' or '{' or '(', has already been read
+-	depth := 1
+-	for i := 1; i < len(json); i++ {
++	var i, depth int
++	if json[0] != '"' {
++		i, depth = 1, 1
++	}
++	for ; i < len(json); i++ {
+ 		if json[i] >= '"' && json[i] <= '}' {
+ 			switch json[i] {
+ 			case '"':
+@@ -495,6 +497,9 @@ func squash(json string) string {
+ 						break
+ 					}
+ 				}
++				if depth == 0 {
++					return json[:i+1]
++				}
+ 			case '{', '[', '(':
+ 				depth++
+ 			case '}', ']', ')':
+@@ -2713,7 +2718,7 @@ func execModifier(json, path string) (pathOut, res string, ok bool) {
+ 			case '{', '[', '"':
+ 				res := Parse(pathOut)
+ 				if res.Exists() {
+-					_, args = parseSquash(pathOut, 0)
++					args = squash(pathOut)
+ 					pathOut = pathOut[len(args):]
+ 					parsedArgs = true
+ 				}
+diff --git a/gjson_test.go b/gjson_test.go
+index bf3ca87..5f2711d 100644
+--- a/gjson_test.go
++++ b/gjson_test.go
+@@ -2023,3 +2023,20 @@ func TestIssue141(t *testing.T) {
+ 	assert(t, Get(json, "data.#.{q}|@ugly").Raw == `[{"q":11},{"q":21},{"q":31}]`)
+ 	assert(t, Get(json, "data.#.q|@ugly").Raw == `[11,21,31]`)
+ }
++
++func TestChainedModifierStringArgs(t *testing.T) {
++	// issue #143
++	AddModifier("push", func(json, arg string) string {
++		json = strings.TrimSpace(json)
++		if len(json) < 2 || !Parse(json).IsArray() {
++			return json
++		}
++		json = strings.TrimSpace(json[1 : len(json)-1])
++		if len(json) == 0 {
++			return "[" + arg + "]"
++		}
++		return "[" + json + "," + arg + "]"
++	})
++	res := Get("[]", `@push:"2"|@push:"3"|@push:{"a":"b","c":["e","f"]}|@push:true|@push:10.23`)
++	assert(t, res.String() == `["2","3",{"a":"b","c":["e","f"]},true,10.23]`)
++}

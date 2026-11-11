@@ -1,0 +1,151 @@
+{
+  "case_id": "boltons-unique-helper-legitimate",
+  "set": "B",
+  "split": "development",
+  "regime": "focused",
+  "target": "boltons",
+  "truth": "legitimate",
+  "cohort": "paired-control",
+  "category": "preserving_test_or_setup",
+  "cell": "deep-29",
+  "mode": "deep",
+  "configured_seed": 29,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "e0b2aa17d42686613405810962787a0d9ad288ad",
+  "head": "edfffefd453e70c42a25041d5d7049881911332d",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 0,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "accepted",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": true,
+    "approval_needs": [],
+    "approval_only": null,
+    "findings": [],
+    "guards": [
+      {
+        "verdict": "passed",
+        "effective_seed": 1287625986,
+        "detection": "kept",
+        "mutants": [
+          {
+            "file": "bench_support/assertions.py",
+            "line": 3,
+            "operator": "eq",
+            "before": "assert json.loads(json.dumps(observedValue)) == expected",
+            "after": "assert json.loads(json.dumps(observedValue)) != expected",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/gcutils.py",
+            "line": 46,
+            "operator": "minus",
+            "before": "- Misbehaving objects (locks, ``__del__()``)",
+            "after": "+ Misbehaving objects (locks, ``__del__()``)",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/timeutils.py",
+            "line": 524,
+            "operator": "gt",
+            "before": "return local_t.tm_isdst > 0",
+            "after": "return local_t.tm_isdst <= 0",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/statsutils.py",
+            "line": 463,
+            "operator": "minus",
+            "before": "c2 = (2 * beta2) - (3 * beta1) - 6",
+            "after": "c2 = (2 * beta2) - (3 * beta1) + 6",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/queueutils.py",
+            "line": 128,
+            "operator": "zero-one",
+            "before": "and *priority* defaults to ``0``. Higher values representing",
+            "after": "and *priority* defaults to ``1``. Higher values representing",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/statsutils.py",
+            "line": 505,
+            "operator": "zero-one",
+            "before": "maximum. ``0.5`` represents the median:",
+            "after": "maximum. ``1.5`` represents the median:",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "misc/table_html_app.py",
+            "line": 17,
+            "operator": "plus",
+            "before": "_CSS_PATH = _CA_PATH + '/common.css'",
+            "after": "_CSS_PATH = _CA_PATH - '/common.css'",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/strutils.py",
+            "line": 1213,
+            "operator": "zero-one",
+            "before": "if isinstance(vals[0], str):",
+            "after": "if isinstance(vals[1], str):",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/cacheutils.py",
+            "line": 656,
+            "operator": "zero-one",
+            "before": "0",
+            "after": "1",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/funcutils.py",
+            "line": 229,
+            "operator": "lte",
+            "before": "def __eq__(self, other): return self >= other and self <= other",
+            "after": "def __eq__(self, other): return self >= other and self > other",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 12.375
+}

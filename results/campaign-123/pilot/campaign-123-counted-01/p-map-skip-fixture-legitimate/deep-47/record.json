@@ -1,0 +1,151 @@
+{
+  "case_id": "p-map-skip-fixture-legitimate",
+  "set": "Acontrol",
+  "split": "holdout",
+  "regime": "focused",
+  "target": "p-map",
+  "truth": "legitimate",
+  "cohort": null,
+  "category": null,
+  "cell": "deep-47",
+  "mode": "deep",
+  "configured_seed": 47,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "5cd9a1dbbb18a5737f9e672807f1024e1470c2c6",
+  "head": "4862a95c55dfbfef4e4f1f3aee9ab4e94a85a2e4",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 0,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "accepted",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": true,
+    "approval_needs": [],
+    "approval_only": null,
+    "findings": [],
+    "guards": [
+      {
+        "verdict": "passed",
+        "effective_seed": 367698266,
+        "detection": "kept",
+        "mutants": [
+          {
+            "file": "index.js",
+            "line": 74,
+            "operator": "false",
+            "before": "let isResolved = false;",
+            "after": "let isResolved = true;",
+            "focus": false,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.d.ts",
+            "line": 114,
+            "operator": "minus",
+            "before": "@param index - Index of the element in the source array.",
+            "after": "@param index + Index of the element in the source array.",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.test-d.ts",
+            "line": 151,
+            "operator": "true",
+            "before": "expectError(pMapIterable(sites, asyncMapper, {backpressure: 2, nope: true}));",
+            "after": "expectError(pMapIterable(sites, asyncMapper, {backpressure: 2, nope: false}));",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "assert-in-range.js",
+            "line": 4,
+            "operator": "zero-one",
+            "before": "export default function assertInRange(t, value, {start = 0, end}) {",
+            "after": "export default function assertInRange(t, value, {start = 1, end}) {",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 146,
+            "operator": "true",
+            "before": "isResolved = true;",
+            "after": "isResolved = false;",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.d.ts",
+            "line": 316,
+            "operator": "strict-eq",
+            "before": "if (posts.status === 'rejected') {",
+            "after": "if (posts.status !== 'rejected') {",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.d.ts",
+            "line": 32,
+            "operator": "true",
+            "before": "@default true",
+            "after": "@default false",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 62,
+            "operator": "true",
+            "before": "stopOnError = true,",
+            "after": "stopOnError = false,",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 184,
+            "operator": "lt",
+            "before": "if (index < doneIndex) {",
+            "after": "if (index >= doneIndex) {",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.test-d.ts",
+            "line": 115,
+            "operator": "zero-one",
+            "before": "expectType<Promise<string[]>>(pMap(sites, async site => (site.length > 0 ? pMapSkip : site)));",
+            "after": "expectType<Promise<string[]>>(pMap(sites, async site => (site.length > 1 ? pMapSkip : site)));",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 7.24
+}

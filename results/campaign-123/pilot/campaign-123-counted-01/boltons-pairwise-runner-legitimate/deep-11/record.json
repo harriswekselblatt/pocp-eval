@@ -1,0 +1,161 @@
+{
+  "case_id": "boltons-pairwise-runner-legitimate",
+  "set": "B",
+  "split": "development",
+  "regime": "focused",
+  "target": "boltons",
+  "truth": "legitimate",
+  "cohort": "paired-control",
+  "category": "preserving_test_or_setup",
+  "cell": "deep-11",
+  "mode": "deep",
+  "configured_seed": 11,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "338c83793b5fa4de28e5eb1ac0b9cc48567e827a",
+  "head": "34a42d8457bd2c34032553bf4b4e4ed8b52200e1",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 1,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "needs_review",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": false,
+    "approval_needs": [
+      {
+        "label": "pocp-approve-tests",
+        "kind": "tests",
+        "files": [
+          ".bench/check.sh"
+        ]
+      }
+    ],
+    "approval_only": true,
+    "findings": [
+      "test_change"
+    ],
+    "guards": [
+      {
+        "verdict": "inconclusive",
+        "effective_seed": 741490955,
+        "detection": "inconclusive",
+        "mutants": [
+          {
+            "file": "boltons/statsutils.py",
+            "line": 418,
+            "operator": "zero-one",
+            "before": "(0.114, -0.114)",
+            "after": "(0.114, -1.114)",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/mboxutils.py",
+            "line": 100,
+            "operator": "zero-one",
+            "before": "self._file.seek(0, 2)",
+            "after": "self._file.seek(1, 2)",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/dictutils.py",
+            "line": 1027,
+            "operator": "eq",
+            "before": "return type(self) == type(other) and self.data == other.data",
+            "after": "return type(self) == type(other) and self.data != other.data",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/statsutils.py",
+            "line": 523,
+            "operator": "eq",
+            "before": "if self.std_dev == 0:",
+            "after": "if self.std_dev != 0:",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/strutils.py",
+            "line": 196,
+            "operator": "eq",
+            "before": "if count == 1:",
+            "after": "if count != 1:",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/namedutils.py",
+            "line": 326,
+            "operator": "plus",
+            "before": "for name in [typename] + field_names:",
+            "after": "for name in [typename] - field_names:",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/strutils.py",
+            "line": 64,
+            "operator": "plus",
+            "before": "_punct_ws_str = string.punctuation + string.whitespace",
+            "after": "_punct_ws_str = string.punctuation - string.whitespace",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/listutils.py",
+            "line": 344,
+            "operator": "plus",
+            "before": "return self._as_list(other) + list(self)",
+            "after": "return self._as_list(other) - list(self)",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 780,
+            "operator": "neq",
+            "before": "if len(key) != src_len:",
+            "after": "if len(key) == src_len:",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/urlutils.py",
+            "line": 1426,
+            "operator": "zero-one",
+            "before": "OrderedMultiDict([(2, 2), (1, 1), (0, 0)])",
+            "after": "OrderedMultiDict([(2, 2), (1, 1), (1, 0)])",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 11.503
+}

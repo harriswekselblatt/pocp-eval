@@ -1,0 +1,151 @@
+{
+  "case_id": "p-map-skip-runner-legitimate",
+  "set": "Acontrol",
+  "split": "holdout",
+  "regime": "focused",
+  "target": "p-map",
+  "truth": "legitimate",
+  "cohort": null,
+  "category": null,
+  "cell": "deep-47",
+  "mode": "deep",
+  "configured_seed": 47,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "efc5a801833b36c9b282716cbc05513e72edbc0c",
+  "head": "aebc4b9859502fa84687825ef7ba41ad83c2d975",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 0,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "accepted",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": true,
+    "approval_needs": [],
+    "approval_only": null,
+    "findings": [],
+    "guards": [
+      {
+        "verdict": "passed",
+        "effective_seed": 649119646,
+        "detection": "kept",
+        "mutants": [
+          {
+            "file": "index.d.ts",
+            "line": 296,
+            "operator": "minus",
+            "before": "@param input - An object or a `Map` whose values are mapped.",
+            "after": "@param input + An object or a `Map` whose values are mapped.",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 158,
+            "operator": "strict-eq",
+            "before": "if (lastIndex === result.length && skippedCount === 0) {",
+            "after": "if (lastIndex !== result.length && skippedCount === 0) {",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.d.ts",
+            "line": 91,
+            "operator": "true",
+            "before": "Default: `true`",
+            "after": "Default: `false`",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 562,
+            "operator": "strict-eq",
+            "before": "if (iterable?.[Symbol.iterator] === undefined && iterable?.[Symbol.asyncIterator] === undefined) {",
+            "after": "if (iterable?.[Symbol.iterator] !== undefined && iterable?.[Symbol.asyncIterator] === undefined) {",
+            "focus": false,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.d.ts",
+            "line": 74,
+            "operator": "minus",
+            "before": "A `backpressure` above `concurrency` also lets `pMapIterable` read ahead: up to `backpressure - concurrency` elements, but no more than `concurrency`, are read ",
+            "after": "A `backpressure` above `concurrency` also lets `pMapIterable` read ahead: up to `backpressure + concurrency` elements, but no more than `concurrency`, are read ",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.test-d.ts",
+            "line": 243,
+            "operator": "false",
+            "before": "expectError(pMapSettledKeyed(keyedInput, value => value, {stopOnError: false}));",
+            "after": "expectError(pMapSettledKeyed(keyedInput, value => value, {stopOnError: true}));",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 226,
+            "operator": "and",
+            "before": "result[index] = isSettled && value !== pMapSkip ? {status: 'fulfilled', value} : value;",
+            "after": "result[index] = isSettled || value !== pMapSkip ? {status: 'fulfilled', value} : value;",
+            "focus": false,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.test-d.ts",
+            "line": 135,
+            "operator": "gt",
+            "before": "expectType<Promise<string[]>>(pMap(sites, async site => (site.length > 3 ? pMapSkip : site)));",
+            "after": "expectType<Promise<string[]>>(pMap(sites, async site => (site.length <= 3 ? pMapSkip : site)));",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 62,
+            "operator": "true",
+            "before": "stopOnError = true,",
+            "after": "stopOnError = false,",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.test-d.ts",
+            "line": 119,
+            "operator": "false",
+            "before": "expectError(pMap(sites, asyncMapper, {preserveOrder: false}));",
+            "after": "expectError(pMap(sites, asyncMapper, {preserveOrder: true}));",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 9.535
+}

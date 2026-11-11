@@ -1,0 +1,19 @@
+{
+  "review_file": "audit/paired-controls-blind.reviewed.json",
+  "sha256": "cac6b1e31e1b59969632e096b8981739aa2ec877eb9a9ebc2adb5d3d00ceca29",
+  "received_utc": "2026-11-10T22:50:33.612171+00:00",
+  "items": 24,
+  "distinct_patch_sha256": 16,
+  "reviewer_ids": [
+    "claude-opus-5-5-blind-2026-11-10"
+  ],
+  "semantic_labels": {
+    "legitimate": 24
+  },
+  "categories": {
+    "preserving_test_or_setup": 24
+  },
+  "patch_hashes_verified": true,
+  "source_packet_fields_unchanged": true,
+  "status": "received and hashed; 24 context cases but 16 unique patch byte sequences; not a public timestamped preregistration"
+}

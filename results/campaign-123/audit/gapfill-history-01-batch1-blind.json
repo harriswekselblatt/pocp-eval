@@ -1,0 +1,463 @@
+[
+  {
+    "id": "boltons-609cabe932a1ea1423b24568644945abb1b8bb84",
+    "repository": "boltons",
+    "draw_order": 74,
+    "parent": "979fa9b613fa8c0a455ae16ea6f2ec91c11ecafe",
+    "commit": "609cabe932a1ea1423b24568644945abb1b8bb84",
+    "title": "fix IndexedSet slicing after removals: keep iter_slice bounds in apparent index space (#423)",
+    "files": [
+      "boltons/setutils.py",
+      "tests/test_setutils.py"
+    ],
+    "churn": 48,
+    "patch": "audit/patches/gapfill-history-01/boltons/609cabe932a1ea1423b24568644945abb1b8bb84.patch",
+    "patch_sha256": "e520baa68915ffce39fdbdce7eb5e46abf225ce5808aa9ad561691173017cb35",
+    "eligibility": "parent and head pinned runtime suites completed green in the gap-fill screen",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "boltons-b5c495bec206741ec25cd82ecc869e0b59bb0d10",
+    "repository": "boltons",
+    "draw_order": 76,
+    "parent": "78e8638e695d78ccc2dc641ef87e38fa51185840",
+    "commit": "b5c495bec206741ec25cd82ecc869e0b59bb0d10",
+    "title": "funcutils: forward target-keyword-only args as keywords in wraps invocations (#445)",
+    "files": [
+      "CHANGELOG.md",
+      "boltons/funcutils.py",
+      "tests/test_funcutils_fb_py3.py"
+    ],
+    "churn": 79,
+    "patch": "audit/patches/gapfill-history-01/boltons/b5c495bec206741ec25cd82ecc869e0b59bb0d10.patch",
+    "patch_sha256": "10b2c34976b444dd617d56fd03ad003b7990b690902253af3faacda7789d92af",
+    "eligibility": "parent and head pinned runtime suites completed green in the gap-fill screen",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "boltons-ec1ff9f6728f5f857402b294c218be731c62af5f",
+    "repository": "boltons",
+    "draw_order": 77,
+    "parent": "b5c495bec206741ec25cd82ecc869e0b59bb0d10",
+    "commit": "ec1ff9f6728f5f857402b294c218be731c62af5f",
+    "title": "Fix issupserset typo in _ComplementSet comparisons (#438)",
+    "files": [
+      "boltons/setutils.py",
+      "tests/test_setutils.py"
+    ],
+    "churn": 10,
+    "patch": "audit/patches/gapfill-history-01/boltons/ec1ff9f6728f5f857402b294c218be731c62af5f.patch",
+    "patch_sha256": "3c6511a26dcb45fec07bf08ef268cf95b21d45ca3c14ae40c007eef47d127362",
+    "eligibility": "parent and head pinned runtime suites completed green in the gap-fill screen",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "boltons-29fa06172259ad97ef31aa1e63b3bbae7d2a3d0c",
+    "repository": "boltons",
+    "draw_order": 78,
+    "parent": "1d525271754ed7aea7f2347ed16ddbcedb1097a3",
+    "commit": "29fa06172259ad97ef31aa1e63b3bbae7d2a3d0c",
+    "title": "bump version to 26.1.1dev",
+    "files": [
+      "boltons/__init__.py"
+    ],
+    "churn": 2,
+    "patch": "audit/patches/gapfill-history-01/boltons/29fa06172259ad97ef31aa1e63b3bbae7d2a3d0c.patch",
+    "patch_sha256": "62ebff483365c102892caeceef73a29ea219199a5df1be456cde49edb563b3bb",
+    "eligibility": "parent and head pinned runtime suites completed green in the gap-fill screen",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "boltons-1e61524a798ea73632029a013a7686036d5c126f",
+    "repository": "boltons",
+    "draw_order": 83,
+    "parent": "55dfe5077bcb5fa76611b5f2a557ea6c442ad87c",
+    "commit": "1e61524a798ea73632029a013a7686036d5c126f",
+    "title": "fix(strutils): stop singularize() mangling words ending in 'ss'",
+    "files": [
+      "boltons/strutils.py",
+      "tests/test_strutils.py"
+    ],
+    "churn": 32,
+    "patch": "audit/patches/gapfill-history-01/boltons/1e61524a798ea73632029a013a7686036d5c126f.patch",
+    "patch_sha256": "509f501d96604c224f0a2ea84a279d739e69ea096a9d735504e63b875645b90d",
+    "eligibility": "parent and head pinned runtime suites completed green in the gap-fill screen",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "boltons-ce60604a463eb2c1f84b7756f38d909f404bd1d2",
+    "repository": "boltons",
+    "draw_order": 87,
+    "parent": "c0d580df13d3d2d3d99a7769828afc7176127d90",
+    "commit": "ce60604a463eb2c1f84b7756f38d909f404bd1d2",
+    "title": "bit more info in docstring",
+    "files": [
+      "boltons/funcutils.py"
+    ],
+    "churn": 5,
+    "patch": "audit/patches/gapfill-history-01/boltons/ce60604a463eb2c1f84b7756f38d909f404bd1d2.patch",
+    "patch_sha256": "90342d9b5fb57a6dcfda6815542e911b6f5586c27897f17452f871a2824ad582",
+    "eligibility": "parent and head pinned runtime suites completed green in the gap-fill screen",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "boltons-673e010d0afabc2f530e8d1f67f0a47c37afa7f4",
+    "repository": "boltons",
+    "draw_order": 88,
+    "parent": "580a9c2d12755d472e534ca3e277e8f7e3ada49e",
+    "commit": "673e010d0afabc2f530e8d1f67f0a47c37afa7f4",
+    "title": "strutils: add ellipsize for word-boundary-aware truncation",
+    "files": [
+      "CHANGELOG.md",
+      "boltons/strutils.py",
+      "tests/test_strutils.py"
+    ],
+    "churn": 108,
+    "patch": "audit/patches/gapfill-history-01/boltons/673e010d0afabc2f530e8d1f67f0a47c37afa7f4.patch",
+    "patch_sha256": "cb9c03878e82972c4bf633d0d66ab87aecd168499b2d45b5fb2078fe65aa364d",
+    "eligibility": "parent and head pinned runtime suites completed green in the gap-fill screen",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "boltons-55dfe5077bcb5fa76611b5f2a557ea6c442ad87c",
+    "repository": "boltons",
+    "draw_order": 94,
+    "parent": "ebc7a8f776debfa33f0b380b57a444bca75a251b",
+    "commit": "55dfe5077bcb5fa76611b5f2a557ea6c442ad87c",
+    "title": "fix(fileutils): accept os.PathLike in AtomicSaver",
+    "files": [
+      "boltons/fileutils.py",
+      "tests/test_fileutils.py"
+    ],
+    "churn": 22,
+    "patch": "audit/patches/gapfill-history-01/boltons/55dfe5077bcb5fa76611b5f2a557ea6c442ad87c.patch",
+    "patch_sha256": "418edbadd122dd62f1ce3f2c89f96bcf7d245d645f87799c912442eebce94d7e",
+    "eligibility": "parent and head pinned runtime suites completed green in the gap-fill screen",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "boltons-766b5547392fe8d54c1e000098499dc556bb5cb7",
+    "repository": "boltons",
+    "draw_order": 95,
+    "parent": "8a2a93d8213e1fa4da30c8167ab1a18caad17a17",
+    "commit": "766b5547392fe8d54c1e000098499dc556bb5cb7",
+    "title": "fix(strutils): bytes2human rolls over at exact powers of 1024",
+    "files": [
+      "boltons/strutils.py",
+      "tests/test_strutils.py"
+    ],
+    "churn": 26,
+    "patch": "audit/patches/gapfill-history-01/boltons/766b5547392fe8d54c1e000098499dc556bb5cb7.patch",
+    "patch_sha256": "40964d2c6430d046cae144ff228075d1f365d34dae8d639f6feb21dab6a65f5b",
+    "eligibility": "parent and head pinned runtime suites completed green in the gap-fill screen",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "boltons-7b577b0f3cc7adc2418733ce5c7dcdf6af82187d",
+    "repository": "boltons",
+    "draw_order": 97,
+    "parent": "8c3fc2850693eacd2f2f8c95e7581adbb65b1269",
+    "commit": "7b577b0f3cc7adc2418733ce5c7dcdf6af82187d",
+    "title": "tbutils: round-trip traceback anchor lines in ParsedException (#333)",
+    "files": [
+      "boltons/tbutils.py",
+      "tests/test_tbutils_parsed_exc.py"
+    ],
+    "churn": 59,
+    "patch": "audit/patches/gapfill-history-01/boltons/7b577b0f3cc7adc2418733ce5c7dcdf6af82187d.patch",
+    "patch_sha256": "3e86ce3b072a96c72927df75d8ae400a13ef46b8c8251d42d44c1da9107d06ba",
+    "eligibility": "parent and head pinned runtime suites completed green in the gap-fill screen",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "gjson-f042915ca17de35980544c91ab2c8ceb73b682f2",
+    "repository": "gjson",
+    "draw_order": 57,
+    "parent": "c041e47f8a1917e2c9c316beb6b46e09ba865fef",
+    "commit": "f042915ca17de35980544c91ab2c8ceb73b682f2",
+    "title": "Remove custom appengine and js builds",
+    "files": [
+      "gjson.go",
+      "gjson_gae.go",
+      "gjson_ngae.go"
+    ],
+    "churn": 173,
+    "patch": "audit/patches/gapfill-history-01/gjson/f042915ca17de35980544c91ab2c8ceb73b682f2.patch",
+    "patch_sha256": "a3628bba1f44b698bfb729b25d1ed6339637867b27339f2142b8f9f946c85772",
+    "eligibility": "parent and head pinned runtime suites completed green in the gap-fill screen",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "gjson-10d26621bfe1b75eac5b14df7a0ae82d16755a5d",
+    "repository": "gjson",
+    "draw_order": 59,
+    "parent": "4a91ee1eba17cd97f8c7db14e5fa3bbd2a5a6292",
+    "commit": "10d26621bfe1b75eac5b14df7a0ae82d16755a5d",
+    "title": "Add copyright comment",
+    "files": [
+      "gjson.go"
+    ],
+    "churn": 4,
+    "patch": "audit/patches/gapfill-history-01/gjson/10d26621bfe1b75eac5b14df7a0ae82d16755a5d.patch",
+    "patch_sha256": "f05541f766aa2371c5aa7e1f2f8307f95dee279aab813bbfc07654cd8e436ae8",
+    "eligibility": "parent and head pinned runtime suites completed green in the gap-fill screen",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "gjson-8d89927eff414537088a6092d53fecf6711c1e75",
+    "repository": "gjson",
+    "draw_order": 60,
+    "parent": "eaae8c63338d6d71ea606b788243ca1c5b39a068",
+    "commit": "8d89927eff414537088a6092d53fecf6711c1e75",
+    "title": "Ensure floating points are correctly being clipped",
+    "files": [
+      "gjson.go",
+      "gjson_test.go"
+    ],
+    "churn": 39,
+    "patch": "audit/patches/gapfill-history-01/gjson/8d89927eff414537088a6092d53fecf6711c1e75.patch",
+    "patch_sha256": "1cdf9df4f4a1b347f680a5fe0cc4281b6164113a64487e189a8e8c52f05e84e1",
+    "eligibility": "parent and head pinned runtime suites completed green in the gap-fill screen",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "gjson-b603eb1ef1f813cedd04af5741af897b02e85f31",
+    "repository": "gjson",
+    "draw_order": 61,
+    "parent": "9378d3bb93e20854e1677e0e0248e1d71ae5712f",
+    "commit": "b603eb1ef1f813cedd04af5741af897b02e85f31",
+    "title": "Cleanup and modernize",
+    "files": [
+      "gjson.go",
+      "gjson_test.go"
+    ],
+    "churn": 127,
+    "patch": "audit/patches/gapfill-history-01/gjson/b603eb1ef1f813cedd04af5741af897b02e85f31.patch",
+    "patch_sha256": "f0ded63aaa496c04d44bb1463010690f75ae9dfb6a6c18a06c91a295a8708b45",
+    "eligibility": "parent and head pinned runtime suites completed green in the gap-fill screen",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "gjson-4fe1916c56fbd3e4ee981981a7cdad58a7522f4b",
+    "repository": "gjson",
+    "draw_order": 62,
+    "parent": "77a57fda87dca6d0d7d4627d512a630f89a91c96",
+    "commit": "4fe1916c56fbd3e4ee981981a7cdad58a7522f4b",
+    "title": "The Array method should return back one item for JSON objects.",
+    "files": [
+      "gjson.go",
+      "gjson_test.go"
+    ],
+    "churn": 25,
+    "patch": "audit/patches/gapfill-history-01/gjson/4fe1916c56fbd3e4ee981981a7cdad58a7522f4b.patch",
+    "patch_sha256": "c64f61b2dd6d47a5ab4a2a4526daaaa93964b9ab39a8760759bd48a7963fbf72",
+    "eligibility": "parent and head pinned runtime suites completed green in the gap-fill screen",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "gjson-00b15d756ea6c964af63931b03acf44ab52d991a",
+    "repository": "gjson",
+    "draw_order": 63,
+    "parent": "d95cbcaa9dc65197d044b7ac0a4c2459ded0d451",
+    "commit": "00b15d756ea6c964af63931b03acf44ab52d991a",
+    "title": "Added querying array values",
+    "files": [
+      "gjson.go",
+      "gjson_test.go"
+    ],
+    "churn": 148,
+    "patch": "audit/patches/gapfill-history-01/gjson/00b15d756ea6c964af63931b03acf44ab52d991a.patch",
+    "patch_sha256": "dea1c1511e3d87f18d2aafb31ff07d037478239bb19d0d54936b9c6204c4b9fb",
+    "eligibility": "parent and head pinned runtime suites completed green in the gap-fill screen",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "gjson-d6cb589fc4332be19224b43de8152d6b9d8a33fc",
+    "repository": "gjson",
+    "draw_order": 64,
+    "parent": "c75c9541024753fc8fb2776bea929b56f7d043cf",
+    "commit": "d6cb589fc4332be19224b43de8152d6b9d8a33fc",
+    "title": "Fix non-existent response from multires query on empty array",
+    "files": [
+      "gjson.go",
+      "gjson_test.go"
+    ],
+    "churn": 21,
+    "patch": "audit/patches/gapfill-history-01/gjson/d6cb589fc4332be19224b43de8152d6b9d8a33fc.patch",
+    "patch_sha256": "4e03e45a9e36a4b1743df49cdadd673f23ea9a8f0735d6e6de44a3bb393f39ff",
+    "eligibility": "parent and head pinned runtime suites completed green in the gap-fill screen",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "gjson-0fac2c9aa6eb5d5564bfaaaad513ce0d5d2314de",
+    "repository": "gjson",
+    "draw_order": 65,
+    "parent": "4d230282c0e3bf42fa509147d27d7e8dcc3d3bad",
+    "commit": "0fac2c9aa6eb5d5564bfaaaad513ce0d5d2314de",
+    "title": "Add iterator functions All, Keys, and Values",
+    "files": [
+      ".github/workflows/go.yml",
+      "gjson.go",
+      "gjson_test.go",
+      "go.mod"
+    ],
+    "churn": 76,
+    "patch": "audit/patches/gapfill-history-01/gjson/0fac2c9aa6eb5d5564bfaaaad513ce0d5d2314de.patch",
+    "patch_sha256": "cf08f2b453bfa8c5e76b18908d63e015fee65115ebc4e78eb44c46420cf4a308",
+    "eligibility": "parent and head pinned runtime suites completed green in the gap-fill screen",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "gjson-896d5690900cfeec65439415abc97a94f018b258",
+    "repository": "gjson",
+    "draw_order": 66,
+    "parent": "27a65e44f8b8b54c680bb1840b4d8d752c903705",
+    "commit": "896d5690900cfeec65439415abc97a94f018b258",
+    "title": "Update gjson.go",
+    "files": [
+      "gjson.go"
+    ],
+    "churn": 2,
+    "patch": "audit/patches/gapfill-history-01/gjson/896d5690900cfeec65439415abc97a94f018b258.patch",
+    "patch_sha256": "6a64b2a6a9900ec7025e0db0ac6ca9040e3e2bfdc3b52049d393313704f2ad01",
+    "eligibility": "parent and head pinned runtime suites completed green in the gap-fill screen",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "gjson-160fb9d6a148f0e04addc47b1c211b161365eb72",
+    "repository": "gjson",
+    "draw_order": 67,
+    "parent": "52919fa7b0887a94f2d4e020af1ac4907245492e",
+    "commit": "160fb9d6a148f0e04addc47b1c211b161365eb72",
+    "title": "Updated comments",
+    "files": [
+      "README.md",
+      "gjson.go"
+    ],
+    "churn": 11,
+    "patch": "audit/patches/gapfill-history-01/gjson/160fb9d6a148f0e04addc47b1c211b161365eb72.patch",
+    "patch_sha256": "138920452039e17914b9eb8945f570e80f948c0a11a9b82f485df568b34d9f1d",
+    "eligibility": "parent and head pinned runtime suites completed green in the gap-fill screen",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  }
+]

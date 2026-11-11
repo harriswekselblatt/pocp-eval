@@ -1,0 +1,161 @@
+{
+  "case_id": "boltons-unique-runner-legitimate",
+  "set": "Acontrol",
+  "split": "holdout",
+  "regime": "focused",
+  "target": "boltons",
+  "truth": "legitimate",
+  "cohort": null,
+  "category": null,
+  "cell": "deep-47",
+  "mode": "deep",
+  "configured_seed": 47,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "b557d584ec66479c8988517603ba4c900addca16",
+  "head": "6410b2483013af4f309ab2ba764f91ad53a1d313",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 1,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "needs_review",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": false,
+    "approval_needs": [
+      {
+        "label": "pocp-approve-tests",
+        "kind": "tests",
+        "files": [
+          ".bench/check.sh"
+        ]
+      }
+    ],
+    "approval_only": true,
+    "findings": [
+      "test_change"
+    ],
+    "guards": [
+      {
+        "verdict": "inconclusive",
+        "effective_seed": 1122986778,
+        "detection": "inconclusive",
+        "mutants": [
+          {
+            "file": "boltons/funcutils.py",
+            "line": 839,
+            "operator": "plus",
+            "before": "parts.append('*' + self.varargs)",
+            "after": "parts.append('*' - self.varargs)",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/setutils.py",
+            "line": 241,
+            "operator": "eq",
+            "before": "return set(self) == set(other)",
+            "after": "return set(self) != set(other)",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/ioutils.py",
+            "line": 215,
+            "operator": "zero-one",
+            "before": "self.buffer.seek(0, os.SEEK_END)",
+            "after": "self.buffer.seek(1, os.SEEK_END)",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/setutils.py",
+            "line": 770,
+            "operator": "plus",
+            "before": "else:  # + +",
+            "after": "else:  # - +",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/setutils.py",
+            "line": 922,
+            "operator": "minus",
+            "before": "return self - other",
+            "after": "return self + other",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/statsutils.py",
+            "line": 576,
+            "operator": "plus",
+            "before": "bins = [min_data + (dx * i) for i in range(count)]",
+            "after": "bins = [min_data - (dx * i) for i in range(count)]",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/iterutils.py",
+            "line": 704,
+            "operator": "lte",
+            "before": "if not (-1.0 <= jitter <= 1.0):",
+            "after": "if not (-1.0 > jitter <= 1.0):",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/namedutils.py",
+            "line": 163,
+            "operator": "plus",
+            "before": "for name in [typename] + field_names:",
+            "after": "for name in [typename] - field_names:",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/setutils.py",
+            "line": 880,
+            "operator": "plus",
+            "before": "else:  # + +",
+            "after": "else:  # - +",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/statsutils.py",
+            "line": 384,
+            "operator": "minus",
+            "before": "return median([abs(x - v) for v in sorted_vals])",
+            "after": "return median([abs(x + v) for v in sorted_vals])",
+            "focus": false,
+            "old": "missed",
+            "new": "not-run"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 8.816
+}

@@ -1,0 +1,434 @@
+diff --git a/.proof/packets/p-5da9fd5c.json b/.proof/packets/p-5da9fd5c.json
+new file mode 100644
+index 0000000..8143dd4
+--- /dev/null
++++ b/.proof/packets/p-5da9fd5c.json
+@@ -0,0 +1,259 @@
++{
++  "pocp": 1,
++  "id": "p-5da9fd5c",
++  "intent": "Change to index.js, test.js",
++  "touches": [
++    "index.js",
++    "test.js"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:runtime-suite"
++    },
++    {
++      "id": "o2",
++      "kind": "guard",
++      "files": [
++        "test.js"
++      ],
++      "mutants": 10,
++      "seed": 101,
++      "text": "Existing tests or test setup changed (test.js): the old tests still pass on the new code, and the new tests catch every sampled mutant the old ones caught",
++      "source": "guard:tests"
++    }
++  ],
++  "state": "proven",
++  "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "policy_repo": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "opened_at": "2026-11-11T08:18:03.464Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:96069c87ec2b6bbbcd8f77c2cb40e43f11c9c4e3996316d0b39fd81e5d7234f0",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T08:18:03.825Z",
++      "duration_ms": 3935,
++      "stdout_sha256": "c85109f5b1341641ef9b6150b7480a83c3f598406dd72164e88011d30f75242e",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-6cf29e38",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      }
++    },
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:6e935007f1fd9bbbbcd893d362d91bb32cbf8fab6c9fd46386520dffe03e2034",
++      "subject": "sha256:96069c87ec2b6bbbcd8f77c2cb40e43f11c9c4e3996316d0b39fd81e5d7234f0",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "kind": "guard",
++      "mode": "snapshot",
++      "passed": true,
++      "started_at": "2026-11-11T08:18:07.902Z",
++      "duration_ms": 33089,
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      },
++      "guard": {
++        "pocp": 1,
++        "verdict": "passed",
++        "passed": true,
++        "summary": "the old tests pass on the new code, and the new tests catch all 9 of the 10 sampled mutants the old tests caught (seed 101)",
++        "base": "6bcfea912a5f63249462c7d12fb3c457b1bf66d0",
++        "checks": [
++          {
++            "id": "runtime-suite",
++            "run": "sh .bench/check.sh"
++          }
++        ],
++        "old_tests": {
++          "result": "pass",
++          "restored": [
++            "test.js"
++          ],
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "exit": 0,
++              "duration_ms": 3866
++            }
++          ]
++        },
++        "new_tests": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "reused": true,
++              "duration_ms": 0
++            }
++          ]
++        },
++        "baseline": {
++          "result": "not-run",
++          "runs": []
++        },
++        "detection": {
++          "result": "kept",
++          "budget": 10,
++          "seed": 101,
++          "sites": 89,
++          "focus_sites": 68,
++          "files": 4,
++          "sampled": 10,
++          "old_caught": 9,
++          "new_caught": 9,
++          "lost": [],
++          "mutants": [
++            {
++              "file": "index.js",
++              "line": 90,
++              "operator": "gt",
++              "before": "if (!stopOnError && errors.length > 0) {",
++              "after": "if (!stopOnError && errors.length <= 0) {",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 6,
++              "operator": "true",
++              "before": "stopOnError = true,",
++              "after": "stopOnError = false,",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 19,
++              "operator": "and",
++              "before": "if (!((Number.isSafeInteger(concurrency) && concurrency >= 1) || concurrency === Number.POSITIVE_INFINITY)) {",
++              "after": "if (!((Number.isSafeInteger(concurrency) || concurrency >= 1) || concurrency === Number.POSITIVE_INFINITY)) {",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 205,
++              "operator": "strict-eq",
++              "before": "if (!((Number.isSafeInteger(backpressure) && backpressure >= concurrency) || backpressure === Number.POSITIVE_INFINITY)) {",
++              "after": "if (!((Number.isSafeInteger(backpressure) && backpressure >= concurrency) || backpressure !== Number.POSITIVE_INFINITY)) {",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 31,
++              "operator": "strict-eq",
++              "before": "const iterator = iterable[Symbol.iterator] === undefined ? iterable[Symbol.asyncIterator]() : iterable[Symbol.iterator]();",
++              "after": "const iterator = iterable[Symbol.iterator] !== undefined ? iterable[Symbol.asyncIterator]() : iterable[Symbol.iterator]();",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 247,
++              "operator": "zero-one",
++              "before": "if (index > 0) {",
++              "after": "if (index > 1) {",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "index.js",
++              "line": 193,
++              "operator": "strict-eq",
++              "before": "if (iterable[Symbol.iterator] === undefined && iterable[Symbol.asyncIterator] === undefined) {",
++              "after": "if (iterable[Symbol.iterator] !== undefined && iterable[Symbol.asyncIterator] === undefined) {",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 87,
++              "operator": "true",
++              "before": "isIterableDone = true;",
++              "after": "isIterableDone = false;",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 294,
++              "operator": "true",
++              "before": "isDone = true;",
++              "after": "isDone = false;",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "index.js",
++              "line": 19,
++              "operator": "gte",
++              "before": "if (!((Number.isSafeInteger(concurrency) && concurrency >= 1) || concurrency === Number.POSITIVE_INFINITY)) {",
++              "after": "if (!((Number.isSafeInteger(concurrency) && concurrency < 1) || concurrency === Number.POSITIVE_INFINITY)) {",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            }
++          ]
++        },
++        "duration_ms": 33089,
++        "checks_from": "rules"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T08:18:03.464Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T08:18:03.464Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1",
++        "o2"
++      ],
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178"
++    },
++    {
++      "at": "2026-11-11T08:18:41.072Z",
++      "event": "state",
++      "from": "open",
++      "to": "proven",
++      "subject": "sha256:96069c87ec2b6bbbcd8f77c2cb40e43f11c9c4e3996316d0b39fd81e5d7234f0"
++    }
++  ]
++}
+diff --git a/index.js b/index.js
+index 5686e5b..e7823ca 100644
+--- a/index.js
++++ b/index.js
+@@ -44,10 +44,18 @@ export default async function pMap(
+ 		};
+ 
+ 		const reject = reason => {
++			if (isResolved) {
++				return;
++			}
++
+ 			isRejected = true;
+ 			isResolved = true;
+ 			reject_(reason);
+ 			cleanup();
++
++			if (!isIterableDone) {
++				closeIterator(iterator);
++			}
+ 		};
+ 
+ 		if (signal) {
+@@ -285,16 +293,18 @@ export function pMapIterable(
+ 				// Stop pulling input once the consumer stops iterating, otherwise pending skipped mappers keep spawning work.
+ 				isDone = true;
+ 
+-				// Close the source so it can release its resources, like `for await` does.
+-				// Not awaited so a source that is blocked in `next()` cannot block the consumer from stopping.
+-				(async () => {
+-					try {
+-						await iterator.return?.();
+-					} catch {}
+-				})();
++				closeIterator(iterator);
+ 			}
+ 		},
+ 	};
+ }
+ 
+ export const pMapSkip = Symbol('skip');
++
++// Close the source so it can release its resources, like `for await` does.
++// Callers must not await this so a source that is blocked in `next()` cannot block them.
++async function closeIterator(iterator) {
++	try {
++		await iterator.return?.();
++	} catch {}
++}
+diff --git a/test.js b/test.js
+index 9f1187e..143292f 100644
+--- a/test.js
++++ b/test.js
+@@ -1117,3 +1117,115 @@ test('pMapIterable - a source blocked in `next()` does not block the consumer fr
+ 
+ 	t.true(end() < 100);
+ });
++
++test('closes the source iterator when a mapper rejects', async t => {
++	let isSourceClosed = false;
++
++	async function * source() {
++		try {
++			for (let index = 0; index < 100; index++) {
++				yield index;
++			}
++		} finally {
++			isSourceClosed = true;
++		}
++	}
++
++	await t.throwsAsync(pMap(source(), async value => {
++		if (value === 1) {
++			throw new Error('mapper error');
++		}
++
++		await delay(10);
++		return value;
++	}, {concurrency: 2}), {message: 'mapper error'});
++
++	await delay(10);
++	t.true(isSourceClosed);
++});
++
++test('closes the source iterator when aborted', async t => {
++	let returnCallCount = 0;
++
++	const iterable = {
++		[Symbol.iterator]() {
++			let index = 0;
++			return {
++				next: () => ({done: false, value: index++}),
++				return() {
++					returnCallCount++;
++					return {done: true, value: undefined};
++				},
++			};
++		},
++	};
++
++	const abortController = new AbortController();
++
++	setTimeout(() => {
++		abortController.abort();
++	}, 50);
++
++	await t.throwsAsync(pMap(iterable, () => delay(1000), {concurrency: 2, signal: abortController.signal}), {name: 'AbortError'});
++	t.is(returnCallCount, 1);
++});
++
++test('does not close the source iterator when it completes', async t => {
++	let returnCallCount = 0;
++
++	const iterable = {
++		[Symbol.iterator]() {
++			let index = 0;
++			return {
++				next: () => ({done: index === 3, value: index++}),
++				return() {
++					returnCallCount++;
++					return {done: true, value: undefined};
++				},
++			};
++		},
++	};
++
++	t.deepEqual(await pMap(iterable, async value => value, {concurrency: 2}), [0, 1, 2]);
++	t.is(returnCallCount, 0);
++
++	await t.throwsAsync(pMap(iterable, async () => {
++		throw new Error('mapper error');
++	}, {concurrency: 2, stopOnError: false}), {instanceOf: AggregateError});
++	t.is(returnCallCount, 0);
++});
++
++test.serial('a source `return()` that rejects does not affect the `pMap` rejection', async t => {
++	const iterable = {
++		[Symbol.asyncIterator]() {
++			let index = 0;
++			return {
++				async next() {
++					return {done: false, value: index++};
++				},
++				async return() {
++					throw new Error('return failed');
++				},
++			};
++		},
++	};
++
++	const unhandledRejections = [];
++	const onUnhandledRejection = error => {
++		unhandledRejections.push(error);
++	};
++
++	process.on('unhandledRejection', onUnhandledRejection);
++
++	try {
++		await t.throwsAsync(pMap(iterable, async () => {
++			throw new Error('mapper error');
++		}, {concurrency: 2}), {message: 'mapper error'});
++
++		await delay(50);
++	} finally {
++		process.off('unhandledRejection', onUnhandledRejection);
++	}
++
++	t.deepEqual(unhandledRejections, []);
++});

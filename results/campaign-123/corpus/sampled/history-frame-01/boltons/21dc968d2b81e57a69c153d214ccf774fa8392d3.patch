@@ -1,0 +1,68 @@
+diff --git a/boltons/ecoutils.py b/boltons/ecoutils.py
+index 3be7dc8..23fb25f 100644
+--- a/boltons/ecoutils.py
++++ b/boltons/ecoutils.py
+@@ -254,14 +254,7 @@ except Exception:
+     RLIMIT_FDS_SOFT, RLIMIT_FDS_HARD = 0, 0
+ 
+ 
+-def _get_utc_now():
+-    try:
+-        return datetime.datetime.utcnow()
+-    except Exception:
+-        return datetime.datetime.now(datetime.timezone.utc)
+-
+-
+-START_TIME_INFO = {'time_utc': str(_get_utc_now()),
++START_TIME_INFO = {'time_utc': str(datetime.datetime.now(datetime.timezone.utc)),
+                    'time_utc_offset': -time.timezone / 3600.0}
+ 
+ 
+diff --git a/boltons/timeutils.py b/boltons/timeutils.py
+index 8fcbb73..82f201e 100644
+--- a/boltons/timeutils.py
++++ b/boltons/timeutils.py
+@@ -98,14 +98,14 @@ def isoparse(iso_str):
+     """Parses the limited subset of `ISO8601-formatted time`_ strings as
+     returned by :meth:`datetime.datetime.isoformat`.
+ 
+-    >>> epoch_dt = datetime.utcfromtimestamp(0)
++    >>> epoch_dt = datetime.fromtimestamp(0, timezone.utc).replace(tzinfo=None)
+     >>> iso_str = epoch_dt.isoformat()
+     >>> print(iso_str)
+     1970-01-01T00:00:00
+     >>> isoparse(iso_str)
+     datetime.datetime(1970, 1, 1, 0, 0)
+ 
+-    >>> utcnow = datetime.utcnow()
++    >>> utcnow = datetime.now(timezone.utc).replace(tzinfo=None)
+     >>> utcnow == isoparse(utcnow.isoformat())
+     True
+ 
+@@ -213,7 +213,7 @@ def decimal_relative_time(d, other=None, ndigits=0, cardinalize=True):
+     localization into other languages and custom phrasing and
+     formatting.
+ 
+-    >>> now = datetime.utcnow()
++    >>> now = datetime.now(timezone.utc).replace(tzinfo=None)
+     >>> decimal_relative_time(now - timedelta(days=1, seconds=3600), now)
+     (1.0, 'day')
+     >>> decimal_relative_time(now - timedelta(seconds=0.002), now, ndigits=5)
+@@ -223,7 +223,7 @@ def decimal_relative_time(d, other=None, ndigits=0, cardinalize=True):
+ 
+     """
+     if other is None:
+-        other = datetime.utcnow()
++        other = datetime.now(timezone.utc).replace(tzinfo=None)
+     diff = other - d
+     diff_seconds = timedelta.total_seconds(diff)
+     abs_diff = abs(diff)
+@@ -252,7 +252,7 @@ def relative_time(d, other=None, ndigits=0):
+     Returns:
+         A short English-language string.
+ 
+-    >>> now = datetime.utcnow()
++    >>> now = datetime.now(timezone.utc).replace(tzinfo=None)
+     >>> relative_time(now, ndigits=1)
+     '0 seconds ago'
+     >>> relative_time(now - timedelta(days=1, seconds=36000), ndigits=1)

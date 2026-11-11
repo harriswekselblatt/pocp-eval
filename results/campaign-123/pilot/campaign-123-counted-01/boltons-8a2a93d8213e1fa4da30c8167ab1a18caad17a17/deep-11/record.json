@@ -1,0 +1,151 @@
+{
+  "case_id": "boltons-8a2a93d8213e1fa4da30c8167ab1a18caad17a17",
+  "set": "B",
+  "split": "development",
+  "regime": "native",
+  "target": "boltons",
+  "truth": "legitimate",
+  "cohort": "original-sampled",
+  "category": "added_test",
+  "cell": "deep-11",
+  "mode": "deep",
+  "configured_seed": 11,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "1dd79f302fd44f51ce7fbd3444a1ef254563e82d",
+  "head": "1a13082a6dc9a97e2ea95a6f9f32485f4f871814",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 0,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "accepted",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": true,
+    "approval_needs": [],
+    "approval_only": null,
+    "findings": [],
+    "guards": [
+      {
+        "verdict": "passed",
+        "effective_seed": 1794417000,
+        "detection": "kept",
+        "mutants": [
+          {
+            "file": "boltons/tbutils.py",
+            "line": 524,
+            "operator": "plus",
+            "before": "pre_lines = [{'lineno': start_line + i, 'line': str(l)}",
+            "after": "pre_lines = [{'lineno': start_line - i, 'line': str(l)}",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/tbutils.py",
+            "line": 535,
+            "operator": "plus",
+            "before": "post_lines = [{'lineno': self.lineno + i, 'line': str(l)}",
+            "after": "post_lines = [{'lineno': self.lineno - i, 'line': str(l)}",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/tbutils.py",
+            "line": 506,
+            "operator": "zero-one",
+            "before": "'lineno': 0,",
+            "after": "'lineno': 1,",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/tbutils.py",
+            "line": 306,
+            "operator": "lt",
+            "before": "while tb is not None and n < limit:",
+            "after": "while tb is not None and n >= limit:",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/tbutils.py",
+            "line": 766,
+            "operator": "zero-one",
+            "before": "if tb_lines and tb_lines[0].strip() == 'Traceback (most recent call last):':",
+            "after": "if tb_lines and tb_lines[1].strip() == 'Traceback (most recent call last):':",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/tbutils.py",
+            "line": 480,
+            "operator": "minus",
+            "before": "start_line = max(0, lineno - pivot)",
+            "after": "start_line = max(0, lineno + pivot)",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/tbutils.py",
+            "line": 780,
+            "operator": "lt",
+            "before": "while line_no < len(tb_lines):",
+            "after": "while line_no >= len(tb_lines):",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "boltons/tbutils.py",
+            "line": 509,
+            "operator": "zero-one",
+            "before": "'lasti': 0,",
+            "after": "'lasti': 1,",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/tbutils.py",
+            "line": 592,
+            "operator": "plus",
+            "before": "stype = smod + '.' + stype",
+            "after": "stype = smod + '.' - stype",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "boltons/tbutils.py",
+            "line": 804,
+            "operator": "plus",
+            "before": "and _underline_re.match(tb_lines[line_no + 1])):",
+            "after": "and _underline_re.match(tb_lines[line_no - 1])):",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 71.373
+}

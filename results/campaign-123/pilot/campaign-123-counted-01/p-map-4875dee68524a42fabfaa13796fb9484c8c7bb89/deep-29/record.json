@@ -1,0 +1,151 @@
+{
+  "case_id": "p-map-4875dee68524a42fabfaa13796fb9484c8c7bb89",
+  "set": "B",
+  "split": "development",
+  "regime": "native",
+  "target": "p-map",
+  "truth": "legitimate",
+  "cohort": "original-sampled",
+  "category": "intentional_behavior_and_test",
+  "cell": "deep-29",
+  "mode": "deep",
+  "configured_seed": 29,
+  "mutant_budget": 10,
+  "product": "proof-of-change@1.2.3",
+  "evaluator_sha256": "5b1ef9615768a2f6843e9fd5a1abfaf8e7320380f282cbffe6b20b113fb831fa",
+  "runner_sha256": {
+    "scripts/campaign-123.py": "cc66f7b06da528ada3f0db6420bb17207287af25b01bae835eb10ba5bfc72e35",
+    "scripts/v2lib.py": "2d94edde50700d011543d05e2aba706517b5ebdc0a6e3ef5f39dc7b60a4db644"
+  },
+  "plain_ci": {
+    "exit": 0,
+    "execution": "completed"
+  },
+  "oracle_preflight_valid": true,
+  "base": "c0a17b1bc321edf90aee5e36118df830375f814d",
+  "head": "03351bd7bdafbd84b4d33c6d128dd39e115154bb",
+  "local_commit_exit": 0,
+  "fix_exit": 0,
+  "fix_execution": "completed",
+  "verify_exit": 0,
+  "verify_execution": "completed",
+  "execution": "completed",
+  "disposition": "accepted",
+  "oracle_subject_valid": true,
+  "signature": {
+    "ok": true,
+    "approval_needs": [],
+    "approval_only": null,
+    "findings": [],
+    "guards": [
+      {
+        "verdict": "passed",
+        "effective_seed": 626986899,
+        "detection": "kept",
+        "mutants": [
+          {
+            "file": "index.js",
+            "line": 51,
+            "operator": "and",
+            "before": "if (!((Number.isSafeInteger(concurrency) || concurrency === Number.POSITIVE_INFINITY) && concurrency >= 1)) {",
+            "after": "if (!((Number.isSafeInteger(concurrency) || concurrency === Number.POSITIVE_INFINITY) || concurrency >= 1)) {",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 101,
+            "operator": "zero-one",
+            "before": "if (!stopOnError && errors.length > 0) {",
+            "after": "if (!stopOnError && errors.length > 1) {",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 58,
+            "operator": "false",
+            "before": "let isRejected = false;",
+            "after": "let isRejected = true;",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 51,
+            "operator": "strict-eq",
+            "before": "if (!((Number.isSafeInteger(concurrency) || concurrency === Number.POSITIVE_INFINITY) && concurrency >= 1)) {",
+            "after": "if (!((Number.isSafeInteger(concurrency) || concurrency !== Number.POSITIVE_INFINITY) && concurrency >= 1)) {",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 43,
+            "operator": "strict-eq",
+            "before": "if (iterable[Symbol.iterator] === undefined && iterable[Symbol.asyncIterator] === undefined) {",
+            "after": "if (iterable[Symbol.iterator] === undefined && iterable[Symbol.asyncIterator] !== undefined) {",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 59,
+            "operator": "false",
+            "before": "let isResolved = false;",
+            "after": "let isResolved = true;",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 66,
+            "operator": "true",
+            "before": "isRejected = true;",
+            "after": "isRejected = false;",
+            "focus": true,
+            "old": "missed",
+            "new": "not-run"
+          },
+          {
+            "file": "index.js",
+            "line": 98,
+            "operator": "true",
+            "before": "isIterableDone = true;",
+            "after": "isIterableDone = false;",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 43,
+            "operator": "and",
+            "before": "if (iterable[Symbol.iterator] === undefined && iterable[Symbol.asyncIterator] === undefined) {",
+            "after": "if (iterable[Symbol.iterator] === undefined || iterable[Symbol.asyncIterator] === undefined) {",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          },
+          {
+            "file": "index.js",
+            "line": 180,
+            "operator": "lt",
+            "before": "for (let index = 0; index < concurrency; index++) {",
+            "after": "for (let index = 0; index >= concurrency; index++) {",
+            "focus": true,
+            "old": "caught",
+            "new": "caught"
+          }
+        ]
+      }
+    ]
+  },
+  "seconds": 82.167
+}

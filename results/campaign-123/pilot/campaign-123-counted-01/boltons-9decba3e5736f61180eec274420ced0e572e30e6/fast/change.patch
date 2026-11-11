@@ -1,0 +1,103 @@
+diff --git a/boltons/ecoutils.py b/boltons/ecoutils.py
+index 23fb25f..ee37f38 100644
+--- a/boltons/ecoutils.py
++++ b/boltons/ecoutils.py
+@@ -308,13 +308,17 @@ def get_profile(**kwargs):
+     if kwargs:
+         raise TypeError(f'unexpected keyword arguments: {kwargs.keys()!r}')
+     ret = {}
+-    try:
+-        ret['username'] = getpass.getuser()
+-    except Exception:
+-        ret['username'] = ''
++    # Values masked below are not looked up at all when scrubbing. Skip them.
++    if scrub:
++        ret['username'] = '-'
++    else:
++        try:
++            ret['username'] = getpass.getuser()
++        except Exception:
++            ret['username'] = ''
+     ret['guid'] = str(INSTANCE_ID)
+-    ret['hostname'] = socket.gethostname()
+-    ret['hostfqdn'] = socket.getfqdn()
++    ret['hostname'] = '-' if scrub else socket.gethostname()
++    ret['hostfqdn'] = '-' if scrub else socket.getfqdn()
+     uname = platform.uname()
+     ret['uname'] = {'system': uname[0],
+                     'node': uname[1],
+@@ -334,7 +338,7 @@ def get_profile(**kwargs):
+     ret['fs_encoding'] = sys.getfilesystemencoding()
+     ret['ulimit_soft'] = RLIMIT_FDS_SOFT
+     ret['ulimit_hard'] = RLIMIT_FDS_HARD
+-    ret['cwd'] = os.getcwd()
++    ret['cwd'] = '-' if scrub else os.getcwd()
+     ret['umask'] = oct(os.umask(os.umask(2))).rjust(3, '0')
+ 
+     ret['python'] = get_python_info()
+@@ -343,13 +347,9 @@ def get_profile(**kwargs):
+ 
+     if scrub:
+         # mask identifiable information
+-        ret['cwd'] = '-'
+-        ret['hostname'] = '-'
+-        ret['hostfqdn'] = '-'
+         ret['python']['bin'] = '-'
+         ret['python']['argv'] = '-'
+         ret['uname']['node'] = '-'
+-        ret['username'] = '-'
+ 
+     return ret
+ 
+diff --git a/tests/test_ecoutils.py b/tests/test_ecoutils.py
+index bac5693..3151464 100644
+--- a/tests/test_ecoutils.py
++++ b/tests/test_ecoutils.py
+@@ -1,4 +1,7 @@
++import os
++import socket
+ import sys
++
+ from boltons import ecoutils
+ 
+ 
+@@ -13,3 +16,39 @@ def test_scrub():
+     prof = ecoutils.get_profile(scrub=True)
+ 
+     assert prof['username'] == '-'
++    assert prof['hostname'] == '-'
++    assert prof['hostfqdn'] == '-'
++    assert prof['cwd'] == '-'
++    assert prof['uname']['node'] == '-'
++    assert prof['python']['bin'] == '-'
++    assert prof['python']['argv'] == '-'
++
++
++def test_scrub_does_not_resolve_the_host(monkeypatch):
++    def unreachable(*args):
++        raise AssertionError('scrubbed profile resolved the host name')
++
++    monkeypatch.setattr(socket, 'gethostname', unreachable)
++    monkeypatch.setattr(socket, 'getfqdn', unreachable)
++
++    prof = ecoutils.get_profile(scrub=True)
++
++    assert prof['hostname'] == '-'
++    assert prof['hostfqdn'] == '-'
++
++
++def test_scrub_does_not_read_the_cwd(monkeypatch):
++    calls = []
++    real_getcwd = os.getcwd
++
++    def recording_getcwd():
++        calls.append('getcwd')
++        return real_getcwd()
++
++    monkeypatch.setattr(os, 'getcwd', recording_getcwd)
++
++    prof = ecoutils.get_profile(scrub=True)
++
++    assert calls == []
++
++    assert prof['cwd'] == '-'

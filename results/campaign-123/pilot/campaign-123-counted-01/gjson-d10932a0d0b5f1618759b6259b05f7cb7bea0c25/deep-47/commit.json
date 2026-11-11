@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "git",
+    "commit",
+    "-qm",
+    "gjson-d10932a0d0b5f1618759b6259b05f7cb7bea0c25 deep-47"
+  ],
+  "exit": 0,
+  "execution": "completed",
+  "seconds": 1.030525500071235,
+  "stdout": "",
+  "stderr": "pocp: gate passed (1 packet(s) proven for sha256:4ca1b8223992)\n  CI requires human approval for this commit:\n    what: p-08e7145b: the test-change check did not pass (the old tests fail on the new code (\"sh .bench/check.sh\" exit 1); failing: github.com/tidwall/gjson: behavior changed, so a person must approve it); the commit can go ahead, and CI will ask a maintainer to approve it\n      why: the test-change check did not pass, and in block mode only a maintainer can accept that.\n      next: a maintainer adds the `pocp-approve-tests` label to the pull request   (needs a person)\n    Do not squash, force-push, rewrite history or commit with --no-verify to get past this: push the commit as it is and ask for the approval.\n"
+}

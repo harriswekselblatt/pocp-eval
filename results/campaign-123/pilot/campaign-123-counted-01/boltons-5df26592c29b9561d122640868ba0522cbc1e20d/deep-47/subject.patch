@@ -1,0 +1,314 @@
+diff --git a/.proof/packets/p-8dabd8d4.json b/.proof/packets/p-8dabd8d4.json
+new file mode 100644
+index 0000000..1b9176d
+--- /dev/null
++++ b/.proof/packets/p-8dabd8d4.json
+@@ -0,0 +1,259 @@
++{
++  "pocp": 1,
++  "id": "p-8dabd8d4",
++  "intent": "Change to boltons/strutils.py, tests/test_strutils.py",
++  "touches": [
++    "boltons/strutils.py",
++    "tests/test_strutils.py"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "sh .bench/check.sh",
++      "source": "rule:runtime-suite"
++    },
++    {
++      "id": "o2",
++      "kind": "guard",
++      "files": [
++        "tests/test_strutils.py"
++      ],
++      "mutants": 10,
++      "seed": 47,
++      "text": "Existing tests or test setup changed (tests/test_strutils.py): the old tests still pass on the new code, and the new tests catch every sampled mutant the old ones caught",
++      "source": "guard:tests"
++    }
++  ],
++  "state": "proven",
++  "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "policy_repo": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++  "opened_at": "2026-11-11T02:30:41.818Z",
++  "opened_by": "unknown",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:651b536da528dc9ef9f30521ebe4956cf67a758d41762f929d76b524e98b8827",
++      "subject": "sha256:e569d3df0a6a8685d4cbc54961cfbe609d5b4f0dfd75c3f77a7e6122d4edf250",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "run": "sh .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-11T02:30:42.234Z",
++      "duration_ms": 1805,
++      "stdout_sha256": "8075a67dc5c8f801015e2d0e00afcb135a8123ffacfd72e82bb16f8fdacd5888",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-5bb99d38",
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      }
++    },
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:603e526b8d0ae0d9bab257f531df4701f54ca1aa5d89464b323e4bb0fae215ed",
++      "subject": "sha256:e569d3df0a6a8685d4cbc54961cfbe609d5b4f0dfd75c3f77a7e6122d4edf250",
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178",
++      "kind": "guard",
++      "mode": "snapshot",
++      "passed": true,
++      "started_at": "2026-11-11T02:30:44.153Z",
++      "duration_ms": 12117,
++      "runner": {
++        "pocp": "1.2.3",
++        "node": "22.13.1",
++        "platform": "darwin-arm64",
++        "ci": false,
++        "lockfile_sha256": null
++      },
++      "guard": {
++        "pocp": 1,
++        "verdict": "passed",
++        "passed": true,
++        "summary": "the old tests pass on the new code, and the new tests catch all 5 of the 10 sampled mutants the old tests caught (seed 47)",
++        "base": "75b66a1797b8fc9d395c267fa52db43bb86545de",
++        "checks": [
++          {
++            "id": "runtime-suite",
++            "run": "sh .bench/check.sh"
++          }
++        ],
++        "old_tests": {
++          "result": "pass",
++          "restored": [
++            "tests/test_strutils.py"
++          ],
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "exit": 0,
++              "duration_ms": 2323
++            }
++          ]
++        },
++        "new_tests": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "runtime-suite",
++              "passed": true,
++              "reused": true,
++              "duration_ms": 0
++            }
++          ]
++        },
++        "baseline": {
++          "result": "not-run",
++          "runs": []
++        },
++        "detection": {
++          "result": "kept",
++          "budget": 10,
++          "seed": 47,
++          "sites": 1524,
++          "focus_sites": 0,
++          "files": 34,
++          "sampled": 10,
++          "old_caught": 5,
++          "new_caught": 5,
++          "lost": [],
++          "mutants": [
++            {
++              "file": "boltons/statsutils.py",
++              "line": 721,
++              "operator": "plus",
++              "before": "ret = '\\n'.join(['{}{}'.format((label + ':').ljust(10), val)",
++              "after": "ret = '\\n'.join(['{}{}'.format((label - ':').ljust(10), val)",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/setutils.py",
++              "line": 845,
++              "operator": "lt",
++              "before": "return self._included < inc",
++              "after": "return self._included >= inc",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/statsutils.py",
++              "line": 138,
++              "operator": "plus",
++              "before": "self.internal_name = '_' + name",
++              "after": "self.internal_name = '_' - name",
++              "focus": false,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "boltons/setutils.py",
++              "line": 189,
++              "operator": "plus",
++              "before": "stop = start + 1",
++              "after": "stop = start - 1",
++              "focus": false,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "boltons/urlutils.py",
++              "line": 381,
++              "operator": "eq",
++              "before": "elif part == '..':",
++              "after": "elif part != '..':",
++              "focus": false,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "boltons/strutils.py",
++              "line": 692,
++              "operator": "eq",
++              "before": "if end == len_text:",
++              "after": "if end != len_text:",
++              "focus": false,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "boltons/strutils.py",
++              "line": 1049,
++              "operator": "zero-one",
++              "before": "'0,2,4,9,12-14'",
++              "after": "'1,2,4,9,12-14'",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "docs/conf.py",
++              "line": 49,
++              "operator": "strict-eq",
++              "before": "print ('==== %s modules ==== %s types ==== %s funcs ====' % ret)",
++              "after": "print ('==== %s modules ==== %s types !=== %s funcs ====' % ret)",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/tbutils.py",
++              "line": 773,
++              "operator": "gt",
++              "before": "elif len(tb_lines) > 1 and tb_lines[-2].lstrip().startswith('^'):",
++              "after": "elif len(tb_lines) <= 1 and tb_lines[-2].lstrip().startswith('^'):",
++              "focus": false,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "boltons/strutils.py",
++              "line": 558,
++              "operator": "zero-one",
++              "before": "def bytes2human(nbytes, ndigits=0):",
++              "after": "def bytes2human(nbytes, ndigits=1):",
++              "focus": false,
++              "old": "caught",
++              "new": "caught"
++            }
++          ]
++        },
++        "duration_ms": 12117,
++        "checks_from": "rules"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-11T02:30:41.818Z",
++      "event": "opened",
++      "by": "unknown"
++    },
++    {
++      "at": "2026-11-11T02:30:41.818Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1",
++        "o2"
++      ],
++      "policy": "sha256:95121b7266684587eed8a36b7c347e15337ac84ef5d66a72b3a99482ba98d178"
++    },
++    {
++      "at": "2026-11-11T02:30:56.363Z",
++      "event": "state",
++      "from": "open",
++      "to": "proven",
++      "subject": "sha256:e569d3df0a6a8685d4cbc54961cfbe609d5b4f0dfd75c3f77a7e6122d4edf250"
++    }
++  ]
++}
+diff --git a/boltons/strutils.py b/boltons/strutils.py
+index b75b479..95f8e12 100644
+--- a/boltons/strutils.py
++++ b/boltons/strutils.py
+@@ -798,7 +798,7 @@ def args2sh(args, sep=' '):
+         # the string $'b is then quoted as '$'"'"'b'
+         ret_list.append("'" + arg.replace("'", "'\"'\"'") + "'")
+ 
+-    return ' '.join(ret_list)
++    return sep.join(ret_list)
+ 
+ 
+ def args2cmd(args, sep=' '):
+@@ -845,9 +845,9 @@ def args2cmd(args, sep=' '):
+     for arg in args:
+         bs_buf = []
+ 
+-        # Add a space to separate this argument from the others
++        # Add the separator between this argument and the others
+         if result:
+-            result.append(' ')
++            result.append(sep)
+ 
+         needquote = (" " in arg) or ("\t" in arg) or not arg
+         if needquote:
+diff --git a/tests/test_strutils.py b/tests/test_strutils.py
+index 81a66e3..1da050a 100644
+--- a/tests/test_strutils.py
++++ b/tests/test_strutils.py
+@@ -362,4 +362,17 @@ def test_ellipsize():
+     with pytest.raises(ValueError):
+         ellipsize('anything', 1)
+     with pytest.raises(ValueError):
+-        ellipsize('anything', 3, ellipsis='...')
+\ No newline at end of file
++        ellipsize('anything', 3, ellipsis='...')
++
++
++def test_args2sh_sep():
++    assert strutils.args2sh(['aa', 'bb']) == 'aa bb'
++    assert strutils.args2sh(['aa', 'bb'], sep='|') == 'aa|bb'
++    # escaping is unaffected by the separator
++    assert strutils.args2sh(['a a', 'bb'], sep='|') == "'a a'|bb"
++
++
++def test_args2cmd_sep():
++    assert strutils.args2cmd(['aa', 'bb']) == 'aa bb'
++    assert strutils.args2cmd(['aa', 'bb'], sep='|') == 'aa|bb'
++    assert strutils.args2cmd(['a a', 'bb'], sep='|') == '"a a"|bb'

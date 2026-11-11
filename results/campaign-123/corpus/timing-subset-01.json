@@ -1,0 +1,30 @@
+{
+  "seed_rule": "int(sha256(b-holdout-01.json)[:16], 16)",
+  "cases": {
+    "p-map": [
+      "pmap-k06",
+      "p-map-91ef8d1958b64dfcc2f9dfe7cda4beab8dc5c518",
+      "p-map-7c5cee7db0c6b2e3355e5598e05caaa9a02c7872",
+      "p-map-10768330ebf3e210b237cb168b75ba2a13ecf666",
+      "p-map-settled-fixture-legitimate",
+      "p-map-4875dee68524a42fabfaa13796fb9484c8c7bb89"
+    ],
+    "boltons": [
+      "boltons-c0d580df13d3d2d3d99a7769828afc7176127d90",
+      "boltons-bba729bf4539afc993a6410bdf8074b28707004a",
+      "boltons-ead236e278ca0466bf468de746b5960fb12d7e5b",
+      "boltons-8a2a93d8213e1fa4da30c8167ab1a18caad17a17",
+      "boltons-first-helper-legitimate",
+      "boltons-fb464991b718ca7bfabc14555c2947f25e7c79c9"
+    ],
+    "gjson": [
+      "gjson-133f42ce2d99d6adb6b5885af6d20939dc4b6fe9",
+      "gjson-65353b6d52a31e808c07f9d4651b9473525dcd88",
+      "gjson-d7c940e59395fdcaff4584cb442b2e7808f6711e",
+      "gjson-bf4efcb3c18d1825b2988603dea5909140a5302b",
+      "gjson-12826915de207decacf091e11d828329cd234eae",
+      "gjson-bool-runner-legitimate"
+    ]
+  },
+  "procedure": "three sequential idle-machine repeats each of plain, fast, deep seed 11; setup/install timed separately"
+}

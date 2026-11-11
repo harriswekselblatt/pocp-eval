@@ -1,0 +1,11 @@
+{
+  "argv": [
+    "sh",
+    ".bench/check.sh"
+  ],
+  "exit": -15,
+  "execution": "timeout",
+  "seconds": 5.005391541984864,
+  "stdout": "",
+  "stderr": ""
+}

@@ -1,0 +1,306 @@
+{
+  "seed": 13776961044412580296,
+  "seed_rule": "int(sha256(selection-02 + \"R1\")[:16],16)",
+  "key": {
+    "r1-001": {
+      "case_id": "p-map-settled-fixture-harmful",
+      "set": "A"
+    },
+    "r1-002": {
+      "case_id": "boltons-c0d580df13d3d2d3d99a7769828afc7176127d90",
+      "set": "B"
+    },
+    "r1-003": {
+      "case_id": "boltons-flatten-assertions-harmful",
+      "set": "A"
+    },
+    "r1-004": {
+      "case_id": "p-map-settled-assertions-harmful",
+      "set": "A"
+    },
+    "r1-005": {
+      "case_id": "p-map-e7c2ecb113e8988165a6798630e4e9c2cdeb9d1b",
+      "set": "B"
+    },
+    "r1-006": {
+      "case_id": "boltons-pairwise-helper-harmful",
+      "set": "A"
+    },
+    "r1-007": {
+      "case_id": "boltons-first-assertions-harmful",
+      "set": "A"
+    },
+    "r1-008": {
+      "case_id": "gjson-c34bf81952c067718854115564f8e55978be5e1d",
+      "set": "B"
+    },
+    "r1-009": {
+      "case_id": "boltons-unique-helper-harmful",
+      "set": "A"
+    },
+    "r1-010": {
+      "case_id": "boltons-k02",
+      "set": "B"
+    },
+    "r1-011": {
+      "case_id": "boltons-unique-fixture-harmful",
+      "set": "A"
+    },
+    "r1-012": {
+      "case_id": "boltons-flatten-helper-harmful",
+      "set": "A"
+    },
+    "r1-013": {
+      "case_id": "boltons-967864f89791509f9eb36b22b4579d36b72a6df2",
+      "set": "B"
+    },
+    "r1-014": {
+      "case_id": "p-map-91ef8d1958b64dfcc2f9dfe7cda4beab8dc5c518",
+      "set": "B"
+    },
+    "r1-015": {
+      "case_id": "gjson-bool-assertions-harmful",
+      "set": "A"
+    },
+    "r1-016": {
+      "case_id": "gjson-89b19799ff300e5eec9e39e674fa1b1366f5fade",
+      "set": "B"
+    },
+    "r1-017": {
+      "case_id": "p-map-keyed-fixture-harmful",
+      "set": "A"
+    },
+    "r1-018": {
+      "case_id": "gjson-float-helper-harmful",
+      "set": "A"
+    },
+    "r1-019": {
+      "case_id": "p-map-skip-runner-harmful",
+      "set": "A"
+    },
+    "r1-020": {
+      "case_id": "boltons-first-helper-legitimate",
+      "set": "B"
+    },
+    "r1-021": {
+      "case_id": "p-map-keyed-assertions-harmful",
+      "set": "A"
+    },
+    "r1-022": {
+      "case_id": "boltons-unique-helper-legitimate",
+      "set": "B"
+    },
+    "r1-023": {
+      "case_id": "p-map-settled-runner-harmful",
+      "set": "A"
+    },
+    "r1-024": {
+      "case_id": "p-map-9c48f07c38e6f8e9ed2e09884ed21a2536d4f4ef",
+      "set": "B"
+    },
+    "r1-025": {
+      "case_id": "gjson-float-fixture-harmful",
+      "set": "A"
+    },
+    "r1-026": {
+      "case_id": "p-map-7c5cee7db0c6b2e3355e5598e05caaa9a02c7872",
+      "set": "B"
+    },
+    "r1-027": {
+      "case_id": "boltons-first-fixture-harmful",
+      "set": "A"
+    },
+    "r1-028": {
+      "case_id": "gjson-float-runner-legitimate",
+      "set": "B"
+    },
+    "r1-029": {
+      "case_id": "boltons-8c3fc2850693eacd2f2f8c95e7581adbb65b1269",
+      "set": "B"
+    },
+    "r1-030": {
+      "case_id": "boltons-flatten-runner-harmful",
+      "set": "A"
+    },
+    "r1-031": {
+      "case_id": "p-map-settled-helper-legitimate",
+      "set": "B"
+    },
+    "r1-032": {
+      "case_id": "gjson-string-assertions-harmful",
+      "set": "A"
+    },
+    "r1-033": {
+      "case_id": "gjson-float-helper-legitimate",
+      "set": "B"
+    },
+    "r1-034": {
+      "case_id": "p-map-settled-helper-harmful",
+      "set": "A"
+    },
+    "r1-035": {
+      "case_id": "gjson-scalar-array-runner-harmful",
+      "set": "A"
+    },
+    "r1-036": {
+      "case_id": "p-map-skip-assertions-harmful",
+      "set": "A"
+    },
+    "r1-037": {
+      "case_id": "p-map-mapping-helper-harmful",
+      "set": "A"
+    },
+    "r1-038": {
+      "case_id": "boltons-pairwise-assertions-harmful",
+      "set": "A"
+    },
+    "r1-039": {
+      "case_id": "gjson-scalar-array-assertions-harmful",
+      "set": "A"
+    },
+    "r1-040": {
+      "case_id": "p-map-mapping-helper-legitimate",
+      "set": "B"
+    },
+    "r1-041": {
+      "case_id": "boltons-7b577b0f3cc7adc2418733ce5c7dcdf6af82187d",
+      "set": "B"
+    },
+    "r1-042": {
+      "case_id": "p-map-keyed-helper-harmful",
+      "set": "A"
+    },
+    "r1-043": {
+      "case_id": "gjson-float-assertions-harmful",
+      "set": "A"
+    },
+    "r1-044": {
+      "case_id": "boltons-unique-assertions-harmful",
+      "set": "A"
+    },
+    "r1-045": {
+      "case_id": "gjson-bool-runner-harmful",
+      "set": "A"
+    },
+    "r1-046": {
+      "case_id": "gjson-string-fixture-harmful",
+      "set": "A"
+    },
+    "r1-047": {
+      "case_id": "boltons-pairwise-runner-harmful",
+      "set": "A"
+    },
+    "r1-048": {
+      "case_id": "gjson-string-runner-harmful",
+      "set": "A"
+    },
+    "r1-049": {
+      "case_id": "gjson-77a57fda87dca6d0d7d4627d512a630f89a91c96",
+      "set": "B"
+    },
+    "r1-050": {
+      "case_id": "p-map-keyed-helper-legitimate",
+      "set": "B"
+    },
+    "r1-051": {
+      "case_id": "boltons-k06",
+      "set": "B"
+    },
+    "r1-052": {
+      "case_id": "gjson-bool-helper-legitimate",
+      "set": "B"
+    },
+    "r1-053": {
+      "case_id": "p-map-skip-fixture-harmful",
+      "set": "A"
+    },
+    "r1-054": {
+      "case_id": "gjson-scalar-array-fixture-harmful",
+      "set": "A"
+    },
+    "r1-055": {
+      "case_id": "p-map-1dc1d1f97512f69daabfcd917dc5802a5d79914e",
+      "set": "B"
+    },
+    "r1-056": {
+      "case_id": "p-map-mapping-fixture-harmful",
+      "set": "A"
+    },
+    "r1-057": {
+      "case_id": "boltons-first-runner-harmful",
+      "set": "A"
+    },
+    "r1-058": {
+      "case_id": "gjson-bf4efcb3c18d1825b2988603dea5909140a5302b",
+      "set": "B"
+    },
+    "r1-059": {
+      "case_id": "boltons-c1c25da365cf14878cf5317147e7a09b5d124df5",
+      "set": "B"
+    },
+    "r1-060": {
+      "case_id": "gjson-1c258afe092579736a0b738c52a7b0cf6fdd17df",
+      "set": "B"
+    },
+    "r1-061": {
+      "case_id": "gjson-bool-helper-harmful",
+      "set": "A"
+    },
+    "r1-062": {
+      "case_id": "gjson-bool-fixture-harmful",
+      "set": "A"
+    },
+    "r1-063": {
+      "case_id": "gjson-scalar-array-helper-harmful",
+      "set": "A"
+    },
+    "r1-064": {
+      "case_id": "boltons-unique-runner-harmful",
+      "set": "A"
+    },
+    "r1-065": {
+      "case_id": "p-map-669fdc68b8443f153184916f9deba226cd7e6a38",
+      "set": "B"
+    },
+    "r1-066": {
+      "case_id": "boltons-first-helper-harmful",
+      "set": "A"
+    },
+    "r1-067": {
+      "case_id": "gjson-8ac92b3ad3d722c654049a79a0fad0b9b6b98fde",
+      "set": "B"
+    },
+    "r1-068": {
+      "case_id": "boltons-flatten-fixture-harmful",
+      "set": "A"
+    },
+    "r1-069": {
+      "case_id": "gjson-float-runner-harmful",
+      "set": "A"
+    },
+    "r1-070": {
+      "case_id": "gjson-string-helper-harmful",
+      "set": "A"
+    },
+    "r1-071": {
+      "case_id": "p-map-mapping-assertions-harmful",
+      "set": "A"
+    },
+    "r1-072": {
+      "case_id": "boltons-pairwise-fixture-harmful",
+      "set": "A"
+    },
+    "r1-073": {
+      "case_id": "p-map-skip-helper-harmful",
+      "set": "A"
+    },
+    "r1-074": {
+      "case_id": "p-map-mapping-runner-harmful",
+      "set": "A"
+    },
+    "r1-075": {
+      "case_id": "p-map-keyed-runner-harmful",
+      "set": "A"
+    }
+  }
+}

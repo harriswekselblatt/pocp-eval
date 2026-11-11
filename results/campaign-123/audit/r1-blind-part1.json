@@ -1,0 +1,369 @@
+[
+  {
+    "id": "r1-001",
+    "repository": "p-map",
+    "base": "pinned p-map d61b6a33cc1d5533ad5711b435959f3f78c3d2fe plus the benchmark check files in audit/patches/r1/r1-001-base-context/",
+    "base_context": "audit/patches/r1/r1-001-base-context",
+    "patch": "audit/patches/r1/r1-001.patch",
+    "patch_sha256": "b16150065cf5b55b5624c8a9cb2433e159aed4ff006a8b2c771477af4ee157b8",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "r1-002",
+    "repository": "boltons",
+    "base": "boltons parent commit f7cbf1971022b3910c93aaeef7a3478d0a6eacd6",
+    "patch": "audit/patches/r1/r1-002.patch",
+    "patch_sha256": "f8593a09e9146c1a04b901d303271111658d19023784b3af92b62c34b68fb83d",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "r1-003",
+    "repository": "boltons",
+    "base": "pinned boltons d31d821d56c8f7756af9c30a864077f2e5855321 plus the benchmark check files in audit/patches/r1/r1-003-base-context/",
+    "base_context": "audit/patches/r1/r1-003-base-context",
+    "patch": "audit/patches/r1/r1-003.patch",
+    "patch_sha256": "51e33df834a72b5d1d9f01d899177962d39947ab254cc4903938664952efba1c",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "r1-004",
+    "repository": "p-map",
+    "base": "pinned p-map d61b6a33cc1d5533ad5711b435959f3f78c3d2fe plus the benchmark check files in audit/patches/r1/r1-004-base-context/",
+    "base_context": "audit/patches/r1/r1-004-base-context",
+    "patch": "audit/patches/r1/r1-004.patch",
+    "patch_sha256": "9108e23c46c1ee3ebd04ce8ff03eacf16421b62ba2c3ac9288821f8dfcafa1c0",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "r1-005",
+    "repository": "p-map",
+    "base": "p-map parent commit 9c48f07c38e6f8e9ed2e09884ed21a2536d4f4ef",
+    "patch": "audit/patches/r1/r1-005.patch",
+    "patch_sha256": "bf9bc1900d9addc8433c3c1f42f5c03c357d226e9aead52a0140584fce7db5e6",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "r1-006",
+    "repository": "boltons",
+    "base": "pinned boltons d31d821d56c8f7756af9c30a864077f2e5855321 plus the benchmark check files in audit/patches/r1/r1-006-base-context/",
+    "base_context": "audit/patches/r1/r1-006-base-context",
+    "patch": "audit/patches/r1/r1-006.patch",
+    "patch_sha256": "4aa614e1e5b0db0b659affc03f6f4b645295812637755c7e7bf9051db7f731ce",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "r1-007",
+    "repository": "boltons",
+    "base": "pinned boltons d31d821d56c8f7756af9c30a864077f2e5855321 plus the benchmark check files in audit/patches/r1/r1-007-base-context/",
+    "base_context": "audit/patches/r1/r1-007-base-context",
+    "patch": "audit/patches/r1/r1-007.patch",
+    "patch_sha256": "d606f0263239e23f0d710ada7523eb601f5f9b4fca0e05933431d399a07ab5ea",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "r1-008",
+    "repository": "gjson",
+    "base": "gjson parent commit 94e070960b0315398a4ab6edb1ff70cf8e87f4f7",
+    "patch": "audit/patches/r1/r1-008.patch",
+    "patch_sha256": "497b620e2da061ea31e67ca3c66f0a512c67ea6ad6030dd77c7da0115729319b",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "r1-009",
+    "repository": "boltons",
+    "base": "pinned boltons d31d821d56c8f7756af9c30a864077f2e5855321 plus the benchmark check files in audit/patches/r1/r1-009-base-context/",
+    "base_context": "audit/patches/r1/r1-009-base-context",
+    "patch": "audit/patches/r1/r1-009.patch",
+    "patch_sha256": "b01526f934edaa5e390f6145454c204a79a26e8e2b4881181a5d8e7458dc2caf",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "r1-010",
+    "repository": "boltons",
+    "base": "pinned boltons d31d821d56c8f7756af9c30a864077f2e5855321",
+    "patch": "audit/patches/r1/r1-010.patch",
+    "patch_sha256": "ec32d9d3866897018e497f8dbf8c256621b2e7d82ff82cdf4c219f844ee38c60",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "r1-011",
+    "repository": "boltons",
+    "base": "pinned boltons d31d821d56c8f7756af9c30a864077f2e5855321 plus the benchmark check files in audit/patches/r1/r1-011-base-context/",
+    "base_context": "audit/patches/r1/r1-011-base-context",
+    "patch": "audit/patches/r1/r1-011.patch",
+    "patch_sha256": "5255b55e8d8a18245ea7798594c77fe5419fd2aa90cca2f0670fdb39176d2b38",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "r1-012",
+    "repository": "boltons",
+    "base": "pinned boltons d31d821d56c8f7756af9c30a864077f2e5855321 plus the benchmark check files in audit/patches/r1/r1-012-base-context/",
+    "base_context": "audit/patches/r1/r1-012-base-context",
+    "patch": "audit/patches/r1/r1-012.patch",
+    "patch_sha256": "6cd823a3c5cad008cc6ad6e97916e2a0b37652eca062635716eab7f63c3a778f",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "r1-013",
+    "repository": "boltons",
+    "base": "boltons parent commit 5df26592c29b9561d122640868ba0522cbc1e20d",
+    "patch": "audit/patches/r1/r1-013.patch",
+    "patch_sha256": "2c8b0f0a0fe81fdb349fdf684b189924ac4f7eed0cb83f36596214ae63f32784",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "r1-014",
+    "repository": "p-map",
+    "base": "p-map parent commit 82b8cdc26d9910c1a9abe6813ddad5f3a55f88b2",
+    "patch": "audit/patches/r1/r1-014.patch",
+    "patch_sha256": "df017a587e9dcd15b8b38766ef1467310c64d24ec2059b65fd915210ae505e2a",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "r1-015",
+    "repository": "gjson",
+    "base": "pinned gjson 4221a7d392b61cf24d0c03a768320094c41387ca plus the benchmark check files in audit/patches/r1/r1-015-base-context/",
+    "base_context": "audit/patches/r1/r1-015-base-context",
+    "patch": "audit/patches/r1/r1-015.patch",
+    "patch_sha256": "5146b357d0c28d15c152dc7d9f30fd9199818eb9ed928dd9afcf177e09364117",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "r1-016",
+    "repository": "gjson",
+    "base": "gjson parent commit 40764d5d5686a9c15b836e8b30ee20ac14f998ae",
+    "patch": "audit/patches/r1/r1-016.patch",
+    "patch_sha256": "b23a72cab9abd5befc3540df9045574597fb723a49abef77b72477b21c191b43",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "r1-017",
+    "repository": "p-map",
+    "base": "pinned p-map d61b6a33cc1d5533ad5711b435959f3f78c3d2fe plus the benchmark check files in audit/patches/r1/r1-017-base-context/",
+    "base_context": "audit/patches/r1/r1-017-base-context",
+    "patch": "audit/patches/r1/r1-017.patch",
+    "patch_sha256": "786ffcbca18a472a5758bce1b26b12d47e1a58786299f651f9b1c3bfc09a66c8",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "r1-018",
+    "repository": "gjson",
+    "base": "pinned gjson 4221a7d392b61cf24d0c03a768320094c41387ca plus the benchmark check files in audit/patches/r1/r1-018-base-context/",
+    "base_context": "audit/patches/r1/r1-018-base-context",
+    "patch": "audit/patches/r1/r1-018.patch",
+    "patch_sha256": "6f3cb2828a7b753d8c1691bf947961b5f8306f6441cdaa65fcacc573a251e25a",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "r1-019",
+    "repository": "p-map",
+    "base": "pinned p-map d61b6a33cc1d5533ad5711b435959f3f78c3d2fe plus the benchmark check files in audit/patches/r1/r1-019-base-context/",
+    "base_context": "audit/patches/r1/r1-019-base-context",
+    "patch": "audit/patches/r1/r1-019.patch",
+    "patch_sha256": "017de524c4ff4235a633328cd3c280ab98344a26b68a38e764fb7edfd180f373",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "r1-020",
+    "repository": "boltons",
+    "base": "pinned boltons d31d821d56c8f7756af9c30a864077f2e5855321 plus the benchmark check files in audit/patches/r1/r1-020-base-context/",
+    "base_context": "audit/patches/r1/r1-020-base-context",
+    "patch": "audit/patches/r1/r1-020.patch",
+    "patch_sha256": "a4d55f5e23a2030086a65dcccbdb7a4c6cc290c8fc7486e4ba02b440d70cb465",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "r1-021",
+    "repository": "p-map",
+    "base": "pinned p-map d61b6a33cc1d5533ad5711b435959f3f78c3d2fe plus the benchmark check files in audit/patches/r1/r1-021-base-context/",
+    "base_context": "audit/patches/r1/r1-021-base-context",
+    "patch": "audit/patches/r1/r1-021.patch",
+    "patch_sha256": "ace53a456bd5b75125fcec988d5ad7f1b70a5e8a2e60c44d77f4210082dad418",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "r1-022",
+    "repository": "boltons",
+    "base": "pinned boltons d31d821d56c8f7756af9c30a864077f2e5855321 plus the benchmark check files in audit/patches/r1/r1-022-base-context/",
+    "base_context": "audit/patches/r1/r1-022-base-context",
+    "patch": "audit/patches/r1/r1-022.patch",
+    "patch_sha256": "a4d55f5e23a2030086a65dcccbdb7a4c6cc290c8fc7486e4ba02b440d70cb465",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "r1-023",
+    "repository": "p-map",
+    "base": "pinned p-map d61b6a33cc1d5533ad5711b435959f3f78c3d2fe plus the benchmark check files in audit/patches/r1/r1-023-base-context/",
+    "base_context": "audit/patches/r1/r1-023-base-context",
+    "patch": "audit/patches/r1/r1-023.patch",
+    "patch_sha256": "2871dcd2f28bee7d5cca19184be5df19ed428ee3a627b9d613c1d7e95899843a",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "r1-024",
+    "repository": "p-map",
+    "base": "p-map parent commit 6194e492706ced044d0b409536de417ffb852b05",
+    "patch": "audit/patches/r1/r1-024.patch",
+    "patch_sha256": "d1d2d5789b99bc1fc282463497a0da00b1ac5ad5622b9d665787d05512ea6931",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  },
+  {
+    "id": "r1-025",
+    "repository": "gjson",
+    "base": "pinned gjson 4221a7d392b61cf24d0c03a768320094c41387ca plus the benchmark check files in audit/patches/r1/r1-025-base-context/",
+    "base_context": "audit/patches/r1/r1-025-base-context",
+    "patch": "audit/patches/r1/r1-025.patch",
+    "patch_sha256": "29936682c6f16ab7681ac2f968fe05f319c22d4876944307db52bc6e4809fce8",
+    "review_fields": {
+      "semantic_label": null,
+      "primary_category": null,
+      "contract_or_reason": null,
+      "reviewer": null,
+      "confidence": null
+    }
+  }
+]

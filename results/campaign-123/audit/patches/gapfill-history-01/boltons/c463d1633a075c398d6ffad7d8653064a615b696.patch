@@ -1,0 +1,80 @@
+diff --git a/boltons/dictutils.py b/boltons/dictutils.py
+index f913f29..d4dd1db 100644
+--- a/boltons/dictutils.py
++++ b/boltons/dictutils.py
+@@ -358,7 +358,8 @@ class OrderedMultiDict(dict):
+         elif hasattr(other, 'keys'):
+             for selfk in self:
+                 try:
+-                    other[selfk] == self[selfk]
++                    if other[selfk] != self[selfk]:
++                        return False
+                 except KeyError:
+                     return False
+             return True
+diff --git a/boltons/urlutils.py b/boltons/urlutils.py
+index 45d3e73..712e5a1 100644
+--- a/boltons/urlutils.py
++++ b/boltons/urlutils.py
+@@ -1264,7 +1264,8 @@ class OrderedMultiDict(dict):
+         elif hasattr(other, 'keys'):
+             for selfk in self:
+                 try:
+-                    other[selfk] == self[selfk]
++                    if other[selfk] != self[selfk]:
++                        return False
+                 except KeyError:
+                     return False
+             return True
+diff --git a/tests/test_dictutils.py b/tests/test_dictutils.py
+index d4f6a67..b9df65f 100644
+--- a/tests/test_dictutils.py
++++ b/tests/test_dictutils.py
+@@ -61,6 +61,20 @@ def test_eq():
+     assert omd != omd3
+ 
+ 
++def test_eq_with_dict():
++    # OMD on the left dispatches to OMD.__eq__, which has to compare values
++    # against a plain mapping, not just keys.
++    omd = OMD([('a', 1), ('b', 2)])
++    assert omd == {'a': 1, 'b': 2}
++    assert not (omd != {'a': 1, 'b': 2})
++
++    assert omd != {'a': 999, 'b': 2}
++    assert not (omd == {'a': 999, 'b': 2})
++
++    # same number of keys but a different key
++    assert omd != {'a': 1, 'c': 2}
++
++
+ def test_copy():
+     for itemset in _ITEMSETS:
+         omd = OMD(itemset)
+diff --git a/tests/test_urlutils.py b/tests/test_urlutils.py
+index d25701e..8cac423 100644
+--- a/tests/test_urlutils.py
++++ b/tests/test_urlutils.py
+@@ -1,7 +1,7 @@
+ import pytest
+ 
+ from boltons import urlutils
+-from boltons.urlutils import URL, _URL_RE, find_all_links
++from boltons.urlutils import URL, QueryParamDict, _URL_RE, find_all_links
+ 
+ 
+ # fully quoted urls that should round trip
+@@ -95,6 +95,13 @@ def test_query_params(test_url):
+     assert test_url.endswith(qp_text)
+ 
+ 
++def test_query_param_dict_eq_with_dict():
++    qpd = QueryParamDict([('a', '1'), ('b', '2')])
++    assert qpd == {'a': '1', 'b': '2'}
++    assert qpd != {'a': '999', 'b': '2'}
++    assert not (qpd == {'a': '999', 'b': '2'})
++
++
+ def test_iri_query():
+     url = URL('http://minerals.mountain.ore/?rock=\N{SHAMROCK}')
+     assert url.query_params['rock'] == '\N{SHAMROCK}'

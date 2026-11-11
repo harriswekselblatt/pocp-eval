@@ -1,0 +1,31 @@
+diff --git a/boltons/mathutils.py b/boltons/mathutils.py
+index ae3ecd9..668cda6 100644
+--- a/boltons/mathutils.py
++++ b/boltons/mathutils.py
+@@ -170,7 +170,9 @@ class Bits:
+         if type(k) is slice:
+             return Bits(self.as_bin()[k])
+         if type(k) is int:
+-            if k >= self.len:
++            if k < 0:
++                k += self.len
++            if k < 0 or k >= self.len:
+                 raise IndexError(k)
+             return bool((1 << (self.len - k - 1)) & self.val)
+         raise TypeError(type(k))
+diff --git a/tests/test_mathutils.py b/tests/test_mathutils.py
+index 3cf7dbf..01fcaf2 100644
+--- a/tests/test_mathutils.py
++++ b/tests/test_mathutils.py
+@@ -83,6 +83,11 @@ def test_bits():
+     chk(Bits('10')[0], True)
+     chk(Bits('10')[1], False)
+     chk(Bits('0000100')[4], True)
++    chk(Bits('10')[-1], False)
++    chk(Bits('10')[-2], True)
++    chk(Bits('0000100')[-3], True)
++    with raises(IndexError):
++        Bits('10')[-3]
+     chk(Bits('10').as_list(), [True, False])
+     chk(Bits('10').as_int(), 2)
+     chk(Bits('10').as_bin(), '10')
