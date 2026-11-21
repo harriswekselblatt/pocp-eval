@@ -22,7 +22,7 @@ Most of these are pilot runs that don't count toward a pre-registered result. Th
 
 Set out in POCP's [`eval/README.md`](https://github.com/harriswekselblatt/pocp/blob/main/eval/README.md):
 - **Records are immutable.** Every run is kept, including errors and timeouts.
-- **Excluded runs stay.** An excluded run stays with its reason. One exception: the 180 runs of `2026-11-21-e1a-codex-150-01` and `2026-11-21-e1b-codex-150-01`, and the Codex runs of `smoke-2026-11-21-150`, are not published, because the agent read the maintainer's private notes during them. POCP's `eval/PREREG.md` §11 gives their names, counts and the reason.
+- **Excluded runs stay.** An excluded run stays with its reason. One exception: the 180 runs of `2026-11-21-e1a-codex-150-01` and `2026-11-21-e1b-codex-150-01`, and the whole smoke batch `smoke-2026-11-21-150` (12 runs, 6 of them Codex), are not published, because in the Codex runs the agent read the maintainer's private notes during them. POCP's `eval/PREREG.md` §11 gives their names, counts and the reason.
 - **Pilots are marked.** Pilot runs say `phase: "pilot"`.
 - **No personal paths.** Absolute paths are redacted.
 
