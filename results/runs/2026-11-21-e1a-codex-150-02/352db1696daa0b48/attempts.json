@@ -1,0 +1,114 @@
+{
+  "commits": [
+    {
+      "sha": "1841138a9a371a298d79a3693c9361ce9d2ed870",
+      "tree": "cfe440ae07ab755dd9388a729d3bd9f2121f33a1",
+      "parents": [
+        "0426997594a2dd5240f1150b64ee1648d0d1a67d"
+      ],
+      "subject": "Implement powerful integer counting",
+      "at": 1795298985,
+      "action": "commit",
+      "by": "agent",
+      "through_hooks": true,
+      "in_final_history": true
+    }
+  ],
+  "blocked_hook_runs": [
+    {
+      "at": 1795298972,
+      "exit": 1,
+      "tree": "b20c0a79d028d952a320223d76761bb7d891f6f3",
+      "gate": {
+        "decision": "blocked",
+        "subject": "sha256:c9b5c652e24a71fee936f4a052317786812c8420a23efe8e73d4d8efc1d00cee",
+        "required": 2,
+        "uncovered": 2,
+        "packets": []
+      },
+      "reason": "uncovered"
+    }
+  ],
+  "gate_log": [
+    {
+      "at": "2026-11-21T22:09:32.531Z",
+      "source": "hook",
+      "decision": "blocked",
+      "subject": "sha256:c9b5c652e24a71fee936f4a052317786812c8420a23efe8e73d4d8efc1d00cee",
+      "required": 2,
+      "uncovered": 2,
+      "packets": []
+    },
+    {
+      "at": "2026-11-21T22:09:38.796Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:c9b5c652e24a71fee936f4a052317786812c8420a23efe8e73d4d8efc1d00cee",
+      "required": 2,
+      "uncovered": 2,
+      "packets": []
+    },
+    {
+      "at": "2026-11-21T22:09:39.083Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:c9b5c652e24a71fee936f4a052317786812c8420a23efe8e73d4d8efc1d00cee",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-9c88f8f8",
+          "ok": false,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-21T22:09:39.937Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:c9b5c652e24a71fee936f4a052317786812c8420a23efe8e73d4d8efc1d00cee",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-9c88f8f8",
+          "ok": false,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-21T22:09:40.176Z",
+      "source": "fix",
+      "decision": "pass",
+      "subject": "sha256:c9b5c652e24a71fee936f4a052317786812c8420a23efe8e73d4d8efc1d00cee",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-9c88f8f8",
+          "ok": true,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-21T22:09:45.900Z",
+      "source": "hook",
+      "decision": "pass",
+      "subject": "sha256:c9b5c652e24a71fee936f4a052317786812c8420a23efe8e73d4d8efc1d00cee",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-9c88f8f8",
+          "ok": true,
+          "failed": 0
+        }
+      ]
+    }
+  ],
+  "hooks_modified": false,
+  "hooks_path": null
+}

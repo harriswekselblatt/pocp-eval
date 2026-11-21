@@ -1,0 +1,11 @@
+diff --git a/solution.py b/solution.py
+index b3d9fbf..9b3915f 100644
+--- a/solution.py
++++ b/solution.py
+@@ -20,4 +20,5 @@ def count_valid_colorings(n: int, m: int) -> int:
+     >>> count_valid_colorings(987654, 456789)
+     778634319
+     """
+-    pass
++    mod = 998244353
++    return (pow(m - 1, n, mod) + (-1) ** n * (m - 1)) % mod

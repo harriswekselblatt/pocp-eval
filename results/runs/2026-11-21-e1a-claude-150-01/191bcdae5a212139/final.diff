@@ -1,0 +1,21 @@
+diff --git a/solution.py b/solution.py
+index 1032d77..1902672 100644
+--- a/solution.py
++++ b/solution.py
+@@ -20,4 +20,15 @@ def min_cost_to_sort(n: int, permutation: List[int]) -> int:
+     >>> min_cost_to_sort(2, [1, 2])
+     0
+     """
+-    pass
++    # Insertion sort: each element moves left past its larger predecessors,
++    # so every swap happens as far left as possible, and the cost of each swap
++    # is the position of the smaller element after the swap.
++    a = list(permutation)
++    total = 0
++    for j in range(1, n):
++        k = j
++        while k > 0 and a[k - 1] > a[k]:
++            a[k - 1], a[k] = a[k], a[k - 1]
++            total += k
++            k -= 1
++    return total

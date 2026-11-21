@@ -1,0 +1,59 @@
+diff --git a/solution.py b/solution.py
+index 89fc706..0848b0e 100644
+--- a/solution.py
++++ b/solution.py
+@@ -24,4 +24,53 @@ def solve_grid(n: int, r: str, c: str) -> Optional[List[str]]:
+     >>> solve_grid(3, 'AAA', 'BBB')
+     None
+     """
+-    pass
++    from itertools import permutations
++
++    rows = []
++    for i in range(n):
++        options = []
++        for cols in permutations(range(n), 3):
++            for letters in permutations('ABC'):
++                row = ['.'] * n
++                for col, ch in zip(cols, letters):
++                    row[col] = ch
++                if row[min(cols)] == r[i]:
++                    options.append(row)
++        rows.append(options)
++
++    grid = []
++    used = [set() for _ in range(n)]
++    has_top = [False] * n
++
++    def place(i):
++        if i == n:
++            return True
++        for row in rows[i]:
++            ok = True
++            for j, ch in enumerate(row):
++                if ch == '.':
++                    continue
++                if ch in used[j] or (not has_top[j] and ch != c[j]):
++                    ok = False
++                    break
++            if not ok:
++                continue
++            newly_top = []
++            for j, ch in enumerate(row):
++                if ch != '.':
++                    used[j].add(ch)
++                    if not has_top[j]:
++                        has_top[j] = True
++                        newly_top.append(j)
++            grid.append(''.join(row))
++            if place(i + 1):
++                return True
++            grid.pop()
++            for j, ch in enumerate(row):
++                if ch != '.':
++                    used[j].discard(ch)
++            for j in newly_top:
++                has_top[j] = False
++        return False
++
++    return grid if place(0) else None

@@ -1,0 +1,50 @@
+diff --git a/solution.py b/solution.py
+index 89fc706..6f69423 100644
+--- a/solution.py
++++ b/solution.py
+@@ -24,4 +24,44 @@ def solve_grid(n: int, r: str, c: str) -> Optional[List[str]]:
+     >>> solve_grid(3, 'AAA', 'BBB')
+     None
+     """
+-    pass
++    from itertools import permutations
++
++    options = []
++    for i in range(n):
++        opts = []
++        for pa, pb, pc in permutations(range(n), 3):
++            row = ['.'] * n
++            row[pa], row[pb], row[pc] = 'A', 'B', 'C'
++            if row[min(pa, pb, pc)] == r[i]:
++                opts.append(row)
++        options.append(opts)
++
++    grid: List[str] = []
++
++    def dfs(i, used, top):
++        if i == n:
++            return all(len(u) == 3 for u in used)
++        for row in options[i]:
++            new_used = list(used)
++            new_top = list(top)
++            ok = True
++            for j, ch in enumerate(row):
++                if ch == '.':
++                    continue
++                if ch in new_used[j] or (new_top[j] is None and ch != c[j]):
++                    ok = False
++                    break
++                if new_top[j] is None:
++                    new_top[j] = ch
++                new_used[j] = new_used[j] | {ch}
++            if not ok:
++                continue
++            grid.append(''.join(row))
++            if dfs(i + 1, new_used, new_top):
++                return True
++            grid.pop()
++        return False
++
++    if dfs(0, [frozenset()] * n, [None] * n):
++        return grid
++    return None

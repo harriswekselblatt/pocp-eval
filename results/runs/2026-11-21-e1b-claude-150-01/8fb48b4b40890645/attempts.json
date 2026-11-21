@@ -1,0 +1,34 @@
+{
+  "commits": [
+    {
+      "sha": "d66756846927b398fcfe79fcc3855123cd2e58e0",
+      "tree": "9fdc074b545f2a7b6792735b7e0f5dc1c0d4726c",
+      "parents": [
+        "8af82df1b4b1cb72af311ceac60630d0a12fc2c2"
+      ],
+      "subject": "Implement count_in_degree_sequences via subset-construction DFA DP",
+      "at": 1795283197,
+      "action": "commit",
+      "by": "agent",
+      "through_hooks": null,
+      "in_final_history": true
+    },
+    {
+      "sha": "feec654c47977997839ee9deb930a95f716ec1a3",
+      "tree": "a26a50746dfcf3bac2ec94c4d31047871d7bc9bc",
+      "parents": [
+        "d66756846927b398fcfe79fcc3855123cd2e58e0"
+      ],
+      "subject": "harness: final state",
+      "at": 1795283200,
+      "action": "commit",
+      "by": "harness",
+      "through_hooks": null,
+      "in_final_history": true
+    }
+  ],
+  "blocked_hook_runs": [],
+  "gate_log": [],
+  "hooks_modified": false,
+  "hooks_path": null
+}

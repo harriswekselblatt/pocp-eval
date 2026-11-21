@@ -1,0 +1,31 @@
+diff --git a/solution.py b/solution.py
+index 978a238..d4c63f8 100644
+--- a/solution.py
++++ b/solution.py
+@@ -22,4 +22,25 @@ def min_spanning_tree_mod_k(n: int, m: int, k: int, edges: List[Tuple[int, int,
+     >>> min_spanning_tree_mod_k(6, 5, 998244353, [(1, 2, 337361568), (1, 6, 450343304), (2, 3, 61477244), (2, 5, 745383438), (4, 5, 727360840)])
+     325437688
+     """
+-    pass
++    best = k
++
++    def search(start: int, remaining: int, components: Tuple[int, ...], total: int) -> None:
++        nonlocal best
++        if remaining == 0:
++            best = min(best, total % k)
++            return
++
++        for index in range(start, m - remaining + 1):
++            u, v, weight = edges[index]
++            first, second = components[u - 1], components[v - 1]
++            if first == second:
++                continue
++
++            # Only add edges joining distinct components, so the chosen edges form a forest.
++            merged = tuple(first if component == second else component for component in components)
++            search(index + 1, remaining - 1, merged, total + weight)
++            if best == 0:
++                return
++
++    search(0, n - 1, tuple(range(n)), 0)
++    return best

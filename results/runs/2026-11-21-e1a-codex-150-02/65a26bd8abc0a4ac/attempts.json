@@ -1,0 +1,114 @@
+{
+  "commits": [
+    {
+      "sha": "126e3e775bdd39244457634944c0ea4dd003af28",
+      "tree": "d611c313fd2aae6d4c0bdc00c01de723f6c9f3e8",
+      "parents": [
+        "ac1372edc9fc34c5cb6a3d7ad82875cda07bbb63"
+      ],
+      "subject": "Count valid three-color grid completions",
+      "at": 1795292074,
+      "action": "commit",
+      "by": "agent",
+      "through_hooks": true,
+      "in_final_history": true
+    }
+  ],
+  "blocked_hook_runs": [
+    {
+      "at": 1795292065,
+      "exit": 1,
+      "tree": "e24bf4948555025b3fba857207ea7c343f317683",
+      "gate": {
+        "decision": "blocked",
+        "subject": "sha256:3e12c987aa1a07def6f90ba4a28e5aa4fdd2cb257b0e09c33dbf31bb41677732",
+        "required": 2,
+        "uncovered": 2,
+        "packets": []
+      },
+      "reason": "uncovered"
+    }
+  ],
+  "gate_log": [
+    {
+      "at": "2026-11-21T20:14:25.822Z",
+      "source": "hook",
+      "decision": "blocked",
+      "subject": "sha256:3e12c987aa1a07def6f90ba4a28e5aa4fdd2cb257b0e09c33dbf31bb41677732",
+      "required": 2,
+      "uncovered": 2,
+      "packets": []
+    },
+    {
+      "at": "2026-11-21T20:14:30.207Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:a254a817b1ba750f784a0266cf97d89ecdc28765c7b89df718fd8f3edc17d85f",
+      "required": 2,
+      "uncovered": 2,
+      "packets": []
+    },
+    {
+      "at": "2026-11-21T20:14:30.506Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:a254a817b1ba750f784a0266cf97d89ecdc28765c7b89df718fd8f3edc17d85f",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-338959b8",
+          "ok": false,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-21T20:14:31.435Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:a254a817b1ba750f784a0266cf97d89ecdc28765c7b89df718fd8f3edc17d85f",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-338959b8",
+          "ok": false,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-21T20:14:31.725Z",
+      "source": "fix",
+      "decision": "pass",
+      "subject": "sha256:a254a817b1ba750f784a0266cf97d89ecdc28765c7b89df718fd8f3edc17d85f",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-338959b8",
+          "ok": true,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-21T20:14:34.409Z",
+      "source": "hook",
+      "decision": "pass",
+      "subject": "sha256:a254a817b1ba750f784a0266cf97d89ecdc28765c7b89df718fd8f3edc17d85f",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-338959b8",
+          "ok": true,
+          "failed": 0
+        }
+      ]
+    }
+  ],
+  "hooks_modified": false,
+  "hooks_path": null
+}

@@ -1,0 +1,29 @@
+diff --git a/solution.py b/solution.py
+index 7c8715b..87a3495 100644
+--- a/solution.py
++++ b/solution.py
+@@ -1,5 +1,8 @@
++from math import gcd
+ from typing import List
+ 
++MOD = 10**9 + 7
++
+ 
+ def count_subsequence_pairs(nums: List[int]) -> int:
+     """ Find the number of pairs of non-empty subsequences (seq1, seq2) of nums that satisfy:
+@@ -21,4 +24,14 @@ def count_subsequence_pairs(nums: List[int]) -> int:
+     >>> count_subsequence_pairs([1, 1, 1, 1])
+     50
+     """
+-    pass
++    # dp[(a, b)] = ways with gcd(seq1)=a, gcd(seq2)=b (0 means empty)
++    dp = {(0, 0): 1}
++    for x in nums:
++        new = dict(dp)
++        for (a, b), c in dp.items():
++            k = (gcd(a, x), b)
++            new[k] = (new.get(k, 0) + c) % MOD
++            k = (a, gcd(b, x))
++            new[k] = (new.get(k, 0) + c) % MOD
++        dp = new
++    return sum(c for (a, b), c in dp.items() if a == b and a > 0) % MOD

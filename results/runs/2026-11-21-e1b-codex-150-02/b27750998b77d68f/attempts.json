@@ -1,0 +1,159 @@
+{
+  "commits": [
+    {
+      "sha": "c8017648fdeb0210823bb305dc324a897c7c2b96",
+      "tree": "f2c2ab7804d4e9e9675c4236bdaa665f95a81ef3",
+      "parents": [
+        "163c171ad2aa7378bc92176526c48e8f2ea5ff61"
+      ],
+      "subject": "Implement subarray imbalance sum",
+      "at": 1795300870,
+      "action": "commit",
+      "by": "agent",
+      "through_hooks": true,
+      "in_final_history": true
+    }
+  ],
+  "blocked_hook_runs": [
+    {
+      "at": 1795300855,
+      "exit": 1,
+      "tree": "9977078c4a307d23bb4813c6f955bd334a7a2c1b",
+      "gate": {
+        "decision": "blocked",
+        "subject": "sha256:6e262c3fee32d821aa818f3fb991b1f2f07ee93b4b691d3372bbc6acc5541852",
+        "required": 1,
+        "uncovered": 1,
+        "packets": []
+      },
+      "reason": "uncovered"
+    }
+  ],
+  "gate_log": [
+    {
+      "at": "2026-11-21T22:40:54.984Z",
+      "source": "hook",
+      "decision": "blocked",
+      "subject": "sha256:6e262c3fee32d821aa818f3fb991b1f2f07ee93b4b691d3372bbc6acc5541852",
+      "required": 1,
+      "uncovered": 1,
+      "packets": []
+    },
+    {
+      "at": "2026-11-21T22:41:02.135Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:037f851d225b5c69064f1ab415f07e2cb80e08ea87942ed5cc554151436f0e08",
+      "required": 2,
+      "uncovered": 2,
+      "packets": []
+    },
+    {
+      "at": "2026-11-21T22:41:02.390Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:037f851d225b5c69064f1ab415f07e2cb80e08ea87942ed5cc554151436f0e08",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-0acf0b14",
+          "ok": false,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-21T22:41:03.202Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:037f851d225b5c69064f1ab415f07e2cb80e08ea87942ed5cc554151436f0e08",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-0acf0b14",
+          "ok": false,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-21T22:41:03.440Z",
+      "source": "fix",
+      "decision": "pass",
+      "subject": "sha256:037f851d225b5c69064f1ab415f07e2cb80e08ea87942ed5cc554151436f0e08",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-0acf0b14",
+          "ok": true,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-21T22:41:09.005Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:7f8f6ba0e885ced7d6acfb8fa269bf1269a78a2fca24884b777ecddd6d7835c8",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-0acf0b14",
+          "ok": false,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-21T22:41:09.928Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:7f8f6ba0e885ced7d6acfb8fa269bf1269a78a2fca24884b777ecddd6d7835c8",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-0acf0b14",
+          "ok": false,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-21T22:41:10.184Z",
+      "source": "fix",
+      "decision": "pass",
+      "subject": "sha256:7f8f6ba0e885ced7d6acfb8fa269bf1269a78a2fca24884b777ecddd6d7835c8",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-0acf0b14",
+          "ok": true,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-21T22:41:10.548Z",
+      "source": "hook",
+      "decision": "pass",
+      "subject": "sha256:7f8f6ba0e885ced7d6acfb8fa269bf1269a78a2fca24884b777ecddd6d7835c8",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-0acf0b14",
+          "ok": true,
+          "failed": 0
+        }
+      ]
+    }
+  ],
+  "hooks_modified": false,
+  "hooks_path": null
+}

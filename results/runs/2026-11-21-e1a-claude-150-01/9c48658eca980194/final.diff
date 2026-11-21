@@ -1,0 +1,32 @@
+diff --git a/solution.py b/solution.py
+index 8359dd1..7565ee5 100644
+--- a/solution.py
++++ b/solution.py
+@@ -17,4 +17,26 @@ def min_longest_substring(s: str, numOps: int) -> int:
+     >>> min_longest_substring("0101", 0)
+     1
+     """
+-    pass
++    n = len(s)
++    mismatch = sum(c !="01"[i % 2] for i, c in enumerate(s))
++    if min(mismatch, n - mismatch) <= numOps:
++        return 1
++
++    runs = []
++    count = 1
++    for i in range(1, n):
++        if s[i] == s[i - 1]:
++            count += 1
++        else:
++            runs.append(count)
++            count = 1
++    runs.append(count)
++
++    lo, hi = 2, max(runs)
++    while lo < hi:
++        mid = (lo + hi) // 2
++        if sum(r // (mid + 1) for r in runs) <= numOps:
++            hi = mid
++        else:
++            lo = mid + 1
++    return lo

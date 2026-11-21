@@ -1,0 +1,114 @@
+{
+  "commits": [
+    {
+      "sha": "2aae558d28e885753894dbfc3de2a3b3f2c96ce3",
+      "tree": "a742772acd0acf1e0f9085d56dada044f3d0e6f3",
+      "parents": [
+        "f0aff1a9ba33cfb5d90a280ca38729e4b8ebadad"
+      ],
+      "subject": "Implement lexicographic alternating permutation lookup",
+      "at": 1795295686,
+      "action": "commit",
+      "by": "agent",
+      "through_hooks": true,
+      "in_final_history": true
+    }
+  ],
+  "blocked_hook_runs": [
+    {
+      "at": 1795295677,
+      "exit": 1,
+      "tree": "d1928111b57fe511f9f78221201d93d01cc2a3ab",
+      "gate": {
+        "decision": "blocked",
+        "subject": "sha256:acda6a7c9a1de4ef100f13a4767a82d3405810c35405295d26a8bda6f7ba0b3b",
+        "required": 2,
+        "uncovered": 2,
+        "packets": []
+      },
+      "reason": "uncovered"
+    }
+  ],
+  "gate_log": [
+    {
+      "at": "2026-11-21T21:14:37.886Z",
+      "source": "hook",
+      "decision": "blocked",
+      "subject": "sha256:acda6a7c9a1de4ef100f13a4767a82d3405810c35405295d26a8bda6f7ba0b3b",
+      "required": 2,
+      "uncovered": 2,
+      "packets": []
+    },
+    {
+      "at": "2026-11-21T21:14:42.365Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:94464787a515cd0075be12bc0b1925e122f901c404568dab52403d35a6847ace",
+      "required": 2,
+      "uncovered": 2,
+      "packets": []
+    },
+    {
+      "at": "2026-11-21T21:14:42.665Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:94464787a515cd0075be12bc0b1925e122f901c404568dab52403d35a6847ace",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-74760b13",
+          "ok": false,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-21T21:14:43.592Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:94464787a515cd0075be12bc0b1925e122f901c404568dab52403d35a6847ace",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-74760b13",
+          "ok": false,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-21T21:14:43.877Z",
+      "source": "fix",
+      "decision": "pass",
+      "subject": "sha256:94464787a515cd0075be12bc0b1925e122f901c404568dab52403d35a6847ace",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-74760b13",
+          "ok": true,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-21T21:14:47.056Z",
+      "source": "hook",
+      "decision": "pass",
+      "subject": "sha256:94464787a515cd0075be12bc0b1925e122f901c404568dab52403d35a6847ace",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-74760b13",
+          "ok": true,
+          "failed": 0
+        }
+      ]
+    }
+  ],
+  "hooks_modified": false,
+  "hooks_path": null
+}

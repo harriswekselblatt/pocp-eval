@@ -1,0 +1,34 @@
+{
+  "commits": [
+    {
+      "sha": "3e40e950a31eac82f3f15fbbbf5981db65a40dc0",
+      "tree": "aac6afcb84fe2ba83884d4ec587065692f390c7c",
+      "parents": [
+        "4463cc8a56bfc715d2c14c842931363964d30323"
+      ],
+      "subject": "Implement minimum stone moves with breadth-first search",
+      "at": 1795301532,
+      "action": "commit",
+      "by": "agent",
+      "through_hooks": null,
+      "in_final_history": true
+    },
+    {
+      "sha": "a7285bca88e1779b7799d6861e776900524b88a2",
+      "tree": "49fcc064691f250949e8deb57ac15f265ad1a933",
+      "parents": [
+        "3e40e950a31eac82f3f15fbbbf5981db65a40dc0"
+      ],
+      "subject": "harness: final state",
+      "at": 1795301537,
+      "action": "commit",
+      "by": "harness",
+      "through_hooks": null,
+      "in_final_history": true
+    }
+  ],
+  "blocked_hook_runs": [],
+  "gate_log": [],
+  "hooks_modified": false,
+  "hooks_path": null
+}

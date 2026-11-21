@@ -1,0 +1,54 @@
+diff --git a/solution.py b/solution.py
+index 6aa0bfb..5a57921 100644
+--- a/solution.py
++++ b/solution.py
+@@ -24,4 +24,48 @@ def sum_of_scores(n: int, m: int) -> int:
+     >>> sum_of_scores(81131, 14)
+     182955659
+     """
+-    pass
++    modulus = 998244353
++    primes = [prime for prime in (2, 3, 5, 7, 11, 13) if prime <= m]
++    size = 1 << len(primes)
++
++    def multiply(left, right):
++        result = [0] * size
++        for mask in range(size):
++            subset = mask
++            while True:
++                result[mask] += left[subset] * right[mask ^ subset]
++                if subset == 0:
++                    break
++                subset = (subset - 1) & mask
++            result[mask] %= modulus
++        return result
++
++    # For each number, encode the product of (1 + exponent * variable)
++    # over the primes. Ignore terms with a squared variable. For a sequence,
++    # each linear factor then has the prime's exponent in the full product.
++    single = [0] * size
++    for value in range(1, m + 1):
++        coefficients = [1]
++        for prime in primes:
++            exponent = 0
++            while value % prime == 0:
++                value //= prime
++                exponent += 1
++            coefficients.extend(coefficient * exponent
++                                for coefficient in coefficients[:])
++        single = [a + b for a, b in zip(single, coefficients)]
++
++    # Maintain the sequence polynomial at the current length and the sum
++    # through that length. Doubling shifts a copy of the sum by that length.
++    power = [1] + [0] * (size - 1)
++    total = [0] * size
++    for bit in bin(n)[2:]:
++        total = [(a + b) % modulus
++                 for a, b in zip(total, multiply(power, total))]
++        power = multiply(power, power)
++        if bit == "1":
++            power = multiply(power, single)
++            total = [(a + b) % modulus for a, b in zip(total, power)]
++
++    # Evaluating at all variables equal to 1 gives the divisor count.
++    return sum(total) % modulus

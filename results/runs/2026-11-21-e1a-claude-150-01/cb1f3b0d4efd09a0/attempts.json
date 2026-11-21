@@ -1,0 +1,79 @@
+{
+  "commits": [
+    {
+      "sha": "eb3ab36904474ef17865f6bc474ccf0e06f1250f",
+      "tree": "a06d4556d776997127e046c9379716a3d85ad470",
+      "parents": [
+        "f9a013e3100854e467e3fdc2e2b72d05a497a1a9"
+      ],
+      "subject": "harness: final state",
+      "at": 1795281216,
+      "action": "commit",
+      "by": "harness",
+      "through_hooks": false,
+      "in_final_history": true
+    }
+  ],
+  "blocked_hook_runs": [
+    {
+      "at": 1795281204,
+      "exit": 1,
+      "tree": "7d3e1d4625a207b2950c4da0d48183160924e31b",
+      "gate": {
+        "decision": "blocked",
+        "subject": "sha256:d606775d61a36fb07a12437fae91dd237f2b57042c69f705ab1ded45a5263e7a",
+        "required": 1,
+        "uncovered": 1,
+        "packets": []
+      },
+      "reason": "uncovered"
+    },
+    {
+      "at": 1795281211,
+      "exit": 1,
+      "tree": "7d3e1d4625a207b2950c4da0d48183160924e31b",
+      "gate": {
+        "decision": "blocked",
+        "subject": "sha256:d606775d61a36fb07a12437fae91dd237f2b57042c69f705ab1ded45a5263e7a",
+        "required": 1,
+        "uncovered": 0,
+        "packets": [
+          {
+            "id": "p-e2b08b24",
+            "ok": false,
+            "failed": 0
+          }
+        ]
+      },
+      "reason": "unproven"
+    }
+  ],
+  "gate_log": [
+    {
+      "at": "2026-11-21T17:13:24.781Z",
+      "source": "hook",
+      "decision": "blocked",
+      "subject": "sha256:d606775d61a36fb07a12437fae91dd237f2b57042c69f705ab1ded45a5263e7a",
+      "required": 1,
+      "uncovered": 1,
+      "packets": []
+    },
+    {
+      "at": "2026-11-21T17:13:31.034Z",
+      "source": "hook",
+      "decision": "blocked",
+      "subject": "sha256:d606775d61a36fb07a12437fae91dd237f2b57042c69f705ab1ded45a5263e7a",
+      "required": 1,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-e2b08b24",
+          "ok": false,
+          "failed": 0
+        }
+      ]
+    }
+  ],
+  "hooks_modified": false,
+  "hooks_path": null
+}

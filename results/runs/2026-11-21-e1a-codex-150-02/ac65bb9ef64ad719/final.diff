@@ -1,0 +1,40 @@
+diff --git a/solution.py b/solution.py
+index 56103cf..95233b1 100644
+--- a/solution.py
++++ b/solution.py
+@@ -21,4 +21,34 @@ def count_powerful_integers(start: int, finish: int, limit: int, s: str) -> int:
+     >>> count_powerful_integers(1000, 2000, 4, "3000")
+     0
+     """
+-    pass
++    if any(int(digit) > limit for digit in s):
++        return 0
++
++    suffix = int(s)
++    scale = 10 ** len(s)
++    # A zero prefix is valid only when the suffix itself is a positive
++    # integer with the requested number of digits.
++    minimum_prefix = int(s[0] == "0")
++    lower = max(minimum_prefix, (start - suffix + scale - 1) // scale)
++    upper = (finish - suffix) // scale
++    if lower > upper:
++        return 0
++
++    def count_prefixes(bound: int) -> int:
++        if bound < 0:
++            return 0
++
++        digits = str(bound)
++        base = limit + 1
++        choices = base ** (len(digits) - 1)
++        count = 0
++        for digit in digits:
++            value = int(digit)
++            # Count prefixes that first fall below the bound at this digit.
++            count += min(value, base) * choices
++            if value > limit:
++                return count
++            choices //= base
++        return count + 1  # Include the bound itself.
++
++    return count_prefixes(upper) - count_prefixes(lower - 1)

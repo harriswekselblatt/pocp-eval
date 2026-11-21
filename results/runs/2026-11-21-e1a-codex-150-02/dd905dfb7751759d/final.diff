@@ -1,0 +1,87 @@
+diff --git a/solution.py b/solution.py
+index 8bac742..3bd5039 100644
+--- a/solution.py
++++ b/solution.py
+@@ -1,3 +1,4 @@
++from array import array
+ from typing import List, Tuple, Optional
+ 
+ 
+@@ -21,9 +22,74 @@ def min_weight_hamiltonian_walk(n: int, m: int, edges: List[Tuple[int, int, int]
+     
+     >>> min_weight_hamiltonian_walk(3, 4, [(1, 2, 5), (2, 1, -3), (2, 3, -4), (3, 1, 100)])
+     -2
+-    >>> min_weight_hamiltonian_walk(3, 2, [(1, 2, 0), (2, 1, 0)])
+-    None
++    >>> min_weight_hamiltonian_walk(3, 2, [(1, 2, 0), (2, 1, 0)]) is None
++    True
+     >>> min_weight_hamiltonian_walk(2, 1, [(2, 1, 0)])
+     0
+     """
+-    pass
++    # Shortest paths can revisit vertices that the subset DP already counted.
++    unreachable = 10**9
++    distances = [[unreachable] * n for _ in range(n)]
++    for vertex in range(n):
++        distances[vertex][vertex] = 0
++    for source, target, weight in edges:
++        row = distances[source - 1]
++        row[target - 1] = min(row[target - 1], weight)
++
++    for intermediate, onward in enumerate(distances):
++        for row in distances:
++            first = row[intermediate]
++            if first == unreachable:
++                continue
++            for target, second in enumerate(onward):
++                if second != unreachable and first + second < row[target]:
++                    row[target] = first + second
++
++    bits = [1 << vertex for vertex in range(n)]
++    full = (1 << n) - 1
++    prerequisites = [0] * n
++    for source, row in enumerate(distances):
++        for target, distance in enumerate(row):
++            if distance == unreachable:
++                if distances[target][source] == unreachable:
++                    return None
++                prerequisites[source] |= bits[target]
++
++    # Each state stores the cheapest ordering of the subset ending at vertex.
++    costs = [array("i", [unreachable]) * (full + 1) for _ in range(n)]
++    reachable_endpoints = array("I", [0]) * (full + 1)
++    for vertex, bit in enumerate(bits):
++        if not prerequisites[vertex]:
++            costs[vertex][bit] = 0
++            reachable_endpoints[bit] = bit
++
++    for mask in range(1, full):
++        endpoints = reachable_endpoints[mask]
++        if not endpoints:
++            continue
++        remaining = full ^ mask
++        eligible = []
++        candidates = remaining
++        while candidates:
++            bit = candidates & -candidates
++            candidates ^= bit
++            target = bit.bit_length() - 1
++            if not prerequisites[target] & remaining:
++                eligible.append((target, bit, mask | bit, costs[target]))
++
++        while endpoints:
++            bit = endpoints & -endpoints
++            endpoints ^= bit
++            source = bit.bit_length() - 1
++            cost = costs[source][mask]
++            row = distances[source]
++            for target, target_bit, next_mask, target_costs in eligible:
++                candidate = cost + row[target]
++                previous = target_costs[next_mask]
++                if candidate < previous:
++                    if previous == unreachable:
++                        reachable_endpoints[next_mask] |= target_bit
++                    target_costs[next_mask] = candidate
++
++    best = min(row[full] for row in costs)
++    return None if best == unreachable else best

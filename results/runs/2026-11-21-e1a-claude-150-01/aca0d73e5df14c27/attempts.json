@@ -1,0 +1,21 @@
+{
+  "commits": [
+    {
+      "sha": "42767f692890b0a7e1228e687a12a9d19f29f110",
+      "tree": "8814a8ab203e03e78d5c6defe36804822914c3b0",
+      "parents": [
+        "6d186475387de346a3fb004bc4569ecd1c74ef3d"
+      ],
+      "subject": "Add brute-force count_in_degree_sequences (small n only)",
+      "at": 1795281724,
+      "action": "commit",
+      "by": "agent",
+      "through_hooks": null,
+      "in_final_history": true
+    }
+  ],
+  "blocked_hook_runs": [],
+  "gate_log": [],
+  "hooks_modified": false,
+  "hooks_path": null
+}

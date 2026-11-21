@@ -1,0 +1,21 @@
+{
+  "commits": [
+    {
+      "sha": "aa1f1045e745c5e80955431c030e86a7b1915589",
+      "tree": "a4ef8ea52559f77bdd88512ffca1a60ff30888db",
+      "parents": [
+        "8bcfc7f9beba0d3a9372bdf6923e1b4a7845dc71"
+      ],
+      "subject": "Implement count_power_representations via Möbius inclusion-exclusion",
+      "at": 1795281236,
+      "action": "commit",
+      "by": "agent",
+      "through_hooks": null,
+      "in_final_history": true
+    }
+  ],
+  "blocked_hook_runs": [],
+  "gate_log": [],
+  "hooks_modified": false,
+  "hooks_path": null
+}

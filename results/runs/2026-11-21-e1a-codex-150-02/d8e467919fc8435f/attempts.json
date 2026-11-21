@@ -1,0 +1,84 @@
+{
+  "commits": [
+    {
+      "sha": "29ef41051be9f4691b9b34a9aea67272cddc7d5e",
+      "tree": "818da959798bb8685db389b757807ced25f3ff8a",
+      "parents": [
+        "b1560884e477b8ec01b74dd0f85ab77e04324d35"
+      ],
+      "subject": "harness: final state",
+      "at": 1795294342,
+      "action": "commit",
+      "by": "harness",
+      "through_hooks": false,
+      "in_final_history": true
+    }
+  ],
+  "blocked_hook_runs": [
+    {
+      "at": 1795294268,
+      "exit": 1,
+      "tree": "88325db095614bc36adceff0af18d99b6b8af98b",
+      "gate": {
+        "decision": "blocked",
+        "subject": "sha256:76c0f3757d5d086bb9dd39c76112c62df3cd8940543dd98d4691fb09f7367d9d",
+        "required": 2,
+        "uncovered": 2,
+        "packets": []
+      },
+      "reason": "uncovered"
+    }
+  ],
+  "gate_log": [
+    {
+      "at": "2026-11-21T20:51:08.911Z",
+      "source": "hook",
+      "decision": "blocked",
+      "subject": "sha256:76c0f3757d5d086bb9dd39c76112c62df3cd8940543dd98d4691fb09f7367d9d",
+      "required": 2,
+      "uncovered": 2,
+      "packets": []
+    },
+    {
+      "at": "2026-11-21T20:51:11.322Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:76c0f3757d5d086bb9dd39c76112c62df3cd8940543dd98d4691fb09f7367d9d",
+      "required": 2,
+      "uncovered": 2,
+      "packets": []
+    },
+    {
+      "at": "2026-11-21T20:51:11.594Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:76c0f3757d5d086bb9dd39c76112c62df3cd8940543dd98d4691fb09f7367d9d",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-50187b81",
+          "ok": false,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-21T20:51:55.660Z",
+      "source": "gate",
+      "decision": "blocked",
+      "subject": "sha256:76c0f3757d5d086bb9dd39c76112c62df3cd8940543dd98d4691fb09f7367d9d",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-50187b81",
+          "ok": false,
+          "failed": 0
+        }
+      ]
+    }
+  ],
+  "hooks_modified": false,
+  "hooks_path": null
+}

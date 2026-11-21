@@ -1,0 +1,62 @@
+diff --git a/solution.py b/solution.py
+index 5fced82..8ac843a 100644
+--- a/solution.py
++++ b/solution.py
+@@ -17,4 +17,56 @@ def sum_concatenated_permutations(n: int) -> int:
+     >>> sum_concatenated_permutations(1)
+     1
+     """
+-    pass
++    mod = 998244353
++    # For a fixed value at random rank t in [0, 1], each other value
++    # independently contributes its decimal shift with probability t.
++    # Group the resulting factors (1 + a*t) by decimal width.
++    groups = []
++    first = 1
++    while first <= n:
++        power = 10 * first
++        last = min(n, power - 1)
++        count = last - first + 1
++        groups.append((power - 1, count, (first + last) * count // 2))
++        first = power
++
++    # P = product of all factors. Let Q contain each distinct factor once.
++    # Then Q * P' = R * P, where R = sum(count * a * Q / (1 + a*t)).
++    q = [1]
++    for a, _, _ in groups:
++        q = [1] + [
++            (a * q[j - 1] + (q[j] if j < len(q) else 0)) % mod
++            for j in range(1, len(q) + 1)
++        ]
++    width = len(groups)
++    r = [0] * width
++    for a, count, _ in groups:
++        quotient = 0
++        for j in range(width):
++            quotient = (q[j] - a * quotient) % mod
++            r[j] = (r[j] + count * a * quotient) % mod
++
++    inverse = [0] * (n + 1)
++    inverse[1] = 1
++    p = [1]
++    factorial = 1
++    for k in range(1, n + 1):
++        if k > 1:
++            inverse[k] = -(mod // k) * inverse[mod % k] % mod
++        factorial = factorial * k % mod
++        coefficient = 0
++        for j in range(min(k, width)):
++            coefficient += (r[j] - (k - 1 - j) * q[j + 1]) * p[k - 1 - j]
++        p.append(coefficient * inverse[k] % mod)
++
++    # Divide out the fixed value's factor and integrate term by term.
++    # Multiplying the expected value by n! gives the sum over permutations.
++    result = 0
++    for a, _, value_sum in groups:
++        quotient = 0
++        integral = 0
++        for k in range(n):
++            quotient = (p[k] - a * quotient) % mod
++            integral += quotient * inverse[k + 1]
++        result += value_sum * (integral % mod)
++    return result * factorial % mod

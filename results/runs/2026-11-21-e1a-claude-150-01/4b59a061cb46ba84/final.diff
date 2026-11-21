@@ -1,0 +1,28 @@
+diff --git a/solution.py b/solution.py
+index b3305e6..48a3613 100644
+--- a/solution.py
++++ b/solution.py
+@@ -27,4 +27,22 @@ def count_event_ways(n: int, x: int, y: int) -> int:
+     >>> count_event_ways(3, 3, 4)
+     684
+     """
+-    pass
++    MOD = 10**9 + 7
++    m = min(n, x)
++    # stirling[k] = S(i, k) for the current i
++    stirling = [0] * (m + 1)
++    stirling[0] = 1
++    for i in range(1, n + 1):
++        for k in range(min(i, m), 0, -1):
++            stirling[k] = (stirling[k - 1] + k * stirling[k]) % MOD
++        stirling[0] = 0
++    total = 0
++    comb = 1  # C(x, k)
++    fact = 1  # k factorial
++    ypow = 1  # y^k
++    for k in range(1, m + 1):
++        comb = comb * (x - k + 1) % MOD * pow(k, MOD - 2, MOD) % MOD
++        fact = fact * k % MOD
++        ypow = ypow * y % MOD
++        total = (total + comb * stirling[k] % MOD * fact % MOD * ypow) % MOD
++    return total

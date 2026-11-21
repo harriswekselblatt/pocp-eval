@@ -1,0 +1,38 @@
+diff --git a/solution.py b/solution.py
+index 978a238..bf73a02 100644
+--- a/solution.py
++++ b/solution.py
+@@ -22,4 +22,32 @@ def min_spanning_tree_mod_k(n: int, m: int, k: int, edges: List[Tuple[int, int,
+     >>> min_spanning_tree_mod_k(6, 5, 998244353, [(1, 2, 337361568), (1, 6, 450343304), (2, 3, 61477244), (2, 5, 745383438), (4, 5, 727360840)])
+     325437688
+     """
+-    pass
++    parent = list(range(n + 1))
++    best = k
++
++    def root(vertex: int) -> int:
++        while parent[vertex] != vertex:
++            vertex = parent[vertex]
++        return vertex
++
++    def search(start: int, remaining: int, weight: int) -> None:
++        nonlocal best
++        if remaining == 0:
++            best = min(best, weight % k)
++            return
++
++        for index in range(start, m - remaining + 1):
++            u, v, edge_weight = edges[index]
++            u_root, v_root = root(u), root(v)
++            if u_root == v_root:
++                continue
++
++            # A forest with n - 1 edges is a spanning tree.
++            parent[u_root] = v_root
++            search(index + 1, remaining - 1, weight + edge_weight)
++            parent[u_root] = u_root
++            if best == 0:
++                return
++
++    search(0, n - 1, 0)
++    return best

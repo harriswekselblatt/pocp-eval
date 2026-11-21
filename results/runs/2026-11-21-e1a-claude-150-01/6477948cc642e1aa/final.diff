@@ -1,0 +1,28 @@
+diff --git a/solution.py b/solution.py
+index 5f780ca..2452959 100644
+--- a/solution.py
++++ b/solution.py
+@@ -16,4 +16,22 @@ def max_score(grid: List[List[int]]) -> int:
+     >>> max_score([[8,7,6],[8,3,2]])
+     15
+     """
+-    pass
++    rows_of = {}
++    for i, row in enumerate(grid):
++        for v in row:
++            rows_of.setdefault(v, set()).add(i)
++    size = 1 << len(grid)
++    dp = [-1] * size
++    dp[0] = 0
++    for v, rows in rows_of.items():
++        new = dp[:]
++        for mask in range(size):
++            if dp[mask] < 0:
++                continue
++            for r in rows:
++                if not mask & (1 << r):
++                    m = mask | (1 << r)
++                    if dp[mask] + v > new[m]:
++                        new[m] = dp[mask] + v
++        dp = new
++    return max(dp)

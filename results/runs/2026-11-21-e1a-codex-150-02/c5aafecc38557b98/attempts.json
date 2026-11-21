@@ -1,0 +1,114 @@
+{
+  "commits": [
+    {
+      "sha": "5e54090247410089f1c299c58de1830dc9d14a55",
+      "tree": "df3cf65f32b012aa7034d30ca2fb7ccc79c9c1d1",
+      "parents": [
+        "20e16a9154256a8d732ef0e1de1f0123b45fe21b"
+      ],
+      "subject": "Implement optimal knight capture game",
+      "at": 1795293751,
+      "action": "commit",
+      "by": "agent",
+      "through_hooks": true,
+      "in_final_history": true
+    }
+  ],
+  "blocked_hook_runs": [
+    {
+      "at": 1795293711,
+      "exit": 1,
+      "tree": "b60a50d32c5c2306d4794f18885ca938d5ff4cf7",
+      "gate": {
+        "decision": "blocked",
+        "subject": "sha256:c33b8c77c9db29e2fff4019977b14aa9c742d32211d4a6cba38b5b2f14f103f8",
+        "required": 2,
+        "uncovered": 2,
+        "packets": []
+      },
+      "reason": "uncovered"
+    }
+  ],
+  "gate_log": [
+    {
+      "at": "2026-11-21T20:41:51.245Z",
+      "source": "hook",
+      "decision": "blocked",
+      "subject": "sha256:c33b8c77c9db29e2fff4019977b14aa9c742d32211d4a6cba38b5b2f14f103f8",
+      "required": 2,
+      "uncovered": 2,
+      "packets": []
+    },
+    {
+      "at": "2026-11-21T20:41:55.614Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:c33b8c77c9db29e2fff4019977b14aa9c742d32211d4a6cba38b5b2f14f103f8",
+      "required": 2,
+      "uncovered": 2,
+      "packets": []
+    },
+    {
+      "at": "2026-11-21T20:41:56.280Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:c33b8c77c9db29e2fff4019977b14aa9c742d32211d4a6cba38b5b2f14f103f8",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-e9d62d9a",
+          "ok": false,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-21T20:42:27.568Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:c33b8c77c9db29e2fff4019977b14aa9c742d32211d4a6cba38b5b2f14f103f8",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-e9d62d9a",
+          "ok": false,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-21T20:42:28.023Z",
+      "source": "fix",
+      "decision": "pass",
+      "subject": "sha256:c33b8c77c9db29e2fff4019977b14aa9c742d32211d4a6cba38b5b2f14f103f8",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-e9d62d9a",
+          "ok": true,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-21T20:42:31.982Z",
+      "source": "hook",
+      "decision": "pass",
+      "subject": "sha256:c33b8c77c9db29e2fff4019977b14aa9c742d32211d4a6cba38b5b2f14f103f8",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-e9d62d9a",
+          "ok": true,
+          "failed": 0
+        }
+      ]
+    }
+  ],
+  "hooks_modified": false,
+  "hooks_path": null
+}

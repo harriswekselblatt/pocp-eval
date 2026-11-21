@@ -1,0 +1,31 @@
+diff --git a/solution.py b/solution.py
+index 6c5665a..0f8da2c 100644
+--- a/solution.py
++++ b/solution.py
+@@ -1,3 +1,6 @@
++from math import gcd
++
++
+ def can_color_all_points(n: int, k: int) -> bool:
+     """ Alice and Bob are on a circle with n equally spaced points numbered 0 to n-1.
+     Alice is at point 0, Bob is at point k. Initially all points are white.
+@@ -22,4 +25,18 @@ def can_color_all_points(n: int, k: int) -> bool:
+     >>> can_color_all_points(6, 1)
+     True
+     """
+-    pass
++    # Join points paired by either reflection. The first move in a component
++    # must be at a point fixed by the mover's reflection, so cycles are blocked.
++    # Along a path each subsequent move colors the partner required by the
++    # next reflection, until the path is complete.
++    #
++    # Composing the reflections shifts by 2*k. Its orbits are residue classes
++    # modulo gcd(n, 2*k), and a reflection sends class r to class -r. Only
++    # the classes equal to their own negatives can contain fixed points.
++    orbit_count = gcd(n, 2 * k)
++
++    # With two orbits there are two equal paths. For even path lengths,
++    # one path has both endpoints fixed by Alice and the other has both
++    # fixed by Bob. After completing the first path, Alice moves again,
++    # but only Bob can start the second path.
++    return orbit_count == 1 or (orbit_count == 2 and n % 4 == 2)

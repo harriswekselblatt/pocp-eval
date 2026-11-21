@@ -1,0 +1,37 @@
+diff --git a/solution.py b/solution.py
+index 8359dd1..9ca50fd 100644
+--- a/solution.py
++++ b/solution.py
+@@ -17,4 +17,31 @@ def min_longest_substring(s: str, numOps: int) -> int:
+     >>> min_longest_substring("0101", 0)
+     1
+     """
+-    pass
++    n = len(s)
++
++    def ops_for_one() -> int:
++        # flips needed to make the string alternate
++        mismatches = sum(1 for i, c in enumerate(s) if int(c) != i % 2)
++        return min(mismatches, n - mismatches)
++
++    def feasible(m: int) -> bool:
++        if m == 1:
++            return ops_for_one() <= numOps
++        total = 0
++        i = 0
++        while i < n:
++            j = i
++            while j < n and s[j] == s[i]:
++                j += 1
++            total += (j - i) // (m + 1)
++            i = j
++        return total <= numOps
++
++    lo, hi = 1, n
++    while lo < hi:
++        mid = (lo + hi) // 2
++        if feasible(mid):
++            hi = mid
++        else:
++            lo = mid + 1
++    return lo

@@ -1,0 +1,114 @@
+{
+  "commits": [
+    {
+      "sha": "5c06880f9f5569b7b8fc0e4e451b0ee9e04e53c3",
+      "tree": "074de6185c94ba76322836aec058b15b036c9d9f",
+      "parents": [
+        "ac4d96db6ee79cf5e95b12854258cf9f3669af7f"
+      ],
+      "subject": "harness: final state",
+      "at": 1795293933,
+      "action": "commit",
+      "by": "harness",
+      "through_hooks": false,
+      "in_final_history": true
+    }
+  ],
+  "blocked_hook_runs": [
+    {
+      "at": 1795293918,
+      "exit": 1,
+      "tree": "b6ffc297913a0fbf5adbbae4f6294539fb9b4721",
+      "gate": {
+        "decision": "blocked",
+        "subject": "sha256:168741b8f338887dc286f3fb4efc2acdc0746b372ce5a23dc3944b6dacb1705c",
+        "required": 1,
+        "uncovered": 1,
+        "packets": []
+      },
+      "reason": "uncovered"
+    }
+  ],
+  "gate_log": [
+    {
+      "at": "2026-11-21T20:45:18.580Z",
+      "source": "hook",
+      "decision": "blocked",
+      "subject": "sha256:168741b8f338887dc286f3fb4efc2acdc0746b372ce5a23dc3944b6dacb1705c",
+      "required": 1,
+      "uncovered": 1,
+      "packets": []
+    },
+    {
+      "at": "2026-11-21T20:45:25.376Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:168741b8f338887dc286f3fb4efc2acdc0746b372ce5a23dc3944b6dacb1705c",
+      "required": 1,
+      "uncovered": 1,
+      "packets": []
+    },
+    {
+      "at": "2026-11-21T20:45:25.671Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:168741b8f338887dc286f3fb4efc2acdc0746b372ce5a23dc3944b6dacb1705c",
+      "required": 1,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-55e55aab",
+          "ok": false,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-21T20:45:28.016Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:168741b8f338887dc286f3fb4efc2acdc0746b372ce5a23dc3944b6dacb1705c",
+      "required": 1,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-55e55aab",
+          "ok": false,
+          "failed": 1
+        }
+      ]
+    },
+    {
+      "at": "2026-11-21T20:45:28.237Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:168741b8f338887dc286f3fb4efc2acdc0746b372ce5a23dc3944b6dacb1705c",
+      "required": 1,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-55e55aab",
+          "ok": false,
+          "failed": 1
+        }
+      ]
+    },
+    {
+      "at": "2026-11-21T20:45:28.456Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:168741b8f338887dc286f3fb4efc2acdc0746b372ce5a23dc3944b6dacb1705c",
+      "required": 1,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-55e55aab",
+          "ok": false,
+          "failed": 1
+        }
+      ]
+    }
+  ],
+  "hooks_modified": false,
+  "hooks_path": null
+}

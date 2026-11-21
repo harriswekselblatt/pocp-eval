@@ -1,0 +1,114 @@
+{
+  "commits": [
+    {
+      "sha": "ee064752a112027ba97f4f991055688b6ee9a683",
+      "tree": "6a8c8dc4f1d32f96dbdc59f70633128508dabe1f",
+      "parents": [
+        "153e1a2da7e8deb63b4b4eaea316aa4cab35fd57"
+      ],
+      "subject": "Count permutations with required prefix inversions",
+      "at": 1795296803,
+      "action": "commit",
+      "by": "agent",
+      "through_hooks": true,
+      "in_final_history": true
+    }
+  ],
+  "blocked_hook_runs": [
+    {
+      "at": 1795296797,
+      "exit": 1,
+      "tree": "a2bdfa529ec6444ffbce44021e3fe95c3faa41e5",
+      "gate": {
+        "decision": "blocked",
+        "subject": "sha256:f5d85d5b0cd1c20218771bb4322549d721ee6cad7d49703efc92cb683ea774cd",
+        "required": 2,
+        "uncovered": 2,
+        "packets": []
+      },
+      "reason": "uncovered"
+    }
+  ],
+  "gate_log": [
+    {
+      "at": "2026-11-21T21:33:17.242Z",
+      "source": "hook",
+      "decision": "blocked",
+      "subject": "sha256:f5d85d5b0cd1c20218771bb4322549d721ee6cad7d49703efc92cb683ea774cd",
+      "required": 2,
+      "uncovered": 2,
+      "packets": []
+    },
+    {
+      "at": "2026-11-21T21:33:19.649Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:f5d85d5b0cd1c20218771bb4322549d721ee6cad7d49703efc92cb683ea774cd",
+      "required": 2,
+      "uncovered": 2,
+      "packets": []
+    },
+    {
+      "at": "2026-11-21T21:33:19.920Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:f5d85d5b0cd1c20218771bb4322549d721ee6cad7d49703efc92cb683ea774cd",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-82380804",
+          "ok": false,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-21T21:33:20.825Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:f5d85d5b0cd1c20218771bb4322549d721ee6cad7d49703efc92cb683ea774cd",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-82380804",
+          "ok": false,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-21T21:33:21.137Z",
+      "source": "fix",
+      "decision": "pass",
+      "subject": "sha256:f5d85d5b0cd1c20218771bb4322549d721ee6cad7d49703efc92cb683ea774cd",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-82380804",
+          "ok": true,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-21T21:33:23.597Z",
+      "source": "hook",
+      "decision": "pass",
+      "subject": "sha256:f5d85d5b0cd1c20218771bb4322549d721ee6cad7d49703efc92cb683ea774cd",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-82380804",
+          "ok": true,
+          "failed": 0
+        }
+      ]
+    }
+  ],
+  "hooks_modified": false,
+  "hooks_path": null
+}

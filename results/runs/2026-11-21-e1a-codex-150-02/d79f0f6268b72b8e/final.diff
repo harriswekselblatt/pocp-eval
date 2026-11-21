@@ -1,0 +1,47 @@
+diff --git a/solution.py b/solution.py
+index 2edca9e..a1fc89d 100644
+--- a/solution.py
++++ b/solution.py
+@@ -1,3 +1,6 @@
++from collections import deque
++
++
+ def min_operations_to_rearrange(n: int, s: str, t: str) -> int:
+     """ Given two strings s and t of length n consisting of 'B' and 'W' characters,
+     determine the minimum number of operations needed to transform the initial configuration s
+@@ -29,4 +32,34 @@ def min_operations_to_rearrange(n: int, s: str, t: str) -> int:
+     >>> min_operations_to_rearrange(3, 'BBW', 'BBW')
+     0
+     """
+-    pass
++    if s.count("B") != t.count("B"):
++        return -1
++    if s == t:
++        return 0
++
++    start = s + ".."
++    target = t + ".."
++    queue = deque([(start, n, 0)])
++    visited = {start}
++
++    while queue:
++        state, empty, distance = queue.popleft()
++        for pair in range(n + 1):
++            if abs(pair - empty) <= 1:
++                continue
++
++            left, right = sorted((pair, empty))
++            next_state = (
++                state[:left]
++                + state[right:right + 2]
++                + state[left + 2:right]
++                + state[left:left + 2]
++                + state[right + 2:]
++            )
++            if next_state == target:
++                return distance + 1
++            if next_state not in visited:
++                visited.add(next_state)
++                queue.append((next_state, pair, distance + 1))
++
++    return -1

@@ -1,0 +1,116 @@
+diff --git a/solution.py b/solution.py
+index 6c5665a..aef8ca0 100644
+--- a/solution.py
++++ b/solution.py
+@@ -1,3 +1,6 @@
++from math import gcd
++
++
+ def can_color_all_points(n: int, k: int) -> bool:
+     """ Alice and Bob are on a circle with n equally spaced points numbered 0 to n-1.
+     Alice is at point 0, Bob is at point k. Initially all points are white.
+@@ -22,4 +25,13 @@ def can_color_all_points(n: int, k: int) -> bool:
+     >>> can_color_all_points(6, 1)
+     True
+     """
+-    pass
++    # The two reflections form paths and cycles. A move either starts at a
++    # fixed point or colors the reflection of the previous move, so cycles
++    # cannot be started. Composing the reflections rotates by 2*k.
++    #
++    # Odd n has one path, which must span the circle. Even n has two
++    # paths, which must span the two parity classes. When n is divisible
++    # by four, Alice's two fixed points are both even. If Bob's are odd,
++    # Alice's path would have even length but need to start and end on
++    # her turn. If Bob's are even, the odd class has no fixed point.
++    return n % 4 != 0 and gcd(n, 2 * k) == gcd(n, 2)
+diff --git a/tests/test_task.py b/tests/test_task.py
+new file mode 100644
+index 0000000..ee98957
+--- /dev/null
++++ b/tests/test_task.py
+@@ -0,0 +1,84 @@
++def check(candidate):
++    # Sample test cases
++    assert candidate(6, 2) == True
++    assert candidate(6, 3) == False
++    assert candidate(6, 1) == True
++    assert candidate(200000, 100000) == False
++    
++    # Additional test cases from input
++    assert candidate(15, 3) == False
++    assert candidate(13, 5) == True
++    assert candidate(7, 6) == True
++    assert candidate(12, 7) == False
++    assert candidate(14, 1) == True
++    assert candidate(15, 5) == False
++    assert candidate(19, 18) == True
++    assert candidate(27, 24) == False
++    assert candidate(23, 15) == True
++    assert candidate(26, 2) == True
++    assert candidate(20, 4) == False
++    assert candidate(15, 7) == True
++    assert candidate(7, 1) == True
++    assert candidate(18, 5) == True
++    assert candidate(21, 17) == True
++    assert candidate(28, 24) == False
++    assert candidate(24, 5) == False
++    assert candidate(4, 2) == False
++    assert candidate(9, 3) == False
++    assert candidate(9, 1) == True
++    assert candidate(27, 6) == False
++    assert candidate(25, 22) == True
++    assert candidate(19, 6) == True
++    assert candidate(24, 3) == False
++    assert candidate(15, 14) == True
++    assert candidate(7, 6) == False
++    assert candidate(21, 4) == True
++    assert candidate(21, 15) == False
++    assert candidate(24, 5) == False
++    assert candidate(21, 20) == True
++    assert candidate(3, 2) == True
++    assert candidate(12, 7) == False
++    assert candidate(2, 1) == True
++    assert candidate(17, 3) == True
++    assert candidate(13, 5) == True
++    assert candidate(23, 5) == True
++    assert candidate(1038, 484) == True
++    assert candidate(1139, 729) == True
++    assert candidate(432, 377) == False
++    assert candidate(1642, 829) == True
++    assert candidate(791, 277) == True
++    assert candidate(1745, 1009) == True
++    assert candidate(904, 16) == False
++    assert candidate(736, 544) == False
++    assert candidate(1944, 591) == False
++    assert candidate(1227, 961) == True
++    assert candidate(152289, 139407) == False
++    assert candidate(187388, 144729) == False
++    assert candidate(167199, 10041) == False
++    assert candidate(179879, 103564) == True
++    assert candidate(197276, 31462) == False
++    assert candidate(176462, 90857) == False
++    assert candidate(182506, 13410) == True
++    assert candidate(151355, 71579) == True
++    assert candidate(198493, 8985) == True
++    assert candidate(166640, 152569) == False
++    assert candidate(2, 1) == True
++    assert candidate(3, 1) == True
++    assert candidate(3, 2) == True
++    assert candidate(4, 2) == False
++    assert candidate(5, 2) == True
++    assert candidate(6, 1) == True
++    assert candidate(6, 2) == True
++    assert candidate(6, 3) == False
++    assert candidate(200000, 100000) == False
++    assert candidate(200000, 1) == False
++
++
++import os as _os
++import sys as _sys
++_sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))))
++from solution import can_color_all_points  # noqa: E402
++
++if __name__ == "__main__":
++    check(can_color_all_points)
++    print("POCP_EVAL_TESTS_PASSED")

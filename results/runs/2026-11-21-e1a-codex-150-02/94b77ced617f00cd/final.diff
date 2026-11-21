@@ -1,0 +1,42 @@
+diff --git a/solution.py b/solution.py
+index e3588ad..38b7c1d 100644
+--- a/solution.py
++++ b/solution.py
+@@ -22,4 +22,36 @@ def count_strings_by_lcs_length(n: int, m: int, s: str) -> List[int]:
+     >>> count_strings_by_lcs_length(3, 4, 'aaa')
+     [390625, 62500, 3750, 101]
+     """
+-    pass
++    modulus = 998244353
++    state_count = 1 << n
++    full_mask = state_count - 1
++    positions = {}
++    for i, letter in enumerate(s):
++        positions[letter] = positions.get(letter, 0) | (1 << i)
++
++    # Each state marks the positions where the LCS prefix row increases.
++    # A letter absent from s leaves that row unchanged.
++    transitions = []
++    for state in range(state_count):
++        shifted = (state << 1) | 1
++        destinations = []
++        for matches in positions.values():
++            candidates = state | matches
++            destinations.append(candidates & ~(candidates - shifted) & full_mask)
++        transitions.append(destinations)
++
++    absent_letters = 26 - len(positions)
++    counts = [0] * state_count
++    counts[0] = 1
++    for _ in range(m):
++        next_counts = [count * absent_letters for count in counts]
++        for count, destinations in zip(counts, transitions):
++            if count:
++                for destination in destinations:
++                    next_counts[destination] += count
++        counts = [count % modulus for count in next_counts]
++
++    result = [0] * (n + 1)
++    for state, count in enumerate(counts):
++        result[state.bit_count()] += count
++    return [count % modulus for count in result]

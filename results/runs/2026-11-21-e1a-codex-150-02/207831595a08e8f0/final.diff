@@ -1,0 +1,21 @@
+diff --git a/solution.py b/solution.py
+index b957b01..b27d2d7 100644
+--- a/solution.py
++++ b/solution.py
+@@ -27,4 +27,15 @@ def calculate_black_area_doubled(A: int, B: int, C: int, D: int) -> int:
+     >>> calculate_black_area_doubled(-1000000000, -1000000000, 1000000000, 1000000000)
+     4000000000000000000
+     """
+-    pass
++    # Each row gives the doubled black area in four consecutive unit squares.
++    rows = ((2, 1, 0, 1), (1, 2, 1, 0))
++    width_periods, extra_columns = divmod(C - A, 4)
++    height_periods, extra_rows = divmod(D - B, 2)
++
++    area = 0
++    for parity, row in enumerate(rows):
++        row_count = height_periods + (extra_rows and B % 2 == parity)
++        row_area = width_periods * sum(row)
++        row_area += sum(row[(A + offset) % 4] for offset in range(extra_columns))
++        area += row_count * row_area
++    return area

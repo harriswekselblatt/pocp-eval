@@ -1,0 +1,79 @@
+{
+  "commits": [
+    {
+      "sha": "04ff1c62eb1dfebc697db0969d81fc480d50380d",
+      "tree": "376cccf7b40bc75694ba367ac9fc95aa096e2025",
+      "parents": [
+        "709f31976f13c3ba62aedb7c37cff53b69d723d4"
+      ],
+      "subject": "harness: final state",
+      "at": 1795301872,
+      "action": "commit",
+      "by": "harness",
+      "through_hooks": false,
+      "in_final_history": true
+    }
+  ],
+  "blocked_hook_runs": [
+    {
+      "at": 1795301853,
+      "exit": 1,
+      "tree": "7b8f20a1c86637cde72cb151ead62edace0c15e1",
+      "gate": {
+        "decision": "blocked",
+        "subject": "sha256:bb9b7d95384d285bb37248fc3efbd08bedb857bebe910a51b174c58538279e33",
+        "required": 1,
+        "uncovered": 1,
+        "packets": []
+      },
+      "reason": "uncovered"
+    },
+    {
+      "at": 1795301866,
+      "exit": 1,
+      "tree": "cb149035d2189969fed35dcbad9d8e3694aaf69d",
+      "gate": {
+        "decision": "blocked",
+        "subject": "sha256:bb9b7d95384d285bb37248fc3efbd08bedb857bebe910a51b174c58538279e33",
+        "required": 1,
+        "uncovered": 0,
+        "packets": [
+          {
+            "id": "p-13ff2d2c",
+            "ok": false,
+            "failed": 1
+          }
+        ]
+      },
+      "reason": "failed_proof"
+    }
+  ],
+  "gate_log": [
+    {
+      "at": "2026-11-21T22:57:33.512Z",
+      "source": "hook",
+      "decision": "blocked",
+      "subject": "sha256:bb9b7d95384d285bb37248fc3efbd08bedb857bebe910a51b174c58538279e33",
+      "required": 1,
+      "uncovered": 1,
+      "packets": []
+    },
+    {
+      "at": "2026-11-21T22:57:46.106Z",
+      "source": "hook",
+      "decision": "blocked",
+      "subject": "sha256:bb9b7d95384d285bb37248fc3efbd08bedb857bebe910a51b174c58538279e33",
+      "required": 1,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-13ff2d2c",
+          "ok": false,
+          "failed": 1
+        }
+      ]
+    }
+  ],
+  "hooks_modified": false,
+  "hooks_path": null
+}

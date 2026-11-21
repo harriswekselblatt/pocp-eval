@@ -1,0 +1,114 @@
+{
+  "commits": [
+    {
+      "sha": "af48eade61cbafd26875f1316b5af7c1e4ac0bae",
+      "tree": "4526b028e409c9e4e022763b253d1854903ba871",
+      "parents": [
+        "af926bef13da10a4667111131ad50a6de2250697"
+      ],
+      "subject": "Compute maximum shortest distance with layered minimum cuts",
+      "at": 1795297076,
+      "action": "commit",
+      "by": "agent",
+      "through_hooks": true,
+      "in_final_history": true
+    }
+  ],
+  "blocked_hook_runs": [
+    {
+      "at": 1795297062,
+      "exit": 1,
+      "tree": "f498cdde4ea85cdccdf962b2c5c3f5c162b1cbb5",
+      "gate": {
+        "decision": "blocked",
+        "subject": "sha256:b86437272ddfc81681fb99280a9c4470b24d4b43bc266e75bbf764c3207ec9c1",
+        "required": 2,
+        "uncovered": 2,
+        "packets": []
+      },
+      "reason": "uncovered"
+    }
+  ],
+  "gate_log": [
+    {
+      "at": "2026-11-21T21:37:42.935Z",
+      "source": "hook",
+      "decision": "blocked",
+      "subject": "sha256:b86437272ddfc81681fb99280a9c4470b24d4b43bc266e75bbf764c3207ec9c1",
+      "required": 2,
+      "uncovered": 2,
+      "packets": []
+    },
+    {
+      "at": "2026-11-21T21:37:50.964Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:66129bc150961c6b53a46d2d0e26b6cd6d22f598d413e391fc4c957ed802169b",
+      "required": 2,
+      "uncovered": 2,
+      "packets": []
+    },
+    {
+      "at": "2026-11-21T21:37:51.279Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:66129bc150961c6b53a46d2d0e26b6cd6d22f598d413e391fc4c957ed802169b",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-6241645a",
+          "ok": false,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-21T21:37:52.273Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:66129bc150961c6b53a46d2d0e26b6cd6d22f598d413e391fc4c957ed802169b",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-6241645a",
+          "ok": false,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-21T21:37:52.566Z",
+      "source": "fix",
+      "decision": "pass",
+      "subject": "sha256:66129bc150961c6b53a46d2d0e26b6cd6d22f598d413e391fc4c957ed802169b",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-6241645a",
+          "ok": true,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-21T21:37:56.413Z",
+      "source": "hook",
+      "decision": "pass",
+      "subject": "sha256:66129bc150961c6b53a46d2d0e26b6cd6d22f598d413e391fc4c957ed802169b",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-6241645a",
+          "ok": true,
+          "failed": 0
+        }
+      ]
+    }
+  ],
+  "hooks_modified": false,
+  "hooks_path": null
+}

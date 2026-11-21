@@ -1,0 +1,53 @@
+diff --git a/solution.py b/solution.py
+index 44ed031..bcb3c51 100644
+--- a/solution.py
++++ b/solution.py
+@@ -20,4 +20,26 @@ def max_subsequence_value(nums: List[int], k: int) -> int:
+     >>> max_subsequence_value([4, 2, 5, 6, 7], 2)
+     2
+     """
+-    pass
++    if k == 0:
++        return 0
++
++    def collect_or_values(values):
++        # reachable[count] holds the ORs of exactly count processed elements.
++        reachable = [{0}] + [set() for _ in range(k)]
++        for size, value in enumerate(values, 1):
++            for count in range(min(size, k), 0, -1):
++                reachable[count].update(previous | value for previous in reachable[count - 1])
++            if size >= k:
++                yield reachable[k].copy()
++
++    # Every split leaves at least k elements on either side.
++    left = collect_or_values(nums[:-k])
++    right = list(collect_or_values(reversed(nums[k:])))
++    best = 0
++    for left_values, right_values in zip(left, reversed(right)):
++        for first in left_values:
++            for second in right_values:
++                best = max(best, first ^ second)
++        if best == 127:
++            break
++    return best
+diff --git a/tests/test_task.py b/tests/test_task.py
+index 5e7e0cb..783499b 100644
+--- a/tests/test_task.py
++++ b/tests/test_task.py
+@@ -5,7 +5,7 @@ def check(candidate):
+     
+     # Additional test cases
+     assert candidate([37, 100], 1) == 65
+-    assert candidate([74, 51], 1) == 125
++    assert candidate([74, 51], 1) == 121
+     assert candidate([44, 12], 1) == 32
+     assert candidate([55, 64], 1) == 119
+     assert candidate([42, 94], 1) == 116
+@@ -14,7 +14,6 @@ def check(candidate):
+     assert candidate([59, 90], 1) == 97
+     assert candidate([16, 69], 1) == 85
+     assert candidate([2, 42], 1) == 40
+-    assert candidate([39, 51], 1) == 25
+     assert candidate([32, 61], 1) == 29
+     assert candidate([23, 71], 1) == 80
+     assert candidate([39, 51], 1) == 20

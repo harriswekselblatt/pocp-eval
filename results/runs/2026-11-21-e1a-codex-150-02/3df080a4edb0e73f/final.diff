@@ -1,0 +1,55 @@
+diff --git a/solution.py b/solution.py
+index b7192c8..11efdb2 100644
+--- a/solution.py
++++ b/solution.py
+@@ -20,4 +20,49 @@ def count_polish_sequences(n: int, a: list[int]) -> int:
+     >>> count_polish_sequences(4, [1, 1, 0, 0])
+     0
+     """
+-    pass
++    modulus = 998244353
++    factorial = [1] * (2 * n)
++    for i in range(1, 2 * n):
++        factorial[i] = factorial[i - 1] * i % modulus
++    inverse_factorial = [1] * (2 * n)
++    inverse_factorial[-1] = pow(factorial[-1], modulus - 2, modulus)
++    for i in range(2 * n - 1, 0, -1):
++        inverse_factorial[i - 1] = inverse_factorial[i] * i % modulus
++
++    def choose(top: int, bottom: int) -> int:
++        if top < bottom:
++            return 0
++        return (
++            factorial[top]
++            * inverse_factorial[bottom]
++            * inverse_factorial[top - bottom]
++            % modulus
++        )
++
++    slots = 1
++    count = 0
++    for i, degree in enumerate(a):
++        remaining = n - i - 1
++        # A node fills one slot and opens one slot for each child.
++        minimum = max(1, slots - 1)
++        maximum = min(remaining, slots + degree - 2)
++        if minimum <= maximum:
++            # A forest of k trees on m nodes has
++            # C(2m-k-1, m-1) - C(2m-k-1, m) degree sequences.
++            # Sum over the possible slot counts with the hockey-stick identity.
++            upper = 2 * remaining - minimum
++            lower = 2 * remaining - maximum - 1
++            count += (
++                choose(upper, remaining)
++                - choose(lower, remaining)
++                - choose(upper, remaining + 1)
++                + choose(lower, remaining + 1)
++            )
++        if remaining == 0 and slots == 1 and degree > 0:
++            count += 1  # A strictly smaller final zero completes the tree.
++
++        slots += degree - 1
++        if slots > remaining or (slots == 0 and remaining > 0):
++            return count % modulus
++
++    return (count + 1) % modulus

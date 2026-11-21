@@ -1,0 +1,30 @@
+diff --git a/solution.py b/solution.py
+index b3305e6..30082fb 100644
+--- a/solution.py
++++ b/solution.py
+@@ -27,4 +27,24 @@ def count_event_ways(n: int, x: int, y: int) -> int:
+     >>> count_event_ways(3, 3, 4)
+     684
+     """
+-    pass
++    modulus = 10**9 + 7
++    max_bands = min(n, x)
++    partitions = [1] + [0] * max_bands
++
++    for performers in range(1, n + 1):
++        # Join one of the existing bands or form a new singleton band.
++        for bands in range(min(performers, max_bands), 0, -1):
++            partitions[bands] = (
++                bands * partitions[bands] + partitions[bands - 1]
++            ) % modulus
++        partitions[0] = 0
++
++    total = 0
++    stage_and_score_choices = 1
++    for bands in range(1, max_bands + 1):
++        stage_and_score_choices = (
++            stage_and_score_choices * (x - bands + 1) * y
++        ) % modulus
++        total = (total + partitions[bands] * stage_and_score_choices) % modulus
++
++    return total

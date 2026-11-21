@@ -1,0 +1,21 @@
+{
+  "commits": [
+    {
+      "sha": "993af3a64342feb5301925cee6d23aded1dec12a",
+      "tree": "0a8d6cf4df661cfe025a02efa8384f8f808cff18",
+      "parents": [
+        "c8c13f1a31bb84715dc5ffe587d2adcd486ae1cd"
+      ],
+      "subject": "Count distinct indegree sequences in linear time",
+      "at": 1795293069,
+      "action": "commit",
+      "by": "agent",
+      "through_hooks": null,
+      "in_final_history": true
+    }
+  ],
+  "blocked_hook_runs": [],
+  "gate_log": [],
+  "hooks_modified": false,
+  "hooks_path": null
+}

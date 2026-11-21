@@ -1,0 +1,114 @@
+{
+  "commits": [
+    {
+      "sha": "0bbd9396d469badd0da2c02198caf6500c967761",
+      "tree": "d131404656726d2f0df389cc2be1a9d36e8102fc",
+      "parents": [
+        "63e29298fb4eb7663801348a81ead3fbfb4973c2"
+      ],
+      "subject": "Implement optimal card game winner",
+      "at": 1795291533,
+      "action": "commit",
+      "by": "agent",
+      "through_hooks": true,
+      "in_final_history": true
+    }
+  ],
+  "blocked_hook_runs": [
+    {
+      "at": 1795291515,
+      "exit": 1,
+      "tree": "042d2be21cad886f2ead83141e46c3ae9389748b",
+      "gate": {
+        "decision": "blocked",
+        "subject": "sha256:73594eed6b0d1c46259107df9f437e8772c1ed1f10d634e9cc62e687c2ef7ec8",
+        "required": 2,
+        "uncovered": 2,
+        "packets": []
+      },
+      "reason": "uncovered"
+    }
+  ],
+  "gate_log": [
+    {
+      "at": "2026-11-21T20:05:15.868Z",
+      "source": "hook",
+      "decision": "blocked",
+      "subject": "sha256:73594eed6b0d1c46259107df9f437e8772c1ed1f10d634e9cc62e687c2ef7ec8",
+      "required": 2,
+      "uncovered": 2,
+      "packets": []
+    },
+    {
+      "at": "2026-11-21T20:05:23.185Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:73594eed6b0d1c46259107df9f437e8772c1ed1f10d634e9cc62e687c2ef7ec8",
+      "required": 2,
+      "uncovered": 2,
+      "packets": []
+    },
+    {
+      "at": "2026-11-21T20:05:23.474Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:73594eed6b0d1c46259107df9f437e8772c1ed1f10d634e9cc62e687c2ef7ec8",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-85e4ac90",
+          "ok": false,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-21T20:05:24.491Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:73594eed6b0d1c46259107df9f437e8772c1ed1f10d634e9cc62e687c2ef7ec8",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-85e4ac90",
+          "ok": false,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-21T20:05:24.799Z",
+      "source": "fix",
+      "decision": "pass",
+      "subject": "sha256:73594eed6b0d1c46259107df9f437e8772c1ed1f10d634e9cc62e687c2ef7ec8",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-85e4ac90",
+          "ok": true,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-21T20:05:34.184Z",
+      "source": "hook",
+      "decision": "pass",
+      "subject": "sha256:73594eed6b0d1c46259107df9f437e8772c1ed1f10d634e9cc62e687c2ef7ec8",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-85e4ac90",
+          "ok": true,
+          "failed": 0
+        }
+      ]
+    }
+  ],
+  "hooks_modified": false,
+  "hooks_path": null
+}

@@ -1,0 +1,28 @@
+diff --git a/solution.py b/solution.py
+index 7c8715b..b077acb 100644
+--- a/solution.py
++++ b/solution.py
+@@ -1,3 +1,5 @@
++from collections import defaultdict
++from math import gcd
+ from typing import List
+ 
+ 
+@@ -21,4 +23,16 @@ def count_subsequence_pairs(nums: List[int]) -> int:
+     >>> count_subsequence_pairs([1, 1, 1, 1])
+     50
+     """
+-    pass
++    modulus = 10**9 + 7
++    # A GCD of zero represents an empty subsequence.
++    counts = {(0, 0): 1}
++    for num in nums:
++        # Skipping this index preserves both GCDs.
++        next_counts = defaultdict(int, counts)
++        for (first, second), count in counts.items():
++            next_counts[gcd(first, num), second] += count
++            next_counts[first, gcd(second, num)] += count
++        counts = {pair: count % modulus for pair, count in next_counts.items()}
++
++    return sum(count for (first, second), count in counts.items()
++               if first == second and first != 0) % modulus

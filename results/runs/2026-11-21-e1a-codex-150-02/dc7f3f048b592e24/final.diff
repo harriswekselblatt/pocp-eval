@@ -1,0 +1,32 @@
+diff --git a/solution.py b/solution.py
+index 6e6d26a..fe65ce8 100644
+--- a/solution.py
++++ b/solution.py
+@@ -20,4 +20,26 @@ def count_valid_grids(H: int, W: int, grid: list[str]) -> int:
+     >>> count_valid_grids(1, 1, ['?'])
+     3
+     """
+-    pass
++    if W > H:
++        grid = list(zip(*grid))
++        H, W = W, H
++
++    modulus = 998244353
++    digits = "123"
++    counts = {("",) * W: 1}
++    # The frontier holds the most recently colored cell in each column.
++    for row in grid:
++        for column, cell in enumerate(row):
++            choices = digits if cell == "?" else cell
++            next_counts = {}
++            for frontier, count in counts.items():
++                above = frontier[column]
++                left = frontier[column - 1] if column else ""
++                for digit in choices:
++                    if digit != above and digit != left:
++                        updated = frontier[:column] + (digit,) + frontier[column + 1:]
++                        next_counts[updated] = (next_counts.get(updated, 0) + count) % modulus
++            counts = next_counts
++            if not counts:
++                return 0
++    return sum(counts.values()) % modulus

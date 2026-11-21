@@ -1,0 +1,25 @@
+diff --git a/solution.py b/solution.py
+index f759852..62e00b6 100644
+--- a/solution.py
++++ b/solution.py
+@@ -28,4 +28,19 @@ def min_operations_to_match_grids(H: int, W: int, A: List[List[int]], B: List[Li
+     >>> min_operations_to_match_grids(3, 3, [[8, 1, 6], [3, 5, 7], [4, 9, 2]], [[8, 1, 6], [3, 5, 7], [4, 9, 2]])
+     0
+     """
+-    pass
++    from itertools import permutations
++
++    def inversions(p):
++        return sum(1 for i in range(len(p)) for j in range(i + 1, len(p)) if p[i] > p[j])
++
++    col_perms = [(q, inversions(q)) for q in permutations(range(W))]
++    best = None
++    for p in permutations(range(H)):
++        ip = inversions(p)
++        for q, iq in col_perms:
++            cost = ip + iq
++            if best is not None and cost >= best:
++                continue
++            if all(A[p[i]][q[j]] == B[i][j] for i in range(H) for j in range(W)):
++                best = cost
++    return best

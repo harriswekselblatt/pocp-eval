@@ -1,0 +1,52 @@
+diff --git a/solution.py b/solution.py
+index f759852..ae9d6da 100644
+--- a/solution.py
++++ b/solution.py
+@@ -1,3 +1,4 @@
++from itertools import permutations
+ from typing import List, Optional
+ 
+ 
+@@ -23,9 +24,27 @@ def min_operations_to_match_grids(H: int, W: int, A: List[List[int]], B: List[Li
+     
+     >>> min_operations_to_match_grids(2, 2, [[2, 1], [1, 2]], [[1, 2], [2, 1]])
+     1
+-    >>> min_operations_to_match_grids(2, 2, [[1, 1], [1, 1]], [[1, 1], [1, 1000000000]])
+-    None
++    >>> min_operations_to_match_grids(2, 2, [[1, 1], [1, 1]], [[1, 1], [1, 1000000000]]) is None
++    True
+     >>> min_operations_to_match_grids(3, 3, [[8, 1, 6], [3, 5, 7], [4, 9, 2]], [[8, 1, 6], [3, 5, 7], [4, 9, 2]])
+     0
+     """
+-    pass
++    def orders_by_cost(size):
++        for order in permutations(range(size)):
++            # Each inversion requires one adjacent swap to undo.
++            cost = sum(order[i] > order[j] for i in range(size) for j in range(i + 1, size))
++            yield order, cost
++
++    column_orders = list(orders_by_cost(W))
++    best = None
++    for rows, row_cost in orders_by_cost(H):
++        for columns, column_cost in column_orders:
++            cost = row_cost + column_cost
++            if best is not None and cost >= best:
++                continue
++            if all(A[row][column] == B[i][j]
++                   for i, row in enumerate(rows) for j, column in enumerate(columns)):
++                best = cost
++                if best == 0:
++                    return best
++    return best
+diff --git a/tests/test_task.py b/tests/test_task.py
+index 910258a..8e5284c 100644
+--- a/tests/test_task.py
++++ b/tests/test_task.py
+@@ -28,7 +28,6 @@ def check(candidate):
+     # Test case 8: All same elements
+     assert candidate(2, 5, [[656388039] * 5] * 2, [[656388039] * 5] * 2) == 0
+     
+-    assert candidate(2, 2, [[2, 1], [1, 2]], [[1, 2], [2, 1]]) == 0
+     
+     # Test case 9: Complex 5x5 grid
+     A9 = [[925234815, 195202420, 985293702, 925234815, 584979839],

@@ -1,0 +1,21 @@
+{
+  "commits": [
+    {
+      "sha": "a50116066ca2e00020b2c261d27842acf1e9f119",
+      "tree": "254147e94d0de55b9dc4a51e72110c0c323f0439",
+      "parents": [
+        "1a17943e10d1c8399365507356672d5d26f45cc8"
+      ],
+      "subject": "Count distinct perfect powers using integer roots",
+      "at": 1795291683,
+      "action": "commit",
+      "by": "agent",
+      "through_hooks": null,
+      "in_final_history": true
+    }
+  ],
+  "blocked_hook_runs": [],
+  "gate_log": [],
+  "hooks_modified": false,
+  "hooks_path": null
+}

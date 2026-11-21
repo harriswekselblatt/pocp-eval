@@ -1,0 +1,83 @@
+diff --git a/solution.py b/solution.py
+index c0935b0..320050f 100644
+--- a/solution.py
++++ b/solution.py
+@@ -1,26 +1,14 @@
++from collections import deque
++from functools import lru_cache
+ from typing import List
+ 
+ 
+ def max_knight_moves(kx: int, ky: int, positions: List[List[int]]) -> int:
+-    """ 
++    """
+     On a 50x50 chessboard, there is a knight at position (kx, ky) and pawns at the given positions.
+-    Alice and Bob play a turn-based game (Alice goes first) where each player:
+-    - Selects any remaining pawn and captures it with the knight using the minimum number of moves
+-    - The knight can pass other pawns without capturing them during the move
+-    
+-    Alice wants to maximize the total number of moves, while Bob wants to minimize them.
+-    Both players play optimally.
+-    
+-    A knight moves in an L-shape: 2 cells in one direction and 1 cell perpendicular to that.
+-    
+-    Args:
+-        kx: Knight's initial x-coordinate (0 <= kx <= 49)
+-        ky: Knight's initial y-coordinate (0 <= ky <= 49)
+-        positions: List of [x, y] coordinates of pawns (1 <= len(positions) <= 15)
+-    
+-    Returns:
+-        The maximum total number of moves Alice can achieve
+-    
++    Alice and Bob alternate (Alice first); each selects any remaining pawn and captures it with
++    the knight using the minimum number of moves. Alice maximizes total moves, Bob minimizes.
++
+     >>> max_knight_moves(1, 1, [[0, 0]])
+     4
+     >>> max_knight_moves(0, 2, [[1, 1], [2, 2], [3, 3]])
+@@ -28,4 +16,44 @@ def max_knight_moves(kx: int, ky: int, positions: List[List[int]]) -> int:
+     >>> max_knight_moves(0, 0, [[1, 2], [2, 4]])
+     3
+     """
+-    pass
++    N = 50
++    deltas = [(1, 2), (2, 1), (-1, 2), (-2, 1), (1, -2), (2, -1), (-1, -2), (-2, -1)]
++
++    def bfs(sx, sy):
++        dist = [[-1] * N for _ in range(N)]
++        dist[sx][sy] = 0
++        q = deque([(sx, sy)])
++        while q:
++            x, y = q.popleft()
++            for dx, dy in deltas:
++                nx, ny = x + dx, y + dy
++                if 0 <= nx < N and 0 <= ny < N and dist[nx][ny] < 0:
++                    dist[nx][ny] = dist[x][y] + 1
++                    q.append((nx, ny))
++        return dist
++
++    pts = [(kx, ky)] + [(p[0], p[1]) for p in positions]
++    n = len(positions)
++    d = []
++    for sx, sy in pts:
++        dist = bfs(sx, sy)
++        d.append([dist[px][py] for px, py in pts[1:]])
++
++    full = (1 << n) - 1
++
++    @lru_cache(maxsize=None)
++    def go(cur, mask):
++        # cur: index into pts (0 = start); mask: captured pawns
++        if mask == full:
++            return 0
++        turn_alice = bin(mask).count("1") % 2 == 0
++        best = None
++        for i in range(n):
++            if mask >> i & 1:
++                continue
++            v = d[cur][i] + go(i + 1, mask | 1 << i)
++            if best is None or (v > best if turn_alice else v < best):
++                best = v
++        return best
++
++    return go(0, 0)

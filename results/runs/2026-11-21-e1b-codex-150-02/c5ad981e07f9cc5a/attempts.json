@@ -1,0 +1,129 @@
+{
+  "commits": [
+    {
+      "sha": "fe46be6cceb3281a27e4b6e7fca6d24d1a2c7587",
+      "tree": "4cf32acb06a43edbe59c6b0b95026489400ff9ef",
+      "parents": [
+        "6e6adbe640bb90489423cdb1cddc4944d14accac"
+      ],
+      "subject": "Find minimum stone rearrangement moves with BFS",
+      "at": 1795301715,
+      "action": "commit",
+      "by": "agent",
+      "through_hooks": true,
+      "in_final_history": true
+    }
+  ],
+  "blocked_hook_runs": [
+    {
+      "at": 1795301618,
+      "exit": 1,
+      "tree": "14c88aca18264981f04a10b6633b4e6af3e1a32a",
+      "gate": {
+        "decision": "blocked",
+        "subject": "sha256:d4030b18454b30721502af89cc55d42a3da645973fc9e361a28ab64e1fe9f2a0",
+        "required": 1,
+        "uncovered": 1,
+        "packets": []
+      },
+      "reason": "uncovered"
+    }
+  ],
+  "gate_log": [
+    {
+      "at": "2026-11-21T22:53:38.792Z",
+      "source": "hook",
+      "decision": "blocked",
+      "subject": "sha256:d4030b18454b30721502af89cc55d42a3da645973fc9e361a28ab64e1fe9f2a0",
+      "required": 1,
+      "uncovered": 1,
+      "packets": []
+    },
+    {
+      "at": "2026-11-21T22:53:48.675Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:c09fd8f3f3ec3ef29a359df9ea26e114a2fe5e68a9908bd68dcf68975e4bc9c1",
+      "required": 2,
+      "uncovered": 2,
+      "packets": []
+    },
+    {
+      "at": "2026-11-21T22:53:49.038Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:c09fd8f3f3ec3ef29a359df9ea26e114a2fe5e68a9908bd68dcf68975e4bc9c1",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-3ae10d01",
+          "ok": false,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-21T22:53:51.235Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:c09fd8f3f3ec3ef29a359df9ea26e114a2fe5e68a9908bd68dcf68975e4bc9c1",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-3ae10d01",
+          "ok": false,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-21T22:53:51.525Z",
+      "source": "fix",
+      "decision": "pass",
+      "subject": "sha256:c09fd8f3f3ec3ef29a359df9ea26e114a2fe5e68a9908bd68dcf68975e4bc9c1",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-3ae10d01",
+          "ok": true,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-21T22:53:57.824Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:440376598d9e062285cc3b237f624a7100ae2141a02225525c9cdb689c02b10d",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-3ae10d01",
+          "ok": false,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-21T22:55:16.541Z",
+      "source": "hook",
+      "decision": "pass",
+      "subject": "sha256:c09fd8f3f3ec3ef29a359df9ea26e114a2fe5e68a9908bd68dcf68975e4bc9c1",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-3ae10d01",
+          "ok": true,
+          "failed": 0
+        }
+      ]
+    }
+  ],
+  "hooks_modified": false,
+  "hooks_path": null
+}

@@ -1,0 +1,75 @@
+diff --git a/solution.py b/solution.py
+index 8bac742..a605572 100644
+--- a/solution.py
++++ b/solution.py
+@@ -1,3 +1,4 @@
++from array import array
+ from typing import List, Tuple, Optional
+ 
+ 
+@@ -21,9 +22,63 @@ def min_weight_hamiltonian_walk(n: int, m: int, edges: List[Tuple[int, int, int]
+     
+     >>> min_weight_hamiltonian_walk(3, 4, [(1, 2, 5), (2, 1, -3), (2, 3, -4), (3, 1, 100)])
+     -2
+-    >>> min_weight_hamiltonian_walk(3, 2, [(1, 2, 0), (2, 1, 0)])
++    >>> print(min_weight_hamiltonian_walk(3, 2, [(1, 2, 0), (2, 1, 0)]))
+     None
+     >>> min_weight_hamiltonian_walk(2, 1, [(2, 1, 0)])
+     0
+     """
+-    pass
++    # A shortest path can be chosen to be simple, since cycles have
++    # nonnegative weight. This bound also covers every sum in the subset DP.
++    unreachable = 10**9
++    distances = [[unreachable] * n for _ in range(n)]
++    for vertex in range(n):
++        distances[vertex][vertex] = 0
++    for source, target, weight in edges:
++        row = distances[source - 1]
++        row[target - 1] = min(row[target - 1], weight)
++
++    for via in range(n):
++        for row in distances:
++            prefix = row[via]
++            if prefix == unreachable:
++                continue
++            for target, suffix in enumerate(distances[via]):
++                if suffix != unreachable and prefix + suffix < row[target]:
++                    row[target] = prefix + suffix
++
++    # In any covering walk, take the vertices in order of first visit.
++    # Shortest paths between those vertices can only improve the cost.
++    # Conversely, any such sequence of shortest paths is a covering walk,
++    # even if its paths revisit vertices or visit them ahead of schedule.
++    full = (1 << n) - 1
++    reachable = [
++        sum(1 << target for target, cost in enumerate(row) if cost != unreachable)
++        for row in distances
++    ]
++    best = array("i", [unreachable]) * ((full + 1) * n)
++    for vertex in range(n):
++        best[(1 << vertex) * n + vertex] = 0
++
++    for visited in range(1, full):
++        offset = visited * n
++        endpoints = visited
++        while endpoints:
++            endpoint = endpoints & -endpoints
++            endpoints ^= endpoint
++            source = endpoint.bit_length() - 1
++            cost = best[offset + source]
++            if cost == unreachable:
++                continue
++            row = distances[source]
++            candidates = (full ^ visited) & reachable[source]
++            while candidates:
++                bit = candidates & -candidates
++                candidates ^= bit
++                target = bit.bit_length() - 1
++                index = (visited | bit) * n + target
++                total = cost + row[target]
++                if total < best[index]:
++                    best[index] = total
++
++    result = min(best[full * n:])
++    return None if result == unreachable else result

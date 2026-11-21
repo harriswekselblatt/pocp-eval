@@ -1,0 +1,19 @@
+diff --git a/solution.py b/solution.py
+index 7dc7319..e28c76a 100644
+--- a/solution.py
++++ b/solution.py
+@@ -23,4 +23,13 @@ def divide_into_good_sequences(L: int, R: int) -> List[Tuple[int, int]]:
+     >>> divide_into_good_sequences(0, 1024)
+     [(0, 1024)]
+     """
+-    pass
++    intervals = []
++    while L < R:
++        # Start with the largest power of two that fits, then cap it by alignment.
++        size = 1 << ((R - L).bit_length() - 1)
++        if L:
++            size = min(size, L & -L)
++        end = L + size
++        intervals.append((L, end))
++        L = end
++    return intervals

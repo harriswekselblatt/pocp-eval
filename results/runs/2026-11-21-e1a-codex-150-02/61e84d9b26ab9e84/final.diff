@@ -1,0 +1,37 @@
+diff --git a/solution.py b/solution.py
+index 083ef08..fe81683 100644
+--- a/solution.py
++++ b/solution.py
+@@ -22,4 +22,31 @@ def count_in_degree_sequences(n: int, s: str) -> int:
+     >>> count_in_degree_sequences(20, '00001100111010100101')
+     261339902
+     """
+-    pass
++    # Distinct indegree sequences and spanning forests obey the same
++    # deletion-contraction recurrence. For a non-loop edge, group the
++    # sequences of the deletion by their degrees after merging its endpoints.
++    # Within each group the possible degrees at one endpoint form an interval:
++    # comparing two orientations gives directed paths between the endpoints
++    # in the edges where they differ, and reversing a path changes the degree
++    # by one. Adding the edge extends each interval by one, contributing one
++    # extra sequence per sequence of the contraction. Loops contribute a fixed
++    # degree and are excluded from forests, and both counts start at one.
++
++    # A forest cuts at least one rim edge and uses at most one spoke per
++    # resulting path. Track whether the current path already uses a spoke.
++    # The transition cuts or keeps the incoming rim edge, then optionally
++    # uses the current spoke. Its rows are (2, 2*b) and (1, 1+b), where b
++    # indicates whether the spoke exists. Take the trace around the rim.
++    mod = 998244353
++    a, b, c, d = 1, 0, 0, 1
++    for spoke in s:
++        first = 2 * a + b
++        second = 2 * c + d
++        if spoke == '1':
++            b = (first + b) % mod
++            d = (second + d) % mod
++        a = first % mod
++        c = second % mod
++
++    # With no cuts, the trace includes two constant states with no spokes.
++    return (a + d - 2) % mod

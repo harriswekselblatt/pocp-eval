@@ -1,0 +1,51 @@
+diff --git a/solution.py b/solution.py
+index cecf703..e72002b 100644
+--- a/solution.py
++++ b/solution.py
+@@ -1,3 +1,5 @@
++from bisect import bisect_left, insort
++from functools import lru_cache
+ from typing import List, Tuple
+ 
+ def card_game_winner(n: int, m: int, l: int, takahashi_cards: List[int], aoki_cards: List[int], table_cards: List[int]) -> str:
+@@ -24,4 +26,39 @@ def card_game_winner(n: int, m: int, l: int, takahashi_cards: List[int], aoki_ca
+     >>> card_game_winner(1, 1, 1, [11], [5], [10])
+     'Takahashi'
+     """
+-    pass
++    @lru_cache(maxsize=None)
++    def can_win(
++        hand: Tuple[int, ...], opponent: Tuple[int, ...], table: Tuple[int, ...]
++    ) -> bool:
++        for index, played in enumerate(hand):
++            if index and played == hand[index - 1]:
++                continue
++
++            remaining = hand[:index] + hand[index + 1:]
++            next_table = list(table)
++            insort(next_table, played)
++            next_table = tuple(next_table)
++            if not can_win(opponent, remaining, next_table):
++                return True
++
++            for take_index, taken in enumerate(table):
++                if taken >= played:
++                    break
++                if take_index and taken == table[take_index - 1]:
++                    continue
++
++                insert_at = bisect_left(remaining, taken)
++                next_hand = remaining[:insert_at] + (taken,) + remaining[insert_at:]
++                table_after_take = next_table[:take_index] + next_table[take_index + 1:]
++                if not can_win(opponent, next_hand, table_after_take):
++                    return True
++
++        return False
++
++    # Every move lowers the total rank of the cards held by both players.
++    takahashi_wins = can_win(
++        tuple(sorted(takahashi_cards)),
++        tuple(sorted(aoki_cards)),
++        tuple(sorted(table_cards)),
++    )
++    return "Takahashi" if takahashi_wins else "Aoki"

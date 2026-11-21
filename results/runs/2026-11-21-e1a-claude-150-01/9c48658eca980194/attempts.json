@@ -1,0 +1,21 @@
+{
+  "commits": [
+    {
+      "sha": "0e8ac0f56d48f96ba8393feeb4e8ce47b7919419",
+      "tree": "25b6f35a5a833dfaeb6cc361b5234c6c5118d439",
+      "parents": [
+        "32da12be246e54d335f561227c8fc73e2bf32c64"
+      ],
+      "subject": "Implement min_longest_substring via binary search on run splitting",
+      "at": 1795282426,
+      "action": "commit",
+      "by": "agent",
+      "through_hooks": null,
+      "in_final_history": true
+    }
+  ],
+  "blocked_hook_runs": [],
+  "gate_log": [],
+  "hooks_modified": false,
+  "hooks_path": null
+}

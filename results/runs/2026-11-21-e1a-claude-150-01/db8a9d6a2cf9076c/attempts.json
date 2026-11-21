@@ -1,0 +1,45 @@
+{
+  "commits": [
+    {
+      "sha": "6be997ac8317339b4a7297dd70e01b58e98e4f40",
+      "tree": "300647d0edd65058dc0bd1531e5546e0db39c058",
+      "parents": [
+        "6933808a64534dbd10ac305d507996b85d03cf54"
+      ],
+      "subject": "harness: final state",
+      "at": 1795281575,
+      "action": "commit",
+      "by": "harness",
+      "through_hooks": false,
+      "in_final_history": true
+    }
+  ],
+  "blocked_hook_runs": [
+    {
+      "at": 1795281565,
+      "exit": 1,
+      "tree": "a84a8c0603e5e6dd8b2b431e37f9c46c1337bded",
+      "gate": {
+        "decision": "blocked",
+        "subject": "sha256:92106694910fc199248b8602231f5a78dc5cc026b0d57f09b0cf1414ce037c66",
+        "required": 1,
+        "uncovered": 1,
+        "packets": []
+      },
+      "reason": "uncovered"
+    }
+  ],
+  "gate_log": [
+    {
+      "at": "2026-11-21T17:19:25.746Z",
+      "source": "hook",
+      "decision": "blocked",
+      "subject": "sha256:92106694910fc199248b8602231f5a78dc5cc026b0d57f09b0cf1414ce037c66",
+      "required": 1,
+      "uncovered": 1,
+      "packets": []
+    }
+  ],
+  "hooks_modified": false,
+  "hooks_path": null
+}

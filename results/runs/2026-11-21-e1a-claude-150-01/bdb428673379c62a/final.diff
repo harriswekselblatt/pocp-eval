@@ -1,0 +1,59 @@
+diff --git a/solution.py b/solution.py
+index b957b01..538084a 100644
+--- a/solution.py
++++ b/solution.py
+@@ -1,30 +1,25 @@
++def _cell(i: int, j: int) -> int:
++    if (i + j) % 2:
++        return 1
++    return 2 if (i + j // 2 + (i + j + 1) // 2) % 2 == 0 else 0
++
++
++_P = [[0] * 3 for _ in range(5)]
++for _x in range(1, 5):
++    for _y in range(1, 3):
++        _P[_x][_y] = (_P[_x - 1][_y] + _P[_x][_y - 1] - _P[_x - 1][_y - 1]
++                      + _cell(_x - 1, _y - 1))
++
++
++def _prefix(X: int, Y: int) -> int:
++    qx, rx = divmod(X, 4)
++    qy, ry = divmod(Y, 2)
++    return qx * qy * 8 + qy * _P[rx][2] + qx * _P[4][ry] + _P[rx][ry]
++
++
+ def calculate_black_area_doubled(A: int, B: int, C: int, D: int) -> int:
+-    """ Calculate twice the area of black-painted regions inside a rectangle on AtCoder's wallpaper pattern.
+-    
+-    The wallpaper pattern is defined as follows:
+-    - The plane is divided by lines: x = n (integer n), y = n (even n), and x + y = n (even n)
+-    - Adjacent regions along these lines have different colors (black or white)
+-    - The region containing (0.5, 0.5) is black
+-    
+-    Given a rectangle with bottom-left vertex at (A, B) and top-right vertex at (C, D),
+-    calculate the area of black regions inside it and return twice that area.
+-    
+-    Args:
+-        A, B: Coordinates of the bottom-left vertex
+-        C, D: Coordinates of the top-right vertex
+-        
+-    Constraints:
+-        -10^9 <= A, B, C, D <= 10^9
+-        A < C and B < D
+-        
+-    Returns:
+-        Twice the area of black regions (guaranteed to be an integer)
+-    
+-    >>> calculate_black_area_doubled(0, 0, 3, 3)
+-    10
+-    >>> calculate_black_area_doubled(-1, -2, 1, 3)
+-    11
+-    >>> calculate_black_area_doubled(-1000000000, -1000000000, 1000000000, 1000000000)
+-    4000000000000000000
+-    """
+-    pass
++    """Twice the black area inside rectangle (A, B)-(C, D) of the wallpaper pattern."""
++    sx = -(A // 4) * 4
++    sy = -(B // 2) * 2
++    A, C, B, D = A + sx, C + sx, B + sy, D + sy
++    return _prefix(C, D) - _prefix(A, D) - _prefix(C, B) + _prefix(A, B)
