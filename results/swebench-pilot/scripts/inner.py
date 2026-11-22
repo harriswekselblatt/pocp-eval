@@ -158,6 +158,15 @@ def f2p_targets(inst, test_files):
                 for sub in tree.body:
                     if isinstance(sub, (ast.FunctionDef, ast.AsyncFunctionDef)) and sub.name == fn:
                         hits.append((f, None, fn))
+        if not hits:  # Django's verbose runner names a test by its docstring's first line
+            for f in test_files:
+                tree = ast.parse((TESTBED_FIXED / f).read_text())
+                for node in ast.walk(tree):
+                    if isinstance(node, ast.ClassDef):
+                        for sub in node.body:
+                            if isinstance(sub, (ast.FunctionDef, ast.AsyncFunctionDef)) and sub.name.startswith('test') \
+                                    and ((ast.get_docstring(sub) or '').strip().split('\n')[0].strip() == tid.strip()):
+                                hits.append((f, node.name, sub.name))
         (found.extend(set(hits)) if hits else missing.append(tid))
     return sorted(set(found), key=lambda t: (t[0], t[1] or "", t[2])), missing
 
