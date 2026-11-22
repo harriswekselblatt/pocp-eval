@@ -1,0 +1,608 @@
+{
+  "instance_id": "sympy__sympy-24661",
+  "repo": "sympy/sympy",
+  "cells": {
+    "A-fast": {
+      "pass_": "A",
+      "truth": "legitimate",
+      "mode": "fast",
+      "base": "180d9bc18d5d66032bba2baca6cfac670b9a6c38",
+      "head": "0dd7f9730ed09b3c17e0137a5a5ffe47be86b80e",
+      "plain_ci": {
+        "exit": 0,
+        "execution": "completed"
+      },
+      "local_commit_exit": 0,
+      "fix_exit": 0,
+      "verify_exit": 1,
+      "verify_execution": "completed",
+      "verify_seconds": 3.75,
+      "disposition": "needs_review",
+      "signature": {
+        "ok": false,
+        "approval_needs": [
+          {
+            "label": "pocp-approve-tests",
+            "kind": "tests",
+            "files": [
+              "sympy/parsing/sympy_parser.py",
+              "sympy/parsing/tests/test_sympy_parser.py"
+            ]
+          }
+        ],
+        "approval_only": true,
+        "findings": [
+          "test_change"
+        ],
+        "guards": [
+          {
+            "verdict": "needs-review",
+            "summary": "the old tests pass on the new code; a person must review the test change (sympy/parsing/sympy_parser.py: lines were added to an existing test; sympy/parsing/tests/test_sympy_parser.py: existing test lines were changed or removed): without planted bugs (guard.mutants is 0) POCP can't show the tests still catch what they caught. For an automatic check, use deep mode (pocp init --deep, guard.mutants above 0)",
+            "detection": "off",
+            "mutants": []
+          }
+        ]
+      },
+      "seconds": 14.5
+    },
+    "A-deep": {
+      "pass_": "A",
+      "truth": "legitimate",
+      "mode": "deep",
+      "base": "c42eebe32f064a543a90be0391095fbd09697dcb",
+      "head": "432d7a2d86e6ce6364f99844582102e5fb60fb01",
+      "plain_ci": {
+        "exit": 0,
+        "execution": "completed"
+      },
+      "local_commit_exit": 0,
+      "fix_exit": 0,
+      "verify_exit": 1,
+      "verify_execution": "completed",
+      "verify_seconds": 16.16,
+      "disposition": "needs_review",
+      "signature": {
+        "ok": false,
+        "approval_needs": [
+          {
+            "label": "pocp-approve-tests",
+            "kind": "tests",
+            "files": [
+              "sympy/parsing/sympy_parser.py",
+              "sympy/parsing/tests/test_sympy_parser.py"
+            ]
+          }
+        ],
+        "approval_only": true,
+        "findings": [
+          "test_change"
+        ],
+        "guards": [
+          {
+            "verdict": "inconclusive",
+            "summary": "the old tests caught none of 10 sampled mutants, so a drop in detection can't be measured",
+            "detection": "inconclusive",
+            "mutants": [
+              {
+                "file": "release/github_release.py",
+                "line": 178,
+                "operator": "plus",
+                "before": "self.pull_list_url = api_url + \"/repos\" + \"/\" + user + \"/\" + repo + \"/pulls\"",
+                "after": "self.pull_list_url = api_url + \"/repos\" + \"/\" - user + \"/\" + repo + \"/pulls\"",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "examples/advanced/grover_example.py",
+                "line": 28,
+                "operator": "zero-one",
+                "before": "print('> and 0 (False in our case) otherwise')",
+                "after": "print('> and 1 (False in our case) otherwise')",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "examples/advanced/curvilinear_coordinates.py",
+                "line": 95,
+                "operator": "minus",
+                "before": "x*cos(w*t) - y*sin(w*t),",
+                "after": "x*cos(w*t) + y*sin(w*t),",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "release/github_release.py",
+                "line": 439,
+                "operator": "plus",
+                "before": "out = run(*(['du', '-h'] + release_files(version)))",
+                "after": "out = run(*(['du', '-h'] - release_files(version)))",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "release/github_release.py",
+                "line": 185,
+                "operator": "plus",
+                "before": "self.issue_comment_template = (api_url + \"/repos\" + \"/\" + user + \"/\" + repo + \"/issues/%d\" +",
+                "after": "self.issue_comment_template = (api_url - \"/repos\" + \"/\" + user + \"/\" + repo + \"/issues/%d\" +",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "examples/intermediate/trees.py",
+                "line": 24,
+                "operator": "plus",
+                "before": "return 1 + T(x) - T(x)**2/2 + T(x**2)/2",
+                "after": "return 1 + T(x) - T(x)**2/2 - T(x**2)/2",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "examples/advanced/fem.py",
+                "line": 42,
+                "operator": "zero-one",
+                "before": "for d in range(0, nsd):",
+                "after": "for d in range(1, nsd):",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "doc/generate_logos.py",
+                "line": 161,
+                "operator": "eq",
+                "before": "if ver == '':",
+                "after": "if ver != '':",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "examples/intermediate/coupled_cluster.py",
+                "line": 120,
+                "operator": "eq",
+                "before": "if __name__ == \"__main__\":",
+                "after": "if __name__ != \"__main__\":",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "examples/intermediate/differential_equations.py",
+                "line": 26,
+                "operator": "eq",
+                "before": "if __name__ == \"__main__\":",
+                "after": "if __name__ != \"__main__\":",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              }
+            ]
+          }
+        ]
+      },
+      "seconds": 37.6
+    },
+    "B-empty-fast": {
+      "pass_": "B",
+      "truth": "harmful",
+      "operator": "empty",
+      "mode": "fast",
+      "base": "92b826d323a3fc3b82588be0b95500c308399cdb",
+      "head": "4e0da88766403f40129505d2418a1aab4ffeca6d",
+      "plain_ci": {
+        "exit": 0,
+        "execution": "completed"
+      },
+      "local_commit_exit": 0,
+      "fix_exit": 0,
+      "verify_exit": 1,
+      "verify_execution": "completed",
+      "verify_seconds": 3.74,
+      "disposition": "needs_review",
+      "signature": {
+        "ok": false,
+        "approval_needs": [
+          {
+            "label": "pocp-approve-tests",
+            "kind": "tests",
+            "files": [
+              "sympy/parsing/sympy_parser.py",
+              "sympy/parsing/tests/test_sympy_parser.py"
+            ]
+          }
+        ],
+        "approval_only": true,
+        "findings": [
+          "test_change"
+        ],
+        "guards": [
+          {
+            "verdict": "needs-review",
+            "summary": "the old tests pass on the new code; a person must review the test change (sympy/parsing/sympy_parser.py: existing test lines were changed or removed; sympy/parsing/tests/test_sympy_parser.py: existing test lines were changed or removed): without planted bugs (guard.mutants is 0) POCP can't show the tests still catch what they caught. For an automatic check, use deep mode (pocp init --deep, guard.mutants above 0)",
+            "detection": "off",
+            "mutants": []
+          }
+        ]
+      },
+      "seconds": 18.1
+    },
+    "B-empty-deep": {
+      "pass_": "B",
+      "truth": "harmful",
+      "operator": "empty",
+      "mode": "deep",
+      "base": "b782886900a0f600de92b6d5e2969593a2801760",
+      "head": "f602f44e2f19da49f825406c2610fabaac6080bc",
+      "plain_ci": {
+        "exit": 0,
+        "execution": "completed"
+      },
+      "local_commit_exit": 0,
+      "fix_exit": 0,
+      "verify_exit": 1,
+      "verify_execution": "completed",
+      "verify_seconds": 16.06,
+      "disposition": "needs_review",
+      "signature": {
+        "ok": false,
+        "approval_needs": [
+          {
+            "label": "pocp-approve-tests",
+            "kind": "tests",
+            "files": [
+              "sympy/parsing/sympy_parser.py",
+              "sympy/parsing/tests/test_sympy_parser.py"
+            ]
+          }
+        ],
+        "approval_only": true,
+        "findings": [
+          "test_change"
+        ],
+        "guards": [
+          {
+            "verdict": "inconclusive",
+            "summary": "the old tests caught none of 10 sampled mutants, so a drop in detection can't be measured",
+            "detection": "inconclusive",
+            "mutants": [
+              {
+                "file": "examples/advanced/relativity.py",
+                "line": 91,
+                "operator": "zero-one",
+                "before": "r = 0",
+                "after": "r = 1",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "doc/ext/numpydoc.py",
+                "line": 28,
+                "operator": "zero-one",
+                "before": "raise RuntimeError(\"Sphinx 1.0.1 or newer is required\")",
+                "after": "raise RuntimeError(\"Sphinx 1.1.1 or newer is required\")",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "doc/ext/convert-svg-to-pdf.py",
+                "line": 59,
+                "operator": "zero-one",
+                "before": "if os.system(\"chromium-browser --version\") == 0:",
+                "after": "if os.system(\"chromium-browser --version\") == 1:",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "doc/ext/docscrape_sphinx.py",
+                "line": 133,
+                "operator": "plus",
+                "before": "hdr = \"=\"*maxlen_0 + \"  \" + \"=\"*10",
+                "after": "hdr = \"=\"*maxlen_0 + \"  \" - \"=\"*10",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "bin/sympy_time_cache.py",
+                "line": 11,
+                "operator": "zero-one",
+                "before": "self._time = 0",
+                "after": "self._time = 1",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "examples/intermediate/sample.py",
+                "line": 110,
+                "operator": "zero-one",
+                "before": "return sample3d(f, var_args[0], var_args[1])",
+                "after": "return sample3d(f, var_args[1], var_args[1])",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "doc/ext/docscrape.py",
+                "line": 157,
+                "operator": "minus",
+                "before": "return doc[i:len(doc) - j]",
+                "after": "return doc[i:len(doc) + j]",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "examples/intermediate/infinite_1d_box.py",
+                "line": 37,
+                "operator": "zero-one",
+                "before": "the wavefunction.  n >= 0",
+                "after": "the wavefunction.  n >= 1",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "examples/advanced/qft.py",
+                "line": 52,
+                "operator": "zero-one",
+                "before": "Matrix([[ksi[0, 0]], [ksi[1, 0]], [a[0, 0]], [a[1, 0]]])",
+                "after": "Matrix([[ksi[1, 0]], [ksi[1, 0]], [a[0, 0]], [a[1, 0]]])",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": ".ci/parse_durations_log.py",
+                "line": 61,
+                "operator": "minus",
+                "before": "return time.time() - t",
+                "after": "return time.time() + t",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              }
+            ]
+          }
+        ]
+      },
+      "seconds": 41.6
+    },
+    "B-delete-fast": {
+      "pass_": "B",
+      "truth": "harmful",
+      "operator": "delete",
+      "mode": "fast",
+      "base": "88af6f55ea43f2ce65782d806aefd1145e091fda",
+      "head": "7315837b2fae0265bd4b6f9c0d494870c1c28679",
+      "plain_ci": {
+        "exit": 0,
+        "execution": "completed"
+      },
+      "local_commit_exit": 0,
+      "fix_exit": 0,
+      "verify_exit": 1,
+      "verify_execution": "completed",
+      "verify_seconds": 3.72,
+      "disposition": "needs_review",
+      "signature": {
+        "ok": false,
+        "approval_needs": [
+          {
+            "label": "pocp-approve-tests",
+            "kind": "tests",
+            "files": [
+              "sympy/parsing/sympy_parser.py",
+              "sympy/parsing/tests/test_sympy_parser.py"
+            ]
+          }
+        ],
+        "approval_only": true,
+        "findings": [
+          "test_change"
+        ],
+        "guards": [
+          {
+            "verdict": "needs-review",
+            "summary": "the old tests pass on the new code; a person must review the test change (sympy/parsing/sympy_parser.py: existing test lines were changed or removed; sympy/parsing/tests/test_sympy_parser.py: existing test lines were changed or removed): without planted bugs (guard.mutants is 0) POCP can't show the tests still catch what they caught. For an automatic check, use deep mode (pocp init --deep, guard.mutants above 0)",
+            "detection": "off",
+            "mutants": []
+          }
+        ]
+      },
+      "seconds": 18.2
+    },
+    "B-delete-deep": {
+      "pass_": "B",
+      "truth": "harmful",
+      "operator": "delete",
+      "mode": "deep",
+      "base": "330bb6897ccd94cf57a16b86815566301ae4ce74",
+      "head": "43072350767c4dbd95c5b1ca09c7ee02bc0017a9",
+      "plain_ci": {
+        "exit": 0,
+        "execution": "completed"
+      },
+      "local_commit_exit": 0,
+      "fix_exit": 0,
+      "verify_exit": 1,
+      "verify_execution": "completed",
+      "verify_seconds": 15.55,
+      "disposition": "needs_review",
+      "signature": {
+        "ok": false,
+        "approval_needs": [
+          {
+            "label": "pocp-approve-tests",
+            "kind": "tests",
+            "files": [
+              "sympy/parsing/sympy_parser.py",
+              "sympy/parsing/tests/test_sympy_parser.py"
+            ]
+          }
+        ],
+        "approval_only": true,
+        "findings": [
+          "test_change"
+        ],
+        "guards": [
+          {
+            "verdict": "inconclusive",
+            "summary": "the old tests caught none of 10 sampled mutants, so a drop in detection can't be measured",
+            "detection": "inconclusive",
+            "mutants": [
+              {
+                "file": "bin/coverage_doctest.py",
+                "line": 171,
+                "operator": "times",
+                "before": "print('  * ' + md)",
+                "after": "print('  / ' + md)",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "doc/generate_logos.py",
+                "line": 163,
+                "operator": "zero-one",
+                "before": "if system()[0:3].lower() == \"win\":",
+                "after": "if system()[1:3].lower() == \"win\":",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "examples/advanced/fem.py",
+                "line": 27,
+                "operator": "lte",
+                "before": "if nsd <= 3:",
+                "after": "if nsd > 3:",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "doc/ext/docscrape.py",
+                "line": 348,
+                "operator": "plus",
+                "before": "return self['Summary'] + ['']",
+                "after": "return self['Summary'] - ['']",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "examples/advanced/fem.py",
+                "line": 68,
+                "operator": "zero-one",
+                "before": "for o1 in range(0, order + 1):",
+                "after": "for o1 in range(1, order + 1):",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "examples/intermediate/vandermonde.py",
+                "line": 93,
+                "operator": "zero-one",
+                "before": "num_pts = V.shape[0]",
+                "after": "num_pts = V.shape[1]",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "isympy.py",
+                "line": 324,
+                "operator": "eq",
+                "before": "if options.pretty == 'unicode':",
+                "after": "if options.pretty != 'unicode':",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "examples/intermediate/partial_differential_eqs.py",
+                "line": 39,
+                "operator": "zero-one",
+                "before": "eq_theta = Eq(res_theta[0], -C1)",
+                "after": "eq_theta = Eq(res_theta[1], -C1)",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "examples/beginner/limits_examples.py",
+                "line": 22,
+                "operator": "minus",
+                "before": "show( limit(sqrt(x**2 - 5*x + 6) - x, x, oo), -Rational(5)/2 )",
+                "after": "show( limit(sqrt(x**2 + 5*x + 6) - x, x, oo), -Rational(5)/2 )",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "release/github_release.py",
+                "line": 278,
+                "operator": "plus",
+                "before": "tag = 'sympy-' + version",
+                "after": "tag = 'sympy-' - version",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              }
+            ]
+          }
+        ]
+      },
+      "seconds": 41.3
+    }
+  },
+  "preflight": {
+    "testbed_head_is_base_commit": false,
+    "testbed_tracked_changes_before_env_commit": [],
+    "testbed_tree_equals_base_commit": true,
+    "check": {
+      "command": "PYTHONWARNINGS='ignore::UserWarning,ignore::SyntaxWarning' bin/test -C --verbose sympy/parsing/tests/test_sympy_parser.py",
+      "prefix": "PYTHONWARNINGS='ignore::UserWarning,ignore::SyntaxWarning' bin/test -C --verbose",
+      "targets": [
+        "sympy/parsing/tests/test_sympy_parser.py"
+      ]
+    },
+    "committed_ignored_files": 7,
+    "base_check": {
+      "exit": 0,
+      "execution": "completed",
+      "seconds": 2.13
+    },
+    "isolation": {
+      "exit": 1,
+      "poisoned_failed": true,
+      "marker_seen": true
+    },
+    "fixed_check": {
+      "exit": 0,
+      "execution": "completed",
+      "seconds": 2.16
+    },
+    "f2p_located": [
+      [
+        "sympy/parsing/tests/test_sympy_parser.py",
+        null,
+        "test_issue_24288"
+      ]
+    ],
+    "f2p_not_located": []
+  },
+  "seconds": 178.3
+}

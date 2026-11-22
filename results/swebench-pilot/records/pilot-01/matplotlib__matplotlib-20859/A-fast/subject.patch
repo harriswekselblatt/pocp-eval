@@ -1,0 +1,276 @@
+diff --git a/.proof/packets/p-1b0e5375.json b/.proof/packets/p-1b0e5375.json
+new file mode 100644
+index 0000000000..2bab48cc8d
+--- /dev/null
++++ b/.proof/packets/p-1b0e5375.json
+@@ -0,0 +1,224 @@
++{
++  "pocp": 1,
++  "id": "p-1b0e5375",
++  "intent": "Change to lib/matplotlib/legend.py, lib/matplotlib/tests/test_legend.py",
++  "touches": [
++    "lib/matplotlib/legend.py",
++    "lib/matplotlib/tests/test_legend.py"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "bash .bench/check.sh",
++      "source": "rule:task-tests"
++    },
++    {
++      "id": "o2",
++      "kind": "guard",
++      "files": [
++        "lib/matplotlib/tests/test_legend.py"
++      ],
++      "mutants": 0,
++      "seed": 11,
++      "text": "Existing tests or test setup changed (lib/matplotlib/tests/test_legend.py): the old tests still pass on the new code, and a person reviews the change (fast mode: without planted bugs POCP can't show the tests still catch what they caught)",
++      "source": "guard:tests"
++    }
++  ],
++  "state": "open",
++  "policy": "sha256:61d13274e53a745d57114ca4d2f4a54416df25781292c512245dbf5336ab580f",
++  "policy_repo": "sha256:61d13274e53a745d57114ca4d2f4a54416df25781292c512245dbf5336ab580f",
++  "opened_at": "2026-11-22T17:34:31.910Z",
++  "opened_by": "SWE-bench",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:88086bd1c49af153019bde9e95b4736aa4af33514080577c64977849801234ac",
++      "subject": "sha256:05b6431b11ce73c83e87ceef3ed4196cb9e5b6df4ed210c965ed982827ec1799",
++      "policy": "sha256:61d13274e53a745d57114ca4d2f4a54416df25781292c512245dbf5336ab580f",
++      "run": "bash .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-22T17:34:32.388Z",
++      "duration_ms": 10285,
++      "stdout_sha256": "a4c5497c6f0cf85cfdc03b80ecf9c16bf452c075d28c2b4536bf1b77625ef99f",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-83dd8abc",
++      "runner": {
++        "pocp": "1.5.0",
++        "node": "22.23.5",
++        "platform": "linux-x64",
++        "ci": false,
++        "lockfile_sha256": null
++      }
++    },
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:9b3e84bd3bf222b24e6ff21c939488273e79c35bcb128d885c2edbd12ac25bf5",
++      "subject": "sha256:05b6431b11ce73c83e87ceef3ed4196cb9e5b6df4ed210c965ed982827ec1799",
++      "policy": "sha256:61d13274e53a745d57114ca4d2f4a54416df25781292c512245dbf5336ab580f",
++      "kind": "guard",
++      "mode": "snapshot",
++      "passed": false,
++      "started_at": "2026-11-22T17:34:42.757Z",
++      "duration_ms": 11935,
++      "runner": {
++        "pocp": "1.5.0",
++        "node": "22.23.5",
++        "platform": "linux-x64",
++        "ci": false,
++        "lockfile_sha256": null
++      },
++      "guard": {
++        "pocp": 1,
++        "verdict": "needs-review",
++        "passed": false,
++        "summary": "the old tests pass on the new code; a person must review the test change (lib/matplotlib/tests/test_legend.py: lines were added to an existing test): without planted bugs (guard.mutants is 0) POCP can't show the tests still catch what they caught. For an automatic check, use deep mode (pocp init --deep, guard.mutants above 0)",
++        "base": "24083e9c794a1da670d5977eb1034953903391e6",
++        "checks": [
++          {
++            "id": "task-tests",
++            "run": "bash .bench/check.sh"
++          }
++        ],
++        "old_tests": {
++          "result": "pass",
++          "restored": [
++            "lib/matplotlib/tests/test_legend.py"
++          ],
++          "runs": [
++            {
++              "check": "task-tests",
++              "passed": true,
++              "exit": 0,
++              "duration_ms": 10544
++            }
++          ],
++          "changed_tests": {
++            "result": "not-used",
++            "reason": "check task-tests has no changed_test_command"
++          }
++        },
++        "new_tests": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "task-tests",
++              "passed": true,
++              "reused": true,
++              "duration_ms": 0
++            }
++          ]
++        },
++        "baseline": {
++          "result": "not-run",
++          "runs": []
++        },
++        "detection": {
++          "result": "off",
++          "budget": 0,
++          "seed": 11
++        },
++        "structural": {
++          "result": "needs-review",
++          "reasons": [
++            {
++              "file": "lib/matplotlib/tests/test_legend.py",
++              "why": "lines were added to an existing test"
++            }
++          ]
++        },
++        "duration_ms": 11935,
++        "timings": {
++          "setup_ms": 1022,
++          "new_baseline": {
++            "wall_ms": 1,
++            "run_ms": 0,
++            "runs": 0
++          },
++          "old_baseline": {
++            "wall_ms": 10904,
++            "run_ms": 10544,
++            "runs": 1
++          },
++          "plan_ms": 0,
++          "mutants": {
++            "wall_ms": 0,
++            "old": {
++              "run_ms": 0,
++              "runs": 0,
++              "retries": 0
++            },
++            "new": {
++              "run_ms": 0,
++              "runs": 0,
++              "retries": 0
++            }
++          },
++          "base_check": {
++            "wall_ms": 0,
++            "run_ms": 0,
++            "runs": 0
++          },
++          "snapshot": {
++            "ms": 811,
++            "count": 1
++          },
++          "copy": {
++            "ms": 398,
++            "count": 2
++          },
++          "cleanup": {
++            "ms": 438,
++            "count": 3
++          }
++        },
++        "checks_from": "rules"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-22T17:34:31.910Z",
++      "event": "opened",
++      "by": "SWE-bench"
++    },
++    {
++      "at": "2026-11-22T17:34:31.910Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1",
++        "o2"
++      ],
++      "policy": "sha256:61d13274e53a745d57114ca4d2f4a54416df25781292c512245dbf5336ab580f"
++    },
++    {
++      "at": "2026-11-22T17:34:54.998Z",
++      "event": "proof_failed",
++      "obligation": "o2",
++      "subject": "sha256:05b6431b11ce73c83e87ceef3ed4196cb9e5b6df4ed210c965ed982827ec1799"
++    },
++    {
++      "at": "2026-11-22T17:34:55.146Z",
++      "event": "deferred",
++      "obligation": "o2",
++      "by": "SWE-bench",
++      "subject": "sha256:05b6431b11ce73c83e87ceef3ed4196cb9e5b6df4ed210c965ed982827ec1799"
++    }
++  ],
++  "deferrals": [
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:9b3e84bd3bf222b24e6ff21c939488273e79c35bcb128d885c2edbd12ac25bf5",
++      "subject": "sha256:05b6431b11ce73c83e87ceef3ed4196cb9e5b6df4ed210c965ed982827ec1799",
++      "by": "SWE-bench",
++      "at": "2026-11-22T17:34:55.146Z",
++      "to": "ci-approval",
++      "reason": "the old tests pass on the new code; a person must review the test change (lib/matplotlib/tests/test_legend.py: lines were added to an existing test): without planted bugs (guard.mutants is 0) POCP can't show the tests still catch what they caught. For an automatic check, use deep mode (pocp init --deep, guard.mutants above 0)"
++    }
++  ]
++}
+diff --git a/lib/matplotlib/legend.py b/lib/matplotlib/legend.py
+index 44ab024698..1d85ba1a3f 100644
+--- a/lib/matplotlib/legend.py
++++ b/lib/matplotlib/legend.py
+@@ -360,7 +360,7 @@ class Legend(Artist):
+         """
+         # local import only to avoid circularity
+         from matplotlib.axes import Axes
+-        from matplotlib.figure import Figure
++        from matplotlib.figure import FigureBase
+ 
+         super().__init__()
+ 
+@@ -434,11 +434,13 @@ class Legend(Artist):
+             self.isaxes = True
+             self.axes = parent
+             self.set_figure(parent.figure)
+-        elif isinstance(parent, Figure):
++        elif isinstance(parent, FigureBase):
+             self.isaxes = False
+             self.set_figure(parent)
+         else:
+-            raise TypeError("Legend needs either Axes or Figure as parent")
++            raise TypeError(
++                "Legend needs either Axes or FigureBase as parent"
++            )
+         self.parent = parent
+ 
+         self._loc_used_default = loc is None
+diff --git a/lib/matplotlib/tests/test_legend.py b/lib/matplotlib/tests/test_legend.py
+index c49ea996d0..21c8ab748d 100644
+--- a/lib/matplotlib/tests/test_legend.py
++++ b/lib/matplotlib/tests/test_legend.py
+@@ -871,3 +871,12 @@ def test_handlerline2d():
+     handles = [mlines.Line2D([0], [0], marker="v")]
+     leg = ax.legend(handles, ["Aardvark"], numpoints=1)
+     assert handles[0].get_marker() == leg.legendHandles[0].get_marker()
++
++
++def test_subfigure_legend():
++    # Test that legend can be added to subfigure (#20723)
++    subfig = plt.figure().subfigures()
++    ax = subfig.subplots()
++    ax.plot([0, 1], [0, 1], label="line")
++    leg = subfig.legend()
++    assert leg.figure is subfig

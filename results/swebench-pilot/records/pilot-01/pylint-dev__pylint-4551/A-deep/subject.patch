@@ -1,0 +1,596 @@
+diff --git a/.proof/packets/p-d4a94fa4.json b/.proof/packets/p-d4a94fa4.json
+new file mode 100644
+index 00000000..19c5e511
+--- /dev/null
++++ b/.proof/packets/p-d4a94fa4.json
+@@ -0,0 +1,306 @@
++{
++  "pocp": 1,
++  "id": "p-d4a94fa4",
++  "intent": "Change to pylint/pyreverse/diagrams.py, pylint/pyreverse/inspector.py, pylint/pyreverse/utils.py and 2 more",
++  "touches": [
++    "pylint/pyreverse/diagrams.py",
++    "pylint/pyreverse/inspector.py",
++    "pylint/pyreverse/utils.py",
++    "pylint/pyreverse/writer.py",
++    "tests/unittest_pyreverse_writer.py"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "bash .bench/check.sh",
++      "source": "rule:task-tests"
++    },
++    {
++      "id": "o2",
++      "kind": "guard",
++      "files": [
++        "tests/unittest_pyreverse_writer.py"
++      ],
++      "mutants": 10,
++      "seed": 11,
++      "text": "Existing tests or test setup changed (tests/unittest_pyreverse_writer.py): the old tests still pass on the new code, and the new tests catch every sampled mutant the old ones caught",
++      "source": "guard:tests"
++    }
++  ],
++  "state": "proven",
++  "policy": "sha256:61d13274e53a745d57114ca4d2f4a54416df25781292c512245dbf5336ab580f",
++  "policy_repo": "sha256:61d13274e53a745d57114ca4d2f4a54416df25781292c512245dbf5336ab580f",
++  "opened_at": "2026-11-22T17:33:00.241Z",
++  "opened_by": "SWE-bench",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:88086bd1c49af153019bde9e95b4736aa4af33514080577c64977849801234ac",
++      "subject": "sha256:2b2d287cbb1900f9bca6f3057abdb6a9b8e60ce9012eea70e291ed203784e09d",
++      "policy": "sha256:61d13274e53a745d57114ca4d2f4a54416df25781292c512245dbf5336ab580f",
++      "run": "bash .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-22T17:33:00.404Z",
++      "duration_ms": 1158,
++      "stdout_sha256": "c37745b146aad73225a787a6e57f04d3057a06c2df4ea2f1cf636f3a704bcee0",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-94a3563b",
++      "runner": {
++        "pocp": "1.5.0",
++        "node": "22.23.5",
++        "platform": "linux-x64",
++        "ci": false,
++        "lockfile_sha256": null
++      }
++    },
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:b1f6b98e9c3c8ffb82b1e04152981b60f7a7403250a90dcfb9e272afe8e8c6a3",
++      "subject": "sha256:2b2d287cbb1900f9bca6f3057abdb6a9b8e60ce9012eea70e291ed203784e09d",
++      "policy": "sha256:61d13274e53a745d57114ca4d2f4a54416df25781292c512245dbf5336ab580f",
++      "kind": "guard",
++      "mode": "snapshot",
++      "passed": true,
++      "started_at": "2026-11-22T17:33:01.616Z",
++      "duration_ms": 9449,
++      "runner": {
++        "pocp": "1.5.0",
++        "node": "22.23.5",
++        "platform": "linux-x64",
++        "ci": false,
++        "lockfile_sha256": null
++      },
++      "guard": {
++        "pocp": 1,
++        "verdict": "passed",
++        "passed": true,
++        "summary": "the old tests pass on the new code, and the new tests catch all 2 of the 10 sampled mutants the old tests caught (seed 11)",
++        "base": "9e6adb7a19341cf65d28793394f5adb61231f3d2",
++        "checks": [
++          {
++            "id": "task-tests",
++            "run": "bash .bench/check.sh"
++          }
++        ],
++        "old_tests": {
++          "result": "pass",
++          "restored": [
++            "tests/unittest_pyreverse_writer.py"
++          ],
++          "runs": [
++            {
++              "check": "task-tests",
++              "passed": true,
++              "exit": 0,
++              "duration_ms": 1621
++            }
++          ]
++        },
++        "new_tests": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "task-tests",
++              "passed": true,
++              "reused": true,
++              "duration_ms": 0
++            }
++          ]
++        },
++        "baseline": {
++          "result": "not-run",
++          "runs": []
++        },
++        "detection": {
++          "result": "kept",
++          "budget": 10,
++          "seed": 11,
++          "sites": 1796,
++          "focus_sites": 54,
++          "files": 107,
++          "sampled": 10,
++          "old_caught": 2,
++          "new_caught": 2,
++          "lost": [],
++          "mutants": [
++            {
++              "file": "pylint/pyreverse/diadefslib.py",
++              "line": 118,
++              "operator": "minus",
++              "before": "self.extract_classes(ancestor, anc_level - 1, association_level)",
++              "after": "self.extract_classes(ancestor, anc_level + 1, association_level)",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "pylint/pyreverse/utils.py",
++              "line": 96,
++              "operator": "eq",
++              "before": "return node.type == \"exception\"",
++              "after": "return node.type != \"exception\"",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "pylint/pyreverse/writer.py",
++              "line": 222,
++              "operator": "plus",
++              "before": "maxlen = max(len(name) for name in [obj.title] + methods + attrs)",
++              "after": "maxlen = max(len(name) for name in [obj.title] + methods - attrs)",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "pylint/pyreverse/inspector.py",
++              "line": 271,
++              "operator": "zero-one",
++              "before": "return 0",
++              "after": "return 1",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "pylint/pyreverse/inspector.py",
++              "line": 69,
++              "operator": "zero-one",
++              "before": "def init_counter(self, start_value=0):",
++              "after": "def init_counter(self, start_value=1):",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "pylint/pyreverse/inspector.py",
++              "line": 264,
++              "operator": "neq",
++              "before": "if fullname != basename:",
++              "after": "if fullname == basename:",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "pylint/pyreverse/utils.py",
++              "line": 211,
++              "operator": "zero-one",
++              "before": "if methods[0] is not None:",
++              "after": "if methods[1] is not None:",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "pylint/pyreverse/utils.py",
++              "line": 133,
++              "operator": "true",
++              "before": "\"\"\"return true if the node should be treated\"\"\"",
++              "after": "\"\"\"return false if the node should be treated\"\"\"",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "pylint/pyreverse/diadefslib.py",
++              "line": 90,
++              "operator": "eq",
++              "before": "if level == 0:",
++              "after": "if level != 0:",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "pylint/pyreverse/writer.py",
++              "line": 214,
++              "operator": "eq",
++              "before": "if obj.shape == \"interface\":",
++              "after": "if obj.shape != \"interface\":",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            }
++          ]
++        },
++        "duration_ms": 9449,
++        "timings": {
++          "setup_ms": 224,
++          "new_baseline": {
++            "wall_ms": 0,
++            "run_ms": 0,
++            "runs": 0
++          },
++          "old_baseline": {
++            "wall_ms": 2110,
++            "run_ms": 1621,
++            "runs": 1
++          },
++          "plan_ms": 598,
++          "mutants": {
++            "wall_ms": 8626,
++            "old": {
++              "run_ms": 15790,
++              "runs": 10,
++              "retries": 0
++            },
++            "new": {
++              "run_ms": 3421,
++              "runs": 2,
++              "retries": 0
++            }
++          },
++          "base_check": {
++            "wall_ms": 0,
++            "run_ms": 0,
++            "runs": 0
++          },
++          "snapshot": {
++            "ms": 113,
++            "count": 1
++          },
++          "copy": {
++            "ms": 1550,
++            "count": 14
++          },
++          "cleanup": {
++            "ms": 1325,
++            "count": 15
++          }
++        },
++        "checks_from": "rules"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-22T17:33:00.241Z",
++      "event": "opened",
++      "by": "SWE-bench"
++    },
++    {
++      "at": "2026-11-22T17:33:00.241Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1",
++        "o2"
++      ],
++      "policy": "sha256:61d13274e53a745d57114ca4d2f4a54416df25781292c512245dbf5336ab580f"
++    },
++    {
++      "at": "2026-11-22T17:33:11.248Z",
++      "event": "state",
++      "from": "open",
++      "to": "proven",
++      "subject": "sha256:2b2d287cbb1900f9bca6f3057abdb6a9b8e60ce9012eea70e291ed203784e09d"
++    }
++  ]
++}
+diff --git a/pylint/pyreverse/diagrams.py b/pylint/pyreverse/diagrams.py
+index bf9f67af..4c391c7f 100644
+--- a/pylint/pyreverse/diagrams.py
++++ b/pylint/pyreverse/diagrams.py
+@@ -122,7 +122,7 @@ class ClassDiagram(Figure, FilterMixIn):
+             if isinstance(node, astroid.Instance):
+                 node = node._proxied
+             if (
+-                isinstance(node, astroid.ClassDef)
++                isinstance(node, (astroid.ClassDef, astroid.Name, astroid.Subscript))
+                 and hasattr(node, "name")
+                 and not self.has_node(node)
+             ):
+diff --git a/pylint/pyreverse/inspector.py b/pylint/pyreverse/inspector.py
+index 8fa12202..d6c0bb9c 100644
+--- a/pylint/pyreverse/inspector.py
++++ b/pylint/pyreverse/inspector.py
+@@ -205,23 +205,19 @@ class Linker(IdGeneratorMixIn, utils.LocalsVisitor):
+             # the name has been defined as 'global' in the frame and belongs
+             # there.
+             frame = node.root()
+-        try:
+-            if not hasattr(frame, "locals_type"):
+-                # If the frame doesn't have a locals_type yet,
+-                # it means it wasn't yet visited. Visit it now
+-                # to add what's missing from it.
+-                if isinstance(frame, astroid.ClassDef):
+-                    self.visit_classdef(frame)
+-                elif isinstance(frame, astroid.FunctionDef):
+-                    self.visit_functiondef(frame)
+-                else:
+-                    self.visit_module(frame)
+-
+-            current = frame.locals_type[node.name]
+-            values = set(node.infer())
+-            frame.locals_type[node.name] = list(set(current) | values)
+-        except astroid.InferenceError:
+-            pass
++        if not hasattr(frame, "locals_type"):
++            # If the frame doesn't have a locals_type yet,
++            # it means it wasn't yet visited. Visit it now
++            # to add what's missing from it.
++            if isinstance(frame, astroid.ClassDef):
++                self.visit_classdef(frame)
++            elif isinstance(frame, astroid.FunctionDef):
++                self.visit_functiondef(frame)
++            else:
++                self.visit_module(frame)
++
++        current = frame.locals_type[node.name]
++        frame.locals_type[node.name] = list(set(current) | utils.infer_node(node))
+ 
+     @staticmethod
+     def handle_assignattr_type(node, parent):
+@@ -229,12 +225,10 @@ class Linker(IdGeneratorMixIn, utils.LocalsVisitor):
+ 
+         handle instance_attrs_type
+         """
+-        try:
+-            values = set(node.infer())
+-            current = set(parent.instance_attrs_type[node.attrname])
+-            parent.instance_attrs_type[node.attrname] = list(current | values)
+-        except astroid.InferenceError:
+-            pass
++        current = set(parent.instance_attrs_type[node.attrname])
++        parent.instance_attrs_type[node.attrname] = list(
++            current | utils.infer_node(node)
++        )
+ 
+     def visit_import(self, node):
+         """visit an astroid.Import node
+diff --git a/pylint/pyreverse/utils.py b/pylint/pyreverse/utils.py
+index a24d227e..1f4a65e5 100644
+--- a/pylint/pyreverse/utils.py
++++ b/pylint/pyreverse/utils.py
+@@ -19,6 +19,9 @@
+ import os
+ import re
+ import sys
++from typing import Optional, Union
++
++import astroid
+ 
+ RCFILE = ".pyreverserc"
+ 
+@@ -213,3 +216,60 @@ class LocalsVisitor(ASTWalker):
+         if methods[1] is not None:
+             return methods[1](node)
+         return None
++
++
++def get_annotation_label(ann: Union[astroid.Name, astroid.Subscript]) -> str:
++    label = ""
++    if isinstance(ann, astroid.Subscript):
++        label = ann.as_string()
++    elif isinstance(ann, astroid.Name):
++        label = ann.name
++    return label
++
++
++def get_annotation(
++    node: Union[astroid.AssignAttr, astroid.AssignName]
++) -> Optional[Union[astroid.Name, astroid.Subscript]]:
++    """return the annotation for `node`"""
++    ann = None
++    if isinstance(node.parent, astroid.AnnAssign):
++        ann = node.parent.annotation
++    elif isinstance(node, astroid.AssignAttr):
++        init_method = node.parent.parent
++        try:
++            annotations = dict(zip(init_method.locals, init_method.args.annotations))
++            ann = annotations.get(node.parent.value.name)
++        except AttributeError:
++            pass
++    else:
++        return ann
++
++    try:
++        default, *_ = node.infer()
++    except astroid.InferenceError:
++        default = ""
++
++    label = get_annotation_label(ann)
++    if ann:
++        label = (
++            rf"Optional[{label}]"
++            if getattr(default, "value", "value") is None
++            and not label.startswith("Optional")
++            else label
++        )
++    if label:
++        ann.name = label
++    return ann
++
++
++def infer_node(node: Union[astroid.AssignAttr, astroid.AssignName]) -> set:
++    """Return a set containing the node annotation if it exists
++    otherwise return a set of the inferred types using the NodeNG.infer method"""
++
++    ann = get_annotation(node)
++    if ann:
++        return {ann}
++    try:
++        return set(node.infer())
++    except astroid.InferenceError:
++        return set()
+diff --git a/pylint/pyreverse/writer.py b/pylint/pyreverse/writer.py
+index 0d80bb9c..baafc690 100644
+--- a/pylint/pyreverse/writer.py
++++ b/pylint/pyreverse/writer.py
+@@ -19,7 +19,7 @@
+ import os
+ 
+ from pylint.graph import DotBackend
+-from pylint.pyreverse.utils import is_exception
++from pylint.pyreverse.utils import get_annotation_label, is_exception
+ from pylint.pyreverse.vcgutils import VCGPrinter
+ 
+ 
+@@ -134,11 +134,29 @@ class DotWriter(DiagramWriter):
+         if not self.config.only_classnames:
+             label = r"{}|{}\l|".format(label, r"\l".join(obj.attrs))
+             for func in obj.methods:
++                return_type = (
++                    f": {get_annotation_label(func.returns)}" if func.returns else ""
++                )
++
+                 if func.args.args:
+-                    args = [arg.name for arg in func.args.args if arg.name != "self"]
++                    args = [arg for arg in func.args.args if arg.name != "self"]
+                 else:
+                     args = []
+-                label = r"{}{}({})\l".format(label, func.name, ", ".join(args))
++
++                annotations = dict(zip(args, func.args.annotations[1:]))
++                for arg in args:
++                    annotation_label = ""
++                    ann = annotations.get(arg)
++                    if ann:
++                        annotation_label = get_annotation_label(ann)
++                    annotations[arg] = annotation_label
++
++                args = ", ".join(
++                    f"{arg.name}: {ann}" if ann else f"{arg.name}"
++                    for arg, ann in annotations.items()
++                )
++
++                label = fr"{label}{func.name}({args}){return_type}\l"
+             label = "{%s}" % label
+         if is_exception(obj.node):
+             return dict(fontcolor="red", label=label, shape="record")
+diff --git a/tests/unittest_pyreverse_writer.py b/tests/unittest_pyreverse_writer.py
+index 98bb0148..95b1b20e 100644
+--- a/tests/unittest_pyreverse_writer.py
++++ b/tests/unittest_pyreverse_writer.py
+@@ -22,12 +22,14 @@ unit test for visitors.diadefs and extensions.diadefslib modules
+ import codecs
+ import os
+ from difflib import unified_diff
++from unittest.mock import patch
+ 
++import astroid
+ import pytest
+ 
+ from pylint.pyreverse.diadefslib import DefaultDiadefGenerator, DiadefsHandler
+ from pylint.pyreverse.inspector import Linker, project_from_files
+-from pylint.pyreverse.utils import get_visibility
++from pylint.pyreverse.utils import get_annotation, get_visibility, infer_node
+ from pylint.pyreverse.writer import DotWriter
+ 
+ _DEFAULTS = {
+@@ -132,3 +134,72 @@ def test_get_visibility(names, expected):
+     for name in names:
+         got = get_visibility(name)
+         assert got == expected, f"got {got} instead of {expected} for value {name}"
++
++
++@pytest.mark.parametrize(
++    "assign, label",
++    [
++        ("a: str = None", "Optional[str]"),
++        ("a: str = 'mystr'", "str"),
++        ("a: Optional[str] = 'str'", "Optional[str]"),
++        ("a: Optional[str] = None", "Optional[str]"),
++    ],
++)
++def test_get_annotation_annassign(assign, label):
++    """AnnAssign"""
++    node = astroid.extract_node(assign)
++    got = get_annotation(node.value).name
++    assert isinstance(node, astroid.AnnAssign)
++    assert got == label, f"got {got} instead of {label} for value {node}"
++
++
++@pytest.mark.parametrize(
++    "init_method, label",
++    [
++        ("def __init__(self, x: str):                   self.x = x", "str"),
++        ("def __init__(self, x: str = 'str'):           self.x = x", "str"),
++        ("def __init__(self, x: str = None):            self.x = x", "Optional[str]"),
++        ("def __init__(self, x: Optional[str]):         self.x = x", "Optional[str]"),
++        ("def __init__(self, x: Optional[str] = None):  self.x = x", "Optional[str]"),
++        ("def __init__(self, x: Optional[str] = 'str'): self.x = x", "Optional[str]"),
++    ],
++)
++def test_get_annotation_assignattr(init_method, label):
++    """AssignAttr"""
++    assign = rf"""
++        class A:
++            {init_method}
++    """
++    node = astroid.extract_node(assign)
++    instance_attrs = node.instance_attrs
++    for _, assign_attrs in instance_attrs.items():
++        for assign_attr in assign_attrs:
++            got = get_annotation(assign_attr).name
++            assert isinstance(assign_attr, astroid.AssignAttr)
++            assert got == label, f"got {got} instead of {label} for value {node}"
++
++
++@patch("pylint.pyreverse.utils.get_annotation")
++@patch("astroid.node_classes.NodeNG.infer", side_effect=astroid.InferenceError)
++def test_infer_node_1(mock_infer, mock_get_annotation):
++    """Return set() when astroid.InferenceError is raised and an annotation has
++    not been returned
++    """
++    mock_get_annotation.return_value = None
++    node = astroid.extract_node("a: str = 'mystr'")
++    mock_infer.return_value = "x"
++    assert infer_node(node) == set()
++    assert mock_infer.called
++
++
++@patch("pylint.pyreverse.utils.get_annotation")
++@patch("astroid.node_classes.NodeNG.infer")
++def test_infer_node_2(mock_infer, mock_get_annotation):
++    """Return set(node.infer()) when InferenceError is not raised and an
++    annotation has not been returned
++    """
++    mock_get_annotation.return_value = None
++    node = astroid.extract_node("a: str = 'mystr'")
++    mock_infer.return_value = "x"
++    assert infer_node(node) == set("x")
++    assert mock_infer.called

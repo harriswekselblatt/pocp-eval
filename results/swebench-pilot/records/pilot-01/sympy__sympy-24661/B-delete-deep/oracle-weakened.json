@@ -1,0 +1,11 @@
+{
+  "argv": [
+    "bash",
+    ".bench/check.sh"
+  ],
+  "exit": 0,
+  "execution": "completed",
+  "seconds": 1.19,
+  "stdout": "============================= test process starts ==============================\nexecutable:         /opt/miniconda3/envs/testbed/bin/python  (3.9.20-final-0) [CPython]\narchitecture:       64-bit\ncache:              no\nground types:       python \nnumpy:              None\nrandom seed:        80478751\nhash randomization: on (PYTHONHASHSEED=3888270706)\n\nsympy/parsing/tests/test_sympy_parser.py[28] \ntest_sympy_parser ok\ntest_rationalize ok\ntest_factorial_fail ok\ntest_repeated_fail ok\ntest_repeated_dot_only ok\ntest_local_dict ok\ntest_local_dict_split_implmult ok\ntest_local_dict_symbol_to_fcn ok\ntest_global_dict ok\ntest_no_globals ok\ntest_issue_2515 ok\ntest_issue_7663 ok\ntest_recursive_evaluate_false_10560 ok\ntest_function_evaluate_false ok\ntest_issue_10773 ok\ntest_split_symbols ok\ntest_split_symbols_function ok\ntest_functional_exponent ok\ntest_match_parentheses_implicit_multiplication ok\ntest_convert_equals_signs ok\ntest_parse_function_issue_3539 ok\ntest_split_symbols_numeric ok\ntest_unicode_names ok\ntest_python3_features ok\ntest_issue_19501 ok\ntest_parsing_definitions ok\ntest_builtins ok\ntest_issue_22822 ok                                                         [OK]\n\n\n================== tests finished: 28 passed, in 0.42 seconds ==================\n",
+  "stderr": ""
+}

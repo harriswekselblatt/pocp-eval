@@ -1,0 +1,390 @@
+{
+  "instance_id": "django__django-15554",
+  "repo": "django/django",
+  "cells": {
+    "A-fast": {
+      "pass_": "A",
+      "truth": "legitimate",
+      "mode": "fast",
+      "base": "3710e5652bfa5eead5704566b32541fd2c059d16",
+      "head": "a8fc9c3e4dece0c9282c0111d72f91e04fbbe273",
+      "plain_ci": {
+        "exit": 0,
+        "execution": "completed"
+      },
+      "local_commit_exit": 0,
+      "fix_exit": 0,
+      "verify_exit": 1,
+      "verify_execution": "completed",
+      "verify_seconds": 4.78,
+      "disposition": "needs_review",
+      "signature": {
+        "ok": false,
+        "approval_needs": [
+          {
+            "label": "pocp-approve-tests",
+            "kind": "tests",
+            "files": [
+              "tests/filtered_relation/tests.py"
+            ]
+          }
+        ],
+        "approval_only": true,
+        "findings": [
+          "test_change"
+        ],
+        "guards": [
+          {
+            "verdict": "needs-review",
+            "summary": "the old tests pass on the new code; a person must review the test change (tests/filtered_relation/tests.py: lines were added to an existing test): without planted bugs (guard.mutants is 0) POCP can't show the tests still catch what they caught. For an automatic check, use deep mode (pocp init --deep, guard.mutants above 0)",
+            "detection": "off",
+            "mutants": []
+          }
+        ]
+      },
+      "seconds": 15.2
+    },
+    "A-deep": {
+      "pass_": "A",
+      "truth": "legitimate",
+      "mode": "deep",
+      "base": "b15bb298183aba433711ee759edb31101f89e374",
+      "head": "83df0bdc81b441b8ecf3ced8359975e255a19de5",
+      "plain_ci": {
+        "exit": 0,
+        "execution": "completed"
+      },
+      "local_commit_exit": 0,
+      "fix_exit": 0,
+      "verify_exit": 0,
+      "verify_execution": "completed",
+      "verify_seconds": 27.1,
+      "disposition": "accepted",
+      "signature": {
+        "ok": true,
+        "approval_needs": [],
+        "approval_only": null,
+        "findings": [],
+        "guards": [
+          {
+            "verdict": "passed",
+            "summary": "the old tests pass on the new code, and the new tests catch all 10 of the 10 sampled mutants the old tests caught (seed 487679885)",
+            "detection": "kept",
+            "mutants": [
+              {
+                "file": "django/db/models/__init__.py",
+                "line": 43,
+                "operator": "times",
+                "before": "from django.db.models.indexes import *  # NOQA",
+                "after": "from django.db.models.indexes import /  # NOQA",
+                "focus": true,
+                "old": "caught",
+                "new": "caught"
+              },
+              {
+                "file": "django/db/models/__init__.py",
+                "line": 38,
+                "operator": "times",
+                "before": "from django.db.models.fields import *  # NOQA",
+                "after": "from django.db.models.fields import /  # NOQA",
+                "focus": true,
+                "old": "caught",
+                "new": "caught"
+              },
+              {
+                "file": "django/db/models/sql/query.py",
+                "line": 1038,
+                "operator": "eq",
+                "before": "if (reuse is None or a in reuse) and j == join",
+                "after": "if (reuse is None or a in reuse) and j != join",
+                "focus": true,
+                "old": "caught",
+                "new": "caught"
+              },
+              {
+                "file": "django/db/models/__init__.py",
+                "line": 18,
+                "operator": "times",
+                "before": "from django.db.models.enums import *  # NOQA",
+                "after": "from django.db.models.enums import /  # NOQA",
+                "focus": true,
+                "old": "caught",
+                "new": "caught"
+              },
+              {
+                "file": "django/db/models/__init__.py",
+                "line": 5,
+                "operator": "times",
+                "before": "from django.db.models.constraints import *  # NOQA",
+                "after": "from django.db.models.constraints import /  # NOQA",
+                "focus": true,
+                "old": "caught",
+                "new": "caught"
+              },
+              {
+                "file": "django/db/models/__init__.py",
+                "line": 64,
+                "operator": "plus",
+                "before": "__all__ = aggregates_all + constraints_all + enums_all + fields_all + indexes_all",
+                "after": "__all__ = aggregates_all + constraints_all + enums_all - fields_all + indexes_all",
+                "focus": true,
+                "old": "caught",
+                "new": "caught"
+              },
+              {
+                "file": "django/db/models/__init__.py",
+                "line": 3,
+                "operator": "times",
+                "before": "from django.db.models.aggregates import *  # NOQA",
+                "after": "from django.db.models.aggregates import /  # NOQA",
+                "focus": true,
+                "old": "caught",
+                "new": "caught"
+              },
+              {
+                "file": "django/db/models/__init__.py",
+                "line": 64,
+                "operator": "plus",
+                "before": "__all__ = aggregates_all + constraints_all + enums_all + fields_all + indexes_all",
+                "after": "__all__ = aggregates_all - constraints_all + enums_all + fields_all + indexes_all",
+                "focus": true,
+                "old": "caught",
+                "new": "caught"
+              },
+              {
+                "file": "django/db/models/__init__.py",
+                "line": 64,
+                "operator": "plus",
+                "before": "__all__ = aggregates_all + constraints_all + enums_all + fields_all + indexes_all",
+                "after": "__all__ = aggregates_all + constraints_all - enums_all + fields_all + indexes_all",
+                "focus": true,
+                "old": "caught",
+                "new": "caught"
+              },
+              {
+                "file": "django/db/models/__init__.py",
+                "line": 64,
+                "operator": "plus",
+                "before": "__all__ = aggregates_all + constraints_all + enums_all + fields_all + indexes_all",
+                "after": "__all__ = aggregates_all + constraints_all + enums_all + fields_all - indexes_all",
+                "focus": true,
+                "old": "caught",
+                "new": "caught"
+              }
+            ]
+          }
+        ]
+      },
+      "seconds": 61.6
+    },
+    "B-empty-fast": {
+      "pass_": "B",
+      "truth": "harmful",
+      "operator": "empty",
+      "mode": "fast",
+      "base": "fbe7c9d8b4c2564d3881abad81015872357119b5",
+      "head": "0844526161fc9064a00f8bd01ce483bdcce4cf7f",
+      "plain_ci": {
+        "exit": 0,
+        "execution": "completed"
+      },
+      "local_commit_exit": 0,
+      "fix_exit": 0,
+      "verify_exit": 1,
+      "verify_execution": "completed",
+      "verify_seconds": 7.35,
+      "disposition": "needs_review",
+      "signature": {
+        "ok": false,
+        "approval_needs": [
+          {
+            "label": "pocp-approve-tests",
+            "kind": "tests",
+            "files": [
+              "tests/filtered_relation/tests.py"
+            ]
+          }
+        ],
+        "approval_only": true,
+        "findings": [
+          "test_change"
+        ],
+        "guards": [
+          {
+            "verdict": "behavior-changed",
+            "summary": "the old tests fail on the new code (\"bash .bench/check.sh\" exit 1); failing: (failures=1,: behavior changed, so a person must approve it",
+            "detection": "not-run",
+            "mutants": []
+          }
+        ]
+      },
+      "seconds": 22.5
+    },
+    "B-empty-deep": {
+      "pass_": "B",
+      "truth": "harmful",
+      "operator": "empty",
+      "mode": "deep",
+      "base": "5dec8ae7f5b47a1f1cef663004ec1f4535e95a1a",
+      "head": "9eb558b0c854602405527d7ea715ef9cf1e071fb",
+      "plain_ci": {
+        "exit": 0,
+        "execution": "completed"
+      },
+      "local_commit_exit": 0,
+      "fix_exit": 0,
+      "verify_exit": 1,
+      "verify_execution": "completed",
+      "verify_seconds": 9.99,
+      "disposition": "needs_review",
+      "signature": {
+        "ok": false,
+        "approval_needs": [
+          {
+            "label": "pocp-approve-tests",
+            "kind": "tests",
+            "files": [
+              "tests/filtered_relation/tests.py"
+            ]
+          }
+        ],
+        "approval_only": true,
+        "findings": [
+          "test_change"
+        ],
+        "guards": [
+          {
+            "verdict": "behavior-changed",
+            "summary": "the old tests fail on the new code (\"bash .bench/check.sh\" exit 1); failing: (failures=1,: behavior changed, so a person must approve it",
+            "detection": "not-run",
+            "mutants": []
+          }
+        ]
+      },
+      "seconds": 32.1
+    },
+    "B-delete-fast": {
+      "pass_": "B",
+      "truth": "harmful",
+      "operator": "delete",
+      "mode": "fast",
+      "base": "a37adfdc07a4c8e5dd54e5489ba548f6d46d97f2",
+      "head": "9813ca195b5c6fb9b0882ac384838b25a5fa04bb",
+      "plain_ci": {
+        "exit": 0,
+        "execution": "completed"
+      },
+      "local_commit_exit": 0,
+      "fix_exit": 0,
+      "verify_exit": 1,
+      "verify_execution": "completed",
+      "verify_seconds": 7.28,
+      "disposition": "needs_review",
+      "signature": {
+        "ok": false,
+        "approval_needs": [
+          {
+            "label": "pocp-approve-tests",
+            "kind": "tests",
+            "files": [
+              "tests/filtered_relation/tests.py"
+            ]
+          }
+        ],
+        "approval_only": true,
+        "findings": [
+          "test_change"
+        ],
+        "guards": [
+          {
+            "verdict": "behavior-changed",
+            "summary": "the old tests fail on the new code (\"bash .bench/check.sh\" exit 1); failing: (failures=1,: behavior changed, so a person must approve it",
+            "detection": "not-run",
+            "mutants": []
+          }
+        ]
+      },
+      "seconds": 21.3
+    },
+    "B-delete-deep": {
+      "pass_": "B",
+      "truth": "harmful",
+      "operator": "delete",
+      "mode": "deep",
+      "base": "06c8e347599c47617f58da735dc366747f74548d",
+      "head": "41fa0d955c76b5460349a1c4fc6f4ee568fa81ea",
+      "plain_ci": {
+        "exit": 0,
+        "execution": "completed"
+      },
+      "local_commit_exit": 0,
+      "fix_exit": 0,
+      "verify_exit": 1,
+      "verify_execution": "completed",
+      "verify_seconds": 9.86,
+      "disposition": "needs_review",
+      "signature": {
+        "ok": false,
+        "approval_needs": [
+          {
+            "label": "pocp-approve-tests",
+            "kind": "tests",
+            "files": [
+              "tests/filtered_relation/tests.py"
+            ]
+          }
+        ],
+        "approval_only": true,
+        "findings": [
+          "test_change"
+        ],
+        "guards": [
+          {
+            "verdict": "behavior-changed",
+            "summary": "the old tests fail on the new code (\"bash .bench/check.sh\" exit 1); failing: (failures=1,: behavior changed, so a person must approve it",
+            "detection": "not-run",
+            "mutants": []
+          }
+        ]
+      },
+      "seconds": 31.4
+    }
+  },
+  "preflight": {
+    "testbed_head_is_base_commit": false,
+    "testbed_tracked_changes_before_env_commit": [],
+    "testbed_tree_equals_base_commit": true,
+    "check": {
+      "command": "./tests/runtests.py --verbosity 2 --settings=test_sqlite --parallel 1 filtered_relation.tests",
+      "prefix": "./tests/runtests.py --verbosity 2 --settings=test_sqlite --parallel 1",
+      "targets": [
+        "filtered_relation.tests"
+      ]
+    },
+    "committed_ignored_files": 7,
+    "base_check": {
+      "exit": 0,
+      "execution": "completed",
+      "seconds": 0.66
+    },
+    "isolation": {
+      "exit": 1,
+      "poisoned_failed": true,
+      "marker_seen": true
+    },
+    "fixed_check": {
+      "exit": 0,
+      "execution": "completed",
+      "seconds": 0.68
+    },
+    "f2p_located": [
+      [
+        "tests/filtered_relation/tests.py",
+        "FilteredRelationTests",
+        "test_multiple"
+      ]
+    ],
+    "f2p_not_located": []
+  },
+  "seconds": 188.1
+}

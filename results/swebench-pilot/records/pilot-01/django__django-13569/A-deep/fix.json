@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "/opt/node/bin/node",
+    "/opt/pocp/package/bin/pocp.js",
+    "fix",
+    "--json"
+  ],
+  "exit": 0,
+  "execution": "completed",
+  "seconds": 15.05,
+  "stdout": "{\n  \"pocp\": 1,\n  \"ok\": true,\n  \"decision\": \"pass\",\n  \"nothing_staged\": false,\n  \"nothing_to_prove\": false,\n  \"actions\": [\n    {\n      \"action\": \"open\",\n      \"packet\": \"p-2fed9705\",\n      \"files\": [\n        \"django/db/models/functions/math.py\",\n        \"tests/aggregation/tests.py\"\n      ],\n      \"checks\": [\n        \"o1 (rule:task-tests)\",\n        \"o2 (guard:tests)\"\n      ],\n      \"intent\": \"Change to django/db/models/functions/math.py, tests/aggregation/tests.py\"\n    },\n    {\n      \"action\": \"prove\",\n      \"packets\": [\n        \"p-2fed9705\"\n      ],\n      \"mode\": \"clean\",\n      \"ran\": 2,\n      \"checks\": 2,\n      \"ms\": 13456,\n      \"failed\": [],\n      \"handed\": []\n    }\n  ],\n  \"needs_agent\": [],\n  \"needs_person\": [],\n  \"advice\": null,\n  \"gate\": {\n    \"decision\": \"pass\",\n    \"subject\": \"sha256:8b1dea49056b647849b9fd93b1a0c7680989a2fef29b4a0203de85ad0a6879d3\"\n  }\n}\n",
+  "stderr": ""
+}

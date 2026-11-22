@@ -1,0 +1,110 @@
+{
+  "instance_id": "psf__requests-1724",
+  "repo": "psf/requests",
+  "cells": {
+    "A-fast": {
+      "excluded": {
+        "stage": "A-base",
+        "reason": "the check is not green at the base commit"
+      },
+      "seconds": 0.0
+    },
+    "A-deep": {
+      "excluded": {
+        "stage": "A-base",
+        "reason": "the check is not green at the base commit"
+      },
+      "seconds": 0.0
+    },
+    "B-empty-fast": {
+      "excluded": {
+        "stage": "B-base",
+        "reason": "the check is not green on the fixed code"
+      },
+      "seconds": 0.0
+    },
+    "B-empty-deep": {
+      "excluded": {
+        "stage": "B-base",
+        "reason": "the check is not green on the fixed code"
+      },
+      "seconds": 0.0
+    },
+    "B-delete-fast": {
+      "excluded": {
+        "stage": "B-base",
+        "reason": "the check is not green on the fixed code"
+      },
+      "seconds": 0.0
+    },
+    "B-delete-deep": {
+      "excluded": {
+        "stage": "B-base",
+        "reason": "the check is not green on the fixed code"
+      },
+      "seconds": 0.0
+    }
+  },
+  "preflight": {
+    "testbed_head_is_base_commit": false,
+    "testbed_tracked_changes_before_env_commit": [],
+    "testbed_tree_equals_base_commit": true,
+    "check": {
+      "command": "pytest -rA test_requests.py",
+      "prefix": "pytest -rA",
+      "targets": [
+        "test_requests.py"
+      ]
+    },
+    "committed_ignored_files": 0,
+    "base_check": {
+      "exit": 1,
+      "execution": "completed",
+      "seconds": 1.05
+    },
+    "isolation": {
+      "exit": 2,
+      "poisoned_failed": true,
+      "marker_seen": true
+    },
+    "fixed_check": {
+      "exit": 1,
+      "execution": "completed",
+      "seconds": 1.06
+    },
+    "f2p_located": [
+      [
+        "test_requests.py",
+        "RequestsTestCase",
+        "test_DIGEST_AUTH_RETURNS_COOKIE"
+      ],
+      [
+        "test_requests.py",
+        "RequestsTestCase",
+        "test_DIGEST_HTTP_200_OK_GET"
+      ],
+      [
+        "test_requests.py",
+        "RequestsTestCase",
+        "test_different_encodings_dont_break_post"
+      ],
+      [
+        "test_requests.py",
+        "RequestsTestCase",
+        "test_generic_cookiejar_works"
+      ],
+      [
+        "test_requests.py",
+        "RequestsTestCase",
+        "test_uppercase_scheme_redirect"
+      ],
+      [
+        "test_requests.py",
+        "RequestsTestCase",
+        "test_user_agent_transfers"
+      ]
+    ],
+    "f2p_not_located": []
+  },
+  "seconds": 2.9
+}

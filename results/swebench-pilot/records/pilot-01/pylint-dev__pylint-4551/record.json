@@ -1,0 +1,271 @@
+{
+  "instance_id": "pylint-dev__pylint-4551",
+  "repo": "pylint-dev/pylint",
+  "cells": {
+    "A-fast": {
+      "pass_": "A",
+      "truth": "legitimate",
+      "mode": "fast",
+      "base": "383535f00ce2b690b98cbf82dc510ef6ef094a5f",
+      "head": "8c3eb0e7f59f98b75a389a8b57b52cb80ef2c8d4",
+      "plain_ci": {
+        "exit": 0,
+        "execution": "completed"
+      },
+      "local_commit_exit": 0,
+      "fix_exit": 0,
+      "verify_exit": 1,
+      "verify_execution": "completed",
+      "verify_seconds": 2.45,
+      "disposition": "needs_review",
+      "signature": {
+        "ok": false,
+        "approval_needs": [
+          {
+            "label": "pocp-approve-tests",
+            "kind": "tests",
+            "files": [
+              "tests/unittest_pyreverse_writer.py"
+            ]
+          }
+        ],
+        "approval_only": true,
+        "findings": [
+          "test_change"
+        ],
+        "guards": [
+          {
+            "verdict": "needs-review",
+            "summary": "the old tests pass on the new code; a person must review the test change (tests/unittest_pyreverse_writer.py: existing test lines were changed or removed): without planted bugs (guard.mutants is 0) POCP can't show the tests still catch what they caught. For an automatic check, use deep mode (pocp init --deep, guard.mutants above 0)",
+            "detection": "off",
+            "mutants": []
+          }
+        ]
+      },
+      "seconds": 9.6
+    },
+    "A-deep": {
+      "pass_": "A",
+      "truth": "legitimate",
+      "mode": "deep",
+      "base": "9e6adb7a19341cf65d28793394f5adb61231f3d2",
+      "head": "5c7bebccf3afe590dd2cae533a3e8e48604f2b54",
+      "plain_ci": {
+        "exit": 0,
+        "execution": "completed"
+      },
+      "local_commit_exit": 0,
+      "fix_exit": 0,
+      "verify_exit": 0,
+      "verify_execution": "completed",
+      "verify_seconds": 11.06,
+      "disposition": "accepted",
+      "signature": {
+        "ok": true,
+        "approval_needs": [],
+        "approval_only": null,
+        "findings": [],
+        "guards": [
+          {
+            "verdict": "passed",
+            "summary": "the old tests pass on the new code, and the new tests catch all 2 of the 10 sampled mutants the old tests caught (seed 934546958)",
+            "detection": "kept",
+            "mutants": [
+              {
+                "file": "pylint/pyreverse/inspector.py",
+                "line": 258,
+                "operator": "zero-one",
+                "before": "fullname = f\"{basename}.{name[0]}\"",
+                "after": "fullname = f\"{basename}.{name[1]}\"",
+                "focus": true,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "pylint/pyreverse/diadefslib.py",
+                "line": 62,
+                "operator": "zero-one",
+                "before": "anc_level, association_level = (0, 0)",
+                "after": "anc_level, association_level = (1, 0)",
+                "focus": true,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "pylint/pyreverse/utils.py",
+                "line": 212,
+                "operator": "zero-one",
+                "before": "methods[0](node)",
+                "after": "methods[1](node)",
+                "focus": true,
+                "old": "caught",
+                "new": "caught"
+              },
+              {
+                "file": "pylint/pyreverse/writer.py",
+                "line": 42,
+                "operator": "eq",
+                "before": "if diagram.TYPE == \"class\":",
+                "after": "if diagram.TYPE != \"class\":",
+                "focus": true,
+                "old": "caught",
+                "new": "caught"
+              },
+              {
+                "file": "pylint/pyreverse/diadefslib.py",
+                "line": 90,
+                "operator": "eq",
+                "before": "if level == 0:",
+                "after": "if level != 0:",
+                "focus": true,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "pylint/pyreverse/utils.py",
+                "line": 124,
+                "operator": "zero-one",
+                "before": "__mode = 0",
+                "after": "__mode = 1",
+                "focus": true,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "pylint/pyreverse/utils.py",
+                "line": 186,
+                "operator": "zero-one",
+                "before": "method = self.get_callbacks(node)[0]",
+                "after": "method = self.get_callbacks(node)[1]",
+                "focus": true,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "pylint/pyreverse/inspector.py",
+                "line": 66,
+                "operator": "zero-one",
+                "before": "def __init__(self, start_value=0):",
+                "after": "def __init__(self, start_value=1):",
+                "focus": true,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "pylint/pyreverse/writer.py",
+                "line": 222,
+                "operator": "plus",
+                "before": "maxlen = max(len(name) for name in [obj.title] + methods + attrs)",
+                "after": "maxlen = max(len(name) for name in [obj.title] - methods + attrs)",
+                "focus": true,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "pylint/pyreverse/utils.py",
+                "line": 115,
+                "operator": "zero-one",
+                "before": "\"public\": 0,",
+                "after": "\"public\": 1,",
+                "focus": true,
+                "old": "missed",
+                "new": "not-run"
+              }
+            ]
+          }
+        ]
+      },
+      "seconds": 26.1
+    },
+    "B-empty-fast": {
+      "excluded": {
+        "stage": "B-weaken",
+        "reason": "after the 'empty' weakening the check still fails"
+      },
+      "seconds": 2.8
+    },
+    "B-empty-deep": {
+      "excluded": {
+        "stage": "B-weaken",
+        "reason": "after the 'empty' weakening the check still fails"
+      },
+      "seconds": 2.7
+    },
+    "B-delete-fast": {
+      "excluded": {
+        "stage": "B-weaken",
+        "reason": "after the 'delete' weakening the check still fails"
+      },
+      "seconds": 2.8
+    },
+    "B-delete-deep": {
+      "excluded": {
+        "stage": "B-weaken",
+        "reason": "after the 'delete' weakening the check still fails"
+      },
+      "seconds": 2.8
+    }
+  },
+  "preflight": {
+    "testbed_head_is_base_commit": false,
+    "testbed_tracked_changes_before_env_commit": [],
+    "testbed_tree_equals_base_commit": true,
+    "check": {
+      "command": "pytest -rA tests/unittest_pyreverse_writer.py",
+      "prefix": "pytest -rA",
+      "targets": [
+        "tests/unittest_pyreverse_writer.py"
+      ]
+    },
+    "committed_ignored_files": 6,
+    "base_check": {
+      "exit": 0,
+      "execution": "completed",
+      "seconds": 1.31
+    },
+    "isolation": {
+      "exit": 4,
+      "poisoned_failed": true,
+      "marker_seen": true
+    },
+    "fixed_check": {
+      "exit": 0,
+      "execution": "completed",
+      "seconds": 1.36
+    },
+    "f2p_located": [
+      [
+        "tests/unittest_pyreverse_writer.py",
+        null,
+        "test_dot_files"
+      ],
+      [
+        "tests/unittest_pyreverse_writer.py",
+        null,
+        "test_get_annotation_annassign"
+      ],
+      [
+        "tests/unittest_pyreverse_writer.py",
+        null,
+        "test_get_annotation_assignattr"
+      ],
+      [
+        "tests/unittest_pyreverse_writer.py",
+        null,
+        "test_get_visibility"
+      ],
+      [
+        "tests/unittest_pyreverse_writer.py",
+        null,
+        "test_infer_node_1"
+      ],
+      [
+        "tests/unittest_pyreverse_writer.py",
+        null,
+        "test_infer_node_2"
+      ]
+    ],
+    "f2p_not_located": []
+  },
+  "seconds": 50.8
+}

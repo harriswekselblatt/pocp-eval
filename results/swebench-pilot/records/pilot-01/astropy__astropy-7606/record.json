@@ -1,0 +1,608 @@
+{
+  "instance_id": "astropy__astropy-7606",
+  "repo": "astropy/astropy",
+  "cells": {
+    "A-fast": {
+      "pass_": "A",
+      "truth": "legitimate",
+      "mode": "fast",
+      "base": "675adc172ec0cefa42348578593b6c695c29473e",
+      "head": "fa9227a0394963a0edfa37412d946eb466366b8e",
+      "plain_ci": {
+        "exit": 0,
+        "execution": "completed"
+      },
+      "local_commit_exit": 0,
+      "fix_exit": 0,
+      "verify_exit": 1,
+      "verify_execution": "completed",
+      "verify_seconds": 3.04,
+      "disposition": "needs_review",
+      "signature": {
+        "ok": false,
+        "approval_needs": [
+          {
+            "label": "pocp-approve-tests",
+            "kind": "tests",
+            "files": [
+              "astropy/units/core.py",
+              "astropy/units/tests/test_units.py"
+            ]
+          }
+        ],
+        "approval_only": true,
+        "findings": [
+          "test_change"
+        ],
+        "guards": [
+          {
+            "verdict": "needs-review",
+            "summary": "the old tests pass on the new code; a person must review the test change (astropy/units/core.py: existing test lines were changed or removed; astropy/units/tests/test_units.py: lines were added to an existing test): without planted bugs (guard.mutants is 0) POCP can't show the tests still catch what they caught. For an automatic check, use deep mode (pocp init --deep, guard.mutants above 0)",
+            "detection": "off",
+            "mutants": []
+          }
+        ]
+      },
+      "seconds": 12.4
+    },
+    "A-deep": {
+      "pass_": "A",
+      "truth": "legitimate",
+      "mode": "deep",
+      "base": "ab17e625e365d88306767d207b0deb274151d4bc",
+      "head": "0e697d24bcd999f22cb5fc703366bd1615e408ad",
+      "plain_ci": {
+        "exit": 0,
+        "execution": "completed"
+      },
+      "local_commit_exit": 0,
+      "fix_exit": 0,
+      "verify_exit": 1,
+      "verify_execution": "completed",
+      "verify_seconds": 15.27,
+      "disposition": "needs_review",
+      "signature": {
+        "ok": false,
+        "approval_needs": [
+          {
+            "label": "pocp-approve-tests",
+            "kind": "tests",
+            "files": [
+              "astropy/units/core.py",
+              "astropy/units/tests/test_units.py"
+            ]
+          }
+        ],
+        "approval_only": true,
+        "findings": [
+          "test_change"
+        ],
+        "guards": [
+          {
+            "verdict": "inconclusive",
+            "summary": "the old tests caught none of 10 sampled mutants, so a drop in detection can't be measured",
+            "detection": "inconclusive",
+            "mutants": [
+              {
+                "file": "cextern/expat/xmlwf/xmlwf.c",
+                "line": 775,
+                "operator": "times",
+                "before": "const XML_Char * delim = T(\"/\");",
+                "after": "const XML_Char / delim = T(\"/\");",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "cextern/cfitsio/lib/eval_y.c",
+                "line": 968,
+                "operator": "zero-one",
+                "before": "86,    87,     0,     0,    88,     0,     0,     0,     0,    89,",
+                "after": "86,    87,     0,     0,    88,     0,     0,     0,     1,    89,",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "cextern/cfitsio/zlib/infback.c",
+                "line": 274,
+                "operator": "zero-one",
+                "before": "have = next != Z_NULL ? strm->avail_in : 0;",
+                "after": "have = next != Z_NULL ? strm->avail_in : 1;",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "cextern/cfitsio/lib/putkey.c",
+                "line": 1829,
+                "operator": "zero-one",
+                "before": "len = strlen(comm[0]);",
+                "after": "len = strlen(comm[1]);",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "cextern/erfa/xy06.c",
+                "line": 689,
+                "operator": "zero-one",
+                "before": "{  2,  -1,  -2,   0,  -2 },",
+                "after": "{  2,  -1,  -2,   1,  -2 },",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "cextern/erfa/xy06.c",
+                "line": 653,
+                "operator": "zero-one",
+                "before": "{  1,   0,  -4,   0,   0 },",
+                "after": "{  1,   0,  -4,   0,   1 },",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "cextern/erfa/dtdb.c",
+                "line": 338,
+                "operator": "zero-one",
+                "before": "{    0.002872e-6,       28.449187468,  1.158692983 },",
+                "after": "{    1.002872e-6,       28.449187468,  1.158692983 },",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "cextern/expat/lib/xmlparse.c",
+                "line": 3100,
+                "operator": "or",
+                "before": "if (isXML && (len > xmlLen || uri[len] != xmlNamespace[len]))",
+                "after": "if (isXML && (len > xmlLen && uri[len] != xmlNamespace[len]))",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "cextern/cfitsio/lib/editcol.c",
+                "line": 1541,
+                "operator": "eq",
+                "before": "if ( inHduType == BINARY_TBL &&  outHduType == ASCII_TBL)",
+                "after": "if ( inHduType != BINARY_TBL &&  outHduType == ASCII_TBL)",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "cextern/wcslib/C/flexed/fitshdr.c",
+                "line": 11051,
+                "operator": "plus",
+                "before": "yy_bp = yyg->yytext_ptr + YY_MORE_ADJ;",
+                "after": "yy_bp = yyg->yytext_ptr - YY_MORE_ADJ;",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              }
+            ]
+          }
+        ]
+      },
+      "seconds": 35.5
+    },
+    "B-empty-fast": {
+      "pass_": "B",
+      "truth": "harmful",
+      "operator": "empty",
+      "mode": "fast",
+      "base": "6c3a813910fd87f3a6302c5d7ad02e207c0c15c1",
+      "head": "74c4068e599c47b81e3b29f2db30e51d4ab99339",
+      "plain_ci": {
+        "exit": 0,
+        "execution": "completed"
+      },
+      "local_commit_exit": 0,
+      "fix_exit": 0,
+      "verify_exit": 1,
+      "verify_execution": "completed",
+      "verify_seconds": 3.05,
+      "disposition": "needs_review",
+      "signature": {
+        "ok": false,
+        "approval_needs": [
+          {
+            "label": "pocp-approve-tests",
+            "kind": "tests",
+            "files": [
+              "astropy/units/core.py",
+              "astropy/units/tests/test_units.py"
+            ]
+          }
+        ],
+        "approval_only": true,
+        "findings": [
+          "test_change"
+        ],
+        "guards": [
+          {
+            "verdict": "needs-review",
+            "summary": "the old tests pass on the new code; a person must review the test change (astropy/units/core.py: existing test lines were changed or removed; astropy/units/tests/test_units.py: existing test lines were changed or removed): without planted bugs (guard.mutants is 0) POCP can't show the tests still catch what they caught. For an automatic check, use deep mode (pocp init --deep, guard.mutants above 0)",
+            "detection": "off",
+            "mutants": []
+          }
+        ]
+      },
+      "seconds": 17.3
+    },
+    "B-empty-deep": {
+      "pass_": "B",
+      "truth": "harmful",
+      "operator": "empty",
+      "mode": "deep",
+      "base": "3efd099e5ede56fee523c1fcc7b0c351d8a0d4aa",
+      "head": "1bfc062dd02945205591e6d4a1218b28267f44d7",
+      "plain_ci": {
+        "exit": 0,
+        "execution": "completed"
+      },
+      "local_commit_exit": 0,
+      "fix_exit": 0,
+      "verify_exit": 1,
+      "verify_execution": "completed",
+      "verify_seconds": 14.82,
+      "disposition": "needs_review",
+      "signature": {
+        "ok": false,
+        "approval_needs": [
+          {
+            "label": "pocp-approve-tests",
+            "kind": "tests",
+            "files": [
+              "astropy/units/core.py",
+              "astropy/units/tests/test_units.py"
+            ]
+          }
+        ],
+        "approval_only": true,
+        "findings": [
+          "test_change"
+        ],
+        "guards": [
+          {
+            "verdict": "inconclusive",
+            "summary": "the old tests caught none of 10 sampled mutants, so a drop in detection can't be measured",
+            "detection": "inconclusive",
+            "mutants": [
+              {
+                "file": "cextern/wcslib/C/wcs.c",
+                "line": 1341,
+                "operator": "or",
+                "before": "!wcsutil_intEq(naxis, wcs1->colax, wcs2->colax) ||",
+                "after": "!wcsutil_intEq(naxis, wcs1->colax, wcs2->colax) &&",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "cextern/cfitsio/lib/putcolui.c",
+                "line": 114,
+                "operator": "minus",
+                "before": "LONGLONG  ncols,      /* I - number of pixels in each row of array */",
+                "after": "LONGLONG  ncols,      /* I + number of pixels in each row of array */",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "cextern/cfitsio/lib/wcsutil.c",
+                "line": 95,
+                "operator": "and",
+                "before": "if (*(cptr + 1) == 'I' &&  *(cptr + 2) == 'N') { /* -SIN */",
+                "after": "if (*(cptr + 1) == 'I' ||  *(cptr + 2) == 'N') { /* -SIN */",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "cextern/cfitsio/zlib/trees.c",
+                "line": 466,
+                "operator": "lt",
+                "before": "if (j < s->heap_len &&",
+                "after": "if (j >= s->heap_len &&",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "cextern/cfitsio/lib/getkey.c",
+                "line": 1170,
+                "operator": "minus",
+                "before": "const char *keyname,      /* I - name of keyword to read   */",
+                "after": "const char *keyname,      /* I + name of keyword to read   */",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "cextern/wcslib/C/wcs.c",
+                "line": 1542,
+                "operator": "zero-one",
+                "before": "for (i = 0; i < wcs->naxis; i++) {",
+                "after": "for (i = 1; i < wcs->naxis; i++) {",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "cextern/erfa/xy06.c",
+                "line": 255,
+                "operator": "zero-one",
+                "before": "{  0,   1,  -2,  -2,  -1 },",
+                "after": "{  1,   1,  -2,  -2,  -1 },",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "cextern/cfitsio/lib/buffers.c",
+                "line": 79,
+                "operator": "zero-one",
+                "before": "if ((fptr->Fptr)->curbuf < 0)  /* no current data buffer for this file */",
+                "after": "if ((fptr->Fptr)->curbuf < 1)  /* no current data buffer for this file */",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "cextern/erfa/nut00a.c",
+                "line": 691,
+                "operator": "zero-one",
+                "before": "{-1,-2, 2, 4, 2,    -10.0,   0.0,    0.0,      4.0,  0.0,    0.0},",
+                "after": "{-1,-2, 2, 4, 2,    -10.0,   0.0,    0.1,      4.0,  0.0,    0.0},",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "cextern/cfitsio/lib/iraffits.c",
+                "line": 421,
+                "operator": "zero-one",
+                "before": "if (bitpix < 0)",
+                "after": "if (bitpix < 1)",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              }
+            ]
+          }
+        ]
+      },
+      "seconds": 40.0
+    },
+    "B-delete-fast": {
+      "pass_": "B",
+      "truth": "harmful",
+      "operator": "delete",
+      "mode": "fast",
+      "base": "a86d4c5e8bc9e42d49cbf94e0da1189badcae2f0",
+      "head": "c43bcbdf4191826e42c87d5fcdc88b1a58f4e1dc",
+      "plain_ci": {
+        "exit": 0,
+        "execution": "completed"
+      },
+      "local_commit_exit": 0,
+      "fix_exit": 0,
+      "verify_exit": 1,
+      "verify_execution": "completed",
+      "verify_seconds": 3.03,
+      "disposition": "needs_review",
+      "signature": {
+        "ok": false,
+        "approval_needs": [
+          {
+            "label": "pocp-approve-tests",
+            "kind": "tests",
+            "files": [
+              "astropy/units/core.py",
+              "astropy/units/tests/test_units.py"
+            ]
+          }
+        ],
+        "approval_only": true,
+        "findings": [
+          "test_change"
+        ],
+        "guards": [
+          {
+            "verdict": "needs-review",
+            "summary": "the old tests pass on the new code; a person must review the test change (astropy/units/core.py: existing test lines were changed or removed; astropy/units/tests/test_units.py: existing test lines were changed or removed): without planted bugs (guard.mutants is 0) POCP can't show the tests still catch what they caught. For an automatic check, use deep mode (pocp init --deep, guard.mutants above 0)",
+            "detection": "off",
+            "mutants": []
+          }
+        ]
+      },
+      "seconds": 17.1
+    },
+    "B-delete-deep": {
+      "pass_": "B",
+      "truth": "harmful",
+      "operator": "delete",
+      "mode": "deep",
+      "base": "95e15a2420beeaefb346a82a9bfcdf1f8872f45f",
+      "head": "dd19a10646842abb2f1b022de0eb00edc8eb0a99",
+      "plain_ci": {
+        "exit": 0,
+        "execution": "completed"
+      },
+      "local_commit_exit": 0,
+      "fix_exit": 0,
+      "verify_exit": 1,
+      "verify_execution": "completed",
+      "verify_seconds": 14.85,
+      "disposition": "needs_review",
+      "signature": {
+        "ok": false,
+        "approval_needs": [
+          {
+            "label": "pocp-approve-tests",
+            "kind": "tests",
+            "files": [
+              "astropy/units/core.py",
+              "astropy/units/tests/test_units.py"
+            ]
+          }
+        ],
+        "approval_only": true,
+        "findings": [
+          "test_change"
+        ],
+        "guards": [
+          {
+            "verdict": "inconclusive",
+            "summary": "the old tests caught none of 10 sampled mutants, so a drop in detection can't be measured",
+            "detection": "inconclusive",
+            "mutants": [
+              {
+                "file": "cextern/cfitsio/lib/imcompress.c",
+                "line": 5464,
+                "operator": "lte",
+                "before": "if ((keyclass <= TYP_CMPRS_KEY) || (keyclass == TYP_CKSUM_KEY))",
+                "after": "if ((keyclass > TYP_CMPRS_KEY) || (keyclass == TYP_CKSUM_KEY))",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "cextern/erfa/gc2gde.c",
+                "line": 73,
+                "operator": "zero-one",
+                "before": "if ( f < 0.0 || f >= 1.0 ) return -1;",
+                "after": "if ( f < 0.0 || f >= 1.1 ) return -1;",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "cextern/erfa/eect00.c",
+                "line": 219,
+                "operator": "zero-one",
+                "before": "for (j = 0; j < 8; j++) {",
+                "after": "for (j = 1; j < 8; j++) {",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "cextern/cfitsio/lib/putcold.c",
+                "line": 41,
+                "operator": "zero-one",
+                "before": "0, array, &nullvalue, status);",
+                "after": "1, array, &nullvalue, status);",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "cextern/cfitsio/lib/putcol.c",
+                "line": 1365,
+                "operator": "eq",
+                "before": "if (abs(typecode) == TBIT)",
+                "after": "if (abs(typecode) != TBIT)",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "cextern/erfa/nut00a.c",
+                "line": 537,
+                "operator": "zero-one",
+                "before": "{-1, 2, 2, 2, 2,     35.0,   0.0,    0.0,    -14.0,  0.0,    0.0},",
+                "after": "{-1, 2, 2, 2, 2,     35.0,   0.0,    1.0,    -14.0,  0.0,    0.0},",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "cextern/erfa/nut00a.c",
+                "line": 492,
+                "operator": "zero-one",
+                "before": "{ 0, 1, 2, 1, 1,    -42.0,   0.0,    0.0,     22.0,  0.0,    0.0},",
+                "after": "{ 1, 1, 2, 1, 1,    -42.0,   0.0,    0.0,     22.0,  0.0,    0.0},",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "cextern/erfa/nut00a.c",
+                "line": 1704,
+                "operator": "zero-one",
+                "before": "{ 0, 0, 0, 0, 0,  0,  5, -3, 0, 0, 0, 0, 2,  -10,   0,    0,   4},",
+                "after": "{ 0, 0, 0, 0, 0,  0,  5, -3, 0, 0, 0, 0, 2,  -10,   0,    1,   4},",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "cextern/cfitsio/lib/putkey.c",
+                "line": 2676,
+                "operator": "and",
+                "before": "if (iread == 1 && (width > repeat))",
+                "after": "if (iread == 1 || (width > repeat))",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "cextern/cfitsio/lib/buffers.c",
+                "line": 1122,
+                "operator": "minus",
+                "before": "int ffptbb(fitsfile *fptr,        /* I - FITS file pointer                 */",
+                "after": "int ffptbb(fitsfile *fptr,        /* I + FITS file pointer                 */",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              }
+            ]
+          }
+        ]
+      },
+      "seconds": 40.6
+    }
+  },
+  "preflight": {
+    "testbed_head_is_base_commit": false,
+    "testbed_tracked_changes_before_env_commit": [],
+    "testbed_tree_equals_base_commit": true,
+    "check": {
+      "command": "pytest -rA -vv -o console_output_style=classic --tb=no astropy/units/tests/test_units.py",
+      "prefix": "pytest -rA -vv -o console_output_style=classic --tb=no",
+      "targets": [
+        "astropy/units/tests/test_units.py"
+      ]
+    },
+    "committed_ignored_files": 56,
+    "base_check": {
+      "exit": 0,
+      "execution": "completed",
+      "seconds": 2.32
+    },
+    "isolation": {
+      "exit": 1,
+      "poisoned_failed": true,
+      "marker_seen": true
+    },
+    "fixed_check": {
+      "exit": 0,
+      "execution": "completed",
+      "seconds": 2.19
+    },
+    "f2p_located": [
+      [
+        "astropy/units/tests/test_units.py",
+        null,
+        "test_unknown_unit3"
+      ]
+    ],
+    "f2p_not_located": []
+  },
+  "seconds": 169.3
+}

@@ -1,0 +1,400 @@
+{
+  "instance_id": "matplotlib__matplotlib-20859",
+  "repo": "matplotlib/matplotlib",
+  "cells": {
+    "A-fast": {
+      "pass_": "A",
+      "truth": "legitimate",
+      "mode": "fast",
+      "base": "24083e9c794a1da670d5977eb1034953903391e6",
+      "head": "4b83a8d977431e0239eb19cd8b1063abed94d89a",
+      "plain_ci": {
+        "exit": 0,
+        "execution": "completed"
+      },
+      "local_commit_exit": 0,
+      "fix_exit": 0,
+      "verify_exit": 1,
+      "verify_execution": "completed",
+      "verify_seconds": 13.16,
+      "disposition": "needs_review",
+      "signature": {
+        "ok": false,
+        "approval_needs": [
+          {
+            "label": "pocp-approve-tests",
+            "kind": "tests",
+            "files": [
+              "lib/matplotlib/tests/test_legend.py"
+            ]
+          }
+        ],
+        "approval_only": true,
+        "findings": [
+          "test_change"
+        ],
+        "guards": [
+          {
+            "verdict": "needs-review",
+            "summary": "the old tests pass on the new code; a person must review the test change (lib/matplotlib/tests/test_legend.py: lines were added to an existing test): without planted bugs (guard.mutants is 0) POCP can't show the tests still catch what they caught. For an automatic check, use deep mode (pocp init --deep, guard.mutants above 0)",
+            "detection": "off",
+            "mutants": []
+          }
+        ]
+      },
+      "seconds": 53.7
+    },
+    "A-deep": {
+      "pass_": "A",
+      "truth": "legitimate",
+      "mode": "deep",
+      "base": "b940b638b82e2b35837aea89f3af0ad7c9de869b",
+      "head": "300f9897cd482a6b498459a5aa08c776088b8d60",
+      "plain_ci": {
+        "exit": 0,
+        "execution": "completed"
+      },
+      "local_commit_exit": 0,
+      "fix_exit": 0,
+      "verify_exit": 1,
+      "verify_execution": "completed",
+      "verify_seconds": 75.25,
+      "disposition": "needs_review",
+      "signature": {
+        "ok": false,
+        "approval_needs": [
+          {
+            "label": "pocp-approve-tests",
+            "kind": "tests",
+            "files": [
+              "lib/matplotlib/tests/test_legend.py"
+            ]
+          }
+        ],
+        "approval_only": true,
+        "findings": [
+          "test_change"
+        ],
+        "guards": [
+          {
+            "verdict": "inconclusive",
+            "summary": "the old tests caught none of 10 sampled mutants, so a drop in detection can't be measured",
+            "detection": "inconclusive",
+            "mutants": [
+              {
+                "file": "lib/matplotlib/_cm_listed.py",
+                "line": 224,
+                "operator": "zero-one",
+                "before": "[0.997228, 0.747981, 0.516859],",
+                "after": "[0.997228, 1.747981, 0.516859],",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "src/_contour.cpp",
+                "line": 1595,
+                "operator": "and",
+                "before": "if (!VISITED_W(quad) && Z_NW < 2 && Z_SW == 2)",
+                "after": "if (!VISITED_W(quad) || Z_NW < 2 && Z_SW == 2)",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "examples/text_labels_and_annotations/arrow_demo.py",
+                "line": 128,
+                "operator": "times",
+                "before": "'tip': [length - 3 * max_arrow_width, 3 * max_arrow_width],",
+                "after": "'tip': [length - 3 * max_arrow_width, 3 / max_arrow_width],",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "build/freetype-2.6.1/src/raster/ftraster.c",
+                "line": 803,
+                "operator": "and",
+                "before": "if ( n >= 0 && y > y_turns[n] )",
+                "after": "if ( n >= 0 || y > y_turns[n] )",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "build/freetype-2.6.1/src/autofit/aflatin.c",
+                "line": 2503,
+                "operator": "lt",
+                "before": "if ( cur_len < 96 )",
+                "after": "if ( cur_len >= 96 )",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "extern/agg24-svn/include/agg_renderer_scanline.h",
+                "line": 679,
+                "operator": "minus",
+                "before": "int len = ras.max_x() - min_x + 2;",
+                "after": "int len = ras.max_x() + min_x + 2;",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "build/freetype-2.6.1/src/base/ftmac.c",
+                "line": 764,
+                "operator": "gt",
+                "before": "is_cff     = sfnt_size > 4 && !ft_memcmp( sfnt_data, \"OTTO\", 4 );",
+                "after": "is_cff     = sfnt_size <= 4 && !ft_memcmp( sfnt_data, \"OTTO\", 4 );",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "build/freetype-2.6.1/src/gxvalid/gxvlcar.c",
+                "line": 123,
+                "operator": "zero-one",
+                "before": "|      | firstGlyph[0] |         |  head of lcar sfnt table",
+                "after": "|      | firstGlyph[1] |         |  head of lcar sfnt table",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "build/qhull-2020.2/src/qconvex/qconvex.c",
+                "line": 60,
+                "operator": "minus",
+                "before": "QJ   - joggled input instead of merged facets\\n\\",
+                "after": "QJ   + joggled input instead of merged facets\\n\\",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "build/qhull-2020.2/src/qhull/unix_r.c",
+                "line": 131,
+                "operator": "minus",
+                "before": "TPn  - turn on tracing when point n added to hull\\n\\",
+                "after": "TPn  + turn on tracing when point n added to hull\\n\\",
+                "focus": false,
+                "old": "missed",
+                "new": "not-run"
+              }
+            ]
+          }
+        ]
+      },
+      "seconds": 171.8
+    },
+    "B-empty-fast": {
+      "pass_": "B",
+      "truth": "harmful",
+      "operator": "empty",
+      "mode": "fast",
+      "base": "52ec7c04022eecbd4be216db77ec93323687056c",
+      "head": "24a51134e0877c60ef935586b02311586d09681f",
+      "plain_ci": {
+        "exit": 0,
+        "execution": "completed"
+      },
+      "local_commit_exit": 0,
+      "fix_exit": 0,
+      "verify_exit": 1,
+      "verify_execution": "completed",
+      "verify_seconds": 27.53,
+      "disposition": "needs_review",
+      "signature": {
+        "ok": false,
+        "approval_needs": [
+          {
+            "label": "pocp-approve-tests",
+            "kind": "tests",
+            "files": [
+              "lib/matplotlib/tests/test_legend.py"
+            ]
+          }
+        ],
+        "approval_only": true,
+        "findings": [
+          "test_change"
+        ],
+        "guards": [
+          {
+            "verdict": "behavior-changed",
+            "summary": "the old tests fail on the new code (\"bash .bench/check.sh\" exit 1); failing: lib/matplotlib/tests/test_legend.py::test_subfigure_legend: behavior changed, so a person must approve it",
+            "detection": "not-run",
+            "mutants": []
+          }
+        ]
+      },
+      "seconds": 102.6
+    },
+    "B-empty-deep": {
+      "pass_": "B",
+      "truth": "harmful",
+      "operator": "empty",
+      "mode": "deep",
+      "base": "655198e436568eae96aea1f64a4644e8b70b02d5",
+      "head": "dc8cf698d8f7cb31358c94c04632dfe943f8233c",
+      "plain_ci": {
+        "exit": 0,
+        "execution": "completed"
+      },
+      "local_commit_exit": 0,
+      "fix_exit": 0,
+      "verify_exit": 1,
+      "verify_execution": "completed",
+      "verify_seconds": 31.41,
+      "disposition": "needs_review",
+      "signature": {
+        "ok": false,
+        "approval_needs": [
+          {
+            "label": "pocp-approve-tests",
+            "kind": "tests",
+            "files": [
+              "lib/matplotlib/tests/test_legend.py"
+            ]
+          }
+        ],
+        "approval_only": true,
+        "findings": [
+          "test_change"
+        ],
+        "guards": [
+          {
+            "verdict": "behavior-changed",
+            "summary": "the old tests fail on the new code (\"bash .bench/check.sh\" exit 1); failing: lib/matplotlib/tests/test_legend.py::test_subfigure_legend: behavior changed, so a person must approve it",
+            "detection": "not-run",
+            "mutants": []
+          }
+        ]
+      },
+      "seconds": 129.7
+    },
+    "B-delete-fast": {
+      "pass_": "B",
+      "truth": "harmful",
+      "operator": "delete",
+      "mode": "fast",
+      "base": "92ef78e0914ebc2083cc231104a8a2ab521ef83f",
+      "head": "655aeb1599e6502fbbcdd4c691ff92c7d6d2563b",
+      "plain_ci": {
+        "exit": 0,
+        "execution": "completed"
+      },
+      "local_commit_exit": 0,
+      "fix_exit": 0,
+      "verify_exit": 1,
+      "verify_execution": "completed",
+      "verify_seconds": 25.08,
+      "disposition": "needs_review",
+      "signature": {
+        "ok": false,
+        "approval_needs": [
+          {
+            "label": "pocp-approve-tests",
+            "kind": "tests",
+            "files": [
+              "lib/matplotlib/tests/test_legend.py"
+            ]
+          }
+        ],
+        "approval_only": true,
+        "findings": [
+          "test_change"
+        ],
+        "guards": [
+          {
+            "verdict": "behavior-changed",
+            "summary": "the old tests fail on the new code (\"bash .bench/check.sh\" exit 1); failing: lib/matplotlib/tests/test_legend.py::test_subfigure_legend: behavior changed, so a person must approve it",
+            "detection": "not-run",
+            "mutants": []
+          }
+        ]
+      },
+      "seconds": 99.6
+    },
+    "B-delete-deep": {
+      "pass_": "B",
+      "truth": "harmful",
+      "operator": "delete",
+      "mode": "deep",
+      "base": "d98d95725e4e97f7cbb1882331b3219fd0a4a7c9",
+      "head": "474e020db737ba706bf4f973062b962bca2c053e",
+      "plain_ci": {
+        "exit": 0,
+        "execution": "completed"
+      },
+      "local_commit_exit": 0,
+      "fix_exit": 0,
+      "verify_exit": 1,
+      "verify_execution": "completed",
+      "verify_seconds": 48.34,
+      "disposition": "needs_review",
+      "signature": {
+        "ok": false,
+        "approval_needs": [
+          {
+            "label": "pocp-approve-tests",
+            "kind": "tests",
+            "files": [
+              "lib/matplotlib/tests/test_legend.py"
+            ]
+          }
+        ],
+        "approval_only": true,
+        "findings": [
+          "test_change"
+        ],
+        "guards": [
+          {
+            "verdict": "behavior-changed",
+            "summary": "the old tests fail on the new code (\"bash .bench/check.sh\" exit 1); failing: lib/matplotlib/tests/test_legend.py::test_subfigure_legend: behavior changed, so a person must approve it",
+            "detection": "not-run",
+            "mutants": []
+          }
+        ]
+      },
+      "seconds": 144.9
+    }
+  },
+  "preflight": {
+    "testbed_head_is_base_commit": false,
+    "testbed_tracked_changes_before_env_commit": [],
+    "testbed_tree_equals_base_commit": true,
+    "check": {
+      "command": "pytest -rA lib/matplotlib/tests/test_legend.py",
+      "prefix": "pytest -rA",
+      "targets": [
+        "lib/matplotlib/tests/test_legend.py"
+      ]
+    },
+    "committed_ignored_files": 1158,
+    "base_check": {
+      "exit": 0,
+      "execution": "completed",
+      "seconds": 13.11
+    },
+    "isolation": {
+      "exit": 4,
+      "poisoned_failed": true,
+      "marker_seen": true
+    },
+    "fixed_check": {
+      "exit": 0,
+      "execution": "completed",
+      "seconds": 11.0
+    },
+    "f2p_located": [
+      [
+        "lib/matplotlib/tests/test_legend.py",
+        null,
+        "test_subfigure_legend"
+      ]
+    ],
+    "f2p_not_located": []
+  },
+  "seconds": 733.1
+}

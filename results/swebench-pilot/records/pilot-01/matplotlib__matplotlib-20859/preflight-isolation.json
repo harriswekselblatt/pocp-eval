@@ -1,0 +1,11 @@
+{
+  "argv": [
+    "bash",
+    ".bench/check.sh"
+  ],
+  "exit": 4,
+  "execution": "completed",
+  "seconds": 0.7,
+  "stdout": "",
+  "stderr": "ImportError while loading conftest '/work/isolation/lib/matplotlib/tests/conftest.py'.\nlib/matplotlib/__init__.py:1453: in <module>\n    raise ImportError(\"POCP_BENCH_POISON\")\nE   ImportError: POCP_BENCH_POISON\n"
+}

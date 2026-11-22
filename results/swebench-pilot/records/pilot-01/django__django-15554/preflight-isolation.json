@@ -1,0 +1,11 @@
+{
+  "argv": [
+    "bash",
+    ".bench/check.sh"
+  ],
+  "exit": 1,
+  "execution": "completed",
+  "seconds": 0.18,
+  "stdout": "",
+  "stderr": "Traceback (most recent call last):\n  File \"/work/isolation/./tests/runtests.py\", line 18, in <module>\n    import django\n  File \"/work/isolation/django/__init__.py\", line 26, in <module>\n    raise ImportError(\"POCP_BENCH_POISON\")\nImportError: POCP_BENCH_POISON\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"/work/isolation/./tests/runtests.py\", line 20, in <module>\n    raise RuntimeError(\nRuntimeError: Django module not found, reference tests/README.rst for instructions.\n"
+}

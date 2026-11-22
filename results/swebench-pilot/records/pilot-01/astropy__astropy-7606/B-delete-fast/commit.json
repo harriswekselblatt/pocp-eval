@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "git",
+    "commit",
+    "-qm",
+    "B-delete-fast change"
+  ],
+  "exit": 0,
+  "execution": "completed",
+  "seconds": 0.65,
+  "stdout": "",
+  "stderr": "pocp: gate passed (1 packet(s) proven for sha256:cdeb0dcc92c5)\n  note: .proof/config.json: unknown key \"guard._note\" is ignored; start a key with \"$\" to keep it as a comment\n  CI requires human approval for this commit:\n    [maintainer, not the author] p-9519007a: the test-change check did not pass (the old tests pass on the new code; a person must review the test change (astropy/units/core.py: existing test lines were changed or removed; astropy/units/tests/test_units.py: existing test lines were changed or removed): without planted bugs (guard.mutants is 0) POCP can't show the tests still catch what they caught. For an automatic check, use deep mode (pocp init --deep, guard.mutants above 0)); the commit can go ahead, and CI will ask a maintainer to approve it\n      why: Test file edited; the old tests still pass on the new code, but POCP can't show on its own that the edited tests check as much as before, so a person signs off on test edits.\n      next: a maintainer adds the `pocp-approve-tests` label to the pull request (or runs: pocp approve owner/repo#<number>)\n    Do not squash, force-push, rewrite history or commit with --no-verify to get past this: push the commit as it is and ask for the approval.\n    the maintainer approves with: gh pr edit <number> --add-label pocp-approve-tests\n"
+}

@@ -1,0 +1,344 @@
+diff --git a/.proof/packets/p-56bbbe41.json b/.proof/packets/p-56bbbe41.json
+new file mode 100644
+index 00000000..74395bf0
+--- /dev/null
++++ b/.proof/packets/p-56bbbe41.json
+@@ -0,0 +1,225 @@
++{
++  "pocp": 1,
++  "id": "p-56bbbe41",
++  "intent": "Change to xarray/core/dataset.py, xarray/core/variable.py, xarray/tests/test_variable.py",
++  "touches": [
++    "xarray/core/dataset.py",
++    "xarray/core/variable.py",
++    "xarray/tests/test_variable.py"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "bash .bench/check.sh",
++      "source": "rule:task-tests"
++    },
++    {
++      "id": "o2",
++      "kind": "guard",
++      "files": [
++        "xarray/tests/test_variable.py"
++      ],
++      "mutants": 0,
++      "seed": 11,
++      "text": "Existing tests or test setup changed (xarray/tests/test_variable.py): the old tests still pass on the new code, and a person reviews the change (fast mode: without planted bugs POCP can't show the tests still catch what they caught)",
++      "source": "guard:tests"
++    }
++  ],
++  "state": "open",
++  "policy": "sha256:61d13274e53a745d57114ca4d2f4a54416df25781292c512245dbf5336ab580f",
++  "policy_repo": "sha256:61d13274e53a745d57114ca4d2f4a54416df25781292c512245dbf5336ab580f",
++  "opened_at": "2026-11-22T17:34:36.974Z",
++  "opened_by": "SWE-bench",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:88086bd1c49af153019bde9e95b4736aa4af33514080577c64977849801234ac",
++      "subject": "sha256:a39c9cccdefe35f9e32f0ea789e291852ab17bbc2322815c36bc1acb6340912b",
++      "policy": "sha256:61d13274e53a745d57114ca4d2f4a54416df25781292c512245dbf5336ab580f",
++      "run": "bash .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-22T17:34:37.062Z",
++      "duration_ms": 8677,
++      "stdout_sha256": "aa98afa3f9f327d2c17e5007efa0685c9c46e61d409b82dfcf2412ccfdf837fe",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-0eb4105d",
++      "runner": {
++        "pocp": "1.5.0",
++        "node": "22.23.5",
++        "platform": "linux-x64",
++        "ci": false,
++        "lockfile_sha256": null
++      }
++    },
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:7e756596a21adf0463f7527f7780c60b823416f9033a0311e6aa113ebcf32cd9",
++      "subject": "sha256:a39c9cccdefe35f9e32f0ea789e291852ab17bbc2322815c36bc1acb6340912b",
++      "policy": "sha256:61d13274e53a745d57114ca4d2f4a54416df25781292c512245dbf5336ab580f",
++      "kind": "guard",
++      "mode": "snapshot",
++      "passed": false,
++      "started_at": "2026-11-22T17:34:45.763Z",
++      "duration_ms": 8838,
++      "runner": {
++        "pocp": "1.5.0",
++        "node": "22.23.5",
++        "platform": "linux-x64",
++        "ci": false,
++        "lockfile_sha256": null
++      },
++      "guard": {
++        "pocp": 1,
++        "verdict": "needs-review",
++        "passed": false,
++        "summary": "the old tests pass on the new code; a person must review the test change (xarray/tests/test_variable.py: lines were added to an existing test): without planted bugs (guard.mutants is 0) POCP can't show the tests still catch what they caught. For an automatic check, use deep mode (pocp init --deep, guard.mutants above 0)",
++        "base": "d932c26e3ceb00ca5e20036f7751db128e2ba361",
++        "checks": [
++          {
++            "id": "task-tests",
++            "run": "bash .bench/check.sh"
++          }
++        ],
++        "old_tests": {
++          "result": "pass",
++          "restored": [
++            "xarray/tests/test_variable.py"
++          ],
++          "runs": [
++            {
++              "check": "task-tests",
++              "passed": true,
++              "exit": 0,
++              "duration_ms": 8756
++            }
++          ],
++          "changed_tests": {
++            "result": "not-used",
++            "reason": "check task-tests has no changed_test_command"
++          }
++        },
++        "new_tests": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "task-tests",
++              "passed": true,
++              "reused": true,
++              "duration_ms": 0
++            }
++          ]
++        },
++        "baseline": {
++          "result": "not-run",
++          "runs": []
++        },
++        "detection": {
++          "result": "off",
++          "budget": 0,
++          "seed": 11
++        },
++        "structural": {
++          "result": "needs-review",
++          "reasons": [
++            {
++              "file": "xarray/tests/test_variable.py",
++              "why": "lines were added to an existing test"
++            }
++          ]
++        },
++        "duration_ms": 8838,
++        "timings": {
++          "setup_ms": 56,
++          "new_baseline": {
++            "wall_ms": 1,
++            "run_ms": 0,
++            "runs": 0
++          },
++          "old_baseline": {
++            "wall_ms": 8776,
++            "run_ms": 8756,
++            "runs": 1
++          },
++          "plan_ms": 0,
++          "mutants": {
++            "wall_ms": 0,
++            "old": {
++              "run_ms": 0,
++              "runs": 0,
++              "retries": 0
++            },
++            "new": {
++              "run_ms": 0,
++              "runs": 0,
++              "retries": 0
++            }
++          },
++          "base_check": {
++            "wall_ms": 0,
++            "run_ms": 0,
++            "runs": 0
++          },
++          "snapshot": {
++            "ms": 41,
++            "count": 1
++          },
++          "copy": {
++            "ms": 19,
++            "count": 2
++          },
++          "cleanup": {
++            "ms": 28,
++            "count": 3
++          }
++        },
++        "checks_from": "rules"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-22T17:34:36.974Z",
++      "event": "opened",
++      "by": "SWE-bench"
++    },
++    {
++      "at": "2026-11-22T17:34:36.974Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1",
++        "o2"
++      ],
++      "policy": "sha256:61d13274e53a745d57114ca4d2f4a54416df25781292c512245dbf5336ab580f"
++    },
++    {
++      "at": "2026-11-22T17:34:54.625Z",
++      "event": "proof_failed",
++      "obligation": "o2",
++      "subject": "sha256:a39c9cccdefe35f9e32f0ea789e291852ab17bbc2322815c36bc1acb6340912b"
++    },
++    {
++      "at": "2026-11-22T17:34:54.677Z",
++      "event": "deferred",
++      "obligation": "o2",
++      "by": "SWE-bench",
++      "subject": "sha256:a39c9cccdefe35f9e32f0ea789e291852ab17bbc2322815c36bc1acb6340912b"
++    }
++  ],
++  "deferrals": [
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:7e756596a21adf0463f7527f7780c60b823416f9033a0311e6aa113ebcf32cd9",
++      "subject": "sha256:a39c9cccdefe35f9e32f0ea789e291852ab17bbc2322815c36bc1acb6340912b",
++      "by": "SWE-bench",
++      "at": "2026-11-22T17:34:54.677Z",
++      "to": "ci-approval",
++      "reason": "the old tests pass on the new code; a person must review the test change (xarray/tests/test_variable.py: lines were added to an existing test): without planted bugs (guard.mutants is 0) POCP can't show the tests still catch what they caught. For an automatic check, use deep mode (pocp init --deep, guard.mutants above 0)"
++    }
++  ]
++}
+diff --git a/xarray/core/dataset.py b/xarray/core/dataset.py
+index c775d05c..c3717190 100644
+--- a/xarray/core/dataset.py
++++ b/xarray/core/dataset.py
+@@ -3771,6 +3771,7 @@ class Dataset(
+         indexes: dict[Hashable, Index] = {}
+         for k, v in self.variables.items():
+             dims = tuple(dims_dict.get(dim, dim) for dim in v.dims)
++            var: Variable
+             if k in result_dims:
+                 var = v.to_index_variable()
+                 var.dims = dims
+diff --git a/xarray/core/variable.py b/xarray/core/variable.py
+index 5827b90a..b41856ae 100644
+--- a/xarray/core/variable.py
++++ b/xarray/core/variable.py
+@@ -14,6 +14,7 @@ from typing import (
+     Iterable,
+     Literal,
+     Mapping,
++    NoReturn,
+     Sequence,
+ )
+ 
+@@ -536,23 +537,23 @@ class Variable(AbstractArray, NdimSizeLenMixin, VariableArithmetic):
+     def values(self, values):
+         self.data = values
+ 
+-    def to_base_variable(self):
++    def to_base_variable(self) -> Variable:
+         """Return this variable as a base xarray.Variable"""
+         return Variable(
+-            self.dims, self._data, self._attrs, encoding=self._encoding, fastpath=True
++            self._dims, self._data, self._attrs, encoding=self._encoding, fastpath=True
+         )
+ 
+     to_variable = utils.alias(to_base_variable, "to_variable")
+ 
+-    def to_index_variable(self):
++    def to_index_variable(self) -> IndexVariable:
+         """Return this variable as an xarray.IndexVariable"""
+         return IndexVariable(
+-            self.dims, self._data, self._attrs, encoding=self._encoding, fastpath=True
++            self._dims, self._data, self._attrs, encoding=self._encoding, fastpath=True
+         )
+ 
+     to_coord = utils.alias(to_index_variable, "to_coord")
+ 
+-    def to_index(self):
++    def to_index(self) -> pd.Index:
+         """Convert this variable to a pandas.Index"""
+         return self.to_index_variable().to_index()
+ 
+@@ -2879,13 +2880,13 @@ class IndexVariable(Variable):
+     def _data_equals(self, other):
+         return self.to_index().equals(other.to_index())
+ 
+-    def to_index_variable(self):
++    def to_index_variable(self) -> IndexVariable:
+         """Return this variable as an xarray.IndexVariable"""
+-        return self
++        return self.copy()
+ 
+     to_coord = utils.alias(to_index_variable, "to_coord")
+ 
+-    def to_index(self):
++    def to_index(self) -> pd.Index:
+         """Convert this variable to a pandas.Index"""
+         # n.b. creating a new pandas.Index from an old pandas.Index is
+         # basically free as pandas.Index objects are immutable
+@@ -2904,7 +2905,7 @@ class IndexVariable(Variable):
+         return index
+ 
+     @property
+-    def level_names(self):
++    def level_names(self) -> list[str] | None:
+         """Return MultiIndex level names or None if this IndexVariable has no
+         MultiIndex.
+         """
+@@ -2922,11 +2923,11 @@ class IndexVariable(Variable):
+         return type(self)(self.dims, index.get_level_values(level))
+ 
+     @property
+-    def name(self):
++    def name(self) -> Hashable:
+         return self.dims[0]
+ 
+     @name.setter
+-    def name(self, value):
++    def name(self, value) -> NoReturn:
+         raise AttributeError("cannot modify name of IndexVariable in-place")
+ 
+     def _inplace_binary_op(self, other, f):
+diff --git a/xarray/tests/test_variable.py b/xarray/tests/test_variable.py
+index 21b8b116..6048ebc1 100644
+--- a/xarray/tests/test_variable.py
++++ b/xarray/tests/test_variable.py
+@@ -2422,6 +2422,15 @@ class TestIndexVariable(VariableSubclassobjects):
+     def test_coarsen_2d(self):
+         super().test_coarsen_2d()
+ 
++    def test_to_index_variable_copy(self) -> None:
++        # to_index_variable should return a copy
++        # https://github.com/pydata/xarray/issues/6931
++        a = IndexVariable("x", ["a"])
++        b = a.to_index_variable()
++        assert a is not b
++        b.dims = ("y",)
++        assert a.dims == ("x",)
++
+ 
+ class TestAsCompatibleData:
+     def test_unchanged_types(self):

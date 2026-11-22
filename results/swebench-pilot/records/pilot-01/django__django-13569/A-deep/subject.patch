@@ -1,0 +1,346 @@
+diff --git a/.proof/packets/p-2fed9705.json b/.proof/packets/p-2fed9705.json
+new file mode 100644
+index 0000000000..b1d2cf8293
+--- /dev/null
++++ b/.proof/packets/p-2fed9705.json
+@@ -0,0 +1,303 @@
++{
++  "pocp": 1,
++  "id": "p-2fed9705",
++  "intent": "Change to django/db/models/functions/math.py, tests/aggregation/tests.py",
++  "touches": [
++    "django/db/models/functions/math.py",
++    "tests/aggregation/tests.py"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "bash .bench/check.sh",
++      "source": "rule:task-tests"
++    },
++    {
++      "id": "o2",
++      "kind": "guard",
++      "files": [
++        "tests/aggregation/tests.py"
++      ],
++      "mutants": 10,
++      "seed": 11,
++      "text": "Existing tests or test setup changed (tests/aggregation/tests.py): the old tests still pass on the new code, and the new tests catch every sampled mutant the old ones caught",
++      "source": "guard:tests"
++    }
++  ],
++  "state": "proven",
++  "policy": "sha256:61d13274e53a745d57114ca4d2f4a54416df25781292c512245dbf5336ab580f",
++  "policy_repo": "sha256:61d13274e53a745d57114ca4d2f4a54416df25781292c512245dbf5336ab580f",
++  "opened_at": "2026-11-22T17:33:59.003Z",
++  "opened_by": "SWE-bench",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:88086bd1c49af153019bde9e95b4736aa4af33514080577c64977849801234ac",
++      "subject": "sha256:8b1dea49056b647849b9fd93b1a0c7680989a2fef29b4a0203de85ad0a6879d3",
++      "policy": "sha256:61d13274e53a745d57114ca4d2f4a54416df25781292c512245dbf5336ab580f",
++      "run": "bash .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-22T17:33:59.339Z",
++      "duration_ms": 572,
++      "stdout_sha256": "80277e571e46079401efeaea3ec7ae63c16c80ad39e5b3e558c15e66199ff295",
++      "stderr_sha256": "f1e1f1a7d91f9e65207e72662a358dfe92e2a01ca23936a43af70be2b3b27d06",
++      "run_id": "r-78ad4077",
++      "runner": {
++        "pocp": "1.5.0",
++        "node": "22.23.5",
++        "platform": "linux-x64",
++        "ci": false,
++        "lockfile_sha256": null
++      }
++    },
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:6db32fa209548f79a8d9d1944b4cb1bcc88b57ea0b981a33e5e7d7658c5b8bad",
++      "subject": "sha256:8b1dea49056b647849b9fd93b1a0c7680989a2fef29b4a0203de85ad0a6879d3",
++      "policy": "sha256:61d13274e53a745d57114ca4d2f4a54416df25781292c512245dbf5336ab580f",
++      "kind": "guard",
++      "mode": "snapshot",
++      "passed": true,
++      "started_at": "2026-11-22T17:33:59.999Z",
++      "duration_ms": 12884,
++      "runner": {
++        "pocp": "1.5.0",
++        "node": "22.23.5",
++        "platform": "linux-x64",
++        "ci": false,
++        "lockfile_sha256": null
++      },
++      "guard": {
++        "pocp": 1,
++        "verdict": "passed",
++        "passed": true,
++        "summary": "the old tests pass on the new code, and the new tests catch all 8 of the 10 sampled mutants the old tests caught (seed 11)",
++        "base": "6dca7496f42bb375c45f577091ee88a023324098",
++        "checks": [
++          {
++            "id": "task-tests",
++            "run": "bash .bench/check.sh"
++          }
++        ],
++        "old_tests": {
++          "result": "pass",
++          "restored": [
++            "tests/aggregation/tests.py"
++          ],
++          "runs": [
++            {
++              "check": "task-tests",
++              "passed": true,
++              "exit": 0,
++              "duration_ms": 1566
++            }
++          ]
++        },
++        "new_tests": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "task-tests",
++              "passed": true,
++              "reused": true,
++              "duration_ms": 0
++            }
++          ]
++        },
++        "baseline": {
++          "result": "not-run",
++          "runs": []
++        },
++        "detection": {
++          "result": "kept",
++          "budget": 10,
++          "seed": 11,
++          "sites": 13617,
++          "focus_sites": 11,
++          "files": 937,
++          "sampled": 10,
++          "old_caught": 8,
++          "new_caught": 8,
++          "lost": [],
++          "mutants": [
++            {
++              "file": "django/db/models/__init__.py",
++              "line": 3,
++              "operator": "times",
++              "before": "from django.db.models.aggregates import *  # NOQA",
++              "after": "from django.db.models.aggregates import /  # NOQA",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "django/db/models/__init__.py",
++              "line": 5,
++              "operator": "times",
++              "before": "from django.db.models.constraints import *  # NOQA",
++              "after": "from django.db.models.constraints import /  # NOQA",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "django/db/__init__.py",
++              "line": 37,
++              "operator": "eq",
++              "before": "return connections[DEFAULT_DB_ALIAS] == other",
++              "after": "return connections[DEFAULT_DB_ALIAS] != other",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "django/db/models/__init__.py",
++              "line": 38,
++              "operator": "plus",
++              "before": "__all__ = aggregates_all + constraints_all + enums_all + fields_all + indexes_all",
++              "after": "__all__ = aggregates_all - constraints_all + enums_all + fields_all + indexes_all",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "django/core/exceptions.py",
++              "line": 196,
++              "operator": "eq",
++              "before": "return hash(self) == hash(other)",
++              "after": "return hash(self) != hash(other)",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "django/db/models/__init__.py",
++              "line": 38,
++              "operator": "plus",
++              "before": "__all__ = aggregates_all + constraints_all + enums_all + fields_all + indexes_all",
++              "after": "__all__ = aggregates_all + constraints_all - enums_all + fields_all + indexes_all",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "django/db/models/__init__.py",
++              "line": 11,
++              "operator": "times",
++              "before": "from django.db.models.enums import *  # NOQA",
++              "after": "from django.db.models.enums import /  # NOQA",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "django/db/models/__init__.py",
++              "line": 38,
++              "operator": "plus",
++              "before": "__all__ = aggregates_all + constraints_all + enums_all + fields_all + indexes_all",
++              "after": "__all__ = aggregates_all + constraints_all + enums_all - fields_all + indexes_all",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "django/db/models/__init__.py",
++              "line": 18,
++              "operator": "times",
++              "before": "from django.db.models.fields import *  # NOQA",
++              "after": "from django.db.models.fields import /  # NOQA",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "django/db/models/__init__.py",
++              "line": 23,
++              "operator": "times",
++              "before": "from django.db.models.indexes import *  # NOQA",
++              "after": "from django.db.models.indexes import /  # NOQA",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            }
++          ]
++        },
++        "duration_ms": 12884,
++        "timings": {
++          "setup_ms": 560,
++          "new_baseline": {
++            "wall_ms": 0,
++            "run_ms": 0,
++            "runs": 0
++          },
++          "old_baseline": {
++            "wall_ms": 2536,
++            "run_ms": 1566,
++            "runs": 1
++          },
++          "plan_ms": 3939,
++          "mutants": {
++            "wall_ms": 8384,
++            "old": {
++              "run_ms": 8225,
++              "runs": 10,
++              "retries": 0
++            },
++            "new": {
++              "run_ms": 5603,
++              "runs": 8,
++              "retries": 0
++            }
++          },
++          "base_check": {
++            "wall_ms": 0,
++            "run_ms": 0,
++            "runs": 0
++          },
++          "snapshot": {
++            "ms": 365,
++            "count": 1
++          },
++          "copy": {
++            "ms": 4013,
++            "count": 20
++          },
++          "cleanup": {
++            "ms": 4520,
++            "count": 21
++          }
++        },
++        "checks_from": "rules"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-22T17:33:59.003Z",
++      "event": "opened",
++      "by": "SWE-bench"
++    },
++    {
++      "at": "2026-11-22T17:33:59.003Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1",
++        "o2"
++      ],
++      "policy": "sha256:61d13274e53a745d57114ca4d2f4a54416df25781292c512245dbf5336ab580f"
++    },
++    {
++      "at": "2026-11-22T17:34:13.337Z",
++      "event": "state",
++      "from": "open",
++      "to": "proven",
++      "subject": "sha256:8b1dea49056b647849b9fd93b1a0c7680989a2fef29b4a0203de85ad0a6879d3"
++    }
++  ]
++}
+diff --git a/django/db/models/functions/math.py b/django/db/models/functions/math.py
+index 304e112225..15915f4b7c 100644
+--- a/django/db/models/functions/math.py
++++ b/django/db/models/functions/math.py
+@@ -154,6 +154,9 @@ class Random(NumericOutputFieldMixin, Func):
+     def as_sqlite(self, compiler, connection, **extra_context):
+         return super().as_sql(compiler, connection, function='RAND', **extra_context)
+ 
++    def get_group_by_cols(self, alias=None):
++        return []
++
+ 
+ class Round(Transform):
+     function = 'ROUND'
+diff --git a/tests/aggregation/tests.py b/tests/aggregation/tests.py
+index f8aeceb2d0..a759fd4d36 100644
+--- a/tests/aggregation/tests.py
++++ b/tests/aggregation/tests.py
+@@ -1315,3 +1315,18 @@ class AggregateTestCase(TestCase):
+         # with self.assertNumQueries(1) as ctx:
+         #     self.assertSequenceEqual(books_qs, [book])
+         # self.assertEqual(ctx[0]['sql'].count('SELECT'), 2)
++
++    def test_aggregation_random_ordering(self):
++        """Random() is not included in the GROUP BY when used for ordering."""
++        authors = Author.objects.annotate(contact_count=Count('book')).order_by('?')
++        self.assertQuerysetEqual(authors, [
++            ('Adrian Holovaty', 1),
++            ('Jacob Kaplan-Moss', 1),
++            ('Brad Dayley', 1),
++            ('James Bennett', 1),
++            ('Jeffrey Forcier', 1),
++            ('Paul Bissex', 1),
++            ('Wesley J. Chun', 1),
++            ('Stuart Russell', 1),
++            ('Peter Norvig', 2),
++        ], lambda a: (a.name, a.contact_count), ordered=False)

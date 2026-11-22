@@ -1,0 +1,423 @@
+diff --git a/.proof/packets/p-74308f31.json b/.proof/packets/p-74308f31.json
+new file mode 100644
+index 00000000..17bf6a11
+--- /dev/null
++++ b/.proof/packets/p-74308f31.json
+@@ -0,0 +1,304 @@
++{
++  "pocp": 1,
++  "id": "p-74308f31",
++  "intent": "Change to xarray/core/dataset.py, xarray/core/variable.py, xarray/tests/test_variable.py",
++  "touches": [
++    "xarray/core/dataset.py",
++    "xarray/core/variable.py",
++    "xarray/tests/test_variable.py"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "bash .bench/check.sh",
++      "source": "rule:task-tests"
++    },
++    {
++      "id": "o2",
++      "kind": "guard",
++      "files": [
++        "xarray/tests/test_variable.py"
++      ],
++      "mutants": 10,
++      "seed": 11,
++      "text": "Existing tests or test setup changed (xarray/tests/test_variable.py): the old tests still pass on the new code, and the new tests catch every sampled mutant the old ones caught",
++      "source": "guard:tests"
++    }
++  ],
++  "state": "proven",
++  "policy": "sha256:61d13274e53a745d57114ca4d2f4a54416df25781292c512245dbf5336ab580f",
++  "policy_repo": "sha256:61d13274e53a745d57114ca4d2f4a54416df25781292c512245dbf5336ab580f",
++  "opened_at": "2026-11-22T17:35:13.764Z",
++  "opened_by": "SWE-bench",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:88086bd1c49af153019bde9e95b4736aa4af33514080577c64977849801234ac",
++      "subject": "sha256:a39c9cccdefe35f9e32f0ea789e291852ab17bbc2322815c36bc1acb6340912b",
++      "policy": "sha256:61d13274e53a745d57114ca4d2f4a54416df25781292c512245dbf5336ab580f",
++      "run": "bash .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-22T17:35:13.852Z",
++      "duration_ms": 8486,
++      "stdout_sha256": "c8af933086f9005c9081e6c5ea963e14522677f3f624e1cbedb7dd7fe1cd545b",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-c1458668",
++      "runner": {
++        "pocp": "1.5.0",
++        "node": "22.23.5",
++        "platform": "linux-x64",
++        "ci": false,
++        "lockfile_sha256": null
++      }
++    },
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:d6b4d4fef31f03be59552c7b3a31f1c041d7f405d80e213cc4b38a99a35086ba",
++      "subject": "sha256:a39c9cccdefe35f9e32f0ea789e291852ab17bbc2322815c36bc1acb6340912b",
++      "policy": "sha256:61d13274e53a745d57114ca4d2f4a54416df25781292c512245dbf5336ab580f",
++      "kind": "guard",
++      "mode": "snapshot",
++      "passed": true,
++      "started_at": "2026-11-22T17:35:22.362Z",
++      "duration_ms": 144696,
++      "runner": {
++        "pocp": "1.5.0",
++        "node": "22.23.5",
++        "platform": "linux-x64",
++        "ci": false,
++        "lockfile_sha256": null
++      },
++      "guard": {
++        "pocp": 1,
++        "verdict": "passed",
++        "passed": true,
++        "summary": "the old tests pass on the new code, and the new tests catch all 3 of the 10 sampled mutants the old tests caught (seed 11)",
++        "base": "e49221231d2a1dc93845a456fdb25148fb35cc0f",
++        "checks": [
++          {
++            "id": "task-tests",
++            "run": "bash .bench/check.sh"
++          }
++        ],
++        "old_tests": {
++          "result": "pass",
++          "restored": [
++            "xarray/tests/test_variable.py"
++          ],
++          "runs": [
++            {
++              "check": "task-tests",
++              "passed": true,
++              "exit": 0,
++              "duration_ms": 9126
++            }
++          ]
++        },
++        "new_tests": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "task-tests",
++              "passed": true,
++              "reused": true,
++              "duration_ms": 0
++            }
++          ]
++        },
++        "baseline": {
++          "result": "not-run",
++          "runs": []
++        },
++        "detection": {
++          "result": "kept",
++          "budget": 10,
++          "seed": 11,
++          "sites": 5034,
++          "focus_sites": 557,
++          "files": 112,
++          "sampled": 10,
++          "old_caught": 3,
++          "new_caught": 3,
++          "lost": [],
++          "mutants": [
++            {
++              "file": "xarray/core/variable.py",
++              "line": 2403,
++              "operator": "zero-one",
++              "before": "pad_width = {d: (pad, 0)}",
++              "after": "pad_width = {d: (pad, 1)}",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "xarray/core/common.py",
++              "line": 585,
++              "operator": "zero-one",
++              "before": "precipitation   (x, y, time) float64 2.0 0.0 0.0 0.0 0.0 ... 0.0 0.0 0.0 2.0",
++              "after": "precipitation   (x, y, time) float64 2.0 0.0 0.0 0.1 0.0 ... 0.0 0.0 0.0 2.0",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "xarray/core/common.py",
++              "line": 890,
++              "operator": "zero-one",
++              "before": "0.16129032,  0.19354839,  0.22580645,  0.25806452,  0.29032258,",
++              "after": "0.16129032,  0.19354839,  0.22580645,  0.25806452,  1.29032258,",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "xarray/core/indexing.py",
++              "line": 1473,
++              "operator": "eq",
++              "before": "if isinstance(key, tuple) and len(key) == 1:",
++              "after": "if isinstance(key, tuple) and len(key) != 1:",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "xarray/core/indexing.py",
++              "line": 261,
++              "operator": "zero-one",
++              "before": "if stop < 0:",
++              "after": "if stop < 1:",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "xarray/core/variable.py",
++              "line": 1924,
++              "operator": "minus",
++              "before": "- \"identical\": all attrs must be the same on every object.",
++              "after": "+ \"identical\": all attrs must be the same on every object.",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "xarray/core/indexing.py",
++              "line": 96,
++              "operator": "plus",
++              "before": "+ \"\\n\".join(fmt_dims)",
++              "after": "- \"\\n\".join(fmt_dims)",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "xarray/core/variable.py",
++              "line": 586,
++              "operator": "neq",
++              "before": "if len(dims) != self.ndim:",
++              "after": "if len(dims) == self.ndim:",
++              "focus": true,
++              "old": "caught",
++              "new": "caught"
++            },
++            {
++              "file": "xarray/core/common.py",
++              "line": 1047,
++              "operator": "lt",
++              "before": ">>> a.where(a.x + a.y < 4, -1, drop=True)",
++              "after": ">>> a.where(a.x + a.y >= 4, -1, drop=True)",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            },
++            {
++              "file": "xarray/core/variable.py",
++              "line": 1927,
++              "operator": "minus",
++              "before": "- \"drop_conflicts\": attrs from all objects are combined, any that have",
++              "after": "+ \"drop_conflicts\": attrs from all objects are combined, any that have",
++              "focus": true,
++              "old": "missed",
++              "new": "not-run"
++            }
++          ]
++        },
++        "duration_ms": 144696,
++        "timings": {
++          "setup_ms": 56,
++          "new_baseline": {
++            "wall_ms": 1,
++            "run_ms": 0,
++            "runs": 0
++          },
++          "old_baseline": {
++            "wall_ms": 9176,
++            "run_ms": 9126,
++            "runs": 1
++          },
++          "plan_ms": 358,
++          "mutants": {
++            "wall_ms": 144281,
++            "old": {
++              "run_ms": 173223,
++              "runs": 10,
++              "retries": 0
++            },
++            "new": {
++              "run_ms": 93236,
++              "runs": 3,
++              "retries": 0
++            }
++          },
++          "base_check": {
++            "wall_ms": 0,
++            "run_ms": 0,
++            "runs": 0
++          },
++          "snapshot": {
++            "ms": 41,
++            "count": 1
++          },
++          "copy": {
++            "ms": 168,
++            "count": 15
++          },
++          "cleanup": {
++            "ms": 204,
++            "count": 16
++          }
++        },
++        "checks_from": "rules"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-22T17:35:13.764Z",
++      "event": "opened",
++      "by": "SWE-bench"
++    },
++    {
++      "at": "2026-11-22T17:35:13.764Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1",
++        "o2"
++      ],
++      "policy": "sha256:61d13274e53a745d57114ca4d2f4a54416df25781292c512245dbf5336ab580f"
++    },
++    {
++      "at": "2026-11-22T17:37:47.092Z",
++      "event": "state",
++      "from": "open",
++      "to": "proven",
++      "subject": "sha256:a39c9cccdefe35f9e32f0ea789e291852ab17bbc2322815c36bc1acb6340912b"
++    }
++  ]
++}
+diff --git a/xarray/core/dataset.py b/xarray/core/dataset.py
+index c775d05c..c3717190 100644
+--- a/xarray/core/dataset.py
++++ b/xarray/core/dataset.py
+@@ -3771,6 +3771,7 @@ class Dataset(
+         indexes: dict[Hashable, Index] = {}
+         for k, v in self.variables.items():
+             dims = tuple(dims_dict.get(dim, dim) for dim in v.dims)
++            var: Variable
+             if k in result_dims:
+                 var = v.to_index_variable()
+                 var.dims = dims
+diff --git a/xarray/core/variable.py b/xarray/core/variable.py
+index 5827b90a..b41856ae 100644
+--- a/xarray/core/variable.py
++++ b/xarray/core/variable.py
+@@ -14,6 +14,7 @@ from typing import (
+     Iterable,
+     Literal,
+     Mapping,
++    NoReturn,
+     Sequence,
+ )
+ 
+@@ -536,23 +537,23 @@ class Variable(AbstractArray, NdimSizeLenMixin, VariableArithmetic):
+     def values(self, values):
+         self.data = values
+ 
+-    def to_base_variable(self):
++    def to_base_variable(self) -> Variable:
+         """Return this variable as a base xarray.Variable"""
+         return Variable(
+-            self.dims, self._data, self._attrs, encoding=self._encoding, fastpath=True
++            self._dims, self._data, self._attrs, encoding=self._encoding, fastpath=True
+         )
+ 
+     to_variable = utils.alias(to_base_variable, "to_variable")
+ 
+-    def to_index_variable(self):
++    def to_index_variable(self) -> IndexVariable:
+         """Return this variable as an xarray.IndexVariable"""
+         return IndexVariable(
+-            self.dims, self._data, self._attrs, encoding=self._encoding, fastpath=True
++            self._dims, self._data, self._attrs, encoding=self._encoding, fastpath=True
+         )
+ 
+     to_coord = utils.alias(to_index_variable, "to_coord")
+ 
+-    def to_index(self):
++    def to_index(self) -> pd.Index:
+         """Convert this variable to a pandas.Index"""
+         return self.to_index_variable().to_index()
+ 
+@@ -2879,13 +2880,13 @@ class IndexVariable(Variable):
+     def _data_equals(self, other):
+         return self.to_index().equals(other.to_index())
+ 
+-    def to_index_variable(self):
++    def to_index_variable(self) -> IndexVariable:
+         """Return this variable as an xarray.IndexVariable"""
+-        return self
++        return self.copy()
+ 
+     to_coord = utils.alias(to_index_variable, "to_coord")
+ 
+-    def to_index(self):
++    def to_index(self) -> pd.Index:
+         """Convert this variable to a pandas.Index"""
+         # n.b. creating a new pandas.Index from an old pandas.Index is
+         # basically free as pandas.Index objects are immutable
+@@ -2904,7 +2905,7 @@ class IndexVariable(Variable):
+         return index
+ 
+     @property
+-    def level_names(self):
++    def level_names(self) -> list[str] | None:
+         """Return MultiIndex level names or None if this IndexVariable has no
+         MultiIndex.
+         """
+@@ -2922,11 +2923,11 @@ class IndexVariable(Variable):
+         return type(self)(self.dims, index.get_level_values(level))
+ 
+     @property
+-    def name(self):
++    def name(self) -> Hashable:
+         return self.dims[0]
+ 
+     @name.setter
+-    def name(self, value):
++    def name(self, value) -> NoReturn:
+         raise AttributeError("cannot modify name of IndexVariable in-place")
+ 
+     def _inplace_binary_op(self, other, f):
+diff --git a/xarray/tests/test_variable.py b/xarray/tests/test_variable.py
+index 21b8b116..6048ebc1 100644
+--- a/xarray/tests/test_variable.py
++++ b/xarray/tests/test_variable.py
+@@ -2422,6 +2422,15 @@ class TestIndexVariable(VariableSubclassobjects):
+     def test_coarsen_2d(self):
+         super().test_coarsen_2d()
+ 
++    def test_to_index_variable_copy(self) -> None:
++        # to_index_variable should return a copy
++        # https://github.com/pydata/xarray/issues/6931
++        a = IndexVariable("x", ["a"])
++        b = a.to_index_variable()
++        assert a is not b
++        b.dims = ("y",)
++        assert a.dims == ("x",)
++
+ 
+ class TestAsCompatibleData:
+     def test_unchanged_types(self):

@@ -1,0 +1,11 @@
+{
+  "instance_id": "django__django-11099",
+  "repo": "django/django",
+  "cells": {},
+  "preflight": {},
+  "excluded": {
+    "stage": "setup",
+    "reason": "/testbed is at 04df050ee958b843111c32aaaa362eda26b25bda, whose files differ from base_commit (git diff exit 1)"
+  },
+  "seconds": 1.6
+}

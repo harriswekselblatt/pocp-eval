@@ -1,0 +1,281 @@
+diff --git a/.proof/packets/p-c68643cd.json b/.proof/packets/p-c68643cd.json
+new file mode 100644
+index 000000000..4ad6ce59c
+--- /dev/null
++++ b/.proof/packets/p-c68643cd.json
+@@ -0,0 +1,230 @@
++{
++  "pocp": 1,
++  "id": "p-c68643cd",
++  "intent": "Change to astropy/units/core.py, astropy/units/tests/test_units.py",
++  "touches": [
++    "astropy/units/core.py",
++    "astropy/units/tests/test_units.py"
++  ],
++  "obligations": [
++    {
++      "id": "o1",
++      "kind": "test",
++      "run": "bash .bench/check.sh",
++      "source": "rule:task-tests"
++    },
++    {
++      "id": "o2",
++      "kind": "guard",
++      "files": [
++        "astropy/units/core.py",
++        "astropy/units/tests/test_units.py"
++      ],
++      "mutants": 0,
++      "seed": 11,
++      "text": "Existing tests or test setup changed (astropy/units/core.py, astropy/units/tests/test_units.py): the old tests still pass on the new code, and a person reviews the change (fast mode: without planted bugs POCP can't show the tests still catch what they caught)",
++      "source": "guard:tests"
++    }
++  ],
++  "state": "open",
++  "policy": "sha256:61d13274e53a745d57114ca4d2f4a54416df25781292c512245dbf5336ab580f",
++  "policy_repo": "sha256:61d13274e53a745d57114ca4d2f4a54416df25781292c512245dbf5336ab580f",
++  "opened_at": "2026-11-22T17:33:27.653Z",
++  "opened_by": "SWE-bench",
++  "proofs": [
++    {
++      "obligation": "o1",
++      "obligation_digest": "sha256:88086bd1c49af153019bde9e95b4736aa4af33514080577c64977849801234ac",
++      "subject": "sha256:7199cf5a1217c98d591df2bb9ea7bb2ba2951b31314757682741dc5c1ff1550f",
++      "policy": "sha256:61d13274e53a745d57114ca4d2f4a54416df25781292c512245dbf5336ab580f",
++      "run": "bash .bench/check.sh",
++      "mode": "clean",
++      "exit": 0,
++      "signal": null,
++      "timed_out": false,
++      "passed": true,
++      "started_at": "2026-11-22T17:33:27.840Z",
++      "duration_ms": 2065,
++      "stdout_sha256": "d19f5a1b2e0b01db5f347a25f9e788607a2e20f895a9f3867dcfac6363fa7cb4",
++      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
++      "run_id": "r-803813ba",
++      "runner": {
++        "pocp": "1.5.0",
++        "node": "22.23.5",
++        "platform": "linux-x64",
++        "ci": false,
++        "lockfile_sha256": null
++      }
++    },
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:dbd70473cdc5638d6a036caf283fd585a50c5d45f9daaa825a54058d919aee5d",
++      "subject": "sha256:7199cf5a1217c98d591df2bb9ea7bb2ba2951b31314757682741dc5c1ff1550f",
++      "policy": "sha256:61d13274e53a745d57114ca4d2f4a54416df25781292c512245dbf5336ab580f",
++      "kind": "guard",
++      "mode": "snapshot",
++      "passed": false,
++      "started_at": "2026-11-22T17:33:29.940Z",
++      "duration_ms": 2608,
++      "runner": {
++        "pocp": "1.5.0",
++        "node": "22.23.5",
++        "platform": "linux-x64",
++        "ci": false,
++        "lockfile_sha256": null
++      },
++      "guard": {
++        "pocp": 1,
++        "verdict": "needs-review",
++        "passed": false,
++        "summary": "the old tests pass on the new code; a person must review the test change (astropy/units/core.py: existing test lines were changed or removed; astropy/units/tests/test_units.py: lines were added to an existing test): without planted bugs (guard.mutants is 0) POCP can't show the tests still catch what they caught. For an automatic check, use deep mode (pocp init --deep, guard.mutants above 0)",
++        "base": "675adc172ec0cefa42348578593b6c695c29473e",
++        "checks": [
++          {
++            "id": "task-tests",
++            "run": "bash .bench/check.sh"
++          }
++        ],
++        "old_tests": {
++          "result": "pass",
++          "restored": [
++            "astropy/units/core.py",
++            "astropy/units/tests/test_units.py"
++          ],
++          "runs": [
++            {
++              "check": "task-tests",
++              "passed": true,
++              "exit": 0,
++              "duration_ms": 2160
++            }
++          ],
++          "changed_tests": {
++            "result": "not-used",
++            "reason": "check task-tests has no changed_test_command"
++          }
++        },
++        "new_tests": {
++          "result": "pass",
++          "runs": [
++            {
++              "check": "task-tests",
++              "passed": true,
++              "reused": true,
++              "duration_ms": 0
++            }
++          ]
++        },
++        "baseline": {
++          "result": "not-run",
++          "runs": []
++        },
++        "detection": {
++          "result": "off",
++          "budget": 0,
++          "seed": 11
++        },
++        "structural": {
++          "result": "needs-review",
++          "reasons": [
++            {
++              "file": "astropy/units/core.py",
++              "why": "existing test lines were changed or removed"
++            },
++            {
++              "file": "astropy/units/tests/test_units.py",
++              "why": "lines were added to an existing test"
++            }
++          ]
++        },
++        "duration_ms": 2608,
++        "timings": {
++          "setup_ms": 334,
++          "new_baseline": {
++            "wall_ms": 1,
++            "run_ms": 0,
++            "runs": 0
++          },
++          "old_baseline": {
++            "wall_ms": 2262,
++            "run_ms": 2160,
++            "runs": 1
++          },
++          "plan_ms": 0,
++          "mutants": {
++            "wall_ms": 0,
++            "old": {
++              "run_ms": 0,
++              "runs": 0,
++              "retries": 0
++            },
++            "new": {
++              "run_ms": 0,
++              "runs": 0,
++              "retries": 0
++            }
++          },
++          "base_check": {
++            "wall_ms": 0,
++            "run_ms": 0,
++            "runs": 0
++          },
++          "snapshot": {
++            "ms": 267,
++            "count": 1
++          },
++          "copy": {
++            "ms": 114,
++            "count": 2
++          },
++          "cleanup": {
++            "ms": 121,
++            "count": 3
++          }
++        },
++        "checks_from": "rules"
++      }
++    }
++  ],
++  "attestations": [],
++  "history": [
++    {
++      "at": "2026-11-22T17:33:27.653Z",
++      "event": "opened",
++      "by": "SWE-bench"
++    },
++    {
++      "at": "2026-11-22T17:33:27.653Z",
++      "event": "requirements_synced",
++      "added": [
++        "o1",
++        "o2"
++      ],
++      "policy": "sha256:61d13274e53a745d57114ca4d2f4a54416df25781292c512245dbf5336ab580f"
++    },
++    {
++      "at": "2026-11-22T17:33:32.633Z",
++      "event": "proof_failed",
++      "obligation": "o2",
++      "subject": "sha256:7199cf5a1217c98d591df2bb9ea7bb2ba2951b31314757682741dc5c1ff1550f"
++    },
++    {
++      "at": "2026-11-22T17:33:32.700Z",
++      "event": "deferred",
++      "obligation": "o2",
++      "by": "SWE-bench",
++      "subject": "sha256:7199cf5a1217c98d591df2bb9ea7bb2ba2951b31314757682741dc5c1ff1550f"
++    }
++  ],
++  "deferrals": [
++    {
++      "obligation": "o2",
++      "obligation_digest": "sha256:dbd70473cdc5638d6a036caf283fd585a50c5d45f9daaa825a54058d919aee5d",
++      "subject": "sha256:7199cf5a1217c98d591df2bb9ea7bb2ba2951b31314757682741dc5c1ff1550f",
++      "by": "SWE-bench",
++      "at": "2026-11-22T17:33:32.700Z",
++      "to": "ci-approval",
++      "reason": "the old tests pass on the new code; a person must review the test change (astropy/units/core.py: existing test lines were changed or removed; astropy/units/tests/test_units.py: lines were added to an existing test): without planted bugs (guard.mutants is 0) POCP can't show the tests still catch what they caught. For an automatic check, use deep mode (pocp init --deep, guard.mutants above 0)"
++    }
++  ]
++}
+diff --git a/astropy/units/core.py b/astropy/units/core.py
+index e9bd986d3..533dac046 100644
+--- a/astropy/units/core.py
++++ b/astropy/units/core.py
+@@ -728,7 +728,7 @@ class UnitBase(metaclass=InheritDocstrings):
+         try:
+             other = Unit(other, parse_strict='silent')
+         except (ValueError, UnitsError, TypeError):
+-            return False
++            return NotImplemented
+ 
+         # Other is Unit-like, but the test below requires it is a UnitBase
+         # instance; if it is not, give up (so that other can try).
+@@ -1710,8 +1710,12 @@ class UnrecognizedUnit(IrreducibleUnit):
+         _unrecognized_operator
+ 
+     def __eq__(self, other):
+-        other = Unit(other, parse_strict='silent')
+-        return isinstance(other, UnrecognizedUnit) and self.name == other.name
++        try:
++            other = Unit(other, parse_strict='silent')
++        except (ValueError, UnitsError, TypeError):
++            return NotImplemented
++
++        return isinstance(other, type(self)) and self.name == other.name
+ 
+     def __ne__(self, other):
+         return not (self == other)
+diff --git a/astropy/units/tests/test_units.py b/astropy/units/tests/test_units.py
+index 000c12d22..1677d3aef 100644
+--- a/astropy/units/tests/test_units.py
++++ b/astropy/units/tests/test_units.py
+@@ -185,6 +185,13 @@ def test_unknown_unit3():
+     assert unit != unit3
+     assert not unit.is_equivalent(unit3)
+ 
++    # Also test basic (in)equalities.
++    assert unit == "FOO"
++    assert unit != u.m
++    # next two from gh-7603.
++    assert unit != None  # noqa
++    assert unit not in (None, u.m)
++
+     with pytest.raises(ValueError):
+         unit._get_converter(unit3)

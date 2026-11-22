@@ -1,0 +1,11 @@
+{
+  "argv": [
+    "bash",
+    ".bench/check.sh"
+  ],
+  "exit": 4,
+  "execution": "completed",
+  "seconds": 1.7,
+  "stdout": "",
+  "stderr": "/opt/miniconda3/envs/testbed/lib/python3.10/site-packages/_pytest/config/__init__.py:328: PluggyTeardownRaisedWarning: A plugin raised an exception during an old-style hookwrapper teardown.\nPlugin: helpconfig, Hook: pytest_cmdline_parse\nConftestImportFailure: ImportError: POCP_BENCH_POISON (from /work/isolation/xarray/tests/conftest.py)\nFor more information see https://pluggy.readthedocs.io/en/stable/api_reference.html#pluggy.PluggyTeardownRaisedWarning\n  config = pluginmanager.hook.pytest_cmdline_parse(\nImportError while loading conftest '/work/isolation/xarray/tests/conftest.py'.\nxarray/__init__.py:112: in <module>\n    raise ImportError(\"POCP_BENCH_POISON\")\nE   ImportError: POCP_BENCH_POISON\n"
+}

@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "git",
+    "commit",
+    "-qm",
+    "B-delete-deep change"
+  ],
+  "exit": 0,
+  "execution": "completed",
+  "seconds": 1.64,
+  "stdout": "",
+  "stderr": "pocp: gate passed (1 packet(s) proven for sha256:f3219804419d)\n  CI requires human approval for this commit:\n    [maintainer, not the author] p-de3c6a4d: the test-change check did not pass (the old tests fail on the new code (\"bash .bench/check.sh\" exit 1); failing: lib/matplotlib/tests/test_legend.py::test_subfigure_legend: behavior changed, so a person must approve it); the commit can go ahead, and CI will ask a maintainer to approve it\n      why: Test file edited; the old tests fail on the new code, so the code now behaves differently and the edited tests accept that. A person decides whether the new behaviour is intended.\n      next: a maintainer adds the `pocp-approve-tests` label to the pull request (or runs: pocp approve owner/repo#<number>)\n    Do not squash, force-push, rewrite history or commit with --no-verify to get past this: push the commit as it is and ask for the approval.\n    the maintainer approves with: gh pr edit <number> --add-label pocp-approve-tests\n"
+}

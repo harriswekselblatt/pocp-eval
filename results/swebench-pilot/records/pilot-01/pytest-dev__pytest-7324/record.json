@@ -1,0 +1,11 @@
+{
+  "instance_id": "pytest-dev__pytest-7324",
+  "repo": "pytest-dev/pytest",
+  "cells": {},
+  "preflight": {},
+  "excluded": {
+    "stage": "isolation",
+    "reason": "a copy of the tree did not import its own package"
+  },
+  "seconds": 1.0
+}

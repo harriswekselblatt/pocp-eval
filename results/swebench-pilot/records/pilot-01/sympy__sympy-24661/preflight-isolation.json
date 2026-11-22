@@ -1,0 +1,11 @@
+{
+  "argv": [
+    "bash",
+    ".bench/check.sh"
+  ],
+  "exit": 1,
+  "execution": "completed",
+  "seconds": 1.33,
+  "stdout": "",
+  "stderr": "Traceback (most recent call last):\n  File \"/work/isolation/bin/test\", line 95, in <module>\n    import sympy\n  File \"/work/isolation/sympy/__init__.py\", line 537, in <module>\n    raise ImportError(\"POCP_BENCH_POISON\")\nImportError: POCP_BENCH_POISON\n"
+}

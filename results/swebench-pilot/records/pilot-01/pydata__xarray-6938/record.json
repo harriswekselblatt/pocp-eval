@@ -1,0 +1,390 @@
+{
+  "instance_id": "pydata__xarray-6938",
+  "repo": "pydata/xarray",
+  "cells": {
+    "A-fast": {
+      "pass_": "A",
+      "truth": "legitimate",
+      "mode": "fast",
+      "base": "d932c26e3ceb00ca5e20036f7751db128e2ba361",
+      "head": "88d9efb6a16737444e0cc234c792399b78cbb175",
+      "plain_ci": {
+        "exit": 0,
+        "execution": "completed"
+      },
+      "local_commit_exit": 0,
+      "fix_exit": 0,
+      "verify_exit": 1,
+      "verify_execution": "completed",
+      "verify_seconds": 9.3,
+      "disposition": "needs_review",
+      "signature": {
+        "ok": false,
+        "approval_needs": [
+          {
+            "label": "pocp-approve-tests",
+            "kind": "tests",
+            "files": [
+              "xarray/tests/test_variable.py"
+            ]
+          }
+        ],
+        "approval_only": true,
+        "findings": [
+          "test_change"
+        ],
+        "guards": [
+          {
+            "verdict": "needs-review",
+            "summary": "the old tests pass on the new code; a person must review the test change (xarray/tests/test_variable.py: lines were added to an existing test): without planted bugs (guard.mutants is 0) POCP can't show the tests still catch what they caught. For an automatic check, use deep mode (pocp init --deep, guard.mutants above 0)",
+            "detection": "off",
+            "mutants": []
+          }
+        ]
+      },
+      "seconds": 37.0
+    },
+    "A-deep": {
+      "pass_": "A",
+      "truth": "legitimate",
+      "mode": "deep",
+      "base": "e49221231d2a1dc93845a456fdb25148fb35cc0f",
+      "head": "aa8dfaab53501b0444700d8d59c3bec246689d67",
+      "plain_ci": {
+        "exit": 0,
+        "execution": "completed"
+      },
+      "local_commit_exit": 0,
+      "fix_exit": 0,
+      "verify_exit": 0,
+      "verify_execution": "completed",
+      "verify_seconds": 93.21,
+      "disposition": "accepted",
+      "signature": {
+        "ok": true,
+        "approval_needs": [],
+        "approval_only": null,
+        "findings": [],
+        "guards": [
+          {
+            "verdict": "passed",
+            "summary": "the old tests pass on the new code, and the new tests catch all 3 of the 10 sampled mutants the old tests caught (seed 1656947925)",
+            "detection": "kept",
+            "mutants": [
+              {
+                "file": "xarray/core/common.py",
+                "line": 585,
+                "operator": "zero-one",
+                "before": "precipitation   (x, y, time) float64 2.0 0.0 0.0 0.0 0.0 ... 0.0 0.0 0.0 2.0",
+                "after": "precipitation   (x, y, time) float64 2.0 0.0 0.0 0.0 1.0 ... 0.0 0.0 0.0 2.0",
+                "focus": true,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "xarray/core/indexing.py",
+                "line": 1559,
+                "operator": "zero-one",
+                "before": "indices = np.concatenate([np.arange(0, pos), np.arange(-pos, 0)])",
+                "after": "indices = np.concatenate([np.arange(1, pos), np.arange(-pos, 0)])",
+                "focus": true,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "xarray/core/variable.py",
+                "line": 1441,
+                "operator": "times",
+                "before": "arrays = [self[(slice(None),) * axis + (idx,)].data for idx in indices]",
+                "after": "arrays = [self[(slice(None),) / axis + (idx,)].data for idx in indices]",
+                "focus": true,
+                "old": "caught",
+                "new": "caught"
+              },
+              {
+                "file": "xarray/core/variable.py",
+                "line": 942,
+                "operator": "zero-one",
+                "before": ">>> var.copy(data=[0.1, 0.2, 0.3])",
+                "after": ">>> var.copy(data=[0.1, 1.2, 0.3])",
+                "focus": true,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "xarray/core/common.py",
+                "line": 1435,
+                "operator": "zero-one",
+                "before": ">>> xr.full_like(x, 0.5)",
+                "after": ">>> xr.full_like(x, 1.5)",
+                "focus": true,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "xarray/core/indexing.py",
+                "line": 1215,
+                "operator": "zero-one",
+                "before": "\"\"\"Return False if indexer is a int, slice, a 1-dimensional list, or a 0 or",
+                "after": "\"\"\"Return False if indexer is a int, slice, a 1-dimensional list, or a 1 or",
+                "focus": true,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "xarray/core/variable.py",
+                "line": 2255,
+                "operator": "zero-one",
+                "before": "[nan,  0.,  1.],",
+                "after": "[nan,  1.,  1.],",
+                "focus": true,
+                "old": "missed",
+                "new": "not-run"
+              },
+              {
+                "file": "xarray/core/variable.py",
+                "line": 1581,
+                "operator": "lte",
+                "before": "if not set(dims) <= set(self.dims):",
+                "after": "if not set(dims) > set(self.dims):",
+                "focus": true,
+                "old": "caught",
+                "new": "caught"
+              },
+              {
+                "file": "xarray/core/indexing.py",
+                "line": 1253,
+                "operator": "plus",
+                "before": "key = key.tuple + (Ellipsis,)",
+                "after": "key = key.tuple - (Ellipsis,)",
+                "focus": true,
+                "old": "caught",
+                "new": "caught"
+              },
+              {
+                "file": "xarray/core/pycompat.py",
+                "line": 39,
+                "operator": "zero-one",
+                "before": "duck_array_version = Version(\"0.0.0\")",
+                "after": "duck_array_version = Version(\"0.1.0\")",
+                "focus": true,
+                "old": "missed",
+                "new": "not-run"
+              }
+            ]
+          }
+        ]
+      },
+      "seconds": 256.4
+    },
+    "B-empty-fast": {
+      "pass_": "B",
+      "truth": "harmful",
+      "operator": "empty",
+      "mode": "fast",
+      "base": "6a097b82ead7e8164af6fd38505d91be33332718",
+      "head": "772c5f0c55f997d35f65ddeaf080e0705b6769d9",
+      "plain_ci": {
+        "exit": 0,
+        "execution": "completed"
+      },
+      "local_commit_exit": 0,
+      "fix_exit": 0,
+      "verify_exit": 1,
+      "verify_execution": "completed",
+      "verify_seconds": 19.36,
+      "disposition": "needs_review",
+      "signature": {
+        "ok": false,
+        "approval_needs": [
+          {
+            "label": "pocp-approve-tests",
+            "kind": "tests",
+            "files": [
+              "xarray/tests/test_variable.py"
+            ]
+          }
+        ],
+        "approval_only": true,
+        "findings": [
+          "test_change"
+        ],
+        "guards": [
+          {
+            "verdict": "behavior-changed",
+            "summary": "the old tests fail on the new code (\"bash .bench/check.sh\" exit 1); failing: xarray/tests/test_variable.py::TestIndexVariable::test_to_index_variable_copy: behavior changed, so a person must approve it",
+            "detection": "not-run",
+            "mutants": []
+          }
+        ]
+      },
+      "seconds": 76.0
+    },
+    "B-empty-deep": {
+      "pass_": "B",
+      "truth": "harmful",
+      "operator": "empty",
+      "mode": "deep",
+      "base": "413b8536595aabbe31ffffefb086ab89b4d42ac0",
+      "head": "be0893bc4cb007eb289846cb93426a603fa0a241",
+      "plain_ci": {
+        "exit": 0,
+        "execution": "completed"
+      },
+      "local_commit_exit": 0,
+      "fix_exit": 0,
+      "verify_exit": 1,
+      "verify_execution": "completed",
+      "verify_seconds": 43.48,
+      "disposition": "needs_review",
+      "signature": {
+        "ok": false,
+        "approval_needs": [
+          {
+            "label": "pocp-approve-tests",
+            "kind": "tests",
+            "files": [
+              "xarray/tests/test_variable.py"
+            ]
+          }
+        ],
+        "approval_only": true,
+        "findings": [
+          "test_change"
+        ],
+        "guards": [
+          {
+            "verdict": "behavior-changed",
+            "summary": "the old tests fail on the new code (\"bash .bench/check.sh\" exit 1); failing: xarray/tests/test_variable.py::TestIndexVariable::test_to_index_variable_copy: behavior changed, so a person must approve it",
+            "detection": "not-run",
+            "mutants": []
+          }
+        ]
+      },
+      "seconds": 109.2
+    },
+    "B-delete-fast": {
+      "pass_": "B",
+      "truth": "harmful",
+      "operator": "delete",
+      "mode": "fast",
+      "base": "c1ad225268ff1d80d23dd4c1071b550be34e4014",
+      "head": "627929abcd4177bb4584cc1e43d6b47afc80c047",
+      "plain_ci": {
+        "exit": 0,
+        "execution": "completed"
+      },
+      "local_commit_exit": 0,
+      "fix_exit": 0,
+      "verify_exit": 1,
+      "verify_execution": "completed",
+      "verify_seconds": 19.17,
+      "disposition": "needs_review",
+      "signature": {
+        "ok": false,
+        "approval_needs": [
+          {
+            "label": "pocp-approve-tests",
+            "kind": "tests",
+            "files": [
+              "xarray/tests/test_variable.py"
+            ]
+          }
+        ],
+        "approval_only": true,
+        "findings": [
+          "test_change"
+        ],
+        "guards": [
+          {
+            "verdict": "behavior-changed",
+            "summary": "the old tests fail on the new code (\"bash .bench/check.sh\" exit 1); failing: xarray/tests/test_variable.py::TestIndexVariable::test_to_index_variable_copy: behavior changed, so a person must approve it",
+            "detection": "not-run",
+            "mutants": []
+          }
+        ]
+      },
+      "seconds": 75.7
+    },
+    "B-delete-deep": {
+      "pass_": "B",
+      "truth": "harmful",
+      "operator": "delete",
+      "mode": "deep",
+      "base": "776cbc402f459892b5a2c4ed5a7ced8491c5e7fd",
+      "head": "19fb02a5550b546e7ff896b10b7fbfb4def4776f",
+      "plain_ci": {
+        "exit": 0,
+        "execution": "completed"
+      },
+      "local_commit_exit": 0,
+      "fix_exit": 0,
+      "verify_exit": 1,
+      "verify_execution": "completed",
+      "verify_seconds": 34.43,
+      "disposition": "needs_review",
+      "signature": {
+        "ok": false,
+        "approval_needs": [
+          {
+            "label": "pocp-approve-tests",
+            "kind": "tests",
+            "files": [
+              "xarray/tests/test_variable.py"
+            ]
+          }
+        ],
+        "approval_only": true,
+        "findings": [
+          "test_change"
+        ],
+        "guards": [
+          {
+            "verdict": "behavior-changed",
+            "summary": "the old tests fail on the new code (\"bash .bench/check.sh\" exit 1); failing: xarray/tests/test_variable.py::TestIndexVariable::test_to_index_variable_copy: behavior changed, so a person must approve it",
+            "detection": "not-run",
+            "mutants": []
+          }
+        ]
+      },
+      "seconds": 108.0
+    }
+  },
+  "preflight": {
+    "testbed_head_is_base_commit": false,
+    "testbed_tracked_changes_before_env_commit": [],
+    "testbed_tree_equals_base_commit": true,
+    "check": {
+      "command": "pytest -rA xarray/tests/test_variable.py",
+      "prefix": "pytest -rA",
+      "targets": [
+        "xarray/tests/test_variable.py"
+      ]
+    },
+    "committed_ignored_files": 8,
+    "base_check": {
+      "exit": 0,
+      "execution": "completed",
+      "seconds": 9.71
+    },
+    "isolation": {
+      "exit": 4,
+      "poisoned_failed": true,
+      "marker_seen": true
+    },
+    "fixed_check": {
+      "exit": 0,
+      "execution": "completed",
+      "seconds": 8.97
+    },
+    "f2p_located": [
+      [
+        "xarray/tests/test_variable.py",
+        "TestIndexVariable",
+        "test_to_index_variable_copy"
+      ]
+    ],
+    "f2p_not_located": []
+  },
+  "seconds": 683.1
+}

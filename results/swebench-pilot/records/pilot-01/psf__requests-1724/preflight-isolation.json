@@ -1,0 +1,11 @@
+{
+  "argv": [
+    "bash",
+    ".bench/check.sh"
+  ],
+  "exit": 2,
+  "execution": "completed",
+  "seconds": 0.49,
+  "stdout": "============================= test session starts ==============================\nplatform linux2 -- Python 2.7.18, pytest-4.6.4, py-1.10.0, pluggy-0.13.1\nrootdir: /work/isolation\ncollected 0 items / 1 errors\n\n==================================== ERRORS ====================================\n______________________ ERROR collecting test_requests.py _______________________\nImportError while importing test module '/work/isolation/test_requests.py'.\nHint: make sure your test modules/packages have valid Python names.\nTraceback:\ntest_requests.py:12: in <module>\n    import requests\nrequests/__init__.py:79: in <module>\n    raise ImportError(\"POCP_BENCH_POISON\")\nE   ImportError: POCP_BENCH_POISON\n=========================== short test summary info ============================\nFAILED test_requests.py\n!!!!!!!!!!!!!!!!!!! Interrupted: 1 errors during collection !!!!!!!!!!!!!!!!!!!!\n=========================== 1 error in 0.17 seconds ============================\n",
+  "stderr": ""
+}

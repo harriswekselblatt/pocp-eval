@@ -1,0 +1,11 @@
+{
+  "argv": [
+    "bash",
+    ".bench/check.sh"
+  ],
+  "exit": 1,
+  "execution": "completed",
+  "seconds": 2.18,
+  "stdout": "============================= test process starts ==============================\nexecutable:         /opt/miniconda3/envs/testbed/bin/python  (3.9.20-final-0) [CPython]\narchitecture:       64-bit\ncache:              no\nground types:       python \nnumpy:              None\nrandom seed:        6274713\nhash randomization: on (PYTHONHASHSEED=89362666)\n\nsympy/parsing/tests/test_sympy_parser.py[29] \ntest_sympy_parser ok\ntest_rationalize ok\ntest_factorial_fail ok\ntest_repeated_fail ok\ntest_repeated_dot_only ok\ntest_local_dict ok\ntest_local_dict_split_implmult ok\ntest_local_dict_symbol_to_fcn ok\ntest_global_dict ok\ntest_no_globals ok\ntest_issue_2515 ok\ntest_issue_7663 ok\ntest_recursive_evaluate_false_10560 ok\ntest_function_evaluate_false ok\ntest_issue_10773 ok\ntest_split_symbols ok\ntest_split_symbols_function ok\ntest_functional_exponent ok\ntest_match_parentheses_implicit_multiplication ok\ntest_convert_equals_signs ok\ntest_parse_function_issue_3539 ok\ntest_issue_24288 F\ntest_split_symbols_numeric ok\ntest_unicode_names ok\ntest_python3_features ok\ntest_issue_19501 ok\ntest_parsing_definitions ok\ntest_builtins ok\ntest_issue_22822 ok                                                       [FAIL]\n\n\n________________________________________________________________________________\n__________ sympy/parsing/tests/test_sympy_parser.py:test_issue_24288 ___________\nTraceback (most recent call last):\n  File \"/work/B-delete-deep-probe/sympy/parsing/tests/test_sympy_parser.py\", line 292, in test_issue_24288\n    assert parse_expr(text, evaluate=False) == result\nAssertionError\n\n============= tests finished: 28 passed, 1 failed, in 0.51 seconds =============\nDO *NOT* COMMIT!\n",
+  "stderr": ""
+}
