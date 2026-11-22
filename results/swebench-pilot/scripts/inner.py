@@ -323,7 +323,12 @@ def run_preflight(inst, out):
     dirty = checked(TESTBED, ['git', 'status', '--porcelain', '--untracked-files=no'])
     facts['testbed_tracked_changes_before_env_commit'] = dirty.splitlines()[:50]
     if head != inst['base_commit']:
-        raise Excluded('setup', f'/testbed is at {head}, not base_commit')
+        # The published images may put the code on a commit of their own. Accept it only if its files are
+        # exactly those of base_commit.
+        same = run(TESTBED, ['git', 'diff', '--quiet', inst['base_commit'], head, '--'])
+        facts['testbed_tree_equals_base_commit'] = ok(same)
+        if not ok(same):
+            raise Excluded('setup', f"/testbed is at {head}, whose files differ from base_commit (git diff exit {same['exit']})")
     script, facts['check'] = check_script(inst)
     write(TESTBED / '.bench/check.sh', script)
     # Built files the package needs (compiled extensions, generated modules) are git-ignored; commit them so that
