@@ -1,10 +1,11 @@
 # Pilot: POCP on SWE-bench Verified tasks, no AI agents. See results/swebench-pilot/README.md.
-# Runs when results/swebench-pilot/batches/current.json changes on the swebench-pilot branch.
+# Runs only when results/swebench-pilot/batches/current.json changes on the swebench-pilot branch
+# (code changes alone never start a run).
 name: swebench-pilot
 on:
   push:
     branches: [swebench-pilot]
-    paths: ['results/swebench-pilot/batches/current.json', 'results/swebench-pilot/scripts/**', '.github/workflows/swebench-pilot.yml']
+    paths: ['results/swebench-pilot/batches/current.json']
 permissions:
   contents: read
 env:

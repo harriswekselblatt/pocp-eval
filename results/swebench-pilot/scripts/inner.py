@@ -119,7 +119,9 @@ def check_script(inst):
     exports = [l for l in pre.splitlines() if l.startswith('export ')]
     exists = ('[ -e "tests/${t//.//}.py" ] || [ -d "tests/${t//.//}" ]') if django else '[ -e "$t" ]'
     return '\n'.join(['#!/bin/bash', 'source /opt/miniconda3/bin/activate', 'conda activate testbed', *exports,
-                      'export PYTHONPATH="$PWD${PYTHONPATH:+:$PYTHONPATH}"', 'targets=()',
+                      # this tree's own code first; src/ too for src-layout projects (pytest, flask)
+                      'export PYTHONPATH="$PWD${PYTHONPATH:+:$PYTHONPATH}"',
+                      'if [ -d "$PWD/src" ]; then export PYTHONPATH="$PWD/src:$PYTHONPATH"; fi', 'targets=()',
                       'for t in ' + ' '.join(targets) + '; do', f'  if {exists}; then targets+=("$t"); fi', 'done',
                       'if [ ${#targets[@]} -eq 0 ]; then echo "POCP_BENCH: no test targets in this tree"; exit 0; fi',
                       f'{prefix} "${{targets[@]}}"', '']), dict(command=cmd, prefix=prefix, targets=targets)
@@ -292,7 +294,7 @@ def main():
     started = time.time()
     rec = dict(instance_id=inst['instance_id'], repo=inst['repo'], cells={}, preflight={})
     try:
-        rec['preflight'].update(run_preflight(inst, out))
+        run_preflight(inst, out, rec['preflight'])  # fills the dict as it goes, so an exclusion keeps its facts
     except Excluded as e:
         rec.update(excluded=dict(stage=e.stage, reason=e.reason))
     except Exception as e:  # harness failure: kept as data, never scored
@@ -319,10 +321,9 @@ ENV_COMMIT = FIXED_COMMIT = None
 B_TARGETS = None
 
 
-def run_preflight(inst, out):
+def run_preflight(inst, out, facts):
     """Environment commit, check script, and the preconditions both passes need. Returns facts for the record."""
     global ENV_COMMIT, FIXED_COMMIT, B_TARGETS, TESTBED_FIXED
-    facts = {}
     setup = inst['eval_script'].split('git status', 1)[0]
     r = run(TESTBED, ['bash', '-c', 'set +u\n' + setup])
     write(out / 'setup.json', trimmed(r))
@@ -337,6 +338,8 @@ def run_preflight(inst, out):
         same = run(TESTBED, ['git', 'diff', '--quiet', inst['base_commit'], head, '--'])
         facts['testbed_tree_equals_base_commit'] = ok(same)
         if not ok(same):
+            stat = run(TESTBED, ['git', 'diff', '--stat', inst['base_commit'], head, '--'])
+            facts['testbed_diff_from_base_commit'] = (stat['stdout'] + stat['stderr']).splitlines()[-60:]
             raise Excluded('setup', f"/testbed is at {head}, whose files differ from base_commit (git diff exit {same['exit']})")
     script, facts['check'] = check_script(inst)
     write(TESTBED / '.bench/check.sh', script)
