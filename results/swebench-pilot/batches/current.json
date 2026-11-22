@@ -1,0 +1,7 @@
+{
+  "batch": "smoke-01",
+  "phase": "pilot",
+  "draw": {"seed": 20261122, "note": "smoke: the first Django id in the seeded order of the 12-id draw"},
+  "ids": ["django__django-13569"],
+  "cells": "A-fast,A-deep,B-empty-fast,B-empty-deep,B-delete-fast,B-delete-deep"
+}

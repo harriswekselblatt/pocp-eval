@@ -1,0 +1,71 @@
+# Pilot: POCP on SWE-bench Verified tasks, no AI agents. See results/swebench-pilot/README.md.
+# Runs when results/swebench-pilot/batches/current.json changes on the swebench-pilot branch.
+name: swebench-pilot
+on:
+  push:
+    branches: [swebench-pilot]
+    paths: ['results/swebench-pilot/batches/current.json', 'results/swebench-pilot/scripts/**', '.github/workflows/swebench-pilot.yml']
+permissions:
+  contents: read
+env:
+  POCP_VERSION: 1.5.0
+  DATASET_URL: https://huggingface.co/datasets/SWE-bench/SWE-bench_Verified/resolve/78f471bf655a3137b2e8a75af1501690ec009ec3/data/test-00000-of-00001.parquet
+jobs:
+  plan:
+    runs-on: ubuntu-24.04
+    outputs:
+      ids: ${{ steps.p.outputs.ids }}
+      batch: ${{ steps.p.outputs.batch }}
+      cells: ${{ steps.p.outputs.cells }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: p
+        run: |
+          f=results/swebench-pilot/batches/current.json
+          echo "ids=$(jq -c .ids $f)" >> "$GITHUB_OUTPUT"
+          echo "batch=$(jq -r .batch $f)" >> "$GITHUB_OUTPUT"
+          echo "cells=$(jq -r .cells $f)" >> "$GITHUB_OUTPUT"
+  run:
+    needs: plan
+    runs-on: ubuntu-24.04
+    timeout-minutes: 340
+    strategy:
+      fail-fast: false
+      max-parallel: 10
+      matrix:
+        id: ${{ fromJson(needs.plan.outputs.ids) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Free disk space
+        run: sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL && df -h /
+      - name: Fetch the pinned dataset and POCP
+        run: |
+          pip install -q pyarrow==18.1.0
+          mkdir -p /tmp/bench/pocp /tmp/bench/out
+          curl -sSL -o /tmp/bench/verified.parquet "$DATASET_URL"
+          python3 results/swebench-pilot/scripts/extract.py /tmp/bench/verified.parquet "${{ matrix.id }}" /tmp/bench/instance.json > /tmp/bench/image
+          cd /tmp/bench/pocp && npm pack -q "proof-of-change@$POCP_VERSION" && tar xzf proof-of-change-$POCP_VERSION.tgz
+          sha256sum /tmp/bench/pocp/package/bin/pocp.js /tmp/bench/verified.parquet | tee /tmp/bench/out/pins.txt
+          node --version >> /tmp/bench/out/pins.txt
+      - name: Run the task in its SWE-bench container
+        run: |
+          image=$(cat /tmp/bench/image)
+          docker pull -q "$image"
+          docker image inspect "$image" --format '{{.Id}}' >> /tmp/bench/out/pins.txt
+          node_dir=$(dirname "$(dirname "$(which node)")")
+          docker run -d --name task -v "$PWD/results/swebench-pilot/scripts:/bench:ro" -v "$node_dir:/opt/node:ro" \
+            -v /tmp/bench/pocp:/opt/pocp:ro -v /tmp/bench/instance.json:/instance.json:ro -v /tmp/bench/out:/out "$image" sleep infinity
+          docker exec task /opt/miniconda3/bin/python3 /bench/inner.py /instance.json /out --cells "${{ needs.plan.outputs.cells }}"
+      - name: Upload the records
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ needs.plan.outputs.batch }}-${{ matrix.id }}
+          path: /tmp/bench/out
+          retention-days: 90
