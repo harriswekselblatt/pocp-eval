@@ -15175,7 +15175,7 @@ b64b7e022b5a5f20135f75cc5fcd577ef019b7cc7fd4a030fabdda63f0bfd416  results/runs/s
 b0766139968f7ac922cd30be6a3f501ae6b2432b642b11c3dcf45f79742d948d  results/runs/smoke-2026-11-21-codex-02/e400517179cdf3aa/attempts.json
 29b3647333c16eb2b32232f1c63fd8a7f3c30c1dabba02a71ca651cc83e8da44  results/runs/smoke-2026-11-21-codex-02/e400517179cdf3aa/final.diff
 cd26f195f87919057e7648a0c528044cab3e1707b3f7ee20bc80ac12e5796adc  results/runs/smoke-2026-11-21-codex-02/e400517179cdf3aa/run.json
-9b7e641066e8a61938d23a828ce874bbdc6c31688535f32c08158db4ae829cb3  results/swebench-pilot/PILOT-01.md
+66766f58f45da568d7e22416cea1a0356a4b40917f31afbd822f6fb1b0c52cd2  results/swebench-pilot/PILOT-01.md
 5b17c6af3a88093c45bdb2bf3703b4c62a12869a994cd3cec038dde10ff36b19  results/swebench-pilot/README.md
 e40dfd17a00915cfc735401772ad0c1edc1c4eec45d5c238783e05451e1e2f74  results/swebench-pilot/batches/current.json
 7274e7aeb5939d74f48d722b7fa8ad0eda77f344ed4a3a5c054c3ef74dd48229  results/swebench-pilot/records/pilot-01/astropy__astropy-7606/A-deep/candidate-ci.json

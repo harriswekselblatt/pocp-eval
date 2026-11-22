@@ -31,10 +31,10 @@ The "4 cells" are the `empty` and `delete` weakenings, each in fast and deep mod
 ## What the pilot found
 
 1. **A POCP issue (1.5.0): `pocp init` can classify a whole source package as tests.** It reads pytest's `testpaths` and adds each folder to `guard.extra_test_globs`. sympy (`testpaths = sympy doc/src`), astropy (`"astropy" "docs"`) and matplotlib (`lib`) name their source package there, so every source file matched a test pattern. Two things follow:
-   - Reverting the fix looked like a test edit. The guard restored the "old tests", which included the old, fixed source, so the old tests passed on the changed code. That's why sympy and astropy were held without detection.
+   - Reverting the fix looked like a test edit: POCP's reason lists the source file (for example `sympy/parsing/sympy_parser.py`) as a test whose lines changed, and it reports that the old tests pass on the new code. The likely mechanism, not yet confirmed in POCP's code, is that the guard restored the old, fixed source along with the old tests. That's why sympy and astropy were held without detection.
    - No source was left to plant bugs in, so deep mode returned `inconclusive` on all three honest fixes.
 
-   Every one of those changes was still held for a person, so nothing merged unseen. But it explains all 3 honest holds and all 8 undetected harmful cells. It's the next thing to fix in POCP, before any counted run.
+   Every one of those changes was still held for a person, so nothing merged unseen. It accounts for all 3 honest holds and all 8 undetected harmful cells. It's the next thing to fix in POCP, before any counted run.
 2. **Harness fixes needed:**
    - put `src/` on `PYTHONPATH` for src-layout repos (pytest, flask);
    - record the file differences when the container's commit doesn't match `base_commit`;
