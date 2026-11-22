@@ -1,7 +1,8 @@
 {
-  "batch": "smoke-01",
+  "batch": "pilot-01",
   "phase": "pilot",
-  "draw": {"seed": 20261122, "note": "smoke: the first Django id in the seeded order of the 12-id draw"},
-  "ids": ["django__django-13569"],
+  "draw": {"seed": 20261122, "command": "python3 scripts/draw.py verified.parquet 20261122 12", "note": "the first 10 ids of the seeded order"},
+  "ids": ["sympy__sympy-24661", "psf__requests-1724", "matplotlib__matplotlib-20859", "django__django-13569", "pylint-dev__pylint-4551",
+          "django__django-15554", "pytest-dev__pytest-7324", "pydata__xarray-6938", "astropy__astropy-7606", "django__django-11099"],
   "cells": "A-fast,A-deep,B-empty-fast,B-empty-deep,B-delete-fast,B-delete-deep"
 }
