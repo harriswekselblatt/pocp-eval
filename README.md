@@ -6,7 +6,7 @@ folder, along with the plan ([`docs/EVAL-PLAN.md`](https://github.com/harrisweks
 the pre-registration (`eval/PREREG.md`) and the reports generated from these records. This
 repository holds only the data, so the tool's repository stays small.
 
-Most of these are pilot runs that don't count toward a pre-registered result. The exceptions are the counted E1a/E1b batches on POCP 1.5.0 (`2026-11-21-*-claude-150-01`, `2026-11-21-*-codex-150-02`; POCP `eval/PREREG.md` §10–11) and `results/campaign-123/`: the complete, counted records of the preregistered POCP 1.2.3 campaign, with its frozen protocol and harness, laid out so its report regenerates byte-for-byte (see its README).
+Most of these are pilot runs that don't count toward a pre-registered result. The exception is `results/campaign-123/`: the complete, counted records of the preregistered POCP 1.2.3 campaign, with its frozen protocol and harness, laid out so its report regenerates byte-for-byte (see its README).
 
 ## Layout
 
@@ -22,7 +22,7 @@ Most of these are pilot runs that don't count toward a pre-registered result. Th
 
 Set out in POCP's [`eval/README.md`](https://github.com/harriswekselblatt/pocp/blob/main/eval/README.md):
 - **Records are immutable.** Every run is kept, including errors and timeouts.
-- **Excluded runs stay.** An excluded run stays with its reason. One exception: the 180 runs of `2026-11-21-e1a-codex-150-01` and `2026-11-21-e1b-codex-150-01`, and the whole smoke batch `smoke-2026-11-21-150` (12 runs, 6 of them Codex), are not published, because in the Codex runs the agent read the maintainer's private notes during them. POCP's `eval/PREREG.md` §11 gives their names, counts and the reason.
+- **Excluded runs stay.** An excluded run stays with its reason.
 - **Pilots are marked.** Pilot runs say `phase: "pilot"`.
 - **No personal paths.** Absolute paths are redacted.
 
