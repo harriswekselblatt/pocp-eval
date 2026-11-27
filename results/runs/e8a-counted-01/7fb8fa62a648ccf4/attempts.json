@@ -1,0 +1,114 @@
+{
+  "commits": [
+    {
+      "sha": "3ac0fe22ab81c2942370980f4bc233b25967334e",
+      "tree": "48a69d34c9f0786b767a01d8d2c88358d62947af",
+      "parents": [
+        "918ba371846c82be65ab8c2f24a683ca70674fec"
+      ],
+      "subject": "Implement minimum semi-palindrome partition cost",
+      "at": 1795800536,
+      "action": "commit",
+      "by": "agent",
+      "through_hooks": true,
+      "in_final_history": true
+    }
+  ],
+  "blocked_hook_runs": [
+    {
+      "at": 1795800517,
+      "exit": 1,
+      "tree": "a67b6ab60116e098b037e457c419d5eff167261c",
+      "gate": {
+        "decision": "blocked",
+        "subject": "sha256:76a08e4e153e97e597a88a9bef790f0de7e67e8b913b852ac0f82179e7b310dc",
+        "required": 2,
+        "uncovered": 2,
+        "packets": []
+      },
+      "reason": "uncovered"
+    }
+  ],
+  "gate_log": [
+    {
+      "at": "2026-11-27T17:28:37.647Z",
+      "source": "hook",
+      "decision": "blocked",
+      "subject": "sha256:76a08e4e153e97e597a88a9bef790f0de7e67e8b913b852ac0f82179e7b310dc",
+      "required": 2,
+      "uncovered": 2,
+      "packets": []
+    },
+    {
+      "at": "2026-11-27T17:28:53.145Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:47f3bcae2731b1a045e4d8a48cc272f78c733187b79243a0cbfbe5c01ed7e64d",
+      "required": 2,
+      "uncovered": 2,
+      "packets": []
+    },
+    {
+      "at": "2026-11-27T17:28:53.233Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:47f3bcae2731b1a045e4d8a48cc272f78c733187b79243a0cbfbe5c01ed7e64d",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-7f57b20b",
+          "ok": false,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-27T17:28:53.698Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:47f3bcae2731b1a045e4d8a48cc272f78c733187b79243a0cbfbe5c01ed7e64d",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-7f57b20b",
+          "ok": false,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-27T17:28:53.752Z",
+      "source": "fix",
+      "decision": "pass",
+      "subject": "sha256:47f3bcae2731b1a045e4d8a48cc272f78c733187b79243a0cbfbe5c01ed7e64d",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-7f57b20b",
+          "ok": true,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-27T17:28:56.762Z",
+      "source": "hook",
+      "decision": "pass",
+      "subject": "sha256:47f3bcae2731b1a045e4d8a48cc272f78c733187b79243a0cbfbe5c01ed7e64d",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-7f57b20b",
+          "ok": true,
+          "failed": 0
+        }
+      ]
+    }
+  ],
+  "hooks_modified": false,
+  "hooks_path": null
+}

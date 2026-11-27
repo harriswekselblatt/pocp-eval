@@ -1,0 +1,114 @@
+{
+  "commits": [
+    {
+      "sha": "09b63aeec2244adf7c75e81e96f9bff8a16841b0",
+      "tree": "49429b05e15e20b9893dec9cef364f68fc915bf7",
+      "parents": [
+        "f19b70ae8959283d48dd7b05e04092d85a6b5834"
+      ],
+      "subject": "Count distinct orientation indegree sequences",
+      "at": 1795792247,
+      "action": "commit",
+      "by": "agent",
+      "through_hooks": true,
+      "in_final_history": true
+    }
+  ],
+  "blocked_hook_runs": [
+    {
+      "at": 1795792227,
+      "exit": 1,
+      "tree": "39c0a2fc5cd8cee0112a3258bdba7ad3c59fe418",
+      "gate": {
+        "decision": "blocked",
+        "subject": "sha256:ce0e631a333ae2b408291ccc232b3df69823d06f6f72dc3a7e54fa2a0eeaa9a7",
+        "required": 1,
+        "uncovered": 1,
+        "packets": []
+      },
+      "reason": "uncovered"
+    }
+  ],
+  "gate_log": [
+    {
+      "at": "2026-11-27T15:10:27.614Z",
+      "source": "hook",
+      "decision": "blocked",
+      "subject": "sha256:ce0e631a333ae2b408291ccc232b3df69823d06f6f72dc3a7e54fa2a0eeaa9a7",
+      "required": 1,
+      "uncovered": 1,
+      "packets": []
+    },
+    {
+      "at": "2026-11-27T15:10:44.691Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:40d41f893ca7fca2c000105e9e411d0d39934952ed3864c598a1e09bcc2d31f3",
+      "required": 2,
+      "uncovered": 2,
+      "packets": []
+    },
+    {
+      "at": "2026-11-27T15:10:44.753Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:40d41f893ca7fca2c000105e9e411d0d39934952ed3864c598a1e09bcc2d31f3",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-1071ba75",
+          "ok": false,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-27T15:10:45.220Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:40d41f893ca7fca2c000105e9e411d0d39934952ed3864c598a1e09bcc2d31f3",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-1071ba75",
+          "ok": false,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-27T15:10:45.264Z",
+      "source": "fix",
+      "decision": "pass",
+      "subject": "sha256:40d41f893ca7fca2c000105e9e411d0d39934952ed3864c598a1e09bcc2d31f3",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-1071ba75",
+          "ok": true,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-27T15:10:47.626Z",
+      "source": "hook",
+      "decision": "pass",
+      "subject": "sha256:40d41f893ca7fca2c000105e9e411d0d39934952ed3864c598a1e09bcc2d31f3",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-1071ba75",
+          "ok": true,
+          "failed": 0
+        }
+      ]
+    }
+  ],
+  "hooks_modified": false,
+  "hooks_path": null
+}

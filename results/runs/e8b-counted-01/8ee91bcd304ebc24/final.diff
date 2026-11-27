@@ -1,0 +1,135 @@
+diff --git a/solution.py b/solution.py
+index a185cc7..333df97 100644
+--- a/solution.py
++++ b/solution.py
+@@ -1,19 +1,86 @@
++from math import comb
++
++
+ def count_balanced_graphs(n: int, p: int) -> list[int]:
+     """ Given an even positive integer n and a prime number p, for each M from n-1 to n*(n-1)//2,
+     count the number of undirected connected simple graphs with n vertices (labeled 1 to n) and M edges
+     such that the number of vertices whose shortest distance from vertex 1 is even equals the number
+     of vertices whose shortest distance from vertex 1 is odd. Return these counts modulo p.
+-    
++
+     Args:
+         n: Even positive integer (2 <= n <= 30)
+         p: Prime number (10^8 <= p <= 10^9)
+-    
++
+     Returns:
+         List of counts modulo p for M = n-1, n, n+1, ..., n*(n-1)//2
+-    
++
+     >>> count_balanced_graphs(4, 998244353)
+     [12, 9, 3, 0]
+     >>> count_balanced_graphs(6, 924844033)
+     [810, 2100, 3060, 3030, 2230, 1210, 450, 100, 10, 0, 0]
+     """
+-    pass
++    D = n * (n - 1) // 2
++    R = range(D + 1)
++    one_x = [(1 + x) % p for x in R]
++    pw = [[1] * (D + 1)]
++    for _ in range(D):
++        pw.append([a * b % p for a, b in zip(pw[-1], one_x)])
++    half = n // 2
++    w = {}
++
++    def weight(a, b, m):
++        key = (a, b, m)
++        if key not in w:
++            base = [(v - 1) % p for v in pw[a]]
++            inner = pw[b * (b - 1) // 2]
++            c = comb(n - m, b) % p
++            w[key] = [pow(bs, b, p) * i % p * c % p for bs, i in zip(base, inner)]
++        return w[key]
++
++    cur = {(1, 0, 1, 1): [1] * (D + 1)}
++    final = [0] * (D + 1)
++    for used in range(1, n + 1):
++        for key in [k for k in cur if k[0] + k[1] == used]:
++            val = cur.pop(key)
++            e, o, a, par = key
++            if used == n:
++                if e == half:
++                    final = [(x + y) % p for x, y in zip(final, val)]
++                continue
++            for b in range(1, n - used + 1):
++                ne, no = (e + b, o) if par == 0 else (e, o + b)
++                if ne > half or no > half:
++                    continue
++                nv = [x * y % p for x, y in zip(val, weight(a, b, used))]
++                nk = (ne, no, b, 1 - par)
++                if nk in cur:
++                    cur[nk] = [(x + y) % p for x, y in zip(cur[nk], nv)]
++                else:
++                    cur[nk] = nv
++
++    ys = final
++    pts = list(range(D + 1))
++    # full polynomial P(x) = prod (x - xi), coefficients low->high
++    P = [1]
++    for xi in pts:
++        Q = [0] * (len(P) + 1)
++        for k, c in enumerate(P):
++            Q[k + 1] = (Q[k + 1] + c) % p
++            Q[k] = (Q[k] - xi * c) % p
++        P = Q
++    coef = [0] * (D + 1)
++    for i, xi in enumerate(pts):
++        # divide P by (x - xi)
++        q = [0] * (D + 1)
++        carry = 0
++        for k in range(D, -1, -1):
++            carry = (P[k + 1] + xi * carry) % p
++            q[k] = carry
++        denom = 1
++        for j in pts:
++            if j != xi:
++                denom = denom * (xi - j) % p
++        s = ys[i] * pow(denom, -1, p) % p
++        for k in range(D + 1):
++            coef[k] = (coef[k] + s * q[k]) % p
++    return coef[n - 1:D + 1]
+diff --git a/tests/test_task.py b/tests/test_task.py
+new file mode 100644
+index 0000000..90d91d3
+--- /dev/null
++++ b/tests/test_task.py
+@@ -0,0 +1,34 @@
++def check(candidate):
++    # Test cases from the problem
++    assert candidate(4, 998244353) == [12, 9, 3, 0]
++    assert candidate(6, 924844033) == [810, 2100, 3060, 3030, 2230, 1210, 450, 100, 10, 0, 0]
++    
++    # Additional test cases
++    assert candidate(2, 100000039) == [1]
++    assert candidate(2, 100000007) == [1]
++    assert candidate(2, 999999937) == [1]
++    
++    assert candidate(6, 100000037) == [810, 2100, 3060, 3030, 2230, 1210, 450, 100, 10, 0, 0]
++    assert candidate(2, 999999937) == [0]
++    assert candidate(6, 100000007) == [810, 2100, 3060, 3030, 2230, 1210, 450, 100, 10, 0, 0]
++    assert candidate(6, 999999937) == [810, 2100, 3060, 3030, 2230, 1210, 450, 100, 10, 0, 0]
++    
++    assert candidate(4, 100000037) == [12, 9, 3, 0]
++    
++    assert candidate(8, 999999937) == [143360, 748440, 2249520, 4929960, 8556240, 12240270, 14828170, 15482040, 14024780, 10976945, 7334985, 4117750, 1906730, 712950, 209510, 46550, 7350, 735, 35, 0, 0, 0]
++    assert candidate(8, 100000039) == [143360, 748440, 2249520, 4929960, 8556240, 12240270, 14828170, 15482040, 14024780, 10976945, 7334985, 4117750, 1906730, 712950, 209510, 46550, 7350, 735, 35, 0, 0, 0]
++    
++    assert candidate(10, 100000037) == [49218750, 19111132, 55603580, 75191702, 43240780, 62036487, 35185558, 77442296, 90869336, 56396854, 80488969, 86311771, 88802659, 38298859, 36192363, 19117498, 65614370, 78028051, 79071198, 19799430, 48709285, 7801005, 69500348, 68898904, 13662644, 51885430, 45426254, 47501118, 7422030, 899640, 79380, 4536, 126, 0, 0, 0, 0]
++    assert candidate(10, 100000039) == [49218750, 19111124, 55603540, 75191554, 43240340, 62035389, 35183186, 77437792, 90861712, 56385218, 80472803, 86291177, 88778513, 38272793, 36166521, 19094066, 65595034, 78013601, 79061466, 19793550, 48706115, 7799487, 69499708, 68898668, 13662568, 51885410, 45426250, 47501118, 7422030, 899640, 79380, 4536, 126, 0, 0, 0, 0]
++    assert candidate(10, 999999937) == [49218750, 419111280, 55604446, 475194881, 43250306, 962060202, 635236874, 277539795, 291034383, 856648723, 380838944, 786757587, 389325401, 338863169, 136751836, 619624763, 866032944, 578340862, 679281858, 19926732, 548777884, 907833813, 69514204, 868903963, 813664239, 51885863, 245426328, 47501118, 7422030, 899640, 79380, 4536, 126, 0, 0, 0, 0]
++    assert candidate(10, 433416647) == [49218750, 419111280, 321937732, 107111441, 372416570, 351559278, 312484809, 334285827, 317777667, 211471846, 58741385, 422156135, 323887465, 54923551, 121645733, 94354149, 346849276, 72744827, 385773306, 163421544, 351691775, 59915863, 430096957, 166653801, 346330874, 185052506, 245426328, 47501118, 7422030, 899640, 79380, 4536, 126, 0, 0, 0, 0]
++
++
++import os as _os
++import sys as _sys
++_sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))))
++from solution import count_balanced_graphs  # noqa: E402
++
++if __name__ == "__main__":
++    check(count_balanced_graphs)
++    print("ALL_TESTS_PASSED")

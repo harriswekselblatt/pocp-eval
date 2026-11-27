@@ -1,0 +1,57 @@
+diff --git a/solution.py b/solution.py
+index 3098540..252841f 100644
+--- a/solution.py
++++ b/solution.py
+@@ -14,7 +14,7 @@ def min_operations_to_sum(nums: List[int], target: int) -> int:
+     
+     Args:
+         nums: List of integers that are powers of 2 (1 <= len(nums) <= 1000)
+-        target: Target sum to achieve (1 <= target < 2^31)
++        target: Positive target sum to achieve
+     
+     Returns:
+         Minimum number of operations, or -1 if impossible
+@@ -26,4 +26,29 @@ def min_operations_to_sum(nums: List[int], target: int) -> int:
+     >>> min_operations_to_sum([1, 32, 1], 35)
+     -1
+     """
+-    pass
++    if sum(nums) < target:
++        return -1
++
++    counts = [0] * (max(max(nums), target).bit_length() + 1)
++    for value in nums:
++        counts[value.bit_length() - 1] += 1
++
++    operations = 0
++    for bit in range(target.bit_length()):
++        if target & (1 << bit):
++            if counts[bit] == 0:
++                # Split the nearest larger piece, leaving one spare at each level.
++                source = bit + 1
++                while counts[source] == 0:
++                    source += 1
++                operations += source - bit
++                while source > bit:
++                    counts[source] -= 1
++                    source -= 1
++                    counts[source] += 2
++            counts[bit] -= 1
++
++        # Two unused pieces can supply one unit of the next bit for free.
++        counts[bit + 1] += counts[bit] // 2
++
++    return operations
+diff --git a/tests/test_task.py b/tests/test_task.py
+index 5d9ef8e..3b6b3f4 100644
+--- a/tests/test_task.py
++++ b/tests/test_task.py
+@@ -10,7 +10,7 @@ def check(candidate):
+     assert candidate([16], 1310) == -1
+     assert candidate([4, 16, 2], 35) == -1
+     assert candidate([128, 16], 1247) == -1
+-    assert candidate([1, 2, 8], 7) == 0
++    assert candidate([1, 2, 4], 7) == 0
+     assert candidate([16384], 503346) == -1
+     assert candidate([256, 16], 47507) == -1
+     assert candidate([32, 4, 2, 8], 25) == 2

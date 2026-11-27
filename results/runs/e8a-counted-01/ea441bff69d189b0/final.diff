@@ -1,0 +1,101 @@
+diff --git a/solution.py b/solution.py
+index a2449a5..dafcbc7 100644
+--- a/solution.py
++++ b/solution.py
+@@ -1,3 +1,9 @@
++from math import comb, isqrt
++
++
++_MOD = 998244353
++
++
+ def count_good_sequences(N: int, M: int) -> int:
+     """ Count the number of length-M sequences of positive integers whose product is a "good integer" not exceeding N.
+     
+@@ -19,4 +25,85 @@ def count_good_sequences(N: int, M: int) -> int:
+     >>> count_good_sequences(370, 907)
+     221764640
+     """
+-    pass
++    if N < 2:
++        return 0
++
++    limit = isqrt(N)
++    counts = _prime_counts(N, limit)
++    primes = [
++        p for p in range(2, limit + 1)
++        if counts[p][0] != counts[p - 1][0]
++    ]
++    # Distribute each prime's exponent independently among the M entries.
++    weights = [comb(M + a - 1, a) % _MOD for a in range(N.bit_length())]
++
++    def count(bound, start, good):
++        # Count nonempty factorizations whose primes follow the prefix.
++        total, qualifying = counts[bound]
++        if start:
++            previous_total, previous_qualifying = counts[primes[start - 1]]
++            total -= previous_total
++            qualifying -= previous_qualifying
++        # Exponent-one primes contribute M choices and qualify at residue 2.
++        result = M * (total if good else qualifying)
++
++        for i in range(start, len(primes)):
++            prime = primes[i]
++            if prime * prime > bound:
++                break
++
++            power = prime
++            exponent = 1
++            while power <= bound:
++                # The geometric divisor sum depends on the prime modulo 3.
++                power_good = good or (
++                    exponent % 2 == 1 if prime % 3 == 2
++                    else prime % 3 == 1 and exponent % 3 == 2
++                )
++                remaining = bound // power
++                if i + 1 < len(primes):
++                    has_suffix = primes[i + 1] <= remaining
++                else:
++                    has_suffix = counts[remaining][0] > counts[prime][0]
++                subtotal = int(exponent > 1 and power_good)
++                if has_suffix:
++                    subtotal += count(remaining, i + 1, power_good)
++                result += weights[exponent] * subtotal
++                exponent += 1
++                power *= prime
++        return result % _MOD
++
++    return count(N, 0, False)
++
++
++def _prime_counts(n, limit):
++    # These are all possible bounds after dividing n by a product of primes.
++    bounds = [n // i for i in range(1, n // (limit + 1) + 1)]
++    bounds.extend(range(limit, 0, -1))
++    one = {v: (v - 1) // 3 for v in bounds}
++    two = {v: (v + 1) // 3 for v in bounds}
++
++    # Remove composites in order of their least prime factor. Multiplication
++    # by a prime congruent to 2 swaps the two nonzero residue classes.
++    for p in range(2, limit + 1):
++        if one[p] == one[p - 1] and two[p] == two[p - 1]:
++            continue
++        square = p * p
++        if p % 3 == 1:
++            before_one, before_two = one[p - 1], two[p - 1]
++            for v in bounds:
++                if v < square:
++                    break
++                q = v // p
++                one[v] -= one[q] - before_one
++                two[v] -= two[q] - before_two
++        else:
++            before_one, before_two = one[p - 1], two[p - 1]
++            for v in bounds:
++                if v < square:
++                    break
++                q = v // p
++                one[v] -= two[q] - before_two
++                two[v] -= one[q] - before_one
++
++    return {v: (one[v] + two[v] + (v >= 3), two[v]) for v in bounds}

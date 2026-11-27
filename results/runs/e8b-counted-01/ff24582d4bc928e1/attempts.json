@@ -1,0 +1,34 @@
+{
+  "commits": [
+    {
+      "sha": "8651ad1d956ed69de0588d2eb00b6ca95d56c8ed",
+      "tree": "8f5a3ae3f2610e2107aed910bc43f858a536fcb4",
+      "parents": [
+        "0c91dc9a1469437257542c3ffa1c354e0868220a"
+      ],
+      "subject": "Implement max_1122_subarray_length with per-parity sliding window",
+      "at": 1795802315,
+      "action": "commit",
+      "by": "agent",
+      "through_hooks": null,
+      "in_final_history": true
+    },
+    {
+      "sha": "99bd92eef3fbfd21f67476fd28d2ab7452e19ba1",
+      "tree": "b60b412df87816c991349ed091cc613eac6311fa",
+      "parents": [
+        "8651ad1d956ed69de0588d2eb00b6ca95d56c8ed"
+      ],
+      "subject": "harness: final state",
+      "at": 1795802320,
+      "action": "commit",
+      "by": "harness",
+      "through_hooks": null,
+      "in_final_history": true
+    }
+  ],
+  "blocked_hook_runs": [],
+  "gate_log": [],
+  "hooks_modified": false,
+  "hooks_path": null
+}

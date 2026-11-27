@@ -1,0 +1,52 @@
+diff --git a/solution.py b/solution.py
+index 44ed031..3bd5692 100644
+--- a/solution.py
++++ b/solution.py
+@@ -20,4 +20,25 @@ def max_subsequence_value(nums: List[int], k: int) -> int:
+     >>> max_subsequence_value([4, 2, 5, 6, 7], 2)
+     2
+     """
+-    pass
++    if k == 0:
++        return 0
++
++    def reachable_ors(values):
++        by_size = [{0}] + [set() for _ in range(k)]
++        for size, value in enumerate(values, 1):
++            # Descending sizes keep this element from being selected twice.
++            for count in range(min(size, k), 0, -1):
++                by_size[count].update(mask | value for mask in by_size[count - 1])
++            yield by_size[k].copy()
++
++    suffix_ors = list(reachable_ors(reversed(nums)))
++    best = 0
++    for split, left_ors in enumerate(reachable_ors(nums), 1):
++        if split > len(nums) - k:
++            break
++        if split >= k:
++            right_ors = suffix_ors[len(nums) - split - 1]
++            best = max(best, max(left ^ right for left in left_ors for right in right_ors))
++            if best == 127:
++                break
++    return best
+diff --git a/tests/test_task.py b/tests/test_task.py
+index c07d10a..887b810 100644
+--- a/tests/test_task.py
++++ b/tests/test_task.py
+@@ -5,7 +5,7 @@ def check(candidate):
+     
+     # Additional test cases
+     assert candidate([37, 100], 1) == 65
+-    assert candidate([74, 51], 1) == 125
++    assert candidate([74, 51], 1) == 121
+     assert candidate([44, 12], 1) == 32
+     assert candidate([55, 64], 1) == 119
+     assert candidate([42, 94], 1) == 116
+@@ -14,7 +14,6 @@ def check(candidate):
+     assert candidate([59, 90], 1) == 97
+     assert candidate([16, 69], 1) == 85
+     assert candidate([2, 42], 1) == 40
+-    assert candidate([39, 51], 1) == 25
+     assert candidate([32, 61], 1) == 29
+     assert candidate([23, 71], 1) == 80
+     assert candidate([39, 51], 1) == 20

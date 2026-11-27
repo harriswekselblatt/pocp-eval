@@ -1,0 +1,34 @@
+{
+  "commits": [
+    {
+      "sha": "f6b6bd278159990bdf14e1e498f2d4324e7affc3",
+      "tree": "1f3956473aaf630723683d94b423334c02958c1b",
+      "parents": [
+        "ead3c389eabbe507ee1b11fecfe750d55473e435"
+      ],
+      "subject": "Implement count_polish_sequences using ballot-number prefix sums",
+      "at": 1795802466,
+      "action": "commit",
+      "by": "agent",
+      "through_hooks": null,
+      "in_final_history": true
+    },
+    {
+      "sha": "905ea3451afbe3d925f3c7046f3961b0ec422e4a",
+      "tree": "5e7bed572c0f96306df456470f170094c9dba291",
+      "parents": [
+        "f6b6bd278159990bdf14e1e498f2d4324e7affc3"
+      ],
+      "subject": "harness: final state",
+      "at": 1795802473,
+      "action": "commit",
+      "by": "harness",
+      "through_hooks": null,
+      "in_final_history": true
+    }
+  ],
+  "blocked_hook_runs": [],
+  "gate_log": [],
+  "hooks_modified": false,
+  "hooks_path": null
+}

@@ -1,0 +1,43 @@
+diff --git a/solution.py b/solution.py
+index 686fc0b..1520917 100644
+--- a/solution.py
++++ b/solution.py
+@@ -24,4 +24,37 @@ def min_team_switches(people: List[Tuple[int, int]]) -> int:
+     >>> min_team_switches([(1, 1), (2, 1), (3, 1)])
+     0
+     """
+-    pass
++    totals = [0, 0, 0]
++    for team, strength in people:
++        totals[team - 1] += strength
++
++    target, remainder = divmod(sum(totals), 3)
++    if remainder:
++        return -1
++    if all(total == target for total in totals):
++        return 0
++
++    # The third team's strength is determined by the first two and the
++    # total strength assigned so far.
++    costs = {(0, 0): 0}
++    assigned = 0
++    for original_team, strength in sorted(people, key=lambda person: -person[1]):
++        next_costs = {}
++        for (first, second), cost in costs.items():
++            third = assigned - first - second
++            destinations = (
++                (first + strength, (first + strength, second)),
++                (second + strength, (first, second + strength)),
++                (third + strength, (first, second)),
++            )
++            for team, (total, state) in enumerate(destinations, start=1):
++                if total <= target:
++                    new_cost = cost + (team != original_team)
++                    if state not in next_costs or new_cost < next_costs[state]:
++                        next_costs[state] = new_cost
++        if not next_costs:
++            return -1
++        costs = next_costs
++        assigned += strength
++
++    return costs.get((target, target), -1)

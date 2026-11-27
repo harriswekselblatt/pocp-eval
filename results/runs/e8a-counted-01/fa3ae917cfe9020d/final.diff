@@ -1,0 +1,59 @@
+diff --git a/solution.py b/solution.py
+index 3ea4e88..86a9a5b 100644
+--- a/solution.py
++++ b/solution.py
+@@ -1,20 +1,41 @@
++from functools import lru_cache
++
++
++@lru_cache(maxsize=None)
++def _achievable_unfixed(n: int) -> int:
++    """Bitmask of possible counts of non-fixed cells in an n x n binary matrix.
++
++    Non-fixed cells form disjoint a_i x b_i blocks (a_i, b_i >= 2) over disjoint
++    row and column sets, so the count is a sum of a_i * b_i.
++    """
++    dp = [[0] * (n + 1) for _ in range(n + 1)]
++    for r in range(n + 1):
++        for c in range(n + 1):
++            m = 1
++            for a in range(2, r + 1):
++                for b in range(2, c + 1):
++                    m |= dp[r - a][c - b] << (a * b)
++            dp[r][c] = m
++    return dp[n][n]
++
++
+ def matrix_with_k_fixed_elements_exists(n: int, k: int) -> bool:
+     """ Given an integer n (size of matrix) and k (number of fixed elements),
+     determine if there exists an n×n binary matrix with exactly k fixed elements.
+-    
++
+     A binary matrix has elements that are either 0 or 1.
+     Two matrices A and B are similar if they have the same row sums and column sums.
+-    An element at position (i,j) in matrix A is fixed if it has the same value 
++    An element at position (i,j) in matrix A is fixed if it has the same value
+     in all matrices similar to A.
+-    
++
+     Args:
+         n: Size of the matrix (2 ≤ n ≤ 30)
+         k: Number of fixed elements (0 ≤ k ≤ n²)
+-    
++
+     Returns:
+         True if there exists an n×n binary matrix with exactly k fixed elements,
+         False otherwise.
+-    
++
+     >>> matrix_with_k_fixed_elements_exists(3, 0)
+     True
+     >>> matrix_with_k_fixed_elements_exists(3, 9)
+@@ -22,4 +43,6 @@ def matrix_with_k_fixed_elements_exists(n: int, k: int) -> bool:
+     >>> matrix_with_k_fixed_elements_exists(3, 7)
+     False
+     """
+-    pass
++    if k < 0 or k > n * n:
++        return False
++    return bool((_achievable_unfixed(n) >> (n * n - k)) & 1)

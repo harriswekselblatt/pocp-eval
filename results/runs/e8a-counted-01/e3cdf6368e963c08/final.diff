@@ -1,0 +1,20 @@
+diff --git a/solution.py b/solution.py
+index bf56b72..30bf3a6 100644
+--- a/solution.py
++++ b/solution.py
+@@ -23,4 +23,14 @@ def count_good_arrays(n: int, m: int, k: int) -> int:
+     >>> count_good_arrays(5, 2, 0)
+     2
+     """
+-    pass
++    MOD = 10**9 + 7
++    r = n - 1 - k
++    if r < 0 or k < 0:
++        return 0
++    num = 1
++    den = 1
++    for i in range(k):
++        num = num * (n - 1 - i) % MOD
++        den = den * (i + 1) % MOD
++    comb = num * pow(den, MOD - 2, MOD) % MOD
++    return m * comb % MOD * pow(m - 1, r, MOD) % MOD

@@ -1,0 +1,66 @@
+diff --git a/solution.py b/solution.py
+index a185cc7..eb4716c 100644
+--- a/solution.py
++++ b/solution.py
+@@ -1,3 +1,7 @@
++from functools import lru_cache
++from math import comb
++
++
+ def count_balanced_graphs(n: int, p: int) -> list[int]:
+     """ Given an even positive integer n and a prime number p, for each M from n-1 to n*(n-1)//2,
+     count the number of undirected connected simple graphs with n vertices (labeled 1 to n) and M edges
+@@ -16,4 +20,39 @@ def count_balanced_graphs(n: int, p: int) -> list[int]:
+     >>> count_balanced_graphs(6, 924844033)
+     [810, 2100, 3060, 3030, 2230, 1210, 450, 100, 10, 0, 0]
+     """
+-    pass
++    max_edges = n * (n - 1) // 2
++    # Pack edge-count coefficients into an integer. Even the total count of
++    # graphs is at most 2**max_edges, so coefficients cannot carry.
++    bits = max_edges + 1
++    x = 1 << bits
++    mask = x - 1
++    half = n // 2
++
++    # Within a layer, edges are optional. Each vertex in the next layer
++    # must choose a nonempty set of neighbors in the current layer.
++    layer_edges = [(1 + x) ** comb(size, 2) for size in range(half + 1)]
++    next_layer_edges = [
++        [((1 + x) ** size - 1) ** count for count in range(half + 1)]
++        for size in range(half + 1)
++    ]
++
++    @lru_cache(maxsize=None)
++    def layers(size: int, same: int, opposite: int) -> int:
++        # The remaining quotas are relative to the current layer's parity.
++        if same == opposite == 0:
++            return layer_edges[size]
++
++        total = 0
++        for count in range(1, opposite + 1):
++            tail = layers(count, opposite - count, same)
++            if tail:
++                total += comb(opposite, count) * next_layer_edges[size][count] * tail
++        return layer_edges[size] * total
++
++    # First choose the labels of the odd-distance vertices. The root is
++    # already fixed as the sole vertex in layer zero.
++    packed = comb(n - 1, half) * layers(1, half - 1, half)
++    return [
++        ((packed >> (edges * bits)) & mask) % p
++        for edges in range(n - 1, max_edges + 1)
++    ]
+diff --git a/tests/test_task.py b/tests/test_task.py
+index 90d91d3..f32b999 100644
+--- a/tests/test_task.py
++++ b/tests/test_task.py
+@@ -9,7 +9,7 @@ def check(candidate):
+     assert candidate(2, 999999937) == [1]
+     
+     assert candidate(6, 100000037) == [810, 2100, 3060, 3030, 2230, 1210, 450, 100, 10, 0, 0]
+-    assert candidate(2, 999999937) == [0]
++    assert candidate(4, 999999937) == [12, 9, 3, 0]
+     assert candidate(6, 100000007) == [810, 2100, 3060, 3030, 2230, 1210, 450, 100, 10, 0, 0]
+     assert candidate(6, 999999937) == [810, 2100, 3060, 3030, 2230, 1210, 450, 100, 10, 0, 0]
+     

@@ -1,0 +1,80 @@
+diff --git a/solution.py b/solution.py
+index 3e1aa48..916428b 100644
+--- a/solution.py
++++ b/solution.py
+@@ -1,20 +1,65 @@
++from functools import lru_cache
++
++
++def _divisors(m: int):
++    factors = {}
++    p = 2
++    r = m
++    while p * p <= r:
++        while r % p == 0:
++            factors[p] = factors.get(p, 0) + 1
++            r //= p
++        p += 1
++    if r > 1:
++        factors[r] = factors.get(r, 0) + 1
++    divs = [1]
++    for p, e in factors.items():
++        divs = [d * p**k for d in divs for k in range(e + 1)]
++    return sorted(divs)
++
++
++@lru_cache(maxsize=None)
++def _solve(m: int):
++    s = str(m)
++    if '0' not in s and s == s[::-1]:
++        return s
++    for a in _divisors(m):
++        if a == 1:
++            continue
++        sa = str(a)
++        if '0' in sa:
++            continue
++        pair = a * int(sa[::-1])
++        if pair > m:
++            continue
++        if m % pair:
++            continue
++        rest = m // pair
++        if rest == 1:
++            return sa + '*' + sa[::-1]
++        inner = _solve(rest)
++        if inner != '-1':
++            return sa + '*' + inner + '*' + sa[::-1]
++    return '-1'
++
++
+ def find_palindrome_expression(n: int) -> str:
+     """ Find a palindrome string S that represents a mathematical expression evaluating to n.
+-    
++
+     The string must satisfy:
+     - Length between 1 and 1000 characters
+     - Consists only of digits 1-9 and the multiplication symbol '*'
+     - Is a palindrome (reads the same forwards and backwards)
+     - First character must be a digit
+     - When evaluated as a mathematical expression, equals n
+-    
++
+     Args:
+         n: An integer between 1 and 10^12
+-        
++
+     Returns:
+         A palindrome string representing an expression that evaluates to n,
+         or '-1' if no such string exists.
+-        
++
+     >>> find_palindrome_expression(363)
+     '11*3*11'
+     >>> find_palindrome_expression(101)
+@@ -22,4 +67,4 @@ def find_palindrome_expression(n: int) -> str:
+     >>> find_palindrome_expression(3)
+     '3'
+     """
+-    pass
++    return _solve(n)

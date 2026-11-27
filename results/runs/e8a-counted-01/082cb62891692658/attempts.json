@@ -1,0 +1,21 @@
+{
+  "commits": [
+    {
+      "sha": "09ffb8128234646629839e507ea22b9cadf2874b",
+      "tree": "f7166bd053e12b8eb51f670fa308b182da560f62",
+      "parents": [
+        "d62bd6f7c627a0d934559d74ee29c43089a140b9"
+      ],
+      "subject": "Implement max_shortest_distance via layered min-cut",
+      "at": 1795799879,
+      "action": "commit",
+      "by": "agent",
+      "through_hooks": null,
+      "in_final_history": true
+    }
+  ],
+  "blocked_hook_runs": [],
+  "gate_log": [],
+  "hooks_modified": false,
+  "hooks_path": null
+}

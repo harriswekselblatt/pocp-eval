@@ -1,0 +1,114 @@
+{
+  "commits": [
+    {
+      "sha": "bc824efbadcf810453180d7f79286f107ba89dc9",
+      "tree": "4c0b095d986a87cd2ca5d879347b468f5eb63b68",
+      "parents": [
+        "180f55478103235d8888dae9bcdbcc598e812ae1"
+      ],
+      "subject": "Implement bounded edit distance check",
+      "at": 1795800218,
+      "action": "commit",
+      "by": "agent",
+      "through_hooks": true,
+      "in_final_history": true
+    }
+  ],
+  "blocked_hook_runs": [
+    {
+      "at": 1795800199,
+      "exit": 1,
+      "tree": "139c8c58031ba36d6a5752d78d03fe4fbc582ad4",
+      "gate": {
+        "decision": "blocked",
+        "subject": "sha256:261c385170aeb01d9414fe85f59ee1791729723699575de209f139a2de958f7c",
+        "required": 2,
+        "uncovered": 2,
+        "packets": []
+      },
+      "reason": "uncovered"
+    }
+  ],
+  "gate_log": [
+    {
+      "at": "2026-11-27T17:23:19.744Z",
+      "source": "hook",
+      "decision": "blocked",
+      "subject": "sha256:261c385170aeb01d9414fe85f59ee1791729723699575de209f139a2de958f7c",
+      "required": 2,
+      "uncovered": 2,
+      "packets": []
+    },
+    {
+      "at": "2026-11-27T17:23:34.609Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:2a484b6f79d58cab3779948a952019b94fc2cfb55da04da1fd5db16dc375704b",
+      "required": 2,
+      "uncovered": 2,
+      "packets": []
+    },
+    {
+      "at": "2026-11-27T17:23:34.704Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:2a484b6f79d58cab3779948a952019b94fc2cfb55da04da1fd5db16dc375704b",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-da962132",
+          "ok": false,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-27T17:23:35.470Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:2a484b6f79d58cab3779948a952019b94fc2cfb55da04da1fd5db16dc375704b",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-da962132",
+          "ok": false,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-27T17:23:35.522Z",
+      "source": "fix",
+      "decision": "pass",
+      "subject": "sha256:2a484b6f79d58cab3779948a952019b94fc2cfb55da04da1fd5db16dc375704b",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-da962132",
+          "ok": true,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-27T17:23:38.488Z",
+      "source": "hook",
+      "decision": "pass",
+      "subject": "sha256:2a484b6f79d58cab3779948a952019b94fc2cfb55da04da1fd5db16dc375704b",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-da962132",
+          "ok": true,
+          "failed": 0
+        }
+      ]
+    }
+  ],
+  "hooks_modified": false,
+  "hooks_path": null
+}

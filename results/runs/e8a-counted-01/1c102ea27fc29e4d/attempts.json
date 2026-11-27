@@ -1,0 +1,21 @@
+{
+  "commits": [
+    {
+      "sha": "5b0df2bf52345cfbc0f06f749190ef7134a52bf8",
+      "tree": "f2d59a271c32c4661bf17abed79a7b84fe4c35c8",
+      "parents": [
+        "b26c4a5876b5373c1b5b839568570ebb83ef6558"
+      ],
+      "subject": "Compute maximum shortest distance with layered min cuts",
+      "at": 1795800048,
+      "action": "commit",
+      "by": "agent",
+      "through_hooks": null,
+      "in_final_history": true
+    }
+  ],
+  "blocked_hook_runs": [],
+  "gate_log": [],
+  "hooks_modified": false,
+  "hooks_path": null
+}

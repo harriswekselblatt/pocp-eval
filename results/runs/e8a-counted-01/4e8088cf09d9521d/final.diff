@@ -1,0 +1,72 @@
+diff --git a/solution.py b/solution.py
+index a185cc7..f0898f9 100644
+--- a/solution.py
++++ b/solution.py
+@@ -16,4 +16,66 @@ def count_balanced_graphs(n: int, p: int) -> list[int]:
+     >>> count_balanced_graphs(6, 924844033)
+     [810, 2100, 3060, 3030, 2230, 1210, 450, 100, 10, 0, 0]
+     """
+-    pass
++    half = n // 2
++    D = n * (n - 1) // 2
++    xs = list(range(D + 1))
++    npts = D + 1
++
++    fact = [1] * (n + 1)
++    for i in range(1, n + 1):
++        fact[i] = fact[i - 1] * i % p
++    inv_fact = [pow(f, p - 2, p) for f in fact]
++
++    # w[s][t][pt]: weight of a layer of size t following a layer of size s, at point x
++    w = [[None] * (half + 1) for _ in range(half + 1)]
++    for s in range(1, half + 1):
++        for t in range(1, half + 1):
++            arr = [0] * npts
++            for k, x in enumerate(xs):
++                base = pow(1 + x, s, p) - 1
++                arr[k] = pow(base, t, p) * pow(1 + x, t * (t - 1) // 2, p) % p * inv_fact[t] % p
++            w[s][t] = arr
++
++    # f[(e, o, last, parity)] -> values at all points; layer 0 has size 1 (even)
++    ones = [1] * npts
++    f = {}
++    if half >= 1:
++        f[(1, 0, 1, 0)] = ones
++    for total in range(1, n):
++        for (e, o, last, par), val in [(k, v) for k, v in f.items() if k[0] + k[1] == total]:
++            npar = 1 - par
++            for t in range(1, half + 1):
++                ne, no = (e, o + t) if npar else (e + t, o)
++                if ne > half or no > half:
++                    continue
++                key = (ne, no, t, npar)
++                wt = w[last][t]
++                nv = [a * b % p for a, b in zip(val, wt)]
++                if key in f:
++                    f[key] = [(a + b) % p for a, b in zip(f[key], nv)]
++                else:
++                    f[key] = nv
++    res = [0] * npts
++    for (e, o, last, par), val in f.items():
++        if e == half and o == half:
++            res = [(a + b) % p for a, b in zip(res, val)]
++    scale = fact[n - 1]
++    ys = [v * scale % p for v in res]
++
++    # Newton interpolation at points 0..D
++    dd = ys[:]
++    for j in range(1, npts):
++        invj = pow(j, p - 2, p)
++        for i in range(npts - 1, j - 1, -1):
++            dd[i] = (dd[i] - dd[i - 1]) * invj % p
++    # convert Newton form to monomial coefficients
++    poly = [dd[-1]]
++    for i in range(npts - 2, -1, -1):
++        new = [0] * (len(poly) + 1)
++        for k, c in enumerate(poly):
++            new[k + 1] = (new[k + 1] + c) % p
++            new[k] = (new[k] - c * xs[i]) % p
++        new[0] = (new[0] + dd[i]) % p
++        poly = new
++    poly += [0] * (D + 1 - len(poly))
++    return [poly[m] % p for m in range(n - 1, D + 1)]

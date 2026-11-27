@@ -1,0 +1,114 @@
+{
+  "commits": [
+    {
+      "sha": "047e45133985f1089073d697f4014a67f16c0859",
+      "tree": "863112ddc580e063a7ec62867e741dc2a478a61b",
+      "parents": [
+        "bc841aa9579f896c5e7ee3156b2d0ea124eb579d"
+      ],
+      "subject": "Implement modular cycle coloring count",
+      "at": 1795792501,
+      "action": "commit",
+      "by": "agent",
+      "through_hooks": true,
+      "in_final_history": true
+    }
+  ],
+  "blocked_hook_runs": [
+    {
+      "at": 1795792486,
+      "exit": 1,
+      "tree": "c7a273cf53c783799d662e09f9f1c4c8a8100d56",
+      "gate": {
+        "decision": "blocked",
+        "subject": "sha256:532d176d8c2c90c7e1769e8ede7307121bf173f7cc11c9cf1245423fef4fd9d1",
+        "required": 2,
+        "uncovered": 2,
+        "packets": []
+      },
+      "reason": "uncovered"
+    }
+  ],
+  "gate_log": [
+    {
+      "at": "2026-11-27T15:14:46.717Z",
+      "source": "hook",
+      "decision": "blocked",
+      "subject": "sha256:532d176d8c2c90c7e1769e8ede7307121bf173f7cc11c9cf1245423fef4fd9d1",
+      "required": 2,
+      "uncovered": 2,
+      "packets": []
+    },
+    {
+      "at": "2026-11-27T15:14:58.616Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:532d176d8c2c90c7e1769e8ede7307121bf173f7cc11c9cf1245423fef4fd9d1",
+      "required": 2,
+      "uncovered": 2,
+      "packets": []
+    },
+    {
+      "at": "2026-11-27T15:14:58.652Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:532d176d8c2c90c7e1769e8ede7307121bf173f7cc11c9cf1245423fef4fd9d1",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-cfe71614",
+          "ok": false,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-27T15:14:58.956Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:532d176d8c2c90c7e1769e8ede7307121bf173f7cc11c9cf1245423fef4fd9d1",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-cfe71614",
+          "ok": false,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-27T15:14:58.990Z",
+      "source": "fix",
+      "decision": "pass",
+      "subject": "sha256:532d176d8c2c90c7e1769e8ede7307121bf173f7cc11c9cf1245423fef4fd9d1",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-cfe71614",
+          "ok": true,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-27T15:15:01.304Z",
+      "source": "hook",
+      "decision": "pass",
+      "subject": "sha256:532d176d8c2c90c7e1769e8ede7307121bf173f7cc11c9cf1245423fef4fd9d1",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-cfe71614",
+          "ok": true,
+          "failed": 0
+        }
+      ]
+    }
+  ],
+  "hooks_modified": false,
+  "hooks_path": null
+}

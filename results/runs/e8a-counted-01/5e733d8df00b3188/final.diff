@@ -1,0 +1,44 @@
+diff --git a/solution.py b/solution.py
+index 07ef46a..1bcddb7 100644
+--- a/solution.py
++++ b/solution.py
+@@ -1,3 +1,4 @@
++from math import lcm
+ from typing import List
+ 
+ 
+@@ -21,4 +22,33 @@ def kth_smallest_amount(coins: List[int], k: int) -> int:
+     >>> kth_smallest_amount([5, 2], 7)
+     12
+     """
+-    pass
++    denominations = []
++    for coin in sorted(coins):
++        if all(coin % smaller for smaller in denominations):
++            denominations.append(coin)
++
++    low, high = 1, denominations[0] * k
++    # Combine inclusion-exclusion terms that count the same set of multiples.
++    coefficients = {}
++    for coin in denominations:
++        updates = {coin: 1}
++        for divisor, coefficient in coefficients.items():
++            common = lcm(divisor, coin)
++            if common <= high:
++                updates[common] = updates.get(common, 0) - coefficient
++        for divisor, coefficient in updates.items():
++            combined = coefficients.get(divisor, 0) + coefficient
++            if combined:
++                coefficients[divisor] = combined
++            else:
++                coefficients.pop(divisor, None)
++
++    while low < high:
++        mid = (low + high) // 2
++        count = sum(coefficient * (mid // divisor)
++                    for divisor, coefficient in coefficients.items())
++        if count >= k:
++            high = mid
++        else:
++            low = mid + 1
++    return low

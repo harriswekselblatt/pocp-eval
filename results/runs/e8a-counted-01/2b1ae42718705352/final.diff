@@ -1,0 +1,31 @@
+diff --git a/solution.py b/solution.py
+index 21dc05f..cb92f52 100644
+--- a/solution.py
++++ b/solution.py
+@@ -27,4 +27,25 @@ def count_valid_permutations(n: int, requirements: List[List[int]]) -> int:
+     >>> count_valid_permutations(2, [[0, 0], [1, 0]])
+     1
+     """
+-    pass
++    MOD = 10**9 + 7
++    M = 400
++    req = {e: c for e, c in requirements}
++    dp = [0] * (M + 1)
++    dp[0] = 1
++    if 0 in req and req[0] != 0:
++        return 0
++    for i in range(1, n):
++        pre = [0] * (M + 2)
++        for j in range(M + 1):
++            pre[j + 1] = (pre[j] + dp[j]) % MOD
++        new = [0] * (M + 1)
++        for j in range(M + 1):
++            new[j] = (pre[j + 1] - pre[max(0, j - i)]) % MOD
++        if i in req:
++            c = req[i]
++            keep = new[c] if c <= M else 0
++            new = [0] * (M + 1)
++            if c <= M:
++                new[c] = keep
++        dp = new
++    return sum(dp) % MOD

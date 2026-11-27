@@ -1,0 +1,72 @@
+diff --git a/solution.py b/solution.py
+index ba1ce3f..2a243d8 100644
+--- a/solution.py
++++ b/solution.py
+@@ -25,4 +25,66 @@ def max_shortest_distance(n: int, m: int, k: int, edges: List[Tuple[int, int]])
+     >>> max_shortest_distance(2, 2, 1, [(1, 2), (1, 2)])
+     0
+     """
+-    pass
++    from collections import deque
++
++    INF = 10 ** 9
++
++    def min_marked(D: int) -> int:
++        # Min number of weight-1 edges so that dist(1, n) >= D (layered min cut).
++        idx = lambda v, j: (v - 1) * D + (j - 1)
++        S, T = n * D, n * D + 1
++        graph = [[] for _ in range(n * D + 2)]
++
++        def add(a, b, c):
++            graph[a].append([b, c, len(graph[b])])
++            graph[b].append([a, 0, len(graph[a]) - 1])
++
++        for v in range(1, n + 1):
++            for j in range(1, D + 1):
++                if j < D:
++                    add(idx(v, j + 1), idx(v, j), INF)
++                if v == n:
++                    add(S, idx(v, j), INF)
++                if v == 1:
++                    add(idx(v, j), T, INF)
++        for u, v in edges:
++            for j in range(1, D + 1):
++                add(idx(v, j), idx(u, j), 1)
++                if j < D:
++                    add(idx(v, j + 1), idx(u, j), INF)
++
++        flow = 0
++        while flow <= k:
++            prev = [None] * len(graph)
++            prev[S] = (-1, -1)
++            dq = deque([S])
++            while dq and prev[T] is None:
++                a = dq.popleft()
++                for i, (b, c, _) in enumerate(graph[a]):
++                    if c > 0 and prev[b] is None:
++                        prev[b] = (a, i)
++                        dq.append(b)
++            if prev[T] is None:
++                break
++            f = INF
++            b = T
++            while b != S:
++                a, i = prev[b]
++                f = min(f, graph[a][i][1])
++                b = a
++            b = T
++            while b != S:
++                a, i = prev[b]
++                graph[a][i][1] -= f
++                graph[b][graph[a][i][2]][1] += f
++                b = a
++            flow += f
++        return flow
++
++    best = 0
++    for D in range(1, n):
++        if min_marked(D) <= k:
++            best = D
++        else:
++            break
++    return best

@@ -1,0 +1,26 @@
+diff --git a/solution.py b/solution.py
+index 067e101..75ac03f 100644
+--- a/solution.py
++++ b/solution.py
+@@ -24,4 +24,20 @@ def max_1122_subarray_length(n: int, a: List[int]) -> int:
+     >>> max_1122_subarray_length(1, [1])
+     0
+     """
+-    pass
++    best = 0
++    for off in (0, 1):
++        last = {}
++        left = off
++        i = off
++        while i + 1 < n:
++            if a[i] != a[i + 1]:
++                last.clear()
++                left = i + 2
++            else:
++                v = a[i]
++                if v in last and last[v] >= left:
++                    left = last[v] + 2
++                last[v] = i
++                best = max(best, i + 2 - left)
++            i += 2
++    return best

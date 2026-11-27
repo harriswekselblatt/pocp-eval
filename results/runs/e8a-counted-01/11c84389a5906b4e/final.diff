@@ -1,0 +1,62 @@
+diff --git a/solution.py b/solution.py
+index 1ae40e6..b414fde 100644
+--- a/solution.py
++++ b/solution.py
+@@ -1,21 +1,52 @@
++from collections import Counter
++
++MOD = 998244353
++
++
+ def count_distinct_parenthesis_sequences(n: int, s: str) -> int:
+     """ Given a valid parenthesis sequence of length n, count the number of distinct strings
+     that can be obtained by performing the following operation any number of times:
+     - Choose a contiguous substring that is a valid parenthesis sequence and reverse it
+       (where reversing means swapping all '(' with ')' and vice versa).
+-    
++
+     Return the count modulo 998244353.
+-    
++
+     Args:
+         n: The length of the string (1 <= n <= 5000)
+         s: A valid parenthesis sequence of length n
+-    
++
+     Returns:
+         The number of distinct strings obtainable, modulo 998244353
+-    
++
+     >>> count_distinct_parenthesis_sequences(6, '(())()')
+     2
+     >>> count_distinct_parenthesis_sequences(2, '()')
+     1
+     """
+-    pass
++    fact = [1] * (n + 1)
++    for i in range(1, n + 1):
++        fact[i] = fact[i - 1] * i % MOD
++
++    class_ids = {}
++    # Each stack frame holds (class ids of children, variant counts of children).
++    stack = [([], 1)]
++    for ch in s:
++        if ch == '(':
++            stack.append(([], 1))
++            continue
++        kids, ways = stack.pop()
++        counts = Counter(kids)
++        ways_here = ways * fact[len(kids)] % MOD
++        for c in counts.values():
++            ways_here = ways_here * pow(fact[c], MOD - 2, MOD) % MOD
++        key = tuple(sorted(kids))
++        cid = class_ids.setdefault(key, len(class_ids))
++        parent_kids, parent_ways = stack[-1]
++        parent_kids.append(cid)
++        stack[-1] = (parent_kids, parent_ways * ways_here % MOD)
++    kids, ways = stack[0]
++    counts = Counter(kids)
++    res = ways * fact[len(kids)] % MOD
++    for c in counts.values():
++        res = res * pow(fact[c], MOD - 2, MOD) % MOD
++    return res

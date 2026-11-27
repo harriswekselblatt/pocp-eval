@@ -1,0 +1,24 @@
+diff --git a/solution.py b/solution.py
+index bf5d4cc..b180510 100644
+--- a/solution.py
++++ b/solution.py
+@@ -1,3 +1,6 @@
++from math import comb
++
++
+ def count_ways_to_stair(k: int) -> int:
+     """ Alice starts on stair 1 and wants to reach stair k. She has a jump value starting at 0.
+     From stair i, she can perform two types of operations:
+@@ -20,4 +23,11 @@ def count_ways_to_stair(k: int) -> int:
+     >>> count_ways_to_stair(512)
+     1
+     """
+-    pass
++    total = 0
++    n = 0
++    while (1 << n) - (n + 1) <= k:
++        d = (1 << n) - k
++        if 0 <= d <= n + 1:
++            total += comb(n + 1, d)
++        n += 1
++    return total

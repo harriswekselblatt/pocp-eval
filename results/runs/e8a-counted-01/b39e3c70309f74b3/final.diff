@@ -1,0 +1,52 @@
+diff --git a/solution.py b/solution.py
+index c0935b0..05ab7b1 100644
+--- a/solution.py
++++ b/solution.py
+@@ -28,4 +28,46 @@ def max_knight_moves(kx: int, ky: int, positions: List[List[int]]) -> int:
+     >>> max_knight_moves(0, 0, [[1, 2], [2, 4]])
+     3
+     """
+-    pass
++    from collections import deque
++    from functools import lru_cache
++
++    n = 50
++    moves = [(1, 2), (2, 1), (-1, 2), (-2, 1), (1, -2), (2, -1), (-1, -2), (-2, -1)]
++    pts = [(kx, ky)] + [(p[0], p[1]) for p in positions]
++    m = len(positions)
++
++    def bfs(sx, sy):
++        dist = [[-1] * n for _ in range(n)]
++        dist[sx][sy] = 0
++        q = deque([(sx, sy)])
++        while q:
++            x, y = q.popleft()
++            for dx, dy in moves:
++                nx, ny = x + dx, y + dy
++                if 0 <= nx < n and 0 <= ny < n and dist[nx][ny] < 0:
++                    dist[nx][ny] = dist[x][y] + 1
++                    q.append((nx, ny))
++        return dist
++
++    d = []
++    for sx, sy in pts:
++        grid = bfs(sx, sy)
++        d.append([grid[px][py] for px, py in pts])
++
++    full = (1 << m) - 1
++
++    @lru_cache(maxsize=None)
++    def solve(mask, cur):
++        if mask == full:
++            return 0
++        alice = bin(mask).count("1") % 2 == 0
++        best = None
++        for i in range(m):
++            if mask & (1 << i):
++                continue
++            v = d[cur][i + 1] + solve(mask | (1 << i), i + 1)
++            if best is None or (v > best if alice else v < best):
++                best = v
++        return best
++
++    return solve(0, 0)

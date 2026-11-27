@@ -1,0 +1,46 @@
+diff --git a/solution.py b/solution.py
+index 44ed031..d3fbf43 100644
+--- a/solution.py
++++ b/solution.py
+@@ -20,4 +20,40 @@ def max_subsequence_value(nums: List[int], k: int) -> int:
+     >>> max_subsequence_value([4, 2, 5, 6, 7], 2)
+     2
+     """
+-    pass
++    if k == 0:
++        return 0
++    n = len(nums)
++    # Prefix: pre[i][j] = set of OR values choosing j items from nums[:i]
++    pre = [[0] * (k + 1) for _ in range(n + 1)]
++    pre[0][0] = 1
++    for i in range(n):
++        cur = pre[i][:]
++        for j in range(k):
++            mask = pre[i][j]
++            while mask:
++                low = mask & -mask
++                cur[j + 1] |= 1 << (low.bit_length() - 1 | nums[i])
++                mask ^= low
++        pre[i + 1] = cur
++    # Suffix: same, from the right
++    suf = [[0] * (k + 1) for _ in range(n + 1)]
++    suf[n][0] = 1
++    for i in range(n - 1, -1, -1):
++        cur = suf[i + 1][:]
++        for j in range(k):
++            mask = suf[i + 1][j]
++            while mask:
++                low = mask & -mask
++                cur[j + 1] |= 1 << (low.bit_length() - 1 | nums[i])
++                mask ^= low
++        suf[i] = cur
++    best = 0
++    for i in range(k, n - k + 1):
++        left = pre[i][k]
++        right = suf[i][k]
++        for a in range(128):
++            if left >> a & 1:
++                for b in range(128):
++                    if right >> b & 1 and a ^ b > best:
++                        best = a ^ b
++    return best

@@ -1,0 +1,21 @@
+{
+  "commits": [
+    {
+      "sha": "ef4e48fdd489cc5fb79d237dc44f0b40bbac6fe7",
+      "tree": "fae0a17714bd445b7213e7802ddd994339847ee0",
+      "parents": [
+        "a32f89c6349e18b9427dd6e248ee7855a80cdc79"
+      ],
+      "subject": "Implement count_in_degree_sequences via subset-automaton DP",
+      "at": 1795792115,
+      "action": "commit",
+      "by": "agent",
+      "through_hooks": null,
+      "in_final_history": true
+    }
+  ],
+  "blocked_hook_runs": [],
+  "gate_log": [],
+  "hooks_modified": false,
+  "hooks_path": null
+}

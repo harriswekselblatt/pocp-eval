@@ -1,0 +1,114 @@
+{
+  "commits": [
+    {
+      "sha": "43fbc1026b6bb4791f1e37f8a78c1e8ebe1f9c33",
+      "tree": "b912d205361091a4c08cd51f25eb1f3e3f32ee1d",
+      "parents": [
+        "45292fc8dc3ff473ea009191ee910920627f3d39"
+      ],
+      "subject": "Compute minimum adjacent swaps to match grids",
+      "at": 1795800323,
+      "action": "commit",
+      "by": "agent",
+      "through_hooks": true,
+      "in_final_history": true
+    }
+  ],
+  "blocked_hook_runs": [
+    {
+      "at": 1795800309,
+      "exit": 1,
+      "tree": "89a0f1ef2106e0aaf0c4dfd3834fe720fe105aee",
+      "gate": {
+        "decision": "blocked",
+        "subject": "sha256:e79e7968fd962924f5e42e76b28e94c6d84ce5fa0fe80551c8c3218672b50e12",
+        "required": 2,
+        "uncovered": 2,
+        "packets": []
+      },
+      "reason": "uncovered"
+    }
+  ],
+  "gate_log": [
+    {
+      "at": "2026-11-27T17:25:08.988Z",
+      "source": "hook",
+      "decision": "blocked",
+      "subject": "sha256:e79e7968fd962924f5e42e76b28e94c6d84ce5fa0fe80551c8c3218672b50e12",
+      "required": 2,
+      "uncovered": 2,
+      "packets": []
+    },
+    {
+      "at": "2026-11-27T17:25:20.050Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:e79e7968fd962924f5e42e76b28e94c6d84ce5fa0fe80551c8c3218672b50e12",
+      "required": 2,
+      "uncovered": 2,
+      "packets": []
+    },
+    {
+      "at": "2026-11-27T17:25:20.095Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:e79e7968fd962924f5e42e76b28e94c6d84ce5fa0fe80551c8c3218672b50e12",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-f0df0e1b",
+          "ok": false,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-27T17:25:20.464Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:e79e7968fd962924f5e42e76b28e94c6d84ce5fa0fe80551c8c3218672b50e12",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-f0df0e1b",
+          "ok": false,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-27T17:25:20.498Z",
+      "source": "fix",
+      "decision": "pass",
+      "subject": "sha256:e79e7968fd962924f5e42e76b28e94c6d84ce5fa0fe80551c8c3218672b50e12",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-f0df0e1b",
+          "ok": true,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-27T17:25:23.811Z",
+      "source": "hook",
+      "decision": "pass",
+      "subject": "sha256:e79e7968fd962924f5e42e76b28e94c6d84ce5fa0fe80551c8c3218672b50e12",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-f0df0e1b",
+          "ok": true,
+          "failed": 0
+        }
+      ]
+    }
+  ],
+  "hooks_modified": false,
+  "hooks_path": null
+}

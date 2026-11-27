@@ -1,0 +1,114 @@
+{
+  "commits": [
+    {
+      "sha": "b98e37d86ce385d332b5f5de0b0ece610fa2b4de",
+      "tree": "f5dd57475a3f7dd55f0b64cb066489cd3e8b6957",
+      "parents": [
+        "04345244e7b855c89c7b5fe8e238930221a62c9c"
+      ],
+      "subject": "Implement stair path counting",
+      "at": 1795799572,
+      "action": "commit",
+      "by": "agent",
+      "through_hooks": true,
+      "in_final_history": true
+    }
+  ],
+  "blocked_hook_runs": [
+    {
+      "at": 1795799556,
+      "exit": 1,
+      "tree": "8454bc32f2fc431f9384d3ba75cece58b0311375",
+      "gate": {
+        "decision": "blocked",
+        "subject": "sha256:10b91bc4ccf8eb5afa6dd026b5f70539e833ca13e74999fde116dec67c902597",
+        "required": 2,
+        "uncovered": 2,
+        "packets": []
+      },
+      "reason": "uncovered"
+    }
+  ],
+  "gate_log": [
+    {
+      "at": "2026-11-27T17:12:36.133Z",
+      "source": "hook",
+      "decision": "blocked",
+      "subject": "sha256:10b91bc4ccf8eb5afa6dd026b5f70539e833ca13e74999fde116dec67c902597",
+      "required": 2,
+      "uncovered": 2,
+      "packets": []
+    },
+    {
+      "at": "2026-11-27T17:12:48.807Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:10b91bc4ccf8eb5afa6dd026b5f70539e833ca13e74999fde116dec67c902597",
+      "required": 2,
+      "uncovered": 2,
+      "packets": []
+    },
+    {
+      "at": "2026-11-27T17:12:48.871Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:10b91bc4ccf8eb5afa6dd026b5f70539e833ca13e74999fde116dec67c902597",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-65f8a70a",
+          "ok": false,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-27T17:12:49.810Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:10b91bc4ccf8eb5afa6dd026b5f70539e833ca13e74999fde116dec67c902597",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-65f8a70a",
+          "ok": false,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-27T17:12:50.015Z",
+      "source": "fix",
+      "decision": "pass",
+      "subject": "sha256:10b91bc4ccf8eb5afa6dd026b5f70539e833ca13e74999fde116dec67c902597",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-65f8a70a",
+          "ok": true,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-27T17:12:52.976Z",
+      "source": "hook",
+      "decision": "pass",
+      "subject": "sha256:10b91bc4ccf8eb5afa6dd026b5f70539e833ca13e74999fde116dec67c902597",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-65f8a70a",
+          "ok": true,
+          "failed": 0
+        }
+      ]
+    }
+  ],
+  "hooks_modified": false,
+  "hooks_path": null
+}

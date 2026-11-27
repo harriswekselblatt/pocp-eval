@@ -1,0 +1,63 @@
+diff --git a/solution.py b/solution.py
+index 3e1aa48..87835ce 100644
+--- a/solution.py
++++ b/solution.py
+@@ -1,25 +1,34 @@
++from functools import lru_cache
++
++
+ def find_palindrome_expression(n: int) -> str:
+-    """ Find a palindrome string S that represents a mathematical expression evaluating to n.
+-    
+-    The string must satisfy:
+-    - Length between 1 and 1000 characters
+-    - Consists only of digits 1-9 and the multiplication symbol '*'
+-    - Is a palindrome (reads the same forwards and backwards)
+-    - First character must be a digit
+-    - When evaluated as a mathematical expression, equals n
+-    
+-    Args:
+-        n: An integer between 1 and 10^12
+-        
+-    Returns:
+-        A palindrome string representing an expression that evaluates to n,
+-        or '-1' if no such string exists.
+-        
+-    >>> find_palindrome_expression(363)
+-    '11*3*11'
+-    >>> find_palindrome_expression(101)
+-    '-1'
+-    >>> find_palindrome_expression(3)
+-    '3'
+-    """
+-    pass
++    """Return a palindrome expression of digits 1-9 and '*' evaluating to n, or '-1'."""
++
++    @lru_cache(maxsize=None)
++    def solve(m):
++        s = str(m)
++        if '0' not in s and s == s[::-1]:
++            return s
++        limit = 1
++        while limit * limit <= 10 * m:
++            limit += 1
++        for d in range(2, limit):
++            if m % d:
++                continue
++            ds = str(d)
++            if '0' in ds:
++                continue
++            rs = ds[::-1]
++            p = d * int(rs)
++            if m % p:
++                continue
++            rest = m // p
++            if rest == 1:
++                return ds + '*' + rs
++            sub = solve(rest)
++            if sub is not None:
++                return ds + '*' + sub + '*' + rs
++        return None
++
++    res = solve(n)
++    return '-1' if res is None else res

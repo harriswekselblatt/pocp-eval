@@ -1,0 +1,46 @@
+diff --git a/solution.py b/solution.py
+index cecf703..6a927c7 100644
+--- a/solution.py
++++ b/solution.py
+@@ -1,3 +1,4 @@
++from functools import lru_cache
+ from typing import List, Tuple
+ 
+ def card_game_winner(n: int, m: int, l: int, takahashi_cards: List[int], aoki_cards: List[int], table_cards: List[int]) -> str:
+@@ -24,4 +25,35 @@ def card_game_winner(n: int, m: int, l: int, takahashi_cards: List[int], aoki_ca
+     >>> card_game_winner(1, 1, 1, [11], [5], [10])
+     'Takahashi'
+     """
+-    pass
++    @lru_cache(maxsize=None)
++    def can_win(
++        hand: Tuple[int, ...],
++        opponent: Tuple[int, ...],
++        table: Tuple[int, ...],
++    ) -> bool:
++        # The sum of the cards' positive ranks in both hands decreases on
++        # every move, so the recursion cannot revisit a state on its stack.
++        for i, played in enumerate(hand):
++            if i and played == hand[i - 1]:
++                continue
++            remaining = hand[:i] + hand[i + 1:]
++            new_table = tuple(sorted((*table, played)))
++            if not can_win(opponent, remaining, new_table):
++                return True
++
++            for j, taken in enumerate(table):
++                if taken >= played:
++                    break
++                if j and taken == table[j - 1]:
++                    continue
++                new_hand = tuple(sorted((*remaining, taken)))
++                if not can_win(opponent, new_hand, new_table[:j] + new_table[j + 1:]):
++                    return True
++        return False
++
++    takahashi_wins = can_win(
++        tuple(sorted(takahashi_cards)),
++        tuple(sorted(aoki_cards)),
++        tuple(sorted(table_cards)),
++    )
++    return "Takahashi" if takahashi_wins else "Aoki"

@@ -1,0 +1,25 @@
+diff --git a/solution.py b/solution.py
+index 067e101..6a2bf53 100644
+--- a/solution.py
++++ b/solution.py
+@@ -24,4 +24,19 @@ def max_1122_subarray_length(n: int, a: List[int]) -> int:
+     >>> max_1122_subarray_length(1, [1])
+     0
+     """
+-    pass
++    best = 0
++    for parity in (0, 1):
++        last_pair = {}
++        left = parity
++        for right in range(parity, n - 1, 2):
++            value = a[right]
++            if value != a[right + 1]:
++                left = right + 2
++                continue
++
++            # A repeated value moves the window past its previous pair.
++            left = max(left, last_pair.get(value, -2) + 2)
++            last_pair[value] = right
++            best = max(best, right + 2 - left)
++
++    return best

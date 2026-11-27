@@ -1,0 +1,21 @@
+diff --git a/solution.py b/solution.py
+index 3ea4e88..69b8e53 100644
+--- a/solution.py
++++ b/solution.py
+@@ -22,4 +22,15 @@ def matrix_with_k_fixed_elements_exists(n: int, k: int) -> bool:
+     >>> matrix_with_k_fixed_elements_exists(3, 7)
+     False
+     """
+-    pass
++    dp = [[0] * (n + 1) for _ in range(n + 1)]
++    dp[0][0] = 1
++    for a in range(n + 1):
++        for b in range(n + 1):
++            cur = dp[a][b]
++            if not cur:
++                continue
++            for x in range(2, n - a + 1):
++                for y in range(2, n - b + 1):
++                    dp[a + x][b + y] |= cur << (x * y)
++    unfixed = n * n - k
++    return any((dp[a][b] >> unfixed) & 1 for a in range(n + 1) for b in range(n + 1))

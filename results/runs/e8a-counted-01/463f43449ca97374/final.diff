@@ -1,0 +1,88 @@
+diff --git a/solution.py b/solution.py
+index a185cc7..fe85abf 100644
+--- a/solution.py
++++ b/solution.py
+@@ -1,3 +1,6 @@
++from math import comb
++
++
+ def count_balanced_graphs(n: int, p: int) -> list[int]:
+     """ Given an even positive integer n and a prime number p, for each M from n-1 to n*(n-1)//2,
+     count the number of undirected connected simple graphs with n vertices (labeled 1 to n) and M edges
+@@ -16,4 +19,75 @@ def count_balanced_graphs(n: int, p: int) -> list[int]:
+     >>> count_balanced_graphs(6, 924844033)
+     [810, 2100, 3060, 3030, 2230, 1210, 450, 100, 10, 0, 0]
+     """
+-    pass
++    D = n * (n - 1) // 2
++    h = n // 2
++    N = D + 1
++    base = [(1 + x) % p for x in range(N)]
++
++    def mul(a, b):
++        return [x * y % p for x, y in zip(a, b)]
++
++    pc = [[1] * N]
++    for _ in range(max(D, n)):
++        pc.append(mul(pc[-1], base))
++    nonempty = [[(v - 1) % p for v in pc[k]] for k in range(n + 1)]
++    cache = {}
++
++    def trans(k, s):
++        key = (k, s)
++        if key not in cache:
++            r = pc[s * (s - 1) // 2]
++            for _ in range(s):
++                r = mul(r, nonempty[k])
++            cache[key] = r
++        return cache[key]
++
++    layers = {(1, 0, 1, 0): [1] * N}
++    result = [0] * N
++    for total in range(1, n + 1):
++        for key in [k for k in layers if k[0] + k[1] == total]:
++            e, o, k, par = key
++            val = layers.pop(key)
++            if e == h and o == h:
++                result = [(a + b) % p for a, b in zip(result, val)]
++                continue
++            rem = n - total
++            for s in range(1, rem + 1):
++                ne, no = (e, o + s) if par == 0 else (e + s, o)
++                if ne > h or no > h:
++                    continue
++                w = comb(rem, s) % p
++                add = [a * b % p * w % p for a, b in zip(val, trans(k, s))]
++                nk = (ne, no, s, 1 - par)
++                if nk in layers:
++                    layers[nk] = [(a + b) % p for a, b in zip(layers[nk], add)]
++                else:
++                    layers[nk] = add
++
++    ys = [int(v) for v in result]
++    # Lagrange interpolation on points 0..D
++    P = [1]
++    for i in range(D + 1):
++        Q = [0] * (len(P) + 1)
++        for j, c in enumerate(P):
++            Q[j + 1] = (Q[j + 1] + c) % p
++            Q[j] = (Q[j] - i * c) % p
++        P = Q
++    fact = [1] * (D + 2)
++    for i in range(1, D + 2):
++        fact[i] = fact[i - 1] * i % p
++    coef = [0] * (D + 1)
++    for i in range(D + 1):
++        # synthetic division of P by (x - i)
++        q = [0] * (D + 1)
++        carry = 0
++        for j in range(D, -1, -1):
++            carry = (P[j + 1] + carry * i) % p
++            q[j] = carry
++        den = fact[i] * fact[D - i] % p
++        if (D - i) & 1:
++            den = -den % p
++        f = ys[i] * pow(den, p - 2, p) % p
++        for j in range(D + 1):
++            coef[j] = (coef[j] + f * q[j]) % p
++    return coef[n - 1:D + 1]

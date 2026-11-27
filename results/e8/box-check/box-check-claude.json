@@ -1,0 +1,30 @@
+{
+  "agent": "claude",
+  "image_id": "sha256:6275586b4a1464c4b5d845fb9d2ccdd52b2afd2cb932718de605b18dd80b4f7e",
+  "needles": [
+    "QUENDRASIL",
+    "HOBBLEWICK",
+    "FERNACUTH",
+    "PELLINGORE",
+    "WYSTRAMOOR",
+    "<owner>",
+    "<owner>",
+    "$SCRATCH/scratchpad/pocp-e8"
+  ],
+  "leaks": [],
+  "env": "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1 DISABLE_AUTOUPDATER=1 DISABLE_TELEMETRY=1 GIT_CONFIG_GLOBAL=/dev/null GPG_KEY=7169605F62C751356D054A26A821E680E5FA6305 HOME=~ HOSTNAME=devbox HTTPS_PROXY=http://proxy:8888 HTTP_PROXY=http://proxy:8888 LANG=C.UTF-8 NO_PROXY= PATH=/private/var/tmp/ws-3eb7-CMqIaK/work/tools/bin:/usr/local/bin:/usr/bin:/bin POCP_BIN=/usr/local/bin/node /private/var/tmp/ws-3eb7-CMqIaK/work/tools/pocp/bin/pocp.js PWD=/private/var/tmp/ws-3eb7-CMqIaK/work/proj-IeeKZS/repo PYTHONDONTWRITEBYTECODE=1 PYTHON_SHA256=abb0102e6d4ae027509bcb82327d9dd85515b44a3ba8ad538cfc5e9847029f68 PYTHON_VERSION=3.13.18 http_proxy=http://proxy:8888 https_proxy=http://proxy:8888 no_proxy=",
+  "id": "uid=1000(dev) gid=1000(dev) groups=1000(dev)",
+  "hostname": "devbox",
+  "mounts": "/ rw,relatime;/private/var/tmp/ws-3eb7-CMqIaK/work/proj-IeeKZS rw,relatime;/private/var/tmp/ws-3eb7-CMqIaK/work/tools ro,relatime;",
+  "mac_folders": "",
+  "private_tree": "/private /private/var /private/var/tmp /private/var/tmp/ws-3eb7-CMqIaK /private/var/tmp/ws-3eb7-CMqIaK/work",
+  "instruction_files": "",
+  "network": {
+    "api_via_proxy": "connect 200",
+    "blocked_via_proxy": "connect 403",
+    "direct_internet": "error EAI_AGAIN",
+    "direct_mac_orb": "error EAI_AGAIN",
+    "direct_mac_docker": "error EAI_AGAIN"
+  },
+  "ok": true
+}

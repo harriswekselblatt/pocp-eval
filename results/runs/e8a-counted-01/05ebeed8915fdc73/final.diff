@@ -1,0 +1,42 @@
+diff --git a/solution.py b/solution.py
+index 1249e85..ec0ed82 100644
+--- a/solution.py
++++ b/solution.py
+@@ -25,4 +25,36 @@ def min_changes_for_semi_palindromes(s: str, k: int) -> int:
+     >>> min_changes_for_semi_palindromes("aabbaa", 3)
+     0
+     """
+-    pass
++    n = len(s)
++    INF = float("inf")
++
++    def cost(i, j):
++        t = s[i:j]
++        m = len(t)
++        if m < 2:
++            return INF
++        best = INF
++        for d in range(1, m):
++            if m % d:
++                continue
++            c = 0
++            for r in range(d):
++                seg = t[r::d]
++                L = len(seg)
++                for a in range(L // 2):
++                    if seg[a] != seg[L - 1 - a]:
++                        c += 1
++            best = min(best, c)
++        return best
++
++    w = [[INF] * (n + 1) for _ in range(n + 1)]
++    for i in range(n):
++        for j in range(i + 2, n + 1):
++            w[i][j] = cost(i, j)
++
++    dp = [[INF] * (n + 1) for _ in range(k + 1)]
++    dp[0][0] = 0
++    for p in range(1, k + 1):
++        for j in range(2 * p, n + 1):
++            dp[p][j] = min(dp[p - 1][i] + w[i][j] for i in range(2 * (p - 1), j - 1))
++    return dp[k][n]

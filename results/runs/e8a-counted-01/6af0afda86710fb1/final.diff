@@ -1,0 +1,97 @@
+diff --git a/solution.py b/solution.py
+index a2449a5..53f9a0b 100644
+--- a/solution.py
++++ b/solution.py
+@@ -1,3 +1,9 @@
++from math import isqrt
++
++
++MOD = 998244353
++
++
+ def count_good_sequences(N: int, M: int) -> int:
+     """ Count the number of length-M sequences of positive integers whose product is a "good integer" not exceeding N.
+     
+@@ -19,4 +25,81 @@ def count_good_sequences(N: int, M: int) -> int:
+     >>> count_good_sequences(370, 907)
+     221764640
+     """
+-    pass
++    # A prime power has divisor sum 0 mod 3 exactly in these cases:
++    # p == 1 mod 3 and e == 2 mod 3, or p == 2 mod 3 and e is odd.
++    # Its sequence weight counts the distributions of e among M factors.
++    weights = [1]
++    for exponent in range(1, N.bit_length()):
++        weights.append(weights[-1] * (M + exponent - 1) *
++                       pow(exponent, -1, MOD) % MOD)
++
++    root = isqrt(N)
++    quotients = list(range(1, root + 1))
++    quotients.extend(N // i for i in range(N // (root + 1), 0, -1))
++
++    # Count candidates in the two reduced residue classes modulo 6,
++    # excluding 1. Sieve each class on the floor-quotient set.
++    one = {x: (x - 1) // 6 for x in quotients}
++    five = {x: (x + 1) // 6 for x in quotients}
++    primes = [p for p in (2, 3) if p <= root]
++    for p in range(5, root + 1, 2):
++        if p % 6 == 1:
++            if one[p] == one[p - 1]:
++                continue
++            left, right = one, five
++        elif p % 6 == 5:
++            if five[p] == five[p - 1]:
++                continue
++            left, right = five, one
++        else:
++            continue
++        primes.append(p)
++        left_before, right_before = left[p - 1], right[p - 1]
++        square = p * p
++        for x in reversed(quotients):
++            if x < square:
++                break
++            q = x // p
++            one[x] -= left[q] - left_before
++            five[x] -= right[q] - right_before
++
++    # Account for the primes omitted by the modulo-6 sieve.
++    for x in quotients:
++        one[x] += x >= 3
++        five[x] += x >= 2
++
++    # At each step, group all choices of a final prime with exponent one.
++    # Higher powers and factorizations with another prime are handled
++    # separately, in increasing prime order to visit each product once.
++    def count(bound, start, good):
++        if start:
++            previous = primes[start - 1]
++            eligible = five[bound] - five[previous]
++            if good:
++                eligible += one[bound] - one[previous]
++        else:
++            eligible = five[bound] + (one[bound] if good else 0)
++        result = M * eligible
++
++        for index in range(start, len(primes)):
++            p = primes[index]
++            square = p * p
++            if square > bound:
++                break
++            residue = p % 3
++            power = p
++            exponent = 1
++            while power <= bound:
++                next_good = good or (residue == 2 and exponent % 2 == 1) or (
++                    residue == 1 and exponent % 3 == 2
++                )
++                remaining = bound // power
++                subtotal = int(exponent > 1 and next_good)
++                if remaining > p:
++                    subtotal += count(remaining, index + 1, next_good)
++                result += weights[exponent] * subtotal
++                power *= p
++                exponent += 1
++        return result % MOD
++
++    return count(N, 0, False)

@@ -1,0 +1,22 @@
+diff --git a/solution.py b/solution.py
+index 7c8715b..78c020b 100644
+--- a/solution.py
++++ b/solution.py
+@@ -21,4 +21,16 @@ def count_subsequence_pairs(nums: List[int]) -> int:
+     >>> count_subsequence_pairs([1, 1, 1, 1])
+     50
+     """
+-    pass
++    from math import gcd
++
++    MOD = 10**9 + 7
++    dp = {(0, 0): 1}
++    for x in nums:
++        new = dict(dp)
++        for (a, b), c in dp.items():
++            k = (gcd(a, x), b)
++            new[k] = (new.get(k, 0) + c) % MOD
++            k = (a, gcd(b, x))
++            new[k] = (new.get(k, 0) + c) % MOD
++        dp = new
++    return sum(c for (a, b), c in dp.items() if a == b and a > 0) % MOD

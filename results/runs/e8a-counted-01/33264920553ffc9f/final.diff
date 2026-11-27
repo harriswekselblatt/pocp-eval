@@ -1,0 +1,44 @@
+diff --git a/solution.py b/solution.py
+index 571a8c1..0a106b5 100644
+--- a/solution.py
++++ b/solution.py
+@@ -21,4 +21,38 @@ def can_transform(k: int, s: str, t: str) -> bool:
+     >>> can_transform(17, 'twothousandtwentyfour', 'happynewyear')
+     True
+     """
+-    pass
++    source_length = len(s)
++    target_length = len(t)
++    if abs(source_length - target_length) > k:
++        return False
++    if max(source_length, target_length) <= k or s == t:
++        return True
++
++    # Each diagonal is source position minus target position. Keep only
++    # the furthest source position reached on it for each edit budget.
++    frontier = {0: 0}
++    for edits in range(k + 1):
++        next_frontier = {}
++        for diagonal, source in frontier.items():
++            target = source - diagonal
++            while source < source_length and target < target_length and s[source] == t[target]:
++                source += 1
++                target += 1
++
++            if source == source_length or target == target_length:
++                if source_length - source + target_length - target <= k - edits:
++                    return True
++                continue
++
++            if edits < k:
++                # Replace, delete from the source, or insert into the source.
++                for next_diagonal, next_source in (
++                    (diagonal, source + 1),
++                    (diagonal + 1, source + 1),
++                    (diagonal - 1, source),
++                ):
++                    if next_source > next_frontier.get(next_diagonal, -1):
++                        next_frontier[next_diagonal] = next_source
++        frontier = next_frontier
++
++    return False
