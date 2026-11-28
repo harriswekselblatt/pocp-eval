@@ -1,0 +1,48 @@
+diff --git a/solution.py b/solution.py
+index c0935b0..c3ae0b8 100644
+--- a/solution.py
++++ b/solution.py
+@@ -28,4 +28,42 @@ def max_knight_moves(kx: int, ky: int, positions: List[List[int]]) -> int:
+     >>> max_knight_moves(0, 0, [[1, 2], [2, 4]])
+     3
+     """
+-    pass
++    from collections import deque
++    n = len(positions)
++    pts = [(kx, ky)] + [tuple(p) for p in positions]
++    moves = [(1, 2), (2, 1), (-1, 2), (-2, 1), (1, -2), (2, -1), (-1, -2), (-2, -1)]
++    dist = []
++    for sx, sy in pts:
++        d = [[-1] * 50 for _ in range(50)]
++        d[sx][sy] = 0
++        q = deque([(sx, sy)])
++        while q:
++            x, y = q.popleft()
++            for dx, dy in moves:
++                nx, ny = x + dx, y + dy
++                if 0 <= nx < 50 and 0 <= ny < 50 and d[nx][ny] < 0:
++                    d[nx][ny] = d[x][y] + 1
++                    q.append((nx, ny))
++        dist.append([d[px][py] for px, py in pts[1:]])
++    # dist[i][j]: moves from pts[i] (0 = knight start) to pawn j
++    full = (1 << n) - 1
++    from functools import lru_cache
++    import sys
++    sys.setrecursionlimit(10000)
++
++    @lru_cache(maxsize=None)
++    def go(mask, cur):
++        if mask == full:
++            return 0
++        taken = bin(mask).count("1")
++        alice = taken % 2 == 0
++        best = None
++        for j in range(n):
++            if mask >> j & 1:
++                continue
++            v = dist[cur][j] + go(mask | 1 << j, j + 1)
++            if best is None or (v > best if alice else v < best):
++                best = v
++        return best
++
++    return go(0, 0)

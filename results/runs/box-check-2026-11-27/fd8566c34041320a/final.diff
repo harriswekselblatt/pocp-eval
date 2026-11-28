@@ -1,0 +1,34 @@
+diff --git a/solution.py b/solution.py
+index 083ef08..89631d0 100644
+--- a/solution.py
++++ b/solution.py
+@@ -22,4 +22,28 @@ def count_in_degree_sequences(n: int, s: str) -> int:
+     >>> count_in_degree_sequences(20, '00001100111010100101')
+     261339902
+     """
+-    pass
++    modulus = 998244353
++
++    # The graphical zonotope sums the segments between endpoint unit vectors.
++    # Total unimodularity of the incidence matrix ensures every lattice point
++    # can be obtained by choosing an endpoint of each segment (an orientation).
++    # The graphical zonotope lattice-point formula counts one per edge forest.
++    # In a forest, the selected rim edges form paths, each with at most one
++    # selected spoke. The two states record whether the current path has a spoke.
++    a, b, c, d = 1, 0, 0, 1
++    for spoke in s:
++        # Omit the preceding rim edge to start a path, or keep it to extend
++        # the current path. Select a spoke only when the path has none yet.
++        if spoke == '1':
++            a, b, c, d = (
++                (2 * a + b) % modulus,
++                (2 * a + 2 * b) % modulus,
++                (2 * c + d) % modulus,
++                (2 * c + 2 * d) % modulus,
++            )
++        else:
++            a, c = (2 * a + b) % modulus, (2 * c + d) % modulus
++
++    # The trace enforces cyclic state consistency. The full rim with no spokes
++    # is counted in both states and must be removed because it is a cycle.
++    return (a + d - 2) % modulus

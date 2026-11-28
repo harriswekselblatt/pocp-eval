@@ -1,0 +1,105 @@
+diff --git a/solution.py b/solution.py
+index 1ae40e6..b566c98 100644
+--- a/solution.py
++++ b/solution.py
+@@ -1,21 +1,37 @@
++from collections import Counter
++
++MOD = 998244353
++
++
+ def count_distinct_parenthesis_sequences(n: int, s: str) -> int:
+-    """ Given a valid parenthesis sequence of length n, count the number of distinct strings
+-    that can be obtained by performing the following operation any number of times:
+-    - Choose a contiguous substring that is a valid parenthesis sequence and reverse it
+-      (where reversing means swapping all '(' with ')' and vice versa).
+-    
+-    Return the count modulo 998244353.
+-    
+-    Args:
+-        n: The length of the string (1 <= n <= 5000)
+-        s: A valid parenthesis sequence of length n
+-    
+-    Returns:
+-        The number of distinct strings obtainable, modulo 998244353
+-    
+-    >>> count_distinct_parenthesis_sequences(6, '(())()')
+-    2
+-    >>> count_distinct_parenthesis_sequences(2, '()')
+-    1
++    """Count distinct strings reachable by reversing (mirroring) valid substrings, mod 998244353.
++
++    Reachable strings are exactly the orderings of children at every node of the
++    bracket tree, so the answer is the product over nodes of the multinomial of
++    child isomorphism classes.
+     """
+-    pass
++    fact = [1] * (n + 2)
++    for i in range(1, n + 2):
++        fact[i] = fact[i - 1] * i % MOD
++
++    ids = {}
++    # each stack frame: list of child class ids
++    stack = [[]]
++    ans = 1
++    for ch in s:
++        if ch == '(':
++            stack.append([])
++        else:
++            children = stack.pop()
++            ways = fact[len(children)]
++            for c in Counter(children).values():
++                ways = ways * pow(fact[c], MOD - 2, MOD) % MOD
++            ans = ans * ways % MOD
++            key = tuple(sorted(children))
++            cid = ids.setdefault(key, len(ids))
++            stack[-1].append(cid)
++    children = stack.pop()
++    ways = fact[len(children)]
++    for c in Counter(children).values():
++        ways = ways * pow(fact[c], MOD - 2, MOD) % MOD
++    return ans * ways % MOD
+diff --git a/tests/test_task.py b/tests/test_task.py
+new file mode 100644
+index 0000000..fddd73b
+--- /dev/null
++++ b/tests/test_task.py
+@@ -0,0 +1,38 @@
++def check(candidate):
++    # Test cases from the problem
++    assert candidate(6, '(())()') == 2
++    assert candidate(2, '()') == 1
++    
++    # Additional test cases
++    assert candidate(8, '(())()()') == 3
++    assert candidate(128, '()()(((()(())(()))))()()()((())())(())()((())((()((((((()()()()(()))()())))))())(())()())()(()(())))(((())()))()(())((()()))()()') == 679173354
++    assert candidate(8, '(()()())') == 1
++    assert candidate(12, '()(()()())()') == 3
++    assert candidate(10, '(((()))())') == 2
++    assert candidate(8, '(()()())') == 2
++    assert candidate(200, '()' * 100) == 1
++    assert candidate(12, '(()(()))(())') == 4
++    assert candidate(6, '((()))') == 1
++    assert candidate(140, '(((()()))(()()(((())()((()(()()))))(((())))((()))(())())()(()))())()((()())())(())()((()((())(()))(()()(()())()(())())((()(()()(())(()))))))') == 843316172
++    assert candidate(4, '(())') == 1
++    assert candidate(10, '((((()))))') == 1
++    assert candidate(140, '(((())()((()((()()(()))))(()()(()(())()((()()))())(())())))()())()()()(()()(()())()())(()((()()()())))(()()(()()((((()))()))))()()()(())()()') == 74966682
++    assert candidate(6, '()(())') == 2
++    assert candidate(14, '(()(()))((()))') == 4
++    assert candidate(4, '()()') == 1
++    assert candidate(12, '()()(((())))') == 3
++    assert candidate(8, '((())())') == 2
++    assert candidate(10, '()()()()()') == 1
++    assert candidate(8, '()((()))') == 2
++    assert candidate(12, '(((())))()()') == 3
++    assert candidate(10, '((()(())))') == 2
++
++
++import os as _os
++import sys as _sys
++_sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))))
++from solution import count_distinct_parenthesis_sequences  # noqa: E402
++
++if __name__ == "__main__":
++    check(count_distinct_parenthesis_sequences)
++    print("ALL_TESTS_PASSED")

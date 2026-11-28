@@ -1,0 +1,47 @@
+diff --git a/solution.py b/solution.py
+index 3e1aa48..dfeedf4 100644
+--- a/solution.py
++++ b/solution.py
+@@ -1,3 +1,7 @@
++from functools import lru_cache
++from math import isqrt
++
++
+ def find_palindrome_expression(n: int) -> str:
+     """ Find a palindrome string S that represents a mathematical expression evaluating to n.
+     
+@@ -22,4 +26,33 @@ def find_palindrome_expression(n: int) -> str:
+     >>> find_palindrome_expression(3)
+     '3'
+     """
+-    pass
++    # In each mirrored pair the smaller factor is at most sqrt(n).
++    pairs = []
++    for factor in range(2, isqrt(n) + 1):
++        if n % factor:
++            continue
++        left = str(factor)
++        if '0' in left:
++            continue
++        right = left[::-1]
++        product = factor * int(right)
++        if n % product == 0:
++            pairs.append((left, right, product))
++
++    @lru_cache(maxsize=None)
++    def build(value: int) -> str | None:
++        digits = str(value)
++        if '0' not in digits and digits == digits[::-1]:
++            return digits
++
++        for left, right, product in pairs:
++            if value % product:
++                continue
++            if value == product:
++                return f'{left}*{right}'
++            middle = build(value // product)
++            if middle is not None:
++                return f'{left}*{middle}*{right}'
++        return None
++
++    return build(n) or '-1'

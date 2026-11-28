@@ -1,0 +1,114 @@
+{
+  "commits": [
+    {
+      "sha": "4b5b50129649e756a4b85e4627d8e589c29dec19",
+      "tree": "4f9397f4bb3cf9affcf81049227978513c39d897",
+      "parents": [
+        "7115314bf13118ffe77c5194c737721a718a458c"
+      ],
+      "subject": "Count balanced graphs by distance layers",
+      "at": 1795795678,
+      "action": "commit",
+      "by": "agent",
+      "through_hooks": true,
+      "in_final_history": true
+    }
+  ],
+  "blocked_hook_runs": [
+    {
+      "at": 1795795656,
+      "exit": 1,
+      "tree": "fa0c4a9e2410434d98d9476080136909275348ab",
+      "gate": {
+        "decision": "blocked",
+        "subject": "sha256:29d9516074b0b85f4d9e901f9f05f5dcd30d28df80445b6e8a172d2cc6af4ce4",
+        "required": 2,
+        "uncovered": 2,
+        "packets": []
+      },
+      "reason": "uncovered"
+    }
+  ],
+  "gate_log": [
+    {
+      "at": "2026-11-27T16:07:36.276Z",
+      "source": "hook",
+      "decision": "blocked",
+      "subject": "sha256:29d9516074b0b85f4d9e901f9f05f5dcd30d28df80445b6e8a172d2cc6af4ce4",
+      "required": 2,
+      "uncovered": 2,
+      "packets": []
+    },
+    {
+      "at": "2026-11-27T16:07:53.275Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:f31b1e22bc6f772967f0be5a31419d0c939424e2a6f86dd60249338c47deeb46",
+      "required": 2,
+      "uncovered": 2,
+      "packets": []
+    },
+    {
+      "at": "2026-11-27T16:07:53.353Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:f31b1e22bc6f772967f0be5a31419d0c939424e2a6f86dd60249338c47deeb46",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-231c3d02",
+          "ok": false,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-27T16:07:54.843Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:f31b1e22bc6f772967f0be5a31419d0c939424e2a6f86dd60249338c47deeb46",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-231c3d02",
+          "ok": false,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-27T16:07:54.942Z",
+      "source": "fix",
+      "decision": "pass",
+      "subject": "sha256:f31b1e22bc6f772967f0be5a31419d0c939424e2a6f86dd60249338c47deeb46",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-231c3d02",
+          "ok": true,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-27T16:07:59.184Z",
+      "source": "hook",
+      "decision": "pass",
+      "subject": "sha256:f31b1e22bc6f772967f0be5a31419d0c939424e2a6f86dd60249338c47deeb46",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-231c3d02",
+          "ok": true,
+          "failed": 0
+        }
+      ]
+    }
+  ],
+  "hooks_modified": false,
+  "hooks_path": null
+}

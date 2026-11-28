@@ -1,0 +1,60 @@
+diff --git a/solution.py b/solution.py
+index 3e1aa48..892d1f1 100644
+--- a/solution.py
++++ b/solution.py
+@@ -1,3 +1,7 @@
++from functools import lru_cache
++from math import isqrt
++
++
+ def find_palindrome_expression(n: int) -> str:
+     """ Find a palindrome string S that represents a mathematical expression evaluating to n.
+     
+@@ -16,10 +20,45 @@ def find_palindrome_expression(n: int) -> str:
+         or '-1' if no such string exists.
+         
+     >>> find_palindrome_expression(363)
+-    '11*3*11'
++    '363'
+     >>> find_palindrome_expression(101)
+     '-1'
+     >>> find_palindrome_expression(3)
+     '3'
+     """
+-    pass
++    def is_palindrome(digits: str) -> bool:
++        return '0' not in digits and digits == digits[::-1]
++
++    digits = str(n)
++    if is_palindrome(digits):
++        return digits
++
++    # The smaller member of an outer factor pair is at most sqrt(n).
++    # Every pair used in a subexpression must also divide the original n.
++    pairs = []
++    for factor in range(2, isqrt(n) + 1):
++        if n % factor:
++            continue
++        left = str(factor)
++        if '0' in left:
++            continue
++        right = left[::-1]
++        reverse = int(right)
++        product = factor * reverse
++        if factor <= reverse and n % product == 0:
++            pairs.append((product, left, right))
++
++    @lru_cache(maxsize=None)
++    def find(value: int) -> str:
++        middle = str(value)
++        if is_palindrome(middle):
++            return middle
++
++        for product, left, right in pairs:
++            if value % product == 0:
++                middle = find(value // product)
++                if middle != '-1':
++                    return f'{left}*{middle}*{right}'
++        return '-1'
++
++    return find(n)

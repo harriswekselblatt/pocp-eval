@@ -1,0 +1,65 @@
+diff --git a/solution.py b/solution.py
+index 1ae40e6..06bccdd 100644
+--- a/solution.py
++++ b/solution.py
+@@ -1,21 +1,42 @@
++from collections import Counter
++
++
+ def count_distinct_parenthesis_sequences(n: int, s: str) -> int:
+-    """ Given a valid parenthesis sequence of length n, count the number of distinct strings
+-    that can be obtained by performing the following operation any number of times:
+-    - Choose a contiguous substring that is a valid parenthesis sequence and reverse it
+-      (where reversing means swapping all '(' with ')' and vice versa).
+-    
++    """Count sequences reachable by reversing and swapping a balanced substring.
++
+     Return the count modulo 998244353.
+-    
+-    Args:
+-        n: The length of the string (1 <= n <= 5000)
+-        s: A valid parenthesis sequence of length n
+-    
+-    Returns:
+-        The number of distinct strings obtainable, modulo 998244353
+-    
+-    >>> count_distinct_parenthesis_sequences(6, '(())()')
+-    2
+-    >>> count_distinct_parenthesis_sequences(2, '()')
+-    1
+     """
+-    pass
++    modulus = 998244353
++    pairs = n // 2
++    factorial = [1] * (pairs + 1)
++    for i in range(1, pairs + 1):
++        factorial[i] = factorial[i - 1] * i % modulus
++    inverse_factorial = [1] * (pairs + 1)
++    inverse_factorial[pairs] = pow(factorial[pairs], -1, modulus)
++    for i in range(pairs, 0, -1):
++        inverse_factorial[i - 1] = inverse_factorial[i] * i % modulus
++
++    # A balanced substring consists of consecutive siblings. Mirroring two
++    # siblings and then mirroring each individually swaps them, so every
++    # sibling permutation is reachable and the unordered tree is invariant.
++    # The outer list represents a root enclosing the entire sequence.
++    stack: list[list[int]] = [[]]
++    tree_types: dict[tuple[int, ...], int] = {}
++    count = 1
++    for char in s + ")":
++        if char == "(":
++            stack.append([])
++            continue
++
++        children = tuple(sorted(stack.pop()))
++        # All nodes of the same unordered type have the same set of possible
++        # representations. Only the arrangements of differing types matter.
++        count = count * factorial[len(children)] % modulus
++        for multiplicity in Counter(children).values():
++            count = count * inverse_factorial[multiplicity] % modulus
++
++        if stack:
++            tree_type = tree_types.setdefault(children, len(tree_types))
++            stack[-1].append(tree_type)
++
++    return count

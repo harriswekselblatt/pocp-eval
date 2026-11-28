@@ -1,0 +1,21 @@
+{
+  "commits": [
+    {
+      "sha": "26ad83adade888a58af33edd73fca47c3b5d64f2",
+      "tree": "1f3018c5bee1d3ab49e8c79a49b52928978cd6d0",
+      "parents": [
+        "5b2eb8eaada291214b891a952a978dc973350596"
+      ],
+      "subject": "Implement sum_of_powers via threshold counting DP",
+      "at": 1795796119,
+      "action": "commit",
+      "by": "agent",
+      "through_hooks": null,
+      "in_final_history": true
+    }
+  ],
+  "blocked_hook_runs": [],
+  "gate_log": [],
+  "hooks_modified": false,
+  "hooks_path": null
+}

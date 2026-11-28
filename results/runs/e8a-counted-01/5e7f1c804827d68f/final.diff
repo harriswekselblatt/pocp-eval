@@ -1,0 +1,39 @@
+diff --git a/solution.py b/solution.py
+index 571a8c1..568fad5 100644
+--- a/solution.py
++++ b/solution.py
+@@ -21,4 +21,33 @@ def can_transform(k: int, s: str, t: str) -> bool:
+     >>> can_transform(17, 'twothousandtwentyfour', 'happynewyear')
+     True
+     """
+-    pass
++    n, m = len(s), len(t)
++    if abs(n - m) > k:
++        return False
++    # Landau-Vishkin: L[d] = furthest row i on diagonal d (j = i + d) reachable with e edits
++    NEG = -10**9
++    target = m - n
++    prev = {}
++    for e in range(k + 1):
++        cur = {}
++        for d in range(-e, e + 1):
++            if e == 0:
++                i = 0
++            else:
++                i = max(
++                    prev.get(d, NEG) + 1,
++                    prev.get(d - 1, NEG),
++                    prev.get(d + 1, NEG) + 1,
++                )
++                i = min(i, n, m - d)
++                if i < 0 or i + d < 0:
++                    continue
++            j = i + d
++            while i < n and j < m and s[i] == t[j]:
++                i += 1
++                j += 1
++            cur[d] = i
++            if d == target and i >= n:
++                return True
++        prev = cur
++    return False

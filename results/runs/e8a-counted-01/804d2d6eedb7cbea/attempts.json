@@ -1,0 +1,114 @@
+{
+  "commits": [
+    {
+      "sha": "5eb58b6f1a2c78232c84e91180139ca1fdf1e55f",
+      "tree": "701a63a2a827306af849ce18131192aebc91c21a",
+      "parents": [
+        "a28128afffe5486e558db463dfe84f46e84a91bf"
+      ],
+      "subject": "Count fixed-length walks on a directed cycle",
+      "at": 1795801175,
+      "action": "commit",
+      "by": "agent",
+      "through_hooks": true,
+      "in_final_history": true
+    }
+  ],
+  "blocked_hook_runs": [
+    {
+      "at": 1795801159,
+      "exit": 1,
+      "tree": "7accea54dc4824c66efd67252bb4c5b0585c38b7",
+      "gate": {
+        "decision": "blocked",
+        "subject": "sha256:1c122039985bfa2a5c7f3e479e9d95344f2afa1679ad2424d0e14d6b6b235b2f",
+        "required": 2,
+        "uncovered": 2,
+        "packets": []
+      },
+      "reason": "uncovered"
+    }
+  ],
+  "gate_log": [
+    {
+      "at": "2026-11-27T17:39:19.046Z",
+      "source": "hook",
+      "decision": "blocked",
+      "subject": "sha256:1c122039985bfa2a5c7f3e479e9d95344f2afa1679ad2424d0e14d6b6b235b2f",
+      "required": 2,
+      "uncovered": 2,
+      "packets": []
+    },
+    {
+      "at": "2026-11-27T17:39:33.181Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:0540b3bfeb2e01fb5ce315e90a7b10331fda8208a18ee39707d219812a2334b5",
+      "required": 2,
+      "uncovered": 2,
+      "packets": []
+    },
+    {
+      "at": "2026-11-27T17:39:33.206Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:0540b3bfeb2e01fb5ce315e90a7b10331fda8208a18ee39707d219812a2334b5",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-b2d3fcb1",
+          "ok": false,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-27T17:39:33.529Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:0540b3bfeb2e01fb5ce315e90a7b10331fda8208a18ee39707d219812a2334b5",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-b2d3fcb1",
+          "ok": false,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-27T17:39:33.556Z",
+      "source": "fix",
+      "decision": "pass",
+      "subject": "sha256:0540b3bfeb2e01fb5ce315e90a7b10331fda8208a18ee39707d219812a2334b5",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-b2d3fcb1",
+          "ok": true,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-27T17:39:35.878Z",
+      "source": "hook",
+      "decision": "pass",
+      "subject": "sha256:0540b3bfeb2e01fb5ce315e90a7b10331fda8208a18ee39707d219812a2334b5",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-b2d3fcb1",
+          "ok": true,
+          "failed": 0
+        }
+      ]
+    }
+  ],
+  "hooks_modified": false,
+  "hooks_path": null
+}

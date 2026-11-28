@@ -1,0 +1,35 @@
+diff --git a/solution.py b/solution.py
+index 978a238..d89935e 100644
+--- a/solution.py
++++ b/solution.py
+@@ -22,4 +22,29 @@ def min_spanning_tree_mod_k(n: int, m: int, k: int, edges: List[Tuple[int, int,
+     >>> min_spanning_tree_mod_k(6, 5, 998244353, [(1, 2, 337361568), (1, 6, 450343304), (2, 3, 61477244), (2, 5, 745383438), (4, 5, 727360840)])
+     325437688
+     """
+-    pass
++    best = k
++    es = list(edges)
++    m = len(es)
++
++    def find(p, x):
++        while p[x] != x:
++            x = p[x]
++        return x
++
++    def rec(i, cnt, total, p):
++        nonlocal best
++        if cnt == n - 1:
++            best = min(best, total % k)
++            return
++        if m - i < n - 1 - cnt:
++            return
++        u, v, w = es[i]
++        ru, rv = find(p, u - 1), find(p, v - 1)
++        if ru != rv:
++            q = p[:]
++            q[ru] = rv
++            rec(i + 1, cnt + 1, total + w, q)
++        rec(i + 1, cnt, total, p)
++
++    rec(0, 0, 0, list(range(n)))
++    return best

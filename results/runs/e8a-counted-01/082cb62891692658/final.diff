@@ -1,0 +1,109 @@
+diff --git a/solution.py b/solution.py
+index ba1ce3f..63ac4d3 100644
+--- a/solution.py
++++ b/solution.py
+@@ -1,23 +1,76 @@
+ from typing import List, Tuple
++from collections import deque
++
++
++def _min_cut(num, adj_edges, s, t):
++    graph = [[] for _ in range(num)]
++    to, cap = [], []
++    for a, b, c in adj_edges:
++        graph[a].append(len(to)); to.append(b); cap.append(c)
++        graph[b].append(len(to)); to.append(a); cap.append(0)
++    flow = 0
++    while True:
++        level = [-1] * num
++        level[s] = 0
++        q = deque([s])
++        while q:
++            x = q.popleft()
++            for e in graph[x]:
++                if cap[e] > 0 and level[to[e]] < 0:
++                    level[to[e]] = level[x] + 1
++                    q.append(to[e])
++        if level[t] < 0:
++            return flow
++        it = [0] * num
++
++        def dfs(x, f):
++            if x == t:
++                return f
++            while it[x] < len(graph[x]):
++                e = graph[x][it[x]]
++                if cap[e] > 0 and level[to[e]] == level[x] + 1:
++                    r = dfs(to[e], min(f, cap[e]))
++                    if r > 0:
++                        cap[e] -= r
++                        cap[e ^ 1] += r
++                        return r
++                it[x] += 1
++            return 0
++
++        while True:
++            f = dfs(s, 1 << 60)
++            if f == 0:
++                break
++            flow += f
++            if flow >= 1 << 40:
++                return flow
++
++
++def _min_edges_needed(n, edges, D):
++    INF = 1 << 40
++    S, T = 0, 1
++
++    def node(v, i):
++        return 2 + (v - 1) * D + (i - 1)
++
++    arcs = []
++    for i in range(1, D + 1):
++        arcs.append((node(1, i), T, INF))
++        arcs.append((S, node(n, i), INF))
++    for v in range(1, n + 1):
++        for i in range(1, D):
++            arcs.append((node(v, i + 1), node(v, i), INF))
++    for u, v in edges:
++        for i in range(1, D + 1):
++            arcs.append((node(v, i), node(u, i), 1))
++            if i >= 2:
++                arcs.append((node(v, i), node(u, i - 1), INF))
++    return _min_cut(2 + n * D, arcs, S, T)
+ 
+ 
+ def max_shortest_distance(n: int, m: int, k: int, edges: List[Tuple[int, int]]) -> int:
+-    """ Given a directed graph with n vertices (numbered 1 to n) and m edges, where initially
+-    all edges have weight 0. You can choose exactly k edges and change their weights to 1.
+-    Find the maximum possible shortest distance from vertex 1 to vertex n after this operation.
+-    
+-    It is guaranteed that vertex n is reachable from vertex 1 in the given graph.
+-    
+-    Args:
+-        n: Number of vertices (2 <= n <= 30)
+-        m: Number of edges (1 <= k <= m <= 100)
+-        k: Number of edges to set weight to 1
+-        edges: List of (u, v) tuples representing directed edges from u to v
+-               (1 <= u, v <= n, u != v)
+-    
+-    Returns:
+-        The maximum possible shortest distance from vertex 1 to vertex n
+-    
++    """ Maximum possible shortest distance from 1 to n after setting exactly k edge weights to 1.
++
+     >>> max_shortest_distance(3, 3, 2, [(1, 2), (2, 3), (1, 3)])
+     1
+     >>> max_shortest_distance(4, 4, 3, [(1, 2), (1, 3), (3, 2), (2, 4)])
+@@ -25,4 +78,10 @@ def max_shortest_distance(n: int, m: int, k: int, edges: List[Tuple[int, int]])
+     >>> max_shortest_distance(2, 2, 1, [(1, 2), (1, 2)])
+     0
+     """
+-    pass
++    best = 0
++    for D in range(1, n):
++        if _min_edges_needed(n, edges, D) <= k:
++            best = D
++        else:
++            break
++    return best

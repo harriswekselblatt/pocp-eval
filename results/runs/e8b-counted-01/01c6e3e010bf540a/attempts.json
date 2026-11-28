@@ -1,0 +1,34 @@
+{
+  "commits": [
+    {
+      "sha": "8f945c79f15f5baa208e2f9c0681d130eec7ea92",
+      "tree": "6c3e3c6e6c326daa10d33801b278ee7c359ddf1d",
+      "parents": [
+        "5621d8c6be797a5e5ab6ff0279d28d3e21cbd1c2"
+      ],
+      "subject": "Count balanced graphs by shortest-distance layers",
+      "at": 1795804129,
+      "action": "commit",
+      "by": "agent",
+      "through_hooks": null,
+      "in_final_history": true
+    },
+    {
+      "sha": "7fd0c65e40e59c7e1446191178abc7859d6fa34c",
+      "tree": "1c85aa6df9fb087c6254bafd687eb65b33f169ae",
+      "parents": [
+        "8f945c79f15f5baa208e2f9c0681d130eec7ea92"
+      ],
+      "subject": "harness: final state",
+      "at": 1795804133,
+      "action": "commit",
+      "by": "harness",
+      "through_hooks": null,
+      "in_final_history": true
+    }
+  ],
+  "blocked_hook_runs": [],
+  "gate_log": [],
+  "hooks_modified": false,
+  "hooks_path": null
+}

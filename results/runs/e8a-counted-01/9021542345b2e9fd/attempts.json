@@ -1,0 +1,114 @@
+{
+  "commits": [
+    {
+      "sha": "94251d8dd2bb3760dc8e9428728d1313db16e483",
+      "tree": "9d13cf6e06752062da95288f300a953f4ea2c3f4",
+      "parents": [
+        "8cfba47feeeef83b05eb2de891f26a175cb81b57"
+      ],
+      "subject": "Implement maximum subsequence value",
+      "at": 1795801870,
+      "action": "commit",
+      "by": "agent",
+      "through_hooks": true,
+      "in_final_history": true
+    }
+  ],
+  "blocked_hook_runs": [
+    {
+      "at": 1795801859,
+      "exit": 1,
+      "tree": "e3354177a10c824e9048ee4bcc888908e376908a",
+      "gate": {
+        "decision": "blocked",
+        "subject": "sha256:5d6bbf81b38fb48caf8557aded824669082042ad4b27224d0db3612e716fec20",
+        "required": 2,
+        "uncovered": 2,
+        "packets": []
+      },
+      "reason": "uncovered"
+    }
+  ],
+  "gate_log": [
+    {
+      "at": "2026-11-27T17:50:59.968Z",
+      "source": "hook",
+      "decision": "blocked",
+      "subject": "sha256:5d6bbf81b38fb48caf8557aded824669082042ad4b27224d0db3612e716fec20",
+      "required": 2,
+      "uncovered": 2,
+      "packets": []
+    },
+    {
+      "at": "2026-11-27T17:51:06.505Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:5d6bbf81b38fb48caf8557aded824669082042ad4b27224d0db3612e716fec20",
+      "required": 2,
+      "uncovered": 2,
+      "packets": []
+    },
+    {
+      "at": "2026-11-27T17:51:06.567Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:5d6bbf81b38fb48caf8557aded824669082042ad4b27224d0db3612e716fec20",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-5e3f7b96",
+          "ok": false,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-27T17:51:08.353Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:5d6bbf81b38fb48caf8557aded824669082042ad4b27224d0db3612e716fec20",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-5e3f7b96",
+          "ok": false,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-27T17:51:08.394Z",
+      "source": "fix",
+      "decision": "pass",
+      "subject": "sha256:5d6bbf81b38fb48caf8557aded824669082042ad4b27224d0db3612e716fec20",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-5e3f7b96",
+          "ok": true,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-27T17:51:10.507Z",
+      "source": "hook",
+      "decision": "pass",
+      "subject": "sha256:5d6bbf81b38fb48caf8557aded824669082042ad4b27224d0db3612e716fec20",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-5e3f7b96",
+          "ok": true,
+          "failed": 0
+        }
+      ]
+    }
+  ],
+  "hooks_modified": false,
+  "hooks_path": null
+}

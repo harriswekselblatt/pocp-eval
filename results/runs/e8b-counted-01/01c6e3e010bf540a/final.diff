@@ -1,0 +1,100 @@
+diff --git a/solution.py b/solution.py
+index a185cc7..f61a784 100644
+--- a/solution.py
++++ b/solution.py
+@@ -1,3 +1,7 @@
++from functools import cache
++from math import comb
++
++
+ def count_balanced_graphs(n: int, p: int) -> list[int]:
+     """ Given an even positive integer n and a prime number p, for each M from n-1 to n*(n-1)//2,
+     count the number of undirected connected simple graphs with n vertices (labeled 1 to n) and M edges
+@@ -16,4 +20,46 @@ def count_balanced_graphs(n: int, p: int) -> list[int]:
+     >>> count_balanced_graphs(6, 924844033)
+     [810, 2100, 3060, 3030, 2230, 1210, 450, 100, 10, 0, 0]
+     """
+-    pass
++    half = n // 2
++    max_edges = comb(n, 2)
++
++    # Pack polynomial coefficients into fixed-width integer digits. Every
++    # coefficient counts a subset of the 2**max_edges possible graphs.
++    digit_bytes = (max_edges + 8) // 8
++    x = 1 << (8 * digit_bytes)
++
++    @cache
++    def layer_polynomial(previous: int, size: int) -> int:
++        # Each new vertex needs a neighbor in the preceding layer. Factor
++        # out one edge per new vertex, then allow all within-layer edges.
++        parent_choices = ((1 + x) ** previous - 1) // x
++        return parent_choices ** size * (1 + x) ** comb(size, 2)
++
++    @cache
++    def completions(even_left: int, odd_left: int, previous: int,
++                    next_is_odd: bool) -> int:
++        if even_left == odd_left == 0:
++            return 1
++
++        available = odd_left if next_is_odd else even_left
++        total = 0
++        for size in range(1, available + 1):
++            remaining = completions(
++                even_left - (0 if next_is_odd else size),
++                odd_left - (size if next_is_odd else 0),
++                size,
++                not next_is_odd,
++            )
++            if remaining:
++                # Edges across nonconsecutive layers would shorten a distance.
++                total += (comb(even_left + odd_left, size)
++                          * layer_polynomial(previous, size) * remaining)
++        return total
++
++    counts = completions(half - 1, half, 1, True)
++    result_size = max_edges - n + 2
++    packed = counts.to_bytes(result_size * digit_bytes, "little")
++    return [
++        int.from_bytes(packed[offset:offset + digit_bytes], "little") % p
++        for offset in range(0, len(packed), digit_bytes)
++    ]
+diff --git a/tests/test_task.py b/tests/test_task.py
+new file mode 100644
+index 0000000..90d91d3
+--- /dev/null
++++ b/tests/test_task.py
+@@ -0,0 +1,34 @@
++def check(candidate):
++    # Test cases from the problem
++    assert candidate(4, 998244353) == [12, 9, 3, 0]
++    assert candidate(6, 924844033) == [810, 2100, 3060, 3030, 2230, 1210, 450, 100, 10, 0, 0]
++    
++    # Additional test cases
++    assert candidate(2, 100000039) == [1]
++    assert candidate(2, 100000007) == [1]
++    assert candidate(2, 999999937) == [1]
++    
++    assert candidate(6, 100000037) == [810, 2100, 3060, 3030, 2230, 1210, 450, 100, 10, 0, 0]
++    assert candidate(2, 999999937) == [0]
++    assert candidate(6, 100000007) == [810, 2100, 3060, 3030, 2230, 1210, 450, 100, 10, 0, 0]
++    assert candidate(6, 999999937) == [810, 2100, 3060, 3030, 2230, 1210, 450, 100, 10, 0, 0]
++    
++    assert candidate(4, 100000037) == [12, 9, 3, 0]
++    
++    assert candidate(8, 999999937) == [143360, 748440, 2249520, 4929960, 8556240, 12240270, 14828170, 15482040, 14024780, 10976945, 7334985, 4117750, 1906730, 712950, 209510, 46550, 7350, 735, 35, 0, 0, 0]
++    assert candidate(8, 100000039) == [143360, 748440, 2249520, 4929960, 8556240, 12240270, 14828170, 15482040, 14024780, 10976945, 7334985, 4117750, 1906730, 712950, 209510, 46550, 7350, 735, 35, 0, 0, 0]
++    
++    assert candidate(10, 100000037) == [49218750, 19111132, 55603580, 75191702, 43240780, 62036487, 35185558, 77442296, 90869336, 56396854, 80488969, 86311771, 88802659, 38298859, 36192363, 19117498, 65614370, 78028051, 79071198, 19799430, 48709285, 7801005, 69500348, 68898904, 13662644, 51885430, 45426254, 47501118, 7422030, 899640, 79380, 4536, 126, 0, 0, 0, 0]
++    assert candidate(10, 100000039) == [49218750, 19111124, 55603540, 75191554, 43240340, 62035389, 35183186, 77437792, 90861712, 56385218, 80472803, 86291177, 88778513, 38272793, 36166521, 19094066, 65595034, 78013601, 79061466, 19793550, 48706115, 7799487, 69499708, 68898668, 13662568, 51885410, 45426250, 47501118, 7422030, 899640, 79380, 4536, 126, 0, 0, 0, 0]
++    assert candidate(10, 999999937) == [49218750, 419111280, 55604446, 475194881, 43250306, 962060202, 635236874, 277539795, 291034383, 856648723, 380838944, 786757587, 389325401, 338863169, 136751836, 619624763, 866032944, 578340862, 679281858, 19926732, 548777884, 907833813, 69514204, 868903963, 813664239, 51885863, 245426328, 47501118, 7422030, 899640, 79380, 4536, 126, 0, 0, 0, 0]
++    assert candidate(10, 433416647) == [49218750, 419111280, 321937732, 107111441, 372416570, 351559278, 312484809, 334285827, 317777667, 211471846, 58741385, 422156135, 323887465, 54923551, 121645733, 94354149, 346849276, 72744827, 385773306, 163421544, 351691775, 59915863, 430096957, 166653801, 346330874, 185052506, 245426328, 47501118, 7422030, 899640, 79380, 4536, 126, 0, 0, 0, 0]
++
++
++import os as _os
++import sys as _sys
++_sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))))
++from solution import count_balanced_graphs  # noqa: E402
++
++if __name__ == "__main__":
++    check(count_balanced_graphs)
++    print("ALL_TESTS_PASSED")

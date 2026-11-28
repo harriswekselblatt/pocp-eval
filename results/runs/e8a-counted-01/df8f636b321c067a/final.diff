@@ -1,0 +1,16 @@
+diff --git a/solution.py b/solution.py
+index 8b66e55..8b53afc 100644
+--- a/solution.py
++++ b/solution.py
+@@ -17,4 +17,10 @@ def min_swaps_to_group_ones(n: int, s: str) -> int:
+     >>> min_swaps_to_group_ones(10, '0101001001')
+     7
+     """
+-    pass
++    positions = [index for index, bit in enumerate(s) if bit == '1']
++    middle = len(positions) // 2
++
++    # Subtract each one's rank to turn a contiguous block into a single target.
++    # The adjusted positions are sorted, so their median minimizes total moves.
++    target = positions[middle] - middle
++    return sum(abs(position - rank - target) for rank, position in enumerate(positions))

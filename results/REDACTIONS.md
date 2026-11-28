@@ -426,3 +426,12 @@ Files under `eval/results/` whose absolute paths were replaced by `eval/tools/re
 | `eval/results/runs/2026-10-28-e2-codex-pilot-01/fb3c3144efd48dc2/agent.stdout.jsonl` | `be417900d3596eb3` | `8b86eaac819bb913` | 2026-10-30 |
 
 `results/campaign-123/` was redacted when it was added (2026-11-11): the benchmark root path was replaced with `<bench>` in 4,733 files. Its own [`REDACTIONS.json`](campaign-123/REDACTIONS.json) lists every file's SHA-256 before and after.
+
+`results/e8/box-check/` was redacted when it was added (2026-11-27), with `eval/lib/redact.js`: the path of the session folder the box check ran from became `$SCRATCH/…` in one string of each file. Full SHA-256 before and after:
+
+| File | Before | After |
+|---|---|---|
+| `results/e8/box-check/box-check-claude.json` | `c39d2146b630f6a326bd8229653fada541cdcb3ef45064f0f0e7cbba3a3f6819` | `56259eb0bcefcb5f7d2cca83805e9c97bc35cb972642324bab4af83e33e74904` |
+| `results/e8/box-check/box-check-codex.json` | `91bfc01a5ba3e2be4a03656227820ce9421627059ba2baf289131ab78d5f04f4` | `f1ecf788b94b95f5d05dee60f3dac86819a5962ba892ba0e03165712cac50573` |
+
+`results/e8/box-check/control.json` and the E8 records (`results/E1a/e8a-counted-01.jsonl`, `results/E1b/e8b-counted-01.jsonl`, `results/E1a/box-check-2026-11-27.jsonl` and their run folders) needed no redaction: the harness redacts paths as it writes them.

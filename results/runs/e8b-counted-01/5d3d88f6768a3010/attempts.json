@@ -1,0 +1,159 @@
+{
+  "commits": [
+    {
+      "sha": "315ec756612f859cece0c2e95b62abd4ac92f79e",
+      "tree": "e5607d8c678b5d6adeb5fa1cfa30ba35c2ceafe8",
+      "parents": [
+        "06816e5afa5169110bbfa6872aba9c67133f4f35"
+      ],
+      "subject": "Implement minimum adjacent swaps to group ones",
+      "at": 1795803946,
+      "action": "commit",
+      "by": "agent",
+      "through_hooks": true,
+      "in_final_history": true
+    }
+  ],
+  "blocked_hook_runs": [
+    {
+      "at": 1795803925,
+      "exit": 1,
+      "tree": "000ed2cb12ea6398b4e7d3eb9f0b20953f75cda4",
+      "gate": {
+        "decision": "blocked",
+        "subject": "sha256:ebc42d8d3e23dfe1ecb75ca3b2d51fb11629ad8943e4c9ac0aff5415aa1f5716",
+        "required": 1,
+        "uncovered": 1,
+        "packets": []
+      },
+      "reason": "uncovered"
+    }
+  ],
+  "gate_log": [
+    {
+      "at": "2026-11-27T18:25:25.517Z",
+      "source": "hook",
+      "decision": "blocked",
+      "subject": "sha256:ebc42d8d3e23dfe1ecb75ca3b2d51fb11629ad8943e4c9ac0aff5415aa1f5716",
+      "required": 1,
+      "uncovered": 1,
+      "packets": []
+    },
+    {
+      "at": "2026-11-27T18:25:36.657Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:12af1d7c133f81687f65fafaf1d93bbba1420d6c9281b98e2008b3d8106503c8",
+      "required": 2,
+      "uncovered": 2,
+      "packets": []
+    },
+    {
+      "at": "2026-11-27T18:25:36.753Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:12af1d7c133f81687f65fafaf1d93bbba1420d6c9281b98e2008b3d8106503c8",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-ebc3986d",
+          "ok": false,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-27T18:25:37.010Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:12af1d7c133f81687f65fafaf1d93bbba1420d6c9281b98e2008b3d8106503c8",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-ebc3986d",
+          "ok": false,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-27T18:25:37.069Z",
+      "source": "fix",
+      "decision": "pass",
+      "subject": "sha256:12af1d7c133f81687f65fafaf1d93bbba1420d6c9281b98e2008b3d8106503c8",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-ebc3986d",
+          "ok": true,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-27T18:25:45.648Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:0aad6fd8cb0745de43ed6f7aaa9e49fcf0b57a85190ec7b3268cefd2b682ef9a",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-ebc3986d",
+          "ok": false,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-27T18:25:45.999Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:0aad6fd8cb0745de43ed6f7aaa9e49fcf0b57a85190ec7b3268cefd2b682ef9a",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-ebc3986d",
+          "ok": false,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-27T18:25:46.101Z",
+      "source": "fix",
+      "decision": "pass",
+      "subject": "sha256:0aad6fd8cb0745de43ed6f7aaa9e49fcf0b57a85190ec7b3268cefd2b682ef9a",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-ebc3986d",
+          "ok": true,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-27T18:25:46.416Z",
+      "source": "hook",
+      "decision": "pass",
+      "subject": "sha256:0aad6fd8cb0745de43ed6f7aaa9e49fcf0b57a85190ec7b3268cefd2b682ef9a",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-ebc3986d",
+          "ok": true,
+          "failed": 0
+        }
+      ]
+    }
+  ],
+  "hooks_modified": false,
+  "hooks_path": null
+}

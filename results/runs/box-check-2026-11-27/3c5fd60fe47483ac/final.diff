@@ -1,0 +1,79 @@
+diff --git a/solution.py b/solution.py
+index 083ef08..9b5c224 100644
+--- a/solution.py
++++ b/solution.py
+@@ -1,3 +1,6 @@
++MOD = 998244353
++
++
+ def count_in_degree_sequences(n: int, s: str) -> int:
+     """ Given a positive integer n and a string s of length n consisting of '0' and '1',
+     construct a graph G with (n+1) vertices numbered 0 to n, with the following edges:
+@@ -22,4 +25,66 @@ def count_in_degree_sequences(n: int, s: str) -> int:
+     >>> count_in_degree_sequences(20, '00001100111010100101')
+     261339902
+     """
+-    pass
++    # d_n is determined by the rim sequence, so count distinct rim sequences
++    # d_i = r_i + t_i, where r is a cycle in-degree sequence (r_i - 1 in {-1,0,1},
++    # nonzero entries alternating in sign, sum 0) and t_i in {0,1} only if s_i == '1'.
++    # NFA state (sigma, last): sigma = sign of first nonzero, last = sign of last one.
++    # Index = sigma*2 + last (0 = '-', 1 = '+'); start (sigma, 1-sigma); accept last = 1-sigma.
++    def nfa_step(state, r):
++        sigma, last = divmod(state, 2)
++        if r == 0:
++            return state
++        sign = 1 if r > 0 else 0
++        if last == sign:
++            return None
++        return sigma * 2 + sign
++
++    # rim choices per e = d_i - 1 and type: list of possible r
++    choices = {
++        '0': {-1: [-1], 0: [0], 1: [1], 2: []},
++        '1': {-1: [-1], 0: [0, -1], 1: [1, 0], 2: [1]},
++    }
++
++    start = (1 << (0 * 2 + 1)) | (1 << (1 * 2 + 0))
++    accept = (1 << (0 * 2 + 1)) | (1 << (1 * 2 + 0))
++
++    tables = {'0': {}, '1': {}}
++    seen = {start}
++    stack = [start]
++    while stack:
++        m = stack.pop()
++        for typ in '01':
++            out = {}
++            for e in (-1, 0, 1, 2):
++                nm = 0
++                for st in range(4):
++                    if m >> st & 1:
++                        for r in choices[typ][e]:
++                            ns = nfa_step(st, r)
++                            if ns is not None:
++                                nm |= 1 << ns
++                out[nm] = out.get(nm, 0) + 1
++            tables[typ][m] = list(out.items())
++            for nm in out:
++                if nm not in seen:
++                    seen.add(nm)
++                    stack.append(nm)
++
++    ids = {m: i for i, m in enumerate(sorted(seen))}
++    k = len(ids)
++    trans = {typ: [[(ids[nm], c) for nm, c in tables[typ][m]] for m in sorted(seen)]
++             for typ in '01'}
++
++    vec = [0] * k
++    vec[ids[start]] = 1
++    for ch in s:
++        tr = trans[ch]
++        new = [0] * k
++        for a in range(k):
++            v = vec[a]
++            if v:
++                for b, c in tr[a]:
++                    new[b] += v * c
++        vec = [x % MOD for x in new]
++
++    return sum(vec[ids[m]] for m in seen if m & accept) % MOD

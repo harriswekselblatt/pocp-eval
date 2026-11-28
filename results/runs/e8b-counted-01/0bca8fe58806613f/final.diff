@@ -1,0 +1,101 @@
+diff --git a/solution.py b/solution.py
+index 1ae40e6..744565b 100644
+--- a/solution.py
++++ b/solution.py
+@@ -1,8 +1,11 @@
++from collections import Counter
++
++
+ def count_distinct_parenthesis_sequences(n: int, s: str) -> int:
+     """ Given a valid parenthesis sequence of length n, count the number of distinct strings
+     that can be obtained by performing the following operation any number of times:
+     - Choose a contiguous substring that is a valid parenthesis sequence and reverse it
+-      (where reversing means swapping all '(' with ')' and vice versa).
++      (reverse the character order and swap '(' with ')').
+     
+     Return the count modulo 998244353.
+     
+@@ -18,4 +21,38 @@ def count_distinct_parenthesis_sequences(n: int, s: str) -> int:
+     >>> count_distinct_parenthesis_sequences(2, '()')
+     1
+     """
+-    pass
++    modulus = 998244353
++    pairs = len(s) // 2
++    factorial = [1] * (pairs + 1)
++    inverse_factorial = [1] * (pairs + 1)
++    for size in range(1, pairs + 1):
++        factorial[size] = factorial[size - 1] * size % modulus
++    inverse_factorial[pairs] = pow(factorial[pairs], -1, modulus)
++    for size in range(pairs, 0, -1):
++        inverse_factorial[size - 1] = inverse_factorial[size] * size % modulus
++
++    # Each matched pair is a node and the whole string has a virtual root.
++    # A reversal preserves unordered subtree shapes. To swap adjacent siblings,
++    # reverse their combined substring, then reverse each sibling individually.
++    children_stack = [[]]
++    shape_ids = {}
++    result = 1
++
++    def count_orders(children):
++        multiplicities = Counter(children)
++        orders = factorial[len(children)]
++        for count in multiplicities.values():
++            orders = orders * inverse_factorial[count] % modulus
++        return orders, tuple(sorted(multiplicities.items()))
++
++    for character in s:
++        if character == '(':
++            children_stack.append([])
++        else:
++            orders, shape = count_orders(children_stack.pop())
++            result = result * orders % modulus
++            shape_id = shape_ids.setdefault(shape, len(shape_ids))
++            children_stack[-1].append(shape_id)
++
++    root_orders, _ = count_orders(children_stack.pop())
++    return result * root_orders % modulus
+diff --git a/tests/test_task.py b/tests/test_task.py
+new file mode 100644
+index 0000000..fddd73b
+--- /dev/null
++++ b/tests/test_task.py
+@@ -0,0 +1,38 @@
++def check(candidate):
++    # Test cases from the problem
++    assert candidate(6, '(())()') == 2
++    assert candidate(2, '()') == 1
++    
++    # Additional test cases
++    assert candidate(8, '(())()()') == 3
++    assert candidate(128, '()()(((()(())(()))))()()()((())())(())()((())((()((((((()()()()(()))()())))))())(())()())()(()(())))(((())()))()(())((()()))()()') == 679173354
++    assert candidate(8, '(()()())') == 1
++    assert candidate(12, '()(()()())()') == 3
++    assert candidate(10, '(((()))())') == 2
++    assert candidate(8, '(()()())') == 2
++    assert candidate(200, '()' * 100) == 1
++    assert candidate(12, '(()(()))(())') == 4
++    assert candidate(6, '((()))') == 1
++    assert candidate(140, '(((()()))(()()(((())()((()(()()))))(((())))((()))(())())()(()))())()((()())())(())()((()((())(()))(()()(()())()(())())((()(()()(())(()))))))') == 843316172
++    assert candidate(4, '(())') == 1
++    assert candidate(10, '((((()))))') == 1
++    assert candidate(140, '(((())()((()((()()(()))))(()()(()(())()((()()))())(())())))()())()()()(()()(()())()())(()((()()()())))(()()(()()((((()))()))))()()()(())()()') == 74966682
++    assert candidate(6, '()(())') == 2
++    assert candidate(14, '(()(()))((()))') == 4
++    assert candidate(4, '()()') == 1
++    assert candidate(12, '()()(((())))') == 3
++    assert candidate(8, '((())())') == 2
++    assert candidate(10, '()()()()()') == 1
++    assert candidate(8, '()((()))') == 2
++    assert candidate(12, '(((())))()()') == 3
++    assert candidate(10, '((()(())))') == 2
++
++
++import os as _os
++import sys as _sys
++_sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))))
++from solution import count_distinct_parenthesis_sequences  # noqa: E402
++
++if __name__ == "__main__":
++    check(count_distinct_parenthesis_sequences)
++    print("ALL_TESTS_PASSED")

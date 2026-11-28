@@ -1,0 +1,33 @@
+diff --git a/solution.py b/solution.py
+index 686fc0b..2274465 100644
+--- a/solution.py
++++ b/solution.py
+@@ -24,4 +24,27 @@ def min_team_switches(people: List[Tuple[int, int]]) -> int:
+     >>> min_team_switches([(1, 1), (2, 1), (3, 1)])
+     0
+     """
+-    pass
++    total = sum(s for _, s in people)
++    if total % 3:
++        return -1
++    target = total // 3
++
++    # DP over (sum of team 1, sum of team 2) -> min switches; team 3 sum is implied.
++    states = {(0, 0): 0}
++    for team, s in people:
++        nxt = {}
++        for (a, b), cost in states.items():
++            for new_team in (1, 2, 3):
++                na, nb = a, b
++                if new_team == 1:
++                    na += s
++                elif new_team == 2:
++                    nb += s
++                if na > target or nb > target:
++                    continue
++                c = cost + (new_team != team)
++                key = (na, nb)
++                if key not in nxt or c < nxt[key]:
++                    nxt[key] = c
++        states = nxt
++    return states.get((target, target), -1)

@@ -1,0 +1,33 @@
+diff --git a/solution.py b/solution.py
+index 07ef46a..5fb4b1e 100644
+--- a/solution.py
++++ b/solution.py
+@@ -21,4 +21,27 @@ def kth_smallest_amount(coins: List[int], k: int) -> int:
+     >>> kth_smallest_amount([5, 2], 7)
+     12
+     """
+-    pass
++    from math import gcd
++
++    coins = [c for c in set(coins) if not any(d != c and c % d == 0 for d in coins)]
++    coefs = {}
++    for c in coins:
++        updates = {c: 1}
++        for l, s in coefs.items():
++            m = l * c // gcd(l, c)
++            updates[m] = updates.get(m, 0) - s
++        for m, s in updates.items():
++            coefs[m] = coefs.get(m, 0) + s
++    terms = [(l, s) for l, s in coefs.items() if s]
++
++    def count(x: int) -> int:
++        return sum(s * (x // l) for l, s in terms)
++
++    lo, hi = 1, min(coins) * k
++    while lo < hi:
++        mid = (lo + hi) // 2
++        if count(mid) >= k:
++            hi = mid
++        else:
++            lo = mid + 1
++    return lo

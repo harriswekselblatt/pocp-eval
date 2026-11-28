@@ -1,0 +1,139 @@
+diff --git a/solution.py b/solution.py
+index a185cc7..f445df3 100644
+--- a/solution.py
++++ b/solution.py
+@@ -3,17 +3,90 @@ def count_balanced_graphs(n: int, p: int) -> list[int]:
+     count the number of undirected connected simple graphs with n vertices (labeled 1 to n) and M edges
+     such that the number of vertices whose shortest distance from vertex 1 is even equals the number
+     of vertices whose shortest distance from vertex 1 is odd. Return these counts modulo p.
+-    
++
+     Args:
+         n: Even positive integer (2 <= n <= 30)
+         p: Prime number (10^8 <= p <= 10^9)
+-    
++
+     Returns:
+         List of counts modulo p for M = n-1, n, n+1, ..., n*(n-1)//2
+-    
++
+     >>> count_balanced_graphs(4, 998244353)
+     [12, 9, 3, 0]
+     >>> count_balanced_graphs(6, 924844033)
+     [810, 2100, 3060, 3030, 2230, 1210, 450, 100, 10, 0, 0]
+     """
+-    pass
++    h = n // 2
++    D = n * (n - 1) // 2
++    C = [[0] * (n + 1) for _ in range(n + 1)]
++    for i in range(n + 1):
++        C[i][0] = 1
++        for j in range(1, i + 1):
++            C[i][j] = (C[i - 1][j - 1] + C[i - 1][j]) % p
++    ys = []
++    for x in range(D + 1):
++        q = (1 + x) % p
++        qp = [1]
++        for k in range(1, D + 1):
++            qp.append(qp[-1] * q % p)
++        # W[a][b] = ((1+x)^a-1)^b (1+x)^C(b,2) * C-free weight
++        W = [[0] * (h + 1) for _ in range(h + 1)]
++        for a in range(1, h + 1):
++            base = (qp[a] - 1) % p
++            cur = 1
++            for b in range(1, h + 1):
++                cur = cur * base % p
++                W[a][b] = cur * qp[b * (b - 1) // 2] % p
++        by_used = [dict() for _ in range(n + 1)]
++        by_used[1][(1, 0, 1, 0)] = 1
++        res = 0
++        for used in range(1, n):
++            for (e, o, last, par), v in by_used[used].items():
++                npar = 1 - par
++                Wl = W[last]
++                Cu = C[n - used]
++                for b in range(1, min(h, n - used) + 1):
++                    if npar:
++                        ne, no = e, o + b
++                    else:
++                        ne, no = e + b, o
++                    if ne > h or no > h:
++                        break
++                    d = by_used[used + b]
++                    key = (ne, no, b, npar)
++                    d[key] = (d.get(key, 0) + v * Wl[b] % p * Cu[b]) % p
++        for (e, o, last, par), v in by_used[n].items():
++            if e == h and o == h:
++                res = (res + v) % p
++        ys.append(res)
++    # Lagrange interpolation over points 0..D to get coefficients
++    npts = D + 1
++    # full = prod (x - i)
++    full = [1]
++    for i in range(npts):
++        new = [0] * (len(full) + 1)
++        for k, c in enumerate(full):
++            new[k + 1] = (new[k + 1] + c) % p
++            new[k] = (new[k] - i * c) % p
++        full = new
++    fact = [1] * (npts + 1)
++    for i in range(1, npts + 1):
++        fact[i] = fact[i - 1] * i % p
++    coef = [0] * npts
++    for i in range(npts):
++        # denominator: prod_{j!=i} (i-j) = i! * (D-i)! * (-1)^(D-i)
++        den = fact[i] * fact[D - i] % p
++        if (D - i) & 1:
++            den = -den % p
++        s = ys[i] * pow(den, p - 2, p) % p
++        if s == 0:
++            continue
++        # divide full by (x - i) synthetic
++        quo = [0] * npts
++        carry = 0
++        for k in range(npts, 0, -1):
++            carry = (full[k] + carry * i) % p
++            quo[k - 1] = carry
++        for k in range(npts):
++            coef[k] = (coef[k] + s * quo[k]) % p
++    return coef[n - 1:D + 1]
+diff --git a/tests/test_task.py b/tests/test_task.py
+new file mode 100644
+index 0000000..90d91d3
+--- /dev/null
++++ b/tests/test_task.py
+@@ -0,0 +1,34 @@
++def check(candidate):
++    # Test cases from the problem
++    assert candidate(4, 998244353) == [12, 9, 3, 0]
++    assert candidate(6, 924844033) == [810, 2100, 3060, 3030, 2230, 1210, 450, 100, 10, 0, 0]
++    
++    # Additional test cases
++    assert candidate(2, 100000039) == [1]
++    assert candidate(2, 100000007) == [1]
++    assert candidate(2, 999999937) == [1]
++    
++    assert candidate(6, 100000037) == [810, 2100, 3060, 3030, 2230, 1210, 450, 100, 10, 0, 0]
++    assert candidate(2, 999999937) == [0]
++    assert candidate(6, 100000007) == [810, 2100, 3060, 3030, 2230, 1210, 450, 100, 10, 0, 0]
++    assert candidate(6, 999999937) == [810, 2100, 3060, 3030, 2230, 1210, 450, 100, 10, 0, 0]
++    
++    assert candidate(4, 100000037) == [12, 9, 3, 0]
++    
++    assert candidate(8, 999999937) == [143360, 748440, 2249520, 4929960, 8556240, 12240270, 14828170, 15482040, 14024780, 10976945, 7334985, 4117750, 1906730, 712950, 209510, 46550, 7350, 735, 35, 0, 0, 0]
++    assert candidate(8, 100000039) == [143360, 748440, 2249520, 4929960, 8556240, 12240270, 14828170, 15482040, 14024780, 10976945, 7334985, 4117750, 1906730, 712950, 209510, 46550, 7350, 735, 35, 0, 0, 0]
++    
++    assert candidate(10, 100000037) == [49218750, 19111132, 55603580, 75191702, 43240780, 62036487, 35185558, 77442296, 90869336, 56396854, 80488969, 86311771, 88802659, 38298859, 36192363, 19117498, 65614370, 78028051, 79071198, 19799430, 48709285, 7801005, 69500348, 68898904, 13662644, 51885430, 45426254, 47501118, 7422030, 899640, 79380, 4536, 126, 0, 0, 0, 0]
++    assert candidate(10, 100000039) == [49218750, 19111124, 55603540, 75191554, 43240340, 62035389, 35183186, 77437792, 90861712, 56385218, 80472803, 86291177, 88778513, 38272793, 36166521, 19094066, 65595034, 78013601, 79061466, 19793550, 48706115, 7799487, 69499708, 68898668, 13662568, 51885410, 45426250, 47501118, 7422030, 899640, 79380, 4536, 126, 0, 0, 0, 0]
++    assert candidate(10, 999999937) == [49218750, 419111280, 55604446, 475194881, 43250306, 962060202, 635236874, 277539795, 291034383, 856648723, 380838944, 786757587, 389325401, 338863169, 136751836, 619624763, 866032944, 578340862, 679281858, 19926732, 548777884, 907833813, 69514204, 868903963, 813664239, 51885863, 245426328, 47501118, 7422030, 899640, 79380, 4536, 126, 0, 0, 0, 0]
++    assert candidate(10, 433416647) == [49218750, 419111280, 321937732, 107111441, 372416570, 351559278, 312484809, 334285827, 317777667, 211471846, 58741385, 422156135, 323887465, 54923551, 121645733, 94354149, 346849276, 72744827, 385773306, 163421544, 351691775, 59915863, 430096957, 166653801, 346330874, 185052506, 245426328, 47501118, 7422030, 899640, 79380, 4536, 126, 0, 0, 0, 0]
++
++
++import os as _os
++import sys as _sys
++_sys.path.insert(0, _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))))
++from solution import count_balanced_graphs  # noqa: E402
++
++if __name__ == "__main__":
++    check(count_balanced_graphs)
++    print("ALL_TESTS_PASSED")

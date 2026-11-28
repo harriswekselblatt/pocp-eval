@@ -1,0 +1,33 @@
+diff --git a/solution.py b/solution.py
+index 6e6d26a..731a5f8 100644
+--- a/solution.py
++++ b/solution.py
+@@ -20,4 +20,27 @@ def count_valid_grids(H: int, W: int, grid: list[str]) -> int:
+     >>> count_valid_grids(1, 1, ['?'])
+     3
+     """
+-    pass
++    modulus = 998244353
++    rows = zip(*grid) if W > H else grid
++
++    # Each profile stores the last color placed in each column, using two
++    # bits per color. Zero represents a column that has not been visited yet.
++    counts = {0: 1}
++    for row in rows:
++        for column, cell in enumerate(row):
++            shift = 2 * column
++            colors = (1, 2, 3) if cell == '?' else (int(cell),)
++            next_counts = {}
++            for profile, count in counts.items():
++                above = (profile >> shift) & 3
++                left = (profile >> (shift - 2)) & 3 if column else 0
++                cleared = profile & ~(3 << shift)
++                for color in colors:
++                    if color != above and color != left:
++                        updated = cleared | (color << shift)
++                        next_counts[updated] = (next_counts.get(updated, 0) + count) % modulus
++            counts = next_counts
++            if not counts:
++                return 0
++
++    return sum(counts.values()) % modulus

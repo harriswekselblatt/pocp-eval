@@ -1,0 +1,129 @@
+{
+  "commits": [
+    {
+      "sha": "6dd56d1e71727496d09002847c91f56175b7d407",
+      "tree": "ed20ecb4128965ca928f2f56597e5ae680460b8b",
+      "parents": [
+        "bca77f34775329566722ec2df9c86fa17d32d047"
+      ],
+      "subject": "Compute achievable fixed counts for binary matrices",
+      "at": 1795801077,
+      "action": "commit",
+      "by": "agent",
+      "through_hooks": true,
+      "in_final_history": true
+    }
+  ],
+  "blocked_hook_runs": [
+    {
+      "at": 1795801012,
+      "exit": 1,
+      "tree": "a1a741d1702ef46a9be8d25eddf89c9b745d8846",
+      "gate": {
+        "decision": "blocked",
+        "subject": "sha256:e0bfebd9f713cef16c78c3ce5778462e6c438f1d379b9988ed210a66cb448757",
+        "required": 2,
+        "uncovered": 2,
+        "packets": []
+      },
+      "reason": "uncovered"
+    }
+  ],
+  "gate_log": [
+    {
+      "at": "2026-11-27T17:36:52.555Z",
+      "source": "hook",
+      "decision": "blocked",
+      "subject": "sha256:e0bfebd9f713cef16c78c3ce5778462e6c438f1d379b9988ed210a66cb448757",
+      "required": 2,
+      "uncovered": 2,
+      "packets": []
+    },
+    {
+      "at": "2026-11-27T17:37:10.081Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:94eba2a5c417899d594918a48cecf02768629a541eb194bf18a7241c506cd381",
+      "required": 2,
+      "uncovered": 2,
+      "packets": []
+    },
+    {
+      "at": "2026-11-27T17:37:10.111Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:94eba2a5c417899d594918a48cecf02768629a541eb194bf18a7241c506cd381",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-8d4f18ab",
+          "ok": false,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-27T17:37:55.536Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:2ba7475387a391d154c76f8545ffe40577f977ea38878b613caf4a70e08aca34",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-8d4f18ab",
+          "ok": false,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-27T17:37:56.001Z",
+      "source": "fix",
+      "decision": "blocked",
+      "subject": "sha256:2ba7475387a391d154c76f8545ffe40577f977ea38878b613caf4a70e08aca34",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-8d4f18ab",
+          "ok": false,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-27T17:37:56.024Z",
+      "source": "fix",
+      "decision": "pass",
+      "subject": "sha256:2ba7475387a391d154c76f8545ffe40577f977ea38878b613caf4a70e08aca34",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-8d4f18ab",
+          "ok": true,
+          "failed": 0
+        }
+      ]
+    },
+    {
+      "at": "2026-11-27T17:37:57.987Z",
+      "source": "hook",
+      "decision": "pass",
+      "subject": "sha256:2ba7475387a391d154c76f8545ffe40577f977ea38878b613caf4a70e08aca34",
+      "required": 2,
+      "uncovered": 0,
+      "packets": [
+        {
+          "id": "p-8d4f18ab",
+          "ok": true,
+          "failed": 0
+        }
+      ]
+    }
+  ],
+  "hooks_modified": false,
+  "hooks_path": null
+}
